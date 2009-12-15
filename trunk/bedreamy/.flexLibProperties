@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flexLibProperties version="1">
+<includeClasses>
+<classEntry path="com.bedreamy.components.preloader.CustomPreloader"/>
+<classEntry path="com.bedreamy.facade.MainFacade"/>
+<classEntry path="com.bedreamy.components.voile.Voile"/>
+</includeClasses>
+<includeResources/>
+<namespaceManifests/>
+</flexLibProperties>
