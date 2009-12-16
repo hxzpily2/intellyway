@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" creationComplete="init()" borderColor="#FFFFFF" backgroundColor="#FFFFFF" backgroundGradientAlphas="[1.0, 1.0]" backgroundGradientColors="[#FFFFFF, #FFFFFF]"
+	preloader="com.bedreamy.components.preloader.CustomPreloader"
+	> 
+	<mx:Script>
+		<![CDATA[
+			import com.bedreamy.facade.MainFacade;
+			private var facade:MainFacade = MainFacade.getInstance();
+			
+			public function init():void{
+				facade.setMainApplication(this);
+			}
+		]]>
+	</mx:Script>
+	<mx:Box 
+		borderStyle="solid"
+		backgroundColor="#000000"
+		borderColor="#0F7494"
+		dropShadowEnabled="true" 
+		horizontalCenter="0" top="0">
+		
+		<mx:SWFLoader 
+				source="@Embed(source='assets/background.swf', symbol='background_water')"
+				width="766" height="700" />
+				
+	</mx:Box>
+</mx:Application>
