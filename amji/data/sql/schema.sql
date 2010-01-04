@@ -1,4 +1,13 @@
+CREATE TABLE contacts (user INT, contact INT, PRIMARY KEY(user, contact)) ENGINE = INNODB;
+CREATE TABLE emoticones (idemoticones INT AUTO_INCREMENT, racourci VARCHAR(45) NOT NULL, image VARCHAR(45) NOT NULL, PRIMARY KEY(idemoticones)) ENGINE = INNODB;
 CREATE TABLE jobeet_ville (id BIGINT AUTO_INCREMENT, libelle VARCHAR(255) NOT NULL, pays_id BIGINT NOT NULL, PRIMARY KEY(id)) ENGINE = INNODB;
+CREATE TABLE priorite (idpriorite INT AUTO_INCREMENT, libelle VARCHAR(45) NOT NULL, PRIMARY KEY(idpriorite)) ENGINE = INNODB;
+CREATE TABLE request (idrequest INT, content TEXT NOT NULL, user INT NOT NULL, priorite INT NOT NULL, type INT NOT NULL, title TEXT NOT NULL, INDEX priorite_idx (priorite), INDEX type_idx (type), INDEX user_idx (user), PRIMARY KEY(idrequest)) ENGINE = INNODB;
+CREATE TABLE requestusers (request INT, user INT, readed TINYINT NOT NULL, PRIMARY KEY(request, user)) ENGINE = INNODB;
+CREATE TABLE response (idresponse INT AUTO_INCREMENT, content TEXT NOT NULL, user INT NOT NULL, request INT NOT NULL, response INT NOT NULL, INDEX request_idx (request), INDEX user_idx (user), PRIMARY KEY(idresponse)) ENGINE = INNODB;
+CREATE TABLE subscribe (user INT, type INT, dateinscr DATETIME NOT NULL, PRIMARY KEY(user, type)) ENGINE = INNODB;
+CREATE TABLE type (idtype INT AUTO_INCREMENT, libelle VARCHAR(45) NOT NULL, PRIMARY KEY(idtype)) ENGINE = INNODB;
+CREATE TABLE user (email VARCHAR(100) NOT NULL, nom VARCHAR(45) NOT NULL, prenom VARCHAR(45) NOT NULL, pseudo VARCHAR(45) NOT NULL, adr VARCHAR(45), tel VARCHAR(45), etudiant TINYINT, salarie TINYINT, statut VARCHAR(45), entreprise VARCHAR(45), niveauetude VARCHAR(45), ecole VARCHAR(45), iduser INT AUTO_INCREMENT, PRIMARY KEY(iduser)) ENGINE = INNODB;
 CREATE TABLE sf_guard_group (id INT AUTO_INCREMENT, name VARCHAR(255) UNIQUE, description TEXT, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, PRIMARY KEY(id)) ENGINE = INNODB;
 CREATE TABLE sf_guard_group_permission (group_id INT, permission_id INT, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, PRIMARY KEY(group_id, permission_id)) ENGINE = INNODB;
 CREATE TABLE sf_guard_permission (id INT AUTO_INCREMENT, name VARCHAR(255) UNIQUE, description TEXT, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, PRIMARY KEY(id)) ENGINE = INNODB;
@@ -6,6 +15,11 @@ CREATE TABLE sf_guard_remember_key (id INT AUTO_INCREMENT, user_id INT, remember
 CREATE TABLE sf_guard_user (id INT AUTO_INCREMENT, username VARCHAR(128) NOT NULL UNIQUE, algorithm VARCHAR(128) DEFAULT 'sha1' NOT NULL, salt VARCHAR(128), password VARCHAR(128), is_active TINYINT(1) DEFAULT '1', is_super_admin TINYINT(1) DEFAULT '0', last_login DATETIME, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, INDEX is_active_idx_idx (is_active), PRIMARY KEY(id)) ENGINE = INNODB;
 CREATE TABLE sf_guard_user_group (user_id INT, group_id INT, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, PRIMARY KEY(user_id, group_id)) ENGINE = INNODB;
 CREATE TABLE sf_guard_user_permission (user_id INT, permission_id INT, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, PRIMARY KEY(user_id, permission_id)) ENGINE = INNODB;
+ALTER TABLE request ADD CONSTRAINT request_user_user_iduser FOREIGN KEY (user) REFERENCES user(iduser);
+ALTER TABLE request ADD CONSTRAINT request_type_type_idtype FOREIGN KEY (type) REFERENCES type(idtype);
+ALTER TABLE request ADD CONSTRAINT request_priorite_priorite_idpriorite FOREIGN KEY (priorite) REFERENCES priorite(idpriorite);
+ALTER TABLE response ADD CONSTRAINT response_user_user_iduser FOREIGN KEY (user) REFERENCES user(iduser);
+ALTER TABLE response ADD CONSTRAINT response_request_request_idrequest FOREIGN KEY (request) REFERENCES request(idrequest);
 ALTER TABLE sf_guard_group_permission ADD CONSTRAINT sf_guard_group_permission_permission_id_sf_guard_permission_id FOREIGN KEY (permission_id) REFERENCES sf_guard_permission(id) ON DELETE CASCADE;
 ALTER TABLE sf_guard_group_permission ADD CONSTRAINT sf_guard_group_permission_group_id_sf_guard_group_id FOREIGN KEY (group_id) REFERENCES sf_guard_group(id) ON DELETE CASCADE;
 ALTER TABLE sf_guard_remember_key ADD CONSTRAINT sf_guard_remember_key_user_id_sf_guard_user_id FOREIGN KEY (user_id) REFERENCES sf_guard_user(id) ON DELETE CASCADE;
