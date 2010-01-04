@@ -1,0 +1,34 @@
+AmjiUser:
+  tableName: amji_user
+  columns:
+    id:
+      type: integer(8)
+      primary: true
+      autoincrement: true
+    email:
+      type: string(255)
+      notnull: true
+    nom:
+      type: string(255)
+      notnull: true
+    prenom:
+      type: string(255)
+      notnull: true
+    pseudo:
+      type: string(255)
+      notnull: true
+    libelle:
+      type: string(255)
+      notnull: true
+    libelle:
+      type: string(255)
+      notnull: true
+    libelle:
+      type: string(255)
+      notnull: true
+    libelle:
+      type: string(255)
+      notnull: true
+    libelle:
+      type: string(255)
+      notnull: true
