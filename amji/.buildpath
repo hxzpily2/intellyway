@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<buildpath>
+	<buildpathentry kind="src" path="apps/amji/config"/>
+	<buildpathentry kind="src" path="apps/amji/lib"/>
+	<buildpathentry kind="src" path="apps/amji/templates"/>
+	<buildpathentry kind="src" path="config"/>
+	<buildpathentry kind="src" path="lib/form"/>
+	<buildpathentry kind="src" path="test/bootstrap"/>
+	<buildpathentry kind="src" path="web"/>
+	<buildpathentry kind="con" path="org.eclipse.php.core.LANGUAGE"/>
+</buildpath>
