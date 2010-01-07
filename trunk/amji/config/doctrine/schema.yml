@@ -1,103 +1,99 @@
-Contacts:
+AmjiEmoticones:
   connection: doctrine
-  tableName: contacts
+  tableName: amji_emoticones
   columns:
-    user:
-      type: integer(4)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: false
-    contact:
-      type: integer(4)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: false
-Emoticones:
-  connection: doctrine
-  tableName: emoticones
-  columns:
-    idemoticones:
+    idamji_emoticones:
       type: integer(4)
       fixed: false
       unsigned: false
       primary: true
       autoincrement: true
     racourci:
-      type: string(45)
+      type: string(100)
       fixed: false
       unsigned: false
       primary: false
       notnull: true
       autoincrement: false
     image:
-      type: string(45)
+      type: string(200)
       fixed: false
       unsigned: false
       primary: false
       notnull: true
       autoincrement: false
-Priorite:
+AmjiFile:
   connection: doctrine
-  tableName: priorite
+  tableName: amji_file
   columns:
-    idpriorite:
+    idamji_file:
       type: integer(4)
       fixed: false
       unsigned: false
       primary: true
       autoincrement: true
-    libelle:
-      type: string(45)
+    content:
+      type: blob()
       fixed: false
       unsigned: false
       primary: false
       notnull: true
       autoincrement: false
-  relations:
-    Request:
-      local: idpriorite
-      foreign: priorite
-      type: many
-Request:
+AmjiInvitation:
   connection: doctrine
-  tableName: request
+  tableName: amji_invitation
   columns:
-    idrequest:
+    idamji_user:
       type: integer(4)
       fixed: false
       unsigned: false
       primary: true
       autoincrement: false
-    content:
+    idamji_invite:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: false
+    message:
       type: string()
       fixed: false
       unsigned: false
       primary: false
       notnull: true
       autoincrement: false
-    user:
+AmjiPriorite:
+  connection: doctrine
+  tableName: amji_priorite
+  columns:
+    idamji_priorite:
       type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: true
+    libelle:
+      type: string(100)
       fixed: false
       unsigned: false
       primary: false
       notnull: true
       autoincrement: false
-    priorite:
+  relations:
+    AmjiRequest:
+      local: idamji_priorite
+      foreign: idpriorite
+      type: many
+AmjiRequest:
+  connection: doctrine
+  tableName: amji_request
+  columns:
+    idamji_request:
       type: integer(4)
       fixed: false
       unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    type:
-      type: integer(4)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
+      primary: true
+      autoincrement: true
     title:
       type: string()
       fixed: false
@@ -105,51 +101,72 @@ Request:
       primary: false
       notnull: true
       autoincrement: false
-  relations:
-    Priorite:
-      local: priorite
-      foreign: idpriorite
-      type: one
-    Type:
-      local: type
-      foreign: idtype
-      type: one
-    User:
-      local: user
-      foreign: iduser
-      type: one
-    Response:
-      local: idrequest
-      foreign: request
-      type: many
-Requestusers:
-  connection: doctrine
-  tableName: requestusers
-  columns:
-    request:
-      type: integer(4)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: false
-    user:
-      type: integer(4)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: false
-    readed:
-      type: integer(1)
+    content:
+      type: string()
       fixed: false
       unsigned: false
       primary: false
       notnull: true
       autoincrement: false
-Response:
+    iduser:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    idpriorite:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    idtype:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+  relations:
+    AmjiUser:
+      local: iduser
+      foreign: idamji_user
+      type: one
+    AmjiPriorite:
+      local: idpriorite
+      foreign: idamji_priorite
+      type: one
+    AmjiType:
+      local: idtype
+      foreign: idamji_type
+      type: one
+    AmjiResponse:
+      local: idamji_request
+      foreign: idrequest
+      type: many
+AmjiRequestAttachment:
   connection: doctrine
-  tableName: response
+  tableName: amji_request_attachment
   columns:
-    idresponse:
+    idamji_file:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: false
+    idamji_request:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: false
+AmjiResponse:
+  connection: doctrine
+  tableName: amji_response
+  columns:
+    idamji_response:
       type: integer(4)
       fixed: false
       unsigned: false
@@ -162,89 +179,133 @@ Response:
       primary: false
       notnull: true
       autoincrement: false
-    user:
+    iduser:
       type: integer(4)
       fixed: false
       unsigned: false
       primary: false
       notnull: true
       autoincrement: false
-    request:
+    idrequest:
       type: integer(4)
       fixed: false
       unsigned: false
       primary: false
       notnull: true
       autoincrement: false
-    response:
+    idresponse:
       type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+  relations:
+    AmjiUser:
+      local: iduser
+      foreign: idamji_user
+      type: one
+    AmjiRequest:
+      local: idrequest
+      foreign: idamji_request
+      type: one
+    AmjiResponse:
+      local: idamji_response
+      foreign: idresponse
+      type: many
+AmjiResponseAttachment:
+  connection: doctrine
+  tableName: amji_response_attachment
+  columns:
+    idamji_response:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: false
+    idamji_file:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: false
+AmjiStatut:
+  connection: doctrine
+  tableName: amji_statut
+  columns:
+    idamji_statut:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: false
+    libelle:
+      type: string(100)
       fixed: false
       unsigned: false
       primary: false
       notnull: true
       autoincrement: false
   relations:
-    Request:
-      local: request
-      foreign: idrequest
-      type: one
-    Response:
-      local: idresponse
-      foreign: response
+    AmjiUser:
+      local: idamji_statut
+      foreign: idamji_statut
       type: many
-    User:
-      local: user
-      foreign: iduser
-      type: one
-Subscribe:
+AmjiSubscribe:
   connection: doctrine
-  tableName: subscribe
+  tableName: amji_subscribe
   columns:
-    user:
+    idamji_user:
       type: integer(4)
       fixed: false
       unsigned: false
       primary: true
       autoincrement: false
-    type:
+    idamji_type:
       type: integer(4)
       fixed: false
       unsigned: false
       primary: true
       autoincrement: false
-    dateinscr:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-Type:
+AmjiType:
   connection: doctrine
-  tableName: type
+  tableName: amji_type
   columns:
-    idtype:
+    idamji_type:
       type: integer(4)
       fixed: false
       unsigned: false
       primary: true
       autoincrement: true
     libelle:
-      type: string(45)
+      type: string(100)
       fixed: false
       unsigned: false
       primary: false
       notnull: true
       autoincrement: false
   relations:
-    Request:
-      local: idtype
-      foreign: type
+    AmjiRequest:
+      local: idamji_type
+      foreign: idtype
       type: many
-User:
+AmjiUser:
   connection: doctrine
-  tableName: user
+  tableName: amji_user
   columns:
+    idamji_user:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: true
+    pseudo:
+      type: string(100)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
     email:
       type: string(100)
       fixed: false
@@ -253,35 +314,28 @@ User:
       notnull: true
       autoincrement: false
     nom:
-      type: string(45)
+      type: string(100)
       fixed: false
       unsigned: false
       primary: false
       notnull: true
       autoincrement: false
     prenom:
-      type: string(45)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    pseudo:
-      type: string(45)
+      type: string(100)
       fixed: false
       unsigned: false
       primary: false
       notnull: true
       autoincrement: false
     adr:
-      type: string(45)
+      type: string(100)
       fixed: false
       unsigned: false
       primary: false
       notnull: false
       autoincrement: false
     tel:
-      type: string(45)
+      type: string(100)
       fixed: false
       unsigned: false
       primary: false
@@ -289,6 +343,20 @@ User:
       autoincrement: false
     etudiant:
       type: integer(1)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    ecole:
+      type: string(100)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    niveau:
+      type: string(100)
       fixed: false
       unsigned: false
       primary: false
@@ -302,45 +370,36 @@ User:
       notnull: false
       autoincrement: false
     statut:
-      type: string(45)
+      type: string(100)
       fixed: false
       unsigned: false
       primary: false
       notnull: false
       autoincrement: false
-    entreprise:
-      type: string(45)
+    societe:
+      type: string(100)
       fixed: false
       unsigned: false
       primary: false
       notnull: false
       autoincrement: false
-    niveauetude:
-      type: string(45)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    ecole:
-      type: string(45)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    iduser:
+    idamji_statut:
       type: integer(4)
       fixed: false
       unsigned: false
-      primary: true
-      autoincrement: true
+      primary: false
+      notnull: false
+      autoincrement: false
   relations:
-    Request:
-      local: iduser
-      foreign: user
+    AmjiStatut:
+      local: idamji_statut
+      foreign: idamji_statut
+      type: one
+    AmjiRequest:
+      local: idamji_user
+      foreign: iduser
       type: many
-    Response:
-      local: iduser
-      foreign: user
+    AmjiResponse:
+      local: idamji_user
+      foreign: iduser
       type: many
