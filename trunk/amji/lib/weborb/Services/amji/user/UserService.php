@@ -1,18 +1,17 @@
 <?php
 
+require_once dirname(__FILE__).'/../generic/GenericService.php';
 
-class UserService{
-	
+class UserService extends GenericService{
+	protected $context = null;
+
 	public function createUser(){
 		//$user = new User();
-		
-		require_once dirname(__FILE__).'/../../../../../config/ProjectConfiguration.class.php';
-    
-    	$configuration = ProjectConfiguration::getApplicationConfiguration('amji', 'dev', true);
-		sfContext::createInstance($configuration);
-		
+
+			
+
 		$user = new User();
-		
+
 		return "test";
 	}
 }
