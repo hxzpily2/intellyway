@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <buildpath>
 	<buildpathentry kind="src" path="apps/amji/config"/>
+	<buildpathentry kind="src" path="lib/weborb/Services"/>
+	<buildpathentry kind="src" path="lib/model"/>
+	<buildpathentry excluding="Services/amji/exception/|Services/amji/vo/|Services/|Services/amji/user/|Services/amji/|Services/amji/commun/|Services/Weborb/|Services/amji/generic/|Services/" kind="src" path="lib/weborb"/>
 	<buildpathentry kind="src" path="apps/amji/lib"/>
 	<buildpathentry kind="src" path="apps/amji/templates"/>
 	<buildpathentry kind="src" path="config"/>
