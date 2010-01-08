@@ -53,5 +53,8 @@ abstract class BaseAmjiStatut extends sfDoctrineRecord
         $this->hasMany('AmjiUser', array(
              'local' => 'idamji_statut',
              'foreign' => 'idamji_statut'));
+
+        $timestampable0 = new Doctrine_Template_Timestampable();
+        $this->actAs($timestampable0);
     }
 }

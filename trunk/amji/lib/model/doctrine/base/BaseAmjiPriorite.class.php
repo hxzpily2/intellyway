@@ -53,5 +53,8 @@ abstract class BaseAmjiPriorite extends sfDoctrineRecord
         $this->hasMany('AmjiRequest', array(
              'local' => 'idamji_priorite',
              'foreign' => 'idpriorite'));
+
+        $timestampable0 = new Doctrine_Template_Timestampable();
+        $this->actAs($timestampable0);
     }
 }

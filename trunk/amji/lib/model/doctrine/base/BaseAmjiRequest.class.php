@@ -122,5 +122,8 @@ abstract class BaseAmjiRequest extends sfDoctrineRecord
         $this->hasMany('AmjiResponse', array(
              'local' => 'idamji_request',
              'foreign' => 'idrequest'));
+
+        $timestampable0 = new Doctrine_Template_Timestampable();
+        $this->actAs($timestampable0);
     }
 }
