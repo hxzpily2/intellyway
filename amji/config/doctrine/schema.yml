@@ -1,4 +1,5 @@
 AmjiEmoticones:
+  actAs: [Timestampable]
   connection: doctrine
   tableName: amji_emoticones
   columns:
@@ -23,6 +24,7 @@ AmjiEmoticones:
       notnull: true
       autoincrement: false
 AmjiFile:
+  actAs: [Timestampable]
   connection: doctrine
   tableName: amji_file
   columns:
@@ -40,6 +42,7 @@ AmjiFile:
       notnull: true
       autoincrement: false
 AmjiInvitation:
+  actAs: [Timestampable]
   connection: doctrine
   tableName: amji_invitation
   columns:
@@ -63,6 +66,7 @@ AmjiInvitation:
       notnull: true
       autoincrement: false
 AmjiPriorite:
+  actAs: [Timestampable]
   connection: doctrine
   tableName: amji_priorite
   columns:
@@ -85,6 +89,7 @@ AmjiPriorite:
       foreign: idpriorite
       type: many
 AmjiRequest:
+  actAs: [Timestampable]
   connection: doctrine
   tableName: amji_request
   columns:
@@ -147,6 +152,7 @@ AmjiRequest:
       foreign: idrequest
       type: many
 AmjiRequestAttachment:
+  actAs: [Timestampable]
   connection: doctrine
   tableName: amji_request_attachment
   columns:
@@ -163,6 +169,7 @@ AmjiRequestAttachment:
       primary: true
       autoincrement: false
 AmjiResponse:
+  actAs: [Timestampable]
   connection: doctrine
   tableName: amji_response
   columns:
@@ -214,6 +221,7 @@ AmjiResponse:
       foreign: idresponse
       type: many
 AmjiResponseAttachment:
+  actAs: [Timestampable]
   connection: doctrine
   tableName: amji_response_attachment
   columns:
@@ -230,6 +238,7 @@ AmjiResponseAttachment:
       primary: true
       autoincrement: false
 AmjiStatut:
+  actAs: [Timestampable]
   connection: doctrine
   tableName: amji_statut
   columns:
@@ -252,6 +261,7 @@ AmjiStatut:
       foreign: idamji_statut
       type: many
 AmjiSubscribe:
+  actAs: [Timestampable]
   connection: doctrine
   tableName: amji_subscribe
   columns:
@@ -268,6 +278,7 @@ AmjiSubscribe:
       primary: true
       autoincrement: false
 AmjiType:
+  actAs: [Timestampable]
   connection: doctrine
   tableName: amji_type
   columns:
@@ -284,12 +295,34 @@ AmjiType:
       primary: false
       notnull: true
       autoincrement: false
+    owner:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    description:
+      type: string()
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    active:
+      type: integer(1)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
   relations:
     AmjiRequest:
       local: idamji_type
       foreign: idtype
       type: many
 AmjiUser:
+  actAs: [Timestampable]
   connection: doctrine
   tableName: amji_user
   columns:
@@ -403,3 +436,47 @@ AmjiUser:
       local: idamji_user
       foreign: iduser
       type: many
+AmjiGroup:
+  actAs: [Timestampable]
+  connection: doctrine
+  tableName: amji_group
+  columns:
+    idamjid_group:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: true
+    title:
+      type: string(100)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    owner:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    description:
+      type: string()
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    active:
+      type: integer(1)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false  
+  relations:
+    AmjiUser:
+      local: owner
+      foreign: idamji_user
+      type: many 
