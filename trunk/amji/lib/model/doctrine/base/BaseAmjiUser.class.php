@@ -20,6 +20,7 @@ Doctrine_Manager::getInstance()->bindComponent('AmjiUser', 'doctrine');
  * @property integer $salarie
  * @property string $statut
  * @property string $societe
+ * @property string $image
  * @property integer $idamji_statut
  * @property AmjiStatut $AmjiStatut
  * @property Doctrine_Collection $AmjiRequest
@@ -39,6 +40,7 @@ Doctrine_Manager::getInstance()->bindComponent('AmjiUser', 'doctrine');
  * @method integer             getSalarie()       Returns the current record's "salarie" value
  * @method string              getStatut()        Returns the current record's "statut" value
  * @method string              getSociete()       Returns the current record's "societe" value
+ * @method string              getImage()         Returns the current record's "image" value
  * @method integer             getIdamjiStatut()  Returns the current record's "idamji_statut" value
  * @method AmjiStatut          getAmjiStatut()    Returns the current record's "AmjiStatut" value
  * @method Doctrine_Collection getAmjiRequest()   Returns the current record's "AmjiRequest" collection
@@ -57,6 +59,7 @@ Doctrine_Manager::getInstance()->bindComponent('AmjiUser', 'doctrine');
  * @method AmjiUser            setSalarie()       Sets the current record's "salarie" value
  * @method AmjiUser            setStatut()        Sets the current record's "statut" value
  * @method AmjiUser            setSociete()       Sets the current record's "societe" value
+ * @method AmjiUser            setImage()         Sets the current record's "image" value
  * @method AmjiUser            setIdamjiStatut()  Sets the current record's "idamji_statut" value
  * @method AmjiUser            setAmjiStatut()    Sets the current record's "AmjiStatut" value
  * @method AmjiUser            setAmjiRequest()   Sets the current record's "AmjiRequest" collection
@@ -181,6 +184,15 @@ abstract class BaseAmjiUser extends sfDoctrineRecord
              'length' => '100',
              ));
         $this->hasColumn('societe', 'string', 100, array(
+             'type' => 'string',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => false,
+             'autoincrement' => false,
+             'length' => '100',
+             ));
+        $this->hasColumn('image', 'string', 100, array(
              'type' => 'string',
              'fixed' => 0,
              'unsigned' => false,
