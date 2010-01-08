@@ -9,13 +9,22 @@ Doctrine_Manager::getInstance()->bindComponent('AmjiType', 'doctrine');
  * 
  * @property integer $idamji_type
  * @property string $libelle
+ * @property integer $owner
+ * @property string $description
+ * @property integer $active
  * @property Doctrine_Collection $AmjiRequest
  * 
  * @method integer             getIdamjiType()  Returns the current record's "idamji_type" value
  * @method string              getLibelle()     Returns the current record's "libelle" value
+ * @method integer             getOwner()       Returns the current record's "owner" value
+ * @method string              getDescription() Returns the current record's "description" value
+ * @method integer             getActive()      Returns the current record's "active" value
  * @method Doctrine_Collection getAmjiRequest() Returns the current record's "AmjiRequest" collection
  * @method AmjiType            setIdamjiType()  Sets the current record's "idamji_type" value
  * @method AmjiType            setLibelle()     Sets the current record's "libelle" value
+ * @method AmjiType            setOwner()       Sets the current record's "owner" value
+ * @method AmjiType            setDescription() Sets the current record's "description" value
+ * @method AmjiType            setActive()      Sets the current record's "active" value
  * @method AmjiType            setAmjiRequest() Sets the current record's "AmjiRequest" collection
  * 
  * @package    amji
@@ -45,6 +54,33 @@ abstract class BaseAmjiType extends sfDoctrineRecord
              'autoincrement' => false,
              'length' => '100',
              ));
+        $this->hasColumn('owner', 'integer', 4, array(
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => false,
+             'autoincrement' => false,
+             'length' => '4',
+             ));
+        $this->hasColumn('description', 'string', null, array(
+             'type' => 'string',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => true,
+             'autoincrement' => false,
+             'length' => '',
+             ));
+        $this->hasColumn('active', 'integer', 1, array(
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => true,
+             'autoincrement' => false,
+             'length' => '1',
+             ));
     }
 
     public function setUp()
@@ -53,5 +89,8 @@ abstract class BaseAmjiType extends sfDoctrineRecord
         $this->hasMany('AmjiRequest', array(
              'local' => 'idamji_type',
              'foreign' => 'idtype'));
+
+        $timestampable0 = new Doctrine_Template_Timestampable();
+        $this->actAs($timestampable0);
     }
 }

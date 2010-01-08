@@ -24,6 +24,7 @@ Doctrine_Manager::getInstance()->bindComponent('AmjiUser', 'doctrine');
  * @property AmjiStatut $AmjiStatut
  * @property Doctrine_Collection $AmjiRequest
  * @property Doctrine_Collection $AmjiResponse
+ * @property AmjiGroup $AmjiGroup
  * 
  * @method integer             getIdamjiUser()    Returns the current record's "idamji_user" value
  * @method string              getPseudo()        Returns the current record's "pseudo" value
@@ -42,6 +43,7 @@ Doctrine_Manager::getInstance()->bindComponent('AmjiUser', 'doctrine');
  * @method AmjiStatut          getAmjiStatut()    Returns the current record's "AmjiStatut" value
  * @method Doctrine_Collection getAmjiRequest()   Returns the current record's "AmjiRequest" collection
  * @method Doctrine_Collection getAmjiResponse()  Returns the current record's "AmjiResponse" collection
+ * @method AmjiGroup           getAmjiGroup()     Returns the current record's "AmjiGroup" value
  * @method AmjiUser            setIdamjiUser()    Sets the current record's "idamji_user" value
  * @method AmjiUser            setPseudo()        Sets the current record's "pseudo" value
  * @method AmjiUser            setEmail()         Sets the current record's "email" value
@@ -59,6 +61,7 @@ Doctrine_Manager::getInstance()->bindComponent('AmjiUser', 'doctrine');
  * @method AmjiUser            setAmjiStatut()    Sets the current record's "AmjiStatut" value
  * @method AmjiUser            setAmjiRequest()   Sets the current record's "AmjiRequest" collection
  * @method AmjiUser            setAmjiResponse()  Sets the current record's "AmjiResponse" collection
+ * @method AmjiUser            setAmjiGroup()     Sets the current record's "AmjiGroup" value
  * 
  * @package    amji
  * @subpackage model
@@ -211,5 +214,12 @@ abstract class BaseAmjiUser extends sfDoctrineRecord
         $this->hasMany('AmjiResponse', array(
              'local' => 'idamji_user',
              'foreign' => 'iduser'));
+
+        $this->hasOne('AmjiGroup', array(
+             'local' => 'idamji_user',
+             'foreign' => 'owner'));
+
+        $timestampable0 = new Doctrine_Template_Timestampable();
+        $this->actAs($timestampable0);
     }
 }
