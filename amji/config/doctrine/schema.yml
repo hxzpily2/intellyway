@@ -416,6 +416,13 @@ AmjiUser:
       primary: false
       notnull: false
       autoincrement: false
+    image:
+      type: string(100)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
     idamji_statut:
       type: integer(4)
       fixed: false
