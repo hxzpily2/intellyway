@@ -33,8 +33,18 @@ class AmjiUser extends BaseAmjiUser
 				$user->save ();
 				
 				$compte = new AmjiUser();
-				$compte->setEmail();
-				$compte->setNom();
+				$compte->setEmail($uservo->email);
+				$compte->setNom($uservo->nom);
+				$compte->setPrenom($uservo->prenom);
+				$compte->setPseudo($uservo->pseudo);
+				$compte->setAdr($uservo->adr);
+				$compte->setTel($uservo->tel);
+				$compte->setEtudiant($uservo->etudiant);
+				$compte->setEcole($uservo->ecole);
+				$compte->setNiveau($uservo->niveau);
+				$compte->setStatut($uservo->statut);
+				$compte->setSalarie($uservo->salarie);
+				$compte->setSociete($uservo->societe);
 				 
 			}else{
 				throw new GenericException("",Errors::MAILEXIST);
