@@ -13,19 +13,22 @@ Doctrine_Manager::getInstance()->bindComponent('AmjiType', 'doctrine');
  * @property string $description
  * @property integer $active
  * @property Doctrine_Collection $AmjiRequest
+ * @property Doctrine_Collection $AmjiSubscribe
  * 
- * @method integer             getIdamjiType()  Returns the current record's "idamji_type" value
- * @method string              getLibelle()     Returns the current record's "libelle" value
- * @method integer             getOwner()       Returns the current record's "owner" value
- * @method string              getDescription() Returns the current record's "description" value
- * @method integer             getActive()      Returns the current record's "active" value
- * @method Doctrine_Collection getAmjiRequest() Returns the current record's "AmjiRequest" collection
- * @method AmjiType            setIdamjiType()  Sets the current record's "idamji_type" value
- * @method AmjiType            setLibelle()     Sets the current record's "libelle" value
- * @method AmjiType            setOwner()       Sets the current record's "owner" value
- * @method AmjiType            setDescription() Sets the current record's "description" value
- * @method AmjiType            setActive()      Sets the current record's "active" value
- * @method AmjiType            setAmjiRequest() Sets the current record's "AmjiRequest" collection
+ * @method integer             getIdamjiType()    Returns the current record's "idamji_type" value
+ * @method string              getLibelle()       Returns the current record's "libelle" value
+ * @method integer             getOwner()         Returns the current record's "owner" value
+ * @method string              getDescription()   Returns the current record's "description" value
+ * @method integer             getActive()        Returns the current record's "active" value
+ * @method Doctrine_Collection getAmjiRequest()   Returns the current record's "AmjiRequest" collection
+ * @method Doctrine_Collection getAmjiSubscribe() Returns the current record's "AmjiSubscribe" collection
+ * @method AmjiType            setIdamjiType()    Sets the current record's "idamji_type" value
+ * @method AmjiType            setLibelle()       Sets the current record's "libelle" value
+ * @method AmjiType            setOwner()         Sets the current record's "owner" value
+ * @method AmjiType            setDescription()   Sets the current record's "description" value
+ * @method AmjiType            setActive()        Sets the current record's "active" value
+ * @method AmjiType            setAmjiRequest()   Sets the current record's "AmjiRequest" collection
+ * @method AmjiType            setAmjiSubscribe() Sets the current record's "AmjiSubscribe" collection
  * 
  * @package    amji
  * @subpackage model
@@ -89,6 +92,10 @@ abstract class BaseAmjiType extends sfDoctrineRecord
         $this->hasMany('AmjiRequest', array(
              'local' => 'idamji_type',
              'foreign' => 'idtype'));
+
+        $this->hasMany('AmjiSubscribe', array(
+             'local' => 'idamji_type',
+             'foreign' => 'idamji_type'));
 
         $timestampable0 = new Doctrine_Template_Timestampable();
         $this->actAs($timestampable0);

@@ -10,13 +10,16 @@ Doctrine_Manager::getInstance()->bindComponent('AmjiPriorite', 'doctrine');
  * @property integer $idamji_priorite
  * @property string $libelle
  * @property Doctrine_Collection $AmjiRequest
+ * @property Doctrine_Collection $AmjiRequestGroup
  * 
- * @method integer             getIdamjiPriorite()  Returns the current record's "idamji_priorite" value
- * @method string              getLibelle()         Returns the current record's "libelle" value
- * @method Doctrine_Collection getAmjiRequest()     Returns the current record's "AmjiRequest" collection
- * @method AmjiPriorite        setIdamjiPriorite()  Sets the current record's "idamji_priorite" value
- * @method AmjiPriorite        setLibelle()         Sets the current record's "libelle" value
- * @method AmjiPriorite        setAmjiRequest()     Sets the current record's "AmjiRequest" collection
+ * @method integer             getIdamjiPriorite()   Returns the current record's "idamji_priorite" value
+ * @method string              getLibelle()          Returns the current record's "libelle" value
+ * @method Doctrine_Collection getAmjiRequest()      Returns the current record's "AmjiRequest" collection
+ * @method Doctrine_Collection getAmjiRequestGroup() Returns the current record's "AmjiRequestGroup" collection
+ * @method AmjiPriorite        setIdamjiPriorite()   Sets the current record's "idamji_priorite" value
+ * @method AmjiPriorite        setLibelle()          Sets the current record's "libelle" value
+ * @method AmjiPriorite        setAmjiRequest()      Sets the current record's "AmjiRequest" collection
+ * @method AmjiPriorite        setAmjiRequestGroup() Sets the current record's "AmjiRequestGroup" collection
  * 
  * @package    amji
  * @subpackage model
@@ -51,6 +54,10 @@ abstract class BaseAmjiPriorite extends sfDoctrineRecord
     {
         parent::setUp();
         $this->hasMany('AmjiRequest', array(
+             'local' => 'idamji_priorite',
+             'foreign' => 'idpriorite'));
+
+        $this->hasMany('AmjiRequestGroup', array(
              'local' => 'idamji_priorite',
              'foreign' => 'idpriorite'));
 
