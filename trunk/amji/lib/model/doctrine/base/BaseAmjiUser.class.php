@@ -25,46 +25,64 @@ Doctrine_Manager::getInstance()->bindComponent('AmjiUser', 'doctrine');
  * @property AmjiStatut $AmjiStatut
  * @property Doctrine_Collection $AmjiRequest
  * @property Doctrine_Collection $AmjiResponse
+ * @property Doctrine_Collection $AmjiSubscribe
  * @property AmjiGroup $AmjiGroup
+ * @property Doctrine_Collection $AmjiSubscribeGroup
+ * @property Doctrine_Collection $AmjiRequestGroup
+ * @property Doctrine_Collection $AmjiResponseGroup
+ * @property Doctrine_Collection $AmjiEvent
+ * @property Doctrine_Collection $AmjiEventUser
  * 
- * @method integer             getIdamjiUser()    Returns the current record's "idamji_user" value
- * @method string              getPseudo()        Returns the current record's "pseudo" value
- * @method string              getEmail()         Returns the current record's "email" value
- * @method string              getNom()           Returns the current record's "nom" value
- * @method string              getPrenom()        Returns the current record's "prenom" value
- * @method string              getAdr()           Returns the current record's "adr" value
- * @method string              getTel()           Returns the current record's "tel" value
- * @method integer             getEtudiant()      Returns the current record's "etudiant" value
- * @method string              getEcole()         Returns the current record's "ecole" value
- * @method string              getNiveau()        Returns the current record's "niveau" value
- * @method integer             getSalarie()       Returns the current record's "salarie" value
- * @method string              getStatut()        Returns the current record's "statut" value
- * @method string              getSociete()       Returns the current record's "societe" value
- * @method string              getImage()         Returns the current record's "image" value
- * @method integer             getIdamjiStatut()  Returns the current record's "idamji_statut" value
- * @method AmjiStatut          getAmjiStatut()    Returns the current record's "AmjiStatut" value
- * @method Doctrine_Collection getAmjiRequest()   Returns the current record's "AmjiRequest" collection
- * @method Doctrine_Collection getAmjiResponse()  Returns the current record's "AmjiResponse" collection
- * @method AmjiGroup           getAmjiGroup()     Returns the current record's "AmjiGroup" value
- * @method AmjiUser            setIdamjiUser()    Sets the current record's "idamji_user" value
- * @method AmjiUser            setPseudo()        Sets the current record's "pseudo" value
- * @method AmjiUser            setEmail()         Sets the current record's "email" value
- * @method AmjiUser            setNom()           Sets the current record's "nom" value
- * @method AmjiUser            setPrenom()        Sets the current record's "prenom" value
- * @method AmjiUser            setAdr()           Sets the current record's "adr" value
- * @method AmjiUser            setTel()           Sets the current record's "tel" value
- * @method AmjiUser            setEtudiant()      Sets the current record's "etudiant" value
- * @method AmjiUser            setEcole()         Sets the current record's "ecole" value
- * @method AmjiUser            setNiveau()        Sets the current record's "niveau" value
- * @method AmjiUser            setSalarie()       Sets the current record's "salarie" value
- * @method AmjiUser            setStatut()        Sets the current record's "statut" value
- * @method AmjiUser            setSociete()       Sets the current record's "societe" value
- * @method AmjiUser            setImage()         Sets the current record's "image" value
- * @method AmjiUser            setIdamjiStatut()  Sets the current record's "idamji_statut" value
- * @method AmjiUser            setAmjiStatut()    Sets the current record's "AmjiStatut" value
- * @method AmjiUser            setAmjiRequest()   Sets the current record's "AmjiRequest" collection
- * @method AmjiUser            setAmjiResponse()  Sets the current record's "AmjiResponse" collection
- * @method AmjiUser            setAmjiGroup()     Sets the current record's "AmjiGroup" value
+ * @method integer             getIdamjiUser()         Returns the current record's "idamji_user" value
+ * @method string              getPseudo()             Returns the current record's "pseudo" value
+ * @method string              getEmail()              Returns the current record's "email" value
+ * @method string              getNom()                Returns the current record's "nom" value
+ * @method string              getPrenom()             Returns the current record's "prenom" value
+ * @method string              getAdr()                Returns the current record's "adr" value
+ * @method string              getTel()                Returns the current record's "tel" value
+ * @method integer             getEtudiant()           Returns the current record's "etudiant" value
+ * @method string              getEcole()              Returns the current record's "ecole" value
+ * @method string              getNiveau()             Returns the current record's "niveau" value
+ * @method integer             getSalarie()            Returns the current record's "salarie" value
+ * @method string              getStatut()             Returns the current record's "statut" value
+ * @method string              getSociete()            Returns the current record's "societe" value
+ * @method string              getImage()              Returns the current record's "image" value
+ * @method integer             getIdamjiStatut()       Returns the current record's "idamji_statut" value
+ * @method AmjiStatut          getAmjiStatut()         Returns the current record's "AmjiStatut" value
+ * @method Doctrine_Collection getAmjiRequest()        Returns the current record's "AmjiRequest" collection
+ * @method Doctrine_Collection getAmjiResponse()       Returns the current record's "AmjiResponse" collection
+ * @method Doctrine_Collection getAmjiSubscribe()      Returns the current record's "AmjiSubscribe" collection
+ * @method AmjiGroup           getAmjiGroup()          Returns the current record's "AmjiGroup" value
+ * @method Doctrine_Collection getAmjiSubscribeGroup() Returns the current record's "AmjiSubscribeGroup" collection
+ * @method Doctrine_Collection getAmjiRequestGroup()   Returns the current record's "AmjiRequestGroup" collection
+ * @method Doctrine_Collection getAmjiResponseGroup()  Returns the current record's "AmjiResponseGroup" collection
+ * @method Doctrine_Collection getAmjiEvent()          Returns the current record's "AmjiEvent" collection
+ * @method Doctrine_Collection getAmjiEventUser()      Returns the current record's "AmjiEventUser" collection
+ * @method AmjiUser            setIdamjiUser()         Sets the current record's "idamji_user" value
+ * @method AmjiUser            setPseudo()             Sets the current record's "pseudo" value
+ * @method AmjiUser            setEmail()              Sets the current record's "email" value
+ * @method AmjiUser            setNom()                Sets the current record's "nom" value
+ * @method AmjiUser            setPrenom()             Sets the current record's "prenom" value
+ * @method AmjiUser            setAdr()                Sets the current record's "adr" value
+ * @method AmjiUser            setTel()                Sets the current record's "tel" value
+ * @method AmjiUser            setEtudiant()           Sets the current record's "etudiant" value
+ * @method AmjiUser            setEcole()              Sets the current record's "ecole" value
+ * @method AmjiUser            setNiveau()             Sets the current record's "niveau" value
+ * @method AmjiUser            setSalarie()            Sets the current record's "salarie" value
+ * @method AmjiUser            setStatut()             Sets the current record's "statut" value
+ * @method AmjiUser            setSociete()            Sets the current record's "societe" value
+ * @method AmjiUser            setImage()              Sets the current record's "image" value
+ * @method AmjiUser            setIdamjiStatut()       Sets the current record's "idamji_statut" value
+ * @method AmjiUser            setAmjiStatut()         Sets the current record's "AmjiStatut" value
+ * @method AmjiUser            setAmjiRequest()        Sets the current record's "AmjiRequest" collection
+ * @method AmjiUser            setAmjiResponse()       Sets the current record's "AmjiResponse" collection
+ * @method AmjiUser            setAmjiSubscribe()      Sets the current record's "AmjiSubscribe" collection
+ * @method AmjiUser            setAmjiGroup()          Sets the current record's "AmjiGroup" value
+ * @method AmjiUser            setAmjiSubscribeGroup() Sets the current record's "AmjiSubscribeGroup" collection
+ * @method AmjiUser            setAmjiRequestGroup()   Sets the current record's "AmjiRequestGroup" collection
+ * @method AmjiUser            setAmjiResponseGroup()  Sets the current record's "AmjiResponseGroup" collection
+ * @method AmjiUser            setAmjiEvent()          Sets the current record's "AmjiEvent" collection
+ * @method AmjiUser            setAmjiEventUser()      Sets the current record's "AmjiEventUser" collection
  * 
  * @package    amji
  * @subpackage model
@@ -227,9 +245,33 @@ abstract class BaseAmjiUser extends sfDoctrineRecord
              'local' => 'idamji_user',
              'foreign' => 'iduser'));
 
+        $this->hasMany('AmjiSubscribe', array(
+             'local' => 'idamji_user',
+             'foreign' => 'idamji_user'));
+
         $this->hasOne('AmjiGroup', array(
              'local' => 'idamji_user',
              'foreign' => 'owner'));
+
+        $this->hasMany('AmjiSubscribeGroup', array(
+             'local' => 'idamji_user',
+             'foreign' => 'idamji_user'));
+
+        $this->hasMany('AmjiRequestGroup', array(
+             'local' => 'idamji_user',
+             'foreign' => 'iduser'));
+
+        $this->hasMany('AmjiResponseGroup', array(
+             'local' => 'idamji_user',
+             'foreign' => 'iduser'));
+
+        $this->hasMany('AmjiEvent', array(
+             'local' => 'idamji_user',
+             'foreign' => 'iduser'));
+
+        $this->hasMany('AmjiEventUser', array(
+             'local' => 'idamji_user',
+             'foreign' => 'idamji_user'));
 
         $timestampable0 = new Doctrine_Template_Timestampable();
         $this->actAs($timestampable0);

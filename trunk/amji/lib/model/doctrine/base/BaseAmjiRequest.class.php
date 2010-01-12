@@ -16,28 +16,31 @@ Doctrine_Manager::getInstance()->bindComponent('AmjiRequest', 'doctrine');
  * @property AmjiUser $AmjiUser
  * @property AmjiPriorite $AmjiPriorite
  * @property AmjiType $AmjiType
+ * @property Doctrine_Collection $AmjiRequestAttachment
  * @property Doctrine_Collection $AmjiResponse
  * 
- * @method integer             getIdamjiRequest()  Returns the current record's "idamji_request" value
- * @method string              getTitle()          Returns the current record's "title" value
- * @method string              getContent()        Returns the current record's "content" value
- * @method integer             getIduser()         Returns the current record's "iduser" value
- * @method integer             getIdpriorite()     Returns the current record's "idpriorite" value
- * @method integer             getIdtype()         Returns the current record's "idtype" value
- * @method AmjiUser            getAmjiUser()       Returns the current record's "AmjiUser" value
- * @method AmjiPriorite        getAmjiPriorite()   Returns the current record's "AmjiPriorite" value
- * @method AmjiType            getAmjiType()       Returns the current record's "AmjiType" value
- * @method Doctrine_Collection getAmjiResponse()   Returns the current record's "AmjiResponse" collection
- * @method AmjiRequest         setIdamjiRequest()  Sets the current record's "idamji_request" value
- * @method AmjiRequest         setTitle()          Sets the current record's "title" value
- * @method AmjiRequest         setContent()        Sets the current record's "content" value
- * @method AmjiRequest         setIduser()         Sets the current record's "iduser" value
- * @method AmjiRequest         setIdpriorite()     Sets the current record's "idpriorite" value
- * @method AmjiRequest         setIdtype()         Sets the current record's "idtype" value
- * @method AmjiRequest         setAmjiUser()       Sets the current record's "AmjiUser" value
- * @method AmjiRequest         setAmjiPriorite()   Sets the current record's "AmjiPriorite" value
- * @method AmjiRequest         setAmjiType()       Sets the current record's "AmjiType" value
- * @method AmjiRequest         setAmjiResponse()   Sets the current record's "AmjiResponse" collection
+ * @method integer             getIdamjiRequest()         Returns the current record's "idamji_request" value
+ * @method string              getTitle()                 Returns the current record's "title" value
+ * @method string              getContent()               Returns the current record's "content" value
+ * @method integer             getIduser()                Returns the current record's "iduser" value
+ * @method integer             getIdpriorite()            Returns the current record's "idpriorite" value
+ * @method integer             getIdtype()                Returns the current record's "idtype" value
+ * @method AmjiUser            getAmjiUser()              Returns the current record's "AmjiUser" value
+ * @method AmjiPriorite        getAmjiPriorite()          Returns the current record's "AmjiPriorite" value
+ * @method AmjiType            getAmjiType()              Returns the current record's "AmjiType" value
+ * @method Doctrine_Collection getAmjiRequestAttachment() Returns the current record's "AmjiRequestAttachment" collection
+ * @method Doctrine_Collection getAmjiResponse()          Returns the current record's "AmjiResponse" collection
+ * @method AmjiRequest         setIdamjiRequest()         Sets the current record's "idamji_request" value
+ * @method AmjiRequest         setTitle()                 Sets the current record's "title" value
+ * @method AmjiRequest         setContent()               Sets the current record's "content" value
+ * @method AmjiRequest         setIduser()                Sets the current record's "iduser" value
+ * @method AmjiRequest         setIdpriorite()            Sets the current record's "idpriorite" value
+ * @method AmjiRequest         setIdtype()                Sets the current record's "idtype" value
+ * @method AmjiRequest         setAmjiUser()              Sets the current record's "AmjiUser" value
+ * @method AmjiRequest         setAmjiPriorite()          Sets the current record's "AmjiPriorite" value
+ * @method AmjiRequest         setAmjiType()              Sets the current record's "AmjiType" value
+ * @method AmjiRequest         setAmjiRequestAttachment() Sets the current record's "AmjiRequestAttachment" collection
+ * @method AmjiRequest         setAmjiResponse()          Sets the current record's "AmjiResponse" collection
  * 
  * @package    amji
  * @subpackage model
@@ -118,6 +121,10 @@ abstract class BaseAmjiRequest extends sfDoctrineRecord
         $this->hasOne('AmjiType', array(
              'local' => 'idtype',
              'foreign' => 'idamji_type'));
+
+        $this->hasMany('AmjiRequestAttachment', array(
+             'local' => 'idamji_request',
+             'foreign' => 'idamji_request'));
 
         $this->hasMany('AmjiResponse', array(
              'local' => 'idamji_request',

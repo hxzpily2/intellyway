@@ -9,11 +9,23 @@ Doctrine_Manager::getInstance()->bindComponent('AmjiFile', 'doctrine');
  * 
  * @property integer $idamji_file
  * @property blob $content
+ * @property Doctrine_Collection $AmjiRequestAttachment
+ * @property Doctrine_Collection $AmjiResponseAttachment
+ * @property Doctrine_Collection $AmjiResponseGroupAttachment
+ * @property Doctrine_Collection $AmjiEventAttachment
  * 
- * @method integer  getIdamjiFile()  Returns the current record's "idamji_file" value
- * @method blob     getContent()     Returns the current record's "content" value
- * @method AmjiFile setIdamjiFile()  Sets the current record's "idamji_file" value
- * @method AmjiFile setContent()     Sets the current record's "content" value
+ * @method integer             getIdamjiFile()                  Returns the current record's "idamji_file" value
+ * @method blob                getContent()                     Returns the current record's "content" value
+ * @method Doctrine_Collection getAmjiRequestAttachment()       Returns the current record's "AmjiRequestAttachment" collection
+ * @method Doctrine_Collection getAmjiResponseAttachment()      Returns the current record's "AmjiResponseAttachment" collection
+ * @method Doctrine_Collection getAmjiResponseGroupAttachment() Returns the current record's "AmjiResponseGroupAttachment" collection
+ * @method Doctrine_Collection getAmjiEventAttachment()         Returns the current record's "AmjiEventAttachment" collection
+ * @method AmjiFile            setIdamjiFile()                  Sets the current record's "idamji_file" value
+ * @method AmjiFile            setContent()                     Sets the current record's "content" value
+ * @method AmjiFile            setAmjiRequestAttachment()       Sets the current record's "AmjiRequestAttachment" collection
+ * @method AmjiFile            setAmjiResponseAttachment()      Sets the current record's "AmjiResponseAttachment" collection
+ * @method AmjiFile            setAmjiResponseGroupAttachment() Sets the current record's "AmjiResponseGroupAttachment" collection
+ * @method AmjiFile            setAmjiEventAttachment()         Sets the current record's "AmjiEventAttachment" collection
  * 
  * @package    amji
  * @subpackage model
@@ -47,6 +59,22 @@ abstract class BaseAmjiFile extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
+        $this->hasMany('AmjiRequestAttachment', array(
+             'local' => 'idamji_file',
+             'foreign' => 'idamji_file'));
+
+        $this->hasMany('AmjiResponseAttachment', array(
+             'local' => 'idamji_file',
+             'foreign' => 'idamji_file'));
+
+        $this->hasMany('AmjiResponseGroupAttachment', array(
+             'local' => 'idamji_file',
+             'foreign' => 'idamji_file'));
+
+        $this->hasMany('AmjiEventAttachment', array(
+             'local' => 'idamji_file',
+             'foreign' => 'idamji_file'));
+
         $timestampable0 = new Doctrine_Template_Timestampable();
         $this->actAs($timestampable0);
     }
