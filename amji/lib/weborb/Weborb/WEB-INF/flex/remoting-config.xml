@@ -138,7 +138,7 @@
 	
 	<destination id="UserService">
         <properties>
-            <source>amji.user.UserService</source>
+            <source>amji.service.user.UserService</source>
         </properties>
         <channels>
             <channel ref="my-air-amf"/>         
