@@ -45,11 +45,17 @@ class AmjiUser extends BaseAmjiUser
 				$compte->setStatut($uservo->statut);
 				$compte->setSalarie($uservo->salarie);
 				$compte->setSociete($uservo->societe);
+				
+				$compte->save();
 				 
 			}else{
 				throw new GenericException("",Errors::MAILEXIST);
 			}
 				
+		
+	}
+	
+	public static function addContact($iduser,$idcontact){
 		
 	}
 }
