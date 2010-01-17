@@ -4,8 +4,9 @@
     showTitleBar="false"
     showStatusBar="false"
     showGripper="false"
-    creationComplete="init()">
-	<!--borderStyle="none"-->
+    borderStyle="none"
+    creationComplete="init()" xmlns:components="commun.components.*">
+	
 	<mx:Script>
 		<![CDATA[
 			private var facade:ApplicationFacade = ApplicationFacade.getInstance();
@@ -14,5 +15,17 @@
 			}
 		]]>
 	</mx:Script>
+	<mx:Style source="AmjiTheme.css"/>
+	<mx:VBox width="100%" height="100%" backgroundColor="#FFFFFF">
+	<mx:Spacer height="1.2" />
+		<mx:HBox width="100%" horizontalGap="0" horizontalAlign="right">			
+			<components:WindowMin label="" width="43" height="27.5" useHandCursor="true" buttonMode="true"/>
+			<components:WindowMax label="" width="43" height="27.5" useHandCursor="true" buttonMode="true"/>
+			<components:WindowClose label="" width="43" height="27.5" useHandCursor="true" buttonMode="true"/>
+			<mx:Spacer width="18" /> 	
+		</mx:HBox>
+			
+	</mx:VBox>
+	
 </mx:WindowedApplication>
 
