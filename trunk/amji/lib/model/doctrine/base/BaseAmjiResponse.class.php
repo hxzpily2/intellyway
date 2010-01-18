@@ -16,6 +16,7 @@ Doctrine_Manager::getInstance()->bindComponent('AmjiResponse', 'doctrine');
  * @property AmjiRequest $AmjiRequest
  * @property Doctrine_Collection $AmjiResponse
  * @property Doctrine_Collection $AmjiResponseAttachment
+ * @property Doctrine_Collection $AmjiCastResponse
  * 
  * @method integer             getIdamjiResponse()         Returns the current record's "idamji_response" value
  * @method string              getContent()                Returns the current record's "content" value
@@ -26,6 +27,7 @@ Doctrine_Manager::getInstance()->bindComponent('AmjiResponse', 'doctrine');
  * @method AmjiRequest         getAmjiRequest()            Returns the current record's "AmjiRequest" value
  * @method Doctrine_Collection getAmjiResponse()           Returns the current record's "AmjiResponse" collection
  * @method Doctrine_Collection getAmjiResponseAttachment() Returns the current record's "AmjiResponseAttachment" collection
+ * @method Doctrine_Collection getAmjiCastResponse()       Returns the current record's "AmjiCastResponse" collection
  * @method AmjiResponse        setIdamjiResponse()         Sets the current record's "idamji_response" value
  * @method AmjiResponse        setContent()                Sets the current record's "content" value
  * @method AmjiResponse        setIduser()                 Sets the current record's "iduser" value
@@ -35,6 +37,7 @@ Doctrine_Manager::getInstance()->bindComponent('AmjiResponse', 'doctrine');
  * @method AmjiResponse        setAmjiRequest()            Sets the current record's "AmjiRequest" value
  * @method AmjiResponse        setAmjiResponse()           Sets the current record's "AmjiResponse" collection
  * @method AmjiResponse        setAmjiResponseAttachment() Sets the current record's "AmjiResponseAttachment" collection
+ * @method AmjiResponse        setAmjiCastResponse()       Sets the current record's "AmjiCastResponse" collection
  * 
  * @package    amji
  * @subpackage model
@@ -108,6 +111,10 @@ abstract class BaseAmjiResponse extends sfDoctrineRecord
              'foreign' => 'idresponse'));
 
         $this->hasMany('AmjiResponseAttachment', array(
+             'local' => 'idamji_response',
+             'foreign' => 'idamji_response'));
+
+        $this->hasMany('AmjiCastResponse', array(
              'local' => 'idamji_response',
              'foreign' => 'idamji_response'));
 

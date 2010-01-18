@@ -18,6 +18,7 @@ Doctrine_Manager::getInstance()->bindComponent('AmjiRequest', 'doctrine');
  * @property AmjiType $AmjiType
  * @property Doctrine_Collection $AmjiRequestAttachment
  * @property Doctrine_Collection $AmjiResponse
+ * @property Doctrine_Collection $AmjiCastRequest
  * 
  * @method integer             getIdamjiRequest()         Returns the current record's "idamji_request" value
  * @method string              getTitle()                 Returns the current record's "title" value
@@ -30,6 +31,7 @@ Doctrine_Manager::getInstance()->bindComponent('AmjiRequest', 'doctrine');
  * @method AmjiType            getAmjiType()              Returns the current record's "AmjiType" value
  * @method Doctrine_Collection getAmjiRequestAttachment() Returns the current record's "AmjiRequestAttachment" collection
  * @method Doctrine_Collection getAmjiResponse()          Returns the current record's "AmjiResponse" collection
+ * @method Doctrine_Collection getAmjiCastRequest()       Returns the current record's "AmjiCastRequest" collection
  * @method AmjiRequest         setIdamjiRequest()         Sets the current record's "idamji_request" value
  * @method AmjiRequest         setTitle()                 Sets the current record's "title" value
  * @method AmjiRequest         setContent()               Sets the current record's "content" value
@@ -41,6 +43,7 @@ Doctrine_Manager::getInstance()->bindComponent('AmjiRequest', 'doctrine');
  * @method AmjiRequest         setAmjiType()              Sets the current record's "AmjiType" value
  * @method AmjiRequest         setAmjiRequestAttachment() Sets the current record's "AmjiRequestAttachment" collection
  * @method AmjiRequest         setAmjiResponse()          Sets the current record's "AmjiResponse" collection
+ * @method AmjiRequest         setAmjiCastRequest()       Sets the current record's "AmjiCastRequest" collection
  * 
  * @package    amji
  * @subpackage model
@@ -129,6 +132,10 @@ abstract class BaseAmjiRequest extends sfDoctrineRecord
         $this->hasMany('AmjiResponse', array(
              'local' => 'idamji_request',
              'foreign' => 'idrequest'));
+
+        $this->hasMany('AmjiCastRequest', array(
+             'local' => 'idamji_request',
+             'foreign' => 'idamji_request'));
 
         $timestampable0 = new Doctrine_Template_Timestampable();
         $this->actAs($timestampable0);
