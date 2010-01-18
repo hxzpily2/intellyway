@@ -16,6 +16,7 @@ Doctrine_Manager::getInstance()->bindComponent('AmjiResponseGroup', 'doctrine');
  * @property AmjiRequestGroup $AmjiRequestGroup
  * @property Doctrine_Collection $AmjiResponseGroup
  * @property Doctrine_Collection $AmjiResponseGroupAttachment
+ * @property Doctrine_Collection $AmjiCastResponseGroup
  * 
  * @method integer             getIdamjiResponse()              Returns the current record's "idamji_response" value
  * @method string              getContent()                     Returns the current record's "content" value
@@ -26,6 +27,7 @@ Doctrine_Manager::getInstance()->bindComponent('AmjiResponseGroup', 'doctrine');
  * @method AmjiRequestGroup    getAmjiRequestGroup()            Returns the current record's "AmjiRequestGroup" value
  * @method Doctrine_Collection getAmjiResponseGroup()           Returns the current record's "AmjiResponseGroup" collection
  * @method Doctrine_Collection getAmjiResponseGroupAttachment() Returns the current record's "AmjiResponseGroupAttachment" collection
+ * @method Doctrine_Collection getAmjiCastResponseGroup()       Returns the current record's "AmjiCastResponseGroup" collection
  * @method AmjiResponseGroup   setIdamjiResponse()              Sets the current record's "idamji_response" value
  * @method AmjiResponseGroup   setContent()                     Sets the current record's "content" value
  * @method AmjiResponseGroup   setIduser()                      Sets the current record's "iduser" value
@@ -35,6 +37,7 @@ Doctrine_Manager::getInstance()->bindComponent('AmjiResponseGroup', 'doctrine');
  * @method AmjiResponseGroup   setAmjiRequestGroup()            Sets the current record's "AmjiRequestGroup" value
  * @method AmjiResponseGroup   setAmjiResponseGroup()           Sets the current record's "AmjiResponseGroup" collection
  * @method AmjiResponseGroup   setAmjiResponseGroupAttachment() Sets the current record's "AmjiResponseGroupAttachment" collection
+ * @method AmjiResponseGroup   setAmjiCastResponseGroup()       Sets the current record's "AmjiCastResponseGroup" collection
  * 
  * @package    amji
  * @subpackage model
@@ -108,6 +111,10 @@ abstract class BaseAmjiResponseGroup extends sfDoctrineRecord
              'foreign' => 'idresponse'));
 
         $this->hasMany('AmjiResponseGroupAttachment', array(
+             'local' => 'idamji_response',
+             'foreign' => 'idamji_response'));
+
+        $this->hasMany('AmjiCastResponseGroup', array(
              'local' => 'idamji_response',
              'foreign' => 'idamji_response'));
 

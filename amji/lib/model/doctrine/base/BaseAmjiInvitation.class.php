@@ -10,13 +10,19 @@ Doctrine_Manager::getInstance()->bindComponent('AmjiInvitation', 'doctrine');
  * @property integer $idamji_user
  * @property integer $idamji_invite
  * @property string $message
+ * @property integer $accepted
+ * @property AmjiUser $AmjiUser
  * 
  * @method integer        getIdamjiUser()    Returns the current record's "idamji_user" value
  * @method integer        getIdamjiInvite()  Returns the current record's "idamji_invite" value
  * @method string         getMessage()       Returns the current record's "message" value
+ * @method integer        getAccepted()      Returns the current record's "accepted" value
+ * @method AmjiUser       getAmjiUser()      Returns the current record's "AmjiUser" value
  * @method AmjiInvitation setIdamjiUser()    Sets the current record's "idamji_user" value
  * @method AmjiInvitation setIdamjiInvite()  Sets the current record's "idamji_invite" value
  * @method AmjiInvitation setMessage()       Sets the current record's "message" value
+ * @method AmjiInvitation setAccepted()      Sets the current record's "accepted" value
+ * @method AmjiInvitation setAmjiUser()      Sets the current record's "AmjiUser" value
  * 
  * @package    amji
  * @subpackage model
@@ -53,11 +59,24 @@ abstract class BaseAmjiInvitation extends sfDoctrineRecord
              'autoincrement' => false,
              'length' => '',
              ));
+        $this->hasColumn('accepted', 'integer', 1, array(
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => true,
+             'autoincrement' => false,
+             'length' => '1',
+             ));
     }
 
     public function setUp()
     {
         parent::setUp();
+        $this->hasOne('AmjiUser', array(
+             'local' => 'idamji_invite',
+             'foreign' => 'idamji_user'));
+
         $timestampable0 = new Doctrine_Template_Timestampable();
         $this->actAs($timestampable0);
     }
