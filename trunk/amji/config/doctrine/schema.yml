@@ -41,30 +41,6 @@ AmjiFile:
       primary: false
       notnull: true
       autoincrement: false
-AmjiInvitation:
-  actAs: [Timestampable]
-  connection: doctrine
-  tableName: amji_invitation
-  columns:
-    idamji_user:
-      type: integer(4)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: false
-    idamji_invite:
-      type: integer(4)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: false
-    message:
-      type: string()
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
 AmjiPriorite:
   actAs: [Timestampable]
   connection: doctrine
@@ -83,11 +59,6 @@ AmjiPriorite:
       primary: false
       notnull: true
       autoincrement: false
-  relations:
-    AmjiRequest:
-      local: idamji_priorite
-      foreign: idpriorite
-      type: many
 AmjiRequest:
   actAs: [Timestampable]
   connection: doctrine
@@ -427,6 +398,14 @@ AmjiUser:
       primary: false
       notnull: false
       autoincrement: false
+    thanks:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      autoincrement: false
+      notnull: true
+      default: '0'
   relations:
     AmjiStatut:
       local: idamji_statut
@@ -440,6 +419,72 @@ AmjiUser:
       local: idamji_user
       foreign: iduser
       type: many
+AmjiInvitation:
+  actAs: [Timestampable]
+  connection: doctrine
+  tableName: amji_invitation
+  columns:
+    idamji_user:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: false
+    idamji_invite:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: false
+    message:
+      type: string()
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    accepted:
+      type: integer(1)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+  relations:
+    AmjiUser:
+      local: idamji_user
+      foreign: idamji_user
+      type: one
+    AmjiUser:
+      local: idamji_invite
+      foreign: idamji_user
+      type: one
+AmjiContacts:
+  actAs: [Timestampable]
+  connection: doctrine
+  tableName: amji_contacts
+  columns:
+    idamji_user:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: false
+    idamji_invite:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: false
+  relations:
+    AmjiUser:
+      local: idamji_user
+      foreign: idamji_user
+      type: one
+    AmjiUser:
+      local: idamji_invite
+      foreign: idamji_user
+      type: one
 AmjiSubscribe:
   actAs: [Timestampable]
   connection: doctrine
@@ -699,6 +744,112 @@ AmjiResponseGroupAttachment:
       local: idamji_response
       foreign: idamji_response
       type: one
+AmjiPrioriteEvent:
+  actAs: [Timestampable]
+  connection: doctrine
+  tableName: amji_priorite_event
+  columns:
+    idamji_priorite:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: true
+    libelle:
+      type: string(100)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false      
+AmjiTypeEvent:
+  actAs: [Timestampable]
+  connection: doctrine
+  tableName: amji_type_event
+  columns:
+    idamji_type:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: true
+    libelle:
+      type: string(100)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    owner:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    description:
+      type: string()
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+  relations:
+    AmjiUser:
+      local: owner
+      foreign: idamji_user
+      type: many
+AmjiEventNotification:
+  actAs: [Timestampable]
+  connection: doctrine
+  tableName: amji_event_notification
+  columns:
+    idamji_notif:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: true
+    owner:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    periode:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    type:
+      type: string(100)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    notifmail:
+      type: integer(1)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    notifsms:
+      type: integer(1)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+  relations:
+    AmjiUser:
+      local: owner
+      foreign: idamji_user
+      type: many      
 AmjiEvent:
   actAs: [Timestampable]
   connection: doctrine
@@ -731,7 +882,14 @@ AmjiEvent:
       primary: false
       notnull: true
       autoincrement: false    
-    date:
+    datedebut:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    datefin:
       type: timestamp(25)
       fixed: false
       unsigned: false
@@ -744,11 +902,44 @@ AmjiEvent:
       unsigned: false
       primary: false
       notnull: true
-      autoincrement: false  
+      autoincrement: false 
+    idtype:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    idpriorite:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    idnotif:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false 
   relations:
     AmjiUser:
       local: iduser
       foreign: idamji_user
+      type: one
+    AmjiTypeEvent:
+      local: idtype
+      foreign: idamji_type
+      type: one
+    AmjiPrioriteEvent:
+      local: idpriorite
+      foreign: idamji_priorite
+      type: one
+    AmjiEventNotification:
+      local: idnotif
+      foreign: idamji_notif
       type: one
 AmjiEventAttachment:
   actAs: [Timestampable]
@@ -801,4 +992,140 @@ AmjiEventUser:
     AmjiEvent:
       local: idamji_event
       foreign: idamji_event
+      type: one
+AmjiCastRequest:
+  actAs: [Timestampable]
+  connection: doctrine
+  tableName: amji_cast_request
+  columns:
+    idamji_request:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: true
+    iduser:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    active:
+      type: integer(1)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+  relations:
+    AmjiUser:
+      local: iduser
+      foreign: idamji_user
+      type: one
+    AmjiRequest:
+      local: idamji_request
+      foreign: idamji_request
+      type: one
+AmjiCastResponse:
+  actAs: [Timestampable]
+  connection: doctrine
+  tableName: amji_cast_response
+  columns:
+    idamji_response:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: true
+    iduser:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    active:
+      type: integer(1)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+  relations:
+    AmjiUser:
+      local: iduser
+      foreign: idamji_user
+      type: one
+    AmjiResponse:
+      local: idamji_response
+      foreign: idamji_response
+      type: one
+AmjiCastRequestGroup:
+  actAs: [Timestampable]
+  connection: doctrine
+  tableName: amji_cast_request
+  columns:
+    idamji_request:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: true
+    iduser:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    active:
+      type: integer(1)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+  relations:
+    AmjiUser:
+      local: iduser
+      foreign: idamji_user
+      type: one
+    AmjiRequestGroup:
+      local: idamji_request
+      foreign: idamji_request
+      type: one
+AmjiCastResponseGroup:
+  actAs: [Timestampable]
+  connection: doctrine
+  tableName: amji_cast_request
+  columns:
+    idamji_response:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: true
+    iduser:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    active:
+      type: integer(1)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+  relations:
+    AmjiUser:
+      local: iduser
+      foreign: idamji_user
+      type: one
+    AmjiResponseGroup:
+      local: idamji_response
+      foreign: idamji_response
       type: one
