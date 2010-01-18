@@ -23,39 +23,127 @@ class AmjiUser extends BaseAmjiUser
 	}
 
 	public static function createUser(CreateUserVO $uservo){
-		
-		
-			if(!AmjiUser::userIsExist($uservo->email)){
-				$user = new sfGuardUser ( );
-				$user->setPassword ( $uservo->password );
-				$user->setUsername ( $uservo->email );
+		if(!AmjiUser::userIsExist($uservo->email)){
+			$user = new sfGuardUser ( );
+			$user->setPassword ( $uservo->password );
+			$user->setUsername ( $uservo->email );
+
+			$user->save ();
+
+			$compte = new AmjiUser();
+			$compte->setEmail($uservo->email);
+			$compte->setNom($uservo->nom);
+			$compte->setPrenom($uservo->prenom);
+			$compte->setPseudo($uservo->pseudo);
+			$compte->setAdr($uservo->adr);
+			$compte->setTel($uservo->tel);
+			$compte->setEtudiant($uservo->etudiant);
+			$compte->setEcole($uservo->ecole);
+			$compte->setNiveau($uservo->niveau);
+			$compte->setStatut($uservo->statut);
+			$compte->setSalarie($uservo->salarie);
+			$compte->setSociete($uservo->societe);
+
+			$compte->save();
 				
-				$user->save ();
-				
-				$compte = new AmjiUser();
-				$compte->setEmail($uservo->email);
-				$compte->setNom($uservo->nom);
-				$compte->setPrenom($uservo->prenom);
-				$compte->setPseudo($uservo->pseudo);
-				$compte->setAdr($uservo->adr);
-				$compte->setTel($uservo->tel);
-				$compte->setEtudiant($uservo->etudiant);
-				$compte->setEcole($uservo->ecole);
-				$compte->setNiveau($uservo->niveau);
-				$compte->setStatut($uservo->statut);
-				$compte->setSalarie($uservo->salarie);
-				$compte->setSociete($uservo->societe);
-				
-				$compte->save();
-				 
-			}else{
-				throw new GenericException("",Errors::MAILEXIST);
-			}
-				
-		
+		}else{
+			throw new GenericException("",Errors::MAILEXIST);
+		}
+	}
+
+	public static function addContact($iduser,$idcontact){
+		$contact = new AmjiContacts();
+		$contact->setIdamjiInvite($idcontact);
+		$contact->setIdamjiUser($iduser);
+		$contact->save();
+		AmjiUser::delInvitation($iduser,$idcontact);		
+	}
+
+	public static function inviteContact($iduser,$idcontact){
+		if(AmjiUser::getInvitation($iduser,$idcontact)==NULL){
+			$invitation = new AmjiInvitation();
+			$invitation->setIdamjiInvite($idcontact);
+			$invitation->setIdamjiUser($iduser);
+			$invitation->setAccepted(1);			
+			$invitation->save();
+		}else{
+			throw new GenericException("",Errors::INVITATIONEXIST);
+		}
 	}
 	
-	public static function addContact($iduser,$idcontact){
-		
+	public static function refuseInviteContact($iduser,$idcontact){
+		$invitation = AmjiUser::getInvitation($iduser,$idcontact);
+		$invitation->setAccepted(0);
+		$invitation->update();		
 	}
+
+	public static function getInvitation($iduser,$idcontact){
+		$invitations = Doctrine_Query::create ()->from ( 'AmjiInvitation i' )->where ( "idmaji_user = '" . $iduser . "'" )->andWhere("idamji_invite = '" . $idcontact . "'")->execute();
+		if (sizeof($invitations)==0)
+			return NULL;
+		else
+			return $invitation[0];
+	}
+	
+	public static function delInvitation($iduser,$idcontact){
+		$invitation = AmjiUser::getInvitation($iduser,$idcontact);
+		$inviation->del();
+	}
+
+	public static function subscribeGroup($iduser,$idgroup){
+		if(AmjiUser::alreadySubGroup($iduser,$idgroup)==NULL){
+			$sub = new AmjiSubscribeGroup();
+			$sub->setIdamjiGroup($idgroup);
+			$sub->setIdamjiUser($iduser);
+			$sub->save();
+		}else{
+			throw new GenericException("",Errors::ALREADYGROUPSUBSCRIBE);
+		}
+	}
+	
+	public static function unsubscribeGroup($iduser,$idgroup){
+		$sub = AmjiUser::alreadySubGroup($iduser,$idgroup);
+		$sub->del();
+	}
+
+	public static function subscribeTopic($iduser,$idtopic){
+		if(AmjiUser::alreadySubTopic($iduser,$idtopic)==NULL){
+			$topic = new AmjiSubscribe();
+			$topic->setAmjiType($idtopic);
+			$topic->setIdamjiUser($iduser);
+			$topic->save();
+		}else{
+			throw new GenericException("",Errors::ALREADYTOPICSUBSCRIBE);
+		}		
+	}
+	
+	public static function unsubscribeTopic($iduser,$idtopic){
+		$topic = AmjiUser::alreadySubTopic($iduser,$idtopic);
+		$topic->del();
+	}
+
+	public static function alreadySubGroup($iduser,$idgroup){
+		$subs = Doctrine_Query::create ()->from ( 'AmjiSubscribeGroup s' )->where ( "idmaji_user = '" . $iduser . "'" )->andWhere("idamji_group = '" . $idgroup . "'")->execute();
+		if (sizeof($subs)==0)
+			return NULL;
+		else
+			return $subs[0];
+	}
+
+	public static function alreadySubTopic($iduser,$idtopic){
+		$topics = Doctrine_Query::create ()->from ( 'AmjiSubscribe s' )->where ( "idmaji_user = '" . $iduser . "'" )->andWhere("idamji_type = '" . $idtopic . "'")->execute();
+		if (sizeof($topics)==0)
+			return NULL;
+		else
+			return $topics[0];
+	}
+	
+	public static function createRequest(CreateRequestVO $req){
+		$request = new AmjiRequest();
+		//save request
+		
+		//save file from session in database and delete them from hard drive
+	}
+
+
 }
