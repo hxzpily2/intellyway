@@ -232,7 +232,7 @@ AmjiStatut:
       fixed: false
       unsigned: false
       primary: true
-      autoincrement: false
+      autoincrement: true
     libelle:
       type: string(100)
       fixed: false
