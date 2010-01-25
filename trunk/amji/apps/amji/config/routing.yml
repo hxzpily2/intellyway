@@ -1,3 +1,21 @@
+amji_type_type:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                AmjiType
+    module:               type
+    prefix_path:          /type
+    column:               idamji_type
+    with_wildcard_routes: true
+
+amji_type:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                AmjiType
+    module:               test
+    prefix_path:          /test
+    column:               idamji_type
+    with_wildcard_routes: true
+
 # You can find more information about this file on the symfony website:
 # http://www.symfony-project.org/reference/1_4/en/10-Routing
 
