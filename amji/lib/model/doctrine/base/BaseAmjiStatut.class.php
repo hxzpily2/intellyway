@@ -33,7 +33,7 @@ abstract class BaseAmjiStatut extends sfDoctrineRecord
              'fixed' => 0,
              'unsigned' => false,
              'primary' => true,
-             'autoincrement' => false,
+             'autoincrement' => true,
              'length' => '4',
              ));
         $this->hasColumn('libelle', 'string', 100, array(

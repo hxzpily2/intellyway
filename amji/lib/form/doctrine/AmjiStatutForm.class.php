@@ -12,5 +12,9 @@ class AmjiStatutForm extends BaseAmjiStatutForm
 {
   public function configure()
   {
+  	unset(
+      $this['updated_at'],
+      $this['created_at']      
+    );
   }
 }
