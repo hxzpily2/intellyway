@@ -1,0 +1,79 @@
+<?php
+
+/**
+ * type actions.
+ *
+ * @package    ##PROJECT_NAME##
+ * @subpackage type
+ * @author     ##AUTHOR_NAME##
+ * @version    SVN: $Id: actions.class.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
+ */
+class autoTypeActions extends sfActions
+{
+  public function executeIndex(sfWebRequest $request)
+  {
+    $this->amji_types = Doctrine::getTable('AmjiType')
+      ->createQuery('a')
+      ->execute();
+  }
+
+  public function executeShow(sfWebRequest $request)
+  {
+    $this->amji_type = Doctrine::getTable('AmjiType')->find(array($request->getParameter('idamji_type')));
+    $this->forward404Unless($this->amji_type);
+  }
+
+  public function executeNew(sfWebRequest $request)
+  {
+    $this->form = new AmjiTypeForm();
+  }
+
+  public function executeCreate(sfWebRequest $request)
+  {
+    $this->forward404Unless($request->isMethod(sfRequest::POST));
+
+    $this->form = new AmjiTypeForm();
+
+    $this->processForm($request, $this->form);
+
+    $this->setTemplate('new');
+  }
+
+  public function executeEdit(sfWebRequest $request)
+  {
+    $this->forward404Unless($amji_type = Doctrine::getTable('AmjiType')->find(array($request->getParameter('idamji_type'))), sprintf('Object amji_type does not exist (%s).', $request->getParameter('idamji_type')));
+    $this->form = new AmjiTypeForm($amji_type);
+  }
+
+  public function executeUpdate(sfWebRequest $request)
+  {
+    $this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT));
+    $this->forward404Unless($amji_type = Doctrine::getTable('AmjiType')->find(array($request->getParameter('idamji_type'))), sprintf('Object amji_type does not exist (%s).', $request->getParameter('idamji_type')));
+    $this->form = new AmjiTypeForm($amji_type);
+
+    $this->processForm($request, $this->form);
+
+    $this->setTemplate('edit');
+  }
+
+  public function executeDelete(sfWebRequest $request)
+  {
+    $request->checkCSRFProtection();
+
+    $this->forward404Unless($amji_type = Doctrine::getTable('AmjiType')->find(array($request->getParameter('idamji_type'))), sprintf('Object amji_type does not exist (%s).', $request->getParameter('idamji_type')));
+    $amji_type->delete();
+
+    $this->redirect('type/index');
+  }
+
+  protected function processForm(sfWebRequest $request, sfForm $form)
+  {
+    $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
+    if ($form->isValid())
+    {
+      $amji_type = $form->save();
+
+      $this->redirect('type/edit?idamji_type='.$amji_type->getIdamjiType());
+    }
+  }
+}
