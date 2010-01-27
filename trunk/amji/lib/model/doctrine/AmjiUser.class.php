@@ -12,14 +12,48 @@
  */
 class AmjiUser extends BaseAmjiUser
 {
+	public static function getUser($login, $password) {
+
+
+		$getUsernameUser = Doctrine_Query::create ()->from ( 'sfGuardUser u' )->where ( "u.username = '" . $login . "'" )->execute ();
+
+		$oldUsername = $getUsernameUser [0];
+
+
+
+		if ($oldUsername != NULL) {
+			if($oldUsername->getPassword()==AmjiUser::setPassword($password,$oldUsername->getSalt()))
+			return $oldUsername;
+			else return NULL;
+		} else
+		return NULL;
+	}
+
+	public static function setPassword($password,$salt) {
+		if (! $password && 0 == strlen ( $password )) {
+			return;
+		}
+
+
+		$algorithm = sfConfig::get ( 'app_sf_guard_plugin_algorithm_callable', 'sha1' );
+
+		$algorithmAsStr = is_array ( $algorithm ) ? $algorithm [0] . '::' . $algorithm [1] : $algorithm;
+		if (! is_callable ( $algorithm )) {
+			throw new sfException ( sprintf ( 'The algorithm callable "%s" is not callable.', $algorithmAsStr ) );
+		}
+
+
+		return call_user_func_array ( $algorithm, array ($salt . $password ) ) ;
+	}
+
 	public static function userIsExist($login) {
 		$getUsernameUser = Doctrine_Query::create ()->select ( 'u.email' )->from ( 'AmjiUser u' )->where ( "email = '" . $login . "'" )->execute ();
 		$oldUsername = $getUsernameUser [0];
 
 		if ($oldUsername->getEmail () != NULL)
-			return 1;
+		return 1;
 		else
-			return 0;
+		return 0;
 	}
 
 	public static function createUser(CreateUserVO $uservo){
@@ -45,7 +79,7 @@ class AmjiUser extends BaseAmjiUser
 			$compte->setSociete($uservo->societe);
 
 			$compte->save();
-				
+
 		}else{
 			throw new GenericException("",Errors::MAILEXIST);
 		}
@@ -56,7 +90,7 @@ class AmjiUser extends BaseAmjiUser
 		$contact->setIdamjiInvite($idcontact);
 		$contact->setIdamjiUser($iduser);
 		$contact->save();
-		AmjiUser::delInvitation($iduser,$idcontact);		
+		AmjiUser::delInvitation($iduser,$idcontact);
 	}
 
 	public static function inviteContact($iduser,$idcontact){
@@ -64,27 +98,27 @@ class AmjiUser extends BaseAmjiUser
 			$invitation = new AmjiInvitation();
 			$invitation->setIdamjiInvite($idcontact);
 			$invitation->setIdamjiUser($iduser);
-			$invitation->setAccepted(1);			
+			$invitation->setAccepted(1);
 			$invitation->save();
 		}else{
 			throw new GenericException("",Errors::INVITATIONEXIST);
 		}
 	}
-	
+
 	public static function refuseInviteContact($iduser,$idcontact){
 		$invitation = AmjiUser::getInvitation($iduser,$idcontact);
 		$invitation->setAccepted(0);
-		$invitation->update();		
+		$invitation->update();
 	}
 
 	public static function getInvitation($iduser,$idcontact){
 		$invitations = Doctrine_Query::create ()->from ( 'AmjiInvitation i' )->where ( "idmaji_user = '" . $iduser . "'" )->andWhere("idamji_invite = '" . $idcontact . "'")->execute();
 		if (sizeof($invitations)==0)
-			return NULL;
+		return NULL;
 		else
-			return $invitation[0];
+		return $invitation[0];
 	}
-	
+
 	public static function delInvitation($iduser,$idcontact){
 		$invitation = AmjiUser::getInvitation($iduser,$idcontact);
 		$inviation->del();
@@ -100,7 +134,7 @@ class AmjiUser extends BaseAmjiUser
 			throw new GenericException("",Errors::ALREADYGROUPSUBSCRIBE);
 		}
 	}
-	
+
 	public static function unsubscribeGroup($iduser,$idgroup){
 		$sub = AmjiUser::alreadySubGroup($iduser,$idgroup);
 		$sub->del();
@@ -114,9 +148,9 @@ class AmjiUser extends BaseAmjiUser
 			$topic->save();
 		}else{
 			throw new GenericException("",Errors::ALREADYTOPICSUBSCRIBE);
-		}		
+		}
 	}
-	
+
 	public static function unsubscribeTopic($iduser,$idtopic){
 		$topic = AmjiUser::alreadySubTopic($iduser,$idtopic);
 		$topic->del();
@@ -125,23 +159,23 @@ class AmjiUser extends BaseAmjiUser
 	public static function alreadySubGroup($iduser,$idgroup){
 		$subs = Doctrine_Query::create ()->from ( 'AmjiSubscribeGroup s' )->where ( "idmaji_user = '" . $iduser . "'" )->andWhere("idamji_group = '" . $idgroup . "'")->execute();
 		if (sizeof($subs)==0)
-			return NULL;
+		return NULL;
 		else
-			return $subs[0];
+		return $subs[0];
 	}
 
 	public static function alreadySubTopic($iduser,$idtopic){
 		$topics = Doctrine_Query::create ()->from ( 'AmjiSubscribe s' )->where ( "idmaji_user = '" . $iduser . "'" )->andWhere("idamji_type = '" . $idtopic . "'")->execute();
 		if (sizeof($topics)==0)
-			return NULL;
+		return NULL;
 		else
-			return $topics[0];
+		return $topics[0];
 	}
-	
+
 	public static function createRequest(CreateRequestVO $req){
 		$request = new AmjiRequest();
 		//save request
-		
+
 		//save file from session in database and delete them from hard drive
 	}
 
