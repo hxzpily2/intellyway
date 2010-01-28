@@ -16,7 +16,7 @@ package commande
   			
             //facade.registerMediator( new AuthentificationMediateur( app.loginForm ) );
             //facade.registerMediator( new ApplicationMediateur( app ) );
-            facade.sendNotification(Actions.CREATAUSER);  
+            //facade.sendNotification(Actions.CREATAUSER);  
                             
         } 
 
