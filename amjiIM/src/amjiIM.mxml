@@ -22,9 +22,9 @@
 			
 			private function handleChangeState(event:NativeWindowDisplayStateEvent):void{
 				if(event.afterDisplayState == NativeWindowDisplayState.MINIMIZED){ 
-					window.alwaysInFront = false;						
+					window.orderToBack();						
 				}else if(event.afterDisplayState == NativeWindowDisplayState.NORMAL){
-					window.alwaysInFront = true;					
+					window.orderToFront();					
 				} 
 			}
 			
@@ -34,8 +34,7 @@
 				window.height = 200;
 				window.type = NativeWindowType.LIGHTWEIGHT;
 				window.systemChrome = "none";
-				window.transparent = true;
-				window.alwaysInFront = true;							
+				window.transparent = true;											
 				window.open();
 			}
 			
