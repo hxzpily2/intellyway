@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Window xmlns:mx="http://www.adobe.com/2006/mxml" layout="vertical"
+<mx:Window mouseDown="this.startDrag()" mouseUp="this.stopDrag()" xmlns:mx="http://www.adobe.com/2006/mxml" layout="vertical"
 	backgroundAlpha="0"
     showTitleBar="false"
     showStatusBar="false"
