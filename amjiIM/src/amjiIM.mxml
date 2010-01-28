@@ -10,17 +10,32 @@
 	
 	<mx:Script>
 		<![CDATA[
+			import mx.controls.Alert;
 			import view.LoginWindow;
 			private var facade:ApplicationFacade = ApplicationFacade.getInstance();
 			public var window:LoginWindow;
 			private function init():void{
 				facade.startup(this);
+				this.addEventListener(NativeWindowDisplayStateEvent.DISPLAY_STATE_CHANGE,handleChangeState);
+				openLoginWindow();				
+			}
+			
+			private function handleChangeState(event:NativeWindowDisplayStateEvent):void{
+				if(event.afterDisplayState == NativeWindowDisplayState.MINIMIZED){ 
+					window.alwaysInFront = false;						
+				}else if(event.afterDisplayState == NativeWindowDisplayState.NORMAL){
+					window.alwaysInFront = true;					
+				} 
+			}
+			
+			private function openLoginWindow():void{
 				window = new LoginWindow();
 				window.width = 200;
 				window.height = 200;
 				window.type = NativeWindowType.LIGHTWEIGHT;
 				window.systemChrome = "none";
-				window.transparent = true;				
+				window.transparent = true;
+				window.alwaysInFront = true;							
 				window.open();
 			}
 			
