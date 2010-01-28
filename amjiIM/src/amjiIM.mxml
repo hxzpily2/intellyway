@@ -5,13 +5,28 @@
     showStatusBar="false"
     showGripper="false"
     borderStyle="none"
-    creationComplete="init()" xmlns:components="commun.components.*">
+    creationComplete="init()" xmlns:components="commun.components.*"
+    close="closeHandler()">
 	
 	<mx:Script>
 		<![CDATA[
+			import view.LoginWindow;
 			private var facade:ApplicationFacade = ApplicationFacade.getInstance();
+			public var window:LoginWindow;
 			private function init():void{
 				facade.startup(this);
+				window = new LoginWindow();
+				window.width = 200;
+				window.height = 200;
+				window.type = NativeWindowType.LIGHTWEIGHT;
+				window.systemChrome = "none";
+				window.transparent = true;				
+				window.open();
+			}
+			
+			private function closeHandler():void{
+				if(window!=null)
+					window.close();
 			}
 		]]>
 	</mx:Script>
@@ -21,7 +36,7 @@
 		<mx:HBox width="100%" horizontalGap="0" horizontalAlign="right">			
 			<components:WindowMin label="" width="43" height="27.5" useHandCursor="true" buttonMode="true"/>
 			<components:WindowMax label="" width="43" height="27.5" useHandCursor="true" buttonMode="true"/>
-			<components:WindowClose label="" width="43" height="27.5" useHandCursor="true" buttonMode="true"/>
+			<components:WindowClose label="" width="43" height="27.5" useHandCursor="true" buttonMode="true" click="this.close();"/>
 			<mx:Spacer width="18" /> 	
 		</mx:HBox>
 			
