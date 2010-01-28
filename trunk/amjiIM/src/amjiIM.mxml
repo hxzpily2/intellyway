@@ -30,9 +30,7 @@
 			}
 			
 			private function openLoginWindow():void{
-				window = new LoginWindow();
-				window.width = 200;
-				window.height = 200;
+				window = new LoginWindow();				
 				window.type = NativeWindowType.LIGHTWEIGHT;
 				window.systemChrome = "none";
 				window.transparent = true;											
