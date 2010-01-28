@@ -20,7 +20,7 @@ Doctrine_Manager::getInstance()->bindComponent('AmjiUser', 'doctrine');
  * @property integer $salarie
  * @property string $statut
  * @property string $societe
- * @property string $image
+ * @property blob $image
  * @property integer $idamji_statut
  * @property integer $thanks
  * @property AmjiStatut $AmjiStatut
@@ -55,7 +55,7 @@ Doctrine_Manager::getInstance()->bindComponent('AmjiUser', 'doctrine');
  * @method integer               getSalarie()               Returns the current record's "salarie" value
  * @method string                getStatut()                Returns the current record's "statut" value
  * @method string                getSociete()               Returns the current record's "societe" value
- * @method string                getImage()                 Returns the current record's "image" value
+ * @method blob                  getImage()                 Returns the current record's "image" value
  * @method integer               getIdamjiStatut()          Returns the current record's "idamji_statut" value
  * @method integer               getThanks()                Returns the current record's "thanks" value
  * @method AmjiStatut            getAmjiStatut()            Returns the current record's "AmjiStatut" value
@@ -237,14 +237,14 @@ abstract class BaseAmjiUser extends sfDoctrineRecord
              'autoincrement' => false,
              'length' => '100',
              ));
-        $this->hasColumn('image', 'string', 100, array(
-             'type' => 'string',
+        $this->hasColumn('image', 'blob', null, array(
+             'type' => 'blob',
              'fixed' => 0,
              'unsigned' => false,
              'primary' => false,
              'notnull' => false,
              'autoincrement' => false,
-             'length' => '100',
+             'length' => '',
              ));
         $this->hasColumn('idamji_statut', 'integer', 4, array(
              'type' => 'integer',
