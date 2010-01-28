@@ -9,13 +9,16 @@ Doctrine_Manager::getInstance()->bindComponent('AmjiStatut', 'doctrine');
  * 
  * @property integer $idamji_statut
  * @property string $libelle
+ * @property string $image
  * @property Doctrine_Collection $AmjiUser
  * 
  * @method integer             getIdamjiStatut()  Returns the current record's "idamji_statut" value
  * @method string              getLibelle()       Returns the current record's "libelle" value
+ * @method string              getImage()         Returns the current record's "image" value
  * @method Doctrine_Collection getAmjiUser()      Returns the current record's "AmjiUser" collection
  * @method AmjiStatut          setIdamjiStatut()  Sets the current record's "idamji_statut" value
  * @method AmjiStatut          setLibelle()       Sets the current record's "libelle" value
+ * @method AmjiStatut          setImage()         Sets the current record's "image" value
  * @method AmjiStatut          setAmjiUser()      Sets the current record's "AmjiUser" collection
  * 
  * @package    amji
@@ -37,6 +40,15 @@ abstract class BaseAmjiStatut extends sfDoctrineRecord
              'length' => '4',
              ));
         $this->hasColumn('libelle', 'string', 100, array(
+             'type' => 'string',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => true,
+             'autoincrement' => false,
+             'length' => '100',
+             ));
+        $this->hasColumn('image', 'string', 100, array(
              'type' => 'string',
              'fixed' => 0,
              'unsigned' => false,
