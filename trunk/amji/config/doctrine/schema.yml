@@ -240,6 +240,13 @@ AmjiStatut:
       primary: false
       notnull: true
       autoincrement: false
+    image:
+      type: string(100)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
   relations:
     AmjiUser:
       local: idamji_statut
@@ -385,7 +392,7 @@ AmjiUser:
       notnull: false
       autoincrement: false
     image:
-      type: string(100)
+      type: blob()
       fixed: false
       unsigned: false
       primary: false
