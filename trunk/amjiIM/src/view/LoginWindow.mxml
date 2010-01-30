@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Window mouseDown="this.startDrag()" mouseUp="this.stopDrag()" xmlns:mx="http://www.adobe.com/2006/mxml" layout="vertical"
+<mx:Window xmlns:mx="http://www.adobe.com/2006/mxml" layout="vertical"
 	backgroundAlpha="0"
     showTitleBar="false"
     showStatusBar="false"
@@ -7,11 +7,31 @@
     borderStyle="none"
     paddingBottom="10" paddingLeft="10" paddingRight="10" paddingTop="10"
     horizontalAlign="center"
-    creationComplete="init()">
+    creationComplete="init()" xmlns:amjiinputtext="com.bedreamy.components.amjiinputtext.*" xmlns:combobox="com.bedreamy.components.combobox.*">
     <mx:Script>
     	<![CDATA[
+    		[Bindable]
+            [Embed(source="assets/images/en_ligne.png")]
+            public var EnLigne:Class;
+
+            [Bindable]
+            [Embed(source="assets/images/occupe.png")]
+            public var Occupe:Class;
+
+            [Bindable]
+            [Embed(source="assets/images/absent.png")]
+            public var Absent:Class;
+			
+			[Bindable]
+            [Embed(source="assets/images/de_retour.png")]
+            public var Retour:Class;
+            
+            [Bindable]
+            [Embed(source="assets/images/hors_ligne.png")]
+            public var HorsLigne:Class;
+
     		private function init(){
-    			this.stage.displayState = StageDisplayState.FULL_SCREEN_INTERACTIVE;
+    			this.stage.displayState = StageDisplayState.FULL_SCREEN_INTERACTIVE;    			
     		}
     	]]>
     </mx:Script>
@@ -19,8 +39,28 @@
 		<mx:Spacer height="20" />
 		<mx:Image source="@Embed(source='assets/images/logo.png')" />
 		<mx:Spacer height="10" />
-		<mx:VBox width="257" height="142" styleName="loginAreaBackground">
-			
+		<mx:VBox horizontalAlign="center" width="257" height="142" styleName="loginAreaBackground">
+			<mx:Spacer height="20" />
+			<amjiinputtext:AmjiInputText displayAsPassword="false" text="LOGIN" width="210" height="30"/>
+			<amjiinputtext:AmjiInputText displayAsPassword="true" text="PASSWORD" width="210" height="30"/>
+			<mx:HBox horizontalAlign="right" width="220">
+				<mx:Button overSkin="@Embed(source='assets/images/button_login_over.png')" downSkin="@Embed(source='assets/images/button_login_down.png')" upSkin="@Embed(source='assets/images/button_login_up.png')" label=""/>				
+			</mx:HBox>			
 		</mx:VBox>
+		<mx:HBox width="257" horizontalAlign="left">		    
+			<mx:Spacer  width="10"/>
+			<combobox:AmjiCombobox id="comboBox" width="100">
+				<combobox:dataProvider>
+					<mx:Array>
+		                <mx:Object label="En ligne" icon="EnLigne" />
+		                <mx:Object label="Occupé" icon="Occupe" />
+		                <mx:Object label="Absent" icon="Absent" />
+		                <mx:Object label="De retour" icon="Retour" />
+		                <mx:Object label="Hors ligne" icon="HorsLigne" />		                
+		            </mx:Array>
+				</combobox:dataProvider>
+			</combobox:AmjiCombobox>				
+		</mx:HBox>
+				
 	</mx:VBox>
 </mx:Window>
