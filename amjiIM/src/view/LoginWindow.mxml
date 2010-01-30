@@ -15,7 +15,7 @@
     		}
     	]]>
     </mx:Script>
-	<mx:VBox styleName="loginScalingBackground" dropShadowEnabled="true" width="275" height="500" cornerRadius="15" borderStyle="solid" borderColor="#FF6600" horizontalAlign="center">
+	<mx:VBox styleName="loginScalingBackground" dropShadowEnabled="true" width="275" height="500" horizontalAlign="center">
 		<mx:Spacer height="20" />
 		<mx:Image source="@Embed(source='assets/images/logo.png')" />
 	</mx:VBox>
