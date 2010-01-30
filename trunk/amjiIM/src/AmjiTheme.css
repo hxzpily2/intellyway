@@ -190,3 +190,23 @@ Tree
 	folderClosedIcon: Embed(source="AmjiTheme.swf", symbol="Tree_folderClosedIcon");
 	folderOpenIcon: Embed(source="AmjiTheme.swf", symbol="Tree_folderOpenIcon");
 }
+Button
+{
+	disabledSkin: Embed(source="AmjiTheme.swf", symbol="Button_disabledSkin");
+	downSkin: Embed(source="AmjiTheme.swf", symbol="Button_downSkin");
+	overSkin: Embed(source="AmjiTheme.swf", symbol="Button_overSkin");
+	upSkin: Embed(source="AmjiTheme.swf", symbol="Button_upSkin");
+}
+
+.loginScalingBackground
+        {
+
+            background-image: Embed(source="AmjiTheme.swf", symbol="BoxLoginSkin");
+			
+            background-size:"100%";    
+            padding-bottom:15; 
+            padding-top:15; 
+            padding-left:15; 
+            padding-right:15;
+        
+        }
