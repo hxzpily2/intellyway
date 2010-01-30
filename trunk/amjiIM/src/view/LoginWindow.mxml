@@ -18,5 +18,9 @@
 	<mx:VBox styleName="loginScalingBackground" dropShadowEnabled="true" width="275" height="500" horizontalAlign="center">
 		<mx:Spacer height="20" />
 		<mx:Image source="@Embed(source='assets/images/logo.png')" />
+		<mx:Spacer height="10" />
+		<mx:VBox width="257" height="142" styleName="loginAreaBackground">
+			
+		</mx:VBox>
 	</mx:VBox>
 </mx:Window>
