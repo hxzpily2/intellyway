@@ -205,7 +205,8 @@ Button
 			
             background-size:"100%";    
             padding-bottom:0; 
-            padding-top:15; 
+            padding-top:15;
+             
         
         }
 .loginAreaBackground
@@ -250,6 +251,22 @@ ComboBoxArrow
 	editableUpSkin: Embed(source="AmjiTheme.swf", symbol="ComboBoxArrow_editableUpSkin");
 	overSkin: Embed(source="AmjiTheme.swf", symbol="ComboBoxArrow_overSkin");
 	upSkin: Embed(source="AmjiTheme.swf", symbol="ComboBoxArrow_upSkin");
+}
+
+AmjiButtonTool
+{
+	disabledSkin: Embed(source="AmjiTheme.swf", symbol="Button_disabledSkin");
+	downSkin: Embed(source="AmjiTheme.swf", symbol="AmjiButtonTooltip_downSkin");
+	overSkin: Embed(source="AmjiTheme.swf", symbol="AmjiButtonTooltip_overSkin");
+	upSkin: Embed(source="AmjiTheme.swf", symbol="AmjiButtonTooltip_upSkin");
+}
+
+AmjiButtonResize
+{
+	disabledSkin: Embed(source="AmjiTheme.swf", symbol="Button_disabledSkin");
+	downSkin: Embed(source="AmjiTheme.swf", symbol="AmjiButtonResizer_upSkin");
+	overSkin: Embed(source="AmjiTheme.swf", symbol="AmjiButtonResizer_overSkin");
+	upSkin: Embed(source="AmjiTheme.swf", symbol="AmjiButtonResizer_upSkin");
 }
 
 

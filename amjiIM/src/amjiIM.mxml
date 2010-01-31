@@ -33,7 +33,12 @@
 				window = new LoginWindow();				
 				window.type = NativeWindowType.LIGHTWEIGHT;
 				window.systemChrome = "none";
-				window.transparent = true;											
+				window.transparent = true;	
+				
+				window.width = 280;
+				window.minWidth = 280;
+				window.height = 500;	
+				window.minHeight = 500;									
 				window.open();
 			}
 			
