@@ -13,23 +13,23 @@ AccordionHeader
 WindowClose
 {
 	disabledSkin: Embed(source="AmjiTheme.swf", symbol="ButtonMin_disabledSkin");
-	downSkin: Embed(source="AmjiTheme.swf", symbol="ButtonMin_downSkin");
-	overSkin: Embed(source="AmjiTheme.swf", symbol="ButtonMin_overSkin");
-	upSkin: Embed(source="AmjiTheme.swf", symbol="ButtonMin_upSkin");
+	downSkin: Embed(source="AmjiTheme.swf", symbol="AmjiButtonClose_upSkin");
+	overSkin: Embed(source="AmjiTheme.swf", symbol="AmjiButtonClose_overSkin");
+	upSkin: Embed(source="AmjiTheme.swf", symbol="AmjiButtonClose_upSkin");
 }
 WindowMin
 {
 	disabledSkin: Embed(source="AmjiTheme.swf", symbol="ButtonMax_disabledSkin");
-	downSkin: Embed(source="AmjiTheme.swf", symbol="ButtonMax_downSkin");
-	overSkin: Embed(source="AmjiTheme.swf", symbol="ButtonMax_overSkin");
-	upSkin: Embed(source="AmjiTheme.swf", symbol="ButtonMax_upSkin");
+	downSkin: Embed(source="AmjiTheme.swf", symbol="AmjiButtonMin_upSkin");
+	overSkin: Embed(source="AmjiTheme.swf", symbol="AmjiButtonMin_overSkin");
+	upSkin: Embed(source="AmjiTheme.swf", symbol="AmjiButtonMin_upSkin");
 }
 WindowMax
 {
 	disabledSkin: Embed(source="AmjiTheme.swf", symbol="ButtonClose_disabledSkin");
-	downSkin: Embed(source="AmjiTheme.swf", symbol="ButtonClose_downSkin");
-	overSkin: Embed(source="AmjiTheme.swf", symbol="ButtonClose_overSkin");
-	upSkin: Embed(source="AmjiTheme.swf", symbol="ButtonClose_upSkin");
+	downSkin: Embed(source="AmjiTheme.swf", symbol="AmjiButtonMax_upSkin");
+	overSkin: Embed(source="AmjiTheme.swf", symbol="AmjiButtonMax_overSkin");
+	upSkin: Embed(source="AmjiTheme.swf", symbol="AmjiButtonMax_upSkin");
 }
 ButtonBar
 {
@@ -209,7 +209,7 @@ Button
 			
             background-size:"100%";    
             padding-bottom:0; 
-            padding-top:15;
+            padding-top:3;
              
         
         }
