@@ -11,6 +11,7 @@
 	
 	<mx:Script>
 		<![CDATA[
+			import commun.Actions;
 			import com.bedreamy.facade.MainFacade;
 			import mx.controls.Alert;
 			import view.LoginWindow;
@@ -43,8 +44,12 @@
 				window.height = 600;	
 				window.minHeight = 600;									
 				window.open();
+				window.addEventListener(Actions.CLOSEAPPLI,closeAppli);
 			}
 			
+			public function closeAppli(e:Event):void{
+				this.close();
+			}
 			private function closeHandler():void{
 				if(window!=null)
 					window.close();

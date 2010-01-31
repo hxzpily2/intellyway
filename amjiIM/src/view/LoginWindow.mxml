@@ -9,6 +9,7 @@
     creationComplete="init()" xmlns:amjiinputtext="com.bedreamy.components.amjiinputtext.*" xmlns:combobox="com.bedreamy.components.combobox.*" xmlns:components="commun.components.*">
     <mx:Script>
     	<![CDATA[
+    		import commun.Actions;
     		import mx.events.FlexEvent;
     		import mx.events.EffectEvent;
     		import mx.effects.Fade;
@@ -100,7 +101,7 @@
 		<mx:HBox width="100%" height="15" horizontalAlign="right" paddingRight="15">
 		    <components:WindowMin width="9" height="9" buttonMode="true" useHandCursor="true" />
 			<components:WindowMax  width="9" height="9" buttonMode="true" useHandCursor="true" />
-			<components:WindowClose width="9" height="9" buttonMode="true" useHandCursor="true" />			
+			<components:WindowClose click="this.close();dispatchEvent(new Event(Actions.CLOSEAPPLI))" width="9" height="9" buttonMode="true" useHandCursor="true" />			
 		</mx:HBox>
 		<mx:Spacer height="20" />
 		<mx:Image mouseDown="this.nativeWindow.startMove()" source="@Embed(source='assets/images/logo.png')" />
