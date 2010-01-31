@@ -11,14 +11,17 @@
 	
 	<mx:Script>
 		<![CDATA[
+			import com.bedreamy.facade.MainFacade;
 			import mx.controls.Alert;
 			import view.LoginWindow;
 			private var facade:ApplicationFacade = ApplicationFacade.getInstance();
+			private var bedreamy:MainFacade = MainFacade.getInstance();
 			public var window:LoginWindow;
 			private function init():void{
 				facade.startup(this);
 				this.addEventListener(NativeWindowDisplayStateEvent.DISPLAY_STATE_CHANGE,handleChangeState);						
-				openLoginWindow();				
+				openLoginWindow();
+				bedreamy.mainapplication = this;				
 			}
 			
 			private function handleChangeState(event:NativeWindowDisplayStateEvent):void{
@@ -37,8 +40,8 @@
 				
 				window.width = 280;
 				window.minWidth = 280;
-				window.height = 500;	
-				window.minHeight = 500;									
+				window.height = 600;	
+				window.minHeight = 600;									
 				window.open();
 			}
 			
