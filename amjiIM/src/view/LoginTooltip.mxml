@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:VBox width="196" height="82" styleName="loginTooltipBackground" xmlns:mx="http://www.adobe.com/2006/mxml" verticalAlign="middle"
+	>
+	
+	<mx:Script>
+		<![CDATA[
+			import mx.managers.PopUpManager;
+			import mx.controls.PopUpButton;
+			import mx.controls.Alert;
+			public var isOpened : Boolean = false;
+			
+			public var minuteTimer:Timer;
+			public function show():void{
+				minuteTimer = new Timer(1000, 5);
+				minuteTimer.addEventListener(TimerEvent.TIMER_COMPLETE, onTimerComplete);
+				minuteTimer.start();
+
+			}
+			
+			public function onTimerComplete(event:TimerEvent):void
+        	{
+            	PopUpManager.removePopUp(this);
+            	minuteTimer.removeEventListener(TimerEvent.TIMER_COMPLETE, onTimerComplete);
+            	this.isOpened=false;
+        	}
+
+		]]>
+	</mx:Script>
+	<mx:CheckBox color="#9F9F9F" label="Enregistrer login" fontSize="10" fontWeight="normal" fontFamily="Tahoma"/>
+	<mx:CheckBox color="#9F9F9F" label="Enregistrer mot de passe" fontSize="10" fontWeight="normal" fontFamily="Tahoma"/>
+
+</mx:VBox>

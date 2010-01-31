@@ -9,6 +9,15 @@
     creationComplete="init()" xmlns:amjiinputtext="com.bedreamy.components.amjiinputtext.*" xmlns:combobox="com.bedreamy.components.combobox.*" xmlns:components="commun.components.*">
     <mx:Script>
     	<![CDATA[
+    		import mx.events.FlexEvent;
+    		import mx.events.EffectEvent;
+    		import mx.effects.Fade;
+    		import mx.controls.PopUpButton;
+    		import com.bedreamy.facade.MainFacade;
+    		import mx.managers.PopUpManager;
+    		import mx.controls.Alert;
+    		import mx.core.UIComponent;
+    		import mx.events.ToolTipEvent;
     		[Bindable]
             [Embed(source="assets/images/en_ligne.png")]
             public var EnLigne:Class;
@@ -30,8 +39,61 @@
             public var HorsLigne:Class;
 
     		private function init():void{
+    			nativeWindow.x = (Capabilities.screenResolutionX - nativeWindow.width) / 2;
+                nativeWindow.y = (Capabilities.screenResolutionY - nativeWindow.height) / 2;
+
     			//this.stage.displayState = StageDisplayState.FULL_SCREEN_INTERACTIVE;    			
+								   			
     		}
+    		public var window : LoginTooltip = new LoginTooltip;
+    		private static var dissolve : Fade = new Fade();
+    		private function createTip(e:MouseEvent):void {
+    			if(window.isOpened==false){
+	    			window.isOpened = true; 
+	    			
+	                window.x = (toolButton as UIComponent).contentToGlobal(new Point(toolButton.x,toolButton.y)).x-88;
+	                window.y = (e.target as UIComponent).contentToGlobal(new Point(e.target.x,e.target.y)).y + 20;
+	                
+	                PopUpManager.addPopUp(window,this,false);
+	                dissolve.alphaFrom = 0;
+            		dissolve.alphaTo = 1;
+            		dissolve.duration = 500;
+            		dissolve.target=window;
+            		dissolve.play(); 
+	                
+       			}else{
+       				dissolve.alphaFrom = 1;
+            		dissolve.alphaTo = 0;
+            		dissolve.duration = 500;
+            		dissolve.target=window;
+            		dissolve.play();
+            		dissolve.addEventListener(EffectEvent.EFFECT_END,closePopup);
+       				
+       				
+       			}
+                
+            }
+           
+            public function closeLoginPopup(e:MouseEvent):void{
+            	if(window.isOpened!=false){
+            		dissolve.alphaFrom = 1;
+            		dissolve.alphaTo = 0;
+            		dissolve.duration = 500;
+            		dissolve.target=window;
+            		dissolve.play();
+            		dissolve.addEventListener(EffectEvent.EFFECT_END,closePopup);
+            	}
+            }
+            
+            public function closePopup(e:EffectEvent):void{
+            	   dissolve.removeEventListener(EffectEvent.EFFECT_END,closePopup);
+            	   PopUpManager.removePopUp(window);
+            	   window.isOpened = false;
+            }
+            
+           
+
+
     	]]>
     </mx:Script>
 	<mx:VBox styleName="loginScalingBackground" dropShadowEnabled="true" width="100%" height="100%" horizontalAlign="center">
@@ -43,13 +105,13 @@
 			<amjiinputtext:AmjiInputText displayAsPassword="false" text="LOGIN" width="210" height="30"/>
 			<amjiinputtext:AmjiInputText displayAsPassword="true" text="PASSWORD" width="210" height="30"/>
 			<mx:HBox horizontalAlign="right" width="220">
-				<mx:Button overSkin="@Embed(source='assets/images/button_login_over.png')" downSkin="@Embed(source='assets/images/button_login_down.png')" upSkin="@Embed(source='assets/images/button_login_up.png')" label=""/>				
+				<mx:Button id="toolButton" useHandCursor="true" buttonMode="true" overSkin="@Embed(source='assets/images/button_login_over.png')" downSkin="@Embed(source='assets/images/button_login_down.png')" upSkin="@Embed(source='assets/images/button_login_up.png')" label=""/>				
 			</mx:HBox>			
 		</mx:VBox>
 		<mx:Spacer height="10" />
 		<mx:HBox width="257" horizontalAlign="left" verticalAlign="middle">		    
 			<mx:Spacer  width="10"/>
-			<combobox:AmjiCombobox id="comboBox" width="100">
+			<combobox:AmjiCombobox id="comboBox" width="105">
 				<combobox:dataProvider>
 					<mx:Array>
 		                <mx:Object label="En ligne" icon="EnLigne" />
@@ -60,12 +122,14 @@
 		            </mx:Array>
 				</combobox:dataProvider>
 			</combobox:AmjiCombobox>
-			<mx:Spacer width="100" />
-			<components:AmjiButtonTool width="15" height="15" label="" />				
+			<mx:Spacer width="90" />
+			<components:AmjiButtonTool useHandCursor="true" buttonMode="true" click="createTip(event)" width="15" height="15" label="" />				
 		</mx:HBox>
 		<mx:Spacer height="100%" />
-		<mx:HBox width="100%" horizontalAlign="right" paddingBottom="4" paddingRight="3">
-			<components:AmjiButtonResize mouseDown="this.nativeWindow.startResize()" alpha="0.4" width="12" height="12"/>			
+		<mx:HBox width="100%" horizontalAlign="left"  paddingRight="3">
+		    <mx:Text paddingLeft="15" color="#9F9F9F" text="2010 BEDREAMY COPYRIGHT" fontSize="8" fontFamily="kroeger"/>
+		    <mx:Spacer width="100%" />
+			<components:AmjiButtonResize useHandCursor="true" buttonMode="true" mouseDown="closeLoginPopup(event);this.nativeWindow.startResize()" alpha="1" width="12" height="12"/>			
 		</mx:HBox>		
 	</mx:VBox>
 </mx:Window>
