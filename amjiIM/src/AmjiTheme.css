@@ -315,6 +315,11 @@ AmjiCheckBox{
 	upIcon: Embed(source="AmjiTheme.swf", symbol="CheckBox_upIcon");	
 }
 
-
+AmjiButton{
+	disabledSkin: Embed(source="AmjiTheme.swf", symbol="Button_disabledSkin");
+	downSkin: Embed(source="AmjiTheme.swf", symbol="AmjiSimpleButton_upSkin");
+	overSkin: Embed(source="AmjiTheme.swf", symbol="AmjiSimpleButton_upSkin");
+	upSkin: Embed(source="AmjiTheme.swf", symbol="AmjiSimpleButton_upSkin");
+}
 
 
