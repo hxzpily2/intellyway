@@ -15,3 +15,17 @@ AmjiStatut:
     libelle: DERETOUR
   horsligne:
     libelle: HORSLIGNE
+sfGuardUser:
+  sgu_admin:
+    username:       reda.ze@gmail.com
+    password:       admin
+    is_super_admin: true
+AmjiUser:
+  sgu_admin:
+    pseudo: reda.ze@gmail.com
+    email: reda.ze@gmail.com
+    nom: reda
+    prenom: reda
+    adr: adresse
+    tel: 08000800    
+    thanks: 0
