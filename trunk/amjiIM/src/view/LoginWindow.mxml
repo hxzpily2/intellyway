@@ -9,6 +9,7 @@
     creationComplete="init()" xmlns:amjiinputtext="com.bedreamy.components.amjiinputtext.*" xmlns:combobox="com.bedreamy.components.combobox.*" xmlns:components="commun.components.*">
     <mx:Script>
     	<![CDATA[
+    		import commun.Constantes;
     		import commun.Actions;
     		import mx.events.FlexEvent;
     		import mx.events.EffectEvent;
@@ -120,11 +121,11 @@
 			<combobox:AmjiCombobox id="comboBox" width="105">
 				<combobox:dataProvider>
 					<mx:Array>
-		                <mx:Object label="En ligne" icon="EnLigne" />
-		                <mx:Object label="Occupé" icon="Occupe" />
-		                <mx:Object label="Absent" icon="Absent" />
-		                <mx:Object label="De retour" icon="Retour" />
-		                <mx:Object label="Hors ligne" icon="HorsLigne" />		                
+		                <mx:Object key="{Constantes.ENLIGNE}" label="En ligne" icon="EnLigne" />
+		                <mx:Object key="{Constantes.OCCUPE}" label="Occupé" icon="Occupe" />
+		                <mx:Object key="{Constantes.ABSENT}" label="Absent" icon="Absent" />
+		                <mx:Object key="{Constantes.DERETOUR}" label="De retour" icon="Retour" />
+		                <mx:Object key="{Constantes.HORSLIGNE}" label="Hors ligne" icon="HorsLigne" />		                
 		            </mx:Array>
 				</combobox:dataProvider>
 			</combobox:AmjiCombobox>
