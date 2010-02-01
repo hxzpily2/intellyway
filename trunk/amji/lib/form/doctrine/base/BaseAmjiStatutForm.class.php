@@ -25,7 +25,7 @@ abstract class BaseAmjiStatutForm extends BaseFormDoctrine
     $this->setValidators(array(
       'idamji_statut' => new sfValidatorDoctrineChoice(array('model' => $this->getModelName(), 'column' => 'idamji_statut', 'required' => false)),
       'libelle'       => new sfValidatorString(array('max_length' => 100)),
-      'image'         => new sfValidatorString(array('max_length' => 100)),
+      'image'         => new sfValidatorString(array('max_length' => 100, 'required' => false)),
       'created_at'    => new sfValidatorDateTime(),
       'updated_at'    => new sfValidatorDateTime(),
     ));
