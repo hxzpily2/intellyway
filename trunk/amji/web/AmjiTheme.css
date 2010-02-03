@@ -1,4 +1,7 @@
-
+@font-face {
+		src: url("assets/Kroeger 05-53CYR.ttf");
+		fontFamily: "kroeger";
+}
 AccordionHeader
 {
 	disabledSkin: Embed(source="AmjiTheme.swf", symbol="AccordionHeader_disabledSkin");
@@ -10,23 +13,23 @@ AccordionHeader
 WindowClose
 {
 	disabledSkin: Embed(source="AmjiTheme.swf", symbol="ButtonMin_disabledSkin");
-	downSkin: Embed(source="AmjiTheme.swf", symbol="ButtonMin_downSkin");
-	overSkin: Embed(source="AmjiTheme.swf", symbol="ButtonMin_overSkin");
-	upSkin: Embed(source="AmjiTheme.swf", symbol="ButtonMin_upSkin");
+	downSkin: Embed(source="AmjiTheme.swf", symbol="AmjiButtonClose_upSkin");
+	overSkin: Embed(source="AmjiTheme.swf", symbol="AmjiButtonClose_overSkin");
+	upSkin: Embed(source="AmjiTheme.swf", symbol="AmjiButtonClose_upSkin");
 }
 WindowMin
 {
 	disabledSkin: Embed(source="AmjiTheme.swf", symbol="ButtonMax_disabledSkin");
-	downSkin: Embed(source="AmjiTheme.swf", symbol="ButtonMax_downSkin");
-	overSkin: Embed(source="AmjiTheme.swf", symbol="ButtonMax_overSkin");
-	upSkin: Embed(source="AmjiTheme.swf", symbol="ButtonMax_upSkin");
+	downSkin: Embed(source="AmjiTheme.swf", symbol="AmjiButtonMin_upSkin");
+	overSkin: Embed(source="AmjiTheme.swf", symbol="AmjiButtonMin_overSkin");
+	upSkin: Embed(source="AmjiTheme.swf", symbol="AmjiButtonMin_upSkin");
 }
 WindowMax
 {
 	disabledSkin: Embed(source="AmjiTheme.swf", symbol="ButtonClose_disabledSkin");
-	downSkin: Embed(source="AmjiTheme.swf", symbol="ButtonClose_downSkin");
-	overSkin: Embed(source="AmjiTheme.swf", symbol="ButtonClose_overSkin");
-	upSkin: Embed(source="AmjiTheme.swf", symbol="ButtonClose_upSkin");
+	downSkin: Embed(source="AmjiTheme.swf", symbol="AmjiButtonMax_upSkin");
+	overSkin: Embed(source="AmjiTheme.swf", symbol="AmjiButtonMax_overSkin");
+	upSkin: Embed(source="AmjiTheme.swf", symbol="AmjiButtonMax_upSkin");
 }
 ButtonBar
 {
@@ -167,6 +170,7 @@ RadioButton
 	disabledIcon: Embed(source="AmjiTheme.swf", symbol="RadioButton_disabledIcon");
 	downIcon: Embed(source="AmjiTheme.swf", symbol="RadioButton_downIcon");
 	overIcon: Embed(source="AmjiTheme.swf", symbol="RadioButton_overIcon");
+	upIcon: Embed(source="AmjiTheme.swf", symbol="RadioButtonIcon");
 }
 ScrollBar
 {
@@ -190,3 +194,127 @@ Tree
 	folderClosedIcon: Embed(source="AmjiTheme.swf", symbol="Tree_folderClosedIcon");
 	folderOpenIcon: Embed(source="AmjiTheme.swf", symbol="Tree_folderOpenIcon");
 }
+Button
+{
+	disabledSkin: Embed(source="AmjiTheme.swf", symbol="Button_disabledSkin");
+	downSkin: Embed(source="AmjiTheme.swf", symbol="Button_downSkin");
+	overSkin: Embed(source="AmjiTheme.swf", symbol="Button_overSkin");
+	upSkin: Embed(source="AmjiTheme.swf", symbol="Button_upSkin");
+}
+
+.loginScalingBackground
+        {
+
+            background-image: Embed(source="AmjiTheme.swf", symbol="BoxLoginSkin");
+			
+            background-size:"100%";    
+            padding-bottom:0; 
+            padding-top:3;
+             
+        
+        }
+.loginTooltipBackground
+        {
+
+            background-image: Embed(source="AmjiTheme.swf", symbol="BoxTooltipSkin");
+			
+            background-size:"100%";    
+            padding-top:12;
+            padding-left:15;
+            padding-right : 35;
+             
+        
+        }
+.loginAreaBackground
+        {
+
+            background-image: Embed("assets/images/amji_login_bg.png");
+
+            background-size:"100%";            
+        }
+
+AmjiCombobox {
+   	disabledSkin: Embed(source="AmjiTheme.swf", symbol="ComboBoxArrow_disabledSkin");
+   	downSkin: Embed(source="AmjiTheme.swf", symbol="AmjiComboBoxArrow_upSkin");
+	editableDisabledSkin: Embed(source="AmjiTheme.swf", symbol="ComboBoxArrow_editableDisabledSkin");
+	editableDownSkin: Embed(source="AmjiTheme.swf", symbol="ComboBoxArrow_editableDownSkin");
+	editableOverSkin: Embed(source="AmjiTheme.swf", symbol="ComboBoxArrow_editableOverSkin");
+	editableUpSkin: Embed(source="AmjiTheme.swf", symbol="ComboBoxArrow_editableUpSkin");
+	overSkin: Embed(source="AmjiTheme.swf", symbol="AmjiComboBoxArrow_upSkin");
+		
+   	upSkin: Embed(source="AmjiTheme.swf", symbol="AmjiComboBoxArrow_upSkin");	
+   	dropDownStyleName: "myCustomDropdownStyleName";
+   	selectionColor: #eec760;
+   	rollOverColor: #eeeeee;
+   	themeColor: #eec760;
+   	fontFamily: Tahoma;
+   	fontSize: 10;
+   	color: #9F9F9F;
+   	fontWeight: normal;
+}
+.myCustomDropdownStyleName {
+            backgroundAlpha: 0.0;
+            backgroundColor: white;
+            drop-shadow-enabled : false;
+        }
+ComboBoxArrow
+{
+	disabledSkin: Embed(source="AmjiTheme.swf", symbol="ComboBoxArrow_disabledSkin");
+	downSkin: Embed(source="AmjiTheme.swf", symbol="ComboBoxArrow_downSkin");
+	editableDisabledSkin: Embed(source="AmjiTheme.swf", symbol="ComboBoxArrow_editableDisabledSkin");
+	editableDownSkin: Embed(source="AmjiTheme.swf", symbol="ComboBoxArrow_editableDownSkin");
+	editableOverSkin: Embed(source="AmjiTheme.swf", symbol="ComboBoxArrow_editableOverSkin");
+	editableUpSkin: Embed(source="AmjiTheme.swf", symbol="ComboBoxArrow_editableUpSkin");
+	overSkin: Embed(source="AmjiTheme.swf", symbol="ComboBoxArrow_overSkin");
+	upSkin: Embed(source="AmjiTheme.swf", symbol="ComboBoxArrow_upSkin");
+}
+
+AmjiButtonTool
+{
+	disabledSkin: Embed(source="AmjiTheme.swf", symbol="Button_disabledSkin");
+	downSkin: Embed(source="AmjiTheme.swf", symbol="AmjiButtonTooltip_downSkin");
+	overSkin: Embed(source="AmjiTheme.swf", symbol="AmjiButtonTooltip_overSkin");
+	upSkin: Embed(source="AmjiTheme.swf", symbol="AmjiButtonTooltip_upSkin");
+}
+
+AmjiButtonResize
+{
+	disabledSkin: Embed(source="AmjiTheme.swf", symbol="Button_disabledSkin");
+	downSkin: Embed(source="AmjiTheme.swf", symbol="AmjiButtonResizer_upSkin");
+	overSkin: Embed(source="AmjiTheme.swf", symbol="AmjiButtonResizer_overSkin");
+	upSkin: Embed(source="AmjiTheme.swf", symbol="AmjiButtonResizer_upSkin");
+}
+RadioButtonSelected
+{
+	disabledIcon: Embed(source="AmjiTheme.swf", symbol="RadioButtonSelected_disabledIcon");
+	downIcon: Embed(source="AmjiTheme.swf", symbol="RadioButtonSelected_downIcon");
+	overIcon: Embed(source="AmjiTheme.swf", symbol="RadioButtonSelected_overIcon");
+	upIcon: Embed(source="AmjiTheme.swf", symbol="RadioButtonSelected_upIcon");
+}
+
+AmjiRadioButton
+{
+	disabledIcon: Embed(source="AmjiTheme.swf", symbol="RadioButton_disabledIcon");
+	downIcon: Embed(source="AmjiTheme.swf", symbol="RadioButton_downIcon");
+	overIcon: Embed(source="AmjiTheme.swf", symbol="RadioButton_overIcon");
+	upIcon: Embed(source="AmjiTheme.swf", symbol="RadioButtonIcon");
+	selectedUpIcon: Embed(source="AmjiTheme.swf", symbol="RadioButtonSelected_upIcon");
+    selectedOverIcon: Embed(source="AmjiTheme.swf", symbol="RadioButtonSelected_overIcon");
+    selectedDownIcon: Embed(source="AmjiTheme.swf", symbol="RadioButtonSelected_downIcon");
+    selectedDisabledIcon: Embed(source="AmjiTheme.swf", symbol="RadioButtonSelected_disabledIcon");
+}
+
+AmjiCheckBox{
+	disabledIcon: Embed(source="AmjiTheme.swf", symbol="CheckBox_disabledIcon");
+	downIcon: Embed(source="AmjiTheme.swf", symbol="CheckBox_downIcon");
+	overIcon: Embed(source="AmjiTheme.swf", symbol="CheckBox_overIcon");
+	selectedDisabledIcon: Embed(source="AmjiTheme.swf", symbol="CheckBox_selectedDisabledIcon");
+	selectedDownIcon: Embed(source="AmjiTheme.swf", symbol="CheckBox_selectedDownIcon");
+	selectedOverIcon: Embed(source="AmjiTheme.swf", symbol="CheckBox_selectedOverIcon");
+	selectedUpIcon: Embed(source="AmjiTheme.swf", symbol="CheckBox_selectedUpIcon");
+	upIcon: Embed(source="AmjiTheme.swf", symbol="CheckBox_upIcon");	
+}
+
+
+
+

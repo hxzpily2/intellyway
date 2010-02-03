@@ -10,6 +10,7 @@ Doctrine_Manager::getInstance()->bindComponent('AmjiUser', 'doctrine');
  * @property integer $idamji_user
  * @property string $pseudo
  * @property string $email
+ * @property string $humeur
  * @property string $nom
  * @property string $prenom
  * @property string $adr
@@ -45,6 +46,7 @@ Doctrine_Manager::getInstance()->bindComponent('AmjiUser', 'doctrine');
  * @method integer               getIdamjiUser()            Returns the current record's "idamji_user" value
  * @method string                getPseudo()                Returns the current record's "pseudo" value
  * @method string                getEmail()                 Returns the current record's "email" value
+ * @method string                getHumeur()                Returns the current record's "humeur" value
  * @method string                getNom()                   Returns the current record's "nom" value
  * @method string                getPrenom()                Returns the current record's "prenom" value
  * @method string                getAdr()                   Returns the current record's "adr" value
@@ -79,6 +81,7 @@ Doctrine_Manager::getInstance()->bindComponent('AmjiUser', 'doctrine');
  * @method AmjiUser              setIdamjiUser()            Sets the current record's "idamji_user" value
  * @method AmjiUser              setPseudo()                Sets the current record's "pseudo" value
  * @method AmjiUser              setEmail()                 Sets the current record's "email" value
+ * @method AmjiUser              setHumeur()                Sets the current record's "humeur" value
  * @method AmjiUser              setNom()                   Sets the current record's "nom" value
  * @method AmjiUser              setPrenom()                Sets the current record's "prenom" value
  * @method AmjiUser              setAdr()                   Sets the current record's "adr" value
@@ -145,6 +148,16 @@ abstract class BaseAmjiUser extends sfDoctrineRecord
              'primary' => false,
              'notnull' => true,
              'autoincrement' => false,
+             'length' => '100',
+             ));
+        $this->hasColumn('humeur', 'string', 100, array(
+             'type' => 'string',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => true,
+             'autoincrement' => false,
+             'default' => 'HAPPY',
              'length' => '100',
              ));
         $this->hasColumn('nom', 'string', 100, array(

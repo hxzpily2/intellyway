@@ -321,6 +321,14 @@ AmjiUser:
       primary: false
       notnull: true
       autoincrement: false
+    humeur:
+      type: string(100)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+      default: 'HAPPY'
     nom:
       type: string(100)
       fixed: false
