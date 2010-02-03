@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Window xmlns:mx="http://www.adobe.com/2006/mxml" layout="vertical" width="400" height="300"
+<mx:Window xmlns:mx="http://www.adobe.com/2006/mxml" layout="vertical" width="600" height="300"
 	backgroundAlpha="0"
     showTitleBar="false"
     showStatusBar="false"
@@ -19,7 +19,7 @@
     		}
     	]]>
     </mx:Script>
-    <mx:VBox styleName="loginScalingBackground" dropShadowEnabled="true" width="100%" height="100%" horizontalAlign="center">
+    <mx:VBox paddingLeft="15" styleName="loginScalingBackground" dropShadowEnabled="true" width="100%" height="100%" horizontalAlign="center">
     	<mx:HBox width="100%" height="15" horizontalAlign="right" paddingRight="15">
 		    <components:WindowMin width="9" height="9" buttonMode="true" useHandCursor="true" />
 			<components:WindowMax  width="9" height="9" buttonMode="true" useHandCursor="true" />
@@ -28,7 +28,32 @@
 		<mx:Grid width="100%" height="100%">
 			<mx:GridRow>
 				<mx:GridItem width="50%">
-					
+					<mx:Grid width="100%">
+						<mx:GridRow>
+							<mx:GridItem>
+								<mx:Label fontFamily="tahoma" fontSize="10" id="lblNom" text="Nom"  color="#9F9F9F" /> 
+							</mx:GridItem>
+							<mx:GridItem>
+								<mx:TextInput themeColor="#FF6600"  id="txtNom" color="#9F9F9F" fontSize="10" height="18" width="100%" borderStyle="solid" borderColor="#9F9F9F" alpha="1.0"/>
+							</mx:GridItem>
+						</mx:GridRow>
+						<mx:GridRow>
+							<mx:GridItem>
+								<mx:Label fontFamily="tahoma" fontSize="10" id="lblPrenom" text="Prenom"  color="#9F9F9F" /> 
+							</mx:GridItem>
+							<mx:GridItem>
+								<mx:TextInput themeColor="#FF6600"  id="txtPrenom" color="#9F9F9F" fontSize="10" height="18" width="100%" borderStyle="solid" borderColor="#9F9F9F" alpha="1.0"/>
+							</mx:GridItem>
+						</mx:GridRow>
+						<mx:GridRow>
+							<mx:GridItem>
+								<mx:Label fontFamily="tahoma" fontSize="10" id="lblCivilite" text="Civilite"  color="#9F9F9F" /> 
+							</mx:GridItem>
+							<mx:GridItem>
+								<mx:TextInput themeColor="#FF6600"  id="txtCivilite" color="#9F9F9F" fontSize="10" height="18" width="100%" borderStyle="solid" borderColor="#9F9F9F" alpha="1.0"/>
+							</mx:GridItem>
+						</mx:GridRow>
+					</mx:Grid>
 				</mx:GridItem>
 				<mx:GridItem width="50%">
 					
