@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:VBox width="196" height="100" styleName="loginTooltipBackground" xmlns:mx="http://www.adobe.com/2006/mxml" verticalAlign="middle"
+<mx:VBox verticalGap="0" width="196" height="120" styleName="loginTooltipBackground" xmlns:mx="http://www.adobe.com/2006/mxml" verticalAlign="middle"
 	>
 	
 	<mx:Script>
 		<![CDATA[
+			import commun.Actions;
 			import mx.managers.PopUpManager;
 			import mx.controls.PopUpButton;
 			import mx.controls.Alert;
@@ -23,10 +24,15 @@
             	minuteTimer.removeEventListener(TimerEvent.TIMER_COMPLETE, onTimerComplete);
             	this.isOpened=false;
         	}
+        	
+        	public function sendEvent(event : String):void{
+        		this.dispatchEvent(new Event(event));
+        	}
 
 		]]>
 	</mx:Script>
 	<mx:CheckBox color="#9F9F9F" label="Enregistrer login" fontSize="10" fontWeight="normal" fontFamily="Tahoma"/>
 	<mx:CheckBox color="#9F9F9F" label="Enregistrer mot de passe" fontSize="10" fontWeight="normal" fontFamily="Tahoma"/>
-	<mx:Text mouseChildren="false" buttonMode="true" useHandCursor="true" fontFamily="Tahoma" fontWeight="normal" fontSize="10" color="#FF6600" text="Mot de passe oublié !"  textDecoration="underline"/>
+	<mx:Text click="sendEvent(Actions.SHOWUSERUI)" mouseChildren="false" buttonMode="true" useHandCursor="true" fontFamily="Tahoma" fontWeight="normal" fontSize="10" color="#FF6600" text="S'inscrire !"  textDecoration="underline"/>
+	<mx:Text mouseChildren="false" buttonMode="true" useHandCursor="true" fontFamily="Tahoma" fontWeight="normal" fontSize="10" color="#FF6600" text="Mot de passe oublié !"  textDecoration="underline"/>	
 </mx:VBox>
