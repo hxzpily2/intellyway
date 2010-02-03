@@ -11,6 +11,8 @@
 	
 	<mx:Script>
 		<![CDATA[
+			import model.vo.CreateUserVO;
+			import view.InscriptionWindow;
 			import commun.Actions;
 			import com.bedreamy.facade.MainFacade;
 			import mx.controls.Alert;
@@ -22,7 +24,8 @@
 				facade.startup(this);
 				this.addEventListener(NativeWindowDisplayStateEvent.DISPLAY_STATE_CHANGE,handleChangeState);						
 				openLoginWindow();
-				bedreamy.mainapplication = this;				
+				bedreamy.mainapplication = this;	
+							
 			}
 			
 			private function handleChangeState(event:NativeWindowDisplayStateEvent):void{
@@ -38,13 +41,28 @@
 				window.type = NativeWindowType.LIGHTWEIGHT;
 				window.systemChrome = "none";
 				window.transparent = true;	
-				
-				window.width = 280;
-				window.minWidth = 280;
-				window.height = 600;	
-				window.minHeight = 600;									
+														
 				window.open();
+				window.addEventListener(Actions.SHOWUSERUI,createUser);
 				window.addEventListener(Actions.CLOSEAPPLI,closeAppli);
+				
+			}
+			
+			public function closeInscWin(event : Event):void{
+				inscWindow.nativeWindow.visible = false;				
+				window.nativeWindow.visible = true;
+			}
+			public var inscWindow : InscriptionWindow ;
+			public function createUser(event : Event):void{
+				inscWindow = new InscriptionWindow;
+				inscWindow.type = NativeWindowType.LIGHTWEIGHT;
+				inscWindow.systemChrome = "none";
+				inscWindow.transparent = true;	
+				inscWindow.open();				
+				inscWindow.addEventListener(Actions.CLOSEINSCWIN,closeInscWin);
+				inscWindow.createUserVO = new CreateUserVO();				
+				window.nativeWindow.visible = false;
+				window.closePopupExt();				
 			}
 			
 			public function closeAppli(e:Event):void{
