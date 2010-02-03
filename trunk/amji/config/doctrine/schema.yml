@@ -321,6 +321,20 @@ AmjiUser:
       primary: false
       notnull: true
       autoincrement: false
+    civilite:
+      type: string(5)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    sexe:
+      type: string(1)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
     humeur:
       type: string(100)
       fixed: false

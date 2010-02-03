@@ -10,6 +10,8 @@ Doctrine_Manager::getInstance()->bindComponent('AmjiUser', 'doctrine');
  * @property integer $idamji_user
  * @property string $pseudo
  * @property string $email
+ * @property string $civilite
+ * @property string $sexe
  * @property string $humeur
  * @property string $nom
  * @property string $prenom
@@ -46,6 +48,8 @@ Doctrine_Manager::getInstance()->bindComponent('AmjiUser', 'doctrine');
  * @method integer               getIdamjiUser()            Returns the current record's "idamji_user" value
  * @method string                getPseudo()                Returns the current record's "pseudo" value
  * @method string                getEmail()                 Returns the current record's "email" value
+ * @method string                getCivilite()              Returns the current record's "civilite" value
+ * @method string                getSexe()                  Returns the current record's "sexe" value
  * @method string                getHumeur()                Returns the current record's "humeur" value
  * @method string                getNom()                   Returns the current record's "nom" value
  * @method string                getPrenom()                Returns the current record's "prenom" value
@@ -81,6 +85,8 @@ Doctrine_Manager::getInstance()->bindComponent('AmjiUser', 'doctrine');
  * @method AmjiUser              setIdamjiUser()            Sets the current record's "idamji_user" value
  * @method AmjiUser              setPseudo()                Sets the current record's "pseudo" value
  * @method AmjiUser              setEmail()                 Sets the current record's "email" value
+ * @method AmjiUser              setCivilite()              Sets the current record's "civilite" value
+ * @method AmjiUser              setSexe()                  Sets the current record's "sexe" value
  * @method AmjiUser              setHumeur()                Sets the current record's "humeur" value
  * @method AmjiUser              setNom()                   Sets the current record's "nom" value
  * @method AmjiUser              setPrenom()                Sets the current record's "prenom" value
@@ -149,6 +155,24 @@ abstract class BaseAmjiUser extends sfDoctrineRecord
              'notnull' => true,
              'autoincrement' => false,
              'length' => '100',
+             ));
+        $this->hasColumn('civilite', 'string', 5, array(
+             'type' => 'string',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => false,
+             'autoincrement' => false,
+             'length' => '5',
+             ));
+        $this->hasColumn('sexe', 'string', 1, array(
+             'type' => 'string',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => false,
+             'autoincrement' => false,
+             'length' => '1',
              ));
         $this->hasColumn('humeur', 'string', 100, array(
              'type' => 'string',
