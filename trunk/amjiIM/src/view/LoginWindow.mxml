@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Window xmlns:mx="http://www.adobe.com/2006/mxml" layout="vertical"
+<mx:Window width="280" height="600" minWidth="280" minHeight="600" xmlns:mx="http://www.adobe.com/2006/mxml" layout="vertical"
 	backgroundAlpha="0"
     showTitleBar="false"
     showStatusBar="false"
@@ -43,11 +43,15 @@
     		private function init():void{
     			nativeWindow.x = (Capabilities.screenResolutionX - nativeWindow.width) / 2;
                 nativeWindow.y = (Capabilities.screenResolutionY - nativeWindow.height) / 2;
-
+				window = new LoginTooltip;
+				window.addEventListener(Actions.SHOWUSERUI,showInscription);
     			//this.stage.displayState = StageDisplayState.FULL_SCREEN_INTERACTIVE;    			
 								   			
     		}
-    		public var window : LoginTooltip = new LoginTooltip;
+    		public function showInscription(event : Event):void{
+    			dispatchEvent(event);
+    		}
+    		public var window : LoginTooltip;
     		private static var dissolve : Fade = new Fade();
     		private function createTip(e:MouseEvent):void {
     			if(window.isOpened==false){
@@ -74,6 +78,17 @@
        				
        			}
                 
+            }
+            
+            public function closePopupExt():void{
+            	if(window.isOpened!=false){
+            		dissolve.alphaFrom = 1;
+            		dissolve.alphaTo = 0;
+            		dissolve.duration = 500;
+            		dissolve.target=window;
+            		dissolve.play();
+            		dissolve.addEventListener(EffectEvent.EFFECT_END,closePopup);
+            	}
             }
            
             public function closeLoginPopup(e:MouseEvent):void{
