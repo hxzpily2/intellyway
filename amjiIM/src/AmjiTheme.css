@@ -322,4 +322,34 @@ AmjiButton{
 	upSkin: Embed(source="AmjiTheme.swf", symbol="AmjiSimpleButton_upSkin");
 }
 
+AmjiBlackButton{
+	disabledSkin: Embed(source="AmjiTheme.swf", symbol="Button_disabledSkin");
+	downSkin: Embed(source="AmjiTheme.swf", symbol="AmjiBlackButton_downSkin");
+	overSkin: Embed(source="AmjiTheme.swf", symbol="AmjiBlackButton_overSkin");
+	upSkin: Embed(source="AmjiTheme.swf", symbol="AmjiBlackButton_upSkin");
+}
+
+AmjiOrangeButton{
+	disabledSkin: Embed(source="AmjiTheme.swf", symbol="Button_disabledSkin");
+	downSkin: Embed(source="AmjiTheme.swf", symbol="AmjiOrangeButton_downSkin");
+	overSkin: Embed(source="AmjiTheme.swf", symbol="AmjiOrangeButton_overSkin");
+	upSkin: Embed(source="AmjiTheme.swf", symbol="AmjiOrangeButton_upSkin");
+}
+
+AmjiArrowOrangeButton{
+	disabledSkin: Embed(source="AmjiTheme.swf", symbol="Button_disabledSkin");
+	downSkin: Embed(source="AmjiTheme.swf", symbol="AmjiArrowOrangeButton_downSkin");
+	overSkin: Embed(source="AmjiTheme.swf", symbol="AmjiArrowOrangeButton_overSkin");
+	upSkin: Embed(source="AmjiTheme.swf", symbol="AmjiArrowOrangeButton_upSkin");
+}
+
+AmjiArrowBlackButton{
+	disabledSkin: Embed(source="AmjiTheme.swf", symbol="Button_disabledSkin");
+	downSkin: Embed(source="AmjiTheme.swf", symbol="AmjiArrowBlackButton_downSkin");
+	overSkin: Embed(source="AmjiTheme.swf", symbol="AmjiArrowBlackButton_overSkin");
+	upSkin: Embed(source="AmjiTheme.swf", symbol="AmjiArrowBlackButton_upSkin");
+}
+
+
+
 
