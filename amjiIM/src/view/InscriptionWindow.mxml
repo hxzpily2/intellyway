@@ -8,14 +8,18 @@
     horizontalAlign="center"
     xmlns:components="commun.components.*"
     creationComplete="init()" xmlns:radiobutton="com.bedreamy.components.radiobutton.*">
+    
     <mx:Script>
     	<![CDATA[
+    		import mx.managers.CursorManager;
     		import commun.Actions;
     		import model.vo.CreateUserVO;
     		public var createUserVO : CreateUserVO = new CreateUserVO;
+    		
     		public function init():void{
     			nativeWindow.x = (Capabilities.screenResolutionX - nativeWindow.width) / 2;
                 nativeWindow.y = (Capabilities.screenResolutionY - nativeWindow.height) / 2;
+               
     		}
     	]]>
     </mx:Script>

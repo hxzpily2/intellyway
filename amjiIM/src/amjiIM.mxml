@@ -11,6 +11,7 @@
 	
 	<mx:Script>
 		<![CDATA[
+			import mx.managers.CursorManager;
 			import model.vo.CreateUserVO;
 			import view.InscriptionWindow;
 			import commun.Actions;
@@ -20,12 +21,14 @@
 			private var facade:ApplicationFacade = ApplicationFacade.getInstance();
 			private var bedreamy:MainFacade = MainFacade.getInstance();
 			public var window:LoginWindow;
+			[Embed(source="AmjiTheme.swf",symbol="PreloaderSkin")]
+			private static var HourGlassAnimation:Class;
 			private function init():void{
 				facade.startup(this);
 				this.addEventListener(NativeWindowDisplayStateEvent.DISPLAY_STATE_CHANGE,handleChangeState);						
 				openLoginWindow();
 				bedreamy.mainapplication = this;	
-							
+				 			
 			}
 			
 			private function handleChangeState(event:NativeWindowDisplayStateEvent):void{
@@ -62,7 +65,9 @@
 				inscWindow.addEventListener(Actions.CLOSEINSCWIN,closeInscWin);
 				inscWindow.createUserVO = new CreateUserVO();				
 				window.nativeWindow.visible = false;
-				window.closePopupExt();				
+				window.closePopupExt();	
+				
+			
 			}
 			
 			public function closeAppli(e:Event):void{
