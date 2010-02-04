@@ -15,6 +15,7 @@
     
     <mx:Script>
 		<![CDATA[
+			import mx.controls.PopUpButton;
 			import mx.effects.Fade;
 			import commun.components.PopupFugace;
 			import commun.components.AmjiLoader;
@@ -32,15 +33,20 @@
 			public var window:LoginWindow;
 			[Bindable]
     		private var locales:Array = [ "en_US" , "fr_FR" ];
-    		
+    		public var poopupFugace : PopupFugace;
 			private function init():void{
 				window = new LoginWindow();
 				inscWindow = new InscriptionWindow();
 				facade.startup(this);
 				this.addEventListener(NativeWindowDisplayStateEvent.DISPLAY_STATE_CHANGE,handleChangeState);						
 				openLoginWindow();
-				bedreamy.mainapplication = this;	
-				 			
+				bedreamy.mainapplication = this;
+				poopupFugace = new PopupFugace();
+				poopupFugace.visible=false;	
+				poopupFugace.type = NativeWindowType.LIGHTWEIGHT;
+				poopupFugace.systemChrome = "none";
+				poopupFugace.transparent = true;	
+				poopupFugace.open();				 			
 			}
 			
 			private function handleChangeState(event:NativeWindowDisplayStateEvent):void{
@@ -77,8 +83,7 @@
 				inscWindow.addEventListener(Actions.CREATAUSER,createUsertest);
 				inscWindow.createUserVO = new CreateUserVO();				
 				window.nativeWindow.visible = false;
-				window.closePopupExt();
-
+				window.closePopupExt();							
 			}
 			
 			public function createUsertest(e:Event):void{				
@@ -87,10 +92,13 @@
 			
 			public function closeAppli(e:Event):void{
 				this.close();
+				poopupFugace.close();
 			}
 			private function closeHandler():void{
 				if(window!=null)
 					window.close();
+				if(poopupFugace != null)
+					poopupFugace.close();	
 			}
 		]]>
 	</mx:Script>
