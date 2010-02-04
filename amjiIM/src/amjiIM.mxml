@@ -93,12 +93,15 @@
 			public function closeAppli(e:Event):void{
 				this.close();
 				poopupFugace.close();
+				inscWindow.close();
 			}
 			private function closeHandler():void{
 				if(window!=null)
 					window.close();
 				if(poopupFugace != null)
 					poopupFugace.close();	
+				if(inscWindow != null)
+					inscWindow.close();
 			}
 		]]>
 	</mx:Script>
