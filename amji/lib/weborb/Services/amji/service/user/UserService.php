@@ -1,6 +1,6 @@
 <?php
 
-require_once dirname(__FILE__).'/../generic/GenericService.php';
+require_once dirname(__FILE__).'/../../generic/GenericService.php';
 
 class UserService extends GenericService{
 	protected $context = null;
