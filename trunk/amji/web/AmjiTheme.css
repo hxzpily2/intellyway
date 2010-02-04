@@ -232,6 +232,15 @@ Button
 
             background-size:"100%";            
         }
+        
+.loginAreaBackground
+        {
+
+            background-image: Embed(source="AmjiTheme.swf", symbol="AmjiPopupFugace");
+
+            background-size:"100%";            
+        }
+
 
 AmjiCombobox {
    	disabledSkin: Embed(source="AmjiTheme.swf", symbol="ComboBoxArrow_disabledSkin");
@@ -313,6 +322,61 @@ AmjiCheckBox{
 	selectedOverIcon: Embed(source="AmjiTheme.swf", symbol="CheckBox_selectedOverIcon");
 	selectedUpIcon: Embed(source="AmjiTheme.swf", symbol="CheckBox_selectedUpIcon");
 	upIcon: Embed(source="AmjiTheme.swf", symbol="CheckBox_upIcon");	
+}
+
+AmjiButton{
+	disabledSkin: Embed(source="AmjiTheme.swf", symbol="Button_disabledSkin");
+	downSkin: Embed(source="AmjiTheme.swf", symbol="AmjiSimpleButton_upSkin");
+	overSkin: Embed(source="AmjiTheme.swf", symbol="AmjiSimpleButton_upSkin");
+	upSkin: Embed(source="AmjiTheme.swf", symbol="AmjiSimpleButton_upSkin");
+}
+
+AmjiBlackButton{
+	disabledSkin: Embed(source="AmjiTheme.swf", symbol="Button_disabledSkin");
+	downSkin: Embed(source="AmjiTheme.swf", symbol="AmjiBlackButton_downSkin");
+	overSkin: Embed(source="AmjiTheme.swf", symbol="AmjiBlackButton_overSkin");
+	upSkin: Embed(source="AmjiTheme.swf", symbol="AmjiBlackButton_upSkin");
+}
+
+AmjiOrangeButton{
+	disabledSkin: Embed(source="AmjiTheme.swf", symbol="Button_disabledSkin");
+	downSkin: Embed(source="AmjiTheme.swf", symbol="AmjiOrangeButton_downSkin");
+	overSkin: Embed(source="AmjiTheme.swf", symbol="AmjiOrangeButton_overSkin");
+	upSkin: Embed(source="AmjiTheme.swf", symbol="AmjiOrangeButton_upSkin");
+}
+
+AmjiArrowOrangeButton{
+	disabledSkin: Embed(source="AmjiTheme.swf", symbol="Button_disabledSkin");
+	downSkin: Embed(source="AmjiTheme.swf", symbol="AmjiArrowOrangeButton_downSkin");
+	overSkin: Embed(source="AmjiTheme.swf", symbol="AmjiArrowOrangeButton_overSkin");
+	upSkin: Embed(source="AmjiTheme.swf", symbol="AmjiArrowOrangeButton_upSkin");
+}
+
+AmjiArrowBlackButton{
+	disabledSkin: Embed(source="AmjiTheme.swf", symbol="Button_disabledSkin");
+	downSkin: Embed(source="AmjiTheme.swf", symbol="AmjiArrowBlackButton_downSkin");
+	overSkin: Embed(source="AmjiTheme.swf", symbol="AmjiArrowBlackButton_overSkin");
+	upSkin: Embed(source="AmjiTheme.swf", symbol="AmjiArrowBlackButton_upSkin");
+}
+
+AmjiOrangeCombobox {
+   	disabledSkin: Embed(source="AmjiTheme.swf", symbol="AmjiOrangeComboBoxArrow_disabledSkin");
+   	downSkin: Embed(source="AmjiTheme.swf", symbol="AmjiOrangeComboBoxArrow_upSkin");
+	editableDisabledSkin: Embed(source="AmjiTheme.swf", symbol="ComboBoxArrow_editableDisabledSkin");
+	editableDownSkin: Embed(source="AmjiTheme.swf", symbol="ComboBoxArrow_editableDownSkin");
+	editableOverSkin: Embed(source="AmjiTheme.swf", symbol="ComboBoxArrow_editableOverSkin");
+	editableUpSkin: Embed(source="AmjiTheme.swf", symbol="ComboBoxArrow_editableUpSkin");
+	overSkin: Embed(source="AmjiTheme.swf", symbol="AmjiOrangeComboBoxArrow_upSkin");
+		
+   	upSkin: Embed(source="AmjiTheme.swf", symbol="AmjiOrangeComboBoxArrow_upSkin");	
+   	dropDownStyleName: "myCustomDropdownStyleName";
+   	selectionColor: #eec760;
+   	rollOverColor: #eeeeee;
+   	themeColor: #eec760;
+   	fontFamily: Tahoma;
+   	fontSize: 10;
+   	color: #9F9F9F;
+   	fontWeight: normal;
 }
 
 
