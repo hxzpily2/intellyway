@@ -15,6 +15,10 @@ package commun
 		public static const GRINCHEU  :String = "GRINCHEU";
 		public static const NERVEU    :String = "NERVEU";
 		
+		public static const MR    :String = "MR";
+		public static const MLLE  :String = "MLLE";
+		public static const MME    :String = "MME";
+		
 		public function Constantes()
 		{
 		}
