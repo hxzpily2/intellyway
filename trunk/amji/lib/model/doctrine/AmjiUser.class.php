@@ -68,7 +68,7 @@ class AmjiUser extends BaseAmjiUser
 			$compte->setEmail($uservo->email);
 			$compte->setNom($uservo->nom);
 			$compte->setPrenom($uservo->prenom);
-			$compte->setPseudo($uservo->pseudo);
+			$compte->setPseudo($uservo->email);
 			$compte->setAdr($uservo->adr);
 			$compte->setTel($uservo->tel);
 			$compte->setEtudiant($uservo->etudiant);
@@ -79,6 +79,8 @@ class AmjiUser extends BaseAmjiUser
 			$compte->setSociete($uservo->societe);
 
 			$compte->save();
+			
+			return true;
 
 		}else{
 			throw new GenericException("",Errors::MAILEXIST);
