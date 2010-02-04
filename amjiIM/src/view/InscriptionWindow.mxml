@@ -15,6 +15,7 @@
     
     <mx:Script>
     	<![CDATA[
+    		import mx.controls.Alert;
     		import commun.Constantes;
     		import mx.managers.CursorManager;
     		import commun.Actions;
@@ -29,6 +30,10 @@
     		
     		public function sendEvent(event : String):void{
     			dispatchEvent(new Event(event));
+    		}
+    		
+    		public function showAlert():void{
+    			Alert.show("ok");    			
     		}
     	]]>
     </mx:Script>

@@ -40,8 +40,8 @@ package view
               
             switch ( notification.getName() )  
             {  
-            	case Actions.CREATAUSER:
-            		Alert.show("ok");
+            	case ApplicationFacade.INSCRSUCCESS:
+            		app.inscWindow.showAlert();
             		break;
             }
         }    

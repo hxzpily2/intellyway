@@ -27,7 +27,13 @@ package commande
 		override public function result(data : Object):void{
 			switch((data.token as AsyncToken).action){
 				case Actions.CREATAUSER:
-					Alert.show(data.result.toString());
+					var test : Boolean = data.result as Boolean;
+					
+					if(test==true){						
+						sendNotification(ApplicationFacade.INSCRSUCCESS);
+					}else{						
+						sendNotification(ApplicationFacade.INSCRFAILED);
+					}
 					break;
 			}
 		}
