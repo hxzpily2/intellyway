@@ -232,6 +232,15 @@ Button
 
             background-size:"100%";            
         }
+        
+.loginAreaBackground
+        {
+
+            background-image: Embed(source="AmjiTheme.swf", symbol="AmjiPopupFugage");
+
+            background-size:"100%";            
+        }
+
 
 AmjiCombobox {
    	disabledSkin: Embed(source="AmjiTheme.swf", symbol="ComboBoxArrow_disabledSkin");
