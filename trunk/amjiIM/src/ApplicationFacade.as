@@ -12,7 +12,8 @@ package
 	{
 		public static const APP_STARTUP:String = "AppStartUp";
 		public static const LOGINSUCCESS:String = "LOGINSUCCESS";
-		public static const INSCRSUCCESS:String = "INSCRSUCCESS"; 
+		public static const INSCRSUCCESS:String = "INSCRSUCCESS";
+		public static const INSCRFAILED:String = "INSCRFAILED"; 
 		 
 		
 		public static function getInstance() : ApplicationFacade {  

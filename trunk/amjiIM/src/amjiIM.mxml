@@ -15,6 +15,8 @@
     
     <mx:Script>
 		<![CDATA[
+			import mx.effects.Fade;
+			import commun.components.PopupFugace;
 			import commun.components.AmjiLoader;
 			import mx.preloaders.Preloader;
 			import com.bedreamy.components.voile.Voile;
@@ -64,6 +66,7 @@
 				window.nativeWindow.visible = true;
 			}
 			public var inscWindow : InscriptionWindow ;
+			
 			public function createUser(event : Event):void{
 				inscWindow = new InscriptionWindow;
 				inscWindow.type = NativeWindowType.LIGHTWEIGHT;
@@ -74,11 +77,11 @@
 				inscWindow.addEventListener(Actions.CREATAUSER,createUsertest);
 				inscWindow.createUserVO = new CreateUserVO();				
 				window.nativeWindow.visible = false;
-				window.closePopupExt();	
-						
+				window.closePopupExt();
+
 			}
 			
-			public function createUsertest(e:Event):void{
+			public function createUsertest(e:Event):void{				
 				facade.sendNotification(Actions.CREATAUSER,inscWindow.createUserVO);
 			}
 			
