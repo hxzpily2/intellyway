@@ -19,6 +19,8 @@ package model.vo
  		public var statut  :  String
  		public var societe  :  String
  		public var password  :  String
+ 		public var confirmpassword  :  String
+ 		public var civilite  :  String
  
 		public function CreateUserVO()
 		{

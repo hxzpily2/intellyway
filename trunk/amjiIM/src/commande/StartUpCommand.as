@@ -1,10 +1,10 @@
 package commande
 {
-	import commun.Actions;
-	
 	import org.puremvc.as3.interfaces.ICommand;
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.command.SimpleCommand;
+	
+	import view.ApplicationMediateur;
 	
 	public class StartUpCommand  extends SimpleCommand implements ICommand  
 	{
@@ -14,7 +14,7 @@ package commande
              
             var app:amjiIM = notification.getBody() as amjiIM;  
   			
-            //facade.registerMediator( new AuthentificationMediateur( app.loginForm ) );
+            facade.registerMediator( new ApplicationMediateur( app ) );
             //facade.registerMediator( new ApplicationMediateur( app ) );
             //facade.sendNotification(Actions.CREATAUSER);  
                             

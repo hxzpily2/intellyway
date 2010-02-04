@@ -10,7 +10,9 @@ package
 	
 	public class ApplicationFacade extends Facade implements IFacade  
 	{
-		public static const APP_STARTUP:String = "AppStartUp"; 
+		public static const APP_STARTUP:String = "AppStartUp";
+		public static const LOGINSUCCESS:String = "LOGINSUCCESS";
+		public static const INSCRSUCCESS:String = "INSCRSUCCESS"; 
 		 
 		
 		public static function getInstance() : ApplicationFacade {  

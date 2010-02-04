@@ -9,8 +9,15 @@
     close="closeHandler()"
     width="100%" height="100%">
 	
-	<mx:Script>
+	<mx:Metadata>
+        [ResourceBundle("i18n")]
+    </mx:Metadata>
+    
+    <mx:Script>
 		<![CDATA[
+			import commun.components.AmjiLoader;
+			import mx.preloaders.Preloader;
+			import com.bedreamy.components.voile.Voile;
 			import mx.managers.CursorManager;
 			import model.vo.CreateUserVO;
 			import view.InscriptionWindow;
@@ -21,9 +28,12 @@
 			private var facade:ApplicationFacade = ApplicationFacade.getInstance();
 			private var bedreamy:MainFacade = MainFacade.getInstance();
 			public var window:LoginWindow;
-			[Embed(source="AmjiTheme.swf",symbol="PreloaderSkin")]
-			private static var HourGlassAnimation:Class;
+			[Bindable]
+    		private var locales:Array = [ "en_US" , "fr_FR" ];
+    		
 			private function init():void{
+				window = new LoginWindow();
+				inscWindow = new InscriptionWindow();
 				facade.startup(this);
 				this.addEventListener(NativeWindowDisplayStateEvent.DISPLAY_STATE_CHANGE,handleChangeState);						
 				openLoginWindow();
@@ -40,15 +50,13 @@
 			}
 			
 			private function openLoginWindow():void{
-				window = new LoginWindow();				
+								
 				window.type = NativeWindowType.LIGHTWEIGHT;
 				window.systemChrome = "none";
 				window.transparent = true;	
-														
 				window.open();
 				window.addEventListener(Actions.SHOWUSERUI,createUser);
-				window.addEventListener(Actions.CLOSEAPPLI,closeAppli);
-				
+				window.addEventListener(Actions.CLOSEAPPLI,closeAppli);							
 			}
 			
 			public function closeInscWin(event : Event):void{
@@ -61,13 +69,17 @@
 				inscWindow.type = NativeWindowType.LIGHTWEIGHT;
 				inscWindow.systemChrome = "none";
 				inscWindow.transparent = true;	
-				inscWindow.open();				
+				inscWindow.open();							
 				inscWindow.addEventListener(Actions.CLOSEINSCWIN,closeInscWin);
+				inscWindow.addEventListener(Actions.CREATAUSER,createUsertest);
 				inscWindow.createUserVO = new CreateUserVO();				
 				window.nativeWindow.visible = false;
 				window.closePopupExt();	
-				
+						
+			}
 			
+			public function createUsertest(e:Event):void{
+				facade.sendNotification(Actions.CREATAUSER,inscWindow.createUserVO);
 			}
 			
 			public function closeAppli(e:Event):void{

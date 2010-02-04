@@ -27,7 +27,8 @@ package commun.components
                                 _progBar.setStyle("addedEffect", fade);
                                 _progBar.setStyle("color", 0xFFFFFF);
                                 _progBar.setStyle("borderColor", 0xffcc00);
-                                _progBar.setStyle("barColor", 0xf4b60f);                                
+                                _progBar.setStyle("barColor", 0xf4b60f);
+                                                                
                                 
                         }
                         PopUpManager.addPopUp(_progBar,component,true);

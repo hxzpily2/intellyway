@@ -19,8 +19,8 @@ package commande
 	{
 		public function createUser(notification : INotification):void{
 			var service : UserDelegate = new UserDelegate(this);
-			var user : CreateUserVO = new CreateUserVO()
-			user.adr = "test";
+			var user : CreateUserVO = notification.getBody() as CreateUserVO;
+			
 			service.createUser(user);			
 		}
 		
