@@ -350,6 +350,26 @@ AmjiArrowBlackButton{
 	upSkin: Embed(source="AmjiTheme.swf", symbol="AmjiArrowBlackButton_upSkin");
 }
 
+AmjiOrangeCombobox {
+   	disabledSkin: Embed(source="AmjiTheme.swf", symbol="AmjiOrangeComboBoxArrow_disabledSkin");
+   	downSkin: Embed(source="AmjiTheme.swf", symbol="AmjiOrangeComboBoxArrow_upSkin");
+	editableDisabledSkin: Embed(source="AmjiTheme.swf", symbol="ComboBoxArrow_editableDisabledSkin");
+	editableDownSkin: Embed(source="AmjiTheme.swf", symbol="ComboBoxArrow_editableDownSkin");
+	editableOverSkin: Embed(source="AmjiTheme.swf", symbol="ComboBoxArrow_editableOverSkin");
+	editableUpSkin: Embed(source="AmjiTheme.swf", symbol="ComboBoxArrow_editableUpSkin");
+	overSkin: Embed(source="AmjiTheme.swf", symbol="AmjiOrangeComboBoxArrow_upSkin");
+		
+   	upSkin: Embed(source="AmjiTheme.swf", symbol="AmjiOrangeComboBoxArrow_upSkin");	
+   	dropDownStyleName: "myCustomDropdownStyleName";
+   	selectionColor: #eec760;
+   	rollOverColor: #eeeeee;
+   	themeColor: #eec760;
+   	fontFamily: Tahoma;
+   	fontSize: 10;
+   	color: #9F9F9F;
+   	fontWeight: normal;
+}
+
 
 
 
