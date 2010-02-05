@@ -8,7 +8,7 @@ package commun.components
 	public class AmjiLoader
 	{
 		private static var fade:Fade;
-		private static var _progBar:SWFLoader;
+		private var _progBar:SWFLoader;
 		[Embed(source="AmjiTheme.swf",symbol="PreloaderSkin")]
 		private static var preloader:Class;
 		
@@ -17,12 +17,13 @@ package commun.components
 			
 		}
 		
-		public static function hide(component : UIComponent , label : String = ""):void{
+		public function hide(component : UIComponent , label : String = ""):void{
 			
 			if(_progBar == null)
                         {
                                 _progBar = new SWFLoader();                                
                                 _progBar.source = preloader;
+                                _progBar.setStyle("paddingLeft", 15);
                                 _progBar.setStyle("removedEffect", fade);
                                 _progBar.setStyle("addedEffect", fade);
                                 _progBar.setStyle("color", 0xFFFFFF);
@@ -36,8 +37,8 @@ package commun.components
                          			
 		}
 		
-		public static function show():void{
-			PopUpManager.removePopUp(_progBar);
+		public function show():void{			
+			PopUpManager.removePopUp(_progBar);			
 		}
 
 	}

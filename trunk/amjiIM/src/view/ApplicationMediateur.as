@@ -1,6 +1,8 @@
 package view
 {
 	import commun.Actions;
+	import commun.components.AmjiLoader;
+
 	
 	import flash.events.Event;
 	
@@ -27,11 +29,15 @@ package view
         public function createUser(event : Event):void{
         	Alert.show("ok");
         }
+        
+        public function showLoginWindow(event : Event):void{
+        	app.window.nativeWindow.visible = true;
+        }
 		
 		override public function listNotificationInterests():Array  
         {  
             return [  
-              	Actions.CREATAUSER,ApplicationFacade.LOGINSUCCESS,ApplicationFacade.INSCRSUCCESS
+              	Actions.CREATAUSER,ApplicationFacade.LOGINFAILED,ApplicationFacade.LOGINSUCCESS,ApplicationFacade.INSCRSUCCESS
         	]
         }
         
@@ -41,8 +47,20 @@ package view
             switch ( notification.getName() )  
             {  
             	case ApplicationFacade.INSCRSUCCESS:
-            		app.inscWindow.showAlert();
+            		app.poopupFugace.show(app.poopupFugace.textSuccess,250,100);
+            		app.poopupFugace.addEventListener("CLOSED",showLoginWindow);            		
+            		app.hideLoader();
+            		app.inscWindow.close();            		
             		break;
+            	case ApplicationFacade.INSCRFAILED:
+            		app.hideLoader();
+            		break; 
+            	case ApplicationFacade.LOGINSUCCESS:            		
+            		app.hideLoader();
+            		break;
+            	case ApplicationFacade.LOGINFAILED:
+            		app.hideLoader();
+            		break;           		
             }
         }    
 

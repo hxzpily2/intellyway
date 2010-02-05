@@ -4,7 +4,9 @@ package commande
 	
 	import commun.Actions;
 	
+	import model.ApplicationProxy;
 	import model.vo.CreateUserVO;
+	import model.vo.UserVO;
 	
 	import mx.controls.Alert;
 	import mx.messaging.messages.ErrorMessage;
@@ -24,6 +26,13 @@ package commande
 			service.createUser(user);			
 		}
 		
+		public function login(notification : INotification):void{
+			var service : UserDelegate = new UserDelegate(this);
+			var user : UserVO= notification.getBody() as UserVO;
+			
+			service.login(user);
+		}
+		
 		override public function result(data : Object):void{
 			switch((data.token as AsyncToken).action){
 				case Actions.CREATAUSER:
@@ -33,6 +42,15 @@ package commande
 						sendNotification(ApplicationFacade.INSCRSUCCESS);
 					}else{						
 						sendNotification(ApplicationFacade.INSCRFAILED);
+					}
+					break;
+				case Actions.LOGIN:
+					if(data.result == null){						
+						sendNotification(ApplicationFacade.LOGINFAILED);
+					}else{
+						var proxy : ApplicationProxy = facade.retrieveProxy(ApplicationProxy.NAME) as ApplicationProxy;
+						proxy.userConnected = data.result as CreateUserVO;
+						sendNotification(ApplicationFacade.LOGINSUCCESS);
 					}
 					break;
 			}

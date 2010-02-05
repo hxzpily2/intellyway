@@ -9,6 +9,7 @@
     creationComplete="init()" xmlns:amjiinputtext="com.bedreamy.components.amjiinputtext.*" xmlns:combobox="com.bedreamy.components.combobox.*" xmlns:components="commun.components.*">
     <mx:Script>
     	<![CDATA[
+    		import model.vo.UserVO;
     		import commun.Constantes;
     		import commun.Actions;
     		import mx.events.FlexEvent;
@@ -53,6 +54,8 @@
     		}
     		public var window : LoginTooltip;
     		private static var dissolve : Fade = new Fade();
+    		[Bindable]
+    		public var userVO : UserVO = new UserVO;
     		private function createTip(e:MouseEvent):void {
     			if(window.isOpened==false){
 	    			window.isOpened = true; 
@@ -73,9 +76,7 @@
             		dissolve.duration = 500;
             		dissolve.target=window;
             		dissolve.play();
-            		dissolve.addEventListener(EffectEvent.EFFECT_END,closePopup);
-       				
-       				
+            		dissolve.addEventListener(EffectEvent.EFFECT_END,closePopup);       				
        			}
                 
             }
@@ -124,16 +125,16 @@
 		<mx:Spacer height="10" />
 		<mx:VBox horizontalAlign="center" width="257" height="142" styleName="loginAreaBackground">
 			<mx:Spacer height="20" />
-			<amjiinputtext:AmjiInputText displayAsPassword="false" text="LOGIN" width="210" height="30"/>
-			<amjiinputtext:AmjiInputText displayAsPassword="true" text="PASSWORD" width="210" height="30"/>
+			<amjiinputtext:AmjiInputText id="txtLogin" change="userVO.login = txtLogin.content" content="{userVO.login}" displayAsPassword="false" text="LOGIN" width="210" height="30"/>
+			<amjiinputtext:AmjiInputText id="txtPass" change="userVO.pass = txtPass.content" content="{userVO.pass}" displayAsPassword="true" text="PASSWORD" width="210" height="30"/>
 			<mx:HBox horizontalAlign="right" width="220">
-				<mx:Button id="toolButton" useHandCursor="true" buttonMode="true" overSkin="@Embed(source='assets/images/button_login_over.png')" downSkin="@Embed(source='assets/images/button_login_down.png')" upSkin="@Embed(source='assets/images/button_login_up.png')" label=""/>				
+				<mx:Button click="dispatchEvent(new Event(Actions.LOGIN))" id="toolButton" useHandCursor="true" buttonMode="true" overSkin="@Embed(source='assets/images/button_login_over.png')" downSkin="@Embed(source='assets/images/button_login_down.png')" upSkin="@Embed(source='assets/images/button_login_up.png')" label=""/>				
 			</mx:HBox>			
 		</mx:VBox>
 		<mx:Spacer height="10" />
 		<mx:HBox width="257" horizontalAlign="left" verticalAlign="middle">		    
 			<mx:Spacer  width="10"/>
-			<combobox:AmjiCombobox id="comboBox" width="105">
+			<combobox:AmjiCombobox change="userVO.statut = comboBox.selectedItem.key" id="comboBox" width="105">
 				<combobox:dataProvider>
 					<mx:Array>
 		                <mx:Object key="{Constantes.ENLIGNE}" label="En ligne" icon="EnLigne" />

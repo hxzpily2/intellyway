@@ -10,10 +10,11 @@ package
 	
 	public class ApplicationFacade extends Facade implements IFacade  
 	{
-		public static const APP_STARTUP:String = "AppStartUp";
-		public static const LOGINSUCCESS:String = "LOGINSUCCESS";
+		public static const APP_STARTUP:String = "AppStartUp";		
 		public static const INSCRSUCCESS:String = "INSCRSUCCESS";
 		public static const INSCRFAILED:String = "INSCRFAILED"; 
+		public static const LOGINSUCCESS:String = "LOGINSUCCESS";
+		public static const LOGINFAILED:String = "LOGINFAILED"; 
 		 
 		
 		public static function getInstance() : ApplicationFacade {  
@@ -29,7 +30,7 @@ package
             super.initializeController();  
   
             registerCommand(APP_STARTUP, StartUpCommand); 
-            registerCommand(Actions.CREATAUSER, UserCommande);  
+            registerCommand(Actions.GENERICUSER, UserCommande);  
             //registerCommand(APPLICATIONNOTIFICATION, ApplicationCommand);           
               
               
