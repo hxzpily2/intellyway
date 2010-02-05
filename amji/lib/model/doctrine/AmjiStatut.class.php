@@ -12,5 +12,11 @@
  */
 class AmjiStatut extends BaseAmjiStatut
 {
+	public static function getStatutId($statut) {
 
+
+		$statuts = Doctrine_Query::create ()->from ( 'AmjiStatut u' )->where ( "u.libelle = '" . $statut . "'" )->execute ();
+		
+		return $statuts[0]->getIdamji_statut();
+	}	
 }
