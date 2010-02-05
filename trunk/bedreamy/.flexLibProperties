@@ -1,18 +1,18 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <flexLibProperties version="1">
-  <includeClasses>
-    <classEntry path="com.bedreamy.components.voile.Voile"/>
-    <classEntry path="com.bedreamy.components.commun.CustomBorder"/>
-    <classEntry path="com.bedreamy.components.feedbackpopup.FeedbackPopup"/>
-    <classEntry path="com.bedreamy.components.radiobutton.AmjiRadioButton"/>
-    <classEntry path="com.bedreamy.components.checkbox.AmjiCheckBox"/>
-    <classEntry path="com.bedreamy.components.combobox.AmjiCombobox"/>
-    <classEntry path="com.bedreamy.components.amjiinputtext.AmjiInputText"/>
-    <classEntry path="com.bedreamy.components.feedbackpopup.FeedbackVbox"/>
-    <classEntry path="com.bedreamy.facade.MainFacade"/>
-    <classEntry path="com.bedreamy.components.preloader.CustomPreloader"/>
-    <classEntry path="com.bedreamy.components.feedbackpopup.FeedbackPopupTheme"/>
-  </includeClasses>
-  <includeResources/>
-  <namespaceManifests/>
+<includeClasses>
+<classEntry path="com.bedreamy.components.checkbox.AmjiCheckBox"/>
+<classEntry path="com.bedreamy.components.feedbackpopup.FeedbackPopup"/>
+<classEntry path="com.bedreamy.components.preloader.CustomPreloader"/>
+<classEntry path="com.bedreamy.components.radiobutton.AmjiRadioButton"/>
+<classEntry path="com.bedreamy.components.feedbackpopup.FeedbackVbox"/>
+<classEntry path="com.bedreamy.components.commun.CustomBorder"/>
+<classEntry path="com.bedreamy.components.feedbackpopup.FeedbackPopupTheme"/>
+<classEntry path="com.bedreamy.components.combobox.AmjiCombobox"/>
+<classEntry path="com.bedreamy.components.amjiinputtext.AmjiInputText"/>
+<classEntry path="com.bedreamy.facade.MainFacade"/>
+<classEntry path="com.bedreamy.components.voile.Voile"/>
+</includeClasses>
+<includeResources/>
+<namespaceManifests/>
 </flexLibProperties>
