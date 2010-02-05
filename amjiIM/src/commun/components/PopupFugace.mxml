@@ -9,18 +9,28 @@
     visible="false"
     creationComplete="init()"   
     >
+    <mx:Metadata>
+        [ResourceBundle("i18n")]
+    </mx:Metadata>
     <mx:Script>
     	<![CDATA[
     		import mx.events.EffectEvent;
     		import mx.effects.Fade;
     		public var timer : Timer;
-    		
+    		[Bindable]
+    		public var text : String;
+    		public var textSuccess : String;
     		public function init():void{
     			nativeWindow.x = (Capabilities.screenResolutionX - nativeWindow.width) / 2;
                 nativeWindow.y = (Capabilities.screenResolutionY - nativeWindow.height) / 2;
+                textSuccess = resourceManager.getString('i18n', 'text.inscription.congratulation');
     		}
     		
-    		public function show():void{
+    		public function show(text : String,width : Number = 200,height : Number = 100):void{
+    			this.text = text;
+    			this.width = width;
+    			this.height = height;
+    			this.nativeWindow.orderToFront();
     			this.nativeWindow.visible=true;
     			var dissolve : Fade = new Fade;
     			dissolve.alphaFrom = 0;
@@ -42,26 +52,26 @@
             	dissolve.alphaTo = 0;
             	dissolve.duration = 1000;
             	dissolve.target=noteVBox;
-            	dissolve.play(); 
+            	dissolve.play();
             	dissolve.addEventListener(EffectEvent.EFFECT_END,closeAfterEffect);
     		}
     		
     		public function closeAfterEffect(event : EffectEvent):void{
     			this.nativeWindow.visible = false;
+    			dispatchEvent(new Event("CLOSED"));
     		}
     		
     		
     	]]>
     </mx:Script>
     
-    <mx:VBox id="noteVBox" alpha="0" width="100%" height="100%"
-	    borderStyle="solid"    
-	    horizontalAlign="center"    
-	    borderColor="#FF6600"
-	    cornerRadius="15"
-	    borderThickness="1"
+    <mx:VBox styleName="popupFugaceBackground" id="noteVBox" alpha="0" width="100%" height="100%"
+	    borderStyle="none"    
+	    horizontalAlign="center" 
+	    verticalAlign="middle"   
+	    cornerRadius="15"	    
 	    backgroundColor="#FFFFFF">
-    	
+    	<mx:Text verticalCenter="true" color="#FF6600" fontWeight="bold" fontSize="16" fontFamily="Tahoma" htmlText="{text}"/>    	
     </mx:VBox>
 	
 </mx:Window>

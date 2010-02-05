@@ -15,6 +15,8 @@
     
     <mx:Script>
 		<![CDATA[
+			import commun.components.AmjiLoading;
+			import mx.managers.PopUpManager;
 			import mx.controls.PopUpButton;
 			import mx.effects.Fade;
 			import commun.components.PopupFugace;
@@ -64,7 +66,19 @@
 				window.transparent = true;	
 				window.open();
 				window.addEventListener(Actions.SHOWUSERUI,createUser);
-				window.addEventListener(Actions.CLOSEAPPLI,closeAppli);							
+				window.addEventListener(Actions.CLOSEAPPLI,closeAppli);	
+				window.addEventListener(Actions.LOGIN,login);						
+			}
+			public var voile : AmjiLoader;
+			public var loader : AmjiLoading = new AmjiLoading;
+			public function login(event : Event):void{				
+				PopUpManager.addPopUp(loader,window,true);
+				PopUpManager.centerPopUp(loader);									
+				facade.sendNotification(Actions.GENERICUSER,window.userVO,Actions.LOGIN);
+			}
+			
+			public function hideLoader():void{
+				PopUpManager.removePopUp(loader);				
 			}
 			
 			public function closeInscWin(event : Event):void{
@@ -83,11 +97,13 @@
 				inscWindow.addEventListener(Actions.CREATAUSER,createUsertest);
 				inscWindow.createUserVO = new CreateUserVO();				
 				window.nativeWindow.visible = false;
-				window.closePopupExt();							
+				window.closePopupExt();									
 			}
 			
-			public function createUsertest(e:Event):void{				
-				facade.sendNotification(Actions.CREATAUSER,inscWindow.createUserVO);
+			public function createUsertest(e:Event):void{
+				PopUpManager.addPopUp(loader,inscWindow,true);
+				PopUpManager.centerPopUp(loader);							
+				facade.sendNotification(Actions.GENERICUSER,inscWindow.createUserVO,Actions.CREATAUSER);
 			}
 			
 			public function closeAppli(e:Event):void{

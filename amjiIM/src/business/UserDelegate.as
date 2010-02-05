@@ -3,6 +3,7 @@ package business
 	import commun.Actions;
 	
 	import model.vo.CreateUserVO;
+	import model.vo.UserVO;
 	
 	import mx.rpc.AsyncToken;
 	import mx.rpc.IResponder;
@@ -25,6 +26,12 @@ package business
 			var asynchToken:AsyncToken = service.createUser(user);  
             asynchToken.addResponder(responder);
             asynchToken.action = Actions.CREATAUSER;            
+		}
+		
+		public function login(user : UserVO):void{
+			var asynchToken:AsyncToken = service.login(user);  
+            asynchToken.addResponder(responder);
+            asynchToken.action = Actions.LOGIN;            
 		}
 
 	}

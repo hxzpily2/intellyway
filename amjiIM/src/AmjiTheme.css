@@ -233,7 +233,7 @@ Button
             background-size:"100%";            
         }
         
-.loginAreaBackground
+.popupFugaceBackground
         {
 
             background-image: Embed(source="AmjiTheme.swf", symbol="AmjiPopupFugage");
