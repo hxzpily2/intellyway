@@ -17,16 +17,25 @@ class AmjiUser extends BaseAmjiUser
 
 		$getUsernameUser = Doctrine_Query::create ()->from ( 'sfGuardUser u' )->where ( "u.username = '" . $login . "'" )->execute ();
 
+		if(sizeof($getUsernameUser)>0)
 		$oldUsername = $getUsernameUser [0];
 
 
 
-		if ($oldUsername != NULL) {
-			if($oldUsername->getPassword()==AmjiUser::setPassword($password,$oldUsername->getSalt()))
-			return $oldUsername;
+		if (sizeof($getUsernameUser)>0) {
+			if($oldUsername->getPassword()==AmjiUser::setPassword($password,$oldUsername->getSalt())){
+
+				return $oldUsername;
+			}
 			else return NULL;
 		} else
 		return NULL;
+	}
+
+	public static function getUserByEmail($login){
+		$users = Doctrine_Query::create ()->from ( 'AmjiUser u' )->where ( "u.email = '" . $login . "'" )->execute ();
+					
+		return $users[0];
 	}
 
 	public static function setPassword($password,$salt) {
@@ -79,7 +88,7 @@ class AmjiUser extends BaseAmjiUser
 			$compte->setSociete($uservo->societe);
 
 			$compte->save();
-			
+				
 			return true;
 
 		}else{
