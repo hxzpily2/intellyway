@@ -6,7 +6,8 @@
     showGripper="false"
     borderStyle="none"    
     horizontalAlign="center" 
-    visible="false"   
+    visible="false"
+    creationComplete="init()"   
     >
     <mx:Script>
     	<![CDATA[
@@ -14,6 +15,10 @@
     		import mx.effects.Fade;
     		public var timer : Timer;
     		
+    		public function init():void{
+    			nativeWindow.x = (Capabilities.screenResolutionX - nativeWindow.width) / 2;
+                nativeWindow.y = (Capabilities.screenResolutionY - nativeWindow.height) / 2;
+    		}
     		
     		public function show():void{
     			this.nativeWindow.visible=true;
