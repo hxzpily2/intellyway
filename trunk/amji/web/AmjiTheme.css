@@ -233,13 +233,21 @@ Button
             background-size:"100%";            
         }
         
-.loginAreaBackground
+.popupFugaceBackground
         {
 
-            background-image: Embed(source="AmjiTheme.swf", symbol="AmjiPopupFugace");
+            background-image: Embed(source="AmjiTheme.swf", symbol="AmjiPopupFugage");
 
             background-size:"100%";            
         }
+
+.popupFugaceOrangeBackground
+        {
+
+            background-image: Embed(source="AmjiTheme.swf", symbol="AmjiOrangePopupFugace");
+
+            background-size:"100%";            
+        }        
 
 
 AmjiCombobox {
