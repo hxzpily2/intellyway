@@ -1,9 +1,8 @@
 package view
 {
 	import commun.Actions;
-	import commun.components.AmjiLoader;
-
 	
+	import flash.display.NativeWindowType;
 	import flash.events.Event;
 	
 	import mx.controls.Alert;
@@ -20,6 +19,12 @@ package view
 		{
 			super(NAME, viewComponent);
 			app.inscWindow.addEventListener(Actions.CREATAUSER,createUser);
+			app.mainWindow = new MainWindow();
+			app.mainWindow.visible=false;	
+			app.mainWindow.type = NativeWindowType.LIGHTWEIGHT;
+			app.mainWindow.systemChrome = "none";
+			app.mainWindow.transparent = true;	
+			app.mainWindow.open();
 		}
 		
 		public function get app():amjiIM{  

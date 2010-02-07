@@ -15,6 +15,7 @@
     
     <mx:Script>
 		<![CDATA[
+			import view.MainWindow;
 			import commun.components.AmjiLoading;
 			import mx.managers.PopUpManager;
 			import mx.controls.PopUpButton;
@@ -33,6 +34,7 @@
 			private var facade:ApplicationFacade = ApplicationFacade.getInstance();
 			private var bedreamy:MainFacade = MainFacade.getInstance();
 			public var window:LoginWindow;
+			public var mainWindow : MainWindow;
 			[Bindable]
     		private var locales:Array = [ "en_US" , "fr_FR" ];
     		public var poopupFugace : PopupFugace;
@@ -48,7 +50,7 @@
 				poopupFugace.type = NativeWindowType.LIGHTWEIGHT;
 				poopupFugace.systemChrome = "none";
 				poopupFugace.transparent = true;	
-				poopupFugace.open();				 			
+				poopupFugace.open();								 			
 			}
 			
 			private function handleChangeState(event:NativeWindowDisplayStateEvent):void{
@@ -97,7 +99,7 @@
 				inscWindow.addEventListener(Actions.CREATAUSER,createUsertest);
 				inscWindow.createUserVO = new CreateUserVO();				
 				window.nativeWindow.visible = false;
-				window.closePopupExt();									
+				window.closePopupExt();												
 			}
 			
 			public function createUsertest(e:Event):void{
@@ -110,6 +112,7 @@
 				this.close();
 				poopupFugace.close();
 				inscWindow.close();
+				mainWindow.close();
 			}
 			private function closeHandler():void{
 				if(window!=null)
@@ -118,6 +121,8 @@
 					poopupFugace.close();	
 				if(inscWindow != null)
 					inscWindow.close();
+				if(mainWindow != null)
+					mainWindow.close();
 			}
 		]]>
 	</mx:Script>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Window xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" minWidth="300" minHeight="600" width="300" height="600"
+	backgroundAlpha="0"
+    showTitleBar="false"
+    showStatusBar="false"
+    showGripper="false"
+    borderStyle="none"    
+    horizontalAlign="center"
+    >
+	
+</mx:Window>
