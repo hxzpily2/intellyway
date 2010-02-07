@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Window xmlns:mx="http://www.adobe.com/2006/mxml" layout="vertical" width="200" height="100"
+<mx:Window xmlns:mx="http://www.adobe.com/2006/mxml" layout="vertical" width="250" height="100"
 	backgroundAlpha="0"
     showTitleBar="false"
     showStatusBar="false"
@@ -7,7 +7,9 @@
     borderStyle="none"    
     horizontalAlign="center" 
     visible="false"
-    creationComplete="init()"   
+    creationComplete="init()"
+    verticalScrollPolicy="off" horizontalScrollPolicy="off" 
+      
     >
     <mx:Metadata>
         [ResourceBundle("i18n")]
@@ -20,6 +22,19 @@
     		[Bindable]
     		public var text : String;
     		public var textSuccess : String;
+    		
+    		[Embed(source="assets/images/info.png")]    		
+			private static var info:Class;
+			
+			[Embed(source="assets/images/error.png")]    		
+			private static var error:Class;
+			
+			[Embed(source="assets/images/attention.png")]    		
+			private static var attention:Class;
+			
+			[Embed(source="assets/images/valid.png")]    		
+			private static var valid:Class;
+    		
     		public function init():void{
     			nativeWindow.x = (Capabilities.screenResolutionX - nativeWindow.width) / 2;
                 nativeWindow.y = (Capabilities.screenResolutionY - nativeWindow.height) / 2;
@@ -65,13 +80,16 @@
     	]]>
     </mx:Script>
     
-    <mx:VBox styleName="popupFugaceBackground" id="noteVBox" alpha="0" width="100%" height="100%"
+    <mx:VBox verticalScrollPolicy="off" horizontalScrollPolicy="off" styleName="popupFugaceBackground" id="noteVBox" alpha="0" width="100%" height="100%"
 	    borderStyle="none"    
 	    horizontalAlign="center" 
 	    verticalAlign="middle"   
 	    cornerRadius="15"	    
 	    backgroundColor="#FFFFFF">
-    	<mx:Text verticalCenter="true" color="#FF6600" fontWeight="bold" fontSize="16" fontFamily="Tahoma" htmlText="{text}"/>    	
+	    <mx:HBox verticalScrollPolicy="off" horizontalScrollPolicy="off" horizontalAlign="center" verticalAlign="middle" width="100%" height="100%">	    
+		    <mx:Image width="73" height="73" source="{valid}" />
+	    	<mx:Text verticalCenter="true" color="#FF6600" fontWeight="bold" fontSize="16" fontFamily="Tahoma" htmlText="{text}"/>
+    	</mx:HBox>    	
     </mx:VBox>
 	
 </mx:Window>
