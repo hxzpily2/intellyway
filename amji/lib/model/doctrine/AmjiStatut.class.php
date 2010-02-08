@@ -19,4 +19,12 @@ class AmjiStatut extends BaseAmjiStatut
 		
 		return $statuts[0]->getIdamji_statut();
 	}	
+	
+	public static function getStatutById($idstatut) {
+
+
+		$statuts = Doctrine_Query::create ()->from ( 'AmjiStatut u' )->where ( "u.idamji_statut = " . $idstatut )->execute ();
+		
+		return $statuts[0]->getLibelle();
+	}	
 }

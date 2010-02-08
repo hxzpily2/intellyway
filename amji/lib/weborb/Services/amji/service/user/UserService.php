@@ -45,10 +45,54 @@ class UserService extends GenericService{
 			$this->getUser ()->clearCredentials ();
 			$this->getUser ()->addCredentials ( $user->getAllPermissionNames () );
 			$user->setLastLogin ( date ( 'Y-m-d h:i:s' ) );
-			$user->save ();			
-			return $userVo;
-		}else{
-			//$this->getContext()->getLogger()->info("test");			
+			$user->save ();
+			$loginVO = new LoginVO();
+			$loginVO->userVO = $userVo;
+			$listeContacts = AmjiUser::getContacts($userVo->idamji_user);
+			$listInvitations = AmjiUser::getInvitations($userVo->idamji_user);
+			$loginVO->listeContacts = array();
+			$loginVO->listInvitations = array();
+			foreach ($listeContacts as $contact){
+				$c = new CreateUserVO();
+				$c->idamji_user = $contact->getIdamji_user();
+				$c->adr = $contact->getAdr();
+				$c->ecole = $contact->getEcole();
+				$c->email = $contact->getEmail();
+				$c->etudiant = $contact->getEtudiant();
+				$c->niveau = $contact->getNiveau();
+				$c->nom = $contact->getNom();
+				$c->prenom = $contact->getPrenom();
+				$c->pseudo = $contact->getPseudo();
+				$c->salarie = $contact->getSalarie();
+				$c->societe = $contact->getSociete();
+				$c->statut = $contact->getStatut();
+				$c->tel = $contact->getTel();
+				$c->civilite = $contact->getCivilite();
+				$c->connstatut = AmjiStatut::getStatutById($contact->getIdamji_statut());
+				$loginVO->listeContacts[] = $c;				
+			} 
+			foreach ($listInvitations as $contact){
+				$c = new CreateUserVO();
+				$c->idamji_user = $contact->getIdamji_user();
+				$c->adr = $contact->getAdr();
+				$c->ecole = $contact->getEcole();
+				$c->email = $contact->getEmail();
+				$c->etudiant = $contact->getEtudiant();
+				$c->niveau = $contact->getNiveau();
+				$c->nom = $contact->getNom();
+				$c->prenom = $contact->getPrenom();
+				$c->pseudo = $contact->getPseudo();
+				$c->salarie = $contact->getSalarie();
+				$c->societe = $contact->getSociete();
+				$c->statut = $contact->getStatut();
+				$c->tel = $contact->getTel();
+				$c->civilite = $contact->getCivilite();
+				$c->connstatut = Constantes::HORSLIGNE;
+				$loginVO->listInvitations[] = $c;
+			}
+			//$this->getContext()->getLogger()->info("liste contacts : ".sizeof($loginVO->listeContacts));			
+			return $loginVO;
+		}else{						
 			return NULL;
 		}
 	}

@@ -189,6 +189,16 @@ class AmjiUser extends BaseAmjiUser
 
 		//save file from session in database and delete them from hard drive
 	}
+	
+	public static function getContacts($iduser){
+		$q = Doctrine_Query::create ()->from ( 'AmjiUser u' )->leftJoin ( 'u.AmjiContacts c' )->where('c.idamji_user = '.$iduser);
+		return $q->execute ();
+	}
+	
+	public static function getInvitations($iduser){
+		$q = Doctrine_Query::create ()->from ( 'AmjiUser u' )->leftJoin ( 'u.AmjiInvitation i' )->where('i.idamji_user = '.$iduser);
+		return $q->execute ();
+	}
 
 
 }
