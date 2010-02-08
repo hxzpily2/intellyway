@@ -68,7 +68,7 @@ package view
             	case ApplicationFacade.LOGINFAILED:
             		app.hideLoader();
             		app.alertWindow = new AmjiAlert();
-            		app.alertWindow.show(app.geti18nText("text.login.error"),350,180,Constantes.ERROR);            		
+            		app.alertWindow.show(app.geti18nText("text.login.error"),350,150,Constantes.ERROR);            		
             		break;           		
             }
         }    
