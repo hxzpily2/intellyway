@@ -1,6 +1,8 @@
 package view
 {
 	import commun.Actions;
+	import commun.Constantes;
+	import commun.components.AmjiAlert;
 	
 	import flash.display.NativeWindowType;
 	import flash.events.Event;
@@ -52,7 +54,7 @@ package view
             switch ( notification.getName() )  
             {  
             	case ApplicationFacade.INSCRSUCCESS:
-            		app.poopupFugace.show(app.poopupFugace.textSuccess,250,100);
+            		app.poopupFugace.show(app.geti18nText('text.inscription.congratulation'),250,100);
             		app.poopupFugace.addEventListener("CLOSED",showLoginWindow);            		
             		app.hideLoader();
             		app.inscWindow.close();            		
@@ -60,11 +62,13 @@ package view
             	case ApplicationFacade.INSCRFAILED:
             		app.hideLoader();
             		break; 
-            	case ApplicationFacade.LOGINSUCCESS:            		
+            	case ApplicationFacade.LOGINSUCCESS:            		           		          		
             		app.hideLoader();
             		break;
             	case ApplicationFacade.LOGINFAILED:
             		app.hideLoader();
+            		app.alertWindow = new AmjiAlert();
+            		app.alertWindow.show(app.geti18nText("text.login.error"),350,180,Constantes.ERROR);            		
             		break;           		
             }
         }    

@@ -6,6 +6,7 @@ package commande
 	
 	import model.ApplicationProxy;
 	import model.vo.CreateUserVO;
+	import model.vo.LoginVO;
 	import model.vo.UserVO;
 	
 	import mx.controls.Alert;
@@ -49,7 +50,7 @@ package commande
 						sendNotification(ApplicationFacade.LOGINFAILED);
 					}else{
 						var proxy : ApplicationProxy = facade.retrieveProxy(ApplicationProxy.NAME) as ApplicationProxy;
-						proxy.userConnected = data.result as CreateUserVO;
+						proxy.userConnected = data.result as LoginVO;						
 						sendNotification(ApplicationFacade.LOGINSUCCESS);
 					}
 					break;

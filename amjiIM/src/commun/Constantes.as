@@ -19,6 +19,11 @@ package commun
 		public static const MLLE  :String = "MLLE";
 		public static const MME    :String = "MME";
 		
+		public static const ERROR    :String = "ERROR";
+		public static const ATTENTION    :String = "ATTENTION";
+		public static const INFO    :String = "INFO";
+		public static const VALID    :String = "VALID";
+		
 		public function Constantes()
 		{
 		}
