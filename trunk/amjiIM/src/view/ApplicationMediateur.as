@@ -54,7 +54,7 @@ package view
             switch ( notification.getName() )  
             {  
             	case ApplicationFacade.INSCRSUCCESS:
-            		app.poopupFugace.show(app.geti18nText('text.inscription.congratulation'),250,100);
+            		app.poopupFugace.show(app.geti18nText('text.inscription.congratulation'),310,120);
             		app.poopupFugace.addEventListener("CLOSED",showLoginWindow);            		
             		app.hideLoader();
             		app.inscWindow.close();            		
