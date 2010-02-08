@@ -15,6 +15,7 @@
     
     <mx:Script>
 		<![CDATA[
+			import commun.components.AmjiAlert;
 			import view.MainWindow;
 			import commun.components.AmjiLoading;
 			import mx.managers.PopUpManager;
@@ -35,6 +36,7 @@
 			private var bedreamy:MainFacade = MainFacade.getInstance();
 			public var window:LoginWindow;
 			public var mainWindow : MainWindow;
+			public var alertWindow : AmjiAlert;
 			[Bindable]
     		private var locales:Array = [ "en_US" , "fr_FR" ];
     		public var poopupFugace : PopupFugace;
@@ -123,6 +125,10 @@
 					inscWindow.close();
 				if(mainWindow != null)
 					mainWindow.close();
+			}
+			
+			public function geti18nText(key : String):String{
+				return resourceManager.getString('i18n', key);
 			}
 		]]>
 	</mx:Script>
