@@ -6,6 +6,29 @@
     showGripper="false"
     borderStyle="none"    
     horizontalAlign="center"
-    >
+    xmlns:contacts="view.contacts.*"
+    creationComplete="init()">
+    <mx:Script>
+    	<![CDATA[
+    		import commun.Actions;
+    		private function init():void{
+    			nativeWindow.x = (Capabilities.screenResolutionX - nativeWindow.width) / 2;
+                nativeWindow.y = (Capabilities.screenResolutionY - nativeWindow.height) / 2;
+                contactView.addEventListener(Actions.SEARCHCONTACT,searchContact);								   			
+    		}
+    		
+    		public function searchContact(event : Event):void{
+    			dispatchEvent(event);
+    		}
+    	]]>
+    </mx:Script>
+    <mx:VBox paddingTop="20" styleName="loginScalingBackground" dropShadowEnabled="true" width="100%" height="100%" horizontalAlign="center">
+    	<mx:ViewStack id="mainStack">
+	    	<contacts:ContactContainer id="contactView">
+	    		
+	    	</contacts:ContactContainer>
+	    </mx:ViewStack>	
+    </mx:VBox>
+    
 	
 </mx:Window>

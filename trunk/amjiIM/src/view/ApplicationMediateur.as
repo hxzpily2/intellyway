@@ -27,6 +27,7 @@ package view
 			app.mainWindow.systemChrome = "none";
 			app.mainWindow.transparent = true;	
 			app.mainWindow.open();
+			app.mainWindow.addEventListener(Actions.SEARCHCONTACT, searchContact);
 		}
 		
 		public function get app():amjiIM{  
@@ -39,6 +40,10 @@ package view
         
         public function showLoginWindow(event : Event):void{
         	app.window.nativeWindow.visible = true;
+        }
+        
+        public function searchContact(event : Event):void{
+        	sendNotification(Actions.GENERICUSER,app.mainWindow.contactView.critere.text,Actions.SEARCHCONTACT);
         }
 		
 		override public function listNotificationInterests():Array  
@@ -64,6 +69,7 @@ package view
             		break; 
             	case ApplicationFacade.LOGINSUCCESS:            		           		          		
             		app.hideLoader();
+            		app.mainWindow.nativeWindow.visible = true;
             		break;
             	case ApplicationFacade.LOGINFAILED:
             		app.hideLoader();
