@@ -8,6 +8,7 @@ package commun
 		public static const CLOSEAPPLI:String = "closeAppli"; 
 		public static const CLOSEINSCWIN:String = "closeInscWin"; 
 		public static const LOGIN : String = "login";
+		public static const SEARCHCONTACT : String = "searchContact";
 		public function Actions()
 		{
 		}

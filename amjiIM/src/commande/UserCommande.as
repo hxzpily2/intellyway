@@ -34,6 +34,13 @@ package commande
 			service.login(user);
 		}
 		
+		public function searchContact(notification : INotification){
+			var service : UserDelegate = new UserDelegate(this);
+			var critere : String = notification.getBody() as String;
+			
+			service.searchContact(critere);
+		}
+		
 		override public function result(data : Object):void{
 			switch((data.token as AsyncToken).action){
 				case Actions.CREATAUSER:
@@ -53,6 +60,9 @@ package commande
 						proxy.userConnected = data.result as LoginVO;						
 						sendNotification(ApplicationFacade.LOGINSUCCESS);
 					}
+					break;
+				case Actions.SEARCHCONTACT:
+					
 					break;
 			}
 		}

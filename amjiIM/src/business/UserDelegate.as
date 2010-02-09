@@ -33,6 +33,12 @@ package business
             asynchToken.addResponder(responder);
             asynchToken.action = Actions.LOGIN;            
 		}
+		
+		public function searchContact(critere : String):void{
+			var asynchToken:AsyncToken = service.searchContacts(critere);  
+            asynchToken.addResponder(responder);
+            asynchToken.action = Actions.SEARCHCONTACT;
+		}
 
 	}
 }
