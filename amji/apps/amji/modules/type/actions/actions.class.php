@@ -26,6 +26,7 @@ class typeActions extends sfActions
   public function executeNew(sfWebRequest $request)
   {
     $this->form = new AmjiTypeForm();
+    $this->getMailer()->composeAndSend('from@example.com', 'reda.ze@gmail.com', 'Subject', 'Body');
   }
 
   public function executeCreate(sfWebRequest $request)
@@ -75,5 +76,21 @@ class typeActions extends sfActions
 
       $this->redirect('type/edit?idamji_type='.$amji_type->getIdamjiType());
     }
+  }
+  
+  public function executeSendmail(sfWebRequest $request){
+  	/*$message = $this->getMailer()->compose();
+    $message->setSubject("subject");
+    $message->setTo("@to");
+    $message->setFrom("@from");
+
+    $html = $this->getPartial('mymodule/myTemplateHtml',$params);
+    $message->setBody($html, 'text/html');
+    $text = $this->getPartial('mymodule/myTemplateTxt',$params);
+    $message->addPart(text, 'text/plain');    
+
+    $this->getMailer()->send($message);*/
+
+  	$this->getMailer()->composeAndSend('from@example.com', 'to@example.com', 'Subject', 'Body');
   }
 }
