@@ -37,6 +37,12 @@ class AmjiUser extends BaseAmjiUser
 					
 		return $users[0];
 	}
+	
+	public static function getUserById($id){
+		$users = Doctrine_Query::create ()->from ( 'AmjiUser u' )->where ( "u.idamji_user = '" . $id . "'" )->execute ();
+					
+		return $users[0];
+	}
 
 	public static function setPassword($password,$salt) {
 		if (! $password && 0 == strlen ( $password )) {
@@ -111,6 +117,26 @@ class AmjiUser extends BaseAmjiUser
 			$invitation->setIdamjiUser($iduser);
 			$invitation->setAccepted(1);
 			$invitation->save();
+			
+			$amjiuser = AmjiUser::getUserById($idcontact);
+			$userVo = new CreateUserVO();
+			$userVo->idamji_user = $amjiuser->getIdamji_user();
+			$userVo->adr = $amjiuser->getAdr();
+			$userVo->ecole = $amjiuser->getEcole();
+			$userVo->email = $amjiuser->getEmail();
+			$userVo->etudiant = $amjiuser->getEtudiant();
+			$userVo->niveau = $amjiuser->getNiveau();
+			$userVo->nom = $amjiuser->getNom();
+			$userVo->prenom = $amjiuser->getPrenom();
+			$userVo->pseudo = $amjiuser->getPseudo();
+			$userVo->salarie = $amjiuser->getSalarie();
+			$userVo->societe = $amjiuser->getSociete();
+			$userVo->statut = $amjiuser->getStatut();
+			$userVo->tel = $amjiuser->getTel();
+			$userVo->civilite = $amjiuser->getCivilite();
+			$userVo->connstatut = Constantes::HORSLIGNE;
+			
+			return $userVo;
 		}else{
 			throw new GenericException("",Errors::INVITATIONEXIST);
 		}
@@ -198,6 +224,20 @@ class AmjiUser extends BaseAmjiUser
 	public static function getInvitations($iduser){
 		$q = Doctrine_Query::create ()->from ( 'AmjiUser u' )->leftJoin ( 'u.AmjiInvitation i' )->where('i.idamji_user = '.$iduser);
 		return $q->execute ();
+	}
+	
+	public static function searchContact($critere){
+		$q = Doctrine_Query::create ()->from ( 'AmjiUser u' )->where("u.nom like '%$critere%'")->orWhere("u.prenom like '%$critere%'")->orWhere("u.prenom like '%$critere%'")->orWhere("u.email like '%$critere%'")->orWhere("u.societe like '%$critere%'")->orWhere("u.ecole like '%$critere%'")->orWhere("u.statut like '%$critere%'");
+		return $q->execute ();
+	}
+	
+	public static function isContact($iduser,$id){
+		$q = Doctrine_Query::create ()->from ( 'AmjiContacts c' )->where('c.idamji_user = '.$iduser)->andWhere('c.idamji_invite = '.$id);
+		
+		$liste = $q->execute ();
+		if(sizeof($liste>0))
+			return true;
+		else return false;
 	}
 
 

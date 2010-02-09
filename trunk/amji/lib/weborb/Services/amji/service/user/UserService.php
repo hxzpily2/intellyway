@@ -17,6 +17,36 @@ class UserService extends GenericService{
 		$user = $this->getUser()->getAttribute(Sessions::USERCONNECTED);
 		return AmjiUser::inviteContact($user->getIduser(),$idcontact);
 	}
+	
+	public function searchContacts($critere){
+		$contacts = AmjiUser::searchContact($critere);
+		$user = $this->getUser()->getAttribute(Sessions::USERCONNECTED);
+		$listeContacts = array();
+		foreach ($contacts as $amjiuser){
+			$userVo = new CreateUserVO();
+			$userVo->idamji_user = $amjiuser->getIdamji_user();
+			$userVo->adr = $amjiuser->getAdr();
+			$userVo->ecole = $amjiuser->getEcole();
+			$userVo->email = $amjiuser->getEmail();
+			$userVo->etudiant = $amjiuser->getEtudiant();
+			$userVo->niveau = $amjiuser->getNiveau();
+			$userVo->nom = $amjiuser->getNom();
+			$userVo->prenom = $amjiuser->getPrenom();
+			$userVo->pseudo = $amjiuser->getPseudo();
+			$userVo->salarie = $amjiuser->getSalarie();
+			$userVo->societe = $amjiuser->getSociete();
+			$userVo->statut = $amjiuser->getStatut();
+			$userVo->tel = $amjiuser->getTel();
+			$userVo->civilite = $amjiuser->getCivilite();
+			if(AmjiUser::isContact($user->getIdamji_user(),$amjiuser->getIdamji_user())==true){
+				$userVo->connstatut = AmjiStatut::getStatutById($amjiuser->getIdamji_statut());
+			}else{
+				$userVo->connstatut = Constantes::HORSLIGNE;	
+			}
+			$listeContacts[] = $userVo;
+		}
+		return $listeContacts;
+	}
 
 	public function login(UserVO $userVO){
 		$user = AmjiUser::getUser ( $userVO->login, $userVO->pass );
@@ -39,7 +69,7 @@ class UserService extends GenericService{
 			$userVo->civilite = $amjiuser->getCivilite();
 			$amjiuser->setIdamji_statut(AmjiStatut::getStatutId($userVO->statut));
 			$amjiuser->save();
-			$this->getUser ()->setAttribute ( Sessions::USERCONNECTED, $user );
+			$this->getUser ()->setAttribute ( Sessions::USERCONNECTED, $amjiuser );
 			$this->getUser ()->setAttribute ( 'user_id', $user->getId (), 'sfGuardSecurityUser' );
 			$this->getUser ()->setAuthenticated ( true );
 			$this->getUser ()->clearCredentials ();
