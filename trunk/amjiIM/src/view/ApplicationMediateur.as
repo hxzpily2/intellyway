@@ -13,6 +13,8 @@ package view
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.mediator.Mediator;
 	
+	import view.contacts.SearchContact;
+	
 	public class ApplicationMediateur extends Mediator implements IMediator
 	{
 		public static const NAME:String = 'ApplicationMediateur'; 
@@ -27,7 +29,8 @@ package view
 			app.mainWindow.systemChrome = "none";
 			app.mainWindow.transparent = true;	
 			app.mainWindow.open();
-			app.mainWindow.addEventListener(Actions.SEARCHCONTACT, searchContact);
+			app.mainWindow.addEventListener(Actions.SHOWSEARCHCONTACT, showSearchContact);
+			app.mainWindow.addEventListener(Actions.CLOSEINSCWIN,closeWindow);
 		}
 		
 		public function get app():amjiIM{  
@@ -42,8 +45,23 @@ package view
         	app.window.nativeWindow.visible = true;
         }
         
+        public function showSearchContact(event : Event):void{
+        	app.searchContactWin = new SearchContact;        		
+			app.searchContactWin.type = NativeWindowType.LIGHTWEIGHT;
+			app.searchContactWin.systemChrome = "none";
+			app.searchContactWin.transparent = true;	
+        	app.searchContactWin.open();
+        	app.mainWindow.nativeWindow.orderInBackOf(app.searchContactWin.nativeWindow);
+        	app.searchContactWin.nativeWindow.orderToFront();
+        }
+        
         public function searchContact(event : Event):void{
         	sendNotification(Actions.GENERICUSER,app.mainWindow.contactView.critere.text,Actions.SEARCHCONTACT);
+        }
+        
+        public function closeWindow(event : Event):void{
+        	Alert.show("ok");
+        	app.closeHandler();
         }
 		
 		override public function listNotificationInterests():Array  
@@ -70,6 +88,7 @@ package view
             	case ApplicationFacade.LOGINSUCCESS:            		           		          		
             		app.hideLoader();
             		app.mainWindow.nativeWindow.visible = true;
+            		app.window.nativeWindow.visible = false;
             		break;
             	case ApplicationFacade.LOGINFAILED:
             		app.hideLoader();

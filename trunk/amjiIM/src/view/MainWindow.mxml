@@ -15,10 +15,14 @@
     		private function init():void{
     			nativeWindow.x = (Capabilities.screenResolutionX - nativeWindow.width) / 2;
                 nativeWindow.y = (Capabilities.screenResolutionY - nativeWindow.height) / 2;
-                contactView.addEventListener(Actions.SEARCHCONTACT,searchContact);								   			
+                contactView.addEventListener(Actions.SHOWSEARCHCONTACT,showSearchContact);								   			
     		}
     		
     		public function searchContact(event : Event):void{
+    			dispatchEvent(event);
+    		}
+    		
+    		public function showSearchContact(event : Event):void{
     			dispatchEvent(event);
     		}
     	]]>
@@ -27,7 +31,7 @@
     	<mx:HBox width="100%" height="15" horizontalAlign="right" paddingRight="15">
 		    <components:WindowMin width="9" height="9" buttonMode="true" useHandCursor="true" />
 			<components:WindowMax  width="9" height="9" buttonMode="true" useHandCursor="true" />
-			<components:WindowClose click="this.close();dispatchEvent(new Event(Actions.CLOSEINSCWIN))" width="9" height="9" buttonMode="true" useHandCursor="true" />			
+			<components:WindowClose click="dispatchEvent(new Event(Actions.CLOSEINSCWIN))" width="9" height="9" buttonMode="true" useHandCursor="true" />			
 		</mx:HBox>
     	<mx:ViewStack id="mainStack">
 	    	<contacts:ContactContainer id="contactView">

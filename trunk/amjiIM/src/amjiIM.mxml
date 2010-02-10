@@ -15,6 +15,7 @@
     
     <mx:Script>
 		<![CDATA[
+			import view.contacts.SearchContact;
 			import commun.components.AmjiAlert;
 			import view.MainWindow;
 			import commun.components.AmjiLoading;
@@ -40,6 +41,7 @@
 			[Bindable]
     		private var locales:Array = [ "en_US" , "fr_FR" ];
     		public var poopupFugace : PopupFugace;
+    		public var searchContactWin : SearchContact;
 			private function init():void{
 				window = new LoginWindow();
 				inscWindow = new InscriptionWindow();
@@ -116,7 +118,8 @@
 				inscWindow.close();
 				mainWindow.close();
 			}
-			private function closeHandler():void{
+			
+			public function closeHandler():void{
 				if(window!=null)
 					window.close();
 				if(poopupFugace != null)
@@ -125,6 +128,7 @@
 					inscWindow.close();
 				if(mainWindow != null)
 					mainWindow.close();
+				this.close();
 			}
 			
 			public function geti18nText(key : String):String{
