@@ -9,6 +9,7 @@ package commun
 		public static const CLOSEINSCWIN:String = "closeInscWin"; 
 		public static const LOGIN : String = "login";
 		public static const SEARCHCONTACT : String = "searchContact";
+		public static const SHOWSEARCHCONTACT : String = "showSearchContact";
 		public function Actions()
 		{
 		}
