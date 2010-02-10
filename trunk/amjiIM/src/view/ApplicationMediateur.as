@@ -7,6 +7,9 @@ package view
 	import flash.display.NativeWindowType;
 	import flash.events.Event;
 	
+	import model.ApplicationProxy;
+	
+	import mx.collections.ArrayCollection;
 	import mx.controls.Alert;
 	
 	import org.puremvc.as3.interfaces.IMediator;
@@ -67,7 +70,8 @@ package view
 		override public function listNotificationInterests():Array  
         {  
             return [  
-              	Actions.CREATAUSER,ApplicationFacade.LOGINFAILED,ApplicationFacade.LOGINSUCCESS,ApplicationFacade.INSCRSUCCESS
+              	Actions.CREATAUSER,ApplicationFacade.LOGINFAILED,ApplicationFacade.LOGINSUCCESS,ApplicationFacade.INSCRSUCCESS,
+              	ApplicationFacade.SEARCHSUCCESS
         	]
         }
         
@@ -94,7 +98,12 @@ package view
             		app.hideLoader();
             		app.alertWindow = new AmjiAlert();
             		app.alertWindow.show(app.geti18nText("text.login.error"),350,150,Constantes.ERROR);            		
-            		break;           		
+            		break;  
+            	case ApplicationFacade.SEARCHSUCCESS:
+            		var proxy : ApplicationProxy = facade.retrieveProxy(ApplicationProxy.NAME) as ApplicationProxy;
+            		app.searchContactWin.listeContactSearch = new ArrayCollection;
+            		app.searchContactWin.listeContactSearch.source = proxy.listeSearchContact;
+            		break;         		
             }
         }    
 

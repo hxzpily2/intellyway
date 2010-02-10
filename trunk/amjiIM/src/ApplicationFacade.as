@@ -14,7 +14,8 @@ package
 		public static const INSCRSUCCESS:String = "INSCRSUCCESS";
 		public static const INSCRFAILED:String = "INSCRFAILED"; 
 		public static const LOGINSUCCESS:String = "LOGINSUCCESS";
-		public static const LOGINFAILED:String = "LOGINFAILED"; 
+		public static const LOGINFAILED:String = "LOGINFAILED";
+		public static const SEARCHSUCCESS:String = "SEARCHSUCCESS"; 
 		 
 		
 		public static function getInstance() : ApplicationFacade {  
