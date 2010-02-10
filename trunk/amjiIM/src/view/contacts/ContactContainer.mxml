@@ -5,8 +5,8 @@
 			import commun.Actions;
 		]]>
 	</mx:Script>
-	<mx:HBox width="100%" height="100%">
+	<mx:HBox width="100%" height="100%" verticalAlign="middle">
 		<mx:TextInput id="critere" />
-		<mx:Button label="search" click="dispatchEvent(new Event(Actions.SEARCHCONTACT))"/>
+		<mx:Image buttonMode="true" useHandCursor="true" source="@Embed(source='assets/images/addcontact.png')" click="dispatchEvent(new Event(Actions.SEARCHCONTACT))"/>		
 	</mx:HBox>
 </mx:VBox>
