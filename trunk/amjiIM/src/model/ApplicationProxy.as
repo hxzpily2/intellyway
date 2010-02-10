@@ -9,6 +9,7 @@ package model
 	{
 		public static const NAME:String = "ApplicationProxy";
 		public var userConnected : LoginVO = null;
+		public var listeSearchContact : Array;
 		public function ApplicationProxy(proxyName:String=null, data:Object=null)
 		{
 			super(NAME, data );
