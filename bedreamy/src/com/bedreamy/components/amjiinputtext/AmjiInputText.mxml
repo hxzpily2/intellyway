@@ -26,6 +26,6 @@
 	<mx:HBox paddingRight="10" verticalAlign="middle" width="100%" height="100%" cornerRadius="10" backgroundColor="#FFFFFF" borderStyle="solid" borderColor="#9F9F9F">
 		<mx:Spacer width="10" /><mx:Image source="@Embed(source='assets/images/dot.png')" />
 		<mx:Label width="60" fontFamily="kroeger" fontSize="8" id="myLabel" text="{text}"  color="#9F9F9F"/>
-		<mx:TextInput id="inputText" change="this.content = inputText.text;dispatchEvent(new Event('change'))" color="#9F9F9F" fontSize="10" height="18" width="100%" borderStyle="solid" borderColor="#9F9F9F" displayAsPassword="{displayAsPassword}" alpha="1.0"/>
+		<mx:TextInput text="{content}" id="inputText" change="this.content = inputText.text;dispatchEvent(new Event('change'))" color="#9F9F9F" fontSize="10" height="18" width="100%" borderStyle="solid" borderColor="#9F9F9F" displayAsPassword="{displayAsPassword}" alpha="1.0"/>
 	</mx:HBox>
 </mx:HBox>
