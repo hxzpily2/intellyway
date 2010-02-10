@@ -51,16 +51,16 @@ package view
 			app.searchContactWin.systemChrome = "none";
 			app.searchContactWin.transparent = true;	
         	app.searchContactWin.open();
+        	app.searchContactWin.addEventListener(Actions.SEARCHCONTACT,searchContact);
         	app.mainWindow.nativeWindow.orderInBackOf(app.searchContactWin.nativeWindow);
         	app.searchContactWin.nativeWindow.orderToFront();
         }
         
-        public function searchContact(event : Event):void{
-        	sendNotification(Actions.GENERICUSER,app.mainWindow.contactView.critere.text,Actions.SEARCHCONTACT);
+        public function searchContact(event : Event):void{        	
+        	sendNotification(Actions.GENERICUSER,app.searchContactWin.txtCritere.text,Actions.SEARCHCONTACT);
         }
         
-        public function closeWindow(event : Event):void{
-        	Alert.show("ok");
+        public function closeWindow(event : Event):void{        	
         	app.closeHandler();
         }
 		

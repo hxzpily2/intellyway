@@ -62,7 +62,9 @@ package commande
 					}
 					break;
 				case Actions.SEARCHCONTACT:
-					
+					var proxy : ApplicationProxy = facade.retrieveProxy(ApplicationProxy.NAME) as ApplicationProxy;
+					proxy.listeSearchContact = data.result as Array;
+					Alert.show(proxy.listeSearchContact.length.toString());
 					break;
 			}
 		}

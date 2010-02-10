@@ -81,7 +81,7 @@
 	    horizontalAlign="center" 
 	    verticalAlign="middle"   
 	    cornerRadius="15"	    
-	    backgroundColor="#FFFFFF">	    
+	    >	    
 	    <mx:HBox verticalScrollPolicy="off" horizontalScrollPolicy="off" horizontalAlign="center" verticalAlign="middle" width="100%" height="100%">	    
 		    <mx:Image id="imgType" width="73" height="73" source="{valid}" />
 	    	<mx:Text verticalCenter="true" color="#FF6600" fontWeight="bold" fontSize="16" fontFamily="Tahoma" htmlText="{text}"/>

@@ -15,6 +15,7 @@
     
     <mx:Script>
 		<![CDATA[
+			import commun.Commun;
 			import view.contacts.SearchContact;
 			import commun.components.AmjiAlert;
 			import view.MainWindow;
@@ -54,7 +55,15 @@
 				poopupFugace.type = NativeWindowType.LIGHTWEIGHT;
 				poopupFugace.systemChrome = "none";
 				poopupFugace.transparent = true;	
-				poopupFugace.open();								 			
+				poopupFugace.open();
+				if(Commun.getStoredItem(Commun.login)!=null){
+					window.userVO.login = Commun.getStoredItem(Commun.login);
+					window.txtLogin.content = Commun.getStoredItem(Commun.login);
+				}				
+				if(Commun.getStoredItem(Commun.pass)!=null){
+					window.userVO.pass = Commun.getStoredItem(Commun.pass);
+					window.txtPass.content = Commun.getStoredItem(Commun.pass);
+				}								 			
 			}
 			
 			private function handleChangeState(event:NativeWindowDisplayStateEvent):void{
@@ -79,9 +88,24 @@
 			public var loader : AmjiLoading = new AmjiLoading;
 			public function login(event : Event):void{				
 				PopUpManager.addPopUp(loader,window,true);
-				PopUpManager.centerPopUp(loader);									
+				PopUpManager.centerPopUp(loader);
+				// register login && password && statut
+				
+				if(window.window.checkSavePass!=null && window.window.checkSavePass.selected){
+					Commun.storeEncrypt(Commun.pass,window.txtPass.content);
+				}
+				
+				if(window.window.checkSaveLogin!=null && window.window.checkSaveLogin.selected){
+					Commun.storeEncrypt(Commun.login,window.txtLogin.content);
+					
+				}else if(window.window.checkSaveLogin!=null && !window.window.checkSaveLogin.selected){
+					Commun.clearStoredItem(Commun.login);
+					Commun.clearStoredItem(Commun.pass);
+				}							
 				facade.sendNotification(Actions.GENERICUSER,window.userVO,Actions.LOGIN);
 			}
+			
+			
 			
 			public function hideLoader():void{
 				PopUpManager.removePopUp(loader);				

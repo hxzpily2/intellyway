@@ -5,7 +5,8 @@
     showStatusBar="false"
     showGripper="false"
     borderStyle="none"    
-    horizontalAlign="center"
+    horizontalAlign="center" 
+    creationPolicy="all"   
     creationComplete="init()" xmlns:amjiinputtext="com.bedreamy.components.amjiinputtext.*" xmlns:combobox="com.bedreamy.components.combobox.*" xmlns:components="commun.components.*">
     <mx:Script>
     	<![CDATA[
@@ -45,7 +46,7 @@
     			nativeWindow.x = (Capabilities.screenResolutionX - nativeWindow.width) / 2;
                 nativeWindow.y = (Capabilities.screenResolutionY - nativeWindow.height) / 2;
 				window = new LoginTooltip;
-				window.addEventListener(Actions.SHOWUSERUI,showInscription);
+				window.addEventListener(Actions.SHOWUSERUI,showInscription);				
     			//this.stage.displayState = StageDisplayState.FULL_SCREEN_INTERACTIVE;    			
 								   			
     		}

@@ -12,7 +12,10 @@
     creationComplete="init()">
 	<mx:Script>
 		<![CDATA[
+			import mx.collections.ArrayCollection;
 			import commun.Actions;
+			[Bindable]
+			public var listeContactSearch : ArrayCollection;
 			private function init():void{
     			nativeWindow.x = (Capabilities.screenResolutionX - nativeWindow.width) / 2;
                 nativeWindow.y = (Capabilities.screenResolutionY - nativeWindow.height) / 2;               								   			
@@ -25,5 +28,15 @@
 			<components:WindowMax  width="9" height="9" buttonMode="true" useHandCursor="true" />
 			<components:WindowClose click="this.close();dispatchEvent(new Event(Actions.CLOSEINSCWIN))" width="9" height="9" buttonMode="true" useHandCursor="true" />			
 		</mx:HBox>
+		<mx:HBox width="100%" height="100%" horizontalAlign="center">
+			<mx:TextInput id="txtCritere" />
+			<components:AmjiOrangeButton click="dispatchEvent(new Event(Actions.SEARCHCONTACT))" color="#FFFFFF" width="100" height="25" label="rechercher" />
+		</mx:HBox>
+		<mx:VBox paddingBottom="20" paddingLeft="10" paddingRight="10" width="100%">
+			<mx:TileList width="100%" height="100%" dataProvider="{listeContactSearch}">
+			
+			</mx:TileList>	
+		</mx:VBox>
+		
 	</mx:VBox>
 </mx:Window>
