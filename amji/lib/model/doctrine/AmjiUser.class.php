@@ -110,12 +110,13 @@ class AmjiUser extends BaseAmjiUser
 		AmjiUser::delInvitation($iduser,$idcontact);
 	}
 
-	public static function inviteContact($iduser,$idcontact){
+	public static function inviteContact($iduser,$idcontact,$message){
 		if(AmjiUser::getInvitation($iduser,$idcontact)==NULL){
 			$invitation = new AmjiInvitation();
 			$invitation->setIdamjiInvite($idcontact);
 			$invitation->setIdamjiUser($iduser);
-			$invitation->setAccepted(1);
+			$invitation->setMessage($message);
+			$invitation->setAccepted(0);
 			$invitation->save();
 			
 			$amjiuser = AmjiUser::getUserById($idcontact);
@@ -149,7 +150,7 @@ class AmjiUser extends BaseAmjiUser
 	}
 
 	public static function getInvitation($iduser,$idcontact){
-		$invitations = Doctrine_Query::create ()->from ( 'AmjiInvitation i' )->where ( "idmaji_user = '" . $iduser . "'" )->andWhere("idamji_invite = '" . $idcontact . "'")->execute();
+		$invitations = Doctrine_Query::create ()->from ( 'AmjiInvitation i' )->where ( "i.idamji_user = " . $iduser  )->andWhere("i.idamji_invite = " . $idcontact )->execute();
 		if (sizeof($invitations)==0)
 		return NULL;
 		else
