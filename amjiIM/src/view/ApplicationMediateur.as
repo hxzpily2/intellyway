@@ -8,6 +8,8 @@ package view
 	import flash.events.Event;
 	
 	import model.ApplicationProxy;
+	import model.vo.CreateUserVO;
+	import model.vo.InviteContactVO;
 	
 	import mx.collections.ArrayCollection;
 	import mx.controls.Alert;
@@ -55,8 +57,17 @@ package view
 			app.searchContactWin.transparent = true;	
         	app.searchContactWin.open();
         	app.searchContactWin.addEventListener(Actions.SEARCHCONTACT,searchContact);
+        	app.searchContactWin.addEventListener(Actions.ADDCONTACT,addContact);
         	app.mainWindow.nativeWindow.orderInBackOf(app.searchContactWin.nativeWindow);
         	app.searchContactWin.nativeWindow.orderToFront();
+        }
+        
+        public function addContact(event : Event):void{
+        	var inviteVO : InviteContactVO = new InviteContactVO;
+        	var proxy : ApplicationProxy = facade.retrieveProxy(ApplicationProxy.NAME) as ApplicationProxy;
+        	inviteVO.idcontact = (proxy.listeSearchContact[app.searchContactWin.listContact.selectedIndex] as CreateUserVO).idamji_user;
+        	inviteVO.message = app.searchContactWin.txtMsgInvit.htmlText;
+        	facade.sendNotification(Actions.GENERICUSER,inviteVO,Actions.ADDCONTACT);
         }
         
         public function searchContact(event : Event):void{        	
@@ -71,7 +82,7 @@ package view
         {  
             return [  
               	Actions.CREATAUSER,ApplicationFacade.LOGINFAILED,ApplicationFacade.LOGINSUCCESS,ApplicationFacade.INSCRSUCCESS,
-              	ApplicationFacade.SEARCHSUCCESS
+              	ApplicationFacade.SEARCHSUCCESS,ApplicationFacade.INVITESUCCESS
         	]
         }
         
@@ -90,8 +101,11 @@ package view
             		app.hideLoader();
             		break; 
             	case ApplicationFacade.LOGINSUCCESS:            		           		          		
+            		var proxy : ApplicationProxy = facade.retrieveProxy(ApplicationProxy.NAME) as ApplicationProxy;
             		app.hideLoader();
             		app.mainWindow.nativeWindow.visible = true;
+            		app.mainWindow.contactView.listeContact = new ArrayCollection;
+            		app.mainWindow.contactView.listeContact.source = proxy.userConnected.listeContacts;
             		app.window.nativeWindow.visible = false;
             		break;
             	case ApplicationFacade.LOGINFAILED:
@@ -103,7 +117,12 @@ package view
             		var proxy : ApplicationProxy = facade.retrieveProxy(ApplicationProxy.NAME) as ApplicationProxy;
             		app.searchContactWin.listeContactSearch = new ArrayCollection;
             		app.searchContactWin.listeContactSearch.source = proxy.listeSearchContact;
-            		break;         		
+            		break; 
+            	case ApplicationFacade.INVITESUCCESS:
+            		var proxy : ApplicationProxy = facade.retrieveProxy(ApplicationProxy.NAME) as ApplicationProxy;
+            		app.mainWindow.contactView.listeContact = new ArrayCollection;
+            		app.mainWindow.contactView.listeContact.source = proxy.userConnected.listeContacts;
+            		break;        		
             }
         }    
 

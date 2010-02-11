@@ -3,6 +3,7 @@ package business
 	import commun.Actions;
 	
 	import model.vo.CreateUserVO;
+	import model.vo.InviteContactVO;
 	import model.vo.UserVO;
 	
 	import mx.rpc.AsyncToken;
@@ -38,6 +39,12 @@ package business
 			var asynchToken:AsyncToken = service.searchContacts(critere);  
             asynchToken.addResponder(responder);
             asynchToken.action = Actions.SEARCHCONTACT;
+		}
+		
+		public function addContact(invite : InviteContactVO):void{
+			var asynchToken:AsyncToken = service.inviteContact(invite);  
+            asynchToken.addResponder(responder);
+            asynchToken.action = Actions.ADDCONTACT;
 		}
 
 	}
