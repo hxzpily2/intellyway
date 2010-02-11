@@ -17,7 +17,7 @@ package
 		public static const LOGINFAILED:String = "LOGINFAILED";
 		public static const SEARCHSUCCESS:String = "SEARCHSUCCESS";
 		public static const INVITESUCCESS:String = "INVITESUCCESS"; 
-		 
+		public static const INVITEFAILED:String = "INVITEFAILED";  
 		
 		public static function getInstance() : ApplicationFacade {  
   

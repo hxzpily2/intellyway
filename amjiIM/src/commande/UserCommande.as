@@ -3,6 +3,7 @@ package commande
 	import business.UserDelegate;
 	
 	import commun.Actions;
+	import commun.Errors;
 	
 	import model.ApplicationProxy;
 	import model.vo.CreateUserVO;
@@ -84,7 +85,12 @@ package commande
 		
 		override public function fault(info : Object):void{
 			var errorMessage:ErrorMessage = info.message as ErrorMessage;
-			Alert.show(info.toString());
+			if(errorMessage.faultString == Errors.INVITATIONEXIST){
+				sendNotification(ApplicationFacade.INSCRFAILED,errorMessage.faultString);
+			}else{
+				Alert.show(info.fault.toString());
+			}
+			
 		}
 
 	}
