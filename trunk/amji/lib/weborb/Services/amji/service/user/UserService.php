@@ -9,13 +9,13 @@ class UserService extends GenericService{
 		return AmjiUser::createUser($user);
 	}
 
-	public function addContact($idcontact){
+	public function addContact(InviteContactVO $invite){
 
 	}
 
-	public function inviteContact($idcontact){
+	public function inviteContact(InviteContactVO $invite){
 		$user = $this->getUser()->getAttribute(Sessions::USERCONNECTED);
-		return AmjiUser::inviteContact($user->getIduser(),$idcontact);
+		return AmjiUser::inviteContact($user->getIdamji_user(),$invite->idcontact,$invite->message);
 	}
 	
 	public function searchContacts($critere){
@@ -118,7 +118,7 @@ class UserService extends GenericService{
 				$c->tel = $contact->getTel();
 				$c->civilite = $contact->getCivilite();
 				$c->connstatut = Constantes::HORSLIGNE;
-				$loginVO->listInvitations[] = $c;
+				$loginVO->listeContacts[] = $c;
 			}
 			//$this->getContext()->getLogger()->info("liste contacts : ".sizeof($loginVO->listeContacts));			
 			return $loginVO;
