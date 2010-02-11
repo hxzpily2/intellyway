@@ -10,6 +10,8 @@ package commun
 		public static const LOGIN : String = "login";
 		public static const SEARCHCONTACT : String = "searchContact";
 		public static const SHOWSEARCHCONTACT : String = "showSearchContact";
+		public static const ADDCONTACT : String = "addContact";
+		public static const INVITECONTACT : String = "inviteContact";
 		public function Actions()
 		{
 		}

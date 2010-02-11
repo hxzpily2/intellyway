@@ -141,6 +141,8 @@
 				poopupFugace.close();
 				inscWindow.close();
 				mainWindow.close();
+				if(searchContactWin != null)
+					searchContactWin.close();
 			}
 			
 			public function closeHandler():void{
@@ -152,6 +154,8 @@
 					inscWindow.close();
 				if(mainWindow != null)
 					mainWindow.close();
+				if(searchContactWin != null)
+					searchContactWin.close();
 				this.close();
 			}
 			

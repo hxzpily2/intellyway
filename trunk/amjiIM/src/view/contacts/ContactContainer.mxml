@@ -2,11 +2,17 @@
 <mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml">
 	<mx:Script>
 		<![CDATA[
+			import mx.collections.ArrayCollection;
 			import commun.Actions;
+			[Bindable]
+			public var listeContact : ArrayCollection;
 		]]>
 	</mx:Script>
 	<mx:HBox width="100%" height="100%" verticalAlign="middle">
 		<mx:TextInput id="critere" />
-		<mx:Image buttonMode="true" useHandCursor="true" source="@Embed(source='assets/images/addcontact.png')" click="dispatchEvent(new Event(Actions.SHOWSEARCHCONTACT))"/>		
+		<mx:Image buttonMode="true" useHandCursor="true" source="@Embed(source='assets/images/addcontact.png')" click="dispatchEvent(new Event(Actions.SHOWSEARCHCONTACT))"/>				
 	</mx:HBox>
+	<mx:List dataProvider="{listeContact}" labelField="nom" width="100%" height="100%">
+			
+	</mx:List>
 </mx:VBox>

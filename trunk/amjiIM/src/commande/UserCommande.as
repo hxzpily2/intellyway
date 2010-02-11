@@ -6,6 +6,7 @@ package commande
 	
 	import model.ApplicationProxy;
 	import model.vo.CreateUserVO;
+	import model.vo.InviteContactVO;
 	import model.vo.LoginVO;
 	import model.vo.UserVO;
 	
@@ -41,6 +42,12 @@ package commande
 			service.searchContact(critere);
 		}
 		
+		public function addContact(notification : INotification):void{
+			var service : UserDelegate = new UserDelegate(this);
+			var invitevo : InviteContactVO = notification.getBody() as InviteContactVO;
+			service.addContact(invitevo);
+		}
+		
 		override public function result(data : Object):void{
 			switch((data.token as AsyncToken).action){
 				case Actions.CREATAUSER:
@@ -65,6 +72,12 @@ package commande
 					var proxy : ApplicationProxy = facade.retrieveProxy(ApplicationProxy.NAME) as ApplicationProxy;
 					proxy.listeSearchContact = data.result as Array;
 					sendNotification(ApplicationFacade.SEARCHSUCCESS);
+					break;
+				case Actions.ADDCONTACT:
+					var proxy : ApplicationProxy = facade.retrieveProxy(ApplicationProxy.NAME) as ApplicationProxy;
+					var user : CreateUserVO = data.result as CreateUserVO
+					proxy.userConnected.listeContacts.push(user);					
+					sendNotification(ApplicationFacade.INVITESUCCESS);
 					break;
 			}
 		}
