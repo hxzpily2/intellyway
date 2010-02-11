@@ -98,7 +98,7 @@ class AmjiUser extends BaseAmjiUser
 			return true;
 
 		}else{
-			throw new GenericException("",Errors::MAILEXIST);
+			throw new Exception(Errors::MAILEXIST);
 		}
 	}
 
@@ -139,7 +139,7 @@ class AmjiUser extends BaseAmjiUser
 			
 			return $userVo;
 		}else{
-			throw new GenericException("",Errors::INVITATIONEXIST);
+			throw new Exception(Errors::INVITATIONEXIST);
 		}
 	}
 
@@ -151,10 +151,10 @@ class AmjiUser extends BaseAmjiUser
 
 	public static function getInvitation($iduser,$idcontact){
 		$invitations = Doctrine_Query::create ()->from ( 'AmjiInvitation i' )->where ( "i.idamji_user = " . $iduser  )->andWhere("i.idamji_invite = " . $idcontact )->execute();
-		if (sizeof($invitations)==0)
-		return NULL;
+		if (sizeof($invitations)>0)
+		return $invitations[0];
 		else
-		return $invitation[0];
+		return NULL;
 	}
 
 	public static function delInvitation($iduser,$idcontact){
