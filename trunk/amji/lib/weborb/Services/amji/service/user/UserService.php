@@ -15,6 +15,7 @@ class UserService extends GenericService{
 
 	public function inviteContact(InviteContactVO $invite){
 		$user = $this->getUser()->getAttribute(Sessions::USERCONNECTED);
+		$this->getContext()->getLogger()->info("liste contacts : ".AmjiUser::getInvitation($user->getIdamji_user(),$invite->idcontact));
 		return AmjiUser::inviteContact($user->getIdamji_user(),$invite->idcontact,$invite->message);
 	}
 	
