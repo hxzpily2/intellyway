@@ -4,13 +4,9 @@
 	<![CDATA[
 		import mx.controls.Alert;
 		[Bindable] public var editAllowed:Boolean = false;
-		public function doubleClick(event : Event):void{			
-			if(this.editAllowed==false){				
-				txtInput.setFocus();				
-			}
-			else{
-				txtInput.focusEnabled = false;								
-			}
+		[Bindable] public var text : String;
+		public function doubleClick(event : Event):void{
+			txtInput.setFocus();			
 			this.editAllowed = true;			
 		}
 		
@@ -22,7 +18,7 @@
 		}
 	]]>
 </mx:Script>	
-	<mx:TextInput editable="{editAllowed}" doubleClickEnabled="true" doubleClick="doubleClick(event)" keyDown="keyDown(event)" id="txtInput" height="15" alpha="0.5" fontFamily="kroeger" fontSize="8" color="#FF6600" themeColor="#A3A3A3"  borderStyle="none" backgroundAlpha="0" text="lorum ipsum dolor ">
+	<mx:TextInput text="{this.text}" editable="{editAllowed}" doubleClickEnabled="true" click="doubleClick(event)" keyDown="keyDown(event)" id="txtInput" height="15" alpha="0.5" fontFamily="kroeger" fontSize="8" color="#FF6600" themeColor="#A3A3A3"  borderStyle="none" backgroundAlpha="0">
 		<mx:filters>
             <mx:DropShadowFilter color="#FFFFFF" blurX="10" blurY="10" distance="0" angle="0"/>
         </mx:filters>
