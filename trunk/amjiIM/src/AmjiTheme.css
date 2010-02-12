@@ -2,6 +2,23 @@
 		src: url("assets/Kroeger 05-53CYR.ttf");
 		fontFamily: "kroeger";
 }
+
+
+@font-face {
+		src: url("assets/Vegur-L.otf");
+		fontFamily: "Vegur_L";
+}
+
+@font-face {
+		src: url("assets/Vegur-M.otf");
+		fontFamily: "Vegur_M";
+}
+
+@font-face {
+		src: url("assets/Vegur-R.otf");
+		fontFamily: "Vegur_R";
+}
+
 AccordionHeader
 {
 	disabledSkin: Embed(source="AmjiTheme.swf", symbol="AccordionHeader_disabledSkin");
@@ -387,6 +404,10 @@ AmjiOrangeCombobox {
    	fontWeight: normal;
 }
 
+List{
+	rollOverColor: #E9E9E9;
+   	selectionColor: #F7F7F7;	
+}
 
 
 

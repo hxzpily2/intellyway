@@ -5,7 +5,7 @@ package model.vo
     [Bindable]
 	public class LoginVO
 	{
-		public var userVO : UserVO;
+		public var userVO : CreateUserVO;
 		public var listeContacts : Array = new Array;
 		public var listInvitations : Array = new Array;
 		

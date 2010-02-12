@@ -106,6 +106,7 @@ package view
             		app.mainWindow.nativeWindow.visible = true;
             		app.mainWindow.contactView.listeContact = new ArrayCollection;
             		app.mainWindow.contactView.listeContact.source = proxy.userConnected.listeContacts;
+            		app.mainWindow.contactView.user = proxy.userConnected;
             		app.window.nativeWindow.visible = false;
             		break;
             	case ApplicationFacade.LOGINFAILED:

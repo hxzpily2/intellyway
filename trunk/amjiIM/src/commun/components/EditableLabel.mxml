@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml">
+<mx:Script>
+	<![CDATA[
+		import mx.controls.Alert;
+		[Bindable] public var editAllowed:Boolean = false;
+		public function doubleClick(event : Event):void{			
+			if(this.editAllowed==false){				
+				txtInput.setFocus();				
+			}
+			else{
+				txtInput.focusEnabled = false;								
+			}
+			this.editAllowed = true;			
+		}
+		
+		public function keyDown(event : KeyboardEvent):void{
+			if(event.charCode == 13){
+				
+				this.editAllowed = false;
+			}
+		}
+	]]>
+</mx:Script>	
+	<mx:TextInput editable="{editAllowed}" doubleClickEnabled="true" doubleClick="doubleClick(event)" keyDown="keyDown(event)" id="txtInput" height="15" alpha="0.5" fontFamily="kroeger" fontSize="8" color="#FF6600" themeColor="#A3A3A3"  borderStyle="none" backgroundAlpha="0" text="lorum ipsum dolor ">
+		<mx:filters>
+            <mx:DropShadowFilter color="#FFFFFF" blurX="10" blurY="10" distance="0" angle="0"/>
+        </mx:filters>
+	</mx:TextInput>
+</mx:VBox>

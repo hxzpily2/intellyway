@@ -33,8 +33,8 @@
 			<components:WindowMax  width="9" height="9" buttonMode="true" useHandCursor="true" />
 			<components:WindowClose click="dispatchEvent(new Event(Actions.CLOSEINSCWIN))" width="9" height="9" buttonMode="true" useHandCursor="true" />			
 		</mx:HBox>
-    	<mx:ViewStack id="mainStack">
-	    	<contacts:ContactContainer id="contactView">
+    	<mx:ViewStack id="mainStack" width="100%" height="100%">
+	    	<contacts:ContactContainer id="contactView" width="100%" height="100%">
 	    		
 	    	</contacts:ContactContainer>
 	    </mx:ViewStack>	
