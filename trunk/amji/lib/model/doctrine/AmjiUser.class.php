@@ -116,7 +116,7 @@ class AmjiUser extends BaseAmjiUser
 			$invitation->setIdamjiInvite($idcontact);
 			$invitation->setIdamjiUser($iduser);
 			$invitation->setMessage($message);
-			$invitation->setAccepted(0);
+			$invitation->setAccepted(1);
 			$invitation->save();
 			
 			$amjiuser = AmjiUser::getUserById($idcontact);
