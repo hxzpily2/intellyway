@@ -46,13 +46,13 @@
 		</mx:VBox>
 		<mx:VBox width="100%" height="70" verticalGap="0">			
 			<mx:HBox width="100%" verticalAlign="middle">		
-				<mx:Label color="#828282" text="{user.userVO.prenom}" fontFamily="Vegur_R" fontSize="26">
+				<mx:Label color="#000000" text="{user.userVO.prenom}" fontFamily="Vegur_R" fontSize="26">
 					<mx:filters>
 			            <mx:DropShadowFilter color="#FFFFFF" blurX="10" blurY="10" distance="0" angle="0"/>
 			            <mx:GlowFilter color="#FFFFFF" />
 			        </mx:filters>
 				</mx:Label>
-				<components:EditableLabel width="100"  text="lorum ipsum dolor " paddingLeft="2" />
+				<components:EditableLabel width="150"  text="lorum ipsum dolor " paddingLeft="2" />
 			</mx:HBox>			
 			<combobox:AmjiCombobox id="comboBox" width="105">
 				<combobox:dataProvider>
