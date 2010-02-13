@@ -2,6 +2,27 @@
 		src: url("assets/Kroeger 05-53CYR.ttf");
 		fontFamily: "kroeger";
 }
+
+
+@font-face {
+		src: url("assets/Vegur-L.otf");
+		fontFamily: "Vegur_L";
+}
+
+@font-face {
+		src: url("assets/Vegur-M.otf");
+		fontFamily: "Vegur_M";
+}
+
+@font-face {
+		src: url("assets/Vegur-R.otf");
+		fontFamily: "Vegur_R";
+}
+
+Button {
+   themeColor: #ff6600;
+}
+
 AccordionHeader
 {
 	disabledSkin: Embed(source="AmjiTheme.swf", symbol="AccordionHeader_disabledSkin");
@@ -194,13 +215,7 @@ Tree
 	folderClosedIcon: Embed(source="AmjiTheme.swf", symbol="Tree_folderClosedIcon");
 	folderOpenIcon: Embed(source="AmjiTheme.swf", symbol="Tree_folderOpenIcon");
 }
-Button
-{
-	disabledSkin: Embed(source="AmjiTheme.swf", symbol="Button_disabledSkin");
-	downSkin: Embed(source="AmjiTheme.swf", symbol="Button_downSkin");
-	overSkin: Embed(source="AmjiTheme.swf", symbol="Button_overSkin");
-	upSkin: Embed(source="AmjiTheme.swf", symbol="Button_upSkin");
-}
+
 
 .loginScalingBackground
         {
@@ -213,6 +228,18 @@ Button
              
         
         }
+
+.frameBackground
+        {
+
+            background-image: Embed(source="AmjiTheme.swf", symbol="Frame_borderSkin");
+			
+            background-size:"100%";    
+            
+             
+        
+        }
+                
 .loginTooltipBackground
         {
 
@@ -387,6 +414,12 @@ AmjiOrangeCombobox {
    	fontWeight: normal;
 }
 
+List{
+	selectionColor: #eec760;
+   	rollOverColor: #eeeeee;
+   	themeColor: #eec760;   	
+   	
+}
 
 
 
