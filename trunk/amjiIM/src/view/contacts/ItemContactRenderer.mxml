@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:VBox width="100%" xmlns:mx="http://www.adobe.com/2006/mxml" height="50" verticalGap="0" >
+	<mx:Script>
+		<![CDATA[
+			import model.vo.CreateUserVO;
+			[Bindable] public var user : CreateUserVO;
+		]]>
+	</mx:Script>
+	<mx:HBox paddingRight="10" paddingLeft="5" styleName="frameBackground" verticalGap="0"  width="100%" height="100%" verticalAlign="middle">			
+		<mx:Image source="@Embed(source='assets/images/en_ligne.png')" />
+		<mx:VBox width="100%" verticalGap="0">
+			<mx:Label paddingTop="15" color="#000000" text="{user.prenom}" fontFamily="Vegur_R" fontSize="16">
+				<mx:filters>
+		            <mx:DropShadowFilter color="#FFFFFF" blurX="10" blurY="10" distance="0" angle="0"/>
+		            <mx:GlowFilter color="#FFFFFF" />
+		        </mx:filters>
+			</mx:Label>
+			<mx:Label paddingLeft="2" paddingTop="-5" maxWidth="150" truncateToFit="true" text="Veuillez saisir votre message perso" alpha="0.5" fontFamily="kroeger" fontSize="8" color="#8A8A8A">
+				<mx:filters>
+			            <mx:DropShadowFilter color="#FFFFFF" blurX="10" blurY="10" distance="0" angle="0"/>
+			    </mx:filters>
+			</mx:Label>
+		</mx:VBox>		
+		<mx:Spacer width="100%" />
+		<mx:Image source="@Embed(source='assets/images/humnoneOrange.png')" />
+		<mx:Image width="10" height="17" source="@Embed(source='assets/images/arraow.png')" />
+	</mx:HBox>	
+</mx:VBox>
