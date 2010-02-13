@@ -26,7 +26,11 @@ class typeActions extends sfActions
   public function executeNew(sfWebRequest $request)
   {
     $this->form = new AmjiTypeForm();
-    $this->getMailer()->composeAndSend('from@example.com', 'reda.ze@gmail.com', 'Subject', 'Body');
+    try{
+    	$this->getMailer()->composeAndSend('reda.ze@gmail.com', 'reda.ze@gmail.com', 'Subject', 'Body');
+    }catch (Exception $e){
+    	echo "error";
+    }
   }
 
   public function executeCreate(sfWebRequest $request)
