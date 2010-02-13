@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" verticalGap="0" paddingLeft="10" paddingRight="5" xmlns:components="commun.components.*" xmlns:combobox="com.bedreamy.components.combobox.*">
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" paddingRight="1" verticalGap="0" xmlns:components="commun.components.*" xmlns:combobox="com.bedreamy.components.combobox.*" xmlns:contacts="view.contacts.*">
 	<mx:Script>
 		<![CDATA[
 			import mx.core.Window;
@@ -34,40 +34,45 @@
 
 		]]>
 	</mx:Script>
-	<mx:HBox width="100%" height="90">
-		<mx:VBox width="55" height="55" borderStyle="solid" borderColor="#969696" >
-			<mx:filters>
-	            <mx:DropShadowFilter color="#FFFFFF" blurX="10" blurY="10" distance="0" angle="0"/>
-	            <mx:GlowFilter color="#b5b5b5" />
-	        </mx:filters>
-			<mx:VBox verticalScrollPolicy="off" horizontalScrollPolicy="off" width="53" height="53" borderStyle="solid" borderColor="#FFFFFF" borderThickness="2" >
-				<mx:Image width="50" height="50" source="@Embed(source='assets/images/perso.png')" />
+		
+	<mx:VBox verticalGap="0" backgroundAlpha="0.7" paddingTop="10" paddingLeft="15" width="100%" height="97" backgroundImage="@Embed(source='assets/images/conbg.png')">
+		<mx:HBox width="100%">	
+			<mx:VBox width="55" height="55" borderStyle="solid" borderColor="#969696" >
+				<mx:filters>
+		            <mx:DropShadowFilter color="#FFFFFF" blurX="10" blurY="10" distance="0" angle="0"/>
+		            <mx:GlowFilter color="#b5b5b5" />
+		        </mx:filters>
+				<mx:VBox verticalScrollPolicy="off" horizontalScrollPolicy="off" width="53" height="53" borderStyle="solid" borderColor="#FFFFFF" borderThickness="2" >
+					<mx:Image width="50" height="50" source="@Embed(source='assets/images/perso.png')" />
+				</mx:VBox>
 			</mx:VBox>
-		</mx:VBox>
-		<mx:VBox width="100%" height="70" verticalGap="0">			
-			<mx:HBox width="100%" verticalAlign="middle">		
-				<mx:Label color="#000000" text="{user.userVO.prenom}" fontFamily="Vegur_R" fontSize="26">
-					<mx:filters>
-			            <mx:DropShadowFilter color="#FFFFFF" blurX="10" blurY="10" distance="0" angle="0"/>
-			            <mx:GlowFilter color="#FFFFFF" />
-			        </mx:filters>
-				</mx:Label>
-				<components:EditableLabel width="150"  text="lorum ipsum dolor " paddingLeft="2" />
-			</mx:HBox>			
-			<combobox:AmjiCombobox id="comboBox" width="105">
-				<combobox:dataProvider>
-					<mx:Array>
-		                <mx:Object key="{Constantes.ENLIGNE}" label="En ligne" icon="EnLigne" />
-		                <mx:Object key="{Constantes.OCCUPE}" label="Occupé" icon="Occupe" />
-		                <mx:Object key="{Constantes.ABSENT}" label="Absent" icon="Absent" />
-		                <mx:Object key="{Constantes.DERETOUR}" label="De retour" icon="Retour" />
-		                <mx:Object key="{Constantes.HORSLIGNE}" label="Hors ligne" icon="HorsLigne" />		                
-		            </mx:Array>
-				</combobox:dataProvider>
-			</combobox:AmjiCombobox>
-					
-		</mx:VBox>		
-	</mx:HBox>
+			<mx:VBox width="100%" verticalGap="0">			
+				<mx:HBox width="100%" verticalAlign="middle">		
+					<mx:Label color="#000000" text="{user.userVO.prenom}" fontFamily="Vegur_R" fontSize="26">
+						<mx:filters>
+				            <mx:DropShadowFilter color="#FFFFFF" blurX="10" blurY="10" distance="0" angle="0"/>
+				            <mx:GlowFilter color="#FFFFFF" />
+				        </mx:filters>
+					</mx:Label>
+					<combobox:AmjiCombobox dropdownStyleName="myCustomDropdownStyleNameContact" color="#FFFFFF" id="comboBox" width="105">
+						<combobox:dataProvider>
+							<mx:Array>
+				                <mx:Object key="{Constantes.ENLIGNE}" label="En ligne" icon="EnLigne" />
+				                <mx:Object key="{Constantes.OCCUPE}" label="Occupé" icon="Occupe" />
+				                <mx:Object key="{Constantes.ABSENT}" label="Absent" icon="Absent" />
+				                <mx:Object key="{Constantes.DERETOUR}" label="De retour" icon="Retour" />
+				                <mx:Object key="{Constantes.HORSLIGNE}" label="Hors ligne" icon="HorsLigne" />		                
+				            </mx:Array>
+						</combobox:dataProvider>
+					</combobox:AmjiCombobox>				
+				</mx:HBox>			
+				<components:EditableLabel text="Veuillez saisir votre message perso" width="150" height="15"  paddingLeft="2" />									
+			</mx:VBox>
+		</mx:HBox>
+		<mx:HBox height="30" width="100%" verticalAlign="middle">
+			
+		</mx:HBox>			
+	</mx:VBox>
 		
 	
 	<!--<mx:Label  doubleClick="{this.editAllowed = ! this.editAllowed}" alpha="0.5"  color="#FF6600" text="lorum ipsum dolor " fontFamily="kroeger" fontSize="8" >
@@ -81,11 +86,34 @@
         </mx:filters>
 	</mx:TextInput>-->
 		
-	<mx:HBox width="100%" height="28" verticalAlign="middle">
-		<mx:TextInput id="critere" />
+	<!--<mx:HBox paddingLeft="5" visible="false" width="100%" height="28" verticalAlign="middle">
+		<mx:TextInput id="critere" cornerRadius="15" themeColor="#FF6600"/>
 		<mx:Button buttonMode="true" useHandCursor="true" width="28" icon="@Embed(source='assets/images/addcontact.png')" click="dispatchEvent(new Event(Actions.SHOWSEARCHCONTACT))"/>						
+	</mx:HBox>-->
+	<mx:VBox verticalGap="0" width="100%" height="100%" paddingLeft="1" paddingRight="1">
+		<!--<mx:List rowHeight="50" borderSides="none"  backgroundAlpha="0" itemRenderer="view.contacts.ItemContactRenderer" borderStyle="none" dataProvider="{listeContact}" labelField="nom" width="100%" height="100%">
+				
+		</mx:List>-->
+		<mx:Spacer height="10" />
+		<mx:HBox width="100%" height="30" paddingLeft="5" verticalAlign="middle">
+			<mx:Image source="@Embed(source='assets/images/OrangeIcone.png')">
+				<mx:filters>
+		            <mx:DropShadowFilter color="#FFFFFF" blurX="10" blurY="10" distance="0" angle="0"/>
+		            <mx:GlowFilter color="#FFFFFF" />		            
+		        </mx:filters>
+			</mx:Image>
+			<mx:Label paddingTop="4" color="#FF6600" text="Mes contacts" fontFamily="Vegur_R" fontSize="18">
+				<mx:filters>
+		            <mx:DropShadowFilter color="#FFFFFF" blurX="10" blurY="10" distance="0" angle="0"/>
+		            <mx:GlowFilter color="#FFFFFF" />		            
+		        </mx:filters>
+			</mx:Label>	
+		</mx:HBox>
+		<mx:Spacer height="10" />		
+		<mx:Repeater id="contactRepeater" dataProvider="{listeContact}" width="100%" height="100%">
+			<contacts:ItemContactRenderer user="{contactRepeater.currentItem as CreateUserVO}" width="100%"/>
+		</mx:Repeater>
+	</mx:VBox>
+	<mx:HBox backgroundAlpha="0" width="100%" height="20" paddingLeft="1" paddingRight="1">
 	</mx:HBox>
-	<mx:List borderStyle="none" backgroundAlpha="0" dataProvider="{listeContact}" labelField="nom" width="100%" height="100%">
-			
-	</mx:List>
 </mx:VBox>

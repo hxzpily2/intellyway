@@ -301,6 +301,11 @@ AmjiCombobox {
             backgroundColor: white;
             drop-shadow-enabled : false;
         }
+.myCustomDropdownStyleNameContact {
+            backgroundAlpha: 0.5;
+            backgroundColor: white;
+            drop-shadow-enabled : false;
+        }
 ComboBoxArrow
 {
 	disabledSkin: Embed(source="AmjiTheme.swf", symbol="ComboBoxArrow_disabledSkin");
