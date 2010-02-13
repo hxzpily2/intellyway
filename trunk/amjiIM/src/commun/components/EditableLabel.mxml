@@ -4,9 +4,9 @@
 		<mx:State name="editable">
 			<mx:RemoveChild target="{lblInput}"/>
 			<mx:AddChild position="lastChild">
-				<mx:TextInput width="200" change="this.text = txtInput.text" text="{this.text}" doubleClickEnabled="true" keyDown="keyDown(event)" id="txtInput" height="15" alpha="0.5" fontFamily="kroeger" fontSize="8" color="#FF6600" themeColor="#A3A3A3"  borderStyle="none" backgroundAlpha="0">
+				<mx:TextInput width="200" change="this.text = txtInput.text" text="{this.text}" keyDown="keyDown(event)" id="txtInput" alpha="0.5" fontFamily="kroeger" fontSize="8" color="#FFFFFF" themeColor="#A3A3A3"  borderStyle="none" backgroundAlpha="0">
 					<mx:filters>
-			            <mx:DropShadowFilter color="#FFFFFF" blurX="10" blurY="10" distance="0" angle="0"/>
+			            <mx:DropShadowFilter color="#FFFFFF" blurX="10" blurY="10" distance="0" angle="0"/>			            
 			        </mx:filters>
 				</mx:TextInput>
 			</mx:AddChild>
@@ -29,7 +29,7 @@
 		}
 	]]>
 </mx:Script>
-<mx:Label maxWidth="100" truncateToFit="true" text="{this.text}" click="doubleClick(event)" doubleClickEnabled="true" id="lblInput" height="15" alpha="0.5" fontFamily="kroeger" fontSize="8" color="#828282">
+<mx:Label maxWidth="150" truncateToFit="true" text="{this.text}" click="doubleClick(event)" doubleClickEnabled="true" id="lblInput" height="15" alpha="0.5" fontFamily="kroeger" fontSize="8" color="#FFFFFF">
 	<mx:filters>
             <mx:DropShadowFilter color="#FFFFFF" blurX="10" blurY="10" distance="0" angle="0"/>
     </mx:filters>
