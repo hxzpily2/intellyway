@@ -85,11 +85,20 @@
             <mx:DropShadowFilter color="#FFFFFF" blurX="10" blurY="10" distance="0" angle="0"/>
         </mx:filters>
 	</mx:TextInput>-->
-		
-	<!--<mx:HBox paddingLeft="5" visible="false" width="100%" height="28" verticalAlign="middle">
-		<mx:TextInput id="critere" cornerRadius="15" themeColor="#FF6600"/>
-		<mx:Button buttonMode="true" useHandCursor="true" width="28" icon="@Embed(source='assets/images/addcontact.png')" click="dispatchEvent(new Event(Actions.SHOWSEARCHCONTACT))"/>						
-	</mx:HBox>-->
+	<mx:Spacer height="2" />	
+	<mx:HBox horizontalGap="3" paddingLeft="5" visible="true" width="100%" height="28" verticalAlign="middle">
+		<contacts:InputTextSearch id="searchInput" mouseOut="searchInput.alpha = 0.5" mouseOver="searchInput.alpha = 1" alpha="0.5" backgroundColor="#FFFFFF" borderColor="#8A8A8A" borderStyle="solid" >
+			<contacts:filters>
+		       <mx:DropShadowFilter color="#dbdbdb" blurX="5" blurY="5" distance="0" angle="0"/>	            
+		   </contacts:filters>
+		</contacts:InputTextSearch>
+		<mx:Image alpha="0.7" buttonMode="true" useHandCursor="true" source="@Embed(source='assets/images/addcontact.png')" click="dispatchEvent(new Event(Actions.SHOWSEARCHCONTACT))">
+			<mx:filters>
+		       <mx:DropShadowFilter color="#FFFFFF" blurX="10" blurY="10" distance="0" angle="0"/>
+		       <mx:GlowFilter color="#FFFFFF" />		            
+		   </mx:filters>
+		</mx:Image>						
+	</mx:HBox>
 	<mx:VBox verticalGap="0" width="100%" height="100%" paddingLeft="1" paddingRight="1">
 		<!--<mx:List rowHeight="50" borderSides="none"  backgroundAlpha="0" itemRenderer="view.contacts.ItemContactRenderer" borderStyle="none" dataProvider="{listeContact}" labelField="nom" width="100%" height="100%">
 				
