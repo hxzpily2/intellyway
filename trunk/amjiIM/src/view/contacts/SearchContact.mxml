@@ -51,7 +51,7 @@
                     if (listContact.selectedIndex != rightClickIndex){                    	
                         listContact.selectedIndex = rightClickIndex;
                     }
-                    if(listContact.selectedIndex>0)
+                    if(listContact.selectedIndex>=0)
    						popupMenu.display(event.target.stage, event.stageX, event.stageY);                     
                 }
     			

@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:HBox paddingLeft="5" xmlns:mx="http://www.adobe.com/2006/mxml" verticalAlign="middle">
+<mx:HBox paddingLeft="5" xmlns:mx="http://www.adobe.com/2006/mxml" verticalAlign="middle" horizontalAlign="left">
+	<mx:DropShadowFilter color="#8A8A8A" blurX="10" blurY="10" distance="0" angle="0"/>
 	<mx:Image source="@Embed(source='assets/images/iconSearch.png')"/>
+	<mx:TextInput paddingTop="3" text="Rechercher des contacts" focusIn="this.alpha = 1" focusOut="this.alpha = 0.5" focusAlpha="0" borderStyle="none" width="100%"/>
 </mx:HBox>
