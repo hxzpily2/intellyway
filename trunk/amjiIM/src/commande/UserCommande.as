@@ -49,6 +49,16 @@ package commande
 			service.addContact(invitevo);
 		}
 		
+		public function statutChange(notification : INotification):void{
+			var service : UserDelegate = new UserDelegate(this);
+			service.statutChange(notification.getBody() as String);
+		}
+		
+		public function changePseudo(notification : INotification):void{
+			var service : UserDelegate = new UserDelegate(this);
+			service.changePseudo(notification.getBody() as String);
+		}
+		
 		override public function result(data : Object):void{
 			switch((data.token as AsyncToken).action){
 				case Actions.CREATAUSER:

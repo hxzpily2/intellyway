@@ -7,7 +7,7 @@
     borderStyle="none"
     applicationComplete="init()" xmlns:components="commun.components.*"
     close="closeHandler()"
-    width="100%" height="100%">
+    width="100%" height="100%" xmlns:messaging="weborb.messaging.*">
 	
 	<mx:Metadata>
         [ResourceBundle("i18n")]
@@ -15,6 +15,8 @@
     
     <mx:Script>
 		<![CDATA[
+			import mx.messaging.messages.AsyncMessage;
+			import mx.messaging.events.MessageEvent;
 			import commun.Commun;
 			import view.contacts.SearchContact;
 			import commun.components.AmjiAlert;
@@ -42,7 +44,7 @@
 			[Bindable]
     		private var locales:Array = [ "en_US" , "fr_FR" ];
     		public var poopupFugace : PopupFugace;
-    		public var searchContactWin : SearchContact;
+    		public var searchContactWin : SearchContact;    		
 			private function init():void{
 				window = new LoginWindow();
 				inscWindow = new InscriptionWindow();
@@ -63,8 +65,32 @@
 				if(Commun.getStoredItem(Commun.pass)!=null){
 					window.userVO.pass = Commun.getStoredItem(Commun.pass);
 					window.txtPass.content = Commun.getStoredItem(Commun.pass);
-				}								 			
-			}
+				}
+				///messaging
+							
+				consumer.addEventListener( MessageEvent.MESSAGE, gotMessage );
+				consumer.subqueue = "test";
+				consumer.subscribe();
+				consumer.selector = "test='reda'"; 
+					
+				var message:AsyncMessage = new AsyncMessage();         
+	            
+	            message.body = "test";	            
+	            producer.producerId = "reda";
+	            	            
+	            producer.send( message );	            	
+	            
+	                        
+				///end messaging										 			
+			}	
+			
+			public function gotMessage( event:MessageEvent ):void
+			{
+				// received message is always AsyncMessage, so cast it
+	            var msg:AsyncMessage = AsyncMessage( event.message );
+	            
+	            Alert.show(msg.body.toString());		        
+			}		
 			
 			private function handleChangeState(event:NativeWindowDisplayStateEvent):void{
 				if(event.afterDisplayState == NativeWindowDisplayState.MINIMIZED){ 
@@ -175,6 +201,7 @@
 		</mx:HBox>
 			
 	</mx:VBox>-->
-	
+	<messaging:WeborbProducer destination="AmjiChat" id="producer" />
+	<messaging:WeborbConsumer destination="AmjiChat" id="consumer" />
 </mx:WindowedApplication>
 

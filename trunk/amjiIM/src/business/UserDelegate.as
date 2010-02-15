@@ -46,6 +46,18 @@ package business
             asynchToken.addResponder(responder);
             asynchToken.action = Actions.ADDCONTACT;
 		}
+		
+		public function statutChange(statut : String):void{
+			var asynchToken:AsyncToken = service.statutChange(statut);  
+            asynchToken.addResponder(responder);
+            asynchToken.action = Actions.STATUTCHANGE;
+		}
+		
+		public function changePseudo(pseudo : String):void{
+			var asynchToken:AsyncToken = service.changePseudo(pseudo);  
+            asynchToken.addResponder(responder);
+            asynchToken.action = Actions.PSEUDOCHANGE;
+		}
 
 	}
 }

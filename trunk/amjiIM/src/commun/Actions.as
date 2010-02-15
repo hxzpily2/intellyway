@@ -12,6 +12,8 @@ package commun
 		public static const SHOWSEARCHCONTACT : String = "showSearchContact";
 		public static const ADDCONTACT : String = "addContact";
 		public static const INVITECONTACT : String = "inviteContact";
+		public static const STATUTCHANGE : String = "statutChange";
+		public static const PSEUDOCHANGE : String = "changePseudo";
 		public function Actions()
 		{
 		}
