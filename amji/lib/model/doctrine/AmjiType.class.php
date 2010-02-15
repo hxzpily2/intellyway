@@ -12,5 +12,13 @@
  */
 class AmjiType extends BaseAmjiType
 {
-
+	public static function getAllType(){
+		$types = Doctrine_Query::create ()->from ( 'AmjiType t' )->where('t.active = 1')->execute();
+		return $types;
+	}
+	
+	public static function getTypePerUser($iduser){
+		$types = Doctrine_Query::create ()->from ( 'AmjiType t' )->leftJoin('t.AmjiSubscribe s')->where('s.idamji_user = '.$iduser)->execute();
+		return $types;
+	}
 }
