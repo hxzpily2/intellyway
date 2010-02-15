@@ -45,6 +45,14 @@
                 <polling-enabled>false</polling-enabled>
             </properties>
         </channel-definition>
+		
+		<channel-definition id="my-air-polling-amf" class="mx.messaging.channels.AMFChannel">
+            <endpoint uri="http://localhost/amji/lib/Weborb/weborb.php" class="flex.messaging.endpoints.AMFEndpoint"/>
+            <properties>
+                <polling-enabled>true</polling-enabled>
+                <polling-interval-seconds>1</polling-interval-seconds>
+            </properties>
+        </channel-definition>
         
         <channel-definition id="my-polling-amf" class="mx.messaging.channels.AMFChannel">
             <endpoint uri="weborb.php" class="flex.messaging.endpoints.AMFEndpoint"/>
