@@ -54,7 +54,7 @@
 				            <mx:GlowFilter color="#FFFFFF" />
 				        </mx:filters>
 					</mx:Label>
-					<combobox:AmjiCombobox dropdownStyleName="myCustomDropdownStyleNameContact" color="#FFFFFF" id="comboBox" width="105">
+					<combobox:AmjiCombobox change="dispatchEvent(new Event(Actions.STATUTCHANGE))" dropdownStyleName="myCustomDropdownStyleNameContact" color="#FFFFFF" id="comboBox" width="105">
 						<combobox:dataProvider>
 							<mx:Array>
 				                <mx:Object key="{Constantes.ENLIGNE}" label="En ligne" icon="EnLigne" />
@@ -66,7 +66,7 @@
 						</combobox:dataProvider>
 					</combobox:AmjiCombobox>				
 				</mx:HBox>			
-				<components:EditableLabel text="Veuillez saisir votre message perso" width="150" height="15"  paddingLeft="2" />									
+				<components:EditableLabel id="txtPseudo" change="dispatchEvent(new Event(Actions.PSEUDOCHANGE))" text="Veuillez saisir votre message perso" width="150" height="15"  paddingLeft="2" />									
 			</mx:VBox>
 		</mx:HBox>
 		<mx:HBox  height="30" width="100%" verticalAlign="middle" horizontalAlign="right" paddingRight="3">

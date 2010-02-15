@@ -36,6 +36,8 @@ package view
 			app.mainWindow.open();
 			app.mainWindow.addEventListener(Actions.SHOWSEARCHCONTACT, showSearchContact);
 			app.mainWindow.addEventListener(Actions.CLOSEINSCWIN,closeWindow);
+			app.mainWindow.contactView.addEventListener(Actions.STATUTCHANGE,changeStatut);
+			app.mainWindow.contactView.addEventListener(Actions.PSEUDOCHANGE,pseudoChange);
 		}
 		
 		public function get app():amjiIM{  
@@ -78,6 +80,14 @@ package view
         	app.closeHandler();
         }
 		
+		public function changeStatut(event : Event):void{
+			sendNotification(Actions.GENERICUSER,app.mainWindow.contactView.comboBox.selectedItem.key,Actions.STATUTCHANGE);
+		}	
+		
+		public function pseudoChange(event : Event):void{
+			sendNotification(Actions.GENERICUSER,app.mainWindow.contactView.txtPseudo.text,Actions.PSEUDOCHANGE);
+		}
+		
 		override public function listNotificationInterests():Array  
         {  
             return [  
@@ -107,7 +117,14 @@ package view
             		app.mainWindow.contactView.listeContact = new ArrayCollection;
             		app.mainWindow.contactView.listeContact.source = proxy.userConnected.listeContacts;
             		app.mainWindow.contactView.user = proxy.userConnected;
-            		app.window.nativeWindow.visible = false;
+            		app.window.nativeWindow.visible = false;            		
+            		for(var i : Number = 0;i<(app.mainWindow.contactView.comboBox.dataProvider as ArrayCollection).length;i++){
+            			if((app.mainWindow.contactView.comboBox.dataProvider as ArrayCollection).getItemAt(i).key == app.mainWindow.contactView.user.userVO.connstatut){
+            				app.mainWindow.contactView.comboBox.selectedIndex = i;
+            				break;
+            			} 
+            		}
+            		//app.consumer.subqueue = proxy.userConnected.userVO.email;
             		break;
             	case ApplicationFacade.LOGINFAILED:
             		app.hideLoader();
