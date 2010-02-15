@@ -77,7 +77,7 @@
 	            
 	            message.body = "test";	            
 	            producer.producerId = "reda";
-	            	            
+	            producer.subqueue = "reda"; 	            
 	            producer.send( message );	            	
 	            
 	                        
