@@ -1,5 +1,7 @@
 package model.vo
 {
+	import weborb.messaging.WeborbConsumer;
+	
 	[RemoteClass(alias="amji.vo.CreateUserVO")]     
     [Bindable]  
 	public class CreateUserVO
@@ -22,6 +24,7 @@ package model.vo
  		public var confirmpassword  :  String;
  		public var civilite  :  String;
  		public var connstatut : String;
+ 		public var consumer : WeborbConsumer;
  
 		public function CreateUserVO()
 		{
