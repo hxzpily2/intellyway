@@ -54,12 +54,12 @@
       </parameter>
     </loggingPolicy>
   
-    <log enable="yes">WEBORB INFO</log>
-    <log enable="yes">WEBORB DEBUG</log>
+    <log enable="no">WEBORB INFO</log>
+    <log enable="no">WEBORB DEBUG</log>
     <log enable="yes">WEBORB MYDEBUG</log>
-    <log enable="yes">WEBORB ERROR</log>
-    <log enable="yes">WEBORB SERIALIZATION</log>
-    <log enable="yes">WEBORB EXCEPTION</log>
+    <log enable="no">WEBORB ERROR</log>
+    <log enable="no">WEBORB SERIALIZATION</log>
+    <log enable="no">WEBORB EXCEPTION</log>
     <log enable="no">WEBORB INSTRUMENTATION</log>
     <log enable="no">WEBORB SECURITY</log>
     <log enable="no">WEBORB PERFORMANCE</log>
