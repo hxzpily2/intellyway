@@ -50,7 +50,8 @@
             <endpoint uri="http://localhost/amji/lib/Weborb/weborb.php" class="flex.messaging.endpoints.AMFEndpoint"/>
             <properties>
                 <polling-enabled>true</polling-enabled>
-                <polling-interval-seconds>1</polling-interval-seconds>
+                <polling-interval-seconds>0</polling-interval-seconds>
+				<message-time-to-live>0</message-time-to-live>
             </properties>
         </channel-definition>
         
