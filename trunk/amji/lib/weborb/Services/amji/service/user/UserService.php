@@ -80,8 +80,9 @@ class UserService extends GenericService{
 			$user->save ();
 			$loginVO = new LoginVO();
 			$loginVO->userVO = $userVo;
+			$loginVO->listTypes = AmjiType::getTypePerUser($userVo->idamji_user);
 			$listeContacts = AmjiUser::getContacts($userVo->idamji_user);
-			$listInvitations = AmjiUser::getInvitations($userVo->idamji_user);
+			$listInvitations = AmjiUser::getInvitations($userVo->idamji_user);			
 			$loginVO->listeContacts = array();
 			$loginVO->listInvitations = array();
 			foreach ($listeContacts as $contact){
