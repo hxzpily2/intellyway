@@ -68,6 +68,7 @@ class UserService extends GenericService{
 			$userVo->statut = $amjiuser->getStatut();
 			$userVo->tel = $amjiuser->getTel();
 			$userVo->civilite = $amjiuser->getCivilite();
+			$userVo->connstatut = $userVO->statut;
 			$amjiuser->setIdamji_statut(AmjiStatut::getStatutId($userVO->statut));
 			$amjiuser->save();
 			$this->getUser ()->setAttribute ( Sessions::USERCONNECTED, $amjiuser );
@@ -126,6 +127,19 @@ class UserService extends GenericService{
 		}else{						
 			return NULL;
 		}
+	}
+	
+	public function statutChange($statut){
+		$idstatut = AmjiStatut::getStatutId($statut);
+		$user = $this->getUser()->getAttribute(Sessions::USERCONNECTED);
+		$user->setIdamji_statut($idstatut);
+		$user->save();
+	}
+	
+	public function changePseudo($pseudo){
+		$user = $this->getUser()->getAttribute(Sessions::USERCONNECTED);
+		$user->setPseudo($pseudo);
+		$user->save();
 	}
 }
 
