@@ -10,15 +10,20 @@ package view
 	import model.ApplicationProxy;
 	import model.vo.CreateUserVO;
 	import model.vo.InviteContactVO;
+	import model.vo.TypeVO;
 	
 	import mx.collections.ArrayCollection;
 	import mx.controls.Alert;
+	import mx.messaging.events.MessageEvent;
+	import mx.messaging.messages.AsyncMessage;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.mediator.Mediator;
 	
 	import view.contacts.SearchContact;
+	
+	import weborb.messaging.WeborbConsumer;
 	
 	public class ApplicationMediateur extends Mediator implements IMediator
 	{
@@ -82,10 +87,81 @@ package view
 		
 		public function changeStatut(event : Event):void{
 			sendNotification(Actions.GENERICUSER,app.mainWindow.contactView.comboBox.selectedItem.key,Actions.STATUTCHANGE);
+			this.sendStatutChangeMessage(app.mainWindow.contactView.comboBox.selectedItem.key);
 		}	
 		
 		public function pseudoChange(event : Event):void{
 			sendNotification(Actions.GENERICUSER,app.mainWindow.contactView.txtPseudo.text,Actions.PSEUDOCHANGE);
+			this.sendPseudoChangeMessage(app.mainWindow.contactView.txtPseudo.text);
+		}
+		
+		public function sendStatutChangeMessage(statut : String):void{
+			var proxy : ApplicationProxy = facade.retrieveProxy(ApplicationProxy.NAME) as ApplicationProxy;
+			var body : Object = new Object;
+			body.action = Actions.STATUTCHANGE;
+			body.statut = statut;
+			body.user = proxy.userConnected.userVO.idamji_user;
+			
+			var message : AsyncMessage = new AsyncMessage;
+			message.body = body;
+			app.producer.producerId = proxy.userConnected.userVO.idamji_user.toString();
+			app.producer.subqueue = "user"+proxy.userConnected.userVO.idamji_user.toString();
+			app.producer.send(message);
+		}
+		
+		public function sendPseudoChangeMessage(pseudo : String):void{
+			var proxy : ApplicationProxy = facade.retrieveProxy(ApplicationProxy.NAME) as ApplicationProxy;
+			var body : Object = new Object;
+			body.action = Actions.PSEUDOCHANGE;
+			body.pseudo = pseudo;
+			body.user = proxy.userConnected.userVO.idamji_user;
+			
+			var message : AsyncMessage = new AsyncMessage;
+			message.body = body;
+			app.producer.producerId = proxy.userConnected.userVO.idamji_user.toString();
+			app.producer.subqueue = "user"+proxy.userConnected.userVO.idamji_user.toString();
+			app.producer.send(message);
+		}
+		
+		public function subscribeToChat():void{
+			var proxy : ApplicationProxy = facade.retrieveProxy(ApplicationProxy.NAME) as ApplicationProxy;
+			app.consumer.subqueue = proxy.userConnected.userVO.email;
+			app.consumer.addEventListener(MessageEvent.MESSAGE,showMessage);
+			app.consumer.subscribe();			
+		}
+		
+		public function showMessage(event:MessageEvent):void{
+			
+		}
+		
+		public function topicMessage(event : MessageEvent):void{
+			
+		}
+		
+		public function contactMessage(event : MessageEvent):void{
+			
+		}
+		
+		public function createConsumerForType():void{
+			var proxy : ApplicationProxy = facade.retrieveProxy(ApplicationProxy.NAME) as ApplicationProxy;
+			for(var i : Number = 0;i<proxy.userConnected.listTypes.length;i++){
+				(proxy.userConnected.listTypes[i] as TypeVO).consumer = new WeborbConsumer();
+				(proxy.userConnected.listTypes[i] as TypeVO).consumer.destination = "AmjiChat";
+				(proxy.userConnected.listTypes[i] as TypeVO).consumer.subqueue = "topic"+(proxy.userConnected.listTypes[i] as TypeVO).idtype.toString();
+				(proxy.userConnected.listTypes[i] as TypeVO).consumer.addEventListener(MessageEvent.MESSAGE,topicMessage);
+				(proxy.userConnected.listTypes[i] as TypeVO).consumer.subscribe();				 
+			}
+		}
+		
+		public function createConsumerForContacts():void{
+			var proxy : ApplicationProxy = facade.retrieveProxy(ApplicationProxy.NAME) as ApplicationProxy;
+			for(var i : Number = 0;i<proxy.userConnected.listeContacts.length;i++){
+				(proxy.userConnected.listeContacts[i] as CreateUserVO).consumer = new WeborbConsumer();
+				(proxy.userConnected.listeContacts[i] as CreateUserVO).consumer.destination = "AmjiChat";
+				(proxy.userConnected.listeContacts[i] as CreateUserVO).consumer.subqueue = "user"+(proxy.userConnected.listeContacts[i] as CreateUserVO).idamji_user.toString();
+				(proxy.userConnected.listeContacts[i] as CreateUserVO).consumer.addEventListener(MessageEvent.MESSAGE,contactMessage);
+				(proxy.userConnected.listeContacts[i] as CreateUserVO).consumer.subscribe();				 
+			}
 		}
 		
 		override public function listNotificationInterests():Array  
@@ -124,7 +200,8 @@ package view
             				break;
             			} 
             		}
-            		//app.consumer.subqueue = proxy.userConnected.userVO.email;
+            		this.subscribeToChat();
+            		this.createConsumerForType();
             		break;
             	case ApplicationFacade.LOGINFAILED:
             		app.hideLoader();

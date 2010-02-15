@@ -65,32 +65,8 @@
 				if(Commun.getStoredItem(Commun.pass)!=null){
 					window.userVO.pass = Commun.getStoredItem(Commun.pass);
 					window.txtPass.content = Commun.getStoredItem(Commun.pass);
-				}
-				///messaging
-							
-				consumer.addEventListener( MessageEvent.MESSAGE, gotMessage );
-				consumer.subqueue = "test";
-				consumer.subscribe();
-				consumer.selector = "test='reda'"; 
-					
-				var message:AsyncMessage = new AsyncMessage();         
-	            
-	            message.body = "test";	            
-	            producer.producerId = "reda";
-	            producer.subqueue = "reda"; 	            
-	            producer.send( message );	            	
-	            
-	                        
-				///end messaging										 			
+				}													 			
 			}	
-			
-			public function gotMessage( event:MessageEvent ):void
-			{
-				// received message is always AsyncMessage, so cast it
-	            var msg:AsyncMessage = AsyncMessage( event.message );
-	            
-	            Alert.show(msg.body.toString());		        
-			}		
 			
 			private function handleChangeState(event:NativeWindowDisplayStateEvent):void{
 				if(event.afterDisplayState == NativeWindowDisplayState.MINIMIZED){ 
