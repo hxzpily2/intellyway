@@ -90,13 +90,13 @@
     	]]>
     </mx:Script>
     
-    <mx:VBox verticalScrollPolicy="off" horizontalScrollPolicy="off" styleName="popupFugaceBackground" id="noteVBox" alpha="0" width="100%" height="100%"
+    <mx:VBox verticalScrollPolicy="off" alpha="0" horizontalScrollPolicy="off" styleName="popupFugaceBackground" id="noteVBox" width="100%" height="100%"
 	    borderStyle="none"    
 	    horizontalAlign="center" 
 	    verticalAlign="middle"   
 	    cornerRadius="15"	    
-	    backgroundColor="#FFFFFF">
-	    <mx:HBox verticalScrollPolicy="off" horizontalScrollPolicy="off" horizontalAlign="center" verticalAlign="middle" width="100%" height="100%">	    
+	    >
+	    <mx:HBox backgroundAlpha="0" verticalScrollPolicy="off" horizontalScrollPolicy="off" horizontalAlign="center" verticalAlign="middle" width="100%" height="100%">	    
 		    <mx:Image id="imgType" width="73" height="73" source="{valid}" />
 	    	<mx:Text verticalCenter="true" color="#FF6600" fontWeight="bold" fontSize="16" fontFamily="Tahoma" htmlText="{text}"/>
     	</mx:HBox>    	
