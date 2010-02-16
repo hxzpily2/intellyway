@@ -2,7 +2,8 @@
 
 class InviteContactVO{
 	public $idcontact;
-	public $message;	
+	public $message;
+	public $mail;	
 }
 
 ?>
