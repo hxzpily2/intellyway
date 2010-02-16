@@ -6,6 +6,7 @@ package model.vo
 	{
 		public var idcontact : Number;
 		public var message : String;
+		public var mail : Boolean;
 		public function InviteContactVO()
 		{
 			

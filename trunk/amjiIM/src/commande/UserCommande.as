@@ -96,7 +96,7 @@ package commande
 		override public function fault(info : Object):void{
 			var errorMessage:ErrorMessage = info.message as ErrorMessage;
 			if(errorMessage.faultString == Errors.INVITATIONEXIST){
-				sendNotification(ApplicationFacade.INSCRFAILED,errorMessage.faultString);
+				sendNotification(ApplicationFacade.INVITEFAILED,errorMessage.faultString);
 			}else{
 				Alert.show(info.fault.toString());
 			}

@@ -87,7 +87,7 @@
 	</mx:TextInput>-->
 	<mx:Spacer height="2" />	
 	<mx:HBox horizontalGap="3" paddingLeft="5" visible="true" width="100%" height="28" verticalAlign="middle">
-		<contacts:InputTextSearch id="searchInput" mouseOut="searchInput.alpha = 0.5" mouseOver="searchInput.alpha = 1" alpha="0.5" backgroundColor="#FFFFFF" borderColor="#8A8A8A" borderStyle="solid" >
+		<contacts:InputTextSearch icone="search" text="Rechercher des contacts" id="searchInput" mouseOut="searchInput.alpha = 0.5" mouseOver="searchInput.alpha = 1" alpha="0.5" backgroundColor="#FFFFFF" borderColor="#8A8A8A" borderStyle="solid" >
 			<contacts:filters>
 		       <mx:DropShadowFilter color="#dbdbdb" blurX="5" blurY="5" distance="0" angle="0"/>	            
 		   </contacts:filters>

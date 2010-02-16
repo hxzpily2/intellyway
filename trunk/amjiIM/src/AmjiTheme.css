@@ -426,5 +426,74 @@ List{
    	
 }
 
+ButtonOAF
+{
+	disabledSkin: Embed(source="AeonGraphical.swf", symbol="Button_disabledSkin");
+	downSkin: Embed(source="AeonGraphical.swf", symbol="Button_downSkin");
+	overSkin: Embed(source="AeonGraphical.swf", symbol="Button_overSkin");
+	upSkin: Embed(source="AeonGraphical.swf", symbol="Button_upSkin");
+}
+
+ButtonOrangeOAF
+{
+	disabledSkin: Embed(source="AeonGraphical.swf", symbol="Button_Orange_disabledSkin");
+	downSkin: Embed(source="AeonGraphical.swf", symbol="Button_Orange_downSkin");
+	overSkin: Embed(source="AeonGraphical.swf", symbol="Button_Orange_overSkin");
+	upSkin: Embed(source="AeonGraphical.swf", symbol="Button_Orange_upSkin");
+	color: #ffffff;
+	textRollOverColor: #ffffff;
+	textSelectedColor: #ffffff;
+	disabledColor : #ffffff; 	
+}
+
+
+ScrollBar {
+	trackSkin:  Embed(source="AeonGraphical.swf", symbol="ScrollTrack_Skin");
+    thumbDownSkin: Embed(source= "AeonGraphical.swf", symbol="ScrollThumb_downSkin" );
+    thumbUpSkin: Embed(source= "AeonGraphical.swf", symbol="ScrollThumb_upSkin") ;
+    thumbOverSkin: Embed(source= "AeonGraphical.swf", symbol="ScrollThumb_overSkin" );
+    upArrowUpSkin: Embed(source= "AeonGraphical.swf", symbol="ScrollArrowUp_upSkin" );
+    upArrowDisabledSkin : Embed(source= "AeonGraphical.swf", symbol="ScrollArrowUp_disabledSkin" );
+    upArrowDownSkin: Embed(source= "AeonGraphical.swf", symbol="ScrollArrowUp_downSkin" );
+    upArrowOverSkin: Embed(source= "AeonGraphical.swf", symbol="ScrollArrowUp_overSkin" );
+    downArrowDisabledSkin: Embed(source= "AeonGraphical.swf", symbol="ScrollArrowDown_disabledSkin");
+    downArrowDownSkin: Embed(source= "AeonGraphical.swf", symbol="ScrollArrowDown_downSkin" );
+    downArrowOverSkin: Embed(source= "AeonGraphical.swf", symbol="ScrollArrowDown_overSkin" );
+    downArrowUpSkin: Embed(source= "AeonGraphical.swf", symbol="ScrollArrowDown_upSkin" );
+    /*
+    
+    
+    /*downArrowDisabledSk in: Embed(source= "flex_skins. swf", symbol="ScrollArrow Down_disabledSkin");
+    downArrowDownSkin: Embed(source= "flex_skins. swf", symbol="ScrollArrow Down_downSkin" );
+    downArrowOverSkin: Embed(source= "flex_skins. swf", symbol="ScrollArrow Down_overSkin" );
+    downArrowUpSkin: Embed(source= "AeonGraphical.swf", symbol="ScrollArrowUp_upSkin" );
+    
+    upArrowDisabledSkin : Embed(source= "flex_skins. swf", symbol="ScrollArrow Up_disabledSkin" );
+    upArrowDownSkin: Embed(source= "flex_skins. swf", symbol="ScrollArrow Up_downSkin" );
+    upArrowOverSkin: Embed(source= "flex_skins. swf", symbol="ScrollArrow Up_overSkin" );
+    upArrowUpSkin: Embed(source= "flex_skins. swf", symbol="ScrollArrow Up_upSkin" ); */
+}
+
+ScrollArrowDown
+{
+	disabledSkin: Embed(source="AeonGraphical.swf", symbol="ScrollArrowDown_disabledSkin");
+	downSkin: Embed(source="AeonGraphical.swf", symbol="ScrollThumb_downSkin");
+	overSkin: Embed(source="AeonGraphical.swf", symbol="ScrollArrowDown_overSkin");
+	upSkin: Embed(source="AeonGraphical.swf", symbol="ScrollArrowDown_upSkin");
+}
+ScrollArrowUp
+{
+	disabledSkin: Embed(source="AeonGraphical.swf", symbol="ScrollArrowUp_disabledSkin");
+	downSkin: Embed(source="AeonGraphical.swf", symbol="ScrollArrowUp_downSkin");
+	overSkin: Embed(source="AeonGraphical.swf", symbol="ScrollArrowUp_overSkin");
+	upSkin: Embed(source="AeonGraphical.swf", symbol="ScrollArrowUp_upSkin");
+}
+
+ScrollTrack
+{
+	Skin: Embed(source="AeonGraphical.swf", symbol="ScrollTrack_Skin");
+}
+
+
 
 
