@@ -1,6 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:HBox paddingLeft="5" xmlns:mx="http://www.adobe.com/2006/mxml" verticalAlign="middle" horizontalAlign="left">
+<mx:HBox paddingLeft="5" xmlns:mx="http://www.adobe.com/2006/mxml" verticalAlign="middle" horizontalAlign="left" 
+	creationComplete="init()">
+	<mx:Script>
+		<![CDATA[
+			
+			[Bindable] public var text : String;
+			public var icone : String;
+			public function init():void{
+				if(icone == "search"){
+					imgIcone.source = search;
+				}else if(icone == "invitation"){
+					imgIcone.source = invitation;
+				}
+				else{
+					imgIcone.source = search;
+				}
+			}
+			[Bindable]
+            [Embed(source="assets/images/iconSearch.png")]
+            public var search:Class;
+            
+            [Bindable]
+            [Embed(source="assets/images/menuboite.png")]
+            public var invitation:Class;
+		]]>
+	</mx:Script>
 	<mx:DropShadowFilter color="#8A8A8A" blurX="10" blurY="10" distance="0" angle="0"/>
-	<mx:Image source="@Embed(source='assets/images/iconSearch.png')"/>
-	<mx:TextInput paddingTop="3" text="Rechercher des contacts" focusIn="this.alpha = 1" focusOut="this.alpha = 0.5" focusAlpha="0" borderStyle="none" width="100%"/>
+	<mx:Image id="imgIcone" source="@Embed(source='assets/images/iconSearch.png')"/>
+	<mx:TextInput id="txtInput" change="this.text = txtInput.text" paddingTop="3" text="{this.text}" focusIn="this.alpha = 1" focusOut="this.alpha = 0.5" focusAlpha="0" borderStyle="none" width="100%"/>
 </mx:HBox>

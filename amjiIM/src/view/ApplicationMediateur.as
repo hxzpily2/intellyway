@@ -14,6 +14,7 @@ package view
 	
 	import mx.collections.ArrayCollection;
 	import mx.controls.Alert;
+	import mx.managers.PopUpManager;
 	import mx.messaging.events.MessageEvent;
 	import mx.messaging.messages.AsyncMessage;
 	
@@ -74,10 +75,14 @@ package view
         	var proxy : ApplicationProxy = facade.retrieveProxy(ApplicationProxy.NAME) as ApplicationProxy;
         	inviteVO.idcontact = (proxy.listeSearchContact[app.searchContactWin.listContact.selectedIndex] as CreateUserVO).idamji_user;
         	inviteVO.message = app.searchContactWin.txtMsgInvit.htmlText;
+        	PopUpManager.addPopUp(app.loader,app.searchContactWin,true);
+			PopUpManager.centerPopUp(app.loader);   
         	facade.sendNotification(Actions.GENERICUSER,inviteVO,Actions.ADDCONTACT);
         }
         
-        public function searchContact(event : Event):void{        	
+        public function searchContact(event : Event):void{     
+        	PopUpManager.addPopUp(app.loader,app.searchContactWin,true);
+			PopUpManager.centerPopUp(app.loader);   	
         	sendNotification(Actions.GENERICUSER,app.searchContactWin.txtCritere.text,Actions.SEARCHCONTACT);
         }
         
@@ -168,7 +173,7 @@ package view
         {  
             return [  
               	Actions.CREATAUSER,ApplicationFacade.LOGINFAILED,ApplicationFacade.LOGINSUCCESS,ApplicationFacade.INSCRSUCCESS,
-              	ApplicationFacade.SEARCHSUCCESS,ApplicationFacade.INVITESUCCESS
+              	ApplicationFacade.SEARCHSUCCESS,ApplicationFacade.INVITESUCCESS,ApplicationFacade.INVITEFAILED
         	]
         }
         
@@ -178,7 +183,7 @@ package view
             switch ( notification.getName() )  
             {  
             	case ApplicationFacade.INSCRSUCCESS:
-            		app.poopupFugace.show(app.geti18nText('text.inscription.congratulation'),310,120);
+            		app.poopupFugace.show(app.geti18nText('text.inscription.congratulation'),350,120);
             		app.poopupFugace.addEventListener("CLOSED",showLoginWindow);            		
             		app.hideLoader();
             		app.inscWindow.close();            		
@@ -212,12 +217,21 @@ package view
             		var proxy : ApplicationProxy = facade.retrieveProxy(ApplicationProxy.NAME) as ApplicationProxy;
             		app.searchContactWin.listeContactSearch = new ArrayCollection;
             		app.searchContactWin.listeContactSearch.source = proxy.listeSearchContact;
+            		PopUpManager.removePopUp(app.loader);
             		break; 
             	case ApplicationFacade.INVITESUCCESS:
             		var proxy : ApplicationProxy = facade.retrieveProxy(ApplicationProxy.NAME) as ApplicationProxy;
             		app.mainWindow.contactView.listeContact = new ArrayCollection;
             		app.mainWindow.contactView.listeContact.source = proxy.userConnected.listeContacts;
-            		break;        		
+            		PopUpManager.removePopUp(app.loader);
+            		app.searchContactWin.close();
+            		break; 
+            	case ApplicationFacade.INVITEFAILED:            		
+            		PopUpManager.removePopUp(app.loader);
+            		app.searchContactWin.close();
+            		app.alertWindow = new AmjiAlert();
+            		app.alertWindow.show("Ce contact figure déjà sur<br>votre liste",350,150,Constantes.ERROR);            		
+            		break;       		
             }
         }    
 
