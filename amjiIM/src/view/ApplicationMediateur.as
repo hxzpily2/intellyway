@@ -207,6 +207,7 @@ package view
             		}
             		this.subscribeToChat();
             		this.createConsumerForType();
+            		app.mainWindow.contactView.lblInvitations.value = proxy.userConnected.listInvitations.length; 
             		break;
             	case ApplicationFacade.LOGINFAILED:
             		app.hideLoader();

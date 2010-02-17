@@ -34,8 +34,9 @@
 
 		]]>
 	</mx:Script>
+	<mx:HBox width="100%" height="97" horizontalGap="0">
 		
-	<mx:VBox verticalGap="0" backgroundAlpha="0.7" paddingTop="10" paddingLeft="15" width="100%" height="97" backgroundImage="@Embed(source='assets/images/conbg.png')">
+	<mx:VBox verticalGap="0" backgroundAlpha="0.7" paddingTop="10" paddingLeft="15" width="290" height="97" backgroundImage="@Embed(source='assets/images/conbg.png')">
 		<mx:HBox width="100%">	
 			<mx:VBox width="55" height="55" borderStyle="solid" borderColor="#969696" >
 				<mx:filters>
@@ -64,16 +65,21 @@
 				                <mx:Object key="{Constantes.HORSLIGNE}" label="Hors ligne" icon="HorsLigne" />		                
 				            </mx:Array>
 						</combobox:dataProvider>
-					</combobox:AmjiCombobox>				
+					</combobox:AmjiCombobox>
+					<components:AmjiInbox alpha="0.7"/>				
 				</mx:HBox>			
 				<components:EditableLabel id="txtPseudo" change="dispatchEvent(new Event(Actions.PSEUDOCHANGE))" text="Veuillez saisir votre message perso" width="150" height="15"  paddingLeft="2" />									
 			</mx:VBox>
 		</mx:HBox>
 		<mx:HBox  height="30" width="100%" verticalAlign="middle" horizontalAlign="right" paddingRight="3">
 			<contacts:MenuGen verticalScrollPolicy="off" horizontalScrollPolicy="off" paddingRight="3" alpha="0.3" width="20" horizontalAlign="right" verticalAlign="middle" borderColor="#FFFFFF" cornerRadius="10" borderStyle="solid" height="20" />
+						
 		</mx:HBox>			
 	</mx:VBox>
-		
+	<mx:VBox styleName="leftBg" verticalGap="0" backgroundAlpha="0.7" paddingTop="10" width="100%" height="97" >
+		<components:AmjiInvite alpha="0.7" id="lblInvitations"/>
+	</mx:VBox>
+	</mx:HBox>	
 	
 	<!--<mx:Label  doubleClick="{this.editAllowed = ! this.editAllowed}" alpha="0.5"  color="#FF6600" text="lorum ipsum dolor " fontFamily="kroeger" fontSize="8" >
 		<mx:filters>
