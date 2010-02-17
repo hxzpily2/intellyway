@@ -67,6 +67,7 @@ class UserService extends GenericService{
 			$userVo->societe = $amjiuser->getSociete();
 			$userVo->statut = $amjiuser->getStatut();
 			$userVo->tel = $amjiuser->getTel();
+			$userVo->humeur = $amjiuser->getHumeur();
 			$userVo->civilite = $amjiuser->getCivilite();
 			$userVo->connstatut = $userVO->statut;
 			$amjiuser->setIdamji_statut(AmjiStatut::getStatutId($userVO->statut));
@@ -100,6 +101,7 @@ class UserService extends GenericService{
 				$c->societe = $contact->getSociete();
 				$c->statut = $contact->getStatut();
 				$c->tel = $contact->getTel();
+				$c->humeur = $contact->getHumeur();
 				$c->civilite = $contact->getCivilite();
 				$c->connstatut = AmjiStatut::getStatutById($contact->getIdamji_statut());
 				$loginVO->listeContacts[] = $c;				
@@ -119,6 +121,7 @@ class UserService extends GenericService{
 				$c->societe = $contact->getSociete();
 				$c->statut = $contact->getStatut();
 				$c->tel = $contact->getTel();
+				$c->humeur = $contact->getHumeur();
 				$c->civilite = $contact->getCivilite();
 				$c->connstatut = Constantes::HORSLIGNE;
 				$loginVO->listeContacts[] = $c;
