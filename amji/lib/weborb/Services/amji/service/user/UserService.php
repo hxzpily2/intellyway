@@ -121,7 +121,7 @@ class UserService extends GenericService{
 				$c->societe = $contact->getSociete();
 				$c->statut = $contact->getStatut();
 				$c->tel = $contact->getTel();
-				$c->humeur = $contact->getHumeur();
+				$c->humeur = Constantes::NORMAL;
 				$c->civilite = $contact->getCivilite();
 				$c->connstatut = Constantes::HORSLIGNE;
 				$loginVO->listeContacts[] = $c;
