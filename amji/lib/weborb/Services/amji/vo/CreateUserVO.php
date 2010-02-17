@@ -18,6 +18,7 @@ class CreateUserVO{
 	public  $password;
 	public  $civilite;
 	public  $connstatut;
+	public  $humeur;
 
 
 }
