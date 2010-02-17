@@ -24,7 +24,9 @@ package model.vo
  		public var confirmpassword  :  String;
  		public var civilite  :  String;
  		public var connstatut : String;
+ 		public var humeur : String;
  		public var consumer : WeborbConsumer;
+ 		
  
 		public function CreateUserVO()
 		{
