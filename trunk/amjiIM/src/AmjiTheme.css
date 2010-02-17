@@ -21,6 +21,10 @@
 
 Button {
    themeColor: #ff6600;
+	disabledSkin: Embed(source="AmjiTheme.swf", symbol="Button_disabledSkin");
+	downSkin: Embed(source="AmjiTheme.swf", symbol="Button_downSkin");
+	overSkin: Embed(source="AmjiTheme.swf", symbol="Button_overSkin");
+	upSkin: Embed(source="AmjiTheme.swf", symbol="Button_upSkin");
 }
 
 AccordionHeader
@@ -494,6 +498,30 @@ ScrollTrack
 	Skin: Embed(source="AeonGraphical.swf", symbol="ScrollTrack_Skin");
 }
 
+.amjiInbox
+        {
+
+            background-image: Embed(source="AmjiTheme.swf", symbol="AmjiInbox_upSkin");
+
+            background-size:"100%";            
+        } 
+        
+.amjiInvite
+        {
+
+            background-image: Embed(source="AmjiTheme.swf", symbol="AmjiInvite_upSkin");
+
+            background-size:"100%";            
+        }         
+        
+.leftBg
+        {
+			
+			background-image:   Embed("assets/images/left.png");
+    		backgroundAlpha:0.7;
+    		borderSkin:                 ClassReference("commun.components.RepeatedBackground");
+            
+        }
 
 
 
