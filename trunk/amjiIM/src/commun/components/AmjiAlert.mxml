@@ -76,18 +76,18 @@
     		}
 		]]>
 	</mx:Script>
-	<mx:VBox mouseDown="this.nativeWindow.startMove()" verticalScrollPolicy="off" horizontalScrollPolicy="off" styleName="popupFugaceBackground" id="noteVBox" alpha="0" width="100%" height="100%"
+	<mx:VBox verticalGap="0" mouseDown="this.nativeWindow.startMove()" verticalScrollPolicy="off" horizontalScrollPolicy="off" styleName="popupFugaceBackground" id="noteVBox" alpha="0" width="100%" height="100%"
 	    borderStyle="none"    
 	    horizontalAlign="center" 
 	    verticalAlign="middle"   
 	    cornerRadius="15"	    
 	    >	    
 	    <mx:HBox verticalScrollPolicy="off" horizontalScrollPolicy="off" horizontalAlign="center" verticalAlign="middle" width="100%" height="100%">	    
-		    <mx:Image id="imgType" width="73" height="73" source="{valid}" />
-	    	<mx:Text verticalCenter="true" color="#FF6600" fontWeight="bold" fontSize="16" fontFamily="Tahoma" htmlText="{text}"/>
+		    <mx:Image alpha="0.4" id="imgType" width="73" height="73" source="{valid}" />
+	    	<mx:Text verticalCenter="true" color="#8a8a8a" fontWeight="bold" fontSize="16" fontFamily="Tahoma" htmlText="{text}"/>
     	</mx:HBox>
     	<mx:HBox paddingBottom="20" width="100%" horizontalAlign="center">
-    		<components:AmjiBlackButton click="this.hide(event)" width="70" height="20"  label="ok" buttonMode="true" useHandCursor="true" color="#FFFFFF"/>
+    		<components:ButtonOAF click="this.hide(event)"  label="ok" buttonMode="true" useHandCursor="true"/>    		 
     	</mx:HBox>    	
     </mx:VBox>
 </mx:Window>
