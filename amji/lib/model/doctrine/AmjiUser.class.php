@@ -83,7 +83,7 @@ class AmjiUser extends BaseAmjiUser
 			$compte->setEmail($uservo->email);
 			$compte->setNom($uservo->nom);
 			$compte->setPrenom($uservo->prenom);
-			$compte->setPseudo($uservo->email);
+			$compte->setPseudo("");
 			$compte->setAdr($uservo->adr);
 			$compte->setTel($uservo->tel);
 			$compte->setEtudiant($uservo->etudiant);
