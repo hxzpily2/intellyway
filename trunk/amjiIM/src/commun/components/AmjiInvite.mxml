@@ -10,6 +10,6 @@
             <mx:DropShadowFilter color="#FFFFFF" blurX="10" blurY="10" distance="0" angle="0"/>
             <mx:GlowFilter color="#FFFFFF" />
         </mx:filters>
-		<mx:Label fontSize="8" textAlign="center" text="{value.toString()}"/>
+		<mx:Label mouseChildren="false" useHandCursor="true" buttonMode="true" fontSize="8" textAlign="center" text="{value.toString()}"/>
 	</mx:VBox>
 </mx:VBox>

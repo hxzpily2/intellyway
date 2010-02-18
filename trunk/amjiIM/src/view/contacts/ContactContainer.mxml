@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" paddingRight="1" verticalGap="0" xmlns:components="commun.components.*" xmlns:combobox="com.bedreamy.components.combobox.*" xmlns:contacts="view.contacts.*">
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" paddingRight="1" verticalGap="0" xmlns:components="commun.components.*" xmlns:combobox="com.bedreamy.components.combobox.*" xmlns:contacts="view.contacts.*"
+	creationComplete="init()">
 	<mx:Script>
 		<![CDATA[
+			import mx.effects.Fade;
+			import mx.events.EffectEvent;
+			import mx.managers.PopUpManager;
+			import mx.core.UIComponent;
 			import mx.core.Window;
 			import commun.Constantes;
 			import model.vo.LoginVO;
@@ -10,6 +15,8 @@
 			import commun.Actions;
 			[Bindable]
 			public var listeContact : ArrayCollection;
+			[Bindable]
+			public var listeInvitation : ArrayCollection = new ArrayCollection;
 			[Bindable]
 			public var user : LoginVO;
 			[Bindable]
@@ -31,6 +38,44 @@
             [Bindable]
             [Embed(source="assets/images/hors_ligne.png")]
             public var HorsLigne:Class;
+            
+            public function init():void{
+            	window = new ListInvitationTooltip;
+            }
+            
+            public var window : ListInvitationTooltip;
+            private static var dissolve : Fade = new Fade();
+            private function createTip(e:MouseEvent):void {
+    			if(window.isOpened==false){
+    				window.listeInvitation = listeInvitation;    								
+	    			window.isOpened = true; 
+	    			
+	                window.x = (lblInvitations as UIComponent).contentToGlobal(new Point(lblInvitations.x,lblInvitations.y)).x-80-250-41;
+	                window.y = (lblInvitations as UIComponent).contentToGlobal(new Point(lblInvitations.x,lblInvitations.y)).y + 35;
+	                
+	                PopUpManager.addPopUp(window,this,false);
+	                dissolve.alphaFrom = 0;
+            		dissolve.alphaTo = 1;
+            		dissolve.duration = 500;
+            		dissolve.target=window;
+            		dissolve.play(); 
+	                
+       			}else{
+       				dissolve.alphaFrom = 1;
+            		dissolve.alphaTo = 0;
+            		dissolve.duration = 500;
+            		dissolve.target=window;
+            		dissolve.play();
+            		dissolve.addEventListener(EffectEvent.EFFECT_END,closePopup);       				
+       			}
+                
+            }
+            
+            public function closePopup(e:EffectEvent):void{
+            	   dissolve.removeEventListener(EffectEvent.EFFECT_END,closePopup);
+            	   PopUpManager.removePopUp(window);
+            	   window.isOpened = false;
+            }
 
 		]]>
 	</mx:Script>
@@ -66,7 +111,7 @@
 				            </mx:Array>
 						</combobox:dataProvider>
 					</combobox:AmjiCombobox>
-					<components:AmjiInbox alpha="0.7"/>				
+						<components:AmjiInvite click="createTip(event)" alpha="0.7" id="lblInvitations"/>									
 				</mx:HBox>			
 				<components:EditableLabel id="txtPseudo" change="dispatchEvent(new Event(Actions.PSEUDOCHANGE))" text="Veuillez saisir votre message perso" width="150" height="15"  paddingLeft="2" />									
 			</mx:VBox>
@@ -77,7 +122,7 @@
 		</mx:HBox>			
 	</mx:VBox>
 	<mx:VBox styleName="leftBg" verticalGap="0" backgroundAlpha="0.7" paddingTop="10" width="100%" height="97" >
-		<components:AmjiInvite alpha="0.7" id="lblInvitations"/>
+		<components:AmjiInbox alpha="0.7"/>
 	</mx:VBox>
 	</mx:HBox>	
 	

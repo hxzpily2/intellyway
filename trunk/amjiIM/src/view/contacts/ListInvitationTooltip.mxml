@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:VBox verticalGap="0" width="250" height="120" styleName="loginTooltipBackground" xmlns:mx="http://www.adobe.com/2006/mxml"
+	verticalAlign="top"
+	creationPolicy="all"
+	creationComplete="init()"
+	>
+	<mx:Script>
+		<![CDATA[
+			import model.vo.CreateUserVO;
+			import mx.collections.ArrayCollection;
+			public var isOpened : Boolean = false;
+			public function init():void{
+				
+			}
+			[Bindable]
+			public var listeInvitation : ArrayCollection;
+		]]>
+	</mx:Script>
+	<mx:HBox width="100%" height="30" paddingLeft="5" verticalAlign="middle">
+		<mx:Image source="@Embed(source='assets/images/OrangeIcone.png')">
+			<mx:filters>
+	            <mx:DropShadowFilter color="#FFFFFF" blurX="10" blurY="10" distance="0" angle="0"/>
+	            <mx:GlowFilter color="#FFFFFF" />		            
+	        </mx:filters>
+		</mx:Image>
+		<mx:Label paddingTop="4" color="#FF6600" text="Vous avez recu {listeInvitation.length} invitation{listeInvitation.length > 1 ? 's' : ''}" fontFamily="Vegur_R" fontSize="14">
+			<mx:filters>
+	            <mx:DropShadowFilter color="#FFFFFF" blurX="10" blurY="10" distance="0" angle="0"/>
+	            <mx:GlowFilter color="#FFFFFF" />		            
+	        </mx:filters>
+		</mx:Label>	
+	</mx:HBox>
+	<mx:VBox horizontalAlign="left" id="vboxList" verticalAlign="middle" width="100%">		
+			<mx:Repeater id="inviteRepeater" dataProvider="{listeInvitation}">				
+					<mx:HBox horizontalGap="3" width="100%">
+						<mx:Label text="{(inviteRepeater.currentItem as CreateUserVO).nom}" />	
+						<mx:Spacer width="100%"/>
+						<mx:Text color="#FF6600" textDecoration="underline" text="ACCEPTER" fontFamily="kroeger" fontSize="8"/>
+						<mx:Text color="#A8A8A8" textDecoration="underline" text="IGNORER" fontFamily="kroeger" fontSize="8"/>
+					</mx:HBox>				
+			</mx:Repeater>				
+	</mx:VBox>
+</mx:VBox>
