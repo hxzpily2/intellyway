@@ -79,9 +79,7 @@
 
 		]]>
 	</mx:Script>
-	<mx:HBox width="100%" height="97" horizontalGap="0">
-		
-	<mx:VBox verticalGap="0" backgroundAlpha="0.7" paddingTop="10" paddingLeft="15" width="290" height="97" backgroundImage="@Embed(source='assets/images/conbg.png')">
+	<mx:VBox styleName="leftBg" verticalGap="0" backgroundAlpha="0.7" paddingTop="10" paddingLeft="15" width="100%" height="97" backgroundImage="@Embed(source='assets/images/conbg.png')">
 		<mx:HBox width="100%">	
 			<mx:VBox width="55" height="55" borderStyle="solid" borderColor="#969696" >
 				<mx:filters>
@@ -94,7 +92,7 @@
 			</mx:VBox>
 			<mx:VBox width="100%" verticalGap="0">			
 				<mx:HBox width="100%" verticalAlign="middle">		
-					<mx:Label color="#000000" text="{user.userVO.prenom}" fontFamily="Vegur_R" fontSize="26">
+					<mx:Label maxWidth="100" color="#000000" text="{user.userVO.prenom}" fontFamily="Vegur_R" fontSize="22">
 						<mx:filters>
 				            <mx:DropShadowFilter color="#FFFFFF" blurX="10" blurY="10" distance="0" angle="0"/>
 				            <mx:GlowFilter color="#FFFFFF" />
@@ -111,7 +109,9 @@
 				            </mx:Array>
 						</combobox:dataProvider>
 					</combobox:AmjiCombobox>
-						<components:AmjiInvite click="createTip(event)" alpha="0.7" id="lblInvitations"/>									
+					<mx:Spacer width="100%" />
+						<components:AmjiInvite click="createTip(event)" alpha="0.7" id="lblInvitations"/>
+						<components:AmjiInbox alpha="0.7"/>									
 				</mx:HBox>			
 				<components:EditableLabel id="txtPseudo" change="dispatchEvent(new Event(Actions.PSEUDOCHANGE))" text="Veuillez saisir votre message perso" width="150" height="15"  paddingLeft="2" />									
 			</mx:VBox>
@@ -121,10 +121,7 @@
 						
 		</mx:HBox>			
 	</mx:VBox>
-	<mx:VBox styleName="leftBg" verticalGap="0" backgroundAlpha="0.7" paddingTop="10" width="100%" height="97" >
-		<components:AmjiInbox alpha="0.7"/>
-	</mx:VBox>
-	</mx:HBox>	
+	
 	
 	<!--<mx:Label  doubleClick="{this.editAllowed = ! this.editAllowed}" alpha="0.5"  color="#FF6600" text="lorum ipsum dolor " fontFamily="kroeger" fontSize="8" >
 		<mx:filters>
