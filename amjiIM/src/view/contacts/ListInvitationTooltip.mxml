@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:VBox verticalGap="0" width="250" height="120" styleName="loginTooltipBackground" xmlns:mx="http://www.adobe.com/2006/mxml"
-	verticalAlign="top"
-	creationPolicy="all"
+<mx:Window verticalGap="0" width="250" height="120" styleName="loginTooltipBackground" xmlns:mx="http://www.adobe.com/2006/mxml"
+	backgroundAlpha="0"
+    showTitleBar="false"
+    showStatusBar="false"
+    showGripper="false"
+    borderStyle="none"    
+    horizontalAlign="center" 
+    creationPolicy="all"
 	creationComplete="init()"
 	>
 	<mx:Script>
@@ -40,4 +45,4 @@
 					</mx:HBox>				
 			</mx:Repeater>				
 	</mx:VBox>
-</mx:VBox>
+</mx:Window>
