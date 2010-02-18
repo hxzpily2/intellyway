@@ -227,6 +227,11 @@ class AmjiUser extends BaseAmjiUser
 		return $q->execute ();
 	}
 	
+	public static function getUsersInvitations($iduser){
+		$q = Doctrine_Query::create ()->from ( 'AmjiInvitation i' )->where('i.idamji_invite = '.$iduser);
+		return $q->execute ();
+	}
+	
 	public static function searchContact($critere){
 		$q = Doctrine_Query::create ()->from ( 'AmjiUser u' )->where("u.nom like '%$critere%'")->orWhere("u.prenom like '%$critere%'")->orWhere("u.prenom like '%$critere%'")->orWhere("u.email like '%$critere%'")->orWhere("u.societe like '%$critere%'")->orWhere("u.ecole like '%$critere%'")->orWhere("u.statut like '%$critere%'");
 		return $q->execute ();
