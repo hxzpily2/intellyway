@@ -524,4 +524,11 @@ ScrollTrack
         }
 
 
+FormItem {
+            labelStyleName: customTextAlignLabel;
+        }
+
+.customTextAlignLabel {
+    textAlign: right;
+}
 
