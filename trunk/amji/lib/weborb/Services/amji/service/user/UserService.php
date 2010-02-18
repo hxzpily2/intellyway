@@ -84,8 +84,10 @@ class UserService extends GenericService{
 			$loginVO->listTypes = AmjiType::getTypePerUser($userVo->idamji_user);
 			$listeContacts = AmjiUser::getContacts($userVo->idamji_user);
 			$listInvitations = AmjiUser::getInvitations($userVo->idamji_user);			
+			$listUserInvitations = AmjiUser::getUsersInvitations($userVo->idamji_user);
 			$loginVO->listeContacts = array();
 			$loginVO->listInvitations = array();
+			
 			foreach ($listeContacts as $contact){
 				$c = new CreateUserVO();
 				$c->idamji_user = $contact->getIdamji_user();
@@ -126,7 +128,28 @@ class UserService extends GenericService{
 				$c->connstatut = Constantes::HORSLIGNE;
 				$loginVO->listeContacts[] = $c;
 			}
-			//$this->getContext()->getLogger()->info("liste contacts : ".sizeof($loginVO->listeContacts));			
+			foreach ($listUserInvitations as $invite){
+				$contact = AmjiUser::getUserById($invite->getIdamji_user());
+				$c = new CreateUserVO();
+				$c->idamji_user = $contact->getIdamji_user();
+				$c->adr = $contact->getAdr();
+				$c->ecole = $contact->getEcole();
+				$c->email = $contact->getEmail();
+				$c->etudiant = $contact->getEtudiant();
+				$c->niveau = $contact->getNiveau();
+				$c->nom = $contact->getNom();
+				$c->prenom = $contact->getPrenom();
+				$c->pseudo = $contact->getPseudo();
+				$c->salarie = $contact->getSalarie();
+				$c->societe = $contact->getSociete();
+				$c->statut = $contact->getStatut();
+				$c->tel = $contact->getTel();
+				$c->humeur = Constantes::NORMAL;
+				$c->civilite = $contact->getCivilite();
+				$c->connstatut = Constantes::HORSLIGNE;
+				$loginVO->listInvitations[] = $c;
+			}
+			$this->getContext()->getLogger()->info("liste contacts : ".sizeof($listUserInvitations));			
 			return $loginVO;
 		}else{						
 			return NULL;
