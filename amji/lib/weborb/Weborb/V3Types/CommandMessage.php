@@ -5,7 +5,10 @@
 class CommandMessage extends V3Message
 {
 	public /*int*/$operation;
-	
+	public function __construct()
+	{
+		session_start();
+	}
 	public function createCmdMessage( /*String*/$operation, /*Object*/ $body )
 	{
 	    $cmdMessage = new CommandMessage();
@@ -104,6 +107,12 @@ class CommandMessage extends V3Message
       		
       		if( count($messages) == 0 )
         		return new AckMessage( null, null, null, array() );
+        	if(isset($_SESSION['firstconn'])){
+        		$messages = $messages[count($messages)-1];
+        	}else{
+        		$_SESSION['firstconn'] = true;
+        		return new AckMessage( null, null, null, array() );	
+        	}
 			return $this->createCmdMessage( "4", $messages );
         }
         else if( $this->operation == "5" )
