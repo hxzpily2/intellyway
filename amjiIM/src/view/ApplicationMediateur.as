@@ -16,7 +16,10 @@ package view
 	import mx.controls.Alert;
 	import mx.managers.PopUpManager;
 	
+	import org.jivesoftware.xiff.core.JID;
 	import org.jivesoftware.xiff.core.XMPPSocketConnection;
+	import org.jivesoftware.xiff.data.IQ;
+	import org.jivesoftware.xiff.data.register.RegisterExtension;
 	import org.jivesoftware.xiff.events.ConnectionSuccessEvent;
 	import org.jivesoftware.xiff.events.DisconnectionEvent;
 	import org.jivesoftware.xiff.events.LoginEvent;
@@ -54,8 +57,23 @@ package view
         }
         
         public function createUser():void{
-        	
+        	var iq:IQ = new IQ(new JID(Constantes.XMPPSERVEUR), IQ.SET_TYPE);
+		    iq.callbackName = "handleRegistration";
+		    iq.callbackScope = this;
+			
+			var reg:RegisterExtension = new RegisterExtension();
+			reg.username = "test";
+			reg.password = "test";
+			iq.addExtension(reg);
+			
+			
+			
+			ApplicationFacade.getInstance().connection.send(iq);
         }
+        
+        public function handleRegistration(iq:IQ):void {
+			Alert.show("ok");
+		}
         
         public function acceptInvitation(event : AcceptContact):void{
         	facade.sendNotification(Actions.GENERICUSER,event.id,Actions.ACCEPTINVITATION);
@@ -189,7 +207,7 @@ package view
             		app.poopupFugace.show(app.geti18nText('text.inscription.congratulation'),350,120);
             		app.poopupFugace.addEventListener("CLOSED",showLoginWindow);            		
             		app.hideLoader();
-            		app.inscWindow.close();            		
+            		app.inscWindow.close();            		          		
             		break;
             	case ApplicationFacade.INSCRFAILED:
             		app.hideLoader();
@@ -208,7 +226,8 @@ package view
             				break;
             			} 
             		}
-            		this.subscribeToChat();
+            		this.subscribeToChat();  
+            		            		
             		//this.createConsumerForType();
             		//this.createConsumerForContacts();
             		app.mainWindow.contactView.lblInvitations.value = proxy.userConnected.listInvitations.length;
