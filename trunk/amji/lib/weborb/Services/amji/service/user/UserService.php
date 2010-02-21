@@ -24,27 +24,29 @@ class UserService extends GenericService{
 		$user = $this->getUser()->getAttribute(Sessions::USERCONNECTED);
 		$listeContacts = array();
 		foreach ($contacts as $amjiuser){
-			$userVo = new CreateUserVO();
-			$userVo->idamji_user = $amjiuser->getIdamji_user();
-			$userVo->adr = $amjiuser->getAdr();
-			$userVo->ecole = $amjiuser->getEcole();
-			$userVo->email = $amjiuser->getEmail();
-			$userVo->etudiant = $amjiuser->getEtudiant();
-			$userVo->niveau = $amjiuser->getNiveau();
-			$userVo->nom = $amjiuser->getNom();
-			$userVo->prenom = $amjiuser->getPrenom();
-			$userVo->pseudo = $amjiuser->getPseudo();
-			$userVo->salarie = $amjiuser->getSalarie();
-			$userVo->societe = $amjiuser->getSociete();
-			$userVo->statut = $amjiuser->getStatut();
-			$userVo->tel = $amjiuser->getTel();
-			$userVo->civilite = $amjiuser->getCivilite();
-			if(AmjiUser::isContact($user->getIdamji_user(),$amjiuser->getIdamji_user())==true){
-				$userVo->connstatut = AmjiStatut::getStatutById($amjiuser->getIdamji_statut());
-			}else{
-				$userVo->connstatut = Constantes::HORSLIGNE;	
+			if($amjiuser->getIdamji_user()!=$user->getIdamji_user()){
+				$userVo = new CreateUserVO();
+				$userVo->idamji_user = $amjiuser->getIdamji_user();
+				$userVo->adr = $amjiuser->getAdr();
+				$userVo->ecole = $amjiuser->getEcole();
+				$userVo->email = $amjiuser->getEmail();
+				$userVo->etudiant = $amjiuser->getEtudiant();
+				$userVo->niveau = $amjiuser->getNiveau();
+				$userVo->nom = $amjiuser->getNom();
+				$userVo->prenom = $amjiuser->getPrenom();
+				$userVo->pseudo = $amjiuser->getPseudo();
+				$userVo->salarie = $amjiuser->getSalarie();
+				$userVo->societe = $amjiuser->getSociete();
+				$userVo->statut = $amjiuser->getStatut();
+				$userVo->tel = $amjiuser->getTel();
+				$userVo->civilite = $amjiuser->getCivilite();
+				if(AmjiUser::isContact($user->getIdamji_user(),$amjiuser->getIdamji_user())==true){
+					$userVo->connstatut = AmjiStatut::getStatutById($amjiuser->getIdamji_statut());
+				}else{
+					$userVo->connstatut = Constantes::HORSLIGNE;	
+				}
+				$listeContacts[] = $userVo;
 			}
-			$listeContacts[] = $userVo;
 		}
 		return $listeContacts;
 	}
@@ -167,6 +169,54 @@ class UserService extends GenericService{
 		$user = $this->getUser()->getAttribute(Sessions::USERCONNECTED);
 		$user->setPseudo($pseudo);
 		$user->save();
+	}
+	
+	public function accepteInvitation($id){
+		$user = $this->getUser()->getAttribute(Sessions::USERCONNECTED);
+		AmjiUser::addContact($user->getIdamji_user(),$id);
+		$contact=AmjiUser::getUserById($id);
+		$c = new CreateUserVO();
+		$c->idamji_user = $contact->getIdamji_user();
+		$c->adr = $contact->getAdr();
+		$c->ecole = $contact->getEcole();
+		$c->email = $contact->getEmail();
+		$c->etudiant = $contact->getEtudiant();
+		$c->niveau = $contact->getNiveau();
+		$c->nom = $contact->getNom();
+		$c->prenom = $contact->getPrenom();
+		$c->pseudo = $contact->getPseudo();
+		$c->salarie = $contact->getSalarie();
+		$c->societe = $contact->getSociete();
+		$c->statut = $contact->getStatut();
+		$c->tel = $contact->getTel();
+		$c->humeur = $contact->getHumeur();
+		$c->civilite = $contact->getCivilite();
+		$c->connstatut = AmjiStatut::getStatutById($contact->getIdamji_statut());
+		return $c;
+	}
+	
+	public function ignoreInvitation($id){
+		$user = $this->getUser()->getAttribute(Sessions::USERCONNECTED);
+		AmjiUser::refuseInviteContact($user->getIdamji_user(),$id);
+		$contact=AmjiUser::getUserById($id);
+		$c = new CreateUserVO();
+		$c->idamji_user = $contact->getIdamji_user();
+		$c->adr = $contact->getAdr();
+		$c->ecole = $contact->getEcole();
+		$c->email = $contact->getEmail();
+		$c->etudiant = $contact->getEtudiant();
+		$c->niveau = $contact->getNiveau();
+		$c->nom = $contact->getNom();
+		$c->prenom = $contact->getPrenom();
+		$c->pseudo = $contact->getPseudo();
+		$c->salarie = $contact->getSalarie();
+		$c->societe = $contact->getSociete();
+		$c->statut = $contact->getStatut();
+		$c->tel = $contact->getTel();
+		$c->humeur = $contact->getHumeur();
+		$c->civilite = $contact->getCivilite();
+		$c->connstatut = AmjiStatut::getStatutById($contact->getIdamji_statut());
+		return $c;
 	}
 }
 

@@ -92,7 +92,7 @@ class AmjiUser extends BaseAmjiUser
 			$compte->setStatut($uservo->statut);
 			$compte->setSalarie($uservo->salarie);
 			$compte->setSociete($uservo->societe);
-
+			$compte->setIdamji_statut(AmjiStatut::getStatutId(Constantes::HORSLIGNE));
 			$compte->save();
 				
 			return true;
@@ -111,7 +111,7 @@ class AmjiUser extends BaseAmjiUser
 	}
 
 	public static function inviteContact($iduser,$idcontact,$message){
-		if(AmjiUser::getInvitation($iduser,$idcontact)==NULL){
+		if(AmjiUser::getInvitation($iduser,$idcontact)==NULL && AmjiUser::getIsContact($iduser,$idcontact)==NULL){
 			$invitation = new AmjiInvitation();
 			$invitation->setIdamjiInvite($idcontact);
 			$invitation->setIdamjiUser($iduser);
@@ -150,7 +150,15 @@ class AmjiUser extends BaseAmjiUser
 	}
 
 	public static function getInvitation($iduser,$idcontact){
-		$invitations = Doctrine_Query::create ()->from ( 'AmjiInvitation i' )->where ( "i.idamji_user = " . $iduser  )->andWhere("i.idamji_invite = " . $idcontact )->execute();
+		$invitations = Doctrine_Query::create ()->from ( 'AmjiInvitation i' )->where ( "i.idamji_user = " . $iduser  )->andWhere("i.idamji_invite = " . $idcontact )->andWhere("i.accepted = 1" )->execute();
+		if (sizeof($invitations)>0)
+		return $invitations[0];
+		else
+		return NULL;
+	}
+	
+	public static function getIsContact($iduser,$idcontact){
+		$invitations = Doctrine_Query::create ()->from ( 'AmjiContacts i' )->where ( "i.idamji_user = " . $iduser  )->andWhere("i.idamji_invite = " . $idcontact )->execute();
 		if (sizeof($invitations)>0)
 		return $invitations[0];
 		else
@@ -158,8 +166,7 @@ class AmjiUser extends BaseAmjiUser
 	}
 
 	public static function delInvitation($iduser,$idcontact){
-		$invitation = AmjiUser::getInvitation($iduser,$idcontact);
-		$inviation->del();
+		Doctrine_Query::create ()->delete ( 'AmjiInvitation i' )->where ( "i.idamji_user = " . $idcontact  )->andWhere("i.idamji_invite = " . $iduser )->execute();
 	}
 
 	public static function subscribeGroup($iduser,$idgroup){
