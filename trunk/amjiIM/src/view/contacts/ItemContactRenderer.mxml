@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:VBox width="100%" xmlns:mx="http://www.adobe.com/2006/mxml" height="50" verticalGap="0" creationComplete="init()">
+	<mx:states>
+		<mx:State name="contactMenu">			
+			<mx:AddChild position="lastChild">
+				<mx:VBox backgroundColor="#FFFFFF" width="100%" height="50">
+					
+				</mx:VBox>
+			</mx:AddChild>
+		</mx:State>
+	</mx:states>
 	<mx:Script>
 		<![CDATA[
 			import mx.controls.Alert;
@@ -44,6 +53,14 @@
             [Bindable]
             [Embed(source="assets/images/hors_ligne.png")]
             public var HorsLigne:Class;
+            
+            [Bindable]
+            [Embed(source="assets/images/arraow.png")]
+            public var arraow:Class;
+            
+            [Bindable]
+            [Embed(source="assets/images/barrow.png")]
+            public var barrow:Class;
 			
 			public function init():void{
 				humeur[Constantes.HAPPY] = humhappyOrange;
@@ -60,6 +77,22 @@
 				
 				imgHumeur.source = humeur[user.humeur];	
 				imgStatut.source = statut[user.connstatut];
+			}
+			
+			public function showMenu(event : MouseEvent):void{
+				if(this.currentState != "contactMenu"){
+					this.currentState = "contactMenu";
+					this.height += 50; 
+					imgMenu.source = barrow;
+					imgMenu.width = 17;
+					imgMenu.height = 10;
+				}else{
+					this.currentState = "";
+					imgMenu.source = arraow;
+					imgMenu.width = 10;
+					imgMenu.height = 17;
+					this.height -= 50;
+				}
 			}
 		]]>
 	</mx:Script>
@@ -80,6 +113,6 @@
 		</mx:VBox>		
 		<mx:Spacer width="100%" />
 		<mx:Image id="imgHumeur" />
-		<mx:Image width="10" height="17" source="@Embed(source='assets/images/arraow.png')" />
+		<mx:Image id="imgMenu" click="showMenu(event)" width="10" height="17" source="{arraow}" />
 	</mx:HBox>	
 </mx:VBox>

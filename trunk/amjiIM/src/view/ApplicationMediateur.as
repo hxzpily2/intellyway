@@ -1,5 +1,6 @@
 package view
 {
+	import commun.AcceptContact;
 	import commun.Actions;
 	import commun.Constantes;
 	import commun.components.AmjiAlert;
@@ -10,21 +11,21 @@ package view
 	import model.ApplicationProxy;
 	import model.vo.CreateUserVO;
 	import model.vo.InviteContactVO;
-	import model.vo.TypeVO;
 	
 	import mx.collections.ArrayCollection;
 	import mx.controls.Alert;
 	import mx.managers.PopUpManager;
-	import mx.messaging.events.MessageEvent;
-	import mx.messaging.messages.AsyncMessage;
 	
+	import org.jivesoftware.xiff.core.XMPPSocketConnection;
+	import org.jivesoftware.xiff.events.ConnectionSuccessEvent;
+	import org.jivesoftware.xiff.events.DisconnectionEvent;
+	import org.jivesoftware.xiff.events.LoginEvent;
+	import org.jivesoftware.xiff.events.XIFFErrorEvent;
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.mediator.Mediator;
 	
 	import view.contacts.SearchContact;
-	
-	import weborb.messaging.WeborbConsumer;
 	
 	public class ApplicationMediateur extends Mediator implements IMediator
 	{
@@ -44,14 +45,24 @@ package view
 			app.mainWindow.addEventListener(Actions.CLOSEINSCWIN,closeWindow);
 			app.mainWindow.contactView.addEventListener(Actions.STATUTCHANGE,changeStatut);
 			app.mainWindow.contactView.addEventListener(Actions.PSEUDOCHANGE,pseudoChange);
+			app.mainWindow.contactView.addEventListener(Actions.ACCEPTINVITATION,acceptInvitation);
+			app.mainWindow.contactView.addEventListener(Actions.IGNOREINVITATION,ignoreInvitation);
 		}
 		
 		public function get app():amjiIM{  
             return viewComponent as amjiIM;  
         }
         
-        public function createUser(event : Event):void{
-        	Alert.show("ok");
+        public function createUser():void{
+        	
+        }
+        
+        public function acceptInvitation(event : AcceptContact):void{
+        	facade.sendNotification(Actions.GENERICUSER,event.id,Actions.ACCEPTINVITATION);
+        }
+        
+        public function ignoreInvitation(event : AcceptContact):void{
+        	facade.sendNotification(Actions.GENERICUSER,event.id,Actions.IGNOREINVITATION);
         }
         
         public function showLoginWindow(event : Event):void{
@@ -78,6 +89,7 @@ package view
         	PopUpManager.addPopUp(app.loader,app.searchContactWin,true);
 			PopUpManager.centerPopUp(app.loader);   
         	facade.sendNotification(Actions.GENERICUSER,inviteVO,Actions.ADDCONTACT);
+        	var body : Object = new Object;			
         }
         
         public function searchContact(event : Event):void{     
@@ -92,81 +104,72 @@ package view
 		
 		public function changeStatut(event : Event):void{
 			sendNotification(Actions.GENERICUSER,app.mainWindow.contactView.comboBox.selectedItem.key,Actions.STATUTCHANGE);
+			var proxy : ApplicationProxy = facade.retrieveProxy(ApplicationProxy.NAME) as ApplicationProxy;
+			proxy.userConnected.userVO.connstatut = app.mainWindow.contactView.comboBox.selectedItem.key;
 			this.sendStatutChangeMessage(app.mainWindow.contactView.comboBox.selectedItem.key);
 		}	
 		
 		public function pseudoChange(event : Event):void{
 			sendNotification(Actions.GENERICUSER,app.mainWindow.contactView.txtPseudo.text,Actions.PSEUDOCHANGE);
+			var proxy : ApplicationProxy = facade.retrieveProxy(ApplicationProxy.NAME) as ApplicationProxy;
+			proxy.userConnected.userVO.pseudo = app.mainWindow.contactView.txtPseudo.text;
 			this.sendPseudoChangeMessage(app.mainWindow.contactView.txtPseudo.text);
 		}
 		
 		public function sendStatutChangeMessage(statut : String):void{
-			var proxy : ApplicationProxy = facade.retrieveProxy(ApplicationProxy.NAME) as ApplicationProxy;
-			var body : Object = new Object;
-			body.action = Actions.STATUTCHANGE;
-			body.statut = statut;
-			body.user = proxy.userConnected.userVO.idamji_user;
 			
-			var message : AsyncMessage = new AsyncMessage;
-			message.body = body;
-			app.producer.producerId = proxy.userConnected.userVO.idamji_user.toString();
-			app.producer.subqueue = "user"+proxy.userConnected.userVO.idamji_user.toString();
-			app.producer.send(message);
 		}
 		
 		public function sendPseudoChangeMessage(pseudo : String):void{
-			var proxy : ApplicationProxy = facade.retrieveProxy(ApplicationProxy.NAME) as ApplicationProxy;
-			var body : Object = new Object;
-			body.action = Actions.PSEUDOCHANGE;
-			body.pseudo = pseudo;
-			body.user = proxy.userConnected.userVO.idamji_user;
 			
-			var message : AsyncMessage = new AsyncMessage;
-			message.body = body;
-			app.producer.producerId = proxy.userConnected.userVO.idamji_user.toString();
-			app.producer.subqueue = "user"+proxy.userConnected.userVO.idamji_user.toString();
-			app.producer.send(message);
 		}
 		
 		public function subscribeToChat():void{
-			var proxy : ApplicationProxy = facade.retrieveProxy(ApplicationProxy.NAME) as ApplicationProxy;
-			app.consumer.subqueue = proxy.userConnected.userVO.email;
-			app.consumer.addEventListener(MessageEvent.MESSAGE,showMessage);
-			app.consumer.subscribe();			
-		}
-		
-		public function showMessage(event:MessageEvent):void{
+			ApplicationFacade.getInstance().connection = new XMPPSocketConnection();
+      		ApplicationFacade.getInstance().connection.port = Constantes.XMPPPORT;
+      		ApplicationFacade.getInstance().connection.resource = "amji";
+      		ApplicationFacade.getInstance().connection.addEventListener( ConnectionSuccessEvent.CONNECT_SUCCESS, handleConnection );
+      		ApplicationFacade.getInstance().connection.addEventListener( LoginEvent.LOGIN, handleLogin );
+      		ApplicationFacade.getInstance().connection.addEventListener( XIFFErrorEvent.XIFF_ERROR, handleError );
+      		ApplicationFacade.getInstance().connection.addEventListener( DisconnectionEvent.DISCONNECT, handleDisconnect );
+      		ApplicationFacade.getInstance().connection.server = Constantes.XMPPSERVEUR;
+      				
+      		ApplicationFacade.getInstance().connection.username = "amjitest";
+          	ApplicationFacade.getInstance().connection.password = "d8ad34f40c";
+
+			ApplicationFacade.getInstance().connection.connect("standard");
 			
-		}
+		}	
 		
-		public function topicMessage(event : MessageEvent):void{
-			
-		}
 		
-		public function contactMessage(event : MessageEvent):void{
-			
-		}
+		private function handleConnection( event:ConnectionSuccessEvent ):void
+	    {
+							
+	    }
+	
+	    private function handleLogin( event:LoginEvent ):void
+	    {
+	      Alert.show( "Authentication successful!", "Authentication" );	      
+	    }
+	    
+	    private function handleError( event:XIFFErrorEvent ):void
+	    {
+	      Alert.show( event.errorCondition, "Error" );
+	    }
+	
+	    private function handleDisconnect( event:DisconnectionEvent ):void
+	    {
+	      
+	    }
+
+	
 		
 		public function createConsumerForType():void{
-			var proxy : ApplicationProxy = facade.retrieveProxy(ApplicationProxy.NAME) as ApplicationProxy;
-			for(var i : Number = 0;i<proxy.userConnected.listTypes.length;i++){
-				(proxy.userConnected.listTypes[i] as TypeVO).consumer = new WeborbConsumer();
-				(proxy.userConnected.listTypes[i] as TypeVO).consumer.destination = "AmjiChat";
-				(proxy.userConnected.listTypes[i] as TypeVO).consumer.subqueue = "topic"+(proxy.userConnected.listTypes[i] as TypeVO).idtype.toString();
-				(proxy.userConnected.listTypes[i] as TypeVO).consumer.addEventListener(MessageEvent.MESSAGE,topicMessage);
-				(proxy.userConnected.listTypes[i] as TypeVO).consumer.subscribe();				 
-			}
+			
 		}
 		
 		public function createConsumerForContacts():void{
-			var proxy : ApplicationProxy = facade.retrieveProxy(ApplicationProxy.NAME) as ApplicationProxy;
-			for(var i : Number = 0;i<proxy.userConnected.listeContacts.length;i++){
-				(proxy.userConnected.listeContacts[i] as CreateUserVO).consumer = new WeborbConsumer();
-				(proxy.userConnected.listeContacts[i] as CreateUserVO).consumer.destination = "AmjiChat";
-				(proxy.userConnected.listeContacts[i] as CreateUserVO).consumer.subqueue = "user"+(proxy.userConnected.listeContacts[i] as CreateUserVO).idamji_user.toString();
-				(proxy.userConnected.listeContacts[i] as CreateUserVO).consumer.addEventListener(MessageEvent.MESSAGE,contactMessage);
-				(proxy.userConnected.listeContacts[i] as CreateUserVO).consumer.subscribe();				 
-			}
+			
 		}
 		
 		override public function listNotificationInterests():Array  
@@ -206,7 +209,8 @@ package view
             			} 
             		}
             		this.subscribeToChat();
-            		this.createConsumerForType();
+            		//this.createConsumerForType();
+            		//this.createConsumerForContacts();
             		app.mainWindow.contactView.lblInvitations.value = proxy.userConnected.listInvitations.length;
             		app.mainWindow.contactView.listeInvitation.source = proxy.userConnected.listInvitations;
             		break;

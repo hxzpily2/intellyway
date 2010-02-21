@@ -3,6 +3,8 @@
 	creationComplete="init()">
 	<mx:Script>
 		<![CDATA[
+			import mx.controls.Alert;
+			import commun.AcceptContact;
 			import mx.effects.Fade;
 			import mx.events.EffectEvent;
 			import mx.managers.PopUpManager;
@@ -41,34 +43,33 @@
             
             public function init():void{
             	window = new ListInvitationTooltip;
+            	
             }
             
             public var window : ListInvitationTooltip;
             private static var dissolve : Fade = new Fade();
             private function createTip(e:MouseEvent):void {
-    			if(window.isOpened==false){
-    				window.listeInvitation = listeInvitation;    								
-	    			window.isOpened = true; 
-	    			
-	                window.x = (lblInvitations as UIComponent).contentToGlobal(new Point(lblInvitations.x,lblInvitations.y)).x-80-250-41;
-	                window.y = (lblInvitations as UIComponent).contentToGlobal(new Point(lblInvitations.x,lblInvitations.y)).y + 35;
-	                
-	                PopUpManager.addPopUp(window,this,false);
-	                dissolve.alphaFrom = 0;
-            		dissolve.alphaTo = 1;
-            		dissolve.duration = 500;
-            		dissolve.target=window;
-            		dissolve.play(); 
-	                
-       			}else{
-       				dissolve.alphaFrom = 1;
-            		dissolve.alphaTo = 0;
-            		dissolve.duration = 500;
-            		dissolve.target=window;
-            		dissolve.play();
-            		dissolve.addEventListener(EffectEvent.EFFECT_END,closePopup);       				
-       			}
-                
+    			
+    				window = new ListInvitationTooltip();
+    				window.addEventListener(Actions.ACCEPTINVITATION,acceptInvitation);
+    				window.addEventListener(Actions.IGNOREINVITATION,ignoreInvitation);
+    				window.type = NativeWindowType.LIGHTWEIGHT;
+					window.systemChrome = "none";
+					window.transparent = true;	
+					window.open();
+					window.listeInvitation = listeInvitation;
+					window.orderToFront();
+					window.nativeWindow.x = (Capabilities.screenResolutionX - window.nativeWindow.width) / 2;
+                	window.nativeWindow.y = (Capabilities.screenResolutionY - window.nativeWindow.height) / 2;
+    			    window.height = listeInvitation.length * 25+100;         
+            }
+            
+            public function acceptInvitation(event : AcceptContact):void{
+            	dispatchEvent(new AcceptContact(event.type,event.id));
+            }
+            
+            public function ignoreInvitation(event : AcceptContact):void{
+            	dispatchEvent(new AcceptContact(event.type,event.id));
             }
             
             public function closePopup(e:EffectEvent):void{
@@ -79,7 +80,7 @@
 
 		]]>
 	</mx:Script>
-	<mx:VBox styleName="leftBg" verticalGap="0" backgroundAlpha="0.7" paddingTop="10" paddingLeft="15" width="100%" height="97" backgroundImage="@Embed(source='assets/images/conbg.png')">
+	<mx:VBox verticalScrollPolicy="off" styleName="leftBg" verticalGap="0" backgroundAlpha="0.7" paddingTop="10" paddingLeft="15" width="100%" height="97" backgroundImage="@Embed(source='assets/images/conbg.png')">
 		<mx:HBox width="100%">	
 			<mx:VBox width="55" height="55" borderStyle="solid" borderColor="#969696" >
 				<mx:filters>
@@ -166,10 +167,12 @@
 		        </mx:filters>
 			</mx:Label>	
 		</mx:HBox>
-		<mx:Spacer height="10" />		
+		<mx:Spacer height="10" />	
+		<mx:VBox width="100%" height="100%" verticalGap="0">		
 		<mx:Repeater id="contactRepeater" dataProvider="{listeContact}" width="100%" height="100%">
 			<contacts:ItemContactRenderer user="{contactRepeater.currentItem as CreateUserVO}" width="100%"/>
 		</mx:Repeater>
+		</mx:VBox>
 	</mx:VBox>
 	<!--<mx:HBox horizontalGap="2" width="100%" height="30" paddingLeft="5" verticalAlign="middle">
 		<mx:Image alpha="0.5" id="imgInvite" source="@Embed(source='assets/images/invite.png')">
