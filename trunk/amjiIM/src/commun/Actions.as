@@ -14,6 +14,8 @@ package commun
 		public static const INVITECONTACT : String = "inviteContact";
 		public static const STATUTCHANGE : String = "statutChange";
 		public static const PSEUDOCHANGE : String = "changePseudo";
+		public static const ACCEPTINVITATION : String = "accepteInvitation";
+		public static const IGNOREINVITATION : String = "ignoreInvitation";
 		public function Actions()
 		{
 		}

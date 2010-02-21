@@ -176,8 +176,6 @@
 			<mx:Spacer width="18" /> 	
 		</mx:HBox>
 			
-	</mx:VBox>-->
-	<messaging:WeborbProducer destination="AmjiChat" id="producer" />
-	<messaging:WeborbConsumer destination="AmjiChat" id="consumer" />
+	</mx:VBox>-->	
 </mx:WindowedApplication>
 

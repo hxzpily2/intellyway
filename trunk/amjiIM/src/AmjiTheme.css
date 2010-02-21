@@ -19,6 +19,11 @@
 		fontFamily: "Vegur_R";
 }
 
+@font-face {
+		src: url("assets/CHALEPNS.TTF");
+		fontFamily: "chalet";
+}
+
 Button {
    themeColor: #ff6600;
 	disabledSkin: Embed(source="AmjiTheme.swf", symbol="Button_disabledSkin");

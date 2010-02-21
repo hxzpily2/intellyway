@@ -58,6 +58,18 @@ package business
             asynchToken.addResponder(responder);
             asynchToken.action = Actions.PSEUDOCHANGE;
 		}
+		
+		public function accepteInvitation(id:Number):void{
+			var asynchToken:AsyncToken = service.accepteInvitation(id);  
+            asynchToken.addResponder(responder);
+            asynchToken.action = Actions.ACCEPTINVITATION;
+		}
+		
+		public function ignoreInvitation(id:Number):void{
+			var asynchToken:AsyncToken = service.ignoreInvitation(id);  
+            asynchToken.addResponder(responder);
+            asynchToken.action = Actions.IGNOREINVITATION;
+		}
 
 	}
 }
