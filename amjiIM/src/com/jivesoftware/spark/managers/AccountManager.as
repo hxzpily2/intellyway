@@ -16,10 +16,10 @@
  */
 
 package com.jivesoftware.spark.managers {
-	import org.jivesoftware.xiff.core.EscapedJID;
-	import org.jivesoftware.xiff.core.XMPPConnection;
-	import org.jivesoftware.xiff.data.IQ;
-	import org.jivesoftware.xiff.data.register.RegisterExtension;
+	import org.igniterealtime.xiff.core.EscapedJID;
+	import org.igniterealtime.xiff.core.XMPPConnection;
+	import org.igniterealtime.xiff.data.IQ;
+	import org.igniterealtime.xiff.data.register.RegisterExtension;
 		
 	
 	public class AccountManager {
@@ -33,7 +33,7 @@ package com.jivesoftware.spark.managers {
 		
 		public function createAccount(username:String, password:String, callBackFunction:Function):void 
 		{
-			var iq:IQ = new IQ(new EscapedJID(_connection.server), IQ.SET_TYPE);
+			var iq:IQ = new IQ(new EscapedJID(_connection.server), IQ.TYPE_SET);
 		    iq.callbackName = "handleRegistration";
 		    iq.callbackScope = this;
 			
