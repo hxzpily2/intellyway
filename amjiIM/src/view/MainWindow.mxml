@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Window xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" minWidth="370" minHeight="600" width="300" height="600"
+<mx:Window xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" minWidth="370" minHeight="600" width="370" height="600"
 	backgroundAlpha="0"
     showTitleBar="false"
     showStatusBar="false"
@@ -8,7 +8,8 @@
     horizontalAlign="center"
     xmlns:contacts="view.contacts.*"
     xmlns:components="commun.components.*"
-    creationComplete="init()">
+    creationComplete="init()"
+    close="contactView.window.close();">
     <mx:Script>
     	<![CDATA[
     		import commun.Actions;
@@ -37,7 +38,7 @@
 		</mx:HBox>
 		<mx:Spacer height="10"/>
     	<mx:ViewStack id="mainStack" width="100%" height="100%">
-	    	<contacts:ContactContainer id="contactView" width="100%" height="100%">
+	    	<contacts:ContactContainer verticalScrollPolicy="off" id="contactView" width="100%" height="100%">
 	    		
 	    	</contacts:ContactContainer>
 	    </mx:ViewStack>	
