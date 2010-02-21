@@ -1,5 +1,7 @@
 package view
 {
+	import com.jivesoftware.spark.managers.AccountManager;
+	
 	import commun.AcceptContact;
 	import commun.Actions;
 	import commun.Constantes;
@@ -54,7 +56,8 @@ package view
         }
         
         public function createUser():void{
-        	Alert.show("ok");
+        	var account : AccountManager = new AccountManager(ApplicationFacade.getInstance().connection);
+        	account.createAccount("test","test",sendStatutChangeMessage);
         }
         
         public function acceptInvitation(event : AcceptContact):void{
