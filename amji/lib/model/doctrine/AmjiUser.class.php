@@ -136,7 +136,7 @@ class AmjiUser extends BaseAmjiUser
 			$userVo->tel = $amjiuser->getTel();
 			$userVo->civilite = $amjiuser->getCivilite();
 			$userVo->connstatut = Constantes::HORSLIGNE;
-			
+			$userVo->humeur = Constantes::NORMAL; 
 			return $userVo;
 		}else{
 			throw new Exception(Errors::INVITATIONEXIST);
