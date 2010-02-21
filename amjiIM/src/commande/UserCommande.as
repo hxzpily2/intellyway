@@ -59,6 +59,16 @@ package commande
 			service.changePseudo(notification.getBody() as String);
 		}
 		
+		public function accepteInvitation(notification : INotification):void{
+			var service : UserDelegate = new UserDelegate(this);
+			service.accepteInvitation(notification.getBody() as Number);
+		}
+		
+		public function ignoreInvitation(notification : INotification):void{
+			var service : UserDelegate = new UserDelegate(this);
+			service.ignoreInvitation(notification.getBody() as Number);
+		}
+		
 		override public function result(data : Object):void{
 			switch((data.token as AsyncToken).action){
 				case Actions.CREATAUSER:

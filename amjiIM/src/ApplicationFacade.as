@@ -5,6 +5,7 @@ package
 	
 	import commun.Actions;
 	
+	import org.jivesoftware.xiff.core.XMPPSocketConnection;
 	import org.puremvc.as3.interfaces.IFacade;
 	import org.puremvc.as3.patterns.facade.Facade;
 	
@@ -37,6 +38,8 @@ package
               
               
         }  
+        
+        public var connection : XMPPSocketConnection;
         
         
   

@@ -24,6 +24,9 @@ package commun
 		public static const INFO    :String = "INFO";
 		public static const VALID    :String = "VALID";
 		
+		public static const XMPPSERVEUR    :String = "jabberd.eu";
+		public static const XMPPPORT    :Number = 5222;
+		
 		public function Constantes()
 		{
 		}

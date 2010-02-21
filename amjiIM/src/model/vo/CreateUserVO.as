@@ -25,7 +25,7 @@ package model.vo
  		public var civilite  :  String;
  		public var connstatut : String;
  		public var humeur : String;
- 		public var consumer : WeborbConsumer;
+ 		public var myconsumer : WeborbConsumer;
  		
  
 		public function CreateUserVO()
