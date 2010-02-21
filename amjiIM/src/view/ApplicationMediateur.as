@@ -19,6 +19,7 @@ package view
 	import mx.managers.PopUpManager;
 	
 	import org.igniterealtime.xiff.core.XMPPConnection;
+	import org.igniterealtime.xiff.data.IQ;
 	import org.igniterealtime.xiff.events.ConnectionSuccessEvent;
 	import org.igniterealtime.xiff.events.DisconnectionEvent;
 	import org.igniterealtime.xiff.events.LoginEvent;
@@ -57,7 +58,11 @@ package view
         
         public function createUser():void{
         	var account : AccountManager = new AccountManager(ApplicationFacade.getInstance().connection);
-        	account.createAccount("test","test",sendStatutChangeMessage);
+        	account.createAccount("test","test",handleIQ);
+        }
+        
+        public function handleIQ(iq : IQ):void{
+        	Alert.show("ok");
         }
         
         public function acceptInvitation(event : AcceptContact):void{
