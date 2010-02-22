@@ -1,7 +1,5 @@
 package view
 {
-	import com.jivesoftware.spark.managers.AccountManager;
-	
 	import commun.AcceptContact;
 	import commun.Actions;
 	import commun.Constantes;
@@ -19,9 +17,11 @@ package view
 	import mx.managers.PopUpManager;
 	
 	import org.igniterealtime.xiff.conference.Room;
+	import org.igniterealtime.xiff.core.EscapedJID;
 	import org.igniterealtime.xiff.core.UnescapedJID;
 	import org.igniterealtime.xiff.core.XMPPConnection;
 	import org.igniterealtime.xiff.data.IQ;
+	import org.igniterealtime.xiff.data.register.RegisterExtension;
 	import org.igniterealtime.xiff.events.ConnectionSuccessEvent;
 	import org.igniterealtime.xiff.events.DisconnectionEvent;
 	import org.igniterealtime.xiff.events.LoginEvent;
@@ -59,9 +59,16 @@ package view
             return viewComponent as amjiIM;  
         }
         
-        public function createUser():void{
-        	var account : AccountManager = new AccountManager(ApplicationFacade.getInstance().connection);
-        	account.createAccount("test","test",handleIQ);
+        public function createUser(username : String,password : String):void{        	
+        	var iq:IQ = new IQ(new EscapedJID(ApplicationFacade.getInstance().connection.server), IQ.TYPE_SET);
+		  	iq.callbackName = "handleRegistration";
+		    iq.callbackScope = this;
+			
+			var reg:RegisterExtension = new RegisterExtension();
+			reg.username = username;
+			reg.password = password;			
+			iq.addExtension(reg);
+			ApplicationFacade.getInstance().connection.send(iq);			
         }
         
         public function handleIQ(iq : IQ):void{
@@ -167,7 +174,8 @@ package view
 	    private function handleLogin( event:LoginEvent ):void
 	    {
 	      Alert.show( "Authentication successful!", "Authentication" );
-	      this.joinRoom();	      
+	      this.joinRoom();
+	      //this.createUser("amjiimtest","amjitesttesttest");	      
 	    }
 	    
 	    public function joinRoom():void{
@@ -175,12 +183,21 @@ package view
 	    	ApplicationFacade.getInstance().room = new Room(ApplicationFacade.getInstance().connection);
 		  	ApplicationFacade.getInstance().room.roomJID = new UnescapedJID("amji@conference.jaim.at");
 		  	ApplicationFacade.getInstance().room.nickname = "amjiUser_"+proxy.userConnected.userVO.idamji_user.toString();
-		  	ApplicationFacade.getInstance().room.addEventListener(RoomEvent.ROOM_JOIN, onRoomJoin);		  
-		  	ApplicationFacade.getInstance().room.join();      
+		  	ApplicationFacade.getInstance().room.addEventListener(RoomEvent.ROOM_JOIN, onRoomJoin);	
+		  	ApplicationFacade.getInstance().room.addEventListener(RoomEvent.USER_JOIN, handleUserJoin);	  
+		  	ApplicationFacade.getInstance().room.join();	  	
 	    }
 	    
+	    public function handleRegistration(iq:IQ):void {
+			Alert.show("ok");
+		}
+	    
 	    public function onRoomJoin(event : RoomEvent):void{
-	    	Alert.show("ok");
+	    	//Alert.show("ok");
+	    }
+	    
+	    public function handleUserJoin(event : RoomEvent){
+	    	Alert.show(event.nickname);
 	    }
 	    
 	    private function handleError( event:XIFFErrorEvent ):void
@@ -220,6 +237,8 @@ package view
             		app.poopupFugace.show(app.geti18nText('text.inscription.congratulation'),350,120);
             		app.poopupFugace.addEventListener("CLOSED",showLoginWindow);            		
             		app.hideLoader();
+            		//this.createUser("amjiUser_"+(notification.getBody()).toString(),app.inscWindow.txtPass.text);
+            		Alert.show("amjiUser_"+(notification.getBody()).toString());
             		app.inscWindow.close();            		
             		break;
             	case ApplicationFacade.INSCRFAILED:
