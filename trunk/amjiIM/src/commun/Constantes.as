@@ -27,14 +27,15 @@ package commun
 		//public static const XMPPSERVEUR    :String = "jabbim.com";
 		//public static const XMPPSERVEUR    :String = "jabberd.eu";
 		//public static const XMPPSERVEUR    :String = "talk.google.com";
-		public static const XMPPSERVEUR    :String = "jaim.at";
+		//public static const XMPPSERVEUR    :String = "jaim.at";
+		public static const XMPPSERVEUR    :String = "jabber.tf-network.de";
 		public static const XMPPPORT    :Number = 5222;
 		public static const XMPPUSERNAME    :String = "amjiim";
 		public static const XMPPPASS    :String = "amjiim";
 		public function Constantes()
 		{
 		}
-		//jabber.tf-network.de
+		
 
 	}
 }
