@@ -34,6 +34,7 @@ package commun
 		public function Constantes()
 		{
 		}
+		//jabber.tf-network.de
 
 	}
 }
