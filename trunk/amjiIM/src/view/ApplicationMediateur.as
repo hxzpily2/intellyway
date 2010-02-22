@@ -18,11 +18,14 @@ package view
 	import mx.controls.Alert;
 	import mx.managers.PopUpManager;
 	
-	import org.igniterealtime.xiff.core.XMPPBOSHConnection;
+	import org.igniterealtime.xiff.conference.Room;
+	import org.igniterealtime.xiff.core.UnescapedJID;
+	import org.igniterealtime.xiff.core.XMPPConnection;
 	import org.igniterealtime.xiff.data.IQ;
 	import org.igniterealtime.xiff.events.ConnectionSuccessEvent;
 	import org.igniterealtime.xiff.events.DisconnectionEvent;
 	import org.igniterealtime.xiff.events.LoginEvent;
+	import org.igniterealtime.xiff.events.RoomEvent;
 	import org.igniterealtime.xiff.events.XIFFErrorEvent;
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
@@ -133,23 +136,28 @@ package view
 		}
 		
 		public function subscribeToChat():void{
-			ApplicationFacade.getInstance().connection = new XMPPBOSHConnection(true);
-			//ApplicationFacade.getInstance().connection = new XMPPConnection();
+			//ApplicationFacade.getInstance().connection = new XMPPBOSHConnection();
+			ApplicationFacade.getInstance().connection = new XMPPConnection();
       		ApplicationFacade.getInstance().connection.port = Constantes.XMPPPORT;
       		ApplicationFacade.getInstance().connection.resource = "amji";
       		ApplicationFacade.getInstance().connection.addEventListener( ConnectionSuccessEvent.CONNECT_SUCCESS, handleConnection );
+      		ApplicationFacade.getInstance().connection.addEventListener( Event.COMPLETE, handleBoshConnection );
       		ApplicationFacade.getInstance().connection.addEventListener( LoginEvent.LOGIN, handleLogin );
       		ApplicationFacade.getInstance().connection.addEventListener( XIFFErrorEvent.XIFF_ERROR, handleError );
       		ApplicationFacade.getInstance().connection.addEventListener( DisconnectionEvent.DISCONNECT, handleDisconnect );
       		ApplicationFacade.getInstance().connection.server = Constantes.XMPPSERVEUR;
-      		ApplicationFacade.getInstance().connection.useAnonymousLogin = true;      			
-      		//ApplicationFacade.getInstance().connection.username = Constantes.XMPPUSERNAME;
-          	//ApplicationFacade.getInstance().connection.password = Constantes.XMPPPASS;
+      		ApplicationFacade.getInstance().connection.useAnonymousLogin = false;      			
+      		ApplicationFacade.getInstance().connection.username = Constantes.XMPPUSERNAME;
+          	ApplicationFacade.getInstance().connection.password = Constantes.XMPPPASS;
 
 			ApplicationFacade.getInstance().connection.connect();
 			
 		}	
 		
+		private function handleBoshConnection( event:Event ):void
+	    {
+				Alert.show("ok");			
+	    }
 		
 		private function handleConnection( event:ConnectionSuccessEvent ):void
 	    {
@@ -158,7 +166,21 @@ package view
 	
 	    private function handleLogin( event:LoginEvent ):void
 	    {
-	      Alert.show( "Authentication successful!", "Authentication" );	      
+	      Alert.show( "Authentication successful!", "Authentication" );
+	      this.joinRoom();	      
+	    }
+	    
+	    public function joinRoom():void{
+	    	var proxy : ApplicationProxy = facade.retrieveProxy(ApplicationProxy.NAME) as ApplicationProxy;
+	    	var room:Room = new Room(ApplicationFacade.getInstance().connection);
+		  	room.roomJID = new UnescapedJID("amji@conference.jaim.at");
+		  	room.nickname = "amjiUser_"+proxy.userConnected.userVO.idamji_user.toString();
+		  	room.addEventListener(RoomEvent.ROOM_JOIN, onRoomJoin);		  
+		  	room.join();      
+	    }
+	    
+	    public function onRoomJoin(event : RoomEvent):void{
+	    	Alert.show("ok");
 	    }
 	    
 	    private function handleError( event:XIFFErrorEvent ):void
