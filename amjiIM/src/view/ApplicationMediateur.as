@@ -142,8 +142,8 @@ package view
       		ApplicationFacade.getInstance().connection.addEventListener( DisconnectionEvent.DISCONNECT, handleDisconnect );
       		ApplicationFacade.getInstance().connection.server = Constantes.XMPPSERVEUR;
       				
-      		ApplicationFacade.getInstance().connection.username = "amjitest";
-          	ApplicationFacade.getInstance().connection.password = "d8ad34f40c";
+      		ApplicationFacade.getInstance().connection.username = Constantes.XMPPUSERNAME;
+          	ApplicationFacade.getInstance().connection.password = Constantes.XMPPPASS;
 
 			ApplicationFacade.getInstance().connection.connect();
 			
