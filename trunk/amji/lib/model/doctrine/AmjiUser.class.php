@@ -95,7 +95,7 @@ class AmjiUser extends BaseAmjiUser
 			$compte->setIdamji_statut(AmjiStatut::getStatutId(Constantes::HORSLIGNE));
 			$compte->save();
 				
-			return true;
+			return $compte->getIdamji_user();
 
 		}else{
 			throw new Exception(Errors::MAILEXIST);
