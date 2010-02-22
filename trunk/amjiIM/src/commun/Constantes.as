@@ -26,7 +26,8 @@ package commun
 		
 		public static const XMPPSERVEUR    :String = "jabberd.eu";
 		public static const XMPPPORT    :Number = 5222;
-		
+		public static const XMPPUSERNAME    :String = "amjitest";
+		public static const XMPPPASS    :String = "d8ad34f40c";
 		public function Constantes()
 		{
 		}
