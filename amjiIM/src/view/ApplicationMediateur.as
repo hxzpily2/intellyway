@@ -172,11 +172,11 @@ package view
 	    
 	    public function joinRoom():void{
 	    	var proxy : ApplicationProxy = facade.retrieveProxy(ApplicationProxy.NAME) as ApplicationProxy;
-	    	var room:Room = new Room(ApplicationFacade.getInstance().connection);
-		  	room.roomJID = new UnescapedJID("amji@conference.jaim.at");
-		  	room.nickname = "amjiUser_"+proxy.userConnected.userVO.idamji_user.toString();
-		  	room.addEventListener(RoomEvent.ROOM_JOIN, onRoomJoin);		  
-		  	room.join();      
+	    	ApplicationFacade.getInstance().room = new Room(ApplicationFacade.getInstance().connection);
+		  	ApplicationFacade.getInstance().room.roomJID = new UnescapedJID("amji@conference.jaim.at");
+		  	ApplicationFacade.getInstance().room.nickname = "amjiUser_"+proxy.userConnected.userVO.idamji_user.toString();
+		  	ApplicationFacade.getInstance().room.addEventListener(RoomEvent.ROOM_JOIN, onRoomJoin);		  
+		  	ApplicationFacade.getInstance().room.join();      
 	    }
 	    
 	    public function onRoomJoin(event : RoomEvent):void{
