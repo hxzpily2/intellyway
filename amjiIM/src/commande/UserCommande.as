@@ -72,10 +72,9 @@ package commande
 		override public function result(data : Object):void{
 			switch((data.token as AsyncToken).action){
 				case Actions.CREATAUSER:
-					var test : Boolean = data.result as Boolean;
-					
-					if(test==true){						
-						sendNotification(ApplicationFacade.INSCRSUCCESS);
+					var test : Number = data.result as Number;					
+					if(data.result!=null){						
+						sendNotification(ApplicationFacade.INSCRSUCCESS,data.result);
 					}else{						
 						sendNotification(ApplicationFacade.INSCRFAILED);
 					}
