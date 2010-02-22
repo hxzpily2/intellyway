@@ -24,7 +24,10 @@ package commun
 		public static const INFO    :String = "INFO";
 		public static const VALID    :String = "VALID";
 		
-		public static const XMPPSERVEUR    :String = "jabberd.eu";
+		//public static const XMPPSERVEUR    :String = "jabbim.com";
+		//public static const XMPPSERVEUR    :String = "jabberd.eu";
+		//public static const XMPPSERVEUR    :String = "talk.google.com";
+		public static const XMPPSERVEUR    :String = "jabber.org";
 		public static const XMPPPORT    :Number = 5222;
 		public static const XMPPUSERNAME    :String = "amjitest";
 		public static const XMPPPASS    :String = "d8ad34f40c";
