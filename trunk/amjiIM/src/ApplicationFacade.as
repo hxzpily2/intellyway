@@ -5,6 +5,7 @@ package
 	
 	import commun.Actions;
 	
+	import org.igniterealtime.xiff.conference.Room;
 	import org.igniterealtime.xiff.core.XMPPConnection;
 	import org.puremvc.as3.interfaces.IFacade;
 	import org.puremvc.as3.patterns.facade.Facade;
@@ -40,7 +41,7 @@ package
         }  
         
         public var connection : XMPPConnection;
-        
+        public var room : Room;
         
   
         public function startup( app:amjiIM ):void  
