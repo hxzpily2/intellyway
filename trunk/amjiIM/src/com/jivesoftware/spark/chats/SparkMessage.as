@@ -17,9 +17,9 @@
 
 package com.jivesoftware.spark.chats
 {
-	import org.jivesoftware.xiff.core.UnescapedJID;
-	import org.jivesoftware.xiff.data.Message;
-	import org.jivesoftware.xiff.data.im.RosterItemVO;
+	import org.igniterealtime.xiff.core.UnescapedJID;
+	import org.igniterealtime.xiff.data.Message;
+	import org.igniterealtime.xiff.data.im.RosterItemVO;
 	
 	public class SparkMessage {
 		
