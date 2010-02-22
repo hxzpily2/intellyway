@@ -175,7 +175,7 @@ package view
 	    {
 	      Alert.show( "Authentication successful!", "Authentication" );
 	      this.joinRoom();
-	      //this.createUser("amjiimtest","amjitesttesttest");	      
+	      //this.createUser("AmjiIMUser1","amjitesttesttest");	      
 	    }
 	    
 	    public function joinRoom():void{
