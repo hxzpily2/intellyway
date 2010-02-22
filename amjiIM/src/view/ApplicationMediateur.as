@@ -18,7 +18,7 @@ package view
 	import mx.controls.Alert;
 	import mx.managers.PopUpManager;
 	
-	import org.igniterealtime.xiff.core.XMPPConnection;
+	import org.igniterealtime.xiff.core.XMPPBOSHConnection;
 	import org.igniterealtime.xiff.data.IQ;
 	import org.igniterealtime.xiff.events.ConnectionSuccessEvent;
 	import org.igniterealtime.xiff.events.DisconnectionEvent;
@@ -133,7 +133,8 @@ package view
 		}
 		
 		public function subscribeToChat():void{
-			ApplicationFacade.getInstance().connection = new XMPPConnection();
+			ApplicationFacade.getInstance().connection = new XMPPBOSHConnection(true);
+			//ApplicationFacade.getInstance().connection = new XMPPConnection();
       		ApplicationFacade.getInstance().connection.port = Constantes.XMPPPORT;
       		ApplicationFacade.getInstance().connection.resource = "amji";
       		ApplicationFacade.getInstance().connection.addEventListener( ConnectionSuccessEvent.CONNECT_SUCCESS, handleConnection );
@@ -141,9 +142,9 @@ package view
       		ApplicationFacade.getInstance().connection.addEventListener( XIFFErrorEvent.XIFF_ERROR, handleError );
       		ApplicationFacade.getInstance().connection.addEventListener( DisconnectionEvent.DISCONNECT, handleDisconnect );
       		ApplicationFacade.getInstance().connection.server = Constantes.XMPPSERVEUR;
-      				
-      		ApplicationFacade.getInstance().connection.username = Constantes.XMPPUSERNAME;
-          	ApplicationFacade.getInstance().connection.password = Constantes.XMPPPASS;
+      		ApplicationFacade.getInstance().connection.useAnonymousLogin = true;      			
+      		//ApplicationFacade.getInstance().connection.username = Constantes.XMPPUSERNAME;
+          	//ApplicationFacade.getInstance().connection.password = Constantes.XMPPPASS;
 
 			ApplicationFacade.getInstance().connection.connect();
 			
