@@ -179,8 +179,7 @@
 				var reg:RegisterExtension = new RegisterExtension();
 				reg.username = Constantes.XMPPUSERPREFIX+inscWindow.createUserVO.email.substr(0,inscWindow.createUserVO.email.lastIndexOf("@"));
 				reg.password = inscWindow.createUserVO.password;				
-				iq.addExtension(reg);
-				Alert.show(reg.username);
+				iq.addExtension(reg);				
 				ApplicationFacade.getConnexion().send(iq);			
 		    }
 			
