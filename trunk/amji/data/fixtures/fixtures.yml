@@ -17,8 +17,8 @@ AmjiStatut:
     libelle: HORSLIGNE
 sfGuardUser:
   sgu_admin:
-    username:       reda.ze@gmail.com
-    password:       admin
+    username:       reda.zerhouni@hotmail.com
+    password:       060484253
     is_super_admin: true
 AmjiUser:
   sgu_admin:
