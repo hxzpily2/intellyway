@@ -25,7 +25,7 @@ package com.jivesoftware.spark.managers
 	import flash.events.TimerEvent;
 	import flash.utils.Timer;
 	
-	import org.jivesoftware.xiff.core.UnescapedJID;
+	import org.igniterealtime.xiff.core.UnescapedJID;
 	
 	public class ChatManager extends EventDispatcher
 	{

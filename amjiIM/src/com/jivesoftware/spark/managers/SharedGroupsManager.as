@@ -21,11 +21,11 @@ package com.jivesoftware.spark.managers
 	
 	import mx.collections.ArrayCollection;
 	
-	import org.jivesoftware.xiff.core.XMPPConnection;
-	import org.jivesoftware.xiff.data.IQ;
-	import org.jivesoftware.xiff.data.XMPPStanza;
-	import org.jivesoftware.xiff.data.im.RosterGroup;
-	import org.jivesoftware.xiff.data.sharedgroups.SharedGroupsExtension;
+	import org.igniterealtime.xiff.core.XMPPConnection;
+	import org.igniterealtime.xiff.data.IQ;
+	import org.igniterealtime.xiff.data.XMPPStanza;
+	import org.igniterealtime.xiff.data.im.RosterGroup;
+	import org.igniterealtime.xiff.data.sharedgroups.SharedGroupsExtension;
 	
 	/**
 	 * Retrieves from the server and manages locally, a list of shared groups.
@@ -48,7 +48,7 @@ package com.jivesoftware.spark.managers
 		 */
 		public function retrieveSharedGroups():void
 		{
-			var iq:IQ = new IQ(null, IQ.GET_TYPE, XMPPStanza.generateID("get_shared_groups_"), "_receivedSharedGroups", this);
+			var iq:IQ = new IQ(null, IQ.TYPE_GET, XMPPStanza.generateID("get_shared_groups_"), "_receivedSharedGroups", this);
 			iq.addExtension(new SharedGroupsExtension());
 			connection.send(iq);
 		}

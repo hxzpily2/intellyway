@@ -27,10 +27,10 @@ package com.jivesoftware.spark.chats
 	import mx.controls.*;
 	import mx.events.PropertyChangeEvent;
 	
-	import org.jivesoftware.xiff.core.UnescapedJID;
-	import org.jivesoftware.xiff.data.Message;
-	import org.jivesoftware.xiff.data.im.RosterItemVO;
-	import org.jivesoftware.xiff.util.*;
+	import org.igniterealtime.xiff.core.UnescapedJID;
+	import org.igniterealtime.xiff.data.Message;
+	import org.igniterealtime.xiff.data.im.RosterItemVO;
+	import org.igniterealtime.xiff.util.*;
 	
 	[Bindable]
 	public class SparkChat extends EventDispatcher

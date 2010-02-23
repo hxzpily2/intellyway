@@ -15,6 +15,15 @@
     
     <mx:Script>
 		<![CDATA[
+			import org.igniterealtime.xiff.events.DisconnectionEvent;
+			import org.igniterealtime.xiff.events.LoginEvent;
+			import org.igniterealtime.xiff.events.ConnectionSuccessEvent;
+			import org.igniterealtime.xiff.events.XIFFErrorEvent;
+			import org.igniterealtime.xiff.data.register.RegisterExtension;
+			import org.igniterealtime.xiff.data.IQ;
+			import org.igniterealtime.xiff.core.EscapedJID;
+			import commun.Constantes;
+			import org.igniterealtime.xiff.core.XMPPConnection;
 			import mx.messaging.messages.AsyncMessage;
 			import mx.messaging.events.MessageEvent;
 			import commun.Commun;
@@ -88,7 +97,15 @@
 			}
 			public var voile : AmjiLoader;
 			public var loader : AmjiLoading = new AmjiLoading;
-			public function login(event : Event):void{				
+			public function login(event : Event):void{				      			
+      			ApplicationFacade.getConnexion().addEventListener( LoginEvent.LOGIN, handleLogin );
+      			ApplicationFacade.getConnexion().addEventListener( XIFFErrorEvent.XIFF_ERROR, handleError );
+      			ApplicationFacade.getConnexion().addEventListener( DisconnectionEvent.DISCONNECT, handleDisconnect );
+      			ApplicationFacade.getConnexion().server = Constantes.XMPPSERVEUR;
+      			ApplicationFacade.getConnexion().useAnonymousLogin = false;      			
+      			ApplicationFacade.getConnexion().username = Constantes.XMPPUSERPREFIX+window.userVO.login.substr(0,window.userVO.login.lastIndexOf("@"));
+          		ApplicationFacade.getConnexion().password = window.userVO.pass;
+				ApplicationFacade.getConnexion().connect();				
 				PopUpManager.addPopUp(loader,window,true);
 				PopUpManager.centerPopUp(loader);
 				// register login && password && statut
@@ -104,8 +121,17 @@
 					Commun.clearStoredItem(Commun.login);
 					Commun.clearStoredItem(Commun.pass);
 				}							
-				facade.sendNotification(Actions.GENERICUSER,window.userVO,Actions.LOGIN);
+				
 			}
+			
+			private function handleLogin( event:LoginEvent ):void
+		    {
+		      facade.sendNotification(Actions.GENERICUSER,window.userVO,Actions.LOGIN);	      
+		    }
+		    private function handleDisconnect( event:DisconnectionEvent ):void
+		    {
+		      
+		    }
 			
 			
 			
@@ -132,11 +158,40 @@
 				window.closePopupExt();												
 			}
 			
-			public function createUsertest(e:Event):void{
+			public function createUsertest(e:Event):void{				
+	      		ApplicationFacade.getConnexion().port = Constantes.XMPPPORT;
+	      		ApplicationFacade.getConnexion().resource = "amjiim";      		
+	      		ApplicationFacade.getConnexion().server = Constantes.XMPPSERVEUR;
+	      		ApplicationFacade.getConnexion().addEventListener( XIFFErrorEvent.XIFF_ERROR, handleError );
+	      		ApplicationFacade.getConnexion().addEventListener( ConnectionSuccessEvent.CONNECT_SUCCESS, handleConnection );
+	      		ApplicationFacade.getConnexion().connect();
+	        	
 				PopUpManager.addPopUp(loader,inscWindow,true);
-				PopUpManager.centerPopUp(loader);							
+				PopUpManager.centerPopUp(loader);				
+			}
+			
+			private function handleConnection( event:ConnectionSuccessEvent ):void
+		    {
+				var iq:IQ = new IQ(new EscapedJID(ApplicationFacade.getConnexion().server), IQ.TYPE_SET);
+		  		iq.callbackName = "handleRegistration";
+		    	iq.callbackScope = this;
+				
+				var reg:RegisterExtension = new RegisterExtension();
+				reg.username = Constantes.XMPPUSERPREFIX+inscWindow.createUserVO.email.substr(0,inscWindow.createUserVO.email.lastIndexOf("@"));
+				reg.password = inscWindow.createUserVO.password;				
+				iq.addExtension(reg);
+				Alert.show(reg.username);
+				ApplicationFacade.getConnexion().send(iq);			
+		    }
+			
+			public function handleRegistration(iq:IQ):void {
 				facade.sendNotification(Actions.GENERICUSER,inscWindow.createUserVO,Actions.CREATAUSER);
 			}
+			
+			private function handleError( event:XIFFErrorEvent ):void
+		    {
+		      Alert.show( event.errorCondition, "Error" );
+		    }
 			
 			public function closeAppli(e:Event):void{
 				this.close();

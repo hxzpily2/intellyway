@@ -17,15 +17,15 @@
 
 package com.jivesoftware.spark.managers
 {
-	import org.jivesoftware.xiff.conference.Room;
-	import org.jivesoftware.xiff.core.Browser;
-	import org.jivesoftware.xiff.core.EscapedJID;
-	import org.jivesoftware.xiff.core.UnescapedJID;
-	import org.jivesoftware.xiff.data.IQ;
-	import org.jivesoftware.xiff.data.disco.InfoDiscoExtension;
-	import org.jivesoftware.xiff.data.disco.ItemDiscoExtension;
-	import org.jivesoftware.xiff.data.muc.MUCExtension;
-	import org.jivesoftware.xiff.events.RoomEvent;
+	import org.igniterealtime.xiff.conference.Room;
+	import org.igniterealtime.xiff.core.Browser;
+	import org.igniterealtime.xiff.core.EscapedJID;
+	import org.igniterealtime.xiff.core.UnescapedJID;
+	import org.igniterealtime.xiff.data.IQ;
+	import org.igniterealtime.xiff.data.disco.InfoDiscoExtension;
+	import org.igniterealtime.xiff.data.disco.ItemDiscoExtension;
+	import org.igniterealtime.xiff.data.muc.MUCExtension;
+	import org.igniterealtime.xiff.events.RoomEvent;
 	
 	public class MUCManager
 	{

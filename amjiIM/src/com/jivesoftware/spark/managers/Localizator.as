@@ -24,7 +24,7 @@ package com.jivesoftware.spark.managers
     {
         protected static var sharedInstance:Localizator;
 		
-		[ResourceBundle("en")]
+		[ResourceBundle("i18n")]
 		private var rb_eng:ResourceBundle;
 
         public function Localizator ()

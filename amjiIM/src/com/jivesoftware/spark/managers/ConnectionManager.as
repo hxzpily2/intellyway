@@ -22,16 +22,15 @@ package com.jivesoftware.spark.managers
 	import flash.events.TimerEvent;
 	import flash.utils.Timer;
 	
-	import org.jivesoftware.xiff.core.EscapedJID;
-	import org.jivesoftware.xiff.core.UnescapedJID;
-	import org.jivesoftware.xiff.core.XMPPBOSHConnection;
-	import org.jivesoftware.xiff.core.XMPPConnection;
-	import org.jivesoftware.xiff.core.XMPPSocketConnection;
-	import org.jivesoftware.xiff.data.Message;
-	import org.jivesoftware.xiff.data.Presence;
-	import org.jivesoftware.xiff.data.events.MessageEventExtension;
-	import org.jivesoftware.xiff.data.im.RosterItemVO;
-	import org.jivesoftware.xiff.events.LoginEvent;
+	import org.igniterealtime.xiff.core.EscapedJID;
+	import org.igniterealtime.xiff.core.UnescapedJID;
+	import org.igniterealtime.xiff.core.XMPPBOSHConnection;
+	import org.igniterealtime.xiff.core.XMPPConnection;
+	import org.igniterealtime.xiff.data.Message;
+	import org.igniterealtime.xiff.data.Presence;
+	import org.igniterealtime.xiff.data.events.MessageEventExtension;
+	import org.igniterealtime.xiff.data.im.RosterItemVO;
+	import org.igniterealtime.xiff.events.LoginEvent;
 	
 	
 	/**
@@ -59,7 +58,7 @@ package com.jivesoftware.spark.managers
 					break;
 				case "socket":
 				default:
-					con = new XMPPSocketConnection();	
+					con = new XMPPConnection();	
 			}
 			if(SparkManager.getConfigValueForKey("port") != null)
 				con.port = Number(SparkManager.getConfigValueForKey("port"));
@@ -85,7 +84,7 @@ package com.jivesoftware.spark.managers
 			
 			con.removeEventListener("outgoingData", packetSent); 
 			con.addEventListener("outgoingData", packetSent);
-			con.connect( "terminatedStandard");
+			con.connect();
 				
 			con.removeEventListener(LoginEvent.LOGIN, getMe);
 			con.addEventListener(LoginEvent.LOGIN, getMe);
@@ -104,7 +103,7 @@ package com.jivesoftware.spark.managers
 		{
 			// Send an unavilable presence
 			var recipient:EscapedJID = new EscapedJID(connection.domain);
-			var unavailablePresence:Presence = new Presence(recipient, null, Presence.UNAVAILABLE_TYPE, null, "Logged out");
+			var unavailablePresence:Presence = new Presence(recipient, null, Presence.TYPE_UNAVAILABLE, null, "Logged out");
 			con.send(unavailablePresence);
 			
 			// Now disconnect
@@ -149,7 +148,7 @@ package com.jivesoftware.spark.managers
 			message.addExtension(new MessageEventExtension());
 			message.to = jid.escaped;
 			message.body = body;
-			message.type = Message.CHAT_TYPE;
+			message.type = Message.TYPE_CHAT;
 			con.send(message);
 		}
 	}
