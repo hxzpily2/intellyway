@@ -27,11 +27,11 @@ package com.jivesoftware.spark.chats
 	import mx.collections.ArrayCollection;
 	import mx.events.CollectionEvent;
 	
-	import org.jivesoftware.xiff.conference.Room;
-	import org.jivesoftware.xiff.core.UnescapedJID;
-	import org.jivesoftware.xiff.data.muc.MUCItem;
-	import org.jivesoftware.xiff.data.muc.MUCUserExtension;
-	import org.jivesoftware.xiff.events.RoomEvent;
+	import org.igniterealtime.xiff.conference.Room;
+	import org.igniterealtime.xiff.core.UnescapedJID;
+	import org.igniterealtime.xiff.data.muc.MUCItem;
+	import org.igniterealtime.xiff.data.muc.MUCUserExtension;
+	import org.igniterealtime.xiff.events.RoomEvent;
 	
 	public class SparkGroupChat extends SparkChat
 	{
@@ -131,7 +131,7 @@ package com.jivesoftware.spark.chats
   	    
   	    public override function get occupants():ArrayCollection
   	    {
-  	    	return room;
+  	    	return room as ArrayCollection;
   	    }
   	    
   	    private function error(type:String, close:Boolean = true):void

@@ -4,6 +4,7 @@ package
 	import commande.UserCommande;
 	
 	import commun.Actions;
+	import commun.Constantes;
 	
 	import org.igniterealtime.xiff.conference.Room;
 	import org.igniterealtime.xiff.core.XMPPConnection;
@@ -40,14 +41,27 @@ package
               
         }  
         
-        public var connection : XMPPConnection;
+        public static var connection : XMPPConnection;
         public var room : Room;
         
   
         public function startup( app:amjiIM ):void  
         {             
             sendNotification( ApplicationFacade.APP_STARTUP, app ) ;  
-        }  
+        } 
+        
+        public static function getConnexion() : XMPPConnection {  
+  
+            if ( connection == null ){ 
+            	connection = new XMPPConnection();
+	      		connection.port = Constantes.XMPPPORT;
+	      		connection.resource = "amjiim";      		
+	      		connection.server = Constantes.XMPPSERVEUR;            	
+            }  
+  
+            return connection as XMPPConnection;  
+  
+        } 
 
 	}
 }

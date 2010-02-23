@@ -1,8 +1,11 @@
 package view
 {
+	import com.jivesoftware.spark.chats.SparkChat;
+	
 	import commun.AcceptContact;
 	import commun.Actions;
 	import commun.Constantes;
+	import commun.InviteChatEvent;
 	import commun.components.AmjiAlert;
 	
 	import flash.display.NativeWindowType;
@@ -19,9 +22,6 @@ package view
 	import org.igniterealtime.xiff.conference.Room;
 	import org.igniterealtime.xiff.core.EscapedJID;
 	import org.igniterealtime.xiff.core.UnescapedJID;
-	import org.igniterealtime.xiff.core.XMPPConnection;
-	import org.igniterealtime.xiff.data.IQ;
-	import org.igniterealtime.xiff.data.register.RegisterExtension;
 	import org.igniterealtime.xiff.events.ConnectionSuccessEvent;
 	import org.igniterealtime.xiff.events.DisconnectionEvent;
 	import org.igniterealtime.xiff.events.LoginEvent;
@@ -36,11 +36,12 @@ package view
 	public class ApplicationMediateur extends Mediator implements IMediator
 	{
 		public static const NAME:String = 'ApplicationMediateur'; 
+		private var chats:Object = {};
+		private var queuedRooms:Array = [];
 		
 		public function ApplicationMediateur(viewComponent:Object=null)
 		{
 			super(NAME, viewComponent);
-			app.inscWindow.addEventListener(Actions.CREATAUSER,createUser);
 			app.mainWindow = new MainWindow();
 			app.mainWindow.visible=false;	
 			app.mainWindow.type = NativeWindowType.LIGHTWEIGHT;
@@ -53,27 +54,27 @@ package view
 			app.mainWindow.contactView.addEventListener(Actions.PSEUDOCHANGE,pseudoChange);
 			app.mainWindow.contactView.addEventListener(Actions.ACCEPTINVITATION,acceptInvitation);
 			app.mainWindow.contactView.addEventListener(Actions.IGNOREINVITATION,ignoreInvitation);
+			app.mainWindow.contactView.addEventListener(Actions.INVITECHAT,inviteChat);
+		}
+		
+		public function inviteChat(event : InviteChatEvent):void{
+			var jid : UnescapedJID = new UnescapedJID(event.username);
+			var chat:SparkChat = getChat(jid) as SparkChat;
+			if(!chat)
+				chat = new SparkChat(jid);
+				
+			chats[jid.bareJID] = chat;		
+			
+		}
+		
+		public function getChat(jid:UnescapedJID):SparkChat 
+		{
+			return chats[jid.bareJID];
 		}
 		
 		public function get app():amjiIM{  
             return viewComponent as amjiIM;  
-        }
-        
-        public function createUser(username : String,password : String):void{        	
-        	var iq:IQ = new IQ(new EscapedJID(ApplicationFacade.getInstance().connection.server), IQ.TYPE_SET);
-		  	iq.callbackName = "handleRegistration";
-		    iq.callbackScope = this;
-			
-			var reg:RegisterExtension = new RegisterExtension();
-			reg.username = username;
-			reg.password = password;			
-			iq.addExtension(reg);
-			ApplicationFacade.getInstance().connection.send(iq);			
-        }
-        
-        public function handleIQ(iq : IQ):void{
-        	Alert.show("ok");
-        }
+        }           
         
         public function acceptInvitation(event : AcceptContact):void{
         	facade.sendNotification(Actions.GENERICUSER,event.id,Actions.ACCEPTINVITATION);
@@ -140,25 +141,6 @@ package view
 		
 		public function sendPseudoChangeMessage(pseudo : String):void{
 			
-		}
-		
-		public function subscribeToChat():void{
-			//ApplicationFacade.getInstance().connection = new XMPPBOSHConnection();
-			ApplicationFacade.getInstance().connection = new XMPPConnection();
-      		ApplicationFacade.getInstance().connection.port = Constantes.XMPPPORT;
-      		ApplicationFacade.getInstance().connection.resource = "amji";
-      		ApplicationFacade.getInstance().connection.addEventListener( ConnectionSuccessEvent.CONNECT_SUCCESS, handleConnection );
-      		ApplicationFacade.getInstance().connection.addEventListener( Event.COMPLETE, handleBoshConnection );
-      		ApplicationFacade.getInstance().connection.addEventListener( LoginEvent.LOGIN, handleLogin );
-      		ApplicationFacade.getInstance().connection.addEventListener( XIFFErrorEvent.XIFF_ERROR, handleError );
-      		ApplicationFacade.getInstance().connection.addEventListener( DisconnectionEvent.DISCONNECT, handleDisconnect );
-      		ApplicationFacade.getInstance().connection.server = Constantes.XMPPSERVEUR;
-      		ApplicationFacade.getInstance().connection.useAnonymousLogin = false;      			
-      		ApplicationFacade.getInstance().connection.username = Constantes.XMPPUSERNAME;
-          	ApplicationFacade.getInstance().connection.password = Constantes.XMPPPASS;
-
-			ApplicationFacade.getInstance().connection.connect();
-			
 		}	
 		
 		private function handleBoshConnection( event:Event ):void
@@ -180,7 +162,7 @@ package view
 	    
 	    public function joinRoom():void{
 	    	var proxy : ApplicationProxy = facade.retrieveProxy(ApplicationProxy.NAME) as ApplicationProxy;
-	    	ApplicationFacade.getInstance().room = new Room(ApplicationFacade.getInstance().connection);
+	    	ApplicationFacade.getInstance().room = new Room(ApplicationFacade.getConnexion());
 		  	ApplicationFacade.getInstance().room.roomJID = new UnescapedJID("amji@conference.jaim.at");
 		  	ApplicationFacade.getInstance().room.nickname = "amjiUser_"+proxy.userConnected.userVO.idamji_user.toString();
 		  	ApplicationFacade.getInstance().room.addEventListener(RoomEvent.ROOM_JOIN, onRoomJoin);	
@@ -188,9 +170,7 @@ package view
 		  	ApplicationFacade.getInstance().room.join();	  	
 	    }
 	    
-	    public function handleRegistration(iq:IQ):void {
-			Alert.show("ok");
-		}
+	    
 	    
 	    public function onRoomJoin(event : RoomEvent):void{
 	    	//Alert.show("ok");
@@ -236,9 +216,7 @@ package view
             	case ApplicationFacade.INSCRSUCCESS:
             		app.poopupFugace.show(app.geti18nText('text.inscription.congratulation'),350,120);
             		app.poopupFugace.addEventListener("CLOSED",showLoginWindow);            		
-            		app.hideLoader();
-            		//this.createUser("amjiUser_"+(notification.getBody()).toString(),app.inscWindow.txtPass.text);
-            		Alert.show("amjiUser_"+(notification.getBody()).toString());
+            		app.hideLoader();            		
             		app.inscWindow.close();            		
             		break;
             	case ApplicationFacade.INSCRFAILED:
@@ -257,8 +235,7 @@ package view
             				app.mainWindow.contactView.comboBox.selectedIndex = i;
             				break;
             			} 
-            		}
-            		this.subscribeToChat();
+            		}            		
             		//this.createConsumerForType();
             		//this.createConsumerForContacts();
             		app.mainWindow.contactView.lblInvitations.value = proxy.userConnected.listInvitations.length;

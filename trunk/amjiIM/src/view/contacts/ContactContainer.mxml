@@ -3,6 +3,7 @@
 	creationComplete="init()">
 	<mx:Script>
 		<![CDATA[
+			import commun.InviteChatEvent;
 			import mx.controls.Alert;
 			import commun.AcceptContact;
 			import mx.effects.Fade;
@@ -76,6 +77,10 @@
             	   dissolve.removeEventListener(EffectEvent.EFFECT_END,closePopup);
             	   PopUpManager.removePopUp(window);
             	   window.isOpened = false;
+            }
+            
+            public function inviteChat(event : InviteChatEvent):void{
+            	dispatchEvent(new InviteChatEvent(Actions.INVITECHAT,event.username));
             }
 
 		]]>
@@ -170,7 +175,7 @@
 		<mx:Spacer height="10" />	
 		<mx:VBox width="100%" height="100%" verticalGap="0">		
 		<mx:Repeater id="contactRepeater" dataProvider="{listeContact}" width="100%" height="100%">
-			<contacts:ItemContactRenderer user="{contactRepeater.currentItem as CreateUserVO}" width="100%"/>
+			<contacts:ItemContactRenderer INVITECHAT="inviteChat(event)" user="{contactRepeater.currentItem as CreateUserVO}" width="100%"/>
 		</mx:Repeater>
 		</mx:VBox>
 	</mx:VBox>

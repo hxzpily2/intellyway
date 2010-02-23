@@ -19,12 +19,12 @@ package com.jivesoftware.spark.managers
 {
 	import com.jivesoftware.spark.*;
 	
-	import org.jivesoftware.xiff.bookmark.BookmarkManager;
-	import org.jivesoftware.xiff.conference.InviteListener;
-	import org.jivesoftware.xiff.data.im.RosterItemVO;
-	import org.jivesoftware.xiff.events.RosterEvent;
-	import org.jivesoftware.xiff.im.Roster;
-	import org.jivesoftware.xiff.privatedata.PrivateDataManager;
+	import org.igniterealtime.xiff.bookmark.BookmarkManager;
+	import org.igniterealtime.xiff.conference.InviteListener;
+	import org.igniterealtime.xiff.data.im.RosterItemVO;
+	import org.igniterealtime.xiff.events.RosterEvent;
+	import org.igniterealtime.xiff.im.Roster;
+	import org.igniterealtime.xiff.privatedata.PrivateDataManager;
 	
 	/**
 	 * SparkManager is the core manager used within SparkWeb to access other managers, such as 

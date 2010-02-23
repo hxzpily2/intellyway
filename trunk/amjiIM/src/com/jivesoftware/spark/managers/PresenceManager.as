@@ -21,12 +21,13 @@ package com.jivesoftware.spark.managers
 	
 	import mx.collections.ArrayCollection;
 	
-	import org.jivesoftware.xiff.data.*;
-	import org.jivesoftware.xiff.data.im.Contact;
-	import org.jivesoftware.xiff.data.im.RosterItemVO;
+	import org.igniterealtime.xiff.data.Presence;
+	import org.igniterealtime.xiff.data.im.Contact;
+	import org.igniterealtime.xiff.data.im.RosterItemVO;
+	import org.igniterealtime.xiff.data.*;
 	
 	public class PresenceManager extends EventDispatcher {
-		[Embed(source="/assets/images/im_free_chat.png")]
+		/*[Embed(source="/assets/images/im_free_chat.png")]
 		private static const freeToChat:Class;
 		
 		[Embed(source="/assets/images/im_available.png")]
@@ -51,16 +52,34 @@ package com.jivesoftware.spark.managers
 		private static const unavailable:Class;
 		
 		[Embed(source="/assets/images/pending.png")]
-		private static const pending:Class;
+		private static const pending:Class;*/
+		
+		
+        [Embed(source="assets/images/en_ligne.png")]
+        public static const EnLigne:Class;
+
+        
+        [Embed(source="assets/images/occupe.png")]
+        public static const Occupe:Class;
+
+        
+        [Embed(source="assets/images/absent.png")]
+        public static const Absent:Class;
+		
+		
+        [Embed(source="assets/images/de_retour.png")]
+        public static const Retour:Class;
+        
+        
+        [Embed(source="assets/images/hors_ligne.png")]
+        public static const HorsLigne:Class;
 
 		public static const presences:ArrayCollection = new ArrayCollection([
-		{ label: "Free To Chat", shortName: Presence.SHOW_CHAT, icon: freeToChat, presence:Presence.SHOW_CHAT},
-		{ label: "Available", shortName: "Available", icon: imAvailable, presence:null},
-		{ label: "Away", shortName: Presence.SHOW_AWAY, icon: imAway, presence:Presence.SHOW_AWAY},
-		{ label: "On Phone", shortName: "On Phone", icon: onPhone, presence:Presence.SHOW_AWAY},
-		{ label: "Extended Away", shortName: Presence.SHOW_XA, icon: imExtendedAway, presence:Presence.SHOW_XA},
-		{ label: "On The Road", shortName: "On The Road", icon: onTheRoad, presence:Presence.SHOW_XA},
-		{ label: "Do Not Disturb", shortName: Presence.SHOW_DND, icon: imDND, presence:Presence.SHOW_DND}
+		{ label: "Available", shortName: "Available", icon: EnLigne, presence:null},
+		{ label: "Away", shortName: Presence.SHOW_AWAY, icon: Absent, presence:Presence.SHOW_AWAY},
+		{ label: "Extended Away", shortName: Presence.SHOW_XA, icon: Retour, presence:Presence.SHOW_XA},
+		{ label: "On The Road", shortName: "On The Road", icon: HorsLigne, presence:Presence.SHOW_XA},
+		{ label: "Do Not Disturb", shortName: Presence.SHOW_DND, icon: Occupe, presence:Presence.SHOW_DND}
 		]);
 		
 		/**
@@ -72,7 +91,7 @@ package com.jivesoftware.spark.managers
 		public function getIconFromPresence(presence:String):Class 
 		{
 			if (presence == "Pending")
-				return pending;
+				return Absent;
 			
 			for each(var p:Object in presences)
 			{
@@ -82,7 +101,7 @@ package com.jivesoftware.spark.managers
 				}
 			}
 			
-			return unavailable;
+			return HorsLigne;
 		}
 		
 		public function changePresence(newShow:String, newStatus:String, newPriority:Number = -1000):void
@@ -128,14 +147,14 @@ package com.jivesoftware.spark.managers
 		 {
 		 	//TODO: rework BuddyRenderer and MUCOccupantRenderer to allow for this to be statically typed
 		 	if(!item is Contact)
-		 		return imAvailable;
+		 		return EnLigne;
 		 	
 		 	if (item is RosterItemVO && (item as RosterItemVO).pending) {
-		 		return pending;
+		 		return Absent;
 		 	}
 		 	
 		 	if(item is RosterItemVO && !(item as RosterItemVO).online)
-				return unavailable;
+				return HorsLigne;
 		 				
 			for each(var p:Object in presences)
 			{
@@ -143,7 +162,7 @@ package com.jivesoftware.spark.managers
 					return p.icon;
 			}
 			
-			return imAvailable;
+			return EnLigne;
 		 }
 	}
 }
