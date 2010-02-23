@@ -22,8 +22,8 @@ sfGuardUser:
     is_super_admin: true
 AmjiUser:
   sgu_admin:
-    pseudo: reda.ze@gmail.com
-    email: reda.ze@gmail.com
+    pseudo: reda.zerhouni@hotmail.com
+    email: reda.zerhouni@hotmail.com
     nom: reda
     prenom: reda
     adr: adresse
