@@ -65,6 +65,12 @@ package commun
             }
             return menuItem;
         }
+        
+        public static function getDomainFromMail(email : String):String{
+        	var a : Number = email.substr(0,email.indexOf("@")).length;
+        	var b : Number = email.substr(0,email.lastIndexOf(".")).length;
+        	return email.substr(email.indexOf("@")+1,b-a-1);        	
+        }
 
 	}
 }
