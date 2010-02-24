@@ -161,7 +161,7 @@ package view
 		
 		private function handleBoshConnection( event:Event ):void
 	    {
-				Alert.show("ok");			
+			Alert.show("ok");			
 	    }
 		
 		private function handleConnection( event:ConnectionSuccessEvent ):void
