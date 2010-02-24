@@ -10,6 +10,7 @@ package view
 	
 	import flash.display.NativeWindowType;
 	import flash.events.Event;
+	import flash.utils.Dictionary;
 	
 	import model.ApplicationProxy;
 	import model.vo.CreateUserVO;
@@ -22,6 +23,7 @@ package view
 	import org.igniterealtime.xiff.conference.Room;
 	import org.igniterealtime.xiff.core.EscapedJID;
 	import org.igniterealtime.xiff.core.UnescapedJID;
+	import org.igniterealtime.xiff.data.Presence;
 	import org.igniterealtime.xiff.events.ConnectionSuccessEvent;
 	import org.igniterealtime.xiff.events.DisconnectionEvent;
 	import org.igniterealtime.xiff.events.LoginEvent;
@@ -33,11 +35,14 @@ package view
 	
 	import view.contacts.SearchContact;
 	
+	
+	
 	public class ApplicationMediateur extends Mediator implements IMediator
 	{
 		public static const NAME:String = 'ApplicationMediateur'; 
 		private var chats:Object = {};
 		private var queuedRooms:Array = [];
+		public var statutdic :  Dictionary = new Dictionary();
 		
 		public function ApplicationMediateur(viewComponent:Object=null)
 		{
@@ -55,6 +60,12 @@ package view
 			app.mainWindow.contactView.addEventListener(Actions.ACCEPTINVITATION,acceptInvitation);
 			app.mainWindow.contactView.addEventListener(Actions.IGNOREINVITATION,ignoreInvitation);
 			app.mainWindow.contactView.addEventListener(Actions.INVITECHAT,inviteChat);
+			
+			statutdic[Constantes.ENLIGNE] = null;
+			statutdic[Constantes.HORSLIGNE] = Presence.TYPE_UNAVAILABLE;
+			statutdic[Constantes.ABSENT] = Presence.SHOW_AWAY;
+			statutdic[Constantes.DERETOUR] = Presence.SHOW_XA;
+			statutdic[Constantes.OCCUPE] = Presence.SHOW_DND;
 		}
 		
 		public function inviteChat(event : InviteChatEvent):void{
@@ -63,8 +74,7 @@ package view
 			if(!chat)
 				chat = new SparkChat(jid);
 				
-			chats[jid.bareJID] = chat;		
-			
+			chats[jid.bareJID] = chat;			
 		}
 		
 		public function getChat(jid:UnescapedJID):SparkChat 
@@ -136,7 +146,13 @@ package view
 		}
 		
 		public function sendStatutChangeMessage(statut : String):void{
-			
+			if(statut!=Constantes.HORSLIGNE)			
+				ApplicationFacade.getPresenceManager().changePresence(statutdic[statut],statutdic[statut]);
+			else{
+				var recipient:EscapedJID = new EscapedJID(ApplicationFacade.getConnexion().server);
+				var unavailablePresence:Presence = new Presence(recipient, null, Presence.TYPE_UNAVAILABLE, null, "Logged out");
+				ApplicationFacade.getConnexion().send(unavailablePresence);
+			}
 		}
 		
 		public function sendPseudoChangeMessage(pseudo : String):void{
@@ -217,7 +233,8 @@ package view
             		app.poopupFugace.show(app.geti18nText('text.inscription.congratulation'),350,120);
             		app.poopupFugace.addEventListener("CLOSED",showLoginWindow);            		
             		app.hideLoader();            		
-            		app.inscWindow.close();            		
+            		app.inscWindow.close();
+            		ApplicationFacade.getConnexion().disconnect();            		
             		break;
             	case ApplicationFacade.INSCRFAILED:
             		app.hideLoader();

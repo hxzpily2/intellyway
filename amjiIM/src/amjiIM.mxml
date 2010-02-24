@@ -103,7 +103,7 @@
       			ApplicationFacade.getConnexion().addEventListener( DisconnectionEvent.DISCONNECT, handleDisconnect );
       			ApplicationFacade.getConnexion().server = Constantes.XMPPSERVEUR;
       			ApplicationFacade.getConnexion().useAnonymousLogin = false;      			
-      			ApplicationFacade.getConnexion().username = Constantes.XMPPUSERPREFIX+window.userVO.login.substr(0,window.userVO.login.lastIndexOf("@"));
+      			ApplicationFacade.getConnexion().username = Constantes.XMPPUSERPREFIX+window.userVO.login.substr(0,window.userVO.login.lastIndexOf("@"))+Commun.getDomainFromMail(window.userVO.login);
           		ApplicationFacade.getConnexion().password = window.userVO.pass;
 				ApplicationFacade.getConnexion().connect();				
 				PopUpManager.addPopUp(loader,window,true);
@@ -177,7 +177,7 @@
 		    	iq.callbackScope = this;
 				
 				var reg:RegisterExtension = new RegisterExtension();
-				reg.username = Constantes.XMPPUSERPREFIX+inscWindow.createUserVO.email.substr(0,inscWindow.createUserVO.email.lastIndexOf("@"));
+				reg.username = Constantes.XMPPUSERPREFIX+inscWindow.createUserVO.email.substr(0,inscWindow.createUserVO.email.lastIndexOf("@"))+Commun.getDomainFromMail(inscWindow.createUserVO.email);
 				reg.password = inscWindow.createUserVO.password;				
 				iq.addExtension(reg);				
 				ApplicationFacade.getConnexion().send(iq);			

@@ -45,23 +45,28 @@ package com.jivesoftware.spark.managers
 		/**
 		 * Creates a new instance of the ConnectionManager.
 		 */
-		public function ConnectionManager():void 
+		public function ConnectionManager(connection : XMPPConnection = null):void 
 		{
-			var type:String = SparkManager.getConfigValueForKey("connectionType");
-			switch(type)
-			{
-				case "http":
-					con = new XMPPBOSHConnection(false);
-					break;
-				case "https":
-					con = new XMPPBOSHConnection(true);
-					break;
-				case "socket":
-				default:
-					con = new XMPPConnection();	
-			}
-			if(SparkManager.getConfigValueForKey("port") != null)
-				con.port = Number(SparkManager.getConfigValueForKey("port"));
+			if(connection==null){
+				var type:String = SparkManager.getConfigValueForKey("connectionType");
+				switch(type)
+				{
+					case "http":
+						con = new XMPPBOSHConnection(false);
+						break;
+					case "https":
+						con = new XMPPBOSHConnection(true);
+						break;
+					case "socket":
+					default:
+						con = new XMPPConnection();	
+				}
+				if(SparkManager.getConfigValueForKey("port") != null)
+					con.port = Number(SparkManager.getConfigValueForKey("port"));
+				else 
+					con.port = 5222;
+			}else
+				con = connection;
 		}
 		
 		/**

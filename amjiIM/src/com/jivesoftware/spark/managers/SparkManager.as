@@ -19,6 +19,8 @@ package com.jivesoftware.spark.managers
 {
 	import com.jivesoftware.spark.*;
 	
+	import commun.Constantes;
+	
 	import org.igniterealtime.xiff.bookmark.BookmarkManager;
 	import org.igniterealtime.xiff.conference.InviteListener;
 	import org.igniterealtime.xiff.data.im.RosterItemVO;
@@ -42,14 +44,15 @@ package com.jivesoftware.spark.managers
 			autoLogin: false,
 			 password: "",
 			 username: "",
-			   server: "igniterealtime.org",
+			   server: Constantes.XMPPSERVEUR,
 			 location: "",
 	          useExternalAuth: false,
 	   connectionType:"socket",
 	   			  red:"1",
 	   			 blue:"1",
 	   			green:"1",
-	   		 resource:"sparkweb"
+	   		 resource:"amjiim",
+	   		 port:"5222"
 		};
 		
 		protected static var _errorHandler:Function;
@@ -93,6 +96,10 @@ package com.jivesoftware.spark.managers
 				_connectionManager = new ConnectionManager();
 			
 			return _connectionManager;
+		}
+		
+		public static function set connectionManager(connectionMan : ConnectionManager):void {
+			_connectionManager = connectionMan;
 		}
 		
 		public static function get privateDataManager():PrivateDataManager {
