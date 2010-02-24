@@ -1,5 +1,9 @@
 package
 {
+	import com.jivesoftware.spark.managers.ConnectionManager;
+	import com.jivesoftware.spark.managers.PresenceManager;
+	import com.jivesoftware.spark.managers.SparkManager;
+	
 	import commande.StartUpCommand;
 	import commande.UserCommande;
 	
@@ -42,6 +46,9 @@ package
         }  
         
         public static var connection : XMPPConnection;
+        public static var connectionManager : ConnectionManager;
+        public static var presenceManager : PresenceManager;
+        public static var sparkManager : SparkManager; 
         public var room : Room;
         
   
@@ -56,11 +63,34 @@ package
             	connection = new XMPPConnection();
 	      		connection.port = Constantes.XMPPPORT;
 	      		connection.resource = "amjiim";      		
-	      		connection.server = Constantes.XMPPSERVEUR;            	
+	      		connection.server = Constantes.XMPPSERVEUR;	
+	      		connectionManager = new ConnectionManager(connection);
+	      		SparkManager.connectionManager = connectionManager;      		           	
             }  
   
             return connection as XMPPConnection;  
   
+        } 
+        
+        public static function getConnectionManager() : ConnectionManager { 
+        	if ( connectionManager == null ){ 
+        		connectionManager = new ConnectionManager();
+        	}
+        	return connectionManager as ConnectionManager;
+        }
+        
+        public static function getPresenceManager() : PresenceManager { 
+        	if ( presenceManager == null ){ 
+        		presenceManager = new PresenceManager();
+        	}
+        	return presenceManager as PresenceManager;
+        }
+        
+        public static function getSparkManager() : SparkManager { 
+        	if ( sparkManager == null ){ 
+        		sparkManager = new SparkManager();
+        	}
+        	return sparkManager as SparkManager;
         } 
 
 	}

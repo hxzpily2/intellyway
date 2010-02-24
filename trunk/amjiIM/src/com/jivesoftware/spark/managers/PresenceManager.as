@@ -17,14 +17,15 @@
 
 package com.jivesoftware.spark.managers
 {
+	import commun.Constantes;
+	
 	import flash.events.EventDispatcher;
 	
 	import mx.collections.ArrayCollection;
 	
-	import org.igniterealtime.xiff.data.Presence;
+	import org.igniterealtime.xiff.data.*;
 	import org.igniterealtime.xiff.data.im.Contact;
 	import org.igniterealtime.xiff.data.im.RosterItemVO;
-	import org.igniterealtime.xiff.data.*;
 	
 	public class PresenceManager extends EventDispatcher {
 		/*[Embed(source="/assets/images/im_free_chat.png")]
@@ -75,11 +76,11 @@ package com.jivesoftware.spark.managers
         public static const HorsLigne:Class;
 
 		public static const presences:ArrayCollection = new ArrayCollection([
-		{ label: "Available", shortName: "Available", icon: EnLigne, presence:null},
-		{ label: "Away", shortName: Presence.SHOW_AWAY, icon: Absent, presence:Presence.SHOW_AWAY},
-		{ label: "Extended Away", shortName: Presence.SHOW_XA, icon: Retour, presence:Presence.SHOW_XA},
-		{ label: "On The Road", shortName: "On The Road", icon: HorsLigne, presence:Presence.SHOW_XA},
-		{ label: "Do Not Disturb", shortName: Presence.SHOW_DND, icon: Occupe, presence:Presence.SHOW_DND}
+		{ label: Constantes.ENLIGNE, shortName: Constantes.ENLIGNE, icon: EnLigne, presence:null},
+		{ label: Presence.SHOW_AWAY, shortName: Presence.SHOW_AWAY, icon: Absent, presence:Presence.SHOW_AWAY},
+		{ label: Presence.SHOW_XA, shortName: Presence.SHOW_XA, icon: Retour, presence:Presence.SHOW_XA},
+		{ label: Constantes.HORSLIGNE, shortName: Constantes.HORSLIGNE, icon: HorsLigne, presence:Constantes.HORSLIGNE},
+		{ label: Presence.SHOW_DND, shortName: Constantes.OCCUPE, icon: Occupe, presence:Presence.SHOW_DND}
 		]);
 		
 		/**

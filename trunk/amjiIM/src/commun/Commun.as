@@ -71,6 +71,12 @@ package commun
         	var b : Number = email.substr(0,email.lastIndexOf(".")).length;
         	return email.substr(email.indexOf("@")+1,b-a-1);        	
         }
+        
+        public static function getJidFromMail(email : String):String{
+        	var a : Number = email.substr(0,email.indexOf("@")).length;
+        	var b : Number = email.substr(0,email.lastIndexOf(".")).length;
+        	return Constantes.XMPPUSERPREFIX+email.substr(0,email.lastIndexOf("@"))+email.substr(email.indexOf("@")+1,b-a-1);        	
+        }
 
 	}
 }
