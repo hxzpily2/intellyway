@@ -4,6 +4,7 @@ package view
 	
 	import commun.AcceptContact;
 	import commun.Actions;
+	import commun.Commun;
 	import commun.Constantes;
 	import commun.InviteChatEvent;
 	import commun.components.AmjiAlert;
@@ -333,15 +334,29 @@ package view
             		}
             		proxy.userConnected.listInvitations = array.source;
             		app.mainWindow.contactView.listeInvitation.source = proxy.userConnected.listInvitations; 
+            		app.mainWindow.contactView.lblInvitations.value = proxy.userConnected.listInvitations.length;
             		break;
-            	case ApplicationFacade.ACCEPTCONTACT:
+            	case ApplicationFacade.ACCEPTCONTACT:            		
             		var user : CreateUserVO = notification.getBody() as CreateUserVO;
+            		ApplicationFacade.getInstance().mainRoster.addContact(new UnescapedJID(Commun.getJidFromMail(user.email)),user.prenom+" "+user.nom);
             		var proxy : ApplicationProxy = facade.retrieveProxy(ApplicationProxy.NAME) as ApplicationProxy;
             		var array : ArrayCollection = new ArrayCollection;
             		array.source = proxy.userConnected.listeContacts
             		array.addItem(user);
             		proxy.userConnected.listeContacts = array.source;          		
-            		app.mainWindow.contactView.listeContact.source = proxy.userConnected.listeContacts;	
+            		app.mainWindow.contactView.listeContact.source = proxy.userConnected.listeContacts;
+            		array = new ArrayCollection;
+            		array.source = proxy.userConnected.listInvitations;
+            		for(var i : Number = 0;i<array.length;i++){
+            			var temp : CreateUserVO = array.getItemAt(i) as CreateUserVO;
+            			if(temp.idamji_user == user.idamji_user){
+            				array.removeItemAt(i);
+            				break;
+            			}            				
+            		}
+            		proxy.userConnected.listInvitations = array.source;	
+            		app.mainWindow.contactView.listeInvitation.source = proxy.userConnected.listInvitations;
+            		app.mainWindow.contactView.lblInvitations.value = proxy.userConnected.listInvitations.length;
             		break;      		
             }
         }    
