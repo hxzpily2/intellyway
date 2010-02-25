@@ -69,6 +69,11 @@ package commande
 			service.ignoreInvitation(notification.getBody() as Number);
 		}
 		
+		public function logout(notification : INotification):void{
+			var service : UserDelegate = new UserDelegate(this);
+			service.logout();
+		}
+		
 		override public function result(data : Object):void{
 			switch((data.token as AsyncToken).action){
 				case Actions.CREATAUSER:

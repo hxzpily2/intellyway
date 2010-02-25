@@ -16,6 +16,7 @@ package commun
 		public static const PSEUDOCHANGE : String = "changePseudo";
 		public static const ACCEPTINVITATION : String = "accepteInvitation";
 		public static const IGNOREINVITATION : String = "ignoreInvitation";
+		public static const LOGOUT : String = "logout";
 		
 		public static const INVITECHAT : String = "INVITECHAT";
 		public function Actions()
