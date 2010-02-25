@@ -121,7 +121,11 @@
 			</mx:Label>
 		</mx:VBox>		
 		<mx:Spacer width="100%" />
-		<mx:Image id="imgHumeur" />
+		<mx:HBox width="17" height="17" verticalAlign="middle">
+		</mx:HBox>
+		<mx:HBox width="17" height="17" verticalAlign="middle">
+			<mx:Image id="imgHumeur" />
+		</mx:HBox>
 		<mx:HBox width="17" height="17" verticalAlign="middle">
 			<mx:Image id="imgMenu" click="showMenu(event)" width="10" height="17" source="{arraow}" />	
 		</mx:HBox>		

@@ -99,6 +99,12 @@ package commande
 					proxy.userConnected.listeContacts.push(user);					
 					sendNotification(ApplicationFacade.INVITESUCCESS);
 					break;
+				case Actions.IGNOREINVITATION:
+					sendNotification(ApplicationFacade.IGNORECONTACT,data.result as CreateUserVO);
+					break;
+				case Actions.ACCEPTINVITATION:
+					sendNotification(ApplicationFacade.ACCEPTCONTACT,data.result as CreateUserVO);
+					break;					
 			}
 		}
 		

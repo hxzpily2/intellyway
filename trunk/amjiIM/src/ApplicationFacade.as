@@ -12,6 +12,7 @@ package
 	
 	import org.igniterealtime.xiff.conference.Room;
 	import org.igniterealtime.xiff.core.XMPPConnection;
+	import org.igniterealtime.xiff.im.Roster;
 	import org.puremvc.as3.interfaces.IFacade;
 	import org.puremvc.as3.patterns.facade.Facade;
 	
@@ -24,7 +25,9 @@ package
 		public static const LOGINFAILED:String = "LOGINFAILED";
 		public static const SEARCHSUCCESS:String = "SEARCHSUCCESS";
 		public static const INVITESUCCESS:String = "INVITESUCCESS"; 
-		public static const INVITEFAILED:String = "INVITEFAILED";  
+		public static const INVITEFAILED:String = "INVITEFAILED";
+		public static const ACCEPTCONTACT:String = "ACCEPTCONTACT";
+		public static const IGNORECONTACT:String = "IGNORECONTACT";  
 		
 		public static function getInstance() : ApplicationFacade {  
   
@@ -49,6 +52,7 @@ package
         public static var connectionManager : ConnectionManager;
         public static var presenceManager : PresenceManager;
         public static var sparkManager : SparkManager; 
+        public var mainRoster : Roster;
         public var room : Room;
         
   
@@ -91,7 +95,8 @@ package
         		sparkManager = new SparkManager();
         	}
         	return sparkManager as SparkManager;
-        } 
+        }        
+        
 
 	}
 }
