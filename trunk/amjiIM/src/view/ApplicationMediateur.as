@@ -330,6 +330,7 @@ package view
             		app.mainWindow.contactView.lblInvitations.value = proxy.userConnected.listInvitations.length;
             		app.mainWindow.contactView.listeInvitation.source = proxy.userConnected.listInvitations;
             		ApplicationFacade.getConnexion().addEventListener(MessageEvent.MESSAGE,handleMessage);
+            		this.sendStatutChangeMessage(app.window.comboBox.selectedItem.key);
             		break;
             	case ApplicationFacade.LOGINFAILED:
             		app.hideLoader();
