@@ -35,6 +35,8 @@ package commun
 		public static const XMPPPASS    :String = "amjiim";
 		public static const XMPPCONFERENCESERVEUR    :String = "conference.jabber.tf-network.de";
 		public static const XMPPUSERPREFIX    :String = "amjiimuser_";
+		
+		public static const XMPPROOMPREFIX : String = "amjiimroom_";
 		public function Constantes()
 		{
 		}
