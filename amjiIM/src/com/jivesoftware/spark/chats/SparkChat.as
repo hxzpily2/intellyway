@@ -28,6 +28,7 @@ package com.jivesoftware.spark.chats
 	import mx.events.PropertyChangeEvent;
 	
 	import org.igniterealtime.xiff.core.UnescapedJID;
+	import org.igniterealtime.xiff.core.XMPPConnection;
 	import org.igniterealtime.xiff.data.Message;
 	import org.igniterealtime.xiff.data.im.RosterItemVO;
 	import org.igniterealtime.xiff.util.*;
@@ -137,8 +138,12 @@ package com.jivesoftware.spark.chats
 		}
 		
 		//actually does the sending to the connection
-		public function transmitMessage(message:SparkMessage):void {
-			SparkManager.connectionManager.sendMessage(jid, message.body);
+		public function transmitMessage(message:SparkMessage,connection : XMPPConnection = null):void {
+			if(connection==null)
+				SparkManager.connectionManager.sendMessage(jid, message.body);
+			else{
+				SparkManager.connectionManager.sendMessage(jid, message.body, connection);
+			}
 		}
 		
 		public function init():void 

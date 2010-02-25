@@ -147,14 +147,17 @@ package com.jivesoftware.spark.managers
 		 * @param jid the jid to send the message to.
 		 * @param body the body of the message to send.
 		 */
-		public function sendMessage(jid:UnescapedJID, body:String):void 
+		public function sendMessage(jid:UnescapedJID, body:String,connection : XMPPConnection = null):void 
 		{
 			var message:Message = new Message();
 			message.addExtension(new MessageEventExtension());
 			message.to = jid.escaped;
 			message.body = body;
 			message.type = Message.TYPE_CHAT;
-			con.send(message);
+			if(connection == null)
+				con.send(message);
+			else
+				connection.send(message);
 		}
 	}
 }
