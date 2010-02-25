@@ -204,7 +204,7 @@
 			}
 			
 			public function logout():void{
-				
+				facade.sendNotification(Actions.GENERICUSER,null,Actions.LOGOUTCLOSE);
 			}
 			
 			public function closeHandler():void{
@@ -218,8 +218,7 @@
 					mainWindow.close();
 				if(searchContactWin != null)
 					searchContactWin.close();
-				this.close();
-				this.logout();
+				this.close();				
 			}
 			
 			public function geti18nText(key : String):String{
