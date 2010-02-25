@@ -21,13 +21,18 @@ package view
 	import mx.controls.Alert;
 	import mx.managers.PopUpManager;
 	
+	import org.igniterealtime.xiff.conference.InviteListener;
 	import org.igniterealtime.xiff.conference.Room;
 	import org.igniterealtime.xiff.core.EscapedJID;
 	import org.igniterealtime.xiff.core.UnescapedJID;
+	import org.igniterealtime.xiff.data.Message;
 	import org.igniterealtime.xiff.data.Presence;
+	import org.igniterealtime.xiff.data.events.MessageEventExtension;
 	import org.igniterealtime.xiff.events.ConnectionSuccessEvent;
 	import org.igniterealtime.xiff.events.DisconnectionEvent;
+	import org.igniterealtime.xiff.events.InviteEvent;
 	import org.igniterealtime.xiff.events.LoginEvent;
+	import org.igniterealtime.xiff.events.MessageEvent;
 	import org.igniterealtime.xiff.events.RoomEvent;
 	import org.igniterealtime.xiff.events.RosterEvent;
 	import org.igniterealtime.xiff.events.XIFFErrorEvent;
@@ -77,7 +82,15 @@ package view
     		ApplicationFacade.getInstance().mainRoster.addEventListener(RosterEvent.SUBSCRIPTION_REVOCATION, onRoster);
     		ApplicationFacade.getInstance().mainRoster.addEventListener(RosterEvent.USER_AVAILABLE, onRoster);
     		ApplicationFacade.getInstance().mainRoster.addEventListener(RosterEvent.USER_UNAVAILABLE, onRoster);
-    		ApplicationFacade.getInstance().mainRoster.addEventListener(RosterEvent.USER_PRESENCE_UPDATED, onRoster);    		
+    		ApplicationFacade.getInstance().mainRoster.addEventListener(RosterEvent.USER_PRESENCE_UPDATED, onRoster);
+    		
+    		ApplicationFacade.getInstance().inviteListener = new InviteListener();
+    		ApplicationFacade.getInstance().inviteListener.addEventListener(InviteEvent.INVITED,invited);    		
+		}
+		
+		public function invited(event : InviteEvent):void{
+			Alert.show("ok");
+			
 		}
 		
 		private function onRoster(event:RosterEvent):void {		
@@ -106,14 +119,15 @@ package view
 	    }
 		
 		public function inviteChat(event : InviteChatEvent):void{
-			var jid : UnescapedJID = new UnescapedJID(event.username);
+			var jid : UnescapedJID = new UnescapedJID(event.username+"@"+Constantes.XMPPSERVEUR);
 			var chat:SparkChat = getChat(jid) as SparkChat;
 			if(!chat)
 				chat = new SparkChat(jid);
 				
-			chats[jid.bareJID] = chat;			
+			chats[jid.bareJID] = chat;		
 		}
 		
+			
 		public function getChat(jid:UnescapedJID):SparkChat 
 		{
 			return chats[jid.bareJID];
@@ -209,14 +223,13 @@ package view
 	    private function handleLogin( event:LoginEvent ):void
 	    {
 	      Alert.show( "Authentication successful!", "Authentication" );
-	      this.joinRoom();
 	      //this.createUser("AmjiIMUser1","amjitesttesttest");	      
 	    }
 	    
-	    public function joinRoom():void{
+	    public function createRoom():void{
 	    	var proxy : ApplicationProxy = facade.retrieveProxy(ApplicationProxy.NAME) as ApplicationProxy;
 	    	ApplicationFacade.getInstance().room = new Room(ApplicationFacade.getConnexion());
-		  	ApplicationFacade.getInstance().room.roomJID = new UnescapedJID("amji@conference.jaim.at");
+		  	ApplicationFacade.getInstance().room.roomJID = new UnescapedJID(Constantes.XMPPROOMPREFIX+Constantes.XMPPROOMCHAT+"@"+Constantes.XMPPCONFERENCESERVEUR);
 		  	ApplicationFacade.getInstance().room.nickname = "amjiUser_"+proxy.userConnected.userVO.idamji_user.toString();
 		  	ApplicationFacade.getInstance().room.addEventListener(RoomEvent.ROOM_JOIN, onRoomJoin);	
 		  	ApplicationFacade.getInstance().room.addEventListener(RoomEvent.USER_JOIN, handleUserJoin);	  
@@ -241,6 +254,27 @@ package view
 	    private function handleDisconnect( event:DisconnectionEvent ):void
 	    {
 	      
+	    }
+	    
+	    public function handleMessage(event : MessageEvent):void{
+	    	var message : Message = event.data as Message
+	    	switch (message.subject){
+	    		case Actions.INVITECONTACT:
+	    			app.alertWindow = new AmjiAlert();
+            		app.alertWindow.show("vous avez reçu une nouvelle invitation",350,150,Constantes.ATTENTION); 
+	    			break;
+	    	}
+	    }
+	    
+	    public function inviteContact(jid : UnescapedJID):void{
+	    	var proxy : ApplicationProxy = facade.retrieveProxy(ApplicationProxy.NAME) as ApplicationProxy;
+			var message:Message = new Message(jid.escaped);
+			message.addExtension(new MessageEventExtension());
+			message.from = new EscapedJID(Commun.getJidFromMail(proxy.userConnected.userVO.email)+"@"+Constantes.XMPPSERVEUR);
+			message.body = "test";
+			message.subject = Actions.INVITECONTACT;
+			message.type = Message.TYPE_CHAT;		
+			ApplicationFacade.getConnexion().send(message);	
 	    }
 
 		
@@ -292,9 +326,10 @@ package view
             			} 
             		}            		
             		this.joinRoomForType();
-            		this.joinRoomForChat();            		
+            		this.joinRoomForChat();
             		app.mainWindow.contactView.lblInvitations.value = proxy.userConnected.listInvitations.length;
             		app.mainWindow.contactView.listeInvitation.source = proxy.userConnected.listInvitations;
+            		ApplicationFacade.getConnexion().addEventListener(MessageEvent.MESSAGE,handleMessage);
             		break;
             	case ApplicationFacade.LOGINFAILED:
             		app.hideLoader();
@@ -313,6 +348,7 @@ package view
             		app.mainWindow.contactView.listeContact.source = proxy.userConnected.listeContacts;
             		PopUpManager.removePopUp(app.loader);
             		app.searchContactWin.close();
+            		this.inviteContact(new UnescapedJID(Commun.getJidFromMail((proxy.listeSearchContact[app.searchContactWin.listContact.selectedIndex] as CreateUserVO).email)+"@"+Constantes.XMPPSERVEUR));
             		break; 
             	case ApplicationFacade.INVITEFAILED:            		
             		PopUpManager.removePopUp(app.loader);

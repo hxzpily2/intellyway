@@ -10,6 +10,7 @@ package
 	import commun.Actions;
 	import commun.Constantes;
 	
+	import org.igniterealtime.xiff.conference.InviteListener;
 	import org.igniterealtime.xiff.conference.Room;
 	import org.igniterealtime.xiff.core.XMPPConnection;
 	import org.igniterealtime.xiff.im.Roster;
@@ -53,6 +54,7 @@ package
         public static var presenceManager : PresenceManager;
         public static var sparkManager : SparkManager; 
         public var mainRoster : Roster;
+        public var inviteListener : InviteListener;
         public var room : Room;
         
   

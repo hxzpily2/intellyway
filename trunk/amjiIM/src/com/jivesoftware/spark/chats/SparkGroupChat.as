@@ -29,6 +29,7 @@ package com.jivesoftware.spark.chats
 	
 	import org.igniterealtime.xiff.conference.Room;
 	import org.igniterealtime.xiff.core.UnescapedJID;
+	import org.igniterealtime.xiff.core.XMPPConnection;
 	import org.igniterealtime.xiff.data.muc.MUCItem;
 	import org.igniterealtime.xiff.data.muc.MUCUserExtension;
 	import org.igniterealtime.xiff.events.RoomEvent;
@@ -108,7 +109,7 @@ package com.jivesoftware.spark.chats
 			super.insertMessage(message);
   	    }
   	    
-  	    public override function transmitMessage(message:SparkMessage):void {
+  	    public override function transmitMessage(message:SparkMessage,connection : XMPPConnection = null):void {
   	    	room.sendMessage(message.body);
 		}
   	    
