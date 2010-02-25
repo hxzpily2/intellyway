@@ -28,7 +28,9 @@ package view
 	import org.igniterealtime.xiff.events.DisconnectionEvent;
 	import org.igniterealtime.xiff.events.LoginEvent;
 	import org.igniterealtime.xiff.events.RoomEvent;
+	import org.igniterealtime.xiff.events.RosterEvent;
 	import org.igniterealtime.xiff.events.XIFFErrorEvent;
+	import org.igniterealtime.xiff.im.Roster;
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.mediator.Mediator;
@@ -65,8 +67,42 @@ package view
 			statutdic[Constantes.HORSLIGNE] = Presence.TYPE_UNAVAILABLE;
 			statutdic[Constantes.ABSENT] = Presence.SHOW_AWAY;
 			statutdic[Constantes.DERETOUR] = Presence.SHOW_XA;
-			statutdic[Constantes.OCCUPE] = Presence.SHOW_DND;
+			statutdic[Constantes.OCCUPE] = Presence.SHOW_DND;		
+			
+			ApplicationFacade.getInstance().mainRoster = new Roster(ApplicationFacade.getConnexion());
+    		ApplicationFacade.getInstance().mainRoster.addEventListener(RosterEvent.ROSTER_LOADED, onRoster);
+    		ApplicationFacade.getInstance().mainRoster.addEventListener(RosterEvent.SUBSCRIPTION_DENIAL, onRoster);
+    		ApplicationFacade.getInstance().mainRoster.addEventListener(RosterEvent.SUBSCRIPTION_REQUEST, onRoster);
+    		ApplicationFacade.getInstance().mainRoster.addEventListener(RosterEvent.SUBSCRIPTION_REVOCATION, onRoster);
+    		ApplicationFacade.getInstance().mainRoster.addEventListener(RosterEvent.USER_AVAILABLE, onRoster);
+    		ApplicationFacade.getInstance().mainRoster.addEventListener(RosterEvent.USER_UNAVAILABLE, onRoster);
+    		ApplicationFacade.getInstance().mainRoster.addEventListener(RosterEvent.USER_PRESENCE_UPDATED, onRoster);    		
 		}
+		
+		private function onRoster(event:RosterEvent):void {		
+	        switch (event.type){
+	            case RosterEvent.SUBSCRIPTION_REQUEST:
+	                // Fill this bit in, obviously
+	                break;
+	            case RosterEvent.USER_UNAVAILABLE :
+	                trace (event.jid + " is Unavailable (RosterEvent)");
+	                break;
+	            case RosterEvent.USER_AVAILABLE :
+	                trace (event.jid + " is Available (RosterEvent)");
+	                break;
+	            case RosterEvent.SUBSCRIPTION_DENIAL :
+	                trace (event.jid + " denied your request (RosterEvent)");
+	                break;
+	            case RosterEvent.SUBSCRIPTION_REVOCATION :
+	                // this fires at unexpected times so ignore it.
+	                // trace (event.jid + " revoked your presence (RosterEvent)");
+	                break;
+	            case RosterEvent.USER_PRESENCE_UPDATED:
+	            	break;
+	            default :
+	                // do nothing... not recognized
+	        }
+	    }
 		
 		public function inviteChat(event : InviteChatEvent):void{
 			var jid : UnescapedJID = new UnescapedJID(event.username);
@@ -206,13 +242,13 @@ package view
 	      
 	    }
 
-	
 		
-		public function createConsumerForType():void{
+		
+		public function joinRoomForType():void{
 			
 		}
 		
-		public function createConsumerForContacts():void{
+		public function joinRoomForChat():void{
 			
 		}
 		
@@ -220,7 +256,8 @@ package view
         {  
             return [  
               	Actions.CREATAUSER,ApplicationFacade.LOGINFAILED,ApplicationFacade.LOGINSUCCESS,ApplicationFacade.INSCRSUCCESS,
-              	ApplicationFacade.SEARCHSUCCESS,ApplicationFacade.INVITESUCCESS,ApplicationFacade.INVITEFAILED
+              	ApplicationFacade.SEARCHSUCCESS,ApplicationFacade.INVITESUCCESS,ApplicationFacade.INVITEFAILED,
+              	ApplicationFacade.IGNORECONTACT,ApplicationFacade.ACCEPTCONTACT
         	]
         }
         
@@ -253,8 +290,8 @@ package view
             				break;
             			} 
             		}            		
-            		//this.createConsumerForType();
-            		//this.createConsumerForContacts();
+            		this.joinRoomForType();
+            		this.joinRoomForChat();            		
             		app.mainWindow.contactView.lblInvitations.value = proxy.userConnected.listInvitations.length;
             		app.mainWindow.contactView.listeInvitation.source = proxy.userConnected.listInvitations;
             		break;
@@ -281,7 +318,31 @@ package view
             		app.searchContactWin.close();
             		app.alertWindow = new AmjiAlert();
             		app.alertWindow.show("Ce contact figure déjà sur<br>votre liste",350,150,Constantes.ERROR);            		
-            		break;       		
+            		break; 
+            	case ApplicationFacade.IGNORECONTACT:
+            		var user : CreateUserVO = notification.getBody() as CreateUserVO;
+            		var proxy : ApplicationProxy = facade.retrieveProxy(ApplicationProxy.NAME) as ApplicationProxy;
+            		var array : ArrayCollection = new ArrayCollection;
+            		array.source = proxy.userConnected.listInvitations
+            		for(var i : Number = 0;i<array.length;i++){
+            			var temp : CreateUserVO = array.getItemAt(i) as CreateUserVO;
+            			if(temp.idamji_user == user.idamji_user){
+            				array.removeItemAt(i);
+            				break;
+            			}            				
+            		}
+            		proxy.userConnected.listInvitations = array.source;
+            		app.mainWindow.contactView.listeInvitation.source = proxy.userConnected.listInvitations; 
+            		break;
+            	case ApplicationFacade.ACCEPTCONTACT:
+            		var user : CreateUserVO = notification.getBody() as CreateUserVO;
+            		var proxy : ApplicationProxy = facade.retrieveProxy(ApplicationProxy.NAME) as ApplicationProxy;
+            		var array : ArrayCollection = new ArrayCollection;
+            		array.source = proxy.userConnected.listeContacts
+            		array.addItem(user);
+            		proxy.userConnected.listeContacts = array.source;          		
+            		app.mainWindow.contactView.listeContact.source = proxy.userConnected.listeContacts;	
+            		break;      		
             }
         }    
 

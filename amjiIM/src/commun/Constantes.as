@@ -37,6 +37,7 @@ package commun
 		public static const XMPPUSERPREFIX    :String = "amjiimuser_";
 		
 		public static const XMPPROOMPREFIX : String = "amjiimroom_";
+		public static const XMPPROOMCHAT : String = "chatroom";
 		public function Constantes()
 		{
 		}

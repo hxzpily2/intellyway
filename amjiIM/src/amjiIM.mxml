@@ -15,6 +15,7 @@
     
     <mx:Script>
 		<![CDATA[
+			import org.igniterealtime.xiff.data.im.RosterExtension;
 			import org.igniterealtime.xiff.events.DisconnectionEvent;
 			import org.igniterealtime.xiff.events.LoginEvent;
 			import org.igniterealtime.xiff.events.ConnectionSuccessEvent;
@@ -184,7 +185,7 @@
 		    }
 			
 			public function handleRegistration(iq:IQ):void {
-				facade.sendNotification(Actions.GENERICUSER,inscWindow.createUserVO,Actions.CREATAUSER);
+				facade.sendNotification(Actions.GENERICUSER,inscWindow.createUserVO,Actions.CREATAUSER);					
 			}
 			
 			private function handleError( event:XIFFErrorEvent ):void
