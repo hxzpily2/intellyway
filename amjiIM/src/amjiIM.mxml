@@ -80,9 +80,9 @@
 			
 			private function handleChangeState(event:NativeWindowDisplayStateEvent):void{
 				if(event.afterDisplayState == NativeWindowDisplayState.MINIMIZED){ 
-					window.orderToBack();						
+					window.nativeWindow.orderToBack();											
 				}else if(event.afterDisplayState == NativeWindowDisplayState.NORMAL){
-					window.orderToFront();					
+					window.nativeWindow.orderToFront();					
 				} 
 			}
 			
