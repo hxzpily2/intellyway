@@ -200,6 +200,11 @@
 				mainWindow.close();
 				if(searchContactWin != null)
 					searchContactWin.close();
+				this.logout();
+			}
+			
+			public function logout():void{
+				
 			}
 			
 			public function closeHandler():void{
@@ -214,6 +219,7 @@
 				if(searchContactWin != null)
 					searchContactWin.close();
 				this.close();
+				this.logout();
 			}
 			
 			public function geti18nText(key : String):String{

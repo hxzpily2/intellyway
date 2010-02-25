@@ -70,6 +70,12 @@ package business
             asynchToken.addResponder(responder);
             asynchToken.action = Actions.IGNOREINVITATION;
 		}
+		
+		public function logout():void{
+			var asynchToken:AsyncToken = service.logout();  
+            asynchToken.addResponder(responder);
+            asynchToken.action = Actions.LOGOUT;
+		}
 
 	}
 }
