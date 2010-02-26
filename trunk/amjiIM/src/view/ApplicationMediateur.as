@@ -210,22 +210,11 @@ package view
 			
 		}	
 		
-		private function handleBoshConnection( event:Event ):void
-	    {
-			Alert.show("ok");			
-	    }
-		
 		private function handleConnection( event:ConnectionSuccessEvent ):void
 	    {
 							
 	    }
 	
-	    private function handleLogin( event:LoginEvent ):void
-	    {
-	      Alert.show( "Authentication successful!", "Authentication" );
-	      //this.createUser("AmjiIMUser1","amjitesttesttest");	      
-	    }
-	    
 	    public function createRoom():void{
 	    	var proxy : ApplicationProxy = facade.retrieveProxy(ApplicationProxy.NAME) as ApplicationProxy;
 	    	ApplicationFacade.getInstance().room = new Room(ApplicationFacade.getConnexion());
@@ -270,9 +259,18 @@ package view
 	    	var proxy : ApplicationProxy = facade.retrieveProxy(ApplicationProxy.NAME) as ApplicationProxy;
 			var message:Message = new Message(jid.escaped);
 			message.addExtension(new MessageEventExtension());
-			message.from = new EscapedJID(Commun.getJidFromMail(proxy.userConnected.userVO.email)+"@"+Constantes.XMPPSERVEUR);
-			message.body = "test";
+			message.from = new EscapedJID(Commun.getJidFromMail(proxy.userConnected.userVO.email)+"@"+Constantes.XMPPSERVEUR);			
 			message.subject = Actions.INVITECONTACT;
+			message.type = Message.TYPE_CHAT;		
+			ApplicationFacade.getConnexion().send(message);	
+	    }
+	    
+	    public function sendXMPPAcceptContact(jid : UnescapedJID):void{
+	    	var proxy : ApplicationProxy = facade.retrieveProxy(ApplicationProxy.NAME) as ApplicationProxy;
+			var message:Message = new Message(jid.escaped);
+			message.addExtension(new MessageEventExtension());
+			message.from = new EscapedJID(Commun.getJidFromMail(proxy.userConnected.userVO.email)+"@"+Constantes.XMPPSERVEUR);			
+			message.subject = Actions.ACCEPTINVITATION;
 			message.type = Message.TYPE_CHAT;		
 			ApplicationFacade.getConnexion().send(message);	
 	    }
