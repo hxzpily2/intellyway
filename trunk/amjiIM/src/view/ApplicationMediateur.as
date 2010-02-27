@@ -438,6 +438,7 @@ package view
             		}
             		proxy.userConnected.listInvitations = array.source;	
             		app.mainWindow.contactView.listeInvitation.source = proxy.userConnected.listInvitations;
+            		app.mainWindow.contactView.window.listeInvitation.source = proxy.userConnected.listInvitations;
             		app.mainWindow.contactView.lblInvitations.value = proxy.userConnected.listInvitations.length;
             		break;      		
             }
