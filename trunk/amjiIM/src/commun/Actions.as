@@ -18,6 +18,7 @@ package commun
 		public static const IGNOREINVITATION : String = "ignoreInvitation";
 		public static const LOGOUT : String = "logout";
 		public static const LOGOUTCLOSE : String = "logoutClose";
+		public static const GETINFOUSER : String = "getInfoUser";
 		
 		public static const INVITECHAT : String = "INVITECHAT";
 		public function Actions()
