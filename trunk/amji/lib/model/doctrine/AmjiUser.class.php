@@ -256,6 +256,28 @@ class AmjiUser extends BaseAmjiUser
 			return true;
 		else return false;
 	}
+	
+	public static function getInfoContact($iduser){
+		$amjiuser = AmjiUser::getUserById($idcontact);
+		$userVo = new CreateUserVO();
+		$userVo->idamji_user = $amjiuser->getIdamji_user();
+		$userVo->adr = $amjiuser->getAdr();
+		$userVo->ecole = $amjiuser->getEcole();
+		$userVo->email = $amjiuser->getEmail();
+		$userVo->etudiant = $amjiuser->getEtudiant();
+		$userVo->niveau = $amjiuser->getNiveau();
+		$userVo->nom = $amjiuser->getNom();
+		$userVo->prenom = $amjiuser->getPrenom();
+		$userVo->pseudo = $amjiuser->getPseudo();
+		$userVo->salarie = $amjiuser->getSalarie();
+		$userVo->societe = $amjiuser->getSociete();
+		$userVo->statut = $amjiuser->getStatut();
+		$userVo->tel = $amjiuser->getTel();
+		$userVo->civilite = $amjiuser->getCivilite();
+		$userVo->connstatut = AmjiStatut::getStatutById($amjiuser->getIdamji_statut());;
+		$userVo->humeur = $amjiuser->getHumeur(); 
+		return $userVo;
+	}
 
 
 }
