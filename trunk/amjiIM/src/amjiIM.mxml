@@ -15,6 +15,7 @@
     
     <mx:Script>
 		<![CDATA[
+			import org.igniterealtime.xiff.events.PresenceEvent;
 			import org.igniterealtime.xiff.data.im.RosterExtension;
 			import org.igniterealtime.xiff.events.DisconnectionEvent;
 			import org.igniterealtime.xiff.events.LoginEvent;
@@ -102,6 +103,7 @@
       			ApplicationFacade.getConnexion().addEventListener( LoginEvent.LOGIN, handleLogin );
       			ApplicationFacade.getConnexion().addEventListener( XIFFErrorEvent.XIFF_ERROR, handleError );
       			ApplicationFacade.getConnexion().addEventListener( DisconnectionEvent.DISCONNECT, handleDisconnect );
+      			
       			ApplicationFacade.getConnexion().server = Constantes.XMPPSERVEUR;
       			ApplicationFacade.getConnexion().useAnonymousLogin = false;      			
       			ApplicationFacade.getConnexion().username = Constantes.XMPPUSERPREFIX+window.userVO.login.substr(0,window.userVO.login.lastIndexOf("@"))+Commun.getDomainFromMail(window.userVO.login);
@@ -125,6 +127,7 @@
 				
 			}
 			
+					
 			private function handleLogin( event:LoginEvent ):void
 		    {
 		      facade.sendNotification(Actions.GENERICUSER,window.userVO,Actions.LOGIN);	      
@@ -133,8 +136,6 @@
 		    {
 		      
 		    }
-			
-			
 			
 			public function hideLoader():void{
 				PopUpManager.removePopUp(loader);				
