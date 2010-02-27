@@ -21,18 +21,19 @@ package view
 	import mx.controls.Alert;
 	import mx.managers.PopUpManager;
 	
-	import org.igniterealtime.xiff.conference.InviteListener;
 	import org.igniterealtime.xiff.conference.Room;
 	import org.igniterealtime.xiff.core.EscapedJID;
 	import org.igniterealtime.xiff.core.UnescapedJID;
+	import org.igniterealtime.xiff.data.IQ;
 	import org.igniterealtime.xiff.data.Message;
 	import org.igniterealtime.xiff.data.Presence;
+	import org.igniterealtime.xiff.data.XMPPStanza;
 	import org.igniterealtime.xiff.data.events.MessageEventExtension;
+	import org.igniterealtime.xiff.data.im.RosterExtension;
 	import org.igniterealtime.xiff.events.ConnectionSuccessEvent;
 	import org.igniterealtime.xiff.events.DisconnectionEvent;
-	import org.igniterealtime.xiff.events.InviteEvent;
-	import org.igniterealtime.xiff.events.LoginEvent;
 	import org.igniterealtime.xiff.events.MessageEvent;
+	import org.igniterealtime.xiff.events.PresenceEvent;
 	import org.igniterealtime.xiff.events.RoomEvent;
 	import org.igniterealtime.xiff.events.RosterEvent;
 	import org.igniterealtime.xiff.events.XIFFErrorEvent;
@@ -73,7 +74,9 @@ package view
 			statutdic[Constantes.HORSLIGNE] = Presence.TYPE_UNAVAILABLE;
 			statutdic[Constantes.ABSENT] = Presence.SHOW_AWAY;
 			statutdic[Constantes.DERETOUR] = Presence.SHOW_XA;
-			statutdic[Constantes.OCCUPE] = Presence.SHOW_DND;		
+			statutdic[Constantes.OCCUPE] = Presence.SHOW_DND;
+			
+					
 			
 			ApplicationFacade.getInstance().mainRoster = new Roster(ApplicationFacade.getConnexion());
     		ApplicationFacade.getInstance().mainRoster.addEventListener(RosterEvent.ROSTER_LOADED, onRoster);
@@ -84,18 +87,34 @@ package view
     		ApplicationFacade.getInstance().mainRoster.addEventListener(RosterEvent.USER_UNAVAILABLE, onRoster);
     		ApplicationFacade.getInstance().mainRoster.addEventListener(RosterEvent.USER_PRESENCE_UPDATED, onRoster);
     		
-    		ApplicationFacade.getInstance().inviteListener = new InviteListener();
-    		ApplicationFacade.getInstance().inviteListener.addEventListener(InviteEvent.INVITED,invited);    		
+    		ApplicationFacade.getConnexion().addEventListener(PresenceEvent.PRESENCE, onPresence);
+    		/*ApplicationFacade.getInstance().inviteListener = new InviteListener();
+    		ApplicationFacade.getInstance().inviteListener.addEventListener(InviteEvent.INVITED,invited);*/    		
+    		    		
 		}
 		
-		public function invited(event : InviteEvent):void{
+		
+		public function onPresence(event : PresenceEvent):void{
 			Alert.show("ok");
-			
 		}
+		
+		public function isInTheRoster(jid : String):Boolean{
+			for(var i : Number = 0;i<ApplicationFacade.getInstance().mainRoster.length;i++){
+				if(ApplicationFacade.getInstance().mainRoster.getItemAt(i)==jid){
+					return true;
+				}
+			}
+			return false;
+		}
+		
 		
 		private function onRoster(event:RosterEvent):void {		
+	         trace("onRoster. " + event.toString());        
+	         
 	        switch (event.type){
 	            case RosterEvent.SUBSCRIPTION_REQUEST:
+	            	if(this.isInTheRoster(event.jid.escaped.bareJID))
+	            	     ApplicationFacade.getInstance().mainRoster.grantSubscription(event.jid, true);
 	                // Fill this bit in, obviously
 	                break;
 	            case RosterEvent.USER_UNAVAILABLE :
@@ -112,6 +131,7 @@ package view
 	                // trace (event.jid + " revoked your presence (RosterEvent)");
 	                break;
 	            case RosterEvent.USER_PRESENCE_UPDATED:
+	            		            	
 	            	break;
 	            default :
 	                // do nothing... not recognized
@@ -196,13 +216,14 @@ package view
 			this.sendPseudoChangeMessage(app.mainWindow.contactView.txtPseudo.text);
 		}
 		
-		public function sendStatutChangeMessage(statut : String):void{
-			if(statut!=Constantes.HORSLIGNE)			
-				ApplicationFacade.getPresenceManager().changePresence(statutdic[statut],statutdic[statut]);
+		public function sendStatutChangeMessage(statut : String):void{			
+			if(statut!=Constantes.HORSLIGNE){		
+				ApplicationFacade.getPresenceManager().changePresence(statutdic[statut],statutdic[statut]);								
+			}
 			else{
 				var recipient:EscapedJID = new EscapedJID(ApplicationFacade.getConnexion().server);
 				var unavailablePresence:Presence = new Presence(recipient, null, Presence.TYPE_UNAVAILABLE, null, "Logged out");
-				ApplicationFacade.getConnexion().send(unavailablePresence);
+				ApplicationFacade.getConnexion().send(unavailablePresence);				
 			}
 		}
 		
@@ -252,7 +273,19 @@ package view
 	    			app.alertWindow = new AmjiAlert();
             		app.alertWindow.show("vous avez reçu une nouvelle invitation",350,150,Constantes.ATTENTION); 
 	    			break;
+	    		case Actions.ACCEPTINVITATION:
+	    			  			
+					break;
 	    	}
+	    }
+	    
+	    
+	    public function updateSubscribeContact(jid : EscapedJID,type : String):void{
+	    	var tempIQ:IQ = new IQ( null, IQ.TYPE_SET, XMPPStanza.generateID( "update_contact_" ) );
+			var ext:RosterExtension = new RosterExtension( tempIQ.getNode() );
+			ext.addItem( jid, type );
+			tempIQ.addExtension( ext );
+			ApplicationFacade.getConnexion().send(tempIQ);
 	    }
 	    
 	    public function inviteContact(jid : UnescapedJID):void{
@@ -271,7 +304,19 @@ package view
 			message.addExtension(new MessageEventExtension());
 			message.from = new EscapedJID(Commun.getJidFromMail(proxy.userConnected.userVO.email)+"@"+Constantes.XMPPSERVEUR);			
 			message.subject = Actions.ACCEPTINVITATION;
-			message.type = Message.TYPE_CHAT;		
+			message.type = Message.TYPE_CHAT;
+			message.body = Commun.getJidFromMail(proxy.userConnected.userVO.email);		
+			ApplicationFacade.getConnexion().send(message);	
+	    }
+	    
+	    public function sendXMPPNotif(jid : UnescapedJID,type : String,body :String):void{
+	    	var proxy : ApplicationProxy = facade.retrieveProxy(ApplicationProxy.NAME) as ApplicationProxy;
+			var message:Message = new Message(jid.escaped);
+			message.addExtension(new MessageEventExtension());
+			message.from = new EscapedJID(Commun.getJidFromMail(proxy.userConnected.userVO.email)+"@"+Constantes.XMPPSERVEUR);			
+			message.subject = type;
+			message.type = Message.TYPE_CHAT;
+			message.body = body;		
 			ApplicationFacade.getConnexion().send(message);	
 	    }
 
@@ -327,8 +372,7 @@ package view
             		this.joinRoomForChat();
             		app.mainWindow.contactView.lblInvitations.value = proxy.userConnected.listInvitations.length;
             		app.mainWindow.contactView.listeInvitation.source = proxy.userConnected.listInvitations;
-            		ApplicationFacade.getConnexion().addEventListener(MessageEvent.MESSAGE,handleMessage);
-            		this.sendStatutChangeMessage(app.window.comboBox.selectedItem.key);
+            		ApplicationFacade.getConnexion().addEventListener(MessageEvent.MESSAGE,handleMessage);            		            		
             		break;
             	case ApplicationFacade.LOGINFAILED:
             		app.hideLoader();
@@ -343,6 +387,7 @@ package view
             		break; 
             	case ApplicationFacade.INVITESUCCESS:
             		var proxy : ApplicationProxy = facade.retrieveProxy(ApplicationProxy.NAME) as ApplicationProxy;
+            		ApplicationFacade.getInstance().mainRoster.addContact(new UnescapedJID(Commun.getJidFromMail((proxy.listeSearchContact[app.searchContactWin.listContact.selectedIndex] as CreateUserVO).email)+"@"+Constantes.XMPPSERVEUR+"/"+Constantes.XMPPRESOURCE),Commun.getJidFromMail((proxy.listeSearchContact[app.searchContactWin.listContact.selectedIndex] as CreateUserVO).email),null,true);
             		app.mainWindow.contactView.listeContact = new ArrayCollection;
             		app.mainWindow.contactView.listeContact.source = proxy.userConnected.listeContacts;
             		PopUpManager.removePopUp(app.loader);
@@ -370,10 +415,12 @@ package view
             		proxy.userConnected.listInvitations = array.source;
             		app.mainWindow.contactView.listeInvitation.source = proxy.userConnected.listInvitations; 
             		app.mainWindow.contactView.lblInvitations.value = proxy.userConnected.listInvitations.length;
+            		app.mainWindow.contactView.window.listeInvitation.source = proxy.userConnected.listInvitations;
             		break;
             	case ApplicationFacade.ACCEPTCONTACT:            		
             		var user : CreateUserVO = notification.getBody() as CreateUserVO;
-            		ApplicationFacade.getInstance().mainRoster.addContact(new UnescapedJID(Commun.getJidFromMail(user.email)),user.prenom+" "+user.nom);
+            		ApplicationFacade.getInstance().mainRoster.addContact(new UnescapedJID(Commun.getJidFromMail(user.email)+"@"+Constantes.XMPPSERVEUR+"/"+Constantes.XMPPRESOURCE),new UnescapedJID(Commun.getJidFromMail(user.email)).toString(),null,true);
+            		this.sendXMPPAcceptContact(new UnescapedJID(Commun.getJidFromMail(user.email)+"@"+Constantes.XMPPSERVEUR));            		
             		var proxy : ApplicationProxy = facade.retrieveProxy(ApplicationProxy.NAME) as ApplicationProxy;
             		var array : ArrayCollection = new ArrayCollection;
             		array.source = proxy.userConnected.listeContacts

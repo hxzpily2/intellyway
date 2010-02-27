@@ -4,7 +4,9 @@
     showTitleBar="false"
     showStatusBar="false"
     showGripper="false"
-    borderStyle="none"    
+    borderStyle="solid"
+    borderColor="#FF6600"  
+    cornerRadius="16"  
     horizontalAlign="center"
     xmlns:contacts="view.contacts.*"
     xmlns:components="commun.components.*"
@@ -28,7 +30,7 @@
     		}
     	]]>
     </mx:Script>
-    <mx:VBox styleName="loginScalingBackground" dropShadowEnabled="true" width="100%" height="100%" horizontalAlign="center">
+    <mx:VBox styleName="mainScalingBackground" dropShadowEnabled="true" width="100%" height="100%" horizontalAlign="center">
     	<mx:HBox mouseDown="this.nativeWindow.startMove()" width="100%" height="24" horizontalAlign="left" paddingLeft="5" paddingRight="15">
     		<mx:Image width="24" height="24" source="@Embed(source='assets/images/amji24.png')" />
     		<mx:Spacer width="100%"/>

@@ -33,6 +33,7 @@ package commun
 		public static const XMPPPORT    :Number = 5222;
 		public static const XMPPUSERNAME    :String = "amjiim";
 		public static const XMPPPASS    :String = "amjiim";
+		public static const XMPPRESOURCE    :String = "amjiim";
 		//public static const XMPPCONFERENCESERVEUR    :String = "conference.jabber.tf-network.de";
 		public static const XMPPCONFERENCESERVEUR    :String = "conference.jabber";
 		public static const XMPPUSERPREFIX    :String = "amjiimuser_";
