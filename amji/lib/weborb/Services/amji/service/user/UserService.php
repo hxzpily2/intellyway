@@ -218,6 +218,10 @@ class UserService extends GenericService{
 		$c->connstatut = AmjiStatut::getStatutById($contact->getIdamji_statut());
 		return $c;
 	}
+	
+	public function getInfoContact($email){
+		return AmjiUser::getInfoContact($email);
+	}
 }
 
 ?>
