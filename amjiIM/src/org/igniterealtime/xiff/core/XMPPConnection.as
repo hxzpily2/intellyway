@@ -399,6 +399,7 @@ package org.igniterealtime.xiff.core
 				if (o.serialize(root))
 				{
 					sendXML( root.firstChild ); // XMLNode
+					trace (root.toString());
 				}
 				else
 				{

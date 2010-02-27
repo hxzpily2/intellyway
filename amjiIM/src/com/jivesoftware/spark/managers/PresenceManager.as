@@ -23,6 +23,7 @@ package com.jivesoftware.spark.managers
 	
 	import mx.collections.ArrayCollection;
 	
+	import org.igniterealtime.xiff.core.EscapedJID;
 	import org.igniterealtime.xiff.data.*;
 	import org.igniterealtime.xiff.data.im.Contact;
 	import org.igniterealtime.xiff.data.im.RosterItemVO;
@@ -105,7 +106,7 @@ package com.jivesoftware.spark.managers
 			return HorsLigne;
 		}
 		
-		public function changePresence(newShow:String, newStatus:String, newPriority:Number = -1000):void
+		public function changePresence(newShow:String, newStatus:String, newPriority:Number = -1000,from : EscapedJID = null):void
 		{
 			if(newPriority == -1000)
 			{
@@ -131,6 +132,9 @@ package com.jivesoftware.spark.managers
 			presence.show = newShow;
 			presence.priority = newPriority;
 			presence.status = newStatus;
+			
+			if(from!=null)
+				presence.from = from; 
 			SparkManager.connectionManager.connection.send(presence);
 			//updateRosterItemPresence(SparkManager.me, presence);
 			//changePresence(newShow, newStatus, newPriority);
