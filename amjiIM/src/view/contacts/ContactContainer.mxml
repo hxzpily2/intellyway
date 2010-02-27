@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" paddingRight="1" verticalGap="0" xmlns:components="commun.components.*" xmlns:combobox="com.bedreamy.components.combobox.*" xmlns:contacts="view.contacts.*"
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" verticalGap="0" xmlns:components="commun.components.*" xmlns:combobox="com.bedreamy.components.combobox.*" xmlns:contacts="view.contacts.*"
 	creationComplete="init()">
 	<mx:Script>
 		<![CDATA[
@@ -193,9 +193,9 @@
 	        </mx:filters>
 		</mx:Label>	
 	</mx:HBox> -->
-	<mx:HBox width="100%" horizontalAlign="left"  paddingRight="2">
-	    <mx:Text paddingLeft="15" color="#9F9F9F" text="2010 BEDREAMY COPYRIGHT" fontSize="8" fontFamily="kroeger"/>
+	<mx:HBox width="100%" paddingBottom="1" verticalAlign="bottom" horizontalAlign="left"  paddingRight="1">
+	    <mx:Text paddingLeft="10" paddingBottom="-4" color="#9F9F9F" text="2010 BEDREAMY COPYRIGHT" fontSize="8" fontFamily="kroeger"/>
 	    <mx:Spacer width="100%" />
-	    <components:AmjiButtonResize useHandCursor="true" buttonMode="true"  alpha="1" width="12" height="12"/>		
+	    <components:AmjiButtonResize paddingBottom="4" useHandCursor="true" buttonMode="true"  alpha="1" width="12" height="12"/>		
 	</mx:HBox>
 </mx:VBox>
