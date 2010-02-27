@@ -107,6 +107,10 @@ class AmjiUser extends BaseAmjiUser
 		$contact->setIdamjiInvite($idcontact);
 		$contact->setIdamjiUser($iduser);
 		$contact->save();
+		$contact = new AmjiContacts();
+		$contact->setIdamjiInvite($iduser);
+		$contact->setIdamjiUser($idcontact);
+		$contact->save();
 		AmjiUser::delInvitation($iduser,$idcontact);
 	}
 
