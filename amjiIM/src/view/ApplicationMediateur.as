@@ -274,7 +274,7 @@ package view
             		app.alertWindow.show("vous avez reçu une nouvelle invitation",350,150,Constantes.ATTENTION); 
 	    			break;
 	    		case Actions.ACCEPTINVITATION:
-	    			  			
+	    			facade.sendNotification(Actions.GENERICUSER,message.body,Actions.GETINFOUSER);  			
 					break;
 	    	}
 	    }
@@ -305,7 +305,7 @@ package view
 			message.from = new EscapedJID(Commun.getJidFromMail(proxy.userConnected.userVO.email)+"@"+Constantes.XMPPSERVEUR);			
 			message.subject = Actions.ACCEPTINVITATION;
 			message.type = Message.TYPE_CHAT;
-			message.body = Commun.getJidFromMail(proxy.userConnected.userVO.email);		
+			message.body = proxy.userConnected.userVO.email;		
 			ApplicationFacade.getConnexion().send(message);	
 	    }
 	    
@@ -335,7 +335,7 @@ package view
             return [  
               	Actions.CREATAUSER,ApplicationFacade.LOGINFAILED,ApplicationFacade.LOGINSUCCESS,ApplicationFacade.INSCRSUCCESS,
               	ApplicationFacade.SEARCHSUCCESS,ApplicationFacade.INVITESUCCESS,ApplicationFacade.INVITEFAILED,
-              	ApplicationFacade.IGNORECONTACT,ApplicationFacade.ACCEPTCONTACT
+              	ApplicationFacade.IGNORECONTACT,ApplicationFacade.ACCEPTCONTACT,ApplicationFacade.GETINFOUSERSUCCESS
         	]
         }
         
@@ -440,6 +440,15 @@ package view
             		app.mainWindow.contactView.listeInvitation.source = proxy.userConnected.listInvitations;
             		app.mainWindow.contactView.window.listeInvitation.source = proxy.userConnected.listInvitations;
             		app.mainWindow.contactView.lblInvitations.value = proxy.userConnected.listInvitations.length;
+            		break;
+            	case ApplicationFacade.GETINFOUSERSUCCESS:
+            		var proxy : ApplicationProxy = facade.retrieveProxy(ApplicationProxy.NAME) as ApplicationProxy;
+            		var user : CreateUserVO = notification.getBody() as CreateUserVO;
+            		var array : ArrayCollection = new ArrayCollection;
+            		array.source = proxy.userConnected.listeContacts; 
+            		array.addItem(user);
+            		proxy.userConnected.listeContacts = array.source;
+            		app.mainWindow.contactView.listeContact.source = proxy.userConnected.listeContacts;
             		break;      		
             }
         }    
