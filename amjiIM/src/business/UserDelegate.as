@@ -76,6 +76,12 @@ package business
             asynchToken.addResponder(responder);
             asynchToken.action = Actions.LOGOUT;
 		}
+		
+		public function getInfoUser(email : String):void{
+			var asynchToken:AsyncToken = service.getInfoContact(email);  
+            asynchToken.addResponder(responder);
+            asynchToken.action = Actions.GETINFOUSER;
+		}
 
 	}
 }
