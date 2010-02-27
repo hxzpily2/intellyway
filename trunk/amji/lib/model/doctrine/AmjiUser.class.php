@@ -257,8 +257,8 @@ class AmjiUser extends BaseAmjiUser
 		else return false;
 	}
 	
-	public static function getInfoContact($iduser){
-		$amjiuser = AmjiUser::getUserById($idcontact);
+	public static function getInfoContact($email){
+		$amjiuser = AmjiUser::getUserByEmail($email);
 		$userVo = new CreateUserVO();
 		$userVo->idamji_user = $amjiuser->getIdamji_user();
 		$userVo->adr = $amjiuser->getAdr();
