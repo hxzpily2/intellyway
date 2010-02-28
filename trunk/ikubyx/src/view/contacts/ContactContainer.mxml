@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" verticalGap="0" xmlns:components="commun.components.*" xmlns:combobox="com.bedreamy.components.combobox.*" xmlns:contacts="view.contacts.*"
+	creationComplete="init()">
+	<mx:Script>
+		<![CDATA[
+			import commun.InviteChatEvent;
+			import mx.controls.Alert;
+			import commun.AcceptContact;
+			import mx.effects.Fade;
+			import mx.events.EffectEvent;
+			import mx.managers.PopUpManager;
+			import mx.core.UIComponent;
+			import mx.core.Window;
+			import commun.Constantes;
+			import model.vo.LoginVO;
+			import model.vo.CreateUserVO;
+			import mx.collections.ArrayCollection;
+			import commun.Actions;
+			[Bindable]
+			public var listeContact : ArrayCollection;
+			[Bindable]
+			public var listeInvitation : ArrayCollection = new ArrayCollection;
+			[Bindable]
+			public var user : LoginVO;
+			[Bindable]
+            [Embed(source="assets/images/en_ligne.png")]
+            public var EnLigne:Class;
+
+            [Bindable]
+            [Embed(source="assets/images/occupe.png")]
+            public var Occupe:Class;
+
+            [Bindable]
+            [Embed(source="assets/images/absent.png")]
+            public var Absent:Class;
+			
+			[Bindable]
+            [Embed(source="assets/images/de_retour.png")]
+            public var Retour:Class;
+            
+            [Bindable]
+            [Embed(source="assets/images/hors_ligne.png")]
+            public var HorsLigne:Class;
+            
+            public function init():void{
+            	window = new ListInvitationTooltip;
+            	
+            }
+            
+            public var window : ListInvitationTooltip;
+            private static var dissolve : Fade = new Fade();
+            private function createTip(e:MouseEvent):void {
+    			
+    				window = new ListInvitationTooltip();
+    				window.addEventListener(Actions.ACCEPTINVITATION,acceptInvitation);
+    				window.addEventListener(Actions.IGNOREINVITATION,ignoreInvitation);
+    				window.type = NativeWindowType.LIGHTWEIGHT;
+					window.systemChrome = "none";
+					window.transparent = true;	
+					window.open();
+					window.listeInvitation = listeInvitation;
+					window.orderToFront();
+					window.nativeWindow.x = (Capabilities.screenResolutionX - window.nativeWindow.width) / 2;
+                	window.nativeWindow.y = (Capabilities.screenResolutionY - window.nativeWindow.height) / 2;
+    			    window.height = listeInvitation.length * 25+100;         
+            }
+            
+            public function acceptInvitation(event : AcceptContact):void{
+            	dispatchEvent(new AcceptContact(event.type,event.id));
+            }
+            
+            public function ignoreInvitation(event : AcceptContact):void{
+            	dispatchEvent(new AcceptContact(event.type,event.id));
+            }
+            
+            public function closePopup(e:EffectEvent):void{
+            	   dissolve.removeEventListener(EffectEvent.EFFECT_END,closePopup);
+            	   PopUpManager.removePopUp(window);
+            	   window.isOpened = false;
+            }
+            
+            public function inviteChat(event : InviteChatEvent):void{
+            	dispatchEvent(new InviteChatEvent(Actions.INVITECHAT,event.username));
+            }
+
+		]]>
+	</mx:Script>
+	<mx:VBox verticalScrollPolicy="off" styleName="leftBg" verticalGap="0" backgroundAlpha="0.7" paddingTop="10" paddingLeft="15" width="100%" height="97" backgroundImage="@Embed(source='assets/images/conbg.png')">
+		<mx:HBox width="100%">	
+			<mx:VBox width="55" height="55" borderStyle="solid" borderColor="#969696" >
+				<mx:filters>
+		            <mx:DropShadowFilter color="#FFFFFF" blurX="10" blurY="10" distance="0" angle="0"/>
+		            <mx:GlowFilter color="#b5b5b5" />
+		        </mx:filters>
+				<mx:VBox verticalScrollPolicy="off" horizontalScrollPolicy="off" width="53" height="53" borderStyle="solid" borderColor="#FFFFFF" borderThickness="2" >
+					<mx:Image width="50" height="50" source="@Embed(source='assets/images/perso.png')" />
+				</mx:VBox>
+			</mx:VBox>
+			<mx:VBox width="100%" verticalGap="0">			
+				<mx:HBox width="100%" verticalAlign="middle">		
+					<mx:Label maxWidth="100" color="#000000" text="{user.userVO.prenom}" fontFamily="Vegur_R" fontSize="22">
+						<mx:filters>
+				            <mx:DropShadowFilter color="#FFFFFF" blurX="10" blurY="10" distance="0" angle="0"/>
+				            <mx:GlowFilter color="#FFFFFF" />
+				        </mx:filters>
+					</mx:Label>
+					<combobox:AmjiCombobox change="dispatchEvent(new Event(Actions.STATUTCHANGE))" dropdownStyleName="myCustomDropdownStyleNameContact" color="#FFFFFF" id="comboBox" width="105">
+						<combobox:dataProvider>
+							<mx:Array>
+				                <mx:Object key="{Constantes.ENLIGNE}" label="En ligne" icon="EnLigne" />
+				                <mx:Object key="{Constantes.OCCUPE}" label="Occupé" icon="Occupe" />
+				                <mx:Object key="{Constantes.ABSENT}" label="Absent" icon="Absent" />
+				                <mx:Object key="{Constantes.DERETOUR}" label="De retour" icon="Retour" />
+				                <mx:Object key="{Constantes.HORSLIGNE}" label="Hors ligne" icon="HorsLigne" />		                
+				            </mx:Array>
+						</combobox:dataProvider>
+					</combobox:AmjiCombobox>
+					<mx:Spacer width="100%" />
+						<components:AmjiInvite click="createTip(event)" alpha="0.7" id="lblInvitations"/>
+						<components:AmjiInbox alpha="0.7"/>									
+				</mx:HBox>			
+				<components:EditableLabel id="txtPseudo" change="dispatchEvent(new Event(Actions.PSEUDOCHANGE))" text="Veuillez saisir votre message perso" width="150" height="15"  paddingLeft="2" />									
+			</mx:VBox>
+		</mx:HBox>
+		<mx:HBox  height="30" width="100%" verticalAlign="middle" horizontalAlign="right" paddingRight="3">
+			<contacts:MenuGen verticalScrollPolicy="off" horizontalScrollPolicy="off" paddingRight="3" alpha="0.3" width="20" horizontalAlign="right" verticalAlign="middle" borderColor="#FFFFFF" cornerRadius="10" borderStyle="solid" height="20" />
+						
+		</mx:HBox>			
+	</mx:VBox>
+	
+	
+	<!--<mx:Label  doubleClick="{this.editAllowed = ! this.editAllowed}" alpha="0.5"  color="#FF6600" text="lorum ipsum dolor " fontFamily="kroeger" fontSize="8" >
+		<mx:filters>
+            <mx:DropShadowFilter color="#FFFFFF" blurX="10" blurY="10" distance="0" angle="0"/>
+        </mx:filters>
+	</mx:Label>-->
+	<!--<mx:TextInput height="15" alpha="0.5" fontFamily="kroeger" fontSize="8" color="#FF6600" themeColor="#A3A3A3" doubleClick="{this.editAllowed = ! this.editAllowed}" borderStyle="none" backgroundAlpha="0" text="lorum ipsum dolor ">
+		<mx:filters>
+            <mx:DropShadowFilter color="#FFFFFF" blurX="10" blurY="10" distance="0" angle="0"/>
+        </mx:filters>
+	</mx:TextInput>-->
+	<mx:Spacer height="2" />	
+	<mx:HBox horizontalGap="3" paddingLeft="5" visible="true" width="100%" height="28" verticalAlign="middle">
+		<contacts:InputTextSearch icone="search" text="Rechercher des contacts" id="searchInput" mouseOut="searchInput.alpha = 0.5" mouseOver="searchInput.alpha = 1" alpha="0.5" backgroundColor="#FFFFFF" borderColor="#8A8A8A" borderStyle="solid" >
+			<contacts:filters>
+		       <mx:DropShadowFilter color="#dbdbdb" blurX="5" blurY="5" distance="0" angle="0"/>	            
+		   </contacts:filters>
+		</contacts:InputTextSearch>
+		<mx:Image alpha="0.7" buttonMode="true" useHandCursor="true" source="@Embed(source='assets/images/addcontact.png')" click="dispatchEvent(new Event(Actions.SHOWSEARCHCONTACT))">
+			<mx:filters>
+		       <mx:DropShadowFilter color="#FFFFFF" blurX="10" blurY="10" distance="0" angle="0"/>
+		       <mx:GlowFilter color="#FFFFFF" />		            
+		   </mx:filters>
+		</mx:Image>						
+	</mx:HBox>
+	<mx:VBox verticalGap="0" width="100%" height="100%" paddingLeft="1" paddingRight="1">
+		<!--<mx:List rowHeight="50" borderSides="none"  backgroundAlpha="0" itemRenderer="view.contacts.ItemContactRenderer" borderStyle="none" dataProvider="{listeContact}" labelField="nom" width="100%" height="100%">
+				
+		</mx:List>-->
+		<mx:Spacer height="10" />
+		<mx:HBox width="100%" height="30" paddingLeft="5" verticalAlign="middle">
+			<mx:Image source="@Embed(source='assets/images/OrangeIcone.png')">
+				<mx:filters>
+		            <mx:DropShadowFilter color="#FFFFFF" blurX="10" blurY="10" distance="0" angle="0"/>
+		            <mx:GlowFilter color="#FFFFFF" />		            
+		        </mx:filters>
+			</mx:Image>
+			<mx:Label paddingTop="4" color="#FF6600" text="Mes contacts" fontFamily="Vegur_R" fontSize="18">
+				<mx:filters>
+		            <mx:DropShadowFilter color="#FFFFFF" blurX="10" blurY="10" distance="0" angle="0"/>
+		            <mx:GlowFilter color="#FFFFFF" />		            
+		        </mx:filters>
+			</mx:Label>	
+		</mx:HBox>
+		<mx:Spacer height="10" />	
+		<mx:VBox width="100%" height="100%" verticalGap="0">		
+		<mx:Repeater id="contactRepeater" dataProvider="{listeContact}" width="100%" height="100%">
+			<contacts:ItemContactRenderer INVITECHAT="inviteChat(event)" user="{contactRepeater.currentItem as CreateUserVO}" width="100%"/>
+		</mx:Repeater>
+		</mx:VBox>
+	</mx:VBox>
+	<!--<mx:HBox horizontalGap="2" width="100%" height="30" paddingLeft="5" verticalAlign="middle">
+		<mx:Image alpha="0.5" id="imgInvite" source="@Embed(source='assets/images/invite.png')">
+			<mx:filters>
+	            <mx:DropShadowFilter color="#FFFFFF" blurX="10" blurY="10" distance="0" angle="0"/>
+	            <mx:GlowFilter color="#dddddd" />		            
+	        </mx:filters>
+		</mx:Image>
+		<mx:Label mouseChildren="false" buttonMode="true" useHandCursor="true" mouseOver="lblInvite.alpha = 1;imgInvite.alpha = 1" mouseOut="lblInvite.alpha = 0.5;imgInvite.alpha = 0.5" id="lblInvite" alpha="0.5" textDecoration="underline" color="#FF6600" text="Invitez vos amis à vous rejoindre" fontFamily="kroeger" fontSize="8">
+			<mx:filters>
+	            <mx:DropShadowFilter color="#FFFFFF" blurX="10" blurY="10" distance="0" angle="0"/>
+	            <mx:GlowFilter color="#FFFFFF" />		            
+	        </mx:filters>
+		</mx:Label>	
+	</mx:HBox> -->
+	<mx:HBox width="100%" paddingBottom="1" verticalAlign="bottom" horizontalAlign="left"  paddingRight="1">
+	    <mx:Text paddingLeft="10" paddingBottom="-4" color="#9F9F9F" text="2010 BEDREAMY COPYRIGHT" fontSize="8" fontFamily="kroeger"/>
+	    <mx:Spacer width="100%" />
+	    <components:AmjiButtonResize paddingBottom="4" useHandCursor="true" buttonMode="true"  alpha="1" width="12" height="12"/>		
+	</mx:HBox>
+</mx:VBox>
