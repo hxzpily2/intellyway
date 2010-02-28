@@ -112,8 +112,11 @@ package view
 	         trace("onRoster. " + event.toString());        
 	         
 	        switch (event.type){
+	        	case RosterEvent.ROSTER_LOADED:
+	        		Alert.show(ApplicationFacade.getInstance().mainRoster.length.toString());
+	        		break;
 	            case RosterEvent.SUBSCRIPTION_REQUEST:
-	            	if(this.isInTheRoster(event.jid.escaped.bareJID))
+	            	if(this.isInTheRoster(event.jid.escaped.bareJID+"/"+Constantes.XMPPRESOURCE))
 	            	     ApplicationFacade.getInstance().mainRoster.grantSubscription(event.jid, true);
 	                // Fill this bit in, obviously
 	                break;
@@ -446,12 +449,19 @@ package view
             		var user : CreateUserVO = notification.getBody() as CreateUserVO;
             		var array : ArrayCollection = new ArrayCollection;
             		array.source = proxy.userConnected.listeContacts; 
-            		array.addItem(user);
+            		for(var i : Number = 0;i<array.length;i++){
+            			var cuser : CreateUserVO = array.getItemAt(i) as CreateUserVO;
+            			if(cuser.idamji_user == user.idamji_user){
+            				array.removeItemAt(i);
+            				array.addItemAt(user,i);
+            				break;
+            			}
+            		}            		
             		proxy.userConnected.listeContacts = array.source;
             		app.mainWindow.contactView.listeContact.source = proxy.userConnected.listeContacts;
             		break;      		
             }
         }    
 
-	}
+	}	
 }
