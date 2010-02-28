@@ -1,6 +1,6 @@
 <project> 
     <!-- SDK properties --> 
-    <property name="SDK_HOME" value="C:/AdobeAIRSDK"/> 
+    <property name="SDK_HOME" value="C:/Program Files/Adobe/Flex Builder 3 Plug-in/sdks/3.2.0"/> 
     <property name="ADL" value="${SDK_HOME}/bin/adl.exe"/> 
     <property name="ADT.JAR" value="${SDK_HOME}/lib/adt.jar"/> 
  
