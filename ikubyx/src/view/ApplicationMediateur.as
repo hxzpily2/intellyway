@@ -116,8 +116,7 @@ package view
 	        		Alert.show(ApplicationFacade.getInstance().mainRoster.length.toString());
 	        		break;
 	            case RosterEvent.SUBSCRIPTION_REQUEST:
-	            	if(this.isInTheRoster(event.jid.escaped.bareJID+"/"+Constantes.XMPPRESOURCE))
-	            	     ApplicationFacade.getInstance().mainRoster.grantSubscription(event.jid, true);
+	            	ApplicationFacade.getInstance().mainRoster.grantSubscription(event.jid, true);
 	                // Fill this bit in, obviously
 	                break;
 	            case RosterEvent.USER_UNAVAILABLE :
@@ -461,7 +460,36 @@ package view
             		app.mainWindow.contactView.listeContact.source = proxy.userConnected.listeContacts;
             		break;      		
             }
-        }    
+        }
+        
+        public function isInContactList(jid : String):Boolean{
+			var proxy : ApplicationProxy = facade.retrieveProxy(ApplicationProxy.NAME) as ApplicationProxy;
+			var array : ArrayCollection = new ArrayCollection;
+			array.source = proxy.userConnected.listeContacts;
+			for(var i: Number=0;i<array.length;i++){
+				var user:CreateUserVO = array.getItemAt(i) as CreateUserVO;			
+				if(Commun.getJidFromMail(user.email)+"@"+Constantes.XMPPSERVEUR==jid){
+					return true;
+				}	
+			}
+			return false;		
+		}
+		
+		public function isInInviteList(jid : String):Boolean{
+			var proxy : ApplicationProxy = facade.retrieveProxy(ApplicationProxy.NAME) as ApplicationProxy;
+			var array : ArrayCollection = new ArrayCollection;
+			array.source = proxy.userConnected.listInvitations;
+			for(var i: Number=0;i<array.length;i++){
+				var user:CreateUserVO = array.getItemAt(i)  as CreateUserVO;			
+				if(Commun.getJidFromMail(user.email)+"@"+Constantes.XMPPSERVEUR==jid){
+					return true;
+				}	
+			}
+			return false;
+		}    
 
-	}	
+	}
+	
+	
+		
 }
