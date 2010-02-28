@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Window xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" minWidth="375" minHeight="600" width="375" height="600"
+	backgroundAlpha="0"
+    showTitleBar="false"
+    showStatusBar="false"
+    showGripper="false"
+    borderStyle="solid"
+    borderColor="#FF6600"  
+    cornerRadius="16"  
+    horizontalAlign="center"
+    xmlns:contacts="view.contacts.*"
+    xmlns:components="commun.components.*"
+    creationComplete="init()"
+    close="contactView.window.close();">
+    <mx:Script>
+    	<![CDATA[
+    		import commun.Actions;
+    		private function init():void{
+    			nativeWindow.x = (Capabilities.screenResolutionX - nativeWindow.width) / 2;
+                nativeWindow.y = (Capabilities.screenResolutionY - nativeWindow.height) / 2;
+                contactView.addEventListener(Actions.SHOWSEARCHCONTACT,showSearchContact);								   			
+    		}
+    		
+    		public function searchContact(event : Event):void{
+    			dispatchEvent(event);
+    		}
+    		
+    		public function showSearchContact(event : Event):void{
+    			dispatchEvent(event);
+    		}
+    	]]>
+    </mx:Script>
+    <mx:VBox styleName="mainScalingBackground" dropShadowEnabled="true" width="100%" height="100%" horizontalAlign="center">
+    	<mx:HBox mouseDown="this.nativeWindow.startMove()" width="100%" height="24" horizontalAlign="left" paddingLeft="5" paddingRight="15">
+    		<mx:Image width="24" height="24" source="@Embed(source='assets/images/amji24.png')" />
+    		<mx:Spacer width="100%"/>
+		    <components:WindowMin width="9" height="9" buttonMode="true" useHandCursor="true" />
+			<components:WindowMax  width="9" height="9" buttonMode="true" useHandCursor="true" />
+			<components:WindowClose click="dispatchEvent(new Event(Actions.CLOSEINSCWIN))" width="9" height="9" buttonMode="true" useHandCursor="true" />			
+		</mx:HBox>
+		<mx:Spacer height="10"/>
+    	<mx:ViewStack id="mainStack" width="100%" height="100%">
+	    	<contacts:ContactContainer verticalScrollPolicy="off" id="contactView" width="100%" height="100%">
+	    		
+	    	</contacts:ContactContainer>
+	    </mx:ViewStack>	
+    </mx:VBox>
+    
+	
+</mx:Window>
