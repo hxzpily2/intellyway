@@ -30,6 +30,7 @@ package
 		public static const ACCEPTCONTACT:String = "ACCEPTCONTACT";
 		public static const IGNORECONTACT:String = "IGNORECONTACT";  
 		public static const GETINFOUSERSUCCESS : String = "GETINFOUSERSUCCESS";
+		public static const LOGOUTSUCCESS : String = "LOGOUTSUCCESS";
 		public static function getInstance() : ApplicationFacade {  
   
             if ( instance == null ) instance = new ApplicationFacade( );  

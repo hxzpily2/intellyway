@@ -72,9 +72,9 @@ package business
 		}
 		
 		public function logout():void{
-			var asynchToken:AsyncToken = service.logout();  
+			var asynchToken:AsyncToken = service.logoutClose();  
             asynchToken.addResponder(responder);
-            asynchToken.action = Actions.LOGOUT;
+            asynchToken.action = Actions.LOGOUTCLOSE;
 		}
 		
 		public function getInfoUser(email : String):void{
