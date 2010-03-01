@@ -226,6 +226,9 @@ class UserService extends GenericService{
 	}
 	
 	public function logoutClose(){
+		$user = $this->getUser()->getAttribute(Sessions::USERCONNECTED);
+		$user->setIdamji_statut(AmjiStatut::getStatutId(Constantes::HORSLIGNE));
+		$user->save();
 		$this->getUser()->getAttributeHolder()->remove('user_id');
 		$this->getUser()->getAttributeHolder()->remove(Sessions::USERCONNECTED);
 		$this->getUser ()->clearCredentials ();
