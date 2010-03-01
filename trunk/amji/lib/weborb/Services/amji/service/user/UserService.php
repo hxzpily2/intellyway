@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * 
+ */
 require_once dirname(__FILE__).'/../../generic/GenericService.php';
 
 class UserService extends GenericService{
@@ -221,6 +223,13 @@ class UserService extends GenericService{
 	
 	public function getInfoContact($email){
 		return AmjiUser::getInfoContact($email);
+	}
+	
+	public function logoutClose(){
+		$this->getUser()->getAttributeHolder()->remove('user_id');
+		$this->getUser()->getAttributeHolder()->remove(Sessions::USERCONNECTED);
+		$this->getUser ()->clearCredentials ();
+		$this->getUser ()->setAuthenticated ( false );
 	}
 }
 
