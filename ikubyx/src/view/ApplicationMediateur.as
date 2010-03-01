@@ -79,7 +79,7 @@ package view
 			statutdic[Constantes.OCCUPE] = Presence.SHOW_DND;
 			
 			
-			presencestatu[Presence.SHOW_CHAT] = Constantes.ENLIGNE;
+			presencestatu[null] = Constantes.ENLIGNE;
 			presencestatu[Presence.TYPE_UNAVAILABLE] = Constantes.HORSLIGNE;
 			presencestatu[Presence.SHOW_AWAY] = Constantes.ABSENT;
 			presencestatu[Presence.SHOW_XA] = Constantes.DERETOUR;
@@ -141,8 +141,7 @@ package view
             }			
 		}
 		
-		public function updateStatutContact(jid : UnescapedJID,presenceS : String):void{
-			var presence : Presence = ApplicationFacade.getInstance().mainRoster.getPresence(jid);
+		public function updateStatutContact(jid : UnescapedJID,presenceS : String):void{			
         	var user : CreateUserVO = isInContactList(jid.bareJID);
         	var proxy : ApplicationProxy = facade.retrieveProxy(ApplicationProxy.NAME) as ApplicationProxy;
         	var array : ArrayCollection = new ArrayCollection(proxy.userConnected.listeContacts);
@@ -150,7 +149,7 @@ package view
         		for(var i : Number = 0;i<array.length;i++){
         			var temp : CreateUserVO = array.getItemAt(i) as CreateUserVO;
         			if(user.idamji_user == temp.idamji_user){	            				
-        				temp.connstatut = presencestatu[presence.type];
+        				temp.connstatut = presencestatu[presenceS];
         				array.removeItemAt(i);
         				array.addItemAt(temp,i);
         				break;	
@@ -196,7 +195,7 @@ package view
 	                // trace (event.jid + " revoked your presence (RosterEvent)");
 	                break;
 	            case RosterEvent.USER_PRESENCE_UPDATED:
-	            	var presence : Presence = ApplicationFacade.getInstance().mainRoster.getPresence(event.jid);
+	            	var presence : String = event.data.show;
 	            	var user : CreateUserVO = isInContactList(event.jid.bareJID);
 	            	var proxy : ApplicationProxy = facade.retrieveProxy(ApplicationProxy.NAME) as ApplicationProxy;
 	            	var array : ArrayCollection = new ArrayCollection(proxy.userConnected.listeContacts);
@@ -204,7 +203,7 @@ package view
 	            		for(var i : Number = 0;i<array.length;i++){
 	            			var temp : CreateUserVO = array.getItemAt(i) as CreateUserVO;
 	            			if(user.idamji_user == temp.idamji_user){	            				
-	            				temp.connstatut = presencestatu[presence.type];
+	            				temp.connstatut = presencestatu[presence];
 	            				array.removeItemAt(i);
 	            				array.addItemAt(temp,i);
 	            				break;	
