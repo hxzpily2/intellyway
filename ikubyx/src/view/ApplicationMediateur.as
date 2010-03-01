@@ -142,6 +142,7 @@ package view
 	                // trace (event.jid + " revoked your presence (RosterEvent)");
 	                break;
 	            case RosterEvent.USER_PRESENCE_UPDATED:
+	            	var presence : Presence = ApplicationFacade.getInstance().mainRoster.getPresence(event.jid);
 	            	var user : CreateUserVO = isInContactList(event.jid.bareJID);
 	            	var proxy : ApplicationProxy = facade.retrieveProxy(ApplicationProxy.NAME) as ApplicationProxy;
 	            	var array : ArrayCollection = new ArrayCollection(proxy.userConnected.listeContacts);
@@ -149,11 +150,15 @@ package view
 	            		for(var i : Number = 0;i<array.length;i++){
 	            			var temp : CreateUserVO = array.getItemAt(i) as CreateUserVO;
 	            			if(user.idamji_user == temp.idamji_user){	            				
-	            				//temp.connstatut = event.data as Presence;
+	            				temp.connstatut = presencestatu[presence.type];
+	            				array.removeItemAt(i);
+	            				array.addItemAt(temp,i);
 	            				break;	
 	            			}	            			
 	            		}
-	            	}	            		            	
+	            	}
+	            	proxy.userConnected.listeContacts = array.source;          		
+            		app.mainWindow.contactView.listeContact.source = proxy.userConnected.listeContacts;	            		            	
 	            	break;
 	            default :
 	                // do nothing... not recognized
