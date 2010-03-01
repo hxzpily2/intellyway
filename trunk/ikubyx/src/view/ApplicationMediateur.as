@@ -32,6 +32,7 @@ package view
 	import org.igniterealtime.xiff.data.im.RosterExtension;
 	import org.igniterealtime.xiff.events.ConnectionSuccessEvent;
 	import org.igniterealtime.xiff.events.DisconnectionEvent;
+	import org.igniterealtime.xiff.events.LoginEvent;
 	import org.igniterealtime.xiff.events.MessageEvent;
 	import org.igniterealtime.xiff.events.PresenceEvent;
 	import org.igniterealtime.xiff.events.RoomEvent;
@@ -52,6 +53,7 @@ package view
 		private var chats:Object = {};
 		private var queuedRooms:Array = [];
 		public var statutdic :  Dictionary = new Dictionary();
+		public var presencestatu :  Dictionary = new Dictionary();
 		
 		public function ApplicationMediateur(viewComponent:Object=null)
 		{
@@ -75,6 +77,13 @@ package view
 			statutdic[Constantes.ABSENT] = Presence.SHOW_AWAY;
 			statutdic[Constantes.DERETOUR] = Presence.SHOW_XA;
 			statutdic[Constantes.OCCUPE] = Presence.SHOW_DND;
+			
+			
+			presencestatu[Presence.SHOW_CHAT] = Constantes.ENLIGNE;
+			presencestatu[Presence.TYPE_UNAVAILABLE] = Constantes.HORSLIGNE;
+			presencestatu[Presence.SHOW_AWAY] = Constantes.ABSENT;
+			presencestatu[Presence.SHOW_XA] = Constantes.DERETOUR;
+			presencestatu[Presence.SHOW_DND] = Constantes.OCCUPE;
 			
 					
 			
@@ -133,7 +142,18 @@ package view
 	                // trace (event.jid + " revoked your presence (RosterEvent)");
 	                break;
 	            case RosterEvent.USER_PRESENCE_UPDATED:
-	            		            	
+	            	var user : CreateUserVO = isInContactList(event.jid.bareJID);
+	            	var proxy : ApplicationProxy = facade.retrieveProxy(ApplicationProxy.NAME) as ApplicationProxy;
+	            	var array : ArrayCollection = new ArrayCollection(proxy.userConnected.listeContacts);
+	            	if(user!=null){
+	            		for(var i : Number = 0;i<array.length;i++){
+	            			var temp : CreateUserVO = array.getItemAt(i) as CreateUserVO;
+	            			if(user.idamji_user == temp.idamji_user){	            				
+	            				//temp.connstatut = event.data as Presence;
+	            				break;	
+	            			}	            			
+	            		}
+	            	}	            		            	
 	            	break;
 	            default :
 	                // do nothing... not recognized
@@ -203,6 +223,7 @@ package view
         public function closeWindow(event : Event):void{        	
         	ApplicationFacade.getConnexion().disconnect();
 			facade.sendNotification(Actions.GENERICUSER,null,Actions.LOGOUTCLOSE);
+			app.showLoader();
         }
 		
 		public function changeStatut(event : Event):void{
@@ -321,17 +342,7 @@ package view
 			message.type = Message.TYPE_CHAT;
 			message.body = body;		
 			ApplicationFacade.getConnexion().send(message);	
-	    }
-
-		
-		
-		public function joinRoomForType():void{
-			
-		}
-		
-		public function joinRoomForChat():void{
-			
-		}
+	    }		
 		
 		override public function listNotificationInterests():Array  
         {  
@@ -371,12 +382,11 @@ package view
             				app.mainWindow.contactView.comboBox.selectedIndex = i;
             				break;
             			} 
-            		}            		
-            		this.joinRoomForType();
-            		this.joinRoomForChat();
+            		} 		
+            		
             		app.mainWindow.contactView.lblInvitations.value = proxy.userConnected.listInvitations.length;
             		app.mainWindow.contactView.listeInvitation.source = proxy.userConnected.listInvitations;
-            		ApplicationFacade.getConnexion().addEventListener(MessageEvent.MESSAGE,handleMessage);            		            		
+            		this.loginXMPP();            		            		
             		break;
             	case ApplicationFacade.LOGINFAILED:
             		app.hideLoader();
@@ -461,23 +471,23 @@ package view
             		proxy.userConnected.listeContacts = array.source;
             		app.mainWindow.contactView.listeContact.source = proxy.userConnected.listeContacts;
             		break;
-            	case ApplicationFacade.LOGOUTSUCCESS:
+            	case ApplicationFacade.LOGOUTSUCCESS:            		
             		app.closeHandler();
             		break;      		
             }
         }
         
-        public function isInContactList(jid : String):Boolean{
+        public function isInContactList(jid : String):CreateUserVO{
 			var proxy : ApplicationProxy = facade.retrieveProxy(ApplicationProxy.NAME) as ApplicationProxy;
 			var array : ArrayCollection = new ArrayCollection;
 			array.source = proxy.userConnected.listeContacts;
 			for(var i: Number=0;i<array.length;i++){
 				var user:CreateUserVO = array.getItemAt(i) as CreateUserVO;			
 				if(Commun.getJidFromMail(user.email)+"@"+Constantes.XMPPSERVEUR==jid){
-					return true;
+					return user;
 				}	
 			}
-			return false;		
+			return null;		
 		}
 		
 		public function isInInviteList(jid : String):Boolean{
@@ -491,7 +501,35 @@ package view
 				}	
 			}
 			return false;
-		}    
+		}  
+		
+		
+		public function loginXMPP():void{
+			ApplicationFacade.getConnexion().addEventListener( LoginEvent.LOGIN, handleLogin );
+  			ApplicationFacade.getConnexion().addEventListener( XIFFErrorEvent.XIFF_ERROR, handleError );
+  			ApplicationFacade.getConnexion().addEventListener( DisconnectionEvent.DISCONNECT, handleDisconnect );
+  			
+  			ApplicationFacade.getConnexion().server = Constantes.XMPPSERVEUR;
+  			ApplicationFacade.getConnexion().useAnonymousLogin = false;      			
+  			ApplicationFacade.getConnexion().username = Constantes.XMPPUSERPREFIX+app.window.userVO.login.substr(0,app.window.userVO.login.lastIndexOf("@"))+Commun.getDomainFromMail(app.window.userVO.login);
+      		ApplicationFacade.getConnexion().password = app.window.userVO.pass;
+			ApplicationFacade.getConnexion().connect();				
+			// register login && password && statut
+		}
+		
+				
+		private function handleLogin( event:LoginEvent ):void
+	    {
+	      	ApplicationFacade.getConnexion().addEventListener(MessageEvent.MESSAGE,handleMessage);
+	      	if(app.window.comboBox.selectedItem.key!=Constantes.HORSLIGNE){		
+				ApplicationFacade.getPresenceManager().changePresence(statutdic[app.window.comboBox.selectedItem.key],statutdic[app.window.comboBox.selectedItem.key]);								
+			}
+			else{
+				var recipient:EscapedJID = new EscapedJID(ApplicationFacade.getConnexion().server);
+				var unavailablePresence:Presence = new Presence(recipient, null, Presence.TYPE_UNAVAILABLE, null, "Logged out");
+				ApplicationFacade.getConnexion().send(unavailablePresence);				
+			}		      		      
+	    }  
 
 	}
 	
