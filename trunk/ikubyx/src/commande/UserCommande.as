@@ -69,7 +69,7 @@ package commande
 			service.ignoreInvitation(notification.getBody() as Number);
 		}
 		
-		public function logout(notification : INotification):void{
+		public function logoutClose(notification : INotification):void{
 			var service : UserDelegate = new UserDelegate(this);
 			service.logout();
 		}
@@ -117,7 +117,10 @@ package commande
 					break;
 				case Actions.GETINFOUSER:
 					sendNotification(ApplicationFacade.GETINFOUSERSUCCESS,data.result as CreateUserVO);
-					break;					
+					break;	
+				case Actions.LOGOUTCLOSE:
+					sendNotification(ApplicationFacade.LOGOUTSUCCESS);
+					break;				
 			}
 		}
 		

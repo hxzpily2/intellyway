@@ -201,7 +201,8 @@ package view
         }
         
         public function closeWindow(event : Event):void{        	
-        	app.closeHandler();
+        	ApplicationFacade.getConnexion().disconnect();
+			facade.sendNotification(Actions.GENERICUSER,null,Actions.LOGOUTCLOSE);
         }
 		
 		public function changeStatut(event : Event):void{
@@ -337,7 +338,8 @@ package view
             return [  
               	Actions.CREATAUSER,ApplicationFacade.LOGINFAILED,ApplicationFacade.LOGINSUCCESS,ApplicationFacade.INSCRSUCCESS,
               	ApplicationFacade.SEARCHSUCCESS,ApplicationFacade.INVITESUCCESS,ApplicationFacade.INVITEFAILED,
-              	ApplicationFacade.IGNORECONTACT,ApplicationFacade.ACCEPTCONTACT,ApplicationFacade.GETINFOUSERSUCCESS
+              	ApplicationFacade.IGNORECONTACT,ApplicationFacade.ACCEPTCONTACT,ApplicationFacade.GETINFOUSERSUCCESS,
+              	ApplicationFacade.LOGOUTSUCCESS
         	]
         }
         
@@ -458,6 +460,9 @@ package view
             		}            		
             		proxy.userConnected.listeContacts = array.source;
             		app.mainWindow.contactView.listeContact.source = proxy.userConnected.listeContacts;
+            		break;
+            	case ApplicationFacade.LOGOUTSUCCESS:
+            		app.closeHandler();
             		break;      		
             }
         }
