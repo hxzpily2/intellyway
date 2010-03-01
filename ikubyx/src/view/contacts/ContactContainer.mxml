@@ -175,7 +175,7 @@
 		<mx:Spacer height="10" />	
 		<mx:VBox width="100%" height="100%" verticalGap="0">		
 		<mx:Repeater id="contactRepeater" dataProvider="{listeContact}" width="100%" height="100%">
-			<contacts:ItemContactRenderer INVITECHAT="inviteChat(event)" user="{contactRepeater.currentItem as CreateUserVO}" width="100%"/>
+			<contacts:ItemContactRenderer id="itemContact" key="{(contactRepeater.currentItem as CreateUserVO).idamji_user.toString()}" INVITECHAT="inviteChat(event)" user="{contactRepeater.currentItem as CreateUserVO}" width="100%"/>
 		</mx:Repeater>
 		</mx:VBox>
 	</mx:VBox>

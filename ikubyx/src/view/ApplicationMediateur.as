@@ -43,6 +43,7 @@ package view
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.mediator.Mediator;
 	
+	import view.contacts.ItemContactRenderer;
 	import view.contacts.SearchContact;
 	
 	
@@ -145,6 +146,9 @@ package view
         	var user : CreateUserVO = isInContactList(jid.bareJID);
         	var proxy : ApplicationProxy = facade.retrieveProxy(ApplicationProxy.NAME) as ApplicationProxy;
         	var array : ArrayCollection = new ArrayCollection(proxy.userConnected.listeContacts);
+        	var itemContact : ItemContactRenderer = this.getItemContact(user.idamji_user.toString());	            	
+        	if(itemContact!=null)
+        		itemContact.imgStatut.source = itemContact.statut[presencestatu[presenceS]];
         	if(user!=null){
         		for(var i : Number = 0;i<array.length;i++){
         			var temp : CreateUserVO = array.getItemAt(i) as CreateUserVO;
@@ -156,8 +160,7 @@ package view
         			}	            			
         		}
         	}
-        	proxy.userConnected.listeContacts = array.source;          		
-    		app.mainWindow.contactView.listeContact.source = proxy.userConnected.listeContacts;	 
+        	proxy.userConnected.listeContacts = array.source;   			 
 		}
 		
 		public function isInTheRoster(jid : String):Boolean{
@@ -199,6 +202,9 @@ package view
 	            	var user : CreateUserVO = isInContactList(event.jid.bareJID);
 	            	var proxy : ApplicationProxy = facade.retrieveProxy(ApplicationProxy.NAME) as ApplicationProxy;
 	            	var array : ArrayCollection = new ArrayCollection(proxy.userConnected.listeContacts);
+	            	var itemContact : ItemContactRenderer = this.getItemContact(user.idamji_user.toString());	            	
+	            	if(itemContact!=null)
+	            		itemContact.imgStatut.source = itemContact.statut[presencestatu[presence]];
 	            	if(user!=null){
 	            		for(var i : Number = 0;i<array.length;i++){
 	            			var temp : CreateUserVO = array.getItemAt(i) as CreateUserVO;
@@ -210,8 +216,7 @@ package view
 	            			}	            			
 	            		}
 	            	}
-	            	proxy.userConnected.listeContacts = array.source;          		
-            		app.mainWindow.contactView.listeContact.source = proxy.userConnected.listeContacts;	            		            	
+	            	proxy.userConnected.listeContacts = array.source;            			            		            	
 	            	break;
 	            default :
 	                // do nothing... not recognized
@@ -587,6 +592,15 @@ package view
 				var unavailablePresence:Presence = new Presence(recipient, null, Presence.TYPE_UNAVAILABLE, null, "Logged out");
 				ApplicationFacade.getConnexion().send(unavailablePresence);				
 			}		      		      
+	    }
+	    
+	    public function getItemContact(key : String):ItemContactRenderer{	    	
+	    	for(var i : Number=0;i<app.mainWindow.contactView.itemContact.length;i++){
+	    		var item : ItemContactRenderer = app.mainWindow.contactView.itemContact[i];	    		   		
+	    		if(item.key==key)
+	    			return item;	    		
+	    	}
+	    	return null;	    	
 	    }  
 
 	}
