@@ -108,19 +108,10 @@
 			public var voile : AmjiLoader;
 			public var loader : AmjiLoading = new AmjiLoading;
 			public function login(event : Event):void{
-				facade.sendNotification(Actions.GENERICUSER,window.userVO,Actions.LOGIN);				      			
-      			ApplicationFacade.getConnexion().addEventListener( LoginEvent.LOGIN, handleLogin );
-      			ApplicationFacade.getConnexion().addEventListener( XIFFErrorEvent.XIFF_ERROR, handleError );
-      			ApplicationFacade.getConnexion().addEventListener( DisconnectionEvent.DISCONNECT, handleDisconnect );
+				facade.sendNotification(Actions.GENERICUSER,window.userVO,Actions.LOGIN);   			
       			
-      			ApplicationFacade.getConnexion().server = Constantes.XMPPSERVEUR;
-      			ApplicationFacade.getConnexion().useAnonymousLogin = false;      			
-      			ApplicationFacade.getConnexion().username = Constantes.XMPPUSERPREFIX+window.userVO.login.substr(0,window.userVO.login.lastIndexOf("@"))+Commun.getDomainFromMail(window.userVO.login);
-          		ApplicationFacade.getConnexion().password = window.userVO.pass;
-				ApplicationFacade.getConnexion().connect();				
 				PopUpManager.addPopUp(loader,window,true);
 				PopUpManager.centerPopUp(loader);
-				// register login && password && statut
 				
 				if(window.window.checkSavePass!=null && window.window.checkSavePass.selected){
 					Commun.storeEncrypt(Commun.pass,window.txtPass.content);
@@ -134,20 +125,8 @@
 					Commun.clearStoredItem(Commun.pass);
 				}							
 				
-			}
+			}			
 			
-					
-			private function handleLogin( event:LoginEvent ):void
-		    {
-		      	if(window.comboBox.selectedItem.key!=Constantes.HORSLIGNE){		
-					ApplicationFacade.getPresenceManager().changePresence(statutdic[window.comboBox.selectedItem.key],statutdic[window.comboBox.selectedItem.key]);								
-				}
-				else{
-					var recipient:EscapedJID = new EscapedJID(ApplicationFacade.getConnexion().server);
-					var unavailablePresence:Presence = new Presence(recipient, null, Presence.TYPE_UNAVAILABLE, null, "Logged out");
-					ApplicationFacade.getConnexion().send(unavailablePresence);				
-				}		      		      
-		    }
 		    private function handleDisconnect( event:DisconnectionEvent ):void
 		    {
 		      
@@ -155,6 +134,13 @@
 			
 			public function hideLoader():void{
 				PopUpManager.removePopUp(loader);				
+			}
+			
+			public function showLoader():void{
+				if(this.loader!=null){
+					PopUpManager.addPopUp(loader,window,true);
+					PopUpManager.centerPopUp(loader);	
+				}				
 			}
 			
 			public function closeInscWin(event : Event):void{
@@ -221,7 +207,7 @@
 			
 			public function logout():void{
 				ApplicationFacade.getConnexion().disconnect();
-				facade.sendNotification(Actions.GENERICUSER,null,Actions.LOGOUTCLOSE);
+				facade.sendNotification(Actions.GENERICUSER,null,Actions.LOGOUTCLOSE);								
 			}
 			
 			public function closeHandler():void{
