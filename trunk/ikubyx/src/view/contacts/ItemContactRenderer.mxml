@@ -22,6 +22,7 @@
 			[Bindable] public var user : CreateUserVO;
 			public var humeur :  Dictionary = new Dictionary();
 			public var statut :  Dictionary = new Dictionary();
+			public var key : String;
 			
 			[Embed(source="assets/images/humnoneOrange.png")]    		
 			private static var humnoneOrange:Class;
