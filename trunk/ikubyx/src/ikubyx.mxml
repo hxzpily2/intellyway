@@ -107,7 +107,8 @@
 			}
 			public var voile : AmjiLoader;
 			public var loader : AmjiLoading = new AmjiLoading;
-			public function login(event : Event):void{				      			
+			public function login(event : Event):void{
+				facade.sendNotification(Actions.GENERICUSER,window.userVO,Actions.LOGIN);				      			
       			ApplicationFacade.getConnexion().addEventListener( LoginEvent.LOGIN, handleLogin );
       			ApplicationFacade.getConnexion().addEventListener( XIFFErrorEvent.XIFF_ERROR, handleError );
       			ApplicationFacade.getConnexion().addEventListener( DisconnectionEvent.DISCONNECT, handleDisconnect );
@@ -145,8 +146,7 @@
 					var recipient:EscapedJID = new EscapedJID(ApplicationFacade.getConnexion().server);
 					var unavailablePresence:Presence = new Presence(recipient, null, Presence.TYPE_UNAVAILABLE, null, "Logged out");
 					ApplicationFacade.getConnexion().send(unavailablePresence);				
-				}
-		      	facade.sendNotification(Actions.GENERICUSER,window.userVO,Actions.LOGIN);	      
+				}		      		      
 		    }
 		    private function handleDisconnect( event:DisconnectionEvent ):void
 		    {
