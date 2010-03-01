@@ -104,7 +104,61 @@ package view
 		
 		
 		public function onPresence(event : PresenceEvent):void{
-			Alert.show("ok");
+			var len:uint = event.data.length;
+            for (var i:uint = 0; i < len; ++i)
+            {
+                var presence:Presence = event.data[i] as Presence;
+                trace("onPresence. " + i + " show: " + presence.show);
+                trace("onPresence. " + i + " type: " + presence.type);
+                trace("onPresence. " + i + " status: " + presence.status);
+                trace("onPresence. " + i + " from: " + presence.from);
+                trace("onPresence. " + i + " to: " + presence.to);
+               
+                switch (presence.type)
+                {
+                    case Presence.TYPE_SUBSCRIBE :
+                        // Automatically add all those to _roster whom have requested to be our friend.
+                        ApplicationFacade.getInstance().mainRoster.grantSubscription(presence.from.unescaped, true);
+                        break;
+                    case Presence.TYPE_SUBSCRIBED :
+                        break;
+                    case Presence.SHOW_AWAY :
+                    	this.updateStatutContact(presence.from.unescaped,presence.type);
+                        break;
+                   	case Presence.SHOW_CHAT :
+                   		this.updateStatutContact(presence.from.unescaped,presence.type);
+                        break;
+                    case Presence.SHOW_DND:
+                    	this.updateStatutContact(presence.from.unescaped,presence.type);
+                    	break;
+                   	case Presence.SHOW_XA:
+                   		this.updateStatutContact(presence.from.unescaped,presence.type);
+                    	break;
+                    case Presence.TYPE_UNAVAILABLE:
+                    	this.updateStatutContact(presence.from.unescaped,presence.type);
+                    	break;
+                }
+            }			
+		}
+		
+		public function updateStatutContact(jid : UnescapedJID,presenceS : String):void{
+			var presence : Presence = ApplicationFacade.getInstance().mainRoster.getPresence(jid);
+        	var user : CreateUserVO = isInContactList(jid.bareJID);
+        	var proxy : ApplicationProxy = facade.retrieveProxy(ApplicationProxy.NAME) as ApplicationProxy;
+        	var array : ArrayCollection = new ArrayCollection(proxy.userConnected.listeContacts);
+        	if(user!=null){
+        		for(var i : Number = 0;i<array.length;i++){
+        			var temp : CreateUserVO = array.getItemAt(i) as CreateUserVO;
+        			if(user.idamji_user == temp.idamji_user){	            				
+        				temp.connstatut = presencestatu[presence.type];
+        				array.removeItemAt(i);
+        				array.addItemAt(temp,i);
+        				break;	
+        			}	            			
+        		}
+        	}
+        	proxy.userConnected.listeContacts = array.source;          		
+    		app.mainWindow.contactView.listeContact.source = proxy.userConnected.listeContacts;	 
 		}
 		
 		public function isInTheRoster(jid : String):Boolean{
