@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Window xmlns:mx="http://www.adobe.com/2006/mxml" layout="vertical" width="300" height="100"
-	backgroundAlpha="0"
-    showTitleBar="false"
-    showStatusBar="false"
-    showGripper="false"
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" width="300" height="100"
+	backgroundAlpha="0"    
     borderStyle="none"    
     horizontalAlign="center" 
     visible="false"
@@ -37,8 +34,8 @@
 			private static var valid:Class;
     		
     		public function init():void{
-    			nativeWindow.x = (Capabilities.screenResolutionX - nativeWindow.width) / 2;
-                nativeWindow.y = (Capabilities.screenResolutionY - nativeWindow.height) / 2;
+    			//nativeWindow.x = (Capabilities.screenResolutionX - nativeWindow.width) / 2;
+                //nativeWindow.y = (Capabilities.screenResolutionY - nativeWindow.height) / 2;
                 textSuccess = resourceManager.getString('i18n', 'text.inscription.congratulation');
     		}
     		
@@ -46,8 +43,8 @@
     			this.text = text;
     			this.width = width;
     			this.height = height;
-    			this.nativeWindow.orderToFront();
-    			this.nativeWindow.visible=true;
+    			//this.nativeWindow.orderToFront();
+    			//this.nativeWindow.visible=true;
     			//type
     			if(type==Constantes.ATTENTION)
     				imgType.source = attention;
@@ -82,7 +79,7 @@
     		}
     		
     		public function closeAfterEffect(event : EffectEvent):void{
-    			this.nativeWindow.visible = false;
+    			//this.nativeWindow.visible = false;
     			dispatchEvent(new Event("CLOSED"));
     		}
     		
@@ -109,4 +106,4 @@
     	</mx:HBox>    	
     </mx:VBox>
 	
-</mx:Window>
+</mx:VBox>

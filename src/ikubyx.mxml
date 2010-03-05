@@ -1,25 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="vertical" xmlns:view="view.*"
 	backgroundAlpha="0" creationComplete="init()"
-	width="800" height="600">
+	width="1280" height="1024"
+	>
 	<mx:Metadata>
         [ResourceBundle("i18n")]
     </mx:Metadata>
     <mx:Style source="AmjiTheme.css"/>
     <mx:Script>
     	<![CDATA[
+    		import mx.managers.SystemManager;
+    		import commun.Commun;
+    		import commun.components.AmjiLoading;
+    		import commun.Actions;
+    		import commun.components.AmjiAlert;
+    		import view.MainWindow;
+    		import view.contacts.SearchContact;
+    		import commun.components.PopupFugace;
+    		import com.bedreamy.facade.MainFacade;
     		import view.LoginWindow;
     		import mx.managers.PopUpManager;
     		import mdm.*;
     		
     		public var window : LoginWindow;   
-    		
+    		private var facade:ApplicationFacade = ApplicationFacade.getInstance();
+			private var bedreamy:MainFacade = MainFacade.getInstance();
+			public var mainWindow : MainWindow;
+			public var alertWindow : AmjiAlert;
+			[Bindable]
+    		private var locales:Array = [ "en_US" , "fr_FR" ];
+    		public var poopupFugace : PopupFugace;
+    		public var searchContactWin : SearchContact; 
+    		public var statutdic :  Dictionary = new Dictionary();
+    		public var loader : AmjiLoading = new AmjiLoading;   	
     		public function init():void{    			   			
     			mdm.Application.init( this );
     			window = new LoginWindow;    			    			
     			PopUpManager.addPopUp(window,this);
-    			PopUpManager.centerPopUp(window);    			   			
+    			PopUpManager.centerPopUp(window);
+    			bedreamy.mainapplication = this;
+    			window.addEventListener(Actions.LOGIN,login);   					   			   			  			   			   			
     		}
+    		
+    		public function login(event : Event):void{
+				facade.sendNotification(Actions.GENERICUSER,window.userVO,Actions.LOGIN);   			
+      			
+				PopUpManager.addPopUp(loader,window,true);
+				PopUpManager.centerPopUp(loader);
+				
+				if(window.window.checkSavePass!=null && window.window.checkSavePass.selected){
+					//Commun.storeEncrypt(Commun.pass,window.txtPass.content);
+				}
+				
+				if(window.window.checkSaveLogin!=null && window.window.checkSaveLogin.selected){
+					//Commun.storeEncrypt(Commun.login,window.txtLogin.content);
+					
+				}else if(window.window.checkSaveLogin!=null && !window.window.checkSaveLogin.selected){
+					//Commun.clearStoredItem(Commun.login);
+					//Commun.clearStoredItem(Commun.pass);					
+				}							
+				
+			}
     	]]>
     </mx:Script>    	
 </mx:Application>
