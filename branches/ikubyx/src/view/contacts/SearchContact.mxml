@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Window xmlns:mx="http://www.adobe.com/2006/mxml"
+	backgroundAlpha="0"
+    showTitleBar="false"
+    showStatusBar="false"
+    showGripper="false"
+    borderStyle="none" 
+    xmlns:components="commun.components.*"   
+    horizontalAlign="center"
+    width="505"
+    height="400"
+    minWidth="505"
+    minHeight="400"    
+    creationComplete="init()" xmlns:contacts="view.contacts.*" xmlns:checkbox="com.bedreamy.components.checkbox.*">
+	<mx:Script>
+		<![CDATA[
+			import model.vo.CreateUserVO;
+			import mx.controls.Alert;
+			import mx.controls.listClasses.IListItemRenderer;
+			import commun.Commun;
+			import mx.collections.ArrayCollection;
+			import commun.Actions;
+			[Bindable]
+			public var listeContactSearch : ArrayCollection;
+			[Bindable] public var labelinvitation : String;
+			private function init():void{
+    			nativeWindow.x = (Capabilities.screenResolutionX - nativeWindow.width) / 2;
+                nativeWindow.y = (Capabilities.screenResolutionY - nativeWindow.height) / 2; 
+                Commun.addChildrenToMenu(popupMenu,menuDefinition.children()); 
+                popupMenu.addEventListener(Event.SELECT, onChoice); 
+             								   			
+    		}
+    		
+    		public function onChoice(event : Event):void{
+    			var menuItem = event.target; 
+				if(menuItem.label == "Ajouter")
+					addContactViewStack.selectedIndex = 1;
+				labelinvitation = "Envoyer un message d'invitation à <b>"+(listContact.selectedItem as CreateUserVO).nom+" "+(listContact.selectedItem as CreateUserVO).prenom+"</b>";
+    		}
+    		public var popupMenu : NativeMenu = new NativeMenu;
+    		
+    		public function showPopupMenu(event : MouseEvent):void{
+    			var rightClickItemRenderer:IListItemRenderer;
+                
+                if (event.target is IListItemRenderer)
+                    rightClickItemRenderer = IListItemRenderer(event.target);
+                else if (event.target.parent is IListItemRenderer)
+                    rightClickItemRenderer = 
+                        IListItemRenderer(event.target.parent);
+                
+                if (rightClickItemRenderer != null)
+                {
+                    var rightClickIndex:int = 
+                        listContact.itemRendererToIndex(rightClickItemRenderer);
+                    
+                    if (listContact.selectedIndex != rightClickIndex){                    	
+                        listContact.selectedIndex = rightClickIndex;
+                    }
+                    if(listContact.selectedIndex>=0)
+   						popupMenu.display(event.target.stage, event.stageX, event.stageY);                     
+                }
+    			
+    		}
+    		
+    		var menuDefinition:XML = 
+			    <root> 
+			        <AddContact key="inviteContact" label='Ajouter'/>			            
+			        <SendPost key="" label='Envoyer un post'/>			        
+			    </root>;
+		]]>
+	</mx:Script>
+	<mx:VBox verticalAlign="bottom" styleName="loginScalingBackground" dropShadowEnabled="true" width="100%" height="100%" horizontalAlign="center">
+	<mx:HBox width="100%" height="34" horizontalAlign="left" paddingRight="15">
+	    <mx:HBox horizontalGap="3" paddingLeft="10" horizontalAlign="left" verticalAlign="middle">	    
+		    <mx:Image source="@Embed(source='assets/images/addcontact32.png')"/>
+		    <mx:Label paddingTop="5" color="#000000" text="Ajouter un contact" fontFamily="Vegur_R" fontSize="22">
+				<mx:filters>
+		            <mx:DropShadowFilter color="#FFFFFF" blurX="10" blurY="10" distance="0" angle="0"/>
+		            <mx:GlowFilter color="#FFFFFF" />
+		        </mx:filters>
+			</mx:Label>
+		</mx:HBox>
+		<mx:Spacer width="100%" />
+	    <components:WindowMin width="9" height="9" buttonMode="true" useHandCursor="true" />
+		<components:WindowMax  width="9" height="9" buttonMode="true" useHandCursor="true" />
+		<components:WindowClose click="this.close();dispatchEvent(new Event(Actions.CLOSEINSCWIN))" width="9" height="9" buttonMode="true" useHandCursor="true" />			
+	</mx:HBox>	
+	<mx:ViewStack id="addContactViewStack" width="100%" height="100%">	
+		<mx:VBox backgroundAlpha="0" width="100%" height="100%" horizontalAlign="center" paddingLeft="10">			
+			<mx:Spacer height="5"/>
+			<mx:HBox width="100%" height="40">
+				<mx:Text color="#A8A8A8" fontFamily="Tahoma" fontSize="10" condenseWhite="true">
+					<mx:filters>
+			            <mx:DropShadowFilter color="#FFFFFF" blurX="10" blurY="10" distance="0" angle="0"/>			            
+			        </mx:filters>
+					<mx:htmlText>
+						<![CDATA[
+							Trouvez les personnes que vous recherchez sur amji et ajoutez-les. Vous pouvez rentrer le <b>nom</b>, le <b>prenom</b> <br>l'<b>adresse mail</b> ou le nom d'une <b>école</b> ou d'une <b>entreprise</b> et cliquez sur le boutton <b>rechercher</b>
+						]]>
+					</mx:htmlText>
+				</mx:Text>
+			</mx:HBox>
+			<mx:HBox width="100%" height="30" horizontalAlign="left">				
+				<contacts:InputTextSearch icone="search" id="txtCritere" mouseOut="txtCritere.alpha = 0.5" mouseOver="txtCritere.alpha = 1" alpha="0.5" backgroundColor="#FFFFFF" borderColor="#8A8A8A" borderStyle="solid" >
+					<contacts:filters>
+				       <mx:DropShadowFilter color="#dbdbdb" blurX="5" blurY="5" distance="0" angle="0"/>	            
+				   </contacts:filters>
+				</contacts:InputTextSearch>
+				<components:ButtonOrangeOAF click="dispatchEvent(new Event(Actions.SEARCHCONTACT))" color="#FFFFFF" width="100" height="25" label="rechercher" />				 
+			</mx:HBox>
+			<mx:VBox paddingBottom="10" paddingRight="10" width="100%" height="100%">
+				<mx:List id="listContact" rightClick="showPopupMenu(event)" labelField="nom" width="100%" height="100%" dataProvider="{listeContactSearch}">
+				
+				</mx:List>	
+			</mx:VBox>
+			<mx:HBox width="100%" paddingRight="10" height="3" verticalGap="0">
+				<mx:HRule shadowColor="#FFFFFF" themeColor="#FF6600" width="100%"/>	
+			</mx:HBox>			
+			<mx:VBox width="100%" height="60">
+				<mx:HBox width="100%" verticalAlign="middle">
+					<mx:Image source="@Embed(source='assets/images/OrangeIcone.png')">
+						<mx:filters>
+				            <mx:DropShadowFilter color="#FFFFFF" blurX="10" blurY="10" distance="0" angle="0"/>
+				            <mx:GlowFilter color="#FFFFFF" />		            
+				        </mx:filters>
+					</mx:Image>
+					<mx:Text color="#A8A8A8" fontFamily="Tahoma" fontSize="10" condenseWhite="true">
+						<mx:filters>
+				            <mx:DropShadowFilter color="#FFFFFF" blurX="10" blurY="10" distance="0" angle="0"/>			            
+				        </mx:filters>
+						<mx:htmlText>
+							<![CDATA[
+								Invitez vos amis à vous rejoindre sur amji
+							]]>
+						</mx:htmlText>
+					</mx:Text>
+				</mx:HBox>
+				
+				<mx:HBox width="100%" verticalAlign="middle">				
+					<contacts:InputTextSearch mouseOver="txtMail.alpha = 1" mouseOut="txtMail.alpha = 0.5" text="Entrez une adresse mail valide" icone="invitation" id="txtMail" alpha="0.3" backgroundColor="#FFFFFF" borderColor="#8A8A8A" borderStyle="solid" >
+						<contacts:filters>
+					       <mx:DropShadowFilter color="#dbdbdb" blurX="5" blurY="5" distance="0" angle="0"/>	            
+					   </contacts:filters>
+					</contacts:InputTextSearch>
+					<mx:HBox buttonMode="true" useHandCursor="true" verticalScrollPolicy="off" horizontalScrollPolicy="off" paddingRight="3" alpha="0.6" width="20" horizontalAlign="right" verticalAlign="middle" borderColor="#FFFFFF" cornerRadius="10" borderStyle="solid" height="20">
+							<mx:filters>
+						            <mx:DropShadowFilter color="#FFFFFF" blurX="10" blurY="10" distance="0" angle="0"/>
+						            <mx:GlowFilter color="#FF6600" />		            
+						    </mx:filters>
+							<mx:Image id="iconeSendInvite" buttonMode="true" useHandCursor="true" source="@Embed(source='assets/images/rarrow.png')">
+								<mx:filters>
+						            <mx:DropShadowFilter color="#FFFFFF" blurX="10" blurY="10" distance="0" angle="0"/>
+						            <mx:GlowFilter color="#FFFFFF" />		            
+						        </mx:filters>
+							</mx:Image>
+					</mx:HBox>	
+				</mx:HBox>
+			</mx:VBox>			
+		</mx:VBox>
+		<mx:VBox backgroundAlpha="0" width="100%" height="100%" horizontalAlign="center">			
+			<mx:Spacer height="10"/>
+			<mx:VBox paddingLeft="10" paddingRight="10" width="100%" height="200">
+				<mx:HBox width="100%" verticalAlign="middle">
+					<mx:Image source="@Embed(source='assets/images/OrangeIcone.png')">
+						<mx:filters>
+				            <mx:DropShadowFilter color="#FFFFFF" blurX="10" blurY="10" distance="0" angle="0"/>
+				            <mx:GlowFilter color="#FFFFFF" />		            
+				        </mx:filters>
+					</mx:Image>
+					<mx:Text htmlText="{labelinvitation}" color="#A8A8A8" fontFamily="Tahoma" fontSize="14" condenseWhite="true">
+						<mx:filters>
+				            <mx:DropShadowFilter color="#FFFFFF" blurX="10" blurY="10" distance="0" angle="0"/>			            
+				        </mx:filters>						
+					</mx:Text>
+				</mx:HBox>
+				<mx:Spacer height="10"/>
+				<mx:TextArea condenseWhite="true" color="#8a8a8a" borderStyle="solid" borderColor="#8a8a8a" themeColor="#FF6600" width="100%" height="100%" id="txtMsgInvit">
+					<mx:htmlText>
+						<![CDATA[
+							Bonjour,<br/><br/>
+							
+							Merci de m'ajouter à votre liste de contact.<br/><br/>
+								
+							Cordialement
+						]]>
+					</mx:htmlText>				
+				</mx:TextArea>	
+			</mx:VBox>
+			<mx:Spacer height="10"/>
+			<mx:HBox width="100%" paddingLeft="10" height="20">
+				<checkbox:AmjiCheckBox color="#A8A8A8" label="Envoyer une notification par mail" />
+			</mx:HBox>
+			<mx:Spacer height="100%"/>						
+			<mx:HBox width="100%" horizontalAlign="right" paddingRight="10">
+				<components:ButtonOAF click="addContactViewStack.selectedIndex = 0" width="100" height="25" label="annuler" />
+				<components:ButtonOrangeOAF click="dispatchEvent(new Event(Actions.ADDCONTACT))" color="#FFFFFF" width="100" height="25" label="envoyer" />	
+			</mx:HBox>
+			<mx:Spacer height="10" />							
+		</mx:VBox>	
+	</mx:ViewStack>
+		<mx:HBox verticalAlign="bottom" width="100%" horizontalAlign="left"  paddingRight="4">
+		    <mx:Label paddingLeft="15" color="#9F9F9F" text="2010 BEDREAMY COPYRIGHT" fontSize="8" fontFamily="kroeger"/>
+		    <mx:Spacer width="100%" />
+		    <mx:HBox paddingBottom="3">
+		    	<components:AmjiButtonResize paddingBottom="3" useHandCursor="true" buttonMode="true" mouseDown="this.nativeWindow.startResize()" alpha="1" width="12" height="12"/>	
+		    </mx:HBox>						
+		</mx:HBox>			
+	</mx:VBox>	
+</mx:Window>
