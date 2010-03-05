@@ -10,7 +10,7 @@
 			import mx.events.EffectEvent;
 			import mx.managers.PopUpManager;
 			import mx.core.UIComponent;
-			import mx.core.Window;
+
 			import commun.Constantes;
 			import model.vo.LoginVO;
 			import model.vo.CreateUserVO;
@@ -54,15 +54,15 @@
     				window = new ListInvitationTooltip();
     				window.addEventListener(Actions.ACCEPTINVITATION,acceptInvitation);
     				window.addEventListener(Actions.IGNOREINVITATION,ignoreInvitation);
-    				window.type = NativeWindowType.LIGHTWEIGHT;
+    				/*window.type = NativeWindowType.LIGHTWEIGHT;
 					window.systemChrome = "none";
 					window.transparent = true;	
-					window.open();
+					window.open();*/
 					window.listeInvitation = listeInvitation;
-					window.orderToFront();
+					/*window.orderToFront();
 					window.nativeWindow.x = (Capabilities.screenResolutionX - window.nativeWindow.width) / 2;
                 	window.nativeWindow.y = (Capabilities.screenResolutionY - window.nativeWindow.height) / 2;
-    			    window.height = listeInvitation.length * 25+100;         
+    			    window.height = listeInvitation.length * 25+100;*/         
             }
             
             public function acceptInvitation(event : AcceptContact):void{

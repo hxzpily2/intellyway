@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" layout="vertical" xmlns:components="commun.components.*"
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:components="commun.components.*"
 	creationComplete="init()"
-	backgroundAlpha="0"
-    showTitleBar="false"
-    showStatusBar="false"
-    showGripper="false"
+	backgroundAlpha="0"    
     borderStyle="none"    
     horizontalAlign="center" >
 	<mx:Script>
 		<![CDATA[
+			import com.bedreamy.facade.MainFacade;
+			import mx.managers.PopUpManager;
 			import mx.events.EffectEvent;
 			import commun.Constantes;
 			import mx.effects.Fade;
@@ -28,20 +27,15 @@
     		public var text : String;
     		
 			public function init():void{
-    			nativeWindow.x = (Capabilities.screenResolutionX - nativeWindow.width) / 2;
-                nativeWindow.y = (Capabilities.screenResolutionY - nativeWindow.height) / 2;                
+    			//nativeWindow.x = (Capabilities.screenResolutionX - nativeWindow.width) / 2;
+                //nativeWindow.y = (Capabilities.screenResolutionY - nativeWindow.height) / 2;                
     		}
     		
     		public function show(text : String,width : Number = 200,height : Number = 100, type : String = Constantes.VALID):void{
     			this.text = text;
     			this.width = width;
-    			this.height = height;
-    			this.type = NativeWindowType.LIGHTWEIGHT;
-				this.systemChrome = "none";
-				this.transparent = true;	
-    			this.open();
-    			this.nativeWindow.orderToFront();
-    			this.nativeWindow.visible=true;
+    			this.height = height;    			
+    			PopUpManager.addPopUp(this,MainFacade.getInstance().mainapplication);
     			var dissolve : Fade = new Fade;
     			//type
     			if(type==Constantes.ATTENTION)
@@ -71,12 +65,12 @@
     		}
     		
     		public function closeAfterEffect(event : EffectEvent):void{
-    			this.nativeWindow.close();
+				PopUpManager.removePopUp(this);
     			dispatchEvent(new Event("CLOSED"));
     		}
 		]]>
 	</mx:Script>
-	<mx:VBox verticalGap="0" mouseDown="this.nativeWindow.startMove()" verticalScrollPolicy="off" horizontalScrollPolicy="off" styleName="popupFugaceBackground" id="noteVBox" alpha="0" width="100%" height="100%"
+	<mx:VBox verticalGap="0" mouseDown="" verticalScrollPolicy="off" horizontalScrollPolicy="off" styleName="popupFugaceBackground" id="noteVBox" alpha="0" width="100%" height="100%"
 	    borderStyle="none"    
 	    horizontalAlign="center" 
 	    verticalAlign="middle"   

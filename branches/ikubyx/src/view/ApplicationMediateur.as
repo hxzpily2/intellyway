@@ -9,7 +9,6 @@ package view
 	import commun.InviteChatEvent;
 	import commun.components.AmjiAlert;
 	
-	import flash.display.NativeWindowType;
 	import flash.events.Event;
 	import flash.utils.Dictionary;
 	
@@ -59,7 +58,7 @@ package view
 		public function ApplicationMediateur(viewComponent:Object=null)
 		{
 			super(NAME, viewComponent);
-			app.mainWindow = new MainWindow();
+			/*app.mainWindow = new MainWindow();
 			app.mainWindow.visible=false;	
 			app.mainWindow.type = NativeWindowType.LIGHTWEIGHT;
 			app.mainWindow.systemChrome = "none";
@@ -71,7 +70,7 @@ package view
 			app.mainWindow.contactView.addEventListener(Actions.PSEUDOCHANGE,pseudoChange);
 			app.mainWindow.contactView.addEventListener(Actions.ACCEPTINVITATION,acceptInvitation);
 			app.mainWindow.contactView.addEventListener(Actions.IGNOREINVITATION,ignoreInvitation);
-			app.mainWindow.contactView.addEventListener(Actions.INVITECHAT,inviteChat);
+			app.mainWindow.contactView.addEventListener(Actions.INVITECHAT,inviteChat);*/
 			
 			statutdic[Constantes.ENLIGNE] = null;
 			statutdic[Constantes.HORSLIGNE] = Presence.TYPE_UNAVAILABLE;
@@ -251,11 +250,11 @@ package view
         }
         
         public function showLoginWindow(event : Event):void{
-        	app.window.nativeWindow.visible = true;
+        	//app.window.nativeWindow.visible = true;
         }
         
         public function showSearchContact(event : Event):void{
-        	app.searchContactWin = new SearchContact;        		
+        	/*app.searchContactWin = new SearchContact;        		
 			app.searchContactWin.type = NativeWindowType.LIGHTWEIGHT;
 			app.searchContactWin.systemChrome = "none";
 			app.searchContactWin.transparent = true;	
@@ -263,44 +262,44 @@ package view
         	app.searchContactWin.addEventListener(Actions.SEARCHCONTACT,searchContact);
         	app.searchContactWin.addEventListener(Actions.ADDCONTACT,addContact);
         	app.mainWindow.nativeWindow.orderInBackOf(app.searchContactWin.nativeWindow);
-        	app.searchContactWin.nativeWindow.orderToFront();
+        	app.searchContactWin.nativeWindow.orderToFront();*/
         }
         
         public function addContact(event : Event):void{
         	var inviteVO : InviteContactVO = new InviteContactVO;
         	var proxy : ApplicationProxy = facade.retrieveProxy(ApplicationProxy.NAME) as ApplicationProxy;
-        	inviteVO.idcontact = (proxy.listeSearchContact[app.searchContactWin.listContact.selectedIndex] as CreateUserVO).idamji_user;
+        	/*inviteVO.idcontact = (proxy.listeSearchContact[app.searchContactWin.listContact.selectedIndex] as CreateUserVO).idamji_user;
         	inviteVO.message = app.searchContactWin.txtMsgInvit.htmlText;
         	PopUpManager.addPopUp(app.loader,app.searchContactWin,true);
-			PopUpManager.centerPopUp(app.loader);   
+			PopUpManager.centerPopUp(app.loader);*/   
         	facade.sendNotification(Actions.GENERICUSER,inviteVO,Actions.ADDCONTACT);
         	var body : Object = new Object;			
         }
         
         public function searchContact(event : Event):void{     
-        	PopUpManager.addPopUp(app.loader,app.searchContactWin,true);
+        	/*PopUpManager.addPopUp(app.loader,app.searchContactWin,true);
 			PopUpManager.centerPopUp(app.loader);   	
-        	sendNotification(Actions.GENERICUSER,app.searchContactWin.txtCritere.text,Actions.SEARCHCONTACT);
+        	sendNotification(Actions.GENERICUSER,app.searchContactWin.txtCritere.text,Actions.SEARCHCONTACT);*/
         }
         
         public function closeWindow(event : Event):void{        	
         	ApplicationFacade.getConnexion().disconnect();
 			facade.sendNotification(Actions.GENERICUSER,null,Actions.LOGOUTCLOSE);
-			app.showLoader();
+			//app.showLoader();
         }
 		
 		public function changeStatut(event : Event):void{
-			sendNotification(Actions.GENERICUSER,app.mainWindow.contactView.comboBox.selectedItem.key,Actions.STATUTCHANGE);
+			//sendNotification(Actions.GENERICUSER,app.mainWindow.contactView.comboBox.selectedItem.key,Actions.STATUTCHANGE);
 			var proxy : ApplicationProxy = facade.retrieveProxy(ApplicationProxy.NAME) as ApplicationProxy;
-			proxy.userConnected.userVO.connstatut = app.mainWindow.contactView.comboBox.selectedItem.key;
-			this.sendStatutChangeMessage(app.mainWindow.contactView.comboBox.selectedItem.key);
+			//proxy.userConnected.userVO.connstatut = app.mainWindow.contactView.comboBox.selectedItem.key;
+			//this.sendStatutChangeMessage(app.mainWindow.contactView.comboBox.selectedItem.key);
 		}	
 		
 		public function pseudoChange(event : Event):void{
-			sendNotification(Actions.GENERICUSER,app.mainWindow.contactView.txtPseudo.text,Actions.PSEUDOCHANGE);
+			/*sendNotification(Actions.GENERICUSER,app.mainWindow.contactView.txtPseudo.text,Actions.PSEUDOCHANGE);
 			var proxy : ApplicationProxy = facade.retrieveProxy(ApplicationProxy.NAME) as ApplicationProxy;
 			proxy.userConnected.userVO.pseudo = app.mainWindow.contactView.txtPseudo.text;
-			this.sendPseudoChangeMessage(app.mainWindow.contactView.txtPseudo.text);
+			this.sendPseudoChangeMessage(app.mainWindow.contactView.txtPseudo.text);*/
 		}
 		
 		public function sendStatutChangeMessage(statut : String):void{			
@@ -357,8 +356,8 @@ package view
 	    	var message : Message = event.data as Message
 	    	switch (message.subject){
 	    		case Actions.INVITECONTACT:
-	    			app.alertWindow = new AmjiAlert();
-            		app.alertWindow.show("vous avez reçu une nouvelle invitation",350,150,Constantes.ATTENTION); 
+	    			//app.alertWindow = new AmjiAlert();
+            		//app.alertWindow.show("vous avez reçu une nouvelle invitation",350,150,Constantes.ATTENTION); 
 	    			break;
 	    		case Actions.ACCEPTINVITATION:
 	    			facade.sendNotification(Actions.GENERICUSER,message.body,Actions.GETINFOUSER);  			
@@ -423,18 +422,18 @@ package view
             switch ( notification.getName() )  
             {  
             	case ApplicationFacade.INSCRSUCCESS:
-            		app.poopupFugace.show(app.geti18nText('text.inscription.congratulation'),350,120);
+            		/*app.poopupFugace.show(app.geti18nText('text.inscription.congratulation'),350,120);
             		app.poopupFugace.addEventListener("CLOSED",showLoginWindow);            		
             		app.hideLoader();            		
-            		app.inscWindow.close();
+            		app.inscWindow.close();*/
             		ApplicationFacade.getConnexion().disconnect();            		
             		break;
             	case ApplicationFacade.INSCRFAILED:
-            		app.hideLoader();
+            		//app.hideLoader();
             		break; 
             	case ApplicationFacade.LOGINSUCCESS:            		           		          		
             		var proxy : ApplicationProxy = facade.retrieveProxy(ApplicationProxy.NAME) as ApplicationProxy;
-            		app.hideLoader();
+            		/*app.hideLoader();
             		app.mainWindow.nativeWindow.visible = true;
             		app.mainWindow.contactView.listeContact = new ArrayCollection;
             		app.mainWindow.contactView.listeContact.source = proxy.userConnected.listeContacts;
@@ -448,34 +447,34 @@ package view
             		} 		
             		
             		app.mainWindow.contactView.lblInvitations.value = proxy.userConnected.listInvitations.length;
-            		app.mainWindow.contactView.listeInvitation.source = proxy.userConnected.listInvitations;
+            		app.mainWindow.contactView.listeInvitation.source = proxy.userConnected.listInvitations;*/
             		this.loginXMPP();            		            		
             		break;
             	case ApplicationFacade.LOGINFAILED:
-            		app.hideLoader();
+            		/*app.hideLoader();
             		app.alertWindow = new AmjiAlert();
-            		app.alertWindow.show(app.geti18nText("text.login.error"),350,150,Constantes.ERROR);            		
+            		app.alertWindow.show(app.geti18nText("text.login.error"),350,150,Constantes.ERROR);*/            		
             		break;  
             	case ApplicationFacade.SEARCHSUCCESS:
             		var proxy : ApplicationProxy = facade.retrieveProxy(ApplicationProxy.NAME) as ApplicationProxy;
-            		app.searchContactWin.listeContactSearch = new ArrayCollection;
+            		/*app.searchContactWin.listeContactSearch = new ArrayCollection;
             		app.searchContactWin.listeContactSearch.source = proxy.listeSearchContact;
-            		PopUpManager.removePopUp(app.loader);
+            		PopUpManager.removePopUp(app.loader);*/
             		break; 
             	case ApplicationFacade.INVITESUCCESS:
             		var proxy : ApplicationProxy = facade.retrieveProxy(ApplicationProxy.NAME) as ApplicationProxy;
-            		ApplicationFacade.getInstance().mainRoster.addContact(new UnescapedJID(Commun.getJidFromMail((proxy.listeSearchContact[app.searchContactWin.listContact.selectedIndex] as CreateUserVO).email)+"@"+Constantes.XMPPSERVEUR+"/"+Constantes.XMPPRESOURCE),Commun.getJidFromMail((proxy.listeSearchContact[app.searchContactWin.listContact.selectedIndex] as CreateUserVO).email),null,true);
+            		/*ApplicationFacade.getInstance().mainRoster.addContact(new UnescapedJID(Commun.getJidFromMail((proxy.listeSearchContact[app.searchContactWin.listContact.selectedIndex] as CreateUserVO).email)+"@"+Constantes.XMPPSERVEUR+"/"+Constantes.XMPPRESOURCE),Commun.getJidFromMail((proxy.listeSearchContact[app.searchContactWin.listContact.selectedIndex] as CreateUserVO).email),null,true);
             		app.mainWindow.contactView.listeContact = new ArrayCollection;
             		app.mainWindow.contactView.listeContact.source = proxy.userConnected.listeContacts;
             		PopUpManager.removePopUp(app.loader);
             		app.searchContactWin.close();
-            		this.inviteContact(new UnescapedJID(Commun.getJidFromMail((proxy.listeSearchContact[app.searchContactWin.listContact.selectedIndex] as CreateUserVO).email)+"@"+Constantes.XMPPSERVEUR));
+            		this.inviteContact(new UnescapedJID(Commun.getJidFromMail((proxy.listeSearchContact[app.searchContactWin.listContact.selectedIndex] as CreateUserVO).email)+"@"+Constantes.XMPPSERVEUR));*/
             		break; 
             	case ApplicationFacade.INVITEFAILED:            		
-            		PopUpManager.removePopUp(app.loader);
+            		/*PopUpManager.removePopUp(app.loader);
             		app.searchContactWin.close();
             		app.alertWindow = new AmjiAlert();
-            		app.alertWindow.show("Ce contact figure déjà sur<br>votre liste",350,150,Constantes.ERROR);            		
+            		app.alertWindow.show("Ce contact figure déjà sur<br>votre liste",350,150,Constantes.ERROR);*/            		
             		break; 
             	case ApplicationFacade.IGNORECONTACT:
             		var user : CreateUserVO = notification.getBody() as CreateUserVO;
@@ -490,9 +489,9 @@ package view
             			}            				
             		}
             		proxy.userConnected.listInvitations = array.source;
-            		app.mainWindow.contactView.listeInvitation.source = proxy.userConnected.listInvitations; 
-            		app.mainWindow.contactView.lblInvitations.value = proxy.userConnected.listInvitations.length;
-            		app.mainWindow.contactView.window.listeInvitation.source = proxy.userConnected.listInvitations;
+            		//app.mainWindow.contactView.listeInvitation.source = proxy.userConnected.listInvitations; 
+            		//app.mainWindow.contactView.lblInvitations.value = proxy.userConnected.listInvitations.length;
+            		//app.mainWindow.contactView.window.listeInvitation.source = proxy.userConnected.listInvitations;
             		break;
             	case ApplicationFacade.ACCEPTCONTACT:            		
             		var user : CreateUserVO = notification.getBody() as CreateUserVO;
@@ -503,7 +502,7 @@ package view
             		array.source = proxy.userConnected.listeContacts
             		array.addItem(user);
             		proxy.userConnected.listeContacts = array.source;          		
-            		app.mainWindow.contactView.listeContact.source = proxy.userConnected.listeContacts;
+            		//app.mainWindow.contactView.listeContact.source = proxy.userConnected.listeContacts;
             		array = new ArrayCollection;
             		array.source = proxy.userConnected.listInvitations;
             		for(var i : Number = 0;i<array.length;i++){
@@ -514,9 +513,9 @@ package view
             			}            				
             		}
             		proxy.userConnected.listInvitations = array.source;	
-            		app.mainWindow.contactView.listeInvitation.source = proxy.userConnected.listInvitations;
-            		app.mainWindow.contactView.window.listeInvitation.source = proxy.userConnected.listInvitations;
-            		app.mainWindow.contactView.lblInvitations.value = proxy.userConnected.listInvitations.length;
+            		//app.mainWindow.contactView.listeInvitation.source = proxy.userConnected.listInvitations;
+            		//app.mainWindow.contactView.window.listeInvitation.source = proxy.userConnected.listInvitations;
+            		//app.mainWindow.contactView.lblInvitations.value = proxy.userConnected.listInvitations.length;
             		break;
             	case ApplicationFacade.GETINFOUSERSUCCESS:
             		var proxy : ApplicationProxy = facade.retrieveProxy(ApplicationProxy.NAME) as ApplicationProxy;
@@ -532,10 +531,10 @@ package view
             			}
             		}            		
             		proxy.userConnected.listeContacts = array.source;
-            		app.mainWindow.contactView.listeContact.source = proxy.userConnected.listeContacts;
+            		//app.mainWindow.contactView.listeContact.source = proxy.userConnected.listeContacts;
             		break;
             	case ApplicationFacade.LOGOUTSUCCESS:            		
-            		app.closeHandler();
+            		//app.closeHandler();
             		break;      		
             }
         }
@@ -595,11 +594,11 @@ package view
 	    }
 	    
 	    public function getItemContact(key : String):ItemContactRenderer{	    	
-	    	for(var i : Number=0;i<app.mainWindow.contactView.itemContact.length;i++){
+	    	/*for(var i : Number=0;i<app.mainWindow.contactView.itemContact.length;i++){
 	    		var item : ItemContactRenderer = app.mainWindow.contactView.itemContact[i];	    		   		
 	    		if(item.key==key)
 	    			return item;	    		
-	    	}
+	    	}*/
 	    	return null;	    	
 	    }  
 

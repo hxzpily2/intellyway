@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Window xmlns:mx="http://www.adobe.com/2006/mxml"
-	backgroundAlpha="0"
-    showTitleBar="false"
-    showStatusBar="false"
-    showGripper="false"
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml"
+	backgroundAlpha="0"    
     borderStyle="none" 
     xmlns:components="commun.components.*"   
     horizontalAlign="center"
@@ -24,10 +21,10 @@
 			public var listeContactSearch : ArrayCollection;
 			[Bindable] public var labelinvitation : String;
 			private function init():void{
-    			nativeWindow.x = (Capabilities.screenResolutionX - nativeWindow.width) / 2;
-                nativeWindow.y = (Capabilities.screenResolutionY - nativeWindow.height) / 2; 
-                Commun.addChildrenToMenu(popupMenu,menuDefinition.children()); 
-                popupMenu.addEventListener(Event.SELECT, onChoice); 
+    			//nativeWindow.x = (Capabilities.screenResolutionX - nativeWindow.width) / 2;
+                //nativeWindow.y = (Capabilities.screenResolutionY - nativeWindow.height) / 2; 
+                //Commun.addChildrenToMenu(popupMenu,menuDefinition.children()); 
+                //popupMenu.addEventListener(Event.SELECT, onChoice); 
              								   			
     		}
     		
@@ -37,7 +34,7 @@
 					addContactViewStack.selectedIndex = 1;
 				labelinvitation = "Envoyer un message d'invitation à <b>"+(listContact.selectedItem as CreateUserVO).nom+" "+(listContact.selectedItem as CreateUserVO).prenom+"</b>";
     		}
-    		public var popupMenu : NativeMenu = new NativeMenu;
+    		//public var popupMenu : NativeMenu = new NativeMenu;
     		
     		public function showPopupMenu(event : MouseEvent):void{
     			var rightClickItemRenderer:IListItemRenderer;
@@ -56,8 +53,8 @@
                     if (listContact.selectedIndex != rightClickIndex){                    	
                         listContact.selectedIndex = rightClickIndex;
                     }
-                    if(listContact.selectedIndex>=0)
-   						popupMenu.display(event.target.stage, event.stageX, event.stageY);                     
+                    if(listContact.selectedIndex>=0);
+   						//popupMenu.display(event.target.stage, event.stageX, event.stageY);                     
                 }
     			
     		}
@@ -83,7 +80,7 @@
 		<mx:Spacer width="100%" />
 	    <components:WindowMin width="9" height="9" buttonMode="true" useHandCursor="true" />
 		<components:WindowMax  width="9" height="9" buttonMode="true" useHandCursor="true" />
-		<components:WindowClose click="this.close();dispatchEvent(new Event(Actions.CLOSEINSCWIN))" width="9" height="9" buttonMode="true" useHandCursor="true" />			
+		<components:WindowClose click="dispatchEvent(new Event(Actions.CLOSEINSCWIN))" width="9" height="9" buttonMode="true" useHandCursor="true" />			
 	</mx:HBox>	
 	<mx:ViewStack id="addContactViewStack" width="100%" height="100%">	
 		<mx:VBox backgroundAlpha="0" width="100%" height="100%" horizontalAlign="center" paddingLeft="10">			
@@ -109,7 +106,7 @@
 				<components:ButtonOrangeOAF click="dispatchEvent(new Event(Actions.SEARCHCONTACT))" color="#FFFFFF" width="100" height="25" label="rechercher" />				 
 			</mx:HBox>
 			<mx:VBox paddingBottom="10" paddingRight="10" width="100%" height="100%">
-				<mx:List id="listContact" rightClick="showPopupMenu(event)" labelField="nom" width="100%" height="100%" dataProvider="{listeContactSearch}">
+				<mx:List id="listContact" labelField="nom" width="100%" height="100%" dataProvider="{listeContactSearch}">
 				
 				</mx:List>	
 			</mx:VBox>
@@ -202,8 +199,8 @@
 		    <mx:Label paddingLeft="15" color="#9F9F9F" text="2010 BEDREAMY COPYRIGHT" fontSize="8" fontFamily="kroeger"/>
 		    <mx:Spacer width="100%" />
 		    <mx:HBox paddingBottom="3">
-		    	<components:AmjiButtonResize paddingBottom="3" useHandCursor="true" buttonMode="true" mouseDown="this.nativeWindow.startResize()" alpha="1" width="12" height="12"/>	
+		    	<components:AmjiButtonResize paddingBottom="3" useHandCursor="true" buttonMode="true" mouseDown="" alpha="1" width="12" height="12"/>	
 		    </mx:HBox>						
 		</mx:HBox>			
 	</mx:VBox>	
-</mx:Window>
+</mx:VBox>
