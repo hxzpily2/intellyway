@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="vertical" xmlns:view="view.*"
-	backgroundAlpha="0" creationComplete="init()">
+	backgroundAlpha="0" creationComplete="init()"
+	width="800" height="600">
 	<mx:Metadata>
         [ResourceBundle("i18n")]
     </mx:Metadata>
@@ -9,16 +10,16 @@
     	<![CDATA[
     		import view.LoginWindow;
     		import mx.managers.PopUpManager;
-    		import mdm.*
-    		public function init():void{
-    			//var loginWin : LoginWindow = new LoginWindow;    			
-    			//PopUpManager.addPopUp(loginWin,this);
-    			//PopUpManager.centerPopUp(loginWin);
+    		import mdm.*;
+    		
+    		public var window : LoginWindow;   
+    		
+    		public function init():void{    			   			
     			mdm.Application.init( this );
-    			//mdm.Forms.MainForm.showFullScreen(true);
-    			
+    			window = new LoginWindow;    			    			
+    			PopUpManager.addPopUp(window,this);
+    			PopUpManager.centerPopUp(window);    			   			
     		}
     	]]>
-    </mx:Script>
-    <mx:Button label="test" click="mdm.Forms.thisForm.maximize();"/>	
+    </mx:Script>    	
 </mx:Application>
