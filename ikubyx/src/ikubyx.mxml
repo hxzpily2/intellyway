@@ -15,6 +15,7 @@
     
     <mx:Script>
 		<![CDATA[
+			import view.contacts.ConversationWindow;
 			import org.igniterealtime.xiff.data.Presence;
 			import org.igniterealtime.xiff.events.PresenceEvent;
 			import org.igniterealtime.xiff.data.im.RosterExtension;
@@ -57,7 +58,8 @@
     		private var locales:Array = [ "en_US" , "fr_FR" ];
     		public var poopupFugace : PopupFugace;
     		public var searchContactWin : SearchContact; 
-    		public var statutdic :  Dictionary = new Dictionary();   		
+    		public var statutdic :  Dictionary = new Dictionary();
+    		public var conversationWindow : ConversationWindow;   		
 			private function init():void{
 				window = new LoginWindow();
 				inscWindow = new InscriptionWindow();

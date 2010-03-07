@@ -43,8 +43,10 @@ package view
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.mediator.Mediator;
 	
+	import view.contacts.ConversationWindow;
 	import view.contacts.ItemContactRenderer;
 	import view.contacts.SearchContact;
+	import view.contacts.WindowChat;
 	
 	
 	
@@ -178,7 +180,7 @@ package view
 	         
 	        switch (event.type){
 	        	case RosterEvent.ROSTER_LOADED:
-	        		Alert.show(ApplicationFacade.getInstance().mainRoster.length.toString());
+	        		
 	        		break;
 	            case RosterEvent.SUBSCRIPTION_REQUEST:
 	            	ApplicationFacade.getInstance().mainRoster.grantSubscription(event.jid, true);
@@ -225,11 +227,24 @@ package view
 		
 		public function inviteChat(event : InviteChatEvent):void{
 			var jid : UnescapedJID = new UnescapedJID(event.username+"@"+Constantes.XMPPSERVEUR);
-			var chat:SparkChat = getChat(jid) as SparkChat;
-			if(!chat)
-				chat = new SparkChat(jid);
-				
+			var chat : WindowChat = getChat(jid) as WindowChat;
+			if(!chat){
+				chat = new WindowChat();
+				chat.typeWin = WindowChat.CHAT;
+			}
 			chats[jid.bareJID] = chat;		
+			if(app.conversationWindow==null){
+				app.conversationWindow = new ConversationWindow;
+				app.conversationWindow.type = NativeWindowType.LIGHTWEIGHT;
+				app.conversationWindow.systemChrome = "none";
+				app.conversationWindow.transparent = true;
+				app.conversationWindow.open();
+				app.conversationWindow.conversationStack.addChild(chat);
+				var user : CreateUserVO = isInContactList(event.username+"@"+Constantes.XMPPSERVEUR);				
+				app.conversationWindow.listeContact.addItem(user);	
+			}else{
+				
+			}
 		}
 		
 			
@@ -545,7 +560,7 @@ package view
 			var array : ArrayCollection = new ArrayCollection;
 			array.source = proxy.userConnected.listeContacts;
 			for(var i: Number=0;i<array.length;i++){
-				var user:CreateUserVO = array.getItemAt(i) as CreateUserVO;			
+				var user:CreateUserVO = array.getItemAt(i) as CreateUserVO;							
 				if(Commun.getJidFromMail(user.email)+"@"+Constantes.XMPPSERVEUR==jid){
 					return user;
 				}	

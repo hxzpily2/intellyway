@@ -260,6 +260,18 @@ Tree
              
         
         }
+
+
+.frameOrangeBackground
+        {
+
+            background-image: Embed(source="AmjiTheme.swf", symbol="Frame_borderOrangeSkin");
+			
+            background-size:"100%";    
+            
+             
+        
+        }
                 
 .loginTooltipBackground
         {
