@@ -1,4 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Window xmlns:mx="http://www.adobe.com/2006/mxml" layout="vertical">
-	
+<mx:Window width="800" height="600" xmlns:mx="http://www.adobe.com/2006/mxml" layout="vertical"
+	backgroundAlpha="0"
+	showTitleBar="false"
+    showStatusBar="false"
+    showGripper="false"
+    borderStyle="none"
+    creationComplete="init()"
+    xmlns:components="commun.components.*" xmlns:contacts="view.contacts.*">	
+	<mx:Script>
+		<![CDATA[
+			import model.vo.CreateUserVO;
+			import mx.collections.ArrayCollection;
+			import commun.Actions;
+			private function init():void{
+    			nativeWindow.x = (Capabilities.screenResolutionX - nativeWindow.width) / 2;
+                nativeWindow.y = (Capabilities.screenResolutionY - nativeWindow.height) / 2;				
+    		}
+    		[Bindable]
+			public var listeContact : ArrayCollection = new ArrayCollection;
+		]]>
+	</mx:Script>
+	<mx:VBox styleName="loginScalingBackground" width="100%" height="100%">
+		<mx:HBox width="100%" height="15" horizontalAlign="right" paddingRight="15">		
+		    <components:WindowMin width="9" height="9" buttonMode="true" useHandCursor="true" />
+			<components:WindowMax  width="9" height="9" buttonMode="true" useHandCursor="true" />
+			<components:WindowClose click="this.close();dispatchEvent(new Event(Actions.CLOSEAPPLI))" width="9" height="9" buttonMode="true" useHandCursor="true" />			
+		</mx:HBox>
+		<mx:Spacer height="20" />
+		<mx:HDividedBox width="100%" height="96%">
+			<mx:VBox verticalScrollPolicy="off" horizontalScrollPolicy="off"  paddingLeft="1" width="250" id="conversationBox">
+				<mx:Repeater id="contactRepeater" dataProvider="{listeContact}" width="100%" height="100%">					
+					<contacts:ConversationContactRenderer verticalScrollPolicy="off" horizontalScrollPolicy="off" height="25"  id="itemContact" key="{(contactRepeater.currentItem as CreateUserVO).idamji_user.toString()}" user="{contactRepeater.currentItem as CreateUserVO}" width="100%"/>					
+				</mx:Repeater>
+			</mx:VBox>
+			<mx:ViewStack width="100%" height="100%" id="conversationStack">
+			
+			</mx:ViewStack>
+		</mx:HDividedBox>	
+	</mx:VBox>	
 </mx:Window>

@@ -1,15 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Window xmlns:mx="http://www.adobe.com/2006/mxml" layout="vertical" width="400" height="300"
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%"
+	paddingLeft="10"
+	paddingRight="10"
 	creationComplete="init()">
 	<mx:Script>
 		<![CDATA[
 			public static var CHAT:String = "chat";
 			public static var ROOM:String = "room";
-			[Bindable] public var type : String;
+			[Bindable] public var typeWin : String;
 			
 			public function init():void{
 				
 			}
 		]]>
 	</mx:Script>
-</mx:Window>
+	<mx:Canvas width="100%" height="100%">
+		<mx:VBox x="0" y="0" width="55" height="55" borderStyle="solid" borderColor="#969696" >
+			<mx:filters>
+		        <mx:DropShadowFilter color="#FFFFFF" blurX="10" blurY="10" distance="0" angle="0"/>
+		        <mx:GlowFilter color="#b5b5b5" />
+		    </mx:filters>
+			<mx:VBox verticalScrollPolicy="off" horizontalScrollPolicy="off" width="53" height="53" borderStyle="solid" borderColor="#FFFFFF" borderThickness="2" >
+				<mx:Image width="50" height="50" source="@Embed(source='assets/images/perso.png')" />
+			</mx:VBox>
+		</mx:VBox>
+		<mx:HBox verticalAlign="middle" x="60" y="13" height="20" width="100%" cornerRadius="10" borderStyle="solid" borderColor="#8A8A8A" borderThickness="0" backgroundColor="#8A8A8A" backgroundAlpha="0.2" >
+			<mx:HBox height="20" width="150" paddingTop="4" paddingLeft="5" verticalAlign="middle" x="60" y="13"  borderStyle="solid" borderColor="#FFFFFF" cornerRadius="10" backgroundColor="#8A8A8A" backgroundAlpha="0.5" >
+				<mx:Label color="#FFFFFF" text="User name" fontFamily="Vegur_R" fontSize="12">
+					<mx:filters>
+			            <mx:DropShadowFilter color="#8A8A8A" blurX="10" blurY="10" distance="0" angle="0"/>
+			            <mx:GlowFilter color="#8A8A8A" />		            
+			        </mx:filters>
+				</mx:Label>
+			</mx:HBox>
+			<mx:Spacer width="100%" />
+			<mx:HBox horizontalAlign="center" height="20" width="50" paddingTop="4" verticalAlign="middle" x="60" y="13"  borderStyle="solid" borderColor="#FFFFFF" cornerRadius="10" backgroundColor="#8A8A8A" backgroundAlpha="0.5" >
+				<mx:Label color="#FFFFFF" text="18:06" fontFamily="Vegur_R" fontSize="12">
+					<mx:filters>
+			            <mx:DropShadowFilter color="#8A8A8A" blurX="10" blurY="10" distance="0" angle="0"/>
+			            <mx:GlowFilter color="#8A8A8A" />		            
+			        </mx:filters>
+				</mx:Label>
+			</mx:HBox>
+		</mx:HBox>
+		<mx:VBox dropShadowEnabled="true" shadowDistance="0" width="100%" height="60" x="40" y="40" borderStyle="solid" borderColor="#FFFFFF" cornerRadius="5" backgroundColor="#FFFFFF">			
+		</mx:VBox>
+	</mx:Canvas>
+	
+</mx:VBox>

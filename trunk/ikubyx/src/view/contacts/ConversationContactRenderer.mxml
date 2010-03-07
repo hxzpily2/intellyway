@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:VBox width="100%" xmlns:mx="http://www.adobe.com/2006/mxml" height="50" verticalGap="0" creationComplete="init()" xmlns:commun="commun.*">
+<mx:VBox verticalScrollPolicy="off" horizontalScrollPolicy="off" width="100%" xmlns:mx="http://www.adobe.com/2006/mxml" height="50" verticalGap="0" creationComplete="init()" xmlns:commun="commun.*">
 	<mx:Metadata>
 	        [Event(name="INVITECHAT", type="commun.InviteChatEvent")]
 	</mx:Metadata>
@@ -90,14 +90,8 @@
 				if(this.currentState != "contactMenu"){
 					this.currentState = "contactMenu";
 					this.height += 50; 
-					imgMenu.source = barrow;
-					imgMenu.width = 17;
-					imgMenu.height = 10;
 				}else{
 					this.currentState = "";
-					imgMenu.source = arraow;
-					imgMenu.width = 10;
-					imgMenu.height = 17;
 					this.height -= 50;
 				}
 			}
@@ -107,29 +101,20 @@
 			}
 		]]>
 	</mx:Script>
-	<mx:HBox buttonMode="true" paddingRight="10" paddingLeft="5" styleName="frameBackground" verticalGap="0"  width="100%" height="100%" verticalAlign="middle">			
+	<mx:HBox verticalScrollPolicy="off" horizontalScrollPolicy="off" buttonMode="true" paddingRight="10" paddingLeft="5" styleName="frameBackground" verticalGap="0"  width="100%" height="100%" verticalAlign="middle">			
 		<mx:Image id="imgStatut" />
-		<mx:VBox width="100%" verticalGap="0">
-			<mx:Label mouseChildren="false" useHandCursor="true" buttonMode="true" paddingTop="15" color="#000000" text="{user.nom} {user.prenom}" fontFamily="Vegur_R" fontSize="16">
+		<mx:VBox verticalScrollPolicy="off" horizontalScrollPolicy="off" width="100%" verticalGap="0">
+			<mx:Label paddingTop="7" mouseChildren="false" useHandCursor="true" buttonMode="true" color="#000000" text="{user.nom} {user.prenom}" fontFamily="Vegur_R" fontSize="12">
 				<mx:filters>
 		            <mx:DropShadowFilter color="#FFFFFF" blurX="10" blurY="10" distance="0" angle="0"/>
 		            <mx:GlowFilter color="#FFFFFF" />
 		        </mx:filters>
-			</mx:Label>
-			<mx:Label text="{user.pseudo}" mouseChildren="false" useHandCursor="true" buttonMode="true" paddingLeft="2" paddingTop="-5" maxWidth="150" truncateToFit="true" alpha="0.5" fontFamily="kroeger" fontSize="8" color="#8A8A8A">
-				<mx:filters>
-			            <mx:DropShadowFilter color="#FFFFFF" blurX="10" blurY="10" distance="0" angle="0"/>
-			    </mx:filters>
-			</mx:Label>
+			</mx:Label>			
 		</mx:VBox>		
 		<mx:Spacer width="100%" />
-		<mx:HBox width="17" height="17" verticalAlign="middle">
-		</mx:HBox>
-		<mx:HBox width="17" height="17" verticalAlign="middle">
+		<mx:HBox width="17" height="17" paddingBottom="10" verticalAlign="top">
 			<mx:Image id="imgHumeur" />
-		</mx:HBox>
-		<mx:HBox width="17" height="17" verticalAlign="middle">
-			<mx:Image id="imgMenu" click="showMenu(event)" width="10" height="17" source="{arraow}" />	
-		</mx:HBox>		
+		</mx:HBox>			
 	</mx:HBox>	
 </mx:VBox>
+
