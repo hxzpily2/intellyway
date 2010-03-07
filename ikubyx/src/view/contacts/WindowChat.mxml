@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Window xmlns:mx="http://www.adobe.com/2006/mxml" layout="vertical" width="400" height="300">
-	
+<mx:Window xmlns:mx="http://www.adobe.com/2006/mxml" layout="vertical" width="400" height="300"
+	creationComplete="init()">
+	<mx:Script>
+		<![CDATA[
+			public static var CHAT:String = "chat";
+			public static var ROOM:String = "room";
+			[Bindable] public var type : String;
+			
+			public function init():void{
+				
+			}
+		]]>
+	</mx:Script>
 </mx:Window>
