@@ -4,7 +4,8 @@
 	verticalGap="10"
 	paddingLeft="10"
 	paddingRight="10"
-	creationComplete="init()">
+	paddingBottom="10"
+	creationComplete="init()" xmlns:components="commun.components.*">
 	<mx:Script>
 		<![CDATA[
 			public static var CHAT:String = "chat";
@@ -16,6 +17,22 @@
 			}
 		]]>
 	</mx:Script>
+	<mx:Style>
+		.hboxStyle
+			{
+			        /*background-color:                       "90deg #FFF0A5 #FFB03B";*/
+			        border-bottom-left-radius:              10;
+			        border-bottom-right-radius:             10;
+			        border-top-left-radius:                 0;
+			        border-top-right-radius:                0;
+			        borderSkin:                                     ClassReference("com.degrafa.skins.CSSSkin");
+			
+			        /*border-color:                                   #222222;
+			        border-width:                                   "2px 2px 2px 2px";
+			        border-alpha:                                   1;*/
+			
+			} 
+	</mx:Style>
 	<mx:Canvas width="100%" >
 		<mx:VBox x="0" y="0" width="55" height="55" borderStyle="solid" borderColor="#969696" >
 			<mx:filters>
@@ -53,7 +70,7 @@
 			            <mx:GlowFilter color="#FFFFFF" />		            
 			        </mx:filters>
 				</mx:Image>
-				<mx:Text color="#8A8A8A" text="Salut comment ça va?"/>
+				<mx:Text color="#8A8A8A" text=""/>
 			</mx:HBox>
 			<mx:HBox width="100%" height="20" verticalAlign="middle">
 				<mx:Image source="@Embed(source='assets/images/OrangeIcone.png')">
@@ -62,7 +79,7 @@
 			            <mx:GlowFilter color="#FFFFFF" />		            
 			        </mx:filters>
 				</mx:Image>
-				<mx:Text color="#8A8A8A" text="Allo..."/>
+				<mx:Text color="#8A8A8A" text=""/>
 			</mx:HBox>			
 		</mx:VBox>
 	</mx:Canvas>
@@ -98,13 +115,13 @@
 		</mx:HBox>
 		<mx:VBox verticalGap="0" paddingLeft="8" verticalAlign="middle" dropShadowEnabled="true" shadowDistance="0" width="100%" height="60" x="40" y="40" borderStyle="solid" borderColor="#FFFFFF" cornerRadius="5" backgroundColor="#FFFFFF">
 			<mx:HBox width="100%" height="20" verticalAlign="middle">
-				<mx:Image source="@Embed(source='assets/images/GreyIcone.png')">
+				<mx:Image width="5" height="5" source="@Embed(source='assets/images/GreyIcone.png')">
 					<mx:filters>
 			            <mx:DropShadowFilter color="#FFFFFF" blurX="10" blurY="10" distance="0" angle="0"/>
 			            <mx:GlowFilter color="#FFFFFF" />		            
 			        </mx:filters>
 				</mx:Image>
-				<mx:Text color="#FF6600" text="ouiiiii je suis là"/>
+				<mx:Text color="#FF6600" text=""/>
 			</mx:HBox>
 			<mx:HBox width="100%" height="20" verticalAlign="middle">
 				<mx:Image source="@Embed(source='assets/images/GreyIcone.png')">
@@ -113,9 +130,20 @@
 			            <mx:GlowFilter color="#FFFFFF" />		            
 			        </mx:filters>
 				</mx:Image>
-				<mx:Text color="#FF6600" text="dsl j'etai au wc..."/>
+				<mx:Text color="#FF6600" text=""/>
 			</mx:HBox>			
 		</mx:VBox>
-	</mx:Canvas>
-	
+	</mx:Canvas> 
+	<mx:VBox verticalGap="0" width="100%" height="100" borderStyle="solid" borderThickness="0" backgroundColor="#FFFFFF" cornerRadius="10">		
+		<mx:filters>
+            <mx:DropShadowFilter inner="true" color="#A8A8A8" blurX="10" blurY="10" distance="0" angle="0"/>            		            
+        </mx:filters>
+        <mx:HBox backgroundAlpha="0" width="100%" height="100%" paddingLeft="5" paddingRight="5" paddingBottom="1" paddingTop="5" horizontalAlign="right">
+        	<mx:TextArea color="#A8A8A8" focusAlpha="0" width="100%" height="100%" borderStyle="none" backgroundAlpha="0">
+        	
+        	</mx:TextArea>
+        	<components:AmjiOrangeButton id="btnSend" mouseOver="btnSend.alpha = 0.8" mouseOut="btnSend.alpha = 0.5" buttonMode="true" useHandCursor="true" alpha="0.5" icon="@Embed(source='assets/images/IM.png')" height="100%" width="70" />	
+        </mx:HBox>
+        <mx:HBox styleName="hboxStyle" alpha="0.5" backgroundColor="#A8A8A8" height="20" width="100%"/>        
+	</mx:VBox>
 </mx:VBox>
