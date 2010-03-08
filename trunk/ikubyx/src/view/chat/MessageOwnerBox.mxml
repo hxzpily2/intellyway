@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:HBox xmlns:mx="http://www.adobe.com/2006/mxml">
+	<mx:Script>
+		<![CDATA[
+			[Bindable] public var text : String;
+		]]>
+	</mx:Script>
+	<mx:HBox width="100%" height="20" verticalAlign="middle">
+		<mx:Image width="5" height="5" source="@Embed(source='assets/images/OrangeIcone.png')">
+			<mx:filters>
+	            <mx:DropShadowFilter color="#FFFFFF" blurX="10" blurY="10" distance="0" angle="0"/>
+	            <mx:GlowFilter color="#FFFFFF" />		            
+	        </mx:filters>
+		</mx:Image>
+		<mx:Text color="#FF6600" text="{text}"/>
+	</mx:HBox>
+</mx:HBox>
