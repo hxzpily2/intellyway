@@ -1,18 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%"
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:local="*" width="100%" height="100%"
 	verticalAlign="top"
 	verticalGap="10"
 	paddingLeft="10"
 	paddingRight="10"
 	paddingBottom="10"
-	creationComplete="init()" xmlns:components="commun.components.*">
+	creationComplete="init()" xmlns:components="commun.components.*" xmlns:ns="library:adobe/flashx/textLayout">
 	<mx:Script>
 		<![CDATA[
+			
+			import mx.controls.Alert;
+			import flashx.textLayout.elements.TextFlow;
+			import flashx.textLayout.formats.Direction;
+        	import flashx.textLayout.elements.InlineGraphicElement;
+        	import flashx.textLayout.events.StatusChangeEvent;
+        	
+        	import flashx.textLayout.edit.EditManager;
+
+        	
+        	
+
+
 			public static var CHAT:String = "chat";
 			public static var ROOM:String = "room";
 			[Bindable] public var typeWin : String;
+			private var _textFlow:TextFlow;
+
+			public function init():void{           	
+
+			}
 			
-			public function init():void{
+			public function test(event : KeyboardEvent):void{
 				
 			}
 		]]>
@@ -32,7 +50,7 @@
 			        border-alpha:                                   1;*/
 			
 			} 
-	</mx:Style>
+	</mx:Style>	
 	<mx:VDividedBox width="100%" height="100%">
 	<mx:VBox width="100%" height="100%">
 	<mx:Canvas width="100%" >
@@ -144,9 +162,11 @@
             <mx:DropShadowFilter inner="true" color="#A8A8A8" blurX="10" blurY="10" distance="0" angle="0"/>            		            
         </mx:filters>
         <mx:HBox verticalAlign="middle" verticalScrollPolicy="off" backgroundAlpha="0" width="100%" height="100%" paddingLeft="5" paddingRight="3" paddingBottom="1" horizontalAlign="right" paddingTop="3">
-        	<mx:TextArea color="#A8A8A8" focusAlpha="0" width="100%" height="100%" borderStyle="none" backgroundAlpha="0">
+        	<mx:Canvas width="100%" height="100%">
+        		<mx:TextArea id="txtMsg" x="0" y="0" keyDown="test(event)" color="#A8A8A8" focusAlpha="0" width="100%" height="100%" borderStyle="none" backgroundAlpha="0">
         	
-        	</mx:TextArea>
+        		</mx:TextArea>
+        	</mx:Canvas>        	
         	<mx:Image id="btnSend" mouseOver="btnSend.alpha = 0.8" mouseOut="btnSend.alpha = 0.5" buttonMode="true" useHandCursor="true" alpha="0.5" source="@Embed(source='assets/images/IM.png')"  />	
         </mx:HBox>
         <mx:HBox styleName="hboxStyle" alpha="0.5" backgroundColor="#A8A8A8" height="20" width="100%"/>        
