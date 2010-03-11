@@ -8,27 +8,103 @@
 	creationComplete="init()" xmlns:components="commun.components.*" xmlns:ns="library:adobe/flashx/textLayout">
 	<mx:Script>
 		<![CDATA[
+			import flashx.textLayout.events.ScrollEvent;
+        	import mx.events.ScrollEvent;
+
 			
 			import mx.controls.Alert;
-			import flashx.textLayout.elements.TextFlow;
-			import flashx.textLayout.formats.Direction;
-        	import flashx.textLayout.elements.InlineGraphicElement;
-        	import flashx.textLayout.events.StatusChangeEvent;
-        	
+			import flashx.textLayout.container.IContainerController;
+        	import flashx.textLayout.events.CompositionCompletionEvent;
+        	import flashx.textLayout.edit.UndoManager;
         	import flashx.textLayout.edit.EditManager;
+        	import flashx.textLayout.events.StatusChangeEvent;
+        	import flashx.textLayout.elements.InlineGraphicElement;
+        	import flashx.textLayout.container.DisplayObjectContainerController;
+        	import flashx.textLayout.conversion.TextFilter;
+        	import flashx.textLayout.elements.TextFlow;
 
-        	
-        	
-
-
+			
 			public static var CHAT:String = "chat";
 			public static var ROOM:String = "room";
 			[Bindable] public var typeWin : String;
+			
 			private var _textFlow:TextFlow;
+			private var _textContainer:Sprite = null;
+			private var _controller:IContainerController;
+			
+			private static const _textInput:XML = <TextFlow xmlns="http://ns.adobe.com/textLayout/2008">
+			<div>
+			    <p>
+			        <img source="assets/images/IM.png"/>
+			        <span>Flex is a highly productive</span>
+			        <br/>
+			    </p>
+			</div>
+			</TextFlow>;
+
 
 			public function init():void{           	
+				_textContainer = new Sprite();
+	            canvas.rawChildren.addChild(_textContainer);
+	            _controller = new DisplayObjectContainerController(_textContainer, canvas.width, canvas.height);
+	
+	            _textFlow = TextFilter.importToFlow(_textInput, TextFilter.TEXT_LAYOUT_FORMAT);
+	            _textFlow.flowComposer.addController(_controller);
+	            _textFlow.addEventListener(StatusChangeEvent.INLINE_GRAPHIC_STATUS_CHANGED, picLoaded);
+	            _textFlow.addEventListener(CompositionCompletionEvent.COMPOSITION_COMPLETE, composeListener);
+	            _textFlow.addEventListener(flashx.textLayout.events.ScrollEvent.SCROLL, scrollTextFlow);
+	            //adding Select/Edit/Copy/Paste/Undo features
+	            _textFlow.interactionManager = new EditManager(new UndoManager());
+	            // initialize with a selection before the first character
+	            _textFlow.interactionManager.setSelection(0,0);
+	            
+	            _textFlow.flowComposer.updateAllContainers();
 
 			}
+			
+			/**
+	         * the composing of the text was finished;
+	         * now I can see if I my text overflow the container
+	         */ 
+	        private function composeListener(event:CompositionCompletionEvent):void {
+	            var textHeight:int = Math.ceil(_controller.calculateHeight());
+	            if (textHeight < _controller.compositionHeight) {
+	               // scroll.enabled = false;
+	            } else {
+	                //scroll.enabled = true;
+	                //scroll.minScrollPosition = 0;
+	                //scroll.maxScrollPosition = textHeight - _controller.compositionHeight;
+	            }
+	            _controller.verticalScrollPosition = 0;
+	        }
+	        
+	        /**
+	         * listener for the picture load event; 
+	         * it is time to update the flowComposer to display the picture
+	         */ 
+	        private function picLoaded(event:StatusChangeEvent):void {
+	            var image:InlineGraphicElement = event.element as InlineGraphicElement;
+	            _textFlow.flowComposer.updateAllContainers();
+	        }
+	        
+	        /**
+	         * listener for the scroll event of the scrollbar
+	         */ 
+	        private function scrollListener(event:mx.events.ScrollEvent):void {
+	            _textFlow.removeEventListener(flashx.textLayout.events.ScrollEvent.SCROLL, scrollTextFlow);
+	            _controller.verticalScrollPosition = event.position;
+	            _textFlow.addEventListener(flashx.textLayout.events.ScrollEvent.SCROLL, scrollTextFlow);
+	        }
+	
+	        /**
+	         * listener for the scroll event of the text flow container
+	         */ 
+	        private function scrollTextFlow(event:flashx.textLayout.events.ScrollEvent):void {
+	            //scroll.removeEventListener(mx.events.ScrollEvent.SCROLL, scrollListener);
+	            //scroll.scrollPosition = Math.ceil(_controller.verticalScrollPosition);
+	            //scroll.addEventListener(mx.events.ScrollEvent.SCROLL, scrollListener);
+	        }
+
 			
 			public function test(event : KeyboardEvent):void{
 				
@@ -157,15 +233,14 @@
 	</mx:VBox>
 		
 	
-	<mx:VBox verticalScrollPolicy="off" verticalGap="0" width="100%" height="70" borderStyle="solid" borderThickness="0" backgroundColor="#FFFFFF" cornerRadius="5">		
+	<mx:VBox verticalGap="0" width="100%" height="70" borderStyle="solid" borderThickness="0" backgroundColor="#FFFFFF" cornerRadius="5">		
 		<mx:filters>
             <mx:DropShadowFilter inner="true" color="#A8A8A8" blurX="10" blurY="10" distance="0" angle="0"/>            		            
         </mx:filters>
-        <mx:HBox verticalAlign="middle" verticalScrollPolicy="off" backgroundAlpha="0" width="100%" height="100%" paddingLeft="5" paddingRight="3" paddingBottom="1" horizontalAlign="right" paddingTop="3">
-        	<mx:Canvas width="100%" height="100%">
-        		<mx:TextArea id="txtMsg" x="0" y="0" keyDown="test(event)" color="#A8A8A8" focusAlpha="0" width="100%" height="100%" borderStyle="none" backgroundAlpha="0">
-        	
-        		</mx:TextArea>
+        <mx:HBox verticalAlign="middle" backgroundAlpha="0" width="100%" height="100%" paddingLeft="5" paddingRight="3" paddingBottom="1" horizontalAlign="right" paddingTop="3">
+        	<mx:Canvas id="canvas" width="100%" height="100%">
+        		
+        
         	</mx:Canvas>        	
         	<mx:Image id="btnSend" mouseOver="btnSend.alpha = 0.8" mouseOut="btnSend.alpha = 0.5" buttonMode="true" useHandCursor="true" alpha="0.5" source="@Embed(source='assets/images/IM.png')"  />	
         </mx:HBox>
