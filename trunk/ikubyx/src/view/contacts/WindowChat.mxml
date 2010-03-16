@@ -8,6 +8,9 @@
 	creationComplete="init()" xmlns:components="commun.components.*" xmlns:ns="library:adobe/flashx/textLayout">
 	<mx:Script>
 		<![CDATA[
+			import flashx.textLayout.events.SelectionEvent;
+			import flashx.textLayout.edit.SelectionManager;
+			import com.degrafa.geometry.utilities.GeometryUtils;
 			import flashx.textLayout.elements.FlowElement;
 			import com.hurlant.crypto.symmetric.NullPad;
 			import flashx.textLayout.elements.SpanElement;
@@ -59,7 +62,9 @@
 				var controller:DisplayObjectContainerController=new DisplayObjectContainerController(flow_container,flow_holder.width,flow_holder.height);
 				_flow.flowComposer.addController(controller);
 	            _flow.interactionManager = new EditManager(new UndoManager());
+	            //_flow.interactionManager = new SelectionManager();
 	            _flow.addEventListener(CompositionCompletionEvent.COMPOSITION_COMPLETE, composeListener);
+	            _flow.addEventListener(SelectionEvent.SELECTION_CHANGE,selectionChange);
 	            var p:ParagraphElement = new ParagraphElement();
 	            var span:SpanElement = new SpanElement();
 	            span.text = "";
@@ -69,6 +74,7 @@
 	            p.addChild(span);
 	            _flow.addChild(p);
 	            _flow.interactionManager.setSelection(0,0);
+	            _flow.interactionManager.setFocus();
 	            _flow.flowComposer.updateAllContainers();	            
 			}
 			
@@ -93,20 +99,30 @@
 			  _img_loader.contentLoaderInfo.addEventListener(Event.COMPLETE,imageLoadComplete,false,0,true);
 			}
 			
+			public function selectionChange(event : SelectionEvent):void{
+				trace("ok");
+			}
+			
 			private function composeListener(e:CompositionCompletionEvent):void {
-			  var out:XML = TextFilter.export(_flow, TextFilter.TEXT_LAYOUT_FORMAT, ConversionType.XML_TYPE ) as XML;
-			  	
+			  var out:XML = TextFilter.export(_flow, TextFilter.TEXT_LAYOUT_FORMAT, ConversionType.XML_TYPE ) as XML;			  	
 			  if(_flow.getLastLeaf().text.search(/:D/)!=-1){
 			  		var p : ParagraphElement = _flow.getChildAtIndex(0) as ParagraphElement; 
 			  		var span : FlowElement = _flow.getLastLeaf() as FlowElement;
 			  		
+			  		var leaf:SpanElement = new SpanElement();
+            		leaf = SpanElement(_flow.getFirstLeaf());
+            		trace(leaf.text);
+
+			  		while(leaf = SpanElement(leaf.getNextLeaf(p)))
+		                trace(leaf.text);
+					
 			  		var newSpan : SpanElement = new SpanElement();
 			  		//newSpan.text=span.text.split(4);;
 	            	newSpan.fontSize = 12;
 	            	newSpan.fontFamily="Tahoma";
 	            	newSpan.color="#A9A9A9";
 	            	newSpan.text = "test";
-	            	p.addChild(newSpan);	            	
+	            	p.addChild(newSpan);         	
 	            	
 	            	p.removeChildAt(0);
 	            	_flow.interactionManager.setSelection(0,0);
@@ -116,7 +132,7 @@
 			  		_img_loader.load(image);		  
 			  		_img_loader.contentLoaderInfo.addEventListener(Event.COMPLETE,imageLoadComplete,false,0,true);
 			  		_flow.removeEventListener(CompositionCompletionEvent.COMPOSITION_COMPLETE, composeListener);
-			  }		  
+			  }			    
 			  //_img_loader=new Loader();
 			  //var image:URLRequest = new URLRequest("assets/emoticones/2s/24/anger.png");			  
 			  //_img_loader.load(image);		  
