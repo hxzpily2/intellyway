@@ -37,13 +37,19 @@
 			
 			public static var CHAT:String = "chat";
 			public static var ROOM:String = "room";
+			
+			public static var SPANELEMENT:String = "SPANELEMENT";
+			public static var IMAGEELEMENT:String = "IMAGEELEMENT";
 			[Bindable] public var typeWin : String;
 			
 			protected var _flow:TextFlow;
 			protected var _file_ref:FileReference;
 			protected var _img_loader:Loader;
 			protected var _text_field_bounds:Rectangle=new Rectangle(0,0,500,100);
-			public var nbspan : Number = 0;
+			public var actifSpan : Number = 0;
+			public var cursorPosFirst : Number = 0;
+			public var cursorPosLast : Number = 0;
+			public var elementFlow : ArrayCollection = new ArrayCollection();
 			protected function init():void{
 				createTextFlow();
 			}
@@ -51,6 +57,10 @@
 			public function getLastCharacter(out : XML):String{
 				Alert.show(_flow.getLastLeaf().text);
 				return "";
+			}
+			
+			public function addElementFlow(object : Object,fisrtPos : Number,lastPos : Number , type : String):void{
+				
 			}
 			
 			protected function createTextFlow():void{
@@ -72,6 +82,7 @@
 	            span.fontFamily="Tahoma";
 	            span.color = "#A9A9A9";
 	            p.addChild(span);
+	            addElementFlow(span,0,0,WindowChat.SPANELEMENT);	            
 	            _flow.addChild(p);
 	            _flow.interactionManager.setSelection(0,0);
 	            _flow.interactionManager.setFocus();
@@ -99,8 +110,10 @@
 			  _img_loader.contentLoaderInfo.addEventListener(Event.COMPLETE,imageLoadComplete,false,0,true);
 			}
 			
-			public function selectionChange(event : SelectionEvent):void{
-				trace("ok");
+			public function selectionChange(event : SelectionEvent):void{				
+				cursorPosFirst = event.selectedElementRange.firstLeafPosition;
+				cursorPosLast = event.selectedElementRange.lastLeafPosition;
+				trace ("setSelectionRange", event.selectedElementRange.firstLeafPosition);
 			}
 			
 			private function composeListener(e:CompositionCompletionEvent):void {
@@ -109,12 +122,12 @@
 			  		var p : ParagraphElement = _flow.getChildAtIndex(0) as ParagraphElement; 
 			  		var span : FlowElement = _flow.getLastLeaf() as FlowElement;
 			  		
-			  		var leaf:SpanElement = new SpanElement();
+			  		/*var leaf:SpanElement = new SpanElement();
             		leaf = SpanElement(_flow.getFirstLeaf());
             		trace(leaf.text);
 
 			  		while(leaf = SpanElement(leaf.getNextLeaf(p)))
-		                trace(leaf.text);
+		                trace(leaf.text);*/
 					
 			  		var newSpan : SpanElement = new SpanElement();
 			  		//newSpan.text=span.text.split(4);;
@@ -125,7 +138,7 @@
 	            	p.addChild(newSpan);         	
 	            	
 	            	p.removeChildAt(0);
-	            	_flow.interactionManager.setSelection(0,0);
+	            	_flow.interactionManager.setSelection(newSpan.text.length,newSpan.text.length);
 			  		_flow.flowComposer.updateAllContainers();
 			  		_img_loader=new Loader();
 			        var image:URLRequest = new URLRequest("assets/emoticones/2s/24/anger.png");			  
