@@ -8,6 +8,7 @@
 	creationComplete="init()" xmlns:components="commun.components.*" xmlns:ns="library:adobe/flashx/textLayout">
 	<mx:Script>
 		<![CDATA[
+			import flashx.textLayout.elements.FlowLeafElement;
 			import flashx.textLayout.events.SelectionEvent;
 			import flashx.textLayout.edit.SelectionManager;
 			import com.degrafa.geometry.utilities.GeometryUtils;
@@ -112,30 +113,41 @@
 			
 			public function selectionChange(event : SelectionEvent):void{				
 				cursorPosFirst = event.selectedElementRange.firstLeafPosition;
-				cursorPosLast = event.selectedElementRange.lastLeafPosition;
-				trace ("setSelectionRange", event.selectedElementRange.firstLeafPosition);
+				cursorPosLast = event.selectedElementRange.lastLeafPosition;				
+			}
+			
+			public function getNumberElements(p : ParagraphElement):Number{
+				var leaf: FlowLeafElement = FlowLeafElement(p.getFirstLeaf());
+				var i : Number = 1;
+				if(leaf!=null){
+					while(leaf = FlowLeafElement(leaf.getNextLeaf(p))){												
+						i++;
+					}
+				}
+				return i;
 			}
 			
 			private function composeListener(e:CompositionCompletionEvent):void {
-			  var out:XML = TextFilter.export(_flow, TextFilter.TEXT_LAYOUT_FORMAT, ConversionType.XML_TYPE ) as XML;			  	
+			  /*var out:XML = TextFilter.export(_flow, TextFilter.TEXT_LAYOUT_FORMAT, ConversionType.XML_TYPE ) as XML;			  	
+			  trace("here");
 			  if(_flow.getLastLeaf().text.search(/:D/)!=-1){
 			  		var p : ParagraphElement = _flow.getChildAtIndex(0) as ParagraphElement; 
 			  		var span : FlowElement = _flow.getLastLeaf() as FlowElement;
 			  		
-			  		/*var leaf:SpanElement = new SpanElement();
-            		leaf = SpanElement(_flow.getFirstLeaf());
-            		trace(leaf.text);
-
-			  		while(leaf = SpanElement(leaf.getNextLeaf(p)))
-		                trace(leaf.text);*/
-					
+			  							
 			  		var newSpan : SpanElement = new SpanElement();
 			  		//newSpan.text=span.text.split(4);;
 	            	newSpan.fontSize = 12;
 	            	newSpan.fontFamily="Tahoma";
 	            	newSpan.color="#A9A9A9";
 	            	newSpan.text = "test";
-	            	p.addChild(newSpan);         	
+	            	p.addChild(newSpan);  
+	            	
+	            	var leaf:SpanElement = new SpanElement();
+              		leaf = SpanElement(_flow.getFirstLeaf());
+              		trace(leaf.text);
+			  		while(leaf = SpanElement(leaf.getNextLeaf(p)))
+		           		trace(leaf.text);       	
 	            	
 	            	p.removeChildAt(0);
 	            	_flow.interactionManager.setSelection(newSpan.text.length,newSpan.text.length);
@@ -150,7 +162,9 @@
 			  //var image:URLRequest = new URLRequest("assets/emoticones/2s/24/anger.png");			  
 			  //_img_loader.load(image);		  
 			  //_img_loader.contentLoaderInfo.addEventListener(Event.COMPLETE,imageLoadComplete,false,0,true);
-			  //_flow.removeEventListener(CompositionCompletionEvent.COMPOSITION_COMPLETE, composeListener);
+			  //_flow.removeEventListener(CompositionCompletionEvent.COMPOSITION_COMPLETE, composeListener);*/
+			  var p : ParagraphElement = _flow.getChildAtIndex(0) as ParagraphElement;
+			  trace(getNumberElements(p));
 			}
 			
 			protected function imageLoadComplete(e:Event):void{
