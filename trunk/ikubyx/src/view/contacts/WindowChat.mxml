@@ -203,8 +203,15 @@
 			  //_img_loader.load(image);		  
 			  //_img_loader.contentLoaderInfo.addEventListener(Event.COMPLETE,imageLoadComplete,false,0,true);
 			  //_flow.removeEventListener(CompositionCompletionEvent.COMPOSITION_COMPLETE, composeListener);*/
-			  
-			  trace(getNumberElements());
+			  var p : ParagraphElement = _flow.getChildAtIndex(0) as ParagraphElement;
+			  for(var i : Number = 0;i<Commun.s2emoticones24.length;i++){
+			  	var pos : Number = findRegExp(new RegExp("/"+Commun.s2emoticones24.getItemAt(i).link+"/"),"test:D");
+			  	if(pos!=-1) trace(pos);	
+			  }		  
+			}
+			
+			public function findRegExp(reg : RegExp,text : String):Number{
+				return text.search(reg);
 			}
 			
 			protected function imageLoadComplete(e:Event):void{
