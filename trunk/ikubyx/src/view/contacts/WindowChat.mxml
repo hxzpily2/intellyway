@@ -205,7 +205,7 @@
 			  //_flow.removeEventListener(CompositionCompletionEvent.COMPOSITION_COMPLETE, composeListener);*/
 			  var p : ParagraphElement = _flow.getChildAtIndex(0) as ParagraphElement;
 			  for(var i : Number = 0;i<Commun.s2emoticones24.length;i++){
-			  	var pos : Number = findRegExp(new RegExp("/"+Commun.s2emoticones24.getItemAt(i).link+"/"),"test:D");
+			  	var pos : Number = findRegExp(new RegExp(Commun.s2emoticones24.getItemAt(i).link),"test:D");
 			  	if(pos!=-1) trace(pos);	
 			  }		  
 			}
