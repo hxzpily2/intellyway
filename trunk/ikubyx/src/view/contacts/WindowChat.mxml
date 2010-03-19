@@ -113,7 +113,8 @@
 			
 			public function selectionChange(event : SelectionEvent):void{				
 				cursorPosFirst = event.selectedElementRange.firstLeafPosition;
-				cursorPosLast = event.selectedElementRange.lastLeafPosition;				
+				cursorPosLast = event.selectedElementRange.lastLeafPosition;
+				this.getNumberElements();				
 			}
 			
 			public function getNumberElements():Number{
@@ -212,6 +213,10 @@
 			
 			public function findRegExp(reg : RegExp,text : String):Number{
 				return text.search(reg);
+			}
+			
+			public function getActifSpan(pos : Number):void{
+				
 			}
 			
 			protected function imageLoadComplete(e:Event):void{
