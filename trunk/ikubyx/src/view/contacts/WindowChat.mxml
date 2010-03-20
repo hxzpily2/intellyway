@@ -151,7 +151,7 @@
 							leaf = SpanElement(leaf.getNextLeaf(p));
 							object.firstLeafPosition=lastPos;
 							object.lastLeafPosition=lastPos+leaf.text.length;
-							lastPos = object.lastLeafPosition+1;
+							lastPos = object.lastLeafPosition;
 							object.length = leaf.text.length;							
 						}else if(object.type == WindowChat.IMAGEELEMENT){
 							leaf = InlineGraphicElement(leaf.getNextLeaf(p));
@@ -205,9 +205,26 @@
 			  //_img_loader.contentLoaderInfo.addEventListener(Event.COMPLETE,imageLoadComplete,false,0,true);
 			  //_flow.removeEventListener(CompositionCompletionEvent.COMPOSITION_COMPLETE, composeListener);*/
 			  var p : ParagraphElement = _flow.getChildAtIndex(0) as ParagraphElement;
+			  trace("number of element",this.getNumberElements());
+			  var actifIdSpan : Number = this.getActifSpan();
+			  trace("actif span",actifIdSpan);
+			  var actifspan : SpanElement = elementFlow.getItemAt(actifIdSpan).item as SpanElement;
+			  trace(actifspan.text);
 			  for(var i : Number = 0;i<Commun.s2emoticones24.length;i++){
-			  	var pos : Number = findRegExp(new RegExp(Commun.s2emoticones24.getItemAt(i).link),"test:D");
-			  	if(pos!=-1) trace(pos);	
+			  	if(actifspan!=null){
+				  	var pos : Number = findRegExp(new RegExp(Commun.s2emoticones24.getItemAt(i).link),actifspan.text);
+				  	if(pos>0){
+				  		_flow.interactionManager.setSelection(pos+elementFlow.getItemAt(actifIdSpan).firstLeafPosition,pos+elementFlow.getItemAt(actifIdSpan).firstLeafPosition);
+				  		//suprimer le racourci				  		
+				  		actifspan.text = actifspan.text.replace(new RegExp(Commun.s2emoticones24.getItemAt(i).link),"");				  		
+				  		//fin supression
+				  		_img_loader=new Loader();
+				  		var image:URLRequest = new URLRequest(Commun.s2emoticones24.getItemAt(i).source);			  
+				  		_img_loader.load(image);		  
+				  		_img_loader.contentLoaderInfo.addEventListener(Event.COMPLETE,imageLoadComplete,false,0,true);
+				  		_flow.removeEventListener(CompositionCompletionEvent.COMPOSITION_COMPLETE, composeListener);
+				  	}
+				  }	
 			  }		  
 			}
 			
@@ -215,8 +232,14 @@
 				return text.search(reg);
 			}
 			
-			public function getActifSpan(pos : Number):void{
-				
+			public function getActifSpan():Number{
+				for(var i : Number=0;i<elementFlow.length;i++){
+					var object : Object = elementFlow.getItemAt(i);
+					if(object.type==WindowChat.SPANELEMENT && this.cursorPosFirst > object.firstLeafPosition && this.cursorPosFirst<=object.lastLeafPosition){
+						return i;
+					}						
+				}
+				return null;
 			}
 			
 			protected function imageLoadComplete(e:Event):void{
@@ -224,9 +247,9 @@
 			  var bmd:BitmapData=Bitmap(_img_loader.content).bitmapData;
 			  var bm:Bitmap=new Bitmap(bmd);
 			  EditManager(_flow.interactionManager).insertInlineGraphic(bm,bm.width,bm.height);
-			  _flow.interactionManager.setSelection(0,0);
 			  _flow.flowComposer.updateAllContainers();
 			  _flow.addEventListener(CompositionCompletionEvent.COMPOSITION_COMPLETE, composeListener);
+			  this.getNumberElements();
 			}
 		]]>
 	</mx:Script>
