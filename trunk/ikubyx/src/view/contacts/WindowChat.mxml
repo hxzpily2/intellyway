@@ -54,25 +54,24 @@
 			public var cursorPosLast : Number = 0;
 			public var elementFlow : ArrayCollection = new ArrayCollection();
 			
+			private static const textInput:XML = <flow:TextFlow whiteSpaceCollapse="preserve" xmlns:flow="http://ns.adobe.com/textLayout/2008">
+			  <flow:p>
+			    <flow:span fontSize="12" color="0xa9a9a9" fontFamily="Tahoma"></flow:span>
+			  </flow:p>
+			</flow:TextFlow>;
 			public function sendMessage(event : MouseEvent):void{
 				var out:XML = TextFilter.export(_flow, TextFilter.TEXT_LAYOUT_FORMAT, ConversionType.XML_TYPE ) as XML;
-				var p : ParagraphElement = _flow.getChildAtIndex(0) as ParagraphElement;				
-	            _flow.removeEventListener(CompositionCompletionEvent.COMPOSITION_COMPLETE, composeListener);
-	            _flow.removeEventListener(SelectionEvent.SELECTION_CHANGE,selectionChange);
-	            /*while (p.numChildren > 0) p.removeChildAt(0);
-				var p:ParagraphElement = new ParagraphElement();
-	            var span:SpanElement = new SpanElement();
+				var p : ParagraphElement = _flow.getChildAtIndex(0) as ParagraphElement; 
+				while (p.numChildren > 0) p.removeChildAt(0);
+				var span:SpanElement = new SpanElement();
 	            span.text = "";
 	            span.fontSize = 12;
 	            span.fontFamily="Tahoma";
 	            span.color = "#A9A9A9";
 	            p.addChild(span);
-	            _flow.addChild(p);
-	            _flow.interactionManager.setSelection(0,0);	            
-	            _flow.flowComposer.updateAllContainers();	
-	            _flow.addEventListener(CompositionCompletionEvent.COMPOSITION_COMPLETE, composeListener);
-	            _flow.addEventListener(SelectionEvent.SELECTION_CHANGE,selectionChange);*/
-	            this.createTextFlow();
+				_flow.interactionManager.setSelection(0,0);	 
+	            _flow.interactionManager.setFocus();           
+	            _flow.flowComposer.updateAllContainers();				
 			}
 			
 			protected function init():void{
@@ -138,8 +137,13 @@
 			}
 			
 			public function selectionChange(event : SelectionEvent):void{				
-				cursorPosFirst = event.selectedElementRange.firstLeafPosition;
-				cursorPosLast = event.selectedElementRange.lastLeafPosition;
+				if(event.selectedElementRange!=null){
+					cursorPosFirst = event.selectedElementRange.firstLeafPosition;
+					cursorPosLast = event.selectedElementRange.lastLeafPosition;
+				}else{
+					cursorPosFirst = 0;
+					cursorPosLast = 0;
+				}
 				this.getNumberElements();				
 			}
 			
