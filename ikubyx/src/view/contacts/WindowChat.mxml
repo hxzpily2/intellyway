@@ -252,11 +252,11 @@
 			  var actifIdSpan : Number = this.getActifSpan();
 			  trace("actif span",actifIdSpan);
 			  var actifspan : SpanElement = elementFlow.getItemAt(actifIdSpan).item as SpanElement;
-			  trace(actifspan.text);
+			  
 			  for(var i : Number = 0;i<Commun.s2emoticones24.length;i++){
 			  	if(actifspan!=null){
 				  	var pos : Number = findRegExp(new RegExp(Commun.s2emoticones24.getItemAt(i).link),actifspan.text);
-				  	if(pos>0){
+				  	if(pos>=0){
 				  		_flow.interactionManager.setSelection(pos+elementFlow.getItemAt(actifIdSpan).firstLeafPosition,pos+elementFlow.getItemAt(actifIdSpan).firstLeafPosition);
 				  		//suprimer le racourci				  		
 				  		actifspan.text = actifspan.text.replace(new RegExp(Commun.s2emoticones24.getItemAt(i).link),"");				  		
