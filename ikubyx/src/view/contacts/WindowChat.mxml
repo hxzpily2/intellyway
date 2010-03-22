@@ -54,6 +54,8 @@
 			public var cursorPosFirst : Number = 0;
 			public var cursorPosLast : Number = 0;
 			public var elementFlow : ArrayCollection = new ArrayCollection();
+			public var flow_container:Sprite;
+			public var controller:DisplayObjectContainerController;
 			
 			private static const textInput:XML = <flow:TextFlow whiteSpaceCollapse="preserve" xmlns:flow="http://ns.adobe.com/textLayout/2008">
 			  <flow:p>
@@ -92,11 +94,11 @@
             	var config:Configuration = TextFlow.defaultConfiguration;
             	config.manageEnterKey = false;            	
 				_flow=new TextFlow(config);
-				var flow_container:Sprite=new Sprite();
+				flow_container=new Sprite();
 				flow_holder.graphics.beginFill(0xFFFFFF);
 				flow_holder.graphics.drawRect(0,0,flow_holder.width,flow_holder.height);
 				flow_holder.addChild(flow_container);
-				var controller:DisplayObjectContainerController=new DisplayObjectContainerController(flow_container,flow_holder.width,flow_holder.height);							
+				controller=new DisplayObjectContainerController(flow_container,flow_holder.width,flow_holder.height);							
 				_flow.flowComposer.addController(controller);
 	            _flow.interactionManager = new EditManager(new UndoManager());
 	            //_flow.interactionManager = new SelectionManager();
@@ -302,10 +304,11 @@
 			}
 			
 			public function updateGraphic(event : DividerEvent):void{
-				flow_holder.graphics.clear();
-				flow_holder.graphics.beginFill(0xFFFFFF);
-				flow_holder.graphics.drawRect(0,0,flow_holder.width,flow_holder.height);
-				_flow.interactionManager.setFocus(); 
+				trace(flow_holder.height);
+				controller.setCompositionSize(flow_holder.width,flow_holder.height);												
+				/*controller = new DisplayObjectContainerController(flow_container,flow_holder.width,flow_holder.height);				
+				_flow.flowComposer.removeAllControllers();
+				_flow.flowComposer.addController(controller);*/				
 			}
 			
 		]]>
@@ -326,7 +329,7 @@
 			
 			} 
 	</mx:Style>	
-	<mx:VDividedBox dividerRelease="updateGraphic(event)" width="100%" height="100%">
+	<mx:VDividedBox dividerDrag="updateGraphic(event)" width="100%" height="100%">
 	<mx:VBox width="100%" height="100%">
 	<mx:Canvas width="100%" >
 		<mx:VBox x="0" y="0" width="55" height="55" borderStyle="solid" borderColor="#969696" >
@@ -435,7 +438,7 @@
 		<mx:filters>
             <mx:DropShadowFilter inner="true" color="#A8A8A8" blurX="10" blurY="10" distance="0" angle="0"/>            		            
         </mx:filters>        
-        <mx:HBox paddingLeft="10" paddingRight="10" paddingTop="10" verticalAlign="middle" backgroundAlpha="0" width="100%" height="100%" horizontalAlign="right" >        	
+        <mx:HBox paddingBottom="5" paddingLeft="10" paddingRight="10" paddingTop="10" verticalAlign="middle" backgroundAlpha="0" width="100%" height="100%" horizontalAlign="right" >        	
         	<mx:TextArea keyUp="handleKeyUp(event)" focusEnabled="false" id="flow_holder" width="100%" height="100%" focusAlpha="0" borderStyle="none">
         		
         
