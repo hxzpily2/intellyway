@@ -5,9 +5,15 @@
 	paddingLeft="10"
 	paddingRight="10"
 	paddingBottom="10"	
-	creationComplete="init()" xmlns:components="commun.components.*" xmlns:ns="library:adobe/flashx/textLayout">
+	creationComplete="init()" xmlns:components="commun.components.*" xmlns:ns="library:adobe/flashx/textLayout" xmlns:chat="view.chat.*">
 	<mx:Script>
 		<![CDATA[
+			import commun.Constantes;
+			import model.chat.IkubyxMessage;
+			import commun.IkubyxSendMsgEvent;
+			import model.vo.CreateUserVO;
+			import model.vo.UserVO;
+			import org.igniterealtime.xiff.core.UnescapedJID;
 			import mx.events.DividerEvent;
 			import flashx.textLayout.elements.Configuration;
 			import flashx.textLayout.conversion.ImportExportConfiguration;
@@ -46,6 +52,11 @@
 			public static var IMAGEELEMENT:String = "img";
 			[Bindable] public var typeWin : String;
 			
+			public var jid : UnescapedJID;
+			[Bindable] public var sendTo : CreateUserVO;
+			[Bindable] public var sendFrom : CreateUserVO;
+			[Bindable] public var messages : ArrayCollection;
+			
 			protected var _flow:TextFlow;
 			protected var _file_ref:FileReference;
 			protected var _img_loader:Loader;
@@ -64,6 +75,17 @@
 			</flow:TextFlow>;
 			public function sendMessage(event : MouseEvent):void{
 				var out:XML = TextFilter.export(_flow, TextFilter.TEXT_LAYOUT_FORMAT, ConversionType.XML_TYPE ) as XML;
+				var message : IkubyxMessage = new IkubyxMessage();
+				message.msg = out;
+				message.jidFrom = Commun.getJidFromMail(sendFrom.email)+"@"+Constantes.XMPPSERVEUR;
+				message.jidTo = Commun.getJidFromMail(sendTo.email)+"@"+Constantes.XMPPSERVEUR;
+				var msgEvent : IkubyxSendMsgEvent = new IkubyxSendMsgEvent(IkubyxSendMsgEvent.MESSAGEEVENT,message);
+				
+				//test if lastmessage.fromTo == message.fromTo
+				
+				messages.addItem(message);
+				//fin 
+				dispatchEvent(msgEvent);
 				var p : ParagraphElement = _flow.getChildAtIndex(0) as ParagraphElement; 
 				while (p.numChildren > 0) p.removeChildAt(0);
 				var span:SpanElement = new SpanElement();
@@ -331,6 +353,9 @@
 	</mx:Style>	
 	<mx:VDividedBox dividerDrag="updateGraphic(event)" width="100%" height="100%">
 	<mx:VBox width="100%" height="100%">
+	<mx:Repeater dataProvider="{messages}" id="blockRepeater" width="100%">
+		<chat:MessageBox width="100%" text="test"/>
+	</mx:Repeater>
 	<mx:Canvas width="100%" >
 		<mx:VBox x="0" y="0" width="55" height="55" borderStyle="solid" borderColor="#969696" >
 			<mx:filters>
@@ -434,7 +459,7 @@
 	</mx:VBox>
 		
 	
-	<mx:VBox minHeight="80" verticalGap="0" width="100%" height="80" borderStyle="solid" borderThickness="0" backgroundColor="#FFFFFF" cornerRadius="5">		
+	<mx:VBox minHeight="95" verticalGap="0" width="100%" height="95" borderStyle="solid" borderThickness="0" backgroundColor="#FFFFFF" cornerRadius="5">		
 		<mx:filters>
             <mx:DropShadowFilter inner="true" color="#A8A8A8" blurX="10" blurY="10" distance="0" angle="0"/>            		            
         </mx:filters>        
