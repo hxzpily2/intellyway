@@ -1,11 +1,10 @@
 package view
 {
-	import com.jivesoftware.spark.chats.SparkChat;
-	
 	import commun.AcceptContact;
 	import commun.Actions;
 	import commun.Commun;
 	import commun.Constantes;
+	import commun.IkubyxSendMsgEvent;
 	import commun.InviteChatEvent;
 	import commun.components.AmjiAlert;
 	
@@ -54,6 +53,7 @@ package view
 	{
 		public static const NAME:String = 'ApplicationMediateur'; 
 		private var chats:Object = {};
+		private var messages:Object = {};
 		private var queuedRooms:Array = [];
 		public var statutdic :  Dictionary = new Dictionary();
 		public var presencestatu :  Dictionary = new Dictionary();
@@ -224,13 +224,24 @@ package view
 	                // do nothing... not recognized
 	        }
 	    }
+	    
+	    public function closeConversationWindow(event : Event):void{
+	    	app.conversationWindow = null;
+	    }
 		
 		public function inviteChat(event : InviteChatEvent):void{
 			var jid : UnescapedJID = new UnescapedJID(event.username+"@"+Constantes.XMPPSERVEUR);
 			var chat : WindowChat = getChat(jid) as WindowChat;
+			var proxy : ApplicationProxy = facade.retrieveProxy(ApplicationProxy.NAME) as ApplicationProxy;
 			if(!chat){
 				chat = new WindowChat();
 				chat.typeWin = WindowChat.CHAT;
+				chat.jid = jid;
+				chat.sendFrom = proxy.userConnected.userVO;
+				chat.sendTo = isInContactList(event.username+"@"+Constantes.XMPPSERVEUR);
+				messages[jid.bareJID]=new ArrayCollection;
+				chat.messages = messages[jid.bareJID];
+				chat.addEventListener(IkubyxSendMsgEvent.MESSAGEEVENT,sendMessage);
 			}
 			chats[jid.bareJID] = chat;		
 			if(app.conversationWindow==null){
@@ -241,14 +252,24 @@ package view
 				app.conversationWindow.open();
 				app.conversationWindow.conversationStack.addChild(chat);
 				var user : CreateUserVO = isInContactList(event.username+"@"+Constantes.XMPPSERVEUR);				
-				app.conversationWindow.listeContact.addItem(user);	
+				app.conversationWindow.listeContact.addItem(user);
+				app.conversationWindow.addEventListener(Actions.CLOSEAPPLI,closeConversationWindow);	
 			}else{
 				
 			}
 		}
 		
+		public function sendMessage(event : IkubyxSendMsgEvent):void{			
+			var message:Message = new Message(new UnescapedJID(event.msg.jidTo).escaped);
+			message.addExtension(new MessageEventExtension());
+			message.from = new EscapedJID(event.msg.jidFrom);			
+			message.subject = event.msg.priority;
+			message.type = Message.TYPE_CHAT;
+			message.body = event.msg.msg;
+			ApplicationFacade.getConnexion().send(message);	
+		}
 			
-		public function getChat(jid:UnescapedJID):SparkChat 
+		public function getChat(jid:UnescapedJID):WindowChat 
 		{
 			return chats[jid.bareJID];
 		}
