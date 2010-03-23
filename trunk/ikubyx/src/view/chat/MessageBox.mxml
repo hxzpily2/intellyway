@@ -1,12 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:HBox xmlns:mx="http://www.adobe.com/2006/mxml">
+<mx:HBox xmlns:mx="http://www.adobe.com/2006/mxml" creationComplete="init()">
 	<mx:Script>
 		<![CDATA[
+			import flashx.textLayout.container.DisplayObjectContainerController;
+			import flashx.textLayout.elements.TextFlow;
 			[Bindable] public var text : String;
+			[Bindable] public var ismine : Boolean;
+			
+			protected var _flow:TextFlow;			
+			protected var _text_field_bounds:Rectangle=new Rectangle(0,0,500,100);
+			public var flow_container:Sprite;
+			public var controller:DisplayObjectContainerController;
+			
+			[Bindable]
+            [Embed(source="assets/images/GreyIcone.png")]
+            public var greyicone:Class;
+
+            [Bindable]
+            [Embed(source="assets/images/OrangeIcone.png")]
+            public var orangeicone:Class;
+			public function init():void{
+				if(ismine==true)
+					imgIcone.source = greyicone;
+				else
+					imgIcone.source = orangeicone;
+					
+			}
 		]]>
 	</mx:Script>
 	<mx:HBox width="100%" verticalAlign="middle">
-		<mx:Image width="5" height="5" source="@Embed(source='assets/images/GreyIcone.png')">
+		<mx:Image id="imgIcone" width="5" height="5" source="@Embed(source='assets/images/GreyIcone.png')">
 			<mx:filters>
 	            <mx:DropShadowFilter color="#FFFFFF" blurX="10" blurY="10" distance="0" angle="0"/>
 	            <mx:GlowFilter color="#FFFFFF" />		            
