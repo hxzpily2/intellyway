@@ -33,24 +33,8 @@
 
             [Bindable]
             [Embed(source="assets/images/OrangeIcone.png")]
-            public var orangeicone:Class;
+            public var orangeicone:Class;          
             
-            private static const _textInput:XML = <TextFlow xmlns="http://ns.adobe.com/textLayout/2008">
-
-   <div>
-
-     <p>
-
-     <img source="air.png"/>
-
-       <span>Flex is a highly productive, free open source framework for building and maintaining expressive web applications...</span>
-
-          <br/>
-
-       </p>
-      </div>
-
-   </TextFlow>;
 
 			public function init():void{
 				var xml : XML;
@@ -91,7 +75,7 @@
 					}					
 				}                                          
 	            _flow.flowComposer.updateAllContainers();*/
-	            var out : XML = message.msg;
+	            var out : XML = new XML(message.msg.toString());
 	            out.children().prependChild(<img width="10"/>);	                         
 	            out.children().prependChild(xml);	            
 				
