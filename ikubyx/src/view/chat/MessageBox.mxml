@@ -35,7 +35,19 @@
             [Embed(source="assets/images/OrangeIcone.png")]
             public var orangeicone:Class;          
             
-
+			public function calculeLenghtText(xml : XML):Number{
+				var lent : Number = 0;
+				for(var i : int =0;i<xml.children().children().length();i++){
+					var currentNode:XML = message.msg.children().children()[ i ];				
+					if(currentNode.localName()==WindowChat.SPANELEMENT){												
+	            		lent += currentNode.toString().length * 3;	            		
+					}else if(currentNode.localName()==WindowChat.IMAGEELEMENT){	
+						lent += Number(currentNode.@width);											
+					}
+				}
+				return lent;
+			}
+			
 			public function init():void{
 				var xml : XML;
 				if(message.ismine==true){
@@ -97,7 +109,7 @@
 	</mx:Script>
 	<mx:HBox width="100%" height="100%" verticalAlign="bottom" >		
 		<mx:HBox width="100%" height="100%" verticalAlign="top" >
-			<mx:Canvas id="canvas" width="100%" height="80" backgroundColor="#ffffff" backgroundAlpha="0"/>
+			<mx:Canvas id="canvas" width="100%" height="24" backgroundColor="#ffffff" backgroundAlpha="0"/>
 			<!--<mx:TextArea backgroundAlpha="0" focusEnabled="false" id="flow_holder" width="100%" height="95" focusAlpha="0" borderStyle="none">
         		
         
