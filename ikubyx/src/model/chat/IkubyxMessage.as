@@ -1,14 +1,18 @@
 package model.chat
 {
+	import mx.collections.ArrayCollection;
+	
 	public class IkubyxMessage
 	{
 		public function IkubyxMessage()
 		{
 		}
-		public var msg : String;
+		public var msg : XML;
 		public var jidFrom : String;
 		public var jidTo : String;
 		public var priority : String;
+		public var ismine : Boolean;
+		public var elementFlow : ArrayCollection;
 
 	}
 }
