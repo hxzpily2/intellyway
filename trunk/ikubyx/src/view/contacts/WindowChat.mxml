@@ -158,7 +158,7 @@
 			private function handleFileOpen(e:Event):void {
 			  _file_ref.removeEventListener(Event.COMPLETE, handleFileOpen );
 			  var data:ByteArray = _file_ref.data as ByteArray;
-			  _img_loader=new Loader();			  		  
+			  _img_loader=new Loader();				  		 		  		  		  
 			  _img_loader.loadBytes(data);
 			  _img_loader.contentLoaderInfo.addEventListener(Event.COMPLETE,imageLoadComplete,false,0,true);
 			}
