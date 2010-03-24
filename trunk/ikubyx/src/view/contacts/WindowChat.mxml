@@ -75,12 +75,14 @@
 			</flow:TextFlow>;
 			public function sendMessage(event : MouseEvent):void{
 				var out:XML = TextFilter.export(_flow, TextFilter.TEXT_LAYOUT_FORMAT, ConversionType.XML_TYPE ) as XML;
+				trace(out);
 				var message : IkubyxMessage = new IkubyxMessage();
 				message.msg = out;
 				message.jidFrom = Commun.getJidFromMail(sendFrom.email)+"@"+Constantes.XMPPSERVEUR;
 				message.jidTo = Commun.getJidFromMail(sendTo.email)+"@"+Constantes.XMPPSERVEUR;
-				var msgEvent : IkubyxSendMsgEvent = new IkubyxSendMsgEvent(IkubyxSendMsgEvent.MESSAGEEVENT,message);
-				
+				message.ismine = true;
+				message.elementFlow = elementFlow;
+				var msgEvent : IkubyxSendMsgEvent = new IkubyxSendMsgEvent(IkubyxSendMsgEvent.MESSAGEEVENT,message);				
 				//test if lastmessage.fromTo == message.fromTo
 				
 				messages.addItem(message);
@@ -173,7 +175,7 @@
 			}
 			
 			public function getNumberElements():Number{
-				var out:XML = TextFilter.export(_flow, TextFilter.TEXT_LAYOUT_FORMAT, ConversionType.XML_TYPE ) as XML;
+				var out:XML = TextFilter.export(_flow, TextFilter.TEXT_LAYOUT_FORMAT, ConversionType.XML_TYPE ) as XML;				
 				elementFlow = new ArrayCollection;
 				for(var i : int =0;i<out.children().children().length();i++){
 					var currentNode:XML = out.children().children()[ i ];					
@@ -194,6 +196,7 @@
 							if(leaf!=null){
 								object.lastLeafPosition=leaf.text.length;
 								object.length = leaf.text.length;
+								object.text = leaf.text;
 							}
 							else{
 								object.lastLeafPosition=0;
@@ -215,6 +218,7 @@
 							if(leaf!=null){
 								object.lastLeafPosition=lastPos+leaf.text.length;
 								object.length = leaf.text.length;
+								object.text = leaf.text;
 							}
 							else{
 								object.lastLeafPosition=lastPos;
@@ -285,7 +289,8 @@
 				  		_flow.interactionManager.setSelection(pos+elementFlow.getItemAt(actifIdSpan).firstLeafPosition,pos+elementFlow.getItemAt(actifIdSpan).firstLeafPosition);
 				  		//suprimer le racourci				  		
 				  		actifspan.text = actifspan.text.replace(new RegExp(Commun.s2emoticones24.getItemAt(i).link),"");				  		
-				  		//fin supression
+				  		//fin supression				  		
+				  		source=Commun.s2emoticones24.getItemAt(i).source;
 				  		_img_loader=new Loader();
 				  		var image:URLRequest = new URLRequest(Commun.s2emoticones24.getItemAt(i).source);			  
 				  		_img_loader.load(image);		  
@@ -295,7 +300,7 @@
 				  }	
 			  }		  
 			}
-			
+			public var source : String;
 			public function findRegExp(reg : RegExp,text : String):Number{
 				return text.search(reg);
 			}
@@ -314,7 +319,8 @@
 			  _img_loader.contentLoaderInfo.removeEventListener(Event.COMPLETE,imageLoadComplete);
 			  var bmd:BitmapData=Bitmap(_img_loader.content).bitmapData;
 			  var bm:Bitmap=new Bitmap(bmd);
-			  EditManager(_flow.interactionManager).insertInlineGraphic(bm,bm.width,bm.height);
+			  //EditManager(_flow.interactionManager).insertInlineGraphic(bm,bm.width,bm.height);
+			  EditManager(_flow.interactionManager).insertInlineGraphic(source,bm.width,bm.height);
 			  _flow.flowComposer.updateAllContainers();
 			  _flow.addEventListener(CompositionCompletionEvent.COMPOSITION_COMPLETE, composeListener);
 			  this.getNumberElements();
@@ -354,7 +360,7 @@
 	<mx:VDividedBox dividerDrag="updateGraphic(event)" width="100%" height="100%">
 	<mx:VBox width="100%" height="100%">
 	<mx:Repeater dataProvider="{messages}" id="blockRepeater" width="100%">
-		<chat:MessageBox width="100%" text="test"/>
+		<chat:MessageBox message="{(blockRepeater.currentItem as IkubyxMessage)}" width="100%" text="test"/>
 	</mx:Repeater>
 	<mx:Canvas width="100%" >
 		<mx:VBox x="0" y="0" width="55" height="55" borderStyle="solid" borderColor="#969696" >
