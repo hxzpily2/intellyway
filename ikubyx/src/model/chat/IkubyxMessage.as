@@ -11,8 +11,9 @@ package model.chat
 		public var jidFrom : String;
 		public var jidTo : String;
 		public var priority : String;
-		public var ismine : Boolean;
+		public var ismine : Boolean = false;
 		public var elementFlow : ArrayCollection;
+		public var datesend : Date;
 
 	}
 }

@@ -240,7 +240,7 @@ package view
 				chat.sendFrom = proxy.userConnected.userVO;
 				chat.sendTo = isInContactList(event.username+"@"+Constantes.XMPPSERVEUR);
 				messages[jid.bareJID]=new ArrayCollection;
-				chat.messages = messages[jid.bareJID];
+				chat.messages[event.username+"@"+Constantes.XMPPSERVEUR] = messages[jid.bareJID];
 				chat.addEventListener(IkubyxSendMsgEvent.MESSAGEEVENT,sendMessage);
 			}
 			chats[jid.bareJID] = chat;		
@@ -266,7 +266,7 @@ package view
 			message.subject = event.msg.priority;
 			message.type = Message.TYPE_CHAT;
 			message.body = event.msg.msg;
-			ApplicationFacade.getConnexion().send(message);	
+			ApplicationFacade.getConnexion().send(message);				
 		}
 			
 		public function getChat(jid:UnescapedJID):WindowChat 
@@ -398,6 +398,37 @@ package view
 	    			break;
 	    		case Actions.ACCEPTINVITATION:
 	    			facade.sendNotification(Actions.GENERICUSER,message.body,Actions.GETINFOUSER);  			
+					break;
+				default:										
+					var winChat : WindowChat = chats[message.from.bareJID] as WindowChat;					
+					var proxy : ApplicationProxy = facade.retrieveProxy(ApplicationProxy.NAME) as ApplicationProxy;
+					var jid : UnescapedJID = new UnescapedJID(Commun.getJidFromMail(proxy.userConnected.userVO.email)+"@"+Constantes.XMPPSERVEUR);
+					var chat : WindowChat = getChat(jid) as WindowChat;
+					if(!winChat){
+						winChat = new WindowChat();
+						winChat.typeWin = WindowChat.CHAT;
+						winChat.jid = jid;
+						winChat.sendFrom = proxy.userConnected.userVO;
+						winChat.sendTo = isInContactList(message.from.bareJID);
+						messages[jid.bareJID]=new ArrayCollection;
+						winChat.messages[Commun.getJidFromMail(proxy.userConnected.userVO.email)+"@"+Constantes.XMPPSERVEUR] = messages[jid.bareJID];
+						winChat.addEventListener(IkubyxSendMsgEvent.MESSAGEEVENT,sendMessage);
+					}
+					chats[jid.bareJID] = winChat;		
+					if(app.conversationWindow==null){
+						app.conversationWindow = new ConversationWindow;
+						app.conversationWindow.type = NativeWindowType.LIGHTWEIGHT;
+						app.conversationWindow.systemChrome = "none";
+						app.conversationWindow.transparent = true;
+						app.conversationWindow.open();
+						app.conversationWindow.conversationStack.addChild(winChat);
+						var user : CreateUserVO = isInContactList(message.from.bareJID);				
+						app.conversationWindow.listeContact.addItem(user);
+						app.conversationWindow.addEventListener(Actions.CLOSEAPPLI,closeConversationWindow);	
+					}
+					var msg : String = message.body;					
+					winChat.getMessage(new XML(msg),isInContactList(message.from.bareJID));
+					// traitement des messages
 					break;
 	    	}
 	    }

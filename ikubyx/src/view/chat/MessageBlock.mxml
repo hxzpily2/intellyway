@@ -1,4 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml">
-	
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" xmlns:chat="view.chat.*" creationComplete="init()">
+		<mx:Script>
+			<![CDATA[
+				import mx.formatters.Formatter;
+				import mx.collections.ArrayCollection;
+				import model.chat.IkubyxMessage;
+				import model.vo.CreateUserVO;
+				[Bindable] public var user : CreateUserVO;
+				[Bindable] public var messages : ArrayCollection = new ArrayCollection;
+				
+				public function init():void{
+					trace('ok');
+					if(messages.length>0){
+						var message : IkubyxMessage = messages.getItemAt(0) as IkubyxMessage;
+						var hour : String = message.datesend.hours.toString();
+						var minute : String = message.datesend.minutes.toString();
+						if(Number(message.datesend.hours)<10)
+							hour = '0'+message.datesend.hours						
+						if(Number(message.datesend.minutes)<10)
+						    minute = '0'+ message.datesend.minutes;
+						lblDate.text = hour+':'+minute;
+					}
+				}
+			]]>
+		</mx:Script>	
+		<mx:VBox x="0" y="0" width="55" height="55" borderStyle="solid" borderColor="#969696" >
+			<mx:filters>
+		        <mx:DropShadowFilter color="#FFFFFF" blurX="10" blurY="10" distance="0" angle="0"/>
+		        <mx:GlowFilter color="#b5b5b5" />
+		    </mx:filters>
+			<mx:VBox verticalScrollPolicy="off" horizontalScrollPolicy="off" width="53" height="53" borderStyle="solid" borderColor="#FFFFFF" borderThickness="2" >
+				<mx:Image width="50" height="50" source="@Embed(source='assets/images/perso.png')" />
+			</mx:VBox>
+		</mx:VBox>
+		<mx:HBox verticalAlign="middle" x="60" y="13" height="20" width="100%" cornerRadius="10" borderStyle="solid" borderColor="#8A8A8A" borderThickness="0" backgroundColor="#8A8A8A" backgroundAlpha="0.2" >
+			<mx:HBox height="20" width="150" paddingTop="4" paddingLeft="5" verticalAlign="middle" x="60" y="13"  borderStyle="solid" borderColor="#FFFFFF" cornerRadius="10" backgroundColor="#8A8A8A" backgroundAlpha="0.3" >
+				<mx:Label color="#FFFFFF"  text="{user.nom+' '+user.prenom}" fontFamily="Vegur_R" fontSize="12">
+					<mx:filters>			            
+			            <mx:GlowFilter color="#8A8A8A" />		            
+			        </mx:filters>
+				</mx:Label>
+			</mx:HBox>
+			<mx:Spacer width="100%" />
+			<mx:HBox horizontalAlign="center" height="20" width="50" paddingTop="4" verticalAlign="middle" x="60" y="13"  borderStyle="solid" borderColor="#FFFFFF" cornerRadius="10" backgroundColor="#8A8A8A" backgroundAlpha="0.3" >
+				<mx:Label color="#FFFFFF" id="lblDate" fontFamily="Vegur_R" fontSize="12">
+					<mx:filters>			            
+			            <mx:GlowFilter color="#8A8A8A" />		            
+			        </mx:filters>
+				</mx:Label>
+			</mx:HBox>
+		</mx:HBox>
+		<mx:VBox paddingTop="7" paddingBottom="7" verticalGap="0" paddingLeft="8" verticalAlign="middle" dropShadowEnabled="true" shadowDistance="0" width="100%" height="100%" x="40" y="40" borderStyle="solid" borderColor="#FFFFFF" cornerRadius="5" backgroundColor="#FFFFFF">
+			<mx:Repeater dataProvider="{messages}" id="blockRepeater" width="100%" height="100%">			
+				<chat:MessageBox message="{(blockRepeater.currentItem as IkubyxMessage)}" width="100%" text="test"/>
+			</mx:Repeater>			
+		</mx:VBox>	
 </mx:Canvas>
