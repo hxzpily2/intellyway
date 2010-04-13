@@ -422,9 +422,8 @@
         	</mx:TextArea>        	        	
         	<mx:Image click="sendMessage(event)" id="btnSend" mouseOver="btnSend.alpha = 0.8" mouseOut="btnSend.alpha = 0.5" buttonMode="true" useHandCursor="true" alpha="0.5" source="@Embed(source='assets/images/IM.png')"  />	
         </mx:HBox>
-        <mx:HBox paddingLeft="5" styleName="hboxStyle" alpha="0.5" backgroundColor="#A8A8A8" height="24" width="100%" verticalAlign="middle" horizontalGap="2">
-        	<mx:Image buttonMode="true" alpha="1" useHandCursor="true" source="@Embed(source='assets/images/chattool/musicshare.png')" width="20" height="20"  />
-        	<mx:Image buttonMode="true" alpha="1" useHandCursor="true" source="@Embed(source='assets/images/chattool/camera.png')" width="20" height="20"  />
+        <mx:HBox paddingLeft="5" styleName="hboxStyle" alpha="0.5" backgroundColor="#A8A8A8" height="24" width="100%" verticalAlign="middle" horizontalGap="7">
+        	<mx:Image buttonMode="true" alpha="1" useHandCursor="true" source="@Embed(source='assets/images/chattool/television.png')" width="20" height="20" />
         </mx:HBox>        
 	</mx:VBox>
 	</mx:VDividedBox>
