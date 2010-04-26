@@ -38,14 +38,19 @@
 		</mx:HBox>
 		<mx:Spacer height="20" />
 		<mx:HDividedBox dividerColor="#FF6600" dividerAlpha="0.5" width="100%" height="96%">
-			<mx:VBox verticalScrollPolicy="off" horizontalScrollPolicy="off"  paddingLeft="1" width="250" id="conversationBox">
+			<mx:VBox verticalGap="0" verticalScrollPolicy="off" horizontalScrollPolicy="off"  paddingLeft="1" width="250" id="conversationBox">
 				<mx:Repeater id="contactRepeater" dataProvider="{listeContact}" width="100%" height="100%">					
-					<contacts:ConversationContactRenderer verticalScrollPolicy="off" horizontalScrollPolicy="off" height="25"  id="itemContact" key="{(contactRepeater.currentItem as CreateUserVO).idamji_user.toString()}" user="{contactRepeater.currentItem as CreateUserVO}" width="100%"/>					
+					<contacts:ConversationContactRenderer verticalScrollPolicy="off" horizontalScrollPolicy="off"  id="itemContact" key="{(contactRepeater.currentItem as CreateUserVO).idamji_user.toString()}" user="{contactRepeater.currentItem as CreateUserVO}" width="100%"/>					
 				</mx:Repeater>
 			</mx:VBox>
 			<mx:ViewStack width="100%" height="100%" id="conversationStack">
 			
 			</mx:ViewStack>
-		</mx:HDividedBox>	
-	</mx:VBox>	
+		</mx:HDividedBox>
+		<mx:HBox width="100%" paddingLeft="2" paddingBottom="2" verticalAlign="bottom" horizontalAlign="left"  paddingRight="5">
+		    <mx:Text paddingLeft="10" paddingBottom="-4" color="#9F9F9F" text="2010 BEDREAMY COPYRIGHT" fontSize="8" fontFamily="kroeger"/>
+		    <mx:Spacer width="100%" />
+		    <components:AmjiButtonResize paddingBottom="4" useHandCursor="true" buttonMode="true"  alpha="1" width="12" height="12"/>		
+		</mx:HBox>	
+	</mx:VBox>		
 </mx:Window>

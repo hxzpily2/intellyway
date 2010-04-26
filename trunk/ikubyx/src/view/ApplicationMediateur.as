@@ -246,7 +246,7 @@ package view
 			chats[jid.bareJID] = chat;		
 			if(app.conversationWindow==null){
 				app.conversationWindow = new ConversationWindow;
-				app.conversationWindow.type = NativeWindowType.LIGHTWEIGHT;
+				app.conversationWindow.type = NativeWindowType.NORMAL;
 				app.conversationWindow.systemChrome = "none";
 				app.conversationWindow.transparent = true;
 				app.conversationWindow.open();
@@ -255,8 +255,24 @@ package view
 				app.conversationWindow.listeContact.addItem(user);
 				app.conversationWindow.addEventListener(Actions.CLOSEAPPLI,closeConversationWindow);	
 			}else{
+				var user : CreateUserVO = isInContactList(event.username+"@"+Constantes.XMPPSERVEUR);
+				if(existInListeContact(user,app.conversationWindow.listeContact)){
+					
+				}else{
+					app.conversationWindow.listeContact.addItem(user);	
+				}
+								
 				
 			}
+		}
+		
+		public function existInListeContact(user : CreateUserVO,array : ArrayCollection):Boolean{
+			for(var i : int = 0;i<array.length;i++){
+				var userVO : CreateUserVO = array.getItemAt(i) as CreateUserVO;
+				if(userVO.idamji_user == user.idamji_user)
+					return true;					
+			} 
+			return false;
 		}
 		
 		public function sendMessage(event : IkubyxSendMsgEvent):void{			
