@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:VBox verticalScrollPolicy="off" horizontalScrollPolicy="off" width="100%" xmlns:mx="http://www.adobe.com/2006/mxml" height="50" verticalGap="0" creationComplete="init()" xmlns:commun="commun.*">
+<mx:VBox verticalScrollPolicy="off" horizontalScrollPolicy="off" width="100%" xmlns:mx="http://www.adobe.com/2006/mxml" height="25" verticalGap="0" creationComplete="init()" xmlns:commun="commun.*">
 	<mx:Metadata>
 	        [Event(name="INVITECHAT", type="commun.InviteChatEvent")]
 	</mx:Metadata>

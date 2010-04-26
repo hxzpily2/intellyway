@@ -46,6 +46,36 @@
             	window = new ListInvitationTooltip;
             	
             }
+            protected var _file_ref:FileReference;
+			protected var _img_loader:Loader;
+			
+            public function addImage(e:MouseEvent):void {
+			  _file_ref = new FileReference();
+			  _file_ref.addEventListener( Event.SELECT, handleFileSelect,false,0,true );
+			   var filter:FileFilter = new FileFilter("Images", "*.jpg;*.gif;*.png");
+			  _file_ref.browse([filter]);
+			}
+			
+			private function handleFileSelect(e:Event):void {
+			  _file_ref.removeEventListener( Event.SELECT, handleFileSelect );
+			  _file_ref.addEventListener(Event.COMPLETE, handleFileOpen,false,0,true );
+			  _file_ref.load();
+			}
+			
+			private function handleFileOpen(e:Event):void {
+			  _file_ref.removeEventListener(Event.COMPLETE, handleFileOpen );
+			  var data:ByteArray = _file_ref.data as ByteArray;
+			  _img_loader=new Loader();				  		 		  		  		  
+			  _img_loader.loadBytes(data);
+			  _img_loader.contentLoaderInfo.addEventListener(Event.COMPLETE,imageLoadComplete,false,0,true);
+			}
+			
+			protected function imageLoadComplete(e:Event):void{
+			  _img_loader.contentLoaderInfo.removeEventListener(Event.COMPLETE,imageLoadComplete);
+			  var bmd:BitmapData=Bitmap(_img_loader.content).bitmapData;
+			  var bm:Bitmap=new Bitmap(bmd);
+			  
+			}
             
             public var window : ListInvitationTooltip;
             private static var dissolve : Fade = new Fade();
@@ -93,7 +123,7 @@
 		            <mx:GlowFilter color="#b5b5b5" />
 		        </mx:filters>
 				<mx:VBox verticalScrollPolicy="off" horizontalScrollPolicy="off" width="53" height="53" borderStyle="solid" borderColor="#FFFFFF" borderThickness="2" >
-					<mx:Image width="50" height="50" source="@Embed(source='assets/images/perso.png')" />
+					<mx:Image buttonMode="true" useHandCursor="true" click="addImage(event)" width="50" height="50" source="@Embed(source='assets/images/perso.png')" />
 				</mx:VBox>
 			</mx:VBox>
 			<mx:VBox width="100%" verticalGap="0">			
