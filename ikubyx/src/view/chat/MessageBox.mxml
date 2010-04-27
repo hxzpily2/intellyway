@@ -2,6 +2,8 @@
 <mx:HBox xmlns:mx="http://www.adobe.com/2006/mxml" creationComplete="init()">
 	<mx:Script>
 		<![CDATA[
+			import com.hurlant.crypto.symmetric.NullPad;
+			import mx.controls.Alert;
 			import flashx.textLayout.formats.Direction;
 			import flashx.textLayout.elements.FlowLeafElement;
 			import view.contacts.WindowChat;
@@ -34,7 +36,7 @@
             [Bindable]
             [Embed(source="assets/images/OrangeIcone.png")]
             public var orangeicone:Class;          
-            
+            public var imageExist : Boolean = false;
 			public function calculeLenghtText(xml : XML):Number{
 				var lent : Number = 0;
 				for(var i : int =0;i<xml.children().children().length();i++){
@@ -42,7 +44,8 @@
 					if(currentNode.localName()==WindowChat.SPANELEMENT){												
 	            		lent += currentNode.toString().length * 3;	            		
 					}else if(currentNode.localName()==WindowChat.IMAGEELEMENT){	
-						lent += Number(currentNode.@width);											
+						lent += Number(currentNode.@width);		
+						imageExist = true;									
 					}
 				}
 				return lent;
@@ -86,14 +89,20 @@
 						EditManager(_flow.interactionManager).insertInlineGraphic(currentNode.@source,Number(currentNode.@width),Number(currentNode.@height));						
 					}					
 				}                                          
-	            _flow.flowComposer.updateAllContainers();*/
+	            _flow.flowComposer.updateAllContainers();*/	            
 	            var out : XML = new XML(message.msg.toString());
+	            var taille : Number = calculeLenghtText(out);
+	            var hauteur : Number = taille / canvas.width;	            	                     
+	            if(int(hauteur)==0) hauteur = canvas.height;	            
+	            else hauteur = int(hauteur) * canvas.height;
+	            if(imageExist==true)
+	            	hauteur = hauteur + 24;   	                        
+	            imageExist = false;
 	            out.children().prependChild(<img width="10"/>);	                         
-	            out.children().prependChild(xml);	            
-				
+	            out.children().prependChild(xml);
 	            _textContainer = new Sprite();
 	            canvas.rawChildren.addChild(_textContainer);
-	            _controller = new DisplayObjectContainerController(_textContainer, canvas.width, canvas.height);				
+	            _controller = new DisplayObjectContainerController(_textContainer, canvas.width, hauteur);				
 	            _textFlow = TextFilter.importToFlow(out, TextFilter.TEXT_LAYOUT_FORMAT);	            
 	            _textFlow.flowComposer.addController(_controller);
 	            _textFlow.addEventListener(StatusChangeEvent.INLINE_GRAPHIC_STATUS_CHANGED, picLoaded);            
