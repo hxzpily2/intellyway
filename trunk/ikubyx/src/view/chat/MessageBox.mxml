@@ -59,37 +59,7 @@
 				else{					
 					xml = <img width="5" height="5" source="assets/images/OrangeIcone.png"/>;
 				}
-				/*var config:Configuration = TextFlow.defaultConfiguration;
-            	config.manageEnterKey = false;            	
-				_flow=new TextFlow(config);
-				flow_container=new Sprite();
-				flow_holder.graphics.beginFill(0xFFFFFF);
-				flow_holder.graphics.drawRect(0,0,flow_holder.width,flow_holder.height);
-				flow_holder.addChild(flow_container);
-				controller=new DisplayObjectContainerController(flow_container,flow_holder.width,flow_holder.height);							
-				_flow.flowComposer.addController(controller);
-				_flow.interactionManager = new EditManager(new UndoManager());
-				_flow.interactionManager.setSelection(0,0);             
-	            var p:ParagraphElement = new ParagraphElement();
-	            _flow.addChild(p);
-	            var item : XML = message.msg.children()[0];
-	            var para : XMLList = new XMLList(item);
-	            
-	            for(var i : int =0;i<message.msg.children().children().length();i++){
-					var currentNode:XML = message.msg.children().children()[ i ];				
-					if(currentNode.localName()==WindowChat.SPANELEMENT){
-						var span:SpanElement = new SpanElement();						
-	            		span.text = currentNode.toString();
-	            		span.fontSize = 12;
-	            		span.fontFamily="Tahoma";
-	            		span.color = "#A9A9A9";
-	            		p.addChild(span);
-					}else if(currentNode.localName()==WindowChat.IMAGEELEMENT){	
-						trace(currentNode.@source)									
-						EditManager(_flow.interactionManager).insertInlineGraphic(currentNode.@source,Number(currentNode.@width),Number(currentNode.@height));						
-					}					
-				}                                          
-	            _flow.flowComposer.updateAllContainers();*/	            
+				          
 	            var out : XML = new XML(message.msg.toString());
 	            var taille : Number = calculeLenghtText(out);
 	            var hauteur : Number = taille / canvas.width;	            	                     
@@ -97,9 +67,10 @@
 	            else hauteur = int(hauteur) * canvas.height;
 	            if(imageExist==true)
 	            	hauteur = hauteur + 24;   	                        
-	            imageExist = false;
+	            imageExist = false;	            
 	            out.children().prependChild(<img width="10"/>);	                         
 	            out.children().prependChild(xml);
+	            
 	            _textContainer = new Sprite();
 	            canvas.rawChildren.addChild(_textContainer);
 	            canvas.height = hauteur;
