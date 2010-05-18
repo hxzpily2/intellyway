@@ -61,13 +61,13 @@
 				}
 				          
 	            var out : XML = new XML(message.msg.toString());
-	            var taille : Number = calculeLenghtText(out);
+	            /*var taille : Number = calculeLenghtText(out);
 	            var hauteur : Number = taille / canvas.width;	            	                     
 	            if(int(hauteur)==0) hauteur = canvas.height;	            
 	            else hauteur = int(hauteur) * canvas.height;
 	            if(imageExist==true)
 	            	hauteur = hauteur + 24;           	
-	            imageExist = false;	            
+	            imageExist = false;*/	            
 	            
 	            out.children().prependChild(<img width="1" height="24"/>);
 	            out.children().prependChild(<img width="10"/>);	            	                         
@@ -76,8 +76,8 @@
 	            
 	            _textContainer = new Sprite();
 	            canvas.rawChildren.addChild(_textContainer);
-	            canvas.height = hauteur;
-	            _controller = new DisplayObjectContainerController(_textContainer, canvas.width, hauteur);				
+	            
+	            _controller = new DisplayObjectContainerController(_textContainer, canvas.width);				
 	            _textFlow = TextFilter.importToFlow(out, TextFilter.TEXT_LAYOUT_FORMAT);	            
 	            _textFlow.flowComposer.addController(_controller);
 	            _textFlow.addEventListener(StatusChangeEvent.INLINE_GRAPHIC_STATUS_CHANGED, picLoaded);            
