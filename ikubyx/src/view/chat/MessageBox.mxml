@@ -66,10 +66,13 @@
 	            if(int(hauteur)==0) hauteur = canvas.height;	            
 	            else hauteur = int(hauteur) * canvas.height;
 	            if(imageExist==true)
-	            	hauteur = hauteur + 24;   	                        
+	            	hauteur = hauteur + 24;           	
 	            imageExist = false;	            
-	            out.children().prependChild(<img width="10"/>);	                         
+	            
+	            out.children().prependChild(<img width="1" height="24"/>);
+	            out.children().prependChild(<img width="10"/>);	            	                         
 	            out.children().prependChild(xml);
+	            
 	            
 	            _textContainer = new Sprite();
 	            canvas.rawChildren.addChild(_textContainer);
@@ -78,7 +81,9 @@
 	            _textFlow = TextFilter.importToFlow(out, TextFilter.TEXT_LAYOUT_FORMAT);	            
 	            _textFlow.flowComposer.addController(_controller);
 	            _textFlow.addEventListener(StatusChangeEvent.INLINE_GRAPHIC_STATUS_CHANGED, picLoaded);            
-	            _textFlow.flowComposer.updateAllContainers();			
+	            _textFlow.flowComposer.updateAllContainers();
+	            canvas.height = _controller.calculateHeight();
+	            
 			}
 			
 			private function picLoaded(event:StatusChangeEvent):void {
