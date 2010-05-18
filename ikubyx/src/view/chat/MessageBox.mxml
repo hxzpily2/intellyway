@@ -102,6 +102,7 @@
 	            out.children().prependChild(xml);
 	            _textContainer = new Sprite();
 	            canvas.rawChildren.addChild(_textContainer);
+	            canvas.height = hauteur;
 	            _controller = new DisplayObjectContainerController(_textContainer, canvas.width, hauteur);				
 	            _textFlow = TextFilter.importToFlow(out, TextFilter.TEXT_LAYOUT_FORMAT);	            
 	            _textFlow.flowComposer.addController(_controller);
