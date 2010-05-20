@@ -91,9 +91,11 @@
 			
 			private function handleChangeState(event:NativeWindowDisplayStateEvent):void{
 				if(event.afterDisplayState == NativeWindowDisplayState.MINIMIZED){ 
-					window.nativeWindow.orderToBack();											
+					window.nativeWindow.orderToBack();	
+					mainWindow.nativeWindow.orderToBack();										
 				}else if(event.afterDisplayState == NativeWindowDisplayState.NORMAL){
-					window.nativeWindow.orderToFront();					
+					window.nativeWindow.orderToFront();
+					mainWindow.nativeWindow.orderToFront();					
 				} 
 			}
 			

@@ -308,7 +308,7 @@ package view
         
         public function showSearchContact(event : Event):void{
         	app.searchContactWin = new SearchContact;        		
-			app.searchContactWin.type = NativeWindowType.LIGHTWEIGHT;
+			app.searchContactWin.type = NativeWindowType.NORMAL;
 			app.searchContactWin.systemChrome = "none";
 			app.searchContactWin.transparent = true;	
         	app.searchContactWin.open();
@@ -433,7 +433,7 @@ package view
 					chats[jid.bareJID] = winChat;		
 					if(app.conversationWindow==null){
 						app.conversationWindow = new ConversationWindow;
-						app.conversationWindow.type = NativeWindowType.LIGHTWEIGHT;
+						app.conversationWindow.type = NativeWindowType.NORMAL;
 						app.conversationWindow.systemChrome = "none";
 						app.conversationWindow.transparent = true;
 						app.conversationWindow.open();
