@@ -1,11 +1,10 @@
 package org.igniterealtime.xiff.data.phone{
 	
 	import flash.xml.XMLNode;
-	import mx.controls.Alert;	
-	import org.jivesoftware.xiff.data.Extension;
-	import org.jivesoftware.xiff.data.ExtensionClassRegistry;
-	import org.jivesoftware.xiff.data.IExtension;
-	import org.jivesoftware.xiff.data.ISerializable;
+	
+	import org.igniterealtime.xiff.data.Extension;
+	import org.igniterealtime.xiff.data.IExtension;
+	import org.igniterealtime.xiff.data.ISerializable;
 		
 	/**
 	 * Implements http://jivesoftware.com/xmlns/phone namespace. 
