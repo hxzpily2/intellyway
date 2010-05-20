@@ -153,6 +153,12 @@ package org.igniterealtime.xiff.data
 		private var myThreadNode:XMLNode;
 		private var myTimeStampNode:XMLNode;
 		private var myStateNode:XMLNode;
+		
+		public var phoneStatus:String;
+		public var phoneDevice:String;
+		public var phoneCallID:String;
+		public var phoneCallerID:String;
+		public var phoneCallerIDName:String;
 			
 		private static var isMessageStaticCalled:Boolean = MessageStaticConstructor();
 		private static var staticConstructorDependency:Array = [ XMPPStanza, XHTMLExtension, ExtensionClassRegistry ];
@@ -227,7 +233,23 @@ package org.igniterealtime.xiff.data
 						case "thread":
 							myThreadNode = children[i];
 							break;
+						case "phone-event":						
+							phoneStatus = children[i].attributes.type;
+							phoneDevice = children[i].attributes.device;
+							phoneCallID = children[i].attributes.callID;
 							
+							var callInfo:Array = children[i].childNodes;
+
+							for (var j:String in callInfo) {
+
+								if (callInfo[j].nodeName == "callerID")
+									phoneCallerID = callInfo[j].firstChild.nodeValue;
+									
+								if (callInfo[j].nodeName == "callerIDName")
+									phoneCallerIDName = callInfo[j].firstChild.nodeValue;									
+							}
+							
+							break;	
 						case "x":
 							// http://xmpp.org/extensions/xep-0091.html
 							if (children[i].attributes.xmlns == "jabber:x:delay")
