@@ -23,24 +23,20 @@
 	 
 package org.igniterealtime.xiff.core
 {	 
-	import org.jivesoftware.xiff.util.SocketConn;
-	import flash.errors.IOError;
-	import flash.events.ProgressEvent;
-	import flash.events.Event;
-	import flash.events.IOErrorEvent;
+	import com.jivesoftware.spark.managers.SparkManager;
+	
 	import flash.events.AsyncErrorEvent;
 	import flash.events.NetStatusEvent;
-	import flash.events.SecurityErrorEvent;	
-	import org.jivesoftware.xiff.events.*;
 	import flash.events.SecurityErrorEvent;
+	import flash.net.NetConnection;
 	import flash.xml.XMLDocument;
 	import flash.xml.XMLNode;
-	import org.jivesoftware.xiff.util.SocketDataEvent;
- 	import com.jivesoftware.spark.AlertWindow;
- 	import com.jivesoftware.spark.managers.SparkManager;
- 			 			
-	import flash.net.NetConnection;
-	import flash.net.NetStream;
+	
+	import org.igniterealtime.xiff.events.DisconnectionEvent;
+	import org.igniterealtime.xiff.events.IncomingDataEvent;
+	import org.igniterealtime.xiff.events.LoginEvent;
+	import org.igniterealtime.xiff.events.OutgoingDataEvent;
+	import org.igniterealtime.xiff.events.*;
 	
 	
 	/**
@@ -53,6 +49,7 @@ package org.igniterealtime.xiff.core
 	{
 
 		public var netConnection:NetConnection = null;
+		protected var ignoreWhitespace:Boolean;
 				
 		public function Red5Connection()
 		{
@@ -132,7 +129,7 @@ package org.igniterealtime.xiff.core
 			}
 		}
 		
-		override public function connect( streamType:String = "terminatedStandard" ):Boolean
+		override public function connect( streamType:uint = 0 ):Boolean
 		{
 			active = false;
 			loggedIn = false;
@@ -155,7 +152,17 @@ package org.igniterealtime.xiff.core
 		{
 			dispatchError( "not-authorized", "Not Authorized", "auth", 401 );
 
-		}		
+		}	
+		
+		public function get ignoreWhite():Boolean
+		{
+			return ignoreWhitespace;
+		}
+	
+		public function set ignoreWhite( val:Boolean ):void
+		{
+			ignoreWhitespace = val;
+		}	
 		
 		public function inXML(rawXML:String):* 
 		{
