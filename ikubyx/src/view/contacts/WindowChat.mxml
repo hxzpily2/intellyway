@@ -384,6 +384,86 @@
 				_flow.flowComposer.addController(controller);*/				
 			}
 			
+			public var nc:NetConnection = null;
+			public var red5url:String;
+			public var timer:Timer;
+			public var elapsed:uint;
+			public var lastTime:uint;
+			public var aborted:Boolean = false;	
+				
+			public function activate():void 
+			{
+			
+				NetConnection.defaultObjectEncoding = flash.net.ObjectEncoding.AMF0;
+
+				nc = new NetConnection();
+				nc.addEventListener(NetStatusEvent.NET_STATUS, netStatusHandler);
+				nc.addEventListener(SecurityErrorEvent.SECURITY_ERROR, netSecurityError);
+				nc.addEventListener(AsyncErrorEvent.ASYNC_ERROR, asyncErrorHandler );
+				nc.addEventListener(IOErrorEvent.IO_ERROR, ioErrorHandler );		
+
+				nc.connect(red5url);
+							
+				
+				
+				timer =  new Timer(1000, 0);
+				timer.addEventListener(TimerEvent.TIMER, timerHandler);				
+				startTimer();
+			}
+			
+			public function netStatusHandler( event:NetStatusEvent ):void {
+				
+			}
+
+
+			public function netSecurityError( event:SecurityErrorEvent ):void {
+				//Alert.show( "NCHandler:netSecurityError: " + event );
+			}		
+
+			public function asyncErrorHandler( event:AsyncErrorEvent ):void {
+				//Alert.show( "NCHandler:asyncErrorHandler: " + event.type + " - " + event.error );
+			}	
+
+			public function ioErrorHandler( event:IOErrorEvent ):void {
+				//Alert.show( "NCHandler:asyncErrorHandler: " + event.type + " - " + event.text );
+			}
+			
+			public  function startTimer():void {
+				lastTime = (new Date()).time;
+				timer.start();
+				elapsed = 0;
+			}
+			
+			public function stopTimer():void {
+				timer.stop();
+				//videoCallWindow.durationTxt.text = "";
+			}
+			
+			public function timerHandler(event:TimerEvent):void {
+				var tmp:uint = lastTime;
+				lastTime = (new Date()).time;
+				elapsed += lastTime - tmp;
+			
+				var ms:uint = elapsed;	
+				var div:uint = 1000 * 60 * 60;
+				var hour:uint = ms / div;
+				ms -= hour * div;
+				div /= 60;
+				var min:uint = ms / div;
+				ms -= min * div;
+				div /= 60;
+				var sec:uint = ms / div;
+				ms -= sec * div;
+			
+				var tx:String = hour.toString() + ":"
+				if (min < 10) tx += "0";
+				tx += min.toString() + ":";
+				if (sec < 10) tx += "0";
+				tx += sec.toString() ;
+			
+				//videoCallWindow.durationTxt.text = tx;
+			}
+			
 		]]>
 	</mx:Script>
 	<mx:Style>
