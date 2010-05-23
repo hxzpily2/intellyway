@@ -54,7 +54,9 @@
 			<mx:Repeater dataProvider="{messages}" id="blockRepeater" width="100%" height="100%">			
 				<mx:HBox width="100%">
 					<chat:MessageBox message="{(blockRepeater.currentItem as IkubyxMessage)}" width="100%" text="test"/>
-					<mx:Label paddingTop="3" fontSize="10" text="10:15"/>	
+					<mx:HBox width="40" paddingTop="12">
+						<mx:Text fontSize="10" text="10:15"/>	
+					</mx:HBox>						
 				</mx:HBox>				
 			</mx:Repeater>			
 		</mx:VBox>	
