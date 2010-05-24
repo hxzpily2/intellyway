@@ -8,6 +8,8 @@
 	creationComplete="init()" xmlns:components="commun.components.*" xmlns:ns="library:adobe/flashx/textLayout" xmlns:chat="view.chat.*">
 	<mx:Script>
 		<![CDATA[
+			import mx.managers.PopUpManager;
+			import mx.core.UIComponent;
 			import view.chat.MessageBlock;
 			import commun.Constantes;
 			import model.chat.IkubyxMessage;
@@ -385,25 +387,43 @@
 			}
 			
 			public var nc:NetConnection = null;
+			public var incomingNetStream:NetStream = null;
+			public var outgoingNetStream:NetStream = null;
+			public var playName:String;
+			public var publishName:String;
+			public var muted:Boolean = false;
+			
 			public var red5url:String;
 			public var timer:Timer;
 			public var elapsed:uint;
 			public var lastTime:uint;
 			public var aborted:Boolean = false;	
-				
-			public function activate():void 
-			{
 			
+			public var callAction:String;
+			public var callJID:String;
+			public var bandwidth:String;
+			public var picQuality:String;
+			public var framesPerSec:String;
+			public var micSetRate:String;			
+			public var webPort:String;
+			public var red5Name:String;	
+			public var callerParams:Array;
+				
+			public function activate(event : MouseEvent):void 
+			{
+				red5url = Constantes.RED5URL;
+				
 				NetConnection.defaultObjectEncoding = flash.net.ObjectEncoding.AMF0;
 
-				nc = new NetConnection();
+				nc = new NetConnection();				
+				nc.objectEncoding = ObjectEncoding.AMF0;
+				nc.client = this;
 				nc.addEventListener(NetStatusEvent.NET_STATUS, netStatusHandler);
 				nc.addEventListener(SecurityErrorEvent.SECURITY_ERROR, netSecurityError);
 				nc.addEventListener(AsyncErrorEvent.ASYNC_ERROR, asyncErrorHandler );
 				nc.addEventListener(IOErrorEvent.IO_ERROR, ioErrorHandler );		
 
-				nc.connect(red5url);
-							
+				nc.connect(red5url);							
 				
 				
 				timer =  new Timer(1000, 0);
@@ -412,20 +432,90 @@
 			}
 			
 			public function netStatusHandler( event:NetStatusEvent ):void {
-				
+				switch(event.info.code) {
+
+					case "NetConnection.Connect.Success":			
+						
+
+						incomingNetStream = new NetStream(nc);
+						incomingNetStream.addEventListener(NetStatusEvent.NET_STATUS, netStatusHandler);
+						incomingNetStream.addEventListener(AsyncErrorEvent.ASYNC_ERROR, asyncErrorHandler);
+	
+						var videoHolder:UIComponent = new UIComponent();
+						videoHolder.width  = 320;
+						videoHolder.height = 240;
+	
+						var video:Video = new Video();						
+						video.width  = 320;
+						video.height = 240;
+						
+						
+						video.attachNetStream(incomingNetStream);
+						videoHolder.addChild(video);
+						incomingNetStream.play(playName); ;
+						PopUpManager.addPopUp(videoHolder,this);						
+	
+	
+	
+						outgoingNetStream = new NetStream(nc);
+						outgoingNetStream.addEventListener(NetStatusEvent.NET_STATUS, netStatusHandler);
+						outgoingNetStream.addEventListener(AsyncErrorEvent.ASYNC_ERROR, asyncErrorHandler);			
+						for(var i : int = 0;i<Camera.names.length;i++)
+							trace(Camera.names[i].toString());
+						/*var cam:Camera = Camera.getCamera("e2eSoft VCam");
+						cam.setMode(320, 240, int(30), true);
+						cam.setQuality(int(bandwidth), int(picQuality));*/
+	
+						var mic:Microphone =  Microphone.getMicrophone();
+						mic.rate = int(micSetRate);						
+	
+						//outgoingNetStream.attachCamera(cam);
+						outgoingNetStream.attachAudio(mic);
+						outgoingNetStream.publish(publishName, "live");											
+	
+						break;		
+					case "NetConnection.Connect.Failed":
+						break;
+		
+					case "NetConnection.Connect.Rejected":
+						break;
+		
+					case "NetStream.Play.StreamNotFound":
+						break;
+		
+					case "NetStream.Play.Failed":
+						nc.call("streamStatus", null, uid, "failed");			
+						break;
+		
+					case "NetStream.Play.Start":		
+						nc.call("streamStatus", null, uid, "start");
+		
+						break;
+					case "NetStream.Play.Stop":			
+						nc.call("streamStatus", null, uid, "stop");						
+						break;
+		
+					case "NetStream.Buffer.Full":
+						break;
+		
+					default:
+						break;
+	
+				}		    	
+
 			}
 
 
 			public function netSecurityError( event:SecurityErrorEvent ):void {
-				//Alert.show( "NCHandler:netSecurityError: " + event );
+				Alert.show( "NCHandler:netSecurityError: " + event );
 			}		
 
 			public function asyncErrorHandler( event:AsyncErrorEvent ):void {
-				//Alert.show( "NCHandler:asyncErrorHandler: " + event.type + " - " + event.error );
+				Alert.show( "NCHandler:asyncErrorHandler: " + event.type + " - " + event.error );
 			}	
 
 			public function ioErrorHandler( event:IOErrorEvent ):void {
-				//Alert.show( "NCHandler:asyncErrorHandler: " + event.type + " - " + event.text );
+				Alert.show( "NCHandler:asyncErrorHandler: " + event.type + " - " + event.text );
 			}
 			
 			public  function startTimer():void {
@@ -508,7 +598,7 @@
         	<mx:HBox x="0" y="0" paddingLeft="5" styleName="hboxStyle" backgroundAlpha="0" height="24" width="100%" verticalAlign="middle" horizontalGap="7">
         		<mx:Image buttonMode="true" alpha="1" useHandCursor="true" source="@Embed(source='assets/images/chattool/smiley.png')" />
         		<mx:Image buttonMode="true" alpha="1" useHandCursor="true" source="@Embed(source='assets/images/chattool/television.png')" />
-        		<mx:Image buttonMode="true" alpha="1" useHandCursor="true" source="@Embed(source='assets/images/chattool/webcam.png')" />
+        		<mx:Image click="activate(event)" buttonMode="true" alpha="1" useHandCursor="true" source="@Embed(source='assets/images/chattool/webcam.png')" />
         		<mx:Image buttonMode="true" alpha="1" useHandCursor="true" source="@Embed(source='assets/images/chattool/microphone.png')" />
         		<mx:Image buttonMode="true" alpha="1" useHandCursor="true" source="@Embed(source='assets/images/chattool/music.png')" />
         		<mx:Image buttonMode="true" alpha="1" useHandCursor="true" source="@Embed(source='assets/images/chattool/bell.png')" />
