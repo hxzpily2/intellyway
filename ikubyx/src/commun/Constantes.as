@@ -40,6 +40,11 @@ package commun
 		
 		public static const XMPPROOMPREFIX : String = "amjiimroom_";
 		public static const XMPPROOMCHAT : String = "chatroom";
+		
+		public static const SIPPORT : String = "8000";
+		public static const RED5URL : String = "rtmpt://"+XMPPSERVEUR+":"+SIPPORT+"/sip";		
+		
+		public static const SCREENCAMERA : String = "VHScrCap";
 		public function Constantes()
 		{
 		}
