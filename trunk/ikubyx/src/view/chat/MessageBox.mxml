@@ -82,7 +82,7 @@
 	            _textFlow.flowComposer.addController(_controller);
 	            _textFlow.addEventListener(StatusChangeEvent.INLINE_GRAPHIC_STATUS_CHANGED, picLoaded);            
 	            _textFlow.flowComposer.updateAllContainers();
-	            canvas.height = _controller.calculateHeight();
+	            canvas.height = int(_controller.calculateHeight());
 	            
 			}
 			
