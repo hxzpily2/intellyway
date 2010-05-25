@@ -462,14 +462,14 @@
 						outgoingNetStream.addEventListener(AsyncErrorEvent.ASYNC_ERROR, asyncErrorHandler);			
 						for(var i : int = 0;i<Camera.names.length;i++)
 							trace(Camera.names[i].toString());
-						/*var cam:Camera = Camera.getCamera("e2eSoft VCam");
+						var cam:Camera = Camera.getCamera();
 						cam.setMode(320, 240, int(30), true);
-						cam.setQuality(int(bandwidth), int(picQuality));*/
-	
+						cam.setQuality(int(bandwidth), int(picQuality));
+							
 						var mic:Microphone =  Microphone.getMicrophone();
 						mic.rate = int(micSetRate);						
 	
-						//outgoingNetStream.attachCamera(cam);
+						outgoingNetStream.attachCamera(cam);
 						outgoingNetStream.attachAudio(mic);
 						outgoingNetStream.publish(publishName, "live");											
 	
