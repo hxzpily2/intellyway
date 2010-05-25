@@ -452,9 +452,9 @@
 						
 						video.attachNetStream(incomingNetStream);
 						videoHolder.addChild(video);
-						incomingNetStream.play(playName); ;
+						incomingNetStream.play(Commun.getJidFromMail(sendFrom.email)+"@"+Constantes.XMPPSERVEUR); ;
 						PopUpManager.addPopUp(videoHolder,this);						
-	
+						PopUpManager.centerPopUp(videoHolder);
 	
 	
 						outgoingNetStream = new NetStream(nc);
@@ -471,7 +471,7 @@
 	
 						outgoingNetStream.attachCamera(cam);
 						outgoingNetStream.attachAudio(mic);
-						outgoingNetStream.publish(publishName, "live");											
+						outgoingNetStream.publish(Commun.getJidFromMail(sendFrom.email)+"@"+Constantes.XMPPSERVEUR, "live");											
 	
 						break;		
 					case "NetConnection.Connect.Failed":
