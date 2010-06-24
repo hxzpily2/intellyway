@@ -18,8 +18,7 @@ public class PDFHighlighting {
 	private static final String LASTPAGE = "-lastPage";    
 	private static final String OCCURENCE = "-occurence";
     
-	public static void main( String[] args ) throws IOException{
-		//Document luceneDocument = LucenePDFDocument.getDocument(new File("test.pdf"));
+	public static void main( String[] args ) throws IOException{		
 		 PDDocument doc = PDDocument.load(new File("test.pdf"));
 		 PrintTextLocations printer = new PrintTextLocations();
 		 ArrayList allPages = (ArrayList) doc.getDocumentCatalog().getAllPages();
@@ -31,11 +30,7 @@ public class PDFHighlighting {
 			printer.processStream(page, page.findResources(), page.getContents().getStream());
 			
 		}
-		
-		 doc.close();
-			 
-
-
+		doc.close();
 	}
 	
 }
