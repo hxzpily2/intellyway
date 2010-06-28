@@ -23,7 +23,9 @@ public class PDFGetBookmarks {
 
 	private static final String PASSWORD = "-password";
 	private static final String DESTINATIONPATH = "-destination";
-
+	
+	private static Integer count=0;
+	
 	public static void main(String[] args) throws IOException {
 		String password = "";
 		String destination = "";
@@ -79,7 +81,7 @@ public class PDFGetBookmarks {
 				
 				while (item != null) {
 					BookmarkItem bookItem = new BookmarkItem();
-					bookItem.id = SHA1Util.SHA1(item.getTitle());
+					bookItem.id = (count++).toString();
 					bookItem.name = item.getTitle();
 					bookItem.page = allpages.indexOf(item.findDestinationPage(document))+1;
 					bookItem.type = BookmarkItem.CHAPTER;
@@ -95,17 +97,30 @@ public class PDFGetBookmarks {
 				for(int i=0;i<items.size();i++){
 					BookmarkItem bookItemtem = new BookmarkItem();
 					bookItemtem = (BookmarkItem) items.get(i);
-					json+="{id : '"+i+"',\n"+
-						  "type:'chapter', page : '"+bookItemtem.page+"',\n"+
-						  "name: '"+HTMLEntities.forJSON(JSONValue.escape(bookItemtem.name))+"',\n"+
-						  "children: [\n";
+					json+="{id : '"+i+"',\n";
+					if(bookItemtem.children.size()>0){
+						json+="type:'"+bookItemtem.type+"',";
+					}else{
+						json+="type:'"+bookItemtem.type+"',";
+					}
+					json+=	  "page : '"+bookItemtem.page+"',\n"+
+						  "name: '"+HTMLEntities.forJSON(bookItemtem.name)+"',\n";
+					
+					json+="children: [\n";	  
 					if(bookItemtem.children.size()>0){
 						
+						for (int j = 0; j < bookItemtem.children.size(); j++) {
+							if(j==0)
+								json+="{_reference:'"+bookItemtem.children.get(j)+"'}";
+							else
+								json+=",{_reference:'"+bookItemtem.children.get(j)+"'}";
+						}												
 					}
+					json+="]";
 					if(i==items.size()-1)
-						json+="]}\n";
+						json+="}\n";
 					else
-						json+="]},\n";
+						json+="},\n";
 					
 				}
 				json+="]}";
@@ -128,14 +143,15 @@ public class PDFGetBookmarks {
 		if(child!=null){			
 			PDOutlineItem item = child.getFirstChild();			
 			while (item != null) {
+				String id = (count++).toString();
 				BookmarkItem bookItem = new BookmarkItem();
-				bookItem.id = SHA1Util.SHA1(item.getTitle());
+				bookItem.id = id;
 				bookItem.name = item.getTitle();
 				bookItem.page = allPages.indexOf(item.findDestinationPage(document))+1;
 				bookItem.type = BookmarkItem.PAGE;
 				items.add(bookItem);
 				bookItem.children = getJsonTreeForChild(item, allPages, document);
-				children.add(SHA1Util.SHA1(item.getTitle()));				
+				children.add(id);				
 				item = item.getNextSibling();
 			}
 		}				
