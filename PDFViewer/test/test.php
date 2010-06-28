@@ -12,7 +12,6 @@ require_once dirname(__FILE__).'/../copix/copix.inc.php';
 //echo CopixI18N::get('copix:copix.yes','fr');
 PDFAJAXViewer::includeDOJO();
 
-;
 ?>
 
 <style type="text/css">
@@ -45,8 +44,8 @@ PDFAJAXViewer::includeDOJO();
 	z-index: 999;
 	vertical-align: middle;
 	-moz-opacity: 0.8;
-	opacity: .80;
-	filter: alpha(opacity = 80);
+	opacity: 1.0;
+	filter: alpha(opacity = 100;
 }
 
 #loaderInner {
@@ -66,30 +65,7 @@ hr.spacer {
 	height: 1px;
 }
 
-/* rules used to test custom setting of TextBox padding */
-.inputPadding0 .dijitInputField {
-	padding: 0px !important;
-}
 
-.inputPadding1 .dijitInputField {
-	padding: 1px !important;
-}
-
-.inputPadding2 .dijitInputField {
-	padding: 2px !important;
-}
-
-.inputPadding3 .dijitInputField {
-	padding: 3px !important;
-}
-
-.inputPadding4 .dijitInputField {
-	padding: 4px !important;
-}
-
-.inputPadding5 .dijitInputField {
-	padding: 5px !important;
-}
 </style>
 
 
@@ -315,8 +291,8 @@ hr.spacer {
 <div dojoType="dojo.data.ItemFileReadStore" jsId="continentStore"
 	url="countries.json"></div>
 <div dojoType="dijit.tree.ForestStoreModel" jsId="continentModel"
-	store="continentStore" query="{type:'continent'}"
-	rootId="continentRoot" rootLabel="Continents" childrenAttrs="children"></div>
+	store="continentStore" query="{type:'chapter'}"
+	rootId="chapterRoot" rootLabel="Chapters" childrenAttrs="children"></div>
 <div dojoType="dojo.data.ItemFileReadStore" jsId="stateStore"
 	url="states.json"></div>
 
@@ -339,15 +315,18 @@ hr.spacer {
 <div dojoType="dijit.layout.ContentPane" title="Sommaire"><!-- tree widget -->
 <div dojoType="dijit.Tree" id="tree2" model="continentModel"
 	showRoot="false" openOnClick="true"
-	onLoad="console.log('loaded tree2 (second tree)');"><script
-	type="dojo/method" event="getIconClass" args="item, opened">
-           return (item == this.model.root || continentStore.getValue(item, "type") == "continent") ?
+	onLoad="console.log('loaded tree2 (second tree)');">
+	<script
+			type="dojo/method" event="getIconClass" args="item, opened">
+           return (item == this.model.root || continentStore.getValue(item, "type") == "chapter") ?
                    (opened ? "customFolderOpenedIcon" : "customFolderClosedIcon") :
                     "noteIcon";
-		</script> <script type="dojo/method" event="onClick" args="item">
+	</script> 
+	<script type="dojo/method" event="onClick" args="item">
 			console.log("Execute of node " + this.model.getLabel(item)
 				+", population=" + continentStore.getValue(item, "population"));
-		</script></div>
+	</script>
+</div>
 
 
 </div>
@@ -369,16 +348,67 @@ hr.spacer {
 
 <div id="toolbar1" dojoType="dijit.Toolbar">	
 	<div dojoType="dijit.form.Button" id="toolbar1.cut"
-		iconClass="dijitEditorIcon dijitEditorIconCut" showLabel="false">Cut</div>
+		iconClass="dijitEditorIcon dijitEditorIconRestaure" showLabel="false"></div>
 	<div dojoType="dijit.form.Button" id="toolbar1.copy"
-		iconClass="dijitEditorIcon dijitEditorIconCopy" showLabel="true">Copy</div>
-	<div dojoType="ToolbarSectionStart" label="Toggles"></div>
-	<div dojoType="dijit.form.ToggleButton" id="toolbar1.bold"
-		iconClass="dijitEditorIcon dijitEditorIconBold" showLabel="false">Bold</div>
-	<div dojoType="dijit.form.ToggleButton" id="toolbar1.italic"
-		iconClass="dijitEditorIcon dijitEditorIconItalic" showLabel="true">Italic</div>
+		iconClass="dijitEditorIcon dijitEditorIconFull" showLabel="false"></div>
+	
+	<div dojoType="dijit.form.Button" id="toolbar1.sepa"
+		iconClass="dijitEditorIcon dijitEditorIconSepa" showLabel="false" disabled></div>	
+	<div dojoType="dijit.form.Button" id="toolbar1.zoomout"
+		iconClass="dijitEditorIcon dijitEditorIconZoomOut" showLabel="false"></div>
+	<div dojoType="dijit.form.Button" id="toolbar1.zoomin"
+		iconClass="dijitEditorIcon dijitEditorIconZoomIn" showLabel="false"></div>
+		
+	<button dojoType="dijit.form.DropDownButton" >
+		<span id="zoomhtml">100%</span>
+		<div dojoType="dijit.Menu" id="editMenu2" style="display: none;">
+			<div dojoType="dijit.MenuItem"				
+				onClick="console.debug('not actually cutting anything, just a test!')">
+				100%
+			</div>
+			<div dojoType="dijit.MenuItem"				 
+				onClick="console.debug('not actually copying anything, just a test!')">
+				80%
+			</div>
+			<div dojoType="dijit.MenuItem"				 
+				onClick="console.debug('not actually pasting anything, just a test!')">
+				60%
+			</div>
+			<div dojoType="dijit.MenuItem"				 
+				onClick="console.debug('not actually pasting anything, just a test!')">
+				40%
+			</div>
+			<div dojoType="dijit.MenuItem"				 
+				onClick="console.debug('not actually pasting anything, just a test!')">
+				20%
+			</div>
+		</div>
+	</button>
+	
+	<div dojoType="dijit.form.Button" id="toolbar1.sepa1"
+		iconClass="dijitEditorIcon dijitEditorIconSepa" showLabel="false" disabled></div>	
+	<div dojoType="dijit.form.Button" id="toolbar1.previous"
+		iconClass="dijitEditorIcon dijitEditorIconPreviousPage" showLabel="false"></div>
+	<input style="width: 30px;" dojoType=dijit.form.TextBox type="text" id="user" name="user" >
+		
+	<div dojoType="dijit.form.Button" id="toolbar1.next"
+		iconClass="dijitEditorIcon dijitEditorIconNextPage" showLabel="false"></div>
+		
+	<div dojoType="dijit.form.Button" id="toolbar1.sepa2"
+		iconClass="dijitEditorIcon dijitEditorIconSepa" showLabel="false" disabled></div>			
+	<div dojoType="dijit.form.Button" id="toolbar1.print"
+		iconClass="dijitEditorIcon dijitEditorIconPrintPage" showLabel="false"></div>		
+	<div dojoType="dijit.form.Button" id="toolbar1.search"
+		iconClass="dijitEditorIcon dijitEditorIconFindMot" showLabel="false"></div>
+	<div id="isSignedDiv" enabled="false" dojoType="dijit.form.Button" id="toolbar1.issigned"
+		iconClass="dijitEditorIcon dijitEditorIconPdfIsSigned" showLabel="false" disabled></div>
+	<span position="below" dojoType="dijit.Tooltip" connectId="isSignedDiv" style="display:none;">
+		Ce document est signé
+	</span>		
 </div>
 
+
+	
 </div>
 
 
@@ -387,29 +417,6 @@ hr.spacer {
 
 </div>
 
-
-<!-- <button dojoType="dijit.form.DropDownButton" iconClass="dijitIconEdit" >
-					<span>Drop Down</span>
-					<div dojoType="dijit.Menu" id="editMenu2" style="display: none;">
-						<div dojoType="dijit.MenuItem"
-							iconClass="dijitIconCut"
-							onClick="console.debug('not actually cutting anything, just a test!')">
-							Cut
-						</div>
-
-						<div dojoType="dijit.MenuItem"
-							 iconClass="dijitIconCopy"
-							onClick="console.debug('not actually copying anything, just a test!')">
-							Copy
-						</div>
-
-						<div dojoType="dijit.MenuItem"
-							 iconClass="dijitIconPaste"
-							onClick="console.debug('not actually pasting anything, just a test!')">
-							Paste
-						</div>
-					</div>
-				</button> -->
 
 </body>
 </html>
