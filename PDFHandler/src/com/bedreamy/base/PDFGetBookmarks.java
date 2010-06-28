@@ -13,8 +13,11 @@ import org.apache.pdfbox.exceptions.InvalidPasswordException;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.interactive.documentnavigation.outline.PDDocumentOutline;
 import org.apache.pdfbox.pdmodel.interactive.documentnavigation.outline.PDOutlineItem;
+import org.json.simple.JSONValue;
 
+import com.bedreamy.commun.HTMLEntities;
 import com.bedreamy.commun.SHA1Util;
+import com.bedreamy.model.BookmarkItem;
 
 public class PDFGetBookmarks {
 
@@ -73,31 +76,41 @@ public class PDFGetBookmarks {
 			    document.getDocumentCatalog().getPages().getAllKids(allpages);
 				PDDocumentOutline root = document.getDocumentCatalog().getDocumentOutline();
 				PDOutlineItem item = root.getFirstChild();
-				String jsonSignet = "";
-				jsonSignet+= "{ identifier: 'id',\n";
-				jsonSignet+= " label: 'name',\n";
-				jsonSignet+= " items: [\n";
+				
 				while (item != null) {
-					//System.out.println("Item:" + item.getTitle());
-					PDOutlineItem child = item.getFirstChild();
-					/*while (child != null) {
-						//System.out.println("    Child:" + child.getTitle());
-						//System.out.println();						
-					    int pageNumber = allpages.indexOf(child.findDestinationPage(document))+1;
-					    //System.out.println(pageNumber);
-					    //jsonSignet += PDFGetBookmarks.getJsonTreeForChild(child,allpages);
-					    if(child.getNextSibling()==null)
-						    ;
-					    else ;
-					    	
-						child = child.getNextSibling();
-						
-					}*/
-					jsonSignet += getJsonTreeForItem(item,allpages,document);
+					BookmarkItem bookItem = new BookmarkItem();
+					bookItem.id = SHA1Util.SHA1(item.getTitle());
+					bookItem.name = item.getTitle();
+					bookItem.page = allpages.indexOf(item.findDestinationPage(document))+1;
+					bookItem.type = BookmarkItem.CHAPTER;
+					items.add(bookItem);
+					bookItem.children = getJsonTreeForChild(item,allpages,document);					
 					item = item.getNextSibling();
 				}
-				jsonSignet+= " ]} ";
-				System.out.println(jsonSignet);
+				
+				String json = "";
+				json+="{ identifier: 'id',\n"+
+					  "label: 'name',\n"+
+					  "items: [\n";
+				for(int i=0;i<items.size();i++){
+					BookmarkItem bookItemtem = new BookmarkItem();
+					bookItemtem = (BookmarkItem) items.get(i);
+					json+="{id : '"+i+"',\n"+
+						  "type:'chapter', page : '"+bookItemtem.page+"',\n"+
+						  "name: '"+HTMLEntities.forJSON(JSONValue.escape(bookItemtem.name))+"',\n"+
+						  "children: [\n";
+					if(bookItemtem.children.size()>0){
+						
+					}
+					if(i==items.size()-1)
+						json+="]}\n";
+					else
+						json+="]},\n";
+					
+				}
+				json+="]}";
+				System.out.println(json);
+				
 			} catch (Exception e) {
 				System.err.println(e);
 			} finally {
@@ -106,53 +119,27 @@ public class PDFGetBookmarks {
 				}
 			}
 		}
-	}
-	private static String getJsonTreeForItem(PDOutlineItem child,ArrayList allPages,PDDocument document) throws Exception{
-		if(child!=null){
-			if(child.getNextSibling()!=null)
-				return " {id : '"+SHA1Util.SHA1(child.getTitle())+"',\n" +
-			       " type:'chapter',"+
-			       " page : '"+(allPages.indexOf(child.findDestinationPage(document))+1)+"',\n" +
-			       " name: '"+child.getTitle()+"',\n"	+			       
-			       getJsonTreeForChild(child, allPages, document)+
-			       "},\n";
-			else
-				return " {id : '"+SHA1Util.SHA1(child.getTitle())+"',\n" +
-			       " type:'chapter',"+
-			       " page : '"+(allPages.indexOf(child.findDestinationPage(document))+1)+"',\n" +
-			       " name: '"+child.getTitle()+"',\n"	+			       
-			       getJsonTreeForChild(child, allPages, document)+
-			       "}\n";
-		}else
-			return "";
-	}
+	}	
 	
-	private static Vector<String> items = new Vector<String>();
+	private static Vector<BookmarkItem> items = new Vector<BookmarkItem>();
 	
-	private static String getJsonTreeForChild(PDOutlineItem child,ArrayList allPages,PDDocument document) throws IOException, Exception{
-		if(child!=null){
-			PDOutlineItem item = child.getFirstChild();
-			String reference = "";
-			String itemJson = "";
+	private static Vector<String> getJsonTreeForChild(PDOutlineItem child,ArrayList allPages,PDDocument document) throws IOException, Exception{
+		Vector<String> children = new Vector<String>();
+		if(child!=null){			
+			PDOutlineItem item = child.getFirstChild();			
 			while (item != null) {
-				//System.out.println(item.getTitle());
-				reference = "{_reference : '"+SHA1Util.SHA1(item.getTitle())+"'}";
-				if(item.getNextSibling()!=null)
-					reference+=",";
-				items.add("{id : '"+SHA1Util.SHA1(child.getTitle())+"',\n" +
-				       " type:'chapter',"+
-				       " page : '"+(allPages.indexOf(child.findDestinationPage(document))+1)+"',\n" +
-				       " name: '"+child.getTitle()+"',\n"	+			       
-				       getJsonTreeForChild(item, allPages, document));
+				BookmarkItem bookItem = new BookmarkItem();
+				bookItem.id = SHA1Util.SHA1(item.getTitle());
+				bookItem.name = item.getTitle();
+				bookItem.page = allPages.indexOf(item.findDestinationPage(document))+1;
+				bookItem.type = BookmarkItem.PAGE;
+				items.add(bookItem);
+				bookItem.children = getJsonTreeForChild(item, allPages, document);
+				children.add(SHA1Util.SHA1(item.getTitle()));				
 				item = item.getNextSibling();
 			}
-			if(reference!="")
-				return " children: ["+reference+"]";
-			else
-				return " children: []";
-				   
-		}else
-			return " children: []";
+		}				
+		return children;		
 	}
 	
 	private static void usage() {
