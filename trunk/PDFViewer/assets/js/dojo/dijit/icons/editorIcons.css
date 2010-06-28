@@ -18,6 +18,19 @@ editorIcons.css contains references to the dijit editor widget icons. There are 
 	background-image: url('images/editorIconsDisabled.png'); /* editor icons sprite image for the disabled state */
 }
 
+.dijitEditorIconRestaure{ background-image: url('images/application-resize-actual.png'); }
+.dijitEditorIconFull{ background-image: url('images/application-resize-full.png'); }
+.dijitEditorIconSepa{ background-image: url('images/i_half.gif'); }
+.dijitEditorIconZoomIn{	background-image: url('images/magnifier-zoom-in.png'); }
+.dijitEditorIconZoomOut{ background-image: url('images/magnifier-zoom-out.png'); }
+.dijitEditorIconNextPage{ background-image: url('images/arrow-curve.png'); }
+.dijitEditorIconPreviousPage{ background-image: url('images/arrow-curve-180-left.png'); }
+.dijitEditorIconPrintPage{ background-image: url('images/printer--arrow.png'); }
+.dijitEditorIconFindMot{ background-image: url('images/binocular.png'); }
+.dijitEditorIconPdfIsSigned{ background-image: url('images/lock--exclamation.png'); }
+.dijitEditorIconRefreshPage{ background-image: url('images/arrow-circle-135.png'); }
+.dijitDisabled .dijitEditorIconPdfIsSigned{ background-image: url('images/lock--exclamation.png'); }
+.dijitDisabled .dijitEditorIconSepa{ background-image: url('images/i_half.gif'); }
 
 .dijitEditorIconSep { background-position: 0px; }
 .dijitEditorIconSave { background-position: -18px; }
