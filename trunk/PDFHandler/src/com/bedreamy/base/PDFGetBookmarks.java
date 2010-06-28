@@ -2,13 +2,19 @@ package com.bedreamy.base;
 
 import java.io.File;
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.TreeSet;
+import java.util.Vector;
 
 import org.apache.pdfbox.exceptions.InvalidPasswordException;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.interactive.documentnavigation.outline.PDDocumentOutline;
 import org.apache.pdfbox.pdmodel.interactive.documentnavigation.outline.PDOutlineItem;
+
+import com.bedreamy.commun.SHA1Util;
 
 public class PDFGetBookmarks {
 
@@ -62,22 +68,36 @@ public class PDFGetBookmarks {
 						}
 					}
 				}
-				List allpages = new ArrayList();
+				ArrayList allpages = new ArrayList();
+				
 			    document.getDocumentCatalog().getPages().getAllKids(allpages);
 				PDDocumentOutline root = document.getDocumentCatalog().getDocumentOutline();
 				PDOutlineItem item = root.getFirstChild();
+				String jsonSignet = "";
+				jsonSignet+= "{ identifier: 'id',\n";
+				jsonSignet+= " label: 'name',\n";
+				jsonSignet+= " items: [\n";
 				while (item != null) {
-					System.out.println("Item:" + item.getTitle());
+					//System.out.println("Item:" + item.getTitle());
 					PDOutlineItem child = item.getFirstChild();
-					while (child != null) {
-						System.out.println("    Child:" + child.getTitle());
+					/*while (child != null) {
+						//System.out.println("    Child:" + child.getTitle());
 						//System.out.println();						
 					    int pageNumber = allpages.indexOf(child.findDestinationPage(document))+1;
-					    System.out.println(pageNumber);						
+					    //System.out.println(pageNumber);
+					    //jsonSignet += PDFGetBookmarks.getJsonTreeForChild(child,allpages);
+					    if(child.getNextSibling()==null)
+						    ;
+					    else ;
+					    	
 						child = child.getNextSibling();
-					}
+						
+					}*/
+					jsonSignet += getJsonTreeForItem(item,allpages,document);
 					item = item.getNextSibling();
 				}
+				jsonSignet+= " ]} ";
+				System.out.println(jsonSignet);
 			} catch (Exception e) {
 				System.err.println(e);
 			} finally {
@@ -87,15 +107,54 @@ public class PDFGetBookmarks {
 			}
 		}
 	}
-	private static String getJsonTreeForChild(PDOutlineItem child,ArrayList allPages){
+	private static String getJsonTreeForItem(PDOutlineItem child,ArrayList allPages,PDDocument document) throws Exception{
 		if(child!=null){
-			return "identifier: 'id'," +
-				   "title: 'name',"	+
-				   "children: [";
-				   
+			if(child.getNextSibling()!=null)
+				return " {id : '"+SHA1Util.SHA1(child.getTitle())+"',\n" +
+			       " type:'chapter',"+
+			       " page : '"+(allPages.indexOf(child.findDestinationPage(document))+1)+"',\n" +
+			       " name: '"+child.getTitle()+"',\n"	+			       
+			       getJsonTreeForChild(child, allPages, document)+
+			       "},\n";
+			else
+				return " {id : '"+SHA1Util.SHA1(child.getTitle())+"',\n" +
+			       " type:'chapter',"+
+			       " page : '"+(allPages.indexOf(child.findDestinationPage(document))+1)+"',\n" +
+			       " name: '"+child.getTitle()+"',\n"	+			       
+			       getJsonTreeForChild(child, allPages, document)+
+			       "}\n";
 		}else
 			return "";
 	}
+	
+	private static Vector<String> items = new Vector<String>();
+	
+	private static String getJsonTreeForChild(PDOutlineItem child,ArrayList allPages,PDDocument document) throws IOException, Exception{
+		if(child!=null){
+			PDOutlineItem item = child.getFirstChild();
+			String reference = "";
+			String itemJson = "";
+			while (item != null) {
+				//System.out.println(item.getTitle());
+				reference = "{_reference : '"+SHA1Util.SHA1(item.getTitle())+"'}";
+				if(item.getNextSibling()!=null)
+					reference+=",";
+				items.add("{id : '"+SHA1Util.SHA1(child.getTitle())+"',\n" +
+				       " type:'chapter',"+
+				       " page : '"+(allPages.indexOf(child.findDestinationPage(document))+1)+"',\n" +
+				       " name: '"+child.getTitle()+"',\n"	+			       
+				       getJsonTreeForChild(item, allPages, document));
+				item = item.getNextSibling();
+			}
+			if(reference!="")
+				return " children: ["+reference+"]";
+			else
+				return " children: []";
+				   
+		}else
+			return " children: []";
+	}
+	
 	private static void usage() {
 		System.err
 				.println("Usage: java com.bedreamy.base.PDFGetBookmarks [OPTIONS] <PDF file>\n"
