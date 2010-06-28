@@ -543,7 +543,7 @@ public class HTMLEntities {
                 result.append("\\f");
               }
               else if(character == '\n'){
-                result.append("\\n");
+                result.append("");
               }
               else if(character == '\r'){
                 result.append("\\r");
@@ -553,7 +553,7 @@ public class HTMLEntities {
               }
               else if(character == '\''){
                   result.append("\\'");
-                }
+              }
               else {
                 //the char is not a special one
                 //add it to the result as is
