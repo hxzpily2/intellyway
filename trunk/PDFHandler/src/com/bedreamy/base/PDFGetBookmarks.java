@@ -1,6 +1,7 @@
 package com.bedreamy.base;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
@@ -28,7 +29,7 @@ public class PDFGetBookmarks {
 	
 	public static void main(String[] args) throws IOException {
 		String password = "";
-		String destination = "";
+		String destination = null;
 		String pdfFile = null;
 		for (int i = 0; i < args.length; i++) {
 			if (args[i].equals(PASSWORD)) {
@@ -51,7 +52,9 @@ public class PDFGetBookmarks {
 		}
 		if (pdfFile == null) {
 			usage();
-		} else {
+		}else if(destination==null){
+			usage();
+		}else {
 			PDDocument document = null;
 			try {
 				document = PDDocument.load(pdfFile);
@@ -104,19 +107,20 @@ public class PDFGetBookmarks {
 						json+="type:'"+bookItemtem.type+"',";
 					}
 					json+=	  "page : '"+bookItemtem.page+"',\n"+
-						  "name: '"+HTMLEntities.forJSON(bookItemtem.name)+"',\n";
+						  "name: '"+HTMLEntities.forJSON(bookItemtem.name)+"'\n";
 					
-					json+="children: [\n";	  
+						  
 					if(bookItemtem.children.size()>0){
-						
+						json+=",children: [\n";
 						for (int j = 0; j < bookItemtem.children.size(); j++) {
 							if(j==0)
 								json+="{_reference:'"+bookItemtem.children.get(j)+"'}";
 							else
 								json+=",{_reference:'"+bookItemtem.children.get(j)+"'}";
-						}												
+						}
+						json+="]";
 					}
-					json+="]";
+					
 					if(i==items.size()-1)
 						json+="}\n";
 					else
@@ -124,8 +128,10 @@ public class PDFGetBookmarks {
 					
 				}
 				json+="]}";
-				System.out.println(json);
 				
+				FileWriter sortie = new FileWriter(destination);
+				sortie.write(json);
+				sortie.close();				
 			} catch (Exception e) {
 				System.err.println(e);
 			} finally {
@@ -162,6 +168,7 @@ public class PDFGetBookmarks {
 		System.err
 				.println("Usage: java com.bedreamy.base.PDFGetBookmarks [OPTIONS] <PDF file>\n"
 						+ "  -password  <password>          Password to decrypt document\n"
+						+ "  -destination  <destination>    Destination du fichier de sortie JSON\n"
 						+ "  <PDF file>                     The PDF document to use\n");
 		System.exit(1);
 	}
