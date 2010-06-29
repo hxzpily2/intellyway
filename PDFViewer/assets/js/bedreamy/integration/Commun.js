@@ -81,6 +81,33 @@ dojo.declare("bedreamy.integration.Commun",[],{
             });
         }
 		
+    },
+    
+    getPage : function (page,resolution){
+        
+            dojo.xhrPost ({
+                url: urlInfos,
+                handleAs: "text",
+                preventCache:true,
+                load: dojo.hitch(this,function (response) {
+                	var myObject = eval('(' + response + ')');
+                	dojo.byId('nbpageSpn').innerHTML = myObject.items[0].pages;
+                	if(myObject.items[0].titre!='null')
+                		dojo.byId('titleSpn').innerHTML = myObject.items[0].titre;
+                	else
+                		dojo.byId('titleSpn').innerHTML = "";
+                	if(myObject.items[0].auteur!='null')
+                		dojo.byId('auteurSpn').innerHTML = myObject.items[0].auteur;
+                	else
+                		dojo.byId('auteurSpn').innerHTML = "";
+                	dijit.byId('infoDiag').show();
+                }
+                ),
+                error: function (data) {
+                    console.error('Error: chargement services', data);
+                }
+            });        
+		
     }
  
 });
