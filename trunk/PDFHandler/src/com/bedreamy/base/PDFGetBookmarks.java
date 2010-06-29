@@ -4,7 +4,10 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.TreeSet;
@@ -24,6 +27,7 @@ public class PDFGetBookmarks {
 
 	private static final String PASSWORD = "-password";
 	private static final String DESTINATIONPATH = "-destination";
+	private static final String DESTINATIONINFOPATH = "-destinationInfo";
 	
 	private static Integer count=0;
 	
@@ -31,6 +35,7 @@ public class PDFGetBookmarks {
 		String password = "";
 		String destination = null;
 		String pdfFile = null;
+		String destinationInfo = null;
 		for (int i = 0; i < args.length; i++) {
 			if (args[i].equals(PASSWORD)) {
 				i++;
@@ -44,6 +49,12 @@ public class PDFGetBookmarks {
 					usage();
 				}
 				destination = args[i];
+			}else if(args[i].equals(DESTINATIONINFOPATH)) {
+				i++;
+				if (i >= args.length) {
+					usage();
+				}
+				destinationInfo = args[i];
 			}else {
 				if (pdfFile == null) {
 					pdfFile = args[i];
@@ -53,6 +64,8 @@ public class PDFGetBookmarks {
 		if (pdfFile == null) {
 			usage();
 		}else if(destination==null){
+			usage();
+		}else if(destinationInfo==null){
 			usage();
 		}else {
 			PDDocument document = null;
@@ -81,6 +94,33 @@ public class PDFGetBookmarks {
 			    document.getDocumentCatalog().getPages().getAllKids(allpages);
 				PDDocumentOutline root = document.getDocumentCatalog().getDocumentOutline();
 				PDOutlineItem item = root.getFirstChild();
+				
+				String nbPages = new Integer(allpages.size()).toString();
+				String titre = document.getDocumentInformation().getTitle();
+				String auteur = document.getDocumentInformation().getAuthor();	
+				SimpleDateFormat  simpleFormat = new SimpleDateFormat("dd/MM/yyyy");
+				String dateCreation = simpleFormat.format( new Date(document.getDocumentInformation().getCreationDate().getTime().getTime()) );				
+				String sujet = document.getDocumentInformation().getSubject();
+				
+				String info = "";
+				
+				info += "{ 'items': [";				           
+				info += "{pages : '"+nbPages+"',titre : '"+titre+"',auteur : '"+auteur+"',date : '"+dateCreation+"',sujet : '"+sujet+"'}";
+				info += "]}";
+				
+				FileWriter sortieInfo = new FileWriter(destinationInfo+".json");
+				sortieInfo.write(info);
+				sortieInfo.close();				
+				
+				sortieInfo = new FileWriter(destinationInfo+".xml");
+				String xml = "<document>";
+				xml+="<pages>"+nbPages+"</pages>";
+				xml+="<titre>"+titre+"</titre>";
+				xml+="<date>"+dateCreation+"</date>";
+				xml+="<sujet>"+sujet+"</sujet>";
+				xml+= "</document>";
+				sortieInfo.write(xml);
+				sortieInfo.close();
 				
 				while (item != null) {
 					BookmarkItem bookItem = new BookmarkItem();
@@ -167,9 +207,10 @@ public class PDFGetBookmarks {
 	private static void usage() {
 		System.err
 				.println("Usage: java com.bedreamy.base.PDFGetBookmarks [OPTIONS] <PDF file>\n"
-						+ "  -password  <password>          Password to decrypt document\n"
-						+ "  -destination  <destination>    Destination du fichier de sortie JSON\n"
-						+ "  <PDF file>                     The PDF document to use\n");
+						+ "  -password  <password>           Password to decrypt document\n"
+						+ "  -destination  <destination>     Destination du fichier bookmark en JSON\n"
+						+ "  -destinationInfo  <destination> Destination du fichier infos en JSON\n"
+						+ "  <PDF file>                      The PDF document to use\n");
 		System.exit(1);
 	}
 }
