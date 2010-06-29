@@ -1,0 +1,1404 @@
+{ identifier: 'id',
+label: 'name',
+items: [
+{id : '0',
+type:'chapter',page : '0',
+name: 'Cover'
+},
+{id : '1',
+type:'chapter',page : '7',
+name: 'Table of Contents'
+},
+{id : '2',
+type:'chapter',page : '17',
+name: 'Preface'
+},
+{id : '3',
+type:'chapter',page : '25',
+name: 'Chapter 1: Data Pump'
+,children: [
+{_reference:'4'},{_reference:'5'},{_reference:'6'},{_reference:'7'},{_reference:'17'},{_reference:'18'},{_reference:'19'},{_reference:'22'},{_reference:'23'},{_reference:'24'},{_reference:'31'}]},
+{id : '4',
+type:'page',page : '25',
+name: 'Data Pump features'
+},
+{id : '5',
+type:'page',page : '26',
+name: 'Data Pump architecture'
+},
+{id : '6',
+type:'page',page : '27',
+name: 'Setting up the practical scenarios'
+},
+{id : '7',
+type:'page',page : '28',
+name: 'Data Pump export'
+,children: [
+{_reference:'8'},{_reference:'9'},{_reference:'10'},{_reference:'11'},{_reference:'12'},{_reference:'13'},{_reference:'14'},{_reference:'15'},{_reference:'16'}]},
+{id : '8',
+type:'page',page : '28',
+name: 'Data Pump export modes'
+},
+{id : '9',
+type:'page',page : '30',
+name: 'A simple Data Pump export session'
+},
+{id : '10',
+type:'page',page : '31',
+name: 'Data Pump export filtering operations'
+},
+{id : '11',
+type:'page',page : '32',
+name: 'Use of parameter file'
+},
+{id : '12',
+type:'page',page : '33',
+name: 'Retrieve original data '
+},
+{id : '13',
+type:'page',page : '35',
+name: 'Data Pump export space estimation'
+},
+{id : '14',
+type:'page',page : '36',
+name: 'Dump file multiplexing'
+},
+{id : '15',
+type:'page',page : '37',
+name: 'Transporting data among different versions'
+},
+{id : '16',
+type:'page',page : '38',
+name: 'Data Pump export interactive mode'
+},
+{id : '17',
+type:'page',page : '41',
+name: 'Data Pump restart capability'
+},
+{id : '18',
+type:'page',page : '41',
+name: 'Getting information about the export job'
+},
+{id : '19',
+type:'page',page : '42',
+name: 'Data Pump import'
+,children: [
+{_reference:'20'},{_reference:'21'}]},
+{id : '20',
+type:'page',page : '43',
+name: 'Remap function'
+},
+{id : '21',
+type:'page',page : '45',
+name: 'Data Pump import network mode'
+},
+{id : '22',
+type:'page',page : '47',
+name: 'Improving performance with Data Pump'
+},
+{id : '23',
+type:'page',page : '47',
+name: 'Working with the Data Pump API'
+},
+{id : '24',
+type:'page',page : '49',
+name: 'Data Pump 11g new features'
+,children: [
+{_reference:'25'},{_reference:'26'},{_reference:'27'},{_reference:'28'},{_reference:'29'},{_reference:'30'}]},
+{id : '25',
+type:'page',page : '49',
+name: 'Compression'
+},
+{id : '26',
+type:'page',page : '49',
+name: 'Encrypted dump file sets'
+},
+{id : '27',
+type:'page',page : '49',
+name: 'Enhancements for Data Pump External Tables '
+},
+{id : '28',
+type:'page',page : '50',
+name: 'Single partition transportable for Oracle Data Pump'
+},
+{id : '29',
+type:'page',page : '50',
+name: 'Overwrite dump files'
+},
+{id : '30',
+type:'page',page : '50',
+name: 'XML Datatypes '
+},
+{id : '31',
+type:'page',page : '50',
+name: 'Summary'
+},
+{id : '32',
+type:'chapter',page : '51',
+name: 'Chapter 2: SQL*Loader'
+,children: [
+{_reference:'33'},{_reference:'34'},{_reference:'40'},{_reference:'41'},{_reference:'42'},{_reference:'45'},{_reference:'46'},{_reference:'47'},{_reference:'48'},{_reference:'49'},{_reference:'50'}]},
+{id : '33',
+type:'page',page : '52',
+name: 'SQL*Loader basics'
+},
+{id : '34',
+type:'page',page : '54',
+name: 'Preparing the demo environment'
+,children: [
+{_reference:'35'},{_reference:'36'},{_reference:'37'},{_reference:'38'},{_reference:'39'}]},
+{id : '35',
+type:'page',page : '55',
+name: 'Our first simple load'
+},
+{id : '36',
+type:'page',page : '56',
+name: 'The SQL*Loader log file'
+},
+{id : '37',
+type:'page',page : '58',
+name: 'Fixed record size format load'
+},
+{id : '38',
+type:'page',page : '60',
+name: 'Variable record size format load'
+},
+{id : '39',
+type:'page',page : '60',
+name: 'Stream record format load'
+},
+{id : '40',
+type:'page',page : '62',
+name: 'Specifying a particular character set'
+},
+{id : '41',
+type:'page',page : '64',
+name: 'Load on the fly'
+},
+{id : '42',
+type:'page',page : '65',
+name: 'Direct path versus Conventional path load'
+,children: [
+{_reference:'43'},{_reference:'44'}]},
+{id : '43',
+type:'page',page : '67',
+name: 'Direct path load pros'
+},
+{id : '44',
+type:'page',page : '67',
+name: 'Direct path load cons'
+},
+{id : '45',
+type:'page',page : '68',
+name: 'Loading Large Objects (LOBs)'
+},
+{id : '46',
+type:'page',page : '70',
+name: 'Loading multimedia files'
+},
+{id : '47',
+type:'page',page : '72',
+name: 'Resumable load'
+},
+{id : '48',
+type:'page',page : '76',
+name: 'Parallel load'
+},
+{id : '49',
+type:'page',page : '77',
+name: 'General performance booster tips'
+},
+{id : '50',
+type:'page',page : '78',
+name: 'Summary'
+},
+{id : '51',
+type:'chapter',page : '79',
+name: 'Chapter 3: External Tables'
+,children: [
+{_reference:'52'},{_reference:'53'},{_reference:'57'},{_reference:'58'},{_reference:'61'},{_reference:'62'},{_reference:'63'},{_reference:'64'}]},
+{id : '52',
+type:'page',page : '80',
+name: 'The External Table basics'
+},
+{id : '53',
+type:'page',page : '81',
+name: 'Let\'s setup the environment'
+,children: [
+{_reference:'54'},{_reference:'55'},{_reference:'56'}]},
+{id : '54',
+type:'page',page : '83',
+name: 'A basic External Table'
+},
+{id : '55',
+type:'page',page : '86',
+name: 'Creating External Table metadata, the easy way'
+},
+{id : '56',
+type:'page',page : '89',
+name: 'Unloading data to External Tables'
+},
+{id : '57',
+type:'page',page : '90',
+name: 'Inter-version compatibility'
+},
+{id : '58',
+type:'page',page : '92',
+name: 'Data transformation with External Tables'
+,children: [
+{_reference:'59'},{_reference:'60'}]},
+{id : '59',
+type:'page',page : '96',
+name: 'Extending the alert.log analysis with External Tables'
+},
+{id : '60',
+type:'page',page : '100',
+name: 'Reading the listener.log from the database'
+},
+{id : '61',
+type:'page',page : '103',
+name: 'Mapping XML files as External Tables'
+},
+{id : '62',
+type:'page',page : '104',
+name: 'Dynamically changing the external reference'
+},
+{id : '63',
+type:'page',page : '105',
+name: 'Oracle 11g External Table enhancements'
+},
+{id : '64',
+type:'page',page : '105',
+name: 'Summary'
+},
+{id : '65',
+type:'chapter',page : '107',
+name: 'Chapter 4: Recovery Manager Advanced Techniques'
+,children: [
+{_reference:'66'},{_reference:'74'},{_reference:'77'},{_reference:'78'},{_reference:'79'},{_reference:'80'},{_reference:'83'},{_reference:'84'},{_reference:'85'},{_reference:'86'}]},
+{id : '66',
+type:'page',page : '108',
+name: 'Recovery Manager basics'
+,children: [
+{_reference:'67'},{_reference:'68'},{_reference:'69'},{_reference:'71'},{_reference:'72'},{_reference:'73'}]},
+{id : '67',
+type:'page',page : '109',
+name: 'Getting started with a Recovery Manager session'
+},
+{id : '68',
+type:'page',page : '116',
+name: 'Format masks used by recovery manager'
+},
+{id : '69',
+type:'page',page : '117',
+name: 'What happens in a user-managed online backup?'
+,children: [
+{_reference:'70'}]},
+{id : '70',
+type:'page',page : '119',
+name: 'Myths related to the online backup method'
+},
+{id : '71',
+type:'page',page : '120',
+name: 'Configuring a multiplexed backup'
+},
+{id : '72',
+type:'page',page : '122',
+name: 'Configuring the RMAN recovery catalog'
+},
+{id : '73',
+type:'page',page : '124',
+name: 'A simple backup session'
+},
+{id : '74',
+type:'page',page : '125',
+name: 'Backup compression'
+,children: [
+{_reference:'75'},{_reference:'76'}]},
+{id : '75',
+type:'page',page : '125',
+name: 'Fast backup compression'
+},
+{id : '76',
+type:'page',page : '127',
+name: 'Improving data set compression with the ZLIB algorithm (11g only)'
+},
+{id : '77',
+type:'page',page : '129',
+name: 'Faster backups through intra-file parallel backup and restore operations (11g only)'
+},
+{id : '78',
+type:'page',page : '130',
+name: 'Block media recovery'
+},
+{id : '79',
+type:'page',page : '133',
+name: 'Backup duration and throttling'
+},
+{id : '80',
+type:'page',page : '134',
+name: 'Database cloning'
+,children: [
+{_reference:'81'},{_reference:'82'}]},
+{id : '81',
+type:'page',page : '135',
+name: 'Database cloning procedure'
+},
+{id : '82',
+type:'page',page : '137',
+name: 'Database cloning on the fly (11g only)'
+},
+{id : '83',
+type:'page',page : '139',
+name: 'Inter-platform database migration'
+},
+{id : '84',
+type:'page',page : '143',
+name: 'Migrate to and from an ASM environment'
+},
+{id : '85',
+type:'page',page : '144',
+name: 'General backup advices'
+},
+{id : '86',
+type:'page',page : '145',
+name: 'Summary'
+},
+{id : '87',
+type:'chapter',page : '147',
+name: 'Chapter 5: Recovery Manager Restore and Recovery Techniques'
+,children: [
+{_reference:'88'},{_reference:'93'},{_reference:'99'},{_reference:'102'},{_reference:'103'},{_reference:'104'},{_reference:'105'}]},
+{id : '88',
+type:'page',page : '147',
+name: 'Oracle database recovery'
+,children: [
+{_reference:'89'},{_reference:'90'},{_reference:'91'},{_reference:'92'}]},
+{id : '89',
+type:'page',page : '148',
+name: 'Instance failure'
+},
+{id : '90',
+type:'page',page : '148',
+name: 'Media failure'
+},
+{id : '91',
+type:'page',page : '149',
+name: 'Complete recovery'
+},
+{id : '92',
+type:'page',page : '150',
+name: 'Incomplete recovery'
+},
+{id : '93',
+type:'page',page : '153',
+name: 'Loss of data files'
+,children: [
+{_reference:'94'},{_reference:'95'},{_reference:'96'},{_reference:'98'}]},
+{id : '94',
+type:'page',page : '153',
+name: 'Queries used to diagnose data files'
+},
+{id : '95',
+type:'page',page : '155',
+name: 'Loss of a non-critical datafile'
+},
+{id : '96',
+type:'page',page : '159',
+name: 'Loss of a temporary datafile'
+,children: [
+{_reference:'97'}]},
+{id : '97',
+type:'page',page : '160',
+name: 'Managing temporary datafiles'
+},
+{id : '98',
+type:'page',page : '161',
+name: 'Loss of a critical datafile'
+},
+{id : '99',
+type:'page',page : '164',
+name: 'Loss of redo log files'
+,children: [
+{_reference:'100'},{_reference:'101'}]},
+{id : '100',
+type:'page',page : '166',
+name: 'Loss of the inactive redo log group'
+},
+{id : '101',
+type:'page',page : '167',
+name: 'Loss of the current redo log group'
+},
+{id : '102',
+type:'page',page : '172',
+name: 'Test restore'
+},
+{id : '103',
+type:'page',page : '174',
+name: 'Crosscheck command'
+},
+{id : '104',
+type:'page',page : '175',
+name: 'Nologging considerations'
+},
+{id : '105',
+type:'page',page : '177',
+name: 'Summary'
+},
+{id : '106',
+type:'chapter',page : '179',
+name: 'Chapter 6: Session Management'
+,children: [
+{_reference:'107'},{_reference:'109'},{_reference:'116'},{_reference:'117'},{_reference:'130'},{_reference:'131'},{_reference:'132'}]},
+{id : '107',
+type:'page',page : '180',
+name: 'User sessions in a dedicated server architecture'
+,children: [
+{_reference:'108'}]},
+{id : '108',
+type:'page',page : '181',
+name: 'Instance self registration process'
+},
+{id : '109',
+type:'page',page : '182',
+name: 'Blocking sessions'
+,children: [
+{_reference:'110'},{_reference:'111'},{_reference:'112'},{_reference:'113'},{_reference:'114'},{_reference:'115'}]},
+{id : '110',
+type:'page',page : '184',
+name: 'Optimistic versus pessimistic locking'
+},
+{id : '111',
+type:'page',page : '184',
+name: 'Row lock contention monitoring'
+},
+{id : '112',
+type:'page',page : '188',
+name: 'Killing sessions'
+},
+{id : '113',
+type:'page',page : '190',
+name: 'Deadlock handling'
+},
+{id : '114',
+type:'page',page : '191',
+name: 'Sniped sessions'
+},
+{id : '115',
+type:'page',page : '193',
+name: 'Orakill'
+},
+{id : '116',
+type:'page',page : '195',
+name: 'Services'
+},
+{id : '117',
+type:'page',page : '197',
+name: 'Resource Manager'
+,children: [
+{_reference:'118'},{_reference:'119'},{_reference:'120'}]},
+{id : '118',
+type:'page',page : '198',
+name: 'Resource Manager Elements'
+},
+{id : '119',
+type:'page',page : '199',
+name: 'Configuring resources assigned to users'
+},
+{id : '120',
+type:'page',page : '200',
+name: 'Configuring resources assigned to services'
+,children: [
+{_reference:'121'},{_reference:'122'},{_reference:'123'},{_reference:'124'},{_reference:'125'},{_reference:'126'},{_reference:'127'},{_reference:'128'},{_reference:'129'}]},
+{id : '121',
+type:'page',page : '200',
+name: 'Creating the database user'
+},
+{id : '122',
+type:'page',page : '200',
+name: 'Service names definition'
+},
+{id : '123',
+type:'page',page : '201',
+name: 'Listener verification'
+},
+{id : '124',
+type:'page',page : '201',
+name: 'TNS entry configuration'
+},
+{id : '125',
+type:'page',page : '203',
+name: 'Resource consumer group creation'
+},
+{id : '126',
+type:'page',page : '204',
+name: 'Service mapping'
+},
+{id : '127',
+type:'page',page : '206',
+name: 'Resource plan definition'
+},
+{id : '128',
+type:'page',page : '206',
+name: 'Resource manager plan activation'
+},
+{id : '129',
+type:'page',page : '207',
+name: 'Testing and monitoring'
+},
+{id : '130',
+type:'page',page : '209',
+name: 'Active Session History (ASH)'
+},
+{id : '131',
+type:'page',page : '212',
+name: 'Session monitoring, the traditional way'
+},
+{id : '132',
+type:'page',page : '214',
+name: 'Summary'
+},
+{id : '133',
+type:'chapter',page : '215',
+name: 'Chapter 7: Oracle Scheduler'
+,children: [
+{_reference:'134'},{_reference:'135'},{_reference:'142'},{_reference:'150'},{_reference:'153'},{_reference:'154'},{_reference:'155'},{_reference:'160'},{_reference:'161'}]},
+{id : '134',
+type:'page',page : '216',
+name: 'Oracle Scheduler concepts'
+},
+{id : '135',
+type:'page',page : '219',
+name: 'Getting started with the Oracle Scheduler'
+,children: [
+{_reference:'136'},{_reference:'137'}]},
+{id : '136',
+type:'page',page : '219',
+name: 'Required privileges'
+},
+{id : '137',
+type:'page',page : '220',
+name: 'Scheduling our first job'
+,children: [
+{_reference:'138'},{_reference:'139'},{_reference:'140'},{_reference:'141'}]},
+{id : '138',
+type:'page',page : '221',
+name: 'Creating the job'
+},
+{id : '139',
+type:'page',page : '223',
+name: 'Specifying procedure arguments'
+},
+{id : '140',
+type:'page',page : '224',
+name: 'Enabling the job schedule'
+},
+{id : '141',
+type:'page',page : '224',
+name: 'Using Enterprise Manager'
+},
+{id : '142',
+type:'page',page : '227',
+name: 'Time expression syntax'
+,children: [
+{_reference:'143'},{_reference:'144'},{_reference:'145'},{_reference:'149'}]},
+{id : '143',
+type:'page',page : '227',
+name: 'The repeat interval'
+},
+{id : '144',
+type:'page',page : '227',
+name: 'Regular schedule'
+},
+{id : '145',
+type:'page',page : '232',
+name: 'Combined schedule'
+,children: [
+{_reference:'146'},{_reference:'147'},{_reference:'148'}]},
+{id : '146',
+type:'page',page : '233',
+name: 'Exclude scenario'
+},
+{id : '147',
+type:'page',page : '234',
+name: 'Include scenario'
+},
+{id : '148',
+type:'page',page : '236',
+name: 'Intersect scenario'
+},
+{id : '149',
+type:'page',page : '237',
+name: 'Time expression examples'
+},
+{id : '150',
+type:'page',page : '238',
+name: 'Programs'
+,children: [
+{_reference:'151'},{_reference:'152'}]},
+{id : '151',
+type:'page',page : '239',
+name: 'Creating programs manually'
+},
+{id : '152',
+type:'page',page : '240',
+name: 'Defining a program using Enterprise Manager'
+},
+{id : '153',
+type:'page',page : '241',
+name: 'Schedules'
+},
+{id : '154',
+type:'page',page : '242',
+name: 'Jobs and Job Classes'
+},
+{id : '155',
+type:'page',page : '244',
+name: 'Managing the Scheduler'
+,children: [
+{_reference:'156'},{_reference:'157'}]},
+{id : '156',
+type:'page',page : '245',
+name: 'Enable or disable components'
+},
+{id : '157',
+type:'page',page : '245',
+name: 'Managing job logs'
+,children: [
+{_reference:'158'},{_reference:'159'}]},
+{id : '158',
+type:'page',page : '245',
+name: 'Monitor a Job Execution'
+},
+{id : '159',
+type:'page',page : '248',
+name: 'Purging the job log'
+},
+{id : '160',
+type:'page',page : '249',
+name: 'Data dictionary related views'
+},
+{id : '161',
+type:'page',page : '250',
+name: 'Summary'
+},
+{id : '162',
+type:'chapter',page : '251',
+name: 'Chapter 8: Oracle Wallet Manager'
+,children: [
+{_reference:'163'},{_reference:'168'},{_reference:'169'},{_reference:'176'},{_reference:'179'},{_reference:'181'},{_reference:'182'}]},
+{id : '163',
+type:'page',page : '251',
+name: 'The Oracle Wallet Manager'
+,children: [
+{_reference:'164'},{_reference:'165'},{_reference:'166'},{_reference:'167'}]},
+{id : '164',
+type:'page',page : '253',
+name: 'Creating the Oracle Wallet'
+},
+{id : '165',
+type:'page',page : '253',
+name: 'Enabling Auto Login'
+},
+{id : '166',
+type:'page',page : '254',
+name: 'mkwallet, the CLI OWM version'
+},
+{id : '167',
+type:'page',page : '255',
+name: 'Managing Wallets with orapki'
+},
+{id : '168',
+type:'page',page : '258',
+name: 'Oracle Wallet Manager CSR generation'
+},
+{id : '169',
+type:'page',page : '261',
+name: 'Storing the Oracle Wallet in the Windows registry'
+,children: [
+{_reference:'170'},{_reference:'171'},{_reference:'172'},{_reference:'173'},{_reference:'174'},{_reference:'175'}]},
+{id : '170',
+type:'page',page : '261',
+name: 'Save Wallet to the registry'
+},
+{id : '171',
+type:'page',page : '262',
+name: 'Open the Wallet from the registry'
+},
+{id : '172',
+type:'page',page : '262',
+name: 'Save as to a different registry location'
+},
+{id : '173',
+type:'page',page : '263',
+name: 'Open the Wallet from the registry, save it to the file system and vice versa'
+},
+{id : '174',
+type:'page',page : '263',
+name: 'Delete the Wallet from the registry'
+},
+{id : '175',
+type:'page',page : '263',
+name: 'Configuring the Wallet location'
+},
+{id : '176',
+type:'page',page : '264',
+name: 'Storing the Wallet in an LDAP server'
+,children: [
+{_reference:'177'},{_reference:'178'}]},
+{id : '177',
+type:'page',page : '264',
+name: 'Uploading the Wallet to an LDAP server'
+},
+{id : '178',
+type:'page',page : '265',
+name: 'Downloading the Wallet from LDAP'
+},
+{id : '179',
+type:'page',page : '266',
+name: 'Using certificates for authentication'
+,children: [
+{_reference:'180'}]},
+{id : '180',
+type:'page',page : '266',
+name: 'Public Key Infrastructure tools'
+},
+{id : '181',
+type:'page',page : '266',
+name: 'Using the Oracle Wallet to store database credentials'
+},
+{id : '182',
+type:'page',page : '270',
+name: 'Summary'
+},
+{id : '183',
+type:'chapter',page : '271',
+name: 'Chapter 9: Security Management'
+,children: [
+{_reference:'184'},{_reference:'191'},{_reference:'197'}]},
+{id : '184',
+type:'page',page : '271',
+name: 'Using the Oracle Wallet to encrypt backups'
+,children: [
+{_reference:'185'},{_reference:'189'},{_reference:'190'}]},
+{id : '185',
+type:'page',page : '272',
+name: 'Recovery Manager encryption'
+,children: [
+{_reference:'186'},{_reference:'187'},{_reference:'188'}]},
+{id : '186',
+type:'page',page : '272',
+name: 'Using the transparent mode'
+},
+{id : '187',
+type:'page',page : '275',
+name: 'Using the password mode'
+},
+{id : '188',
+type:'page',page : '278',
+name: 'Using the dual mode'
+},
+{id : '189',
+type:'page',page : '279',
+name: 'RMAN backup shredding (11g only)'
+},
+{id : '190',
+type:'page',page : '279',
+name: 'Data pump encryption'
+},
+{id : '191',
+type:'page',page : '280',
+name: 'The enterprise user'
+,children: [
+{_reference:'192'},{_reference:'194'},{_reference:'195'},{_reference:'196'}]},
+{id : '192',
+type:'page',page : '282',
+name: 'Configuring the environment'
+,children: [
+{_reference:'193'}]},
+{id : '193',
+type:'page',page : '282',
+name: 'How Oracle SSO works'
+},
+{id : '194',
+type:'page',page : '283',
+name: 'Configure access to the LDAP directory'
+},
+{id : '195',
+type:'page',page : '284',
+name: 'Registering the database against the OID'
+},
+{id : '196',
+type:'page',page : '285',
+name: 'Shared schema'
+},
+{id : '197',
+type:'page',page : '289',
+name: 'Summary'
+},
+{id : '198',
+type:'chapter',page : '291',
+name: 'Chapter 10: Database Configuration Assistant'
+,children: [
+{_reference:'199'},{_reference:'200'},{_reference:'214'},{_reference:'215'},{_reference:'220'},{_reference:'233'},{_reference:'236'}]},
+{id : '199',
+type:'page',page : '292',
+name: 'DBCA'
+},
+{id : '200',
+type:'page',page : '293',
+name: 'Database creation'
+,children: [
+{_reference:'201'},{_reference:'202'},{_reference:'203'},{_reference:'204'},{_reference:'205'},{_reference:'206'},{_reference:'207'},{_reference:'208'},{_reference:'212'},{_reference:'213'}]},
+{id : '201',
+type:'page',page : '293',
+name: 'Database templates'
+},
+{id : '202',
+type:'page',page : '294',
+name: 'Database identification'
+},
+{id : '203',
+type:'page',page : '295',
+name: 'Management options'
+},
+{id : '204',
+type:'page',page : '296',
+name: 'Database credentials'
+},
+{id : '205',
+type:'page',page : '296',
+name: 'Storage options'
+},
+{id : '206',
+type:'page',page : '296',
+name: 'Database file locations'
+},
+{id : '207',
+type:'page',page : '297',
+name: 'Database content'
+},
+{id : '208',
+type:'page',page : '298',
+name: 'Initialization parameters'
+,children: [
+{_reference:'209'},{_reference:'210'},{_reference:'211'}]},
+{id : '209',
+type:'page',page : '298',
+name: 'Memory'
+},
+{id : '210',
+type:'page',page : '299',
+name: 'Character sets'
+},
+{id : '211',
+type:'page',page : '300',
+name: 'Connection mode'
+},
+{id : '212',
+type:'page',page : '300',
+name: 'Database storage'
+},
+{id : '213',
+type:'page',page : '301',
+name: 'Creation options'
+},
+{id : '214',
+type:'page',page : '302',
+name: 'Database edition'
+},
+{id : '215',
+type:'page',page : '303',
+name: 'Database template management'
+,children: [
+{_reference:'216'},{_reference:'217'},{_reference:'218'},{_reference:'219'}]},
+{id : '216',
+type:'page',page : '304',
+name: 'Template management operations'
+},
+{id : '217',
+type:'page',page : '305',
+name: 'Creating a seed database out of a current database'
+},
+{id : '218',
+type:'page',page : '306',
+name: 'Database related file location'
+},
+{id : '219',
+type:'page',page : '308',
+name: 'Migrating a single instance database to RAC'
+},
+{id : '220',
+type:'page',page : '308',
+name: 'Automatic Storage Management configuration'
+,children: [
+{_reference:'221'},{_reference:'222'},{_reference:'228'}]},
+{id : '221',
+type:'page',page : '308',
+name: 'ASM'
+},
+{id : '222',
+type:'page',page : '309',
+name: 'How to setup ASM using DBCA'
+,children: [
+{_reference:'223'},{_reference:'224'},{_reference:'225'},{_reference:'226'},{_reference:'227'}]},
+{id : '223',
+type:'page',page : '310',
+name: 'Select the Configure ASM option'
+},
+{id : '224',
+type:'page',page : '310',
+name: 'Run the localconfig shell script as root'
+},
+{id : '225',
+type:'page',page : '311',
+name: 'Set the SYS password and the ASM instance parameters'
+},
+{id : '226',
+type:'page',page : '312',
+name: 'Setup disk groups'
+},
+{id : '227',
+type:'page',page : '314',
+name: 'ASM disk group\'s validation'
+},
+{id : '228',
+type:'page',page : '315',
+name: 'Setting up ASM in a Windows environment'
+,children: [
+{_reference:'229'},{_reference:'230'},{_reference:'231'},{_reference:'232'}]},
+{id : '229',
+type:'page',page : '315',
+name: 'ASM setup'
+},
+{id : '230',
+type:'page',page : '316',
+name: 'Disk layout'
+},
+{id : '231',
+type:'page',page : '316',
+name: 'Logical partitions'
+},
+{id : '232',
+type:'page',page : '316',
+name: 'Setup ASM'
+},
+{id : '233',
+type:'page',page : '317',
+name: 'DBCA, Batch mode'
+,children: [
+{_reference:'234'},{_reference:'235'}]},
+{id : '234',
+type:'page',page : '318',
+name: 'DBCA response file example'
+},
+{id : '235',
+type:'page',page : '319',
+name: 'Where can you get a DBCA response file'
+},
+{id : '236',
+type:'page',page : '321',
+name: 'Summary'
+},
+{id : '237',
+type:'chapter',page : '323',
+name: 'Chapter 11: Oracle Universal Installer'
+,children: [
+{_reference:'238'},{_reference:'245'},{_reference:'249'},{_reference:'250'},{_reference:'252'},{_reference:'258'},{_reference:'259'},{_reference:'260'},{_reference:'261'},{_reference:'262'},{_reference:'263'}]},
+{id : '238',
+type:'page',page : '323',
+name: 'OUI basics'
+,children: [
+{_reference:'239'},{_reference:'240'},{_reference:'242'},{_reference:'243'},{_reference:'244'}]},
+{id : '239',
+type:'page',page : '324',
+name: 'OUI components'
+},
+{id : '240',
+type:'page',page : '326',
+name: 'Setting up a stage area'
+,children: [
+{_reference:'241'}]},
+{id : '241',
+type:'page',page : '326',
+name: 'DVD distribution'
+},
+{id : '242',
+type:'page',page : '327',
+name: 'Troubleshooting an installation session'
+},
+{id : '243',
+type:'page',page : '328',
+name: 'Oracle Universal Installer JRE'
+},
+{id : '244',
+type:'page',page : '329',
+name: 'OUI system requirements'
+},
+{id : '245',
+type:'page',page : '329',
+name: 'OUI basic and advanced installation modes'
+,children: [
+{_reference:'246'},{_reference:'247'},{_reference:'248'}]},
+{id : '246',
+type:'page',page : '330',
+name: 'OUI Basic Installation'
+},
+{id : '247',
+type:'page',page : '331',
+name: 'Licensed installed options'
+},
+{id : '248',
+type:'page',page : '331',
+name: 'OUI Advanced Installation'
+},
+{id : '249',
+type:'page',page : '333',
+name: 'Modes of installation'
+},
+{id : '250',
+type:'page',page : '333',
+name: 'OUI command line parameters'
+,children: [
+{_reference:'251'}]},
+{id : '251',
+type:'page',page : '337',
+name: 'Command line variables usage'
+},
+{id : '252',
+type:'page',page : '338',
+name: 'Silent installation mode'
+,children: [
+{_reference:'253'},{_reference:'254'},{_reference:'255'},{_reference:'256'},{_reference:'257'}]},
+{id : '253',
+type:'page',page : '339',
+name: 'The response file structure and syntax'
+},
+{id : '254',
+type:'page',page : '340',
+name: 'Customizing a response file'
+},
+{id : '255',
+type:'page',page : '341',
+name: 'Creating a response file out from an actual installation'
+},
+{id : '256',
+type:'page',page : '341',
+name: 'The Batch installation, step by step'
+},
+{id : '257',
+type:'page',page : '345',
+name: 'Creating a response file to perform a batch deinstallation'
+},
+{id : '258',
+type:'page',page : '347',
+name: 'The oraparam.ini file'
+},
+{id : '259',
+type:'page',page : '348',
+name: 'OUI return codes'
+},
+{id : '260',
+type:'page',page : '348',
+name: 'Installing Oracle from the Web'
+},
+{id : '261',
+type:'page',page : '349',
+name: 'Recovering a lost Inventory'
+},
+{id : '262',
+type:'page',page : '351',
+name: 'Cloning Oracle Home using OUI'
+},
+{id : '263',
+type:'page',page : '351',
+name: 'Summary'
+},
+{id : '264',
+type:'chapter',page : '353',
+name: 'Chapter 12: Enterprise Manager Configuration Assistant'
+,children: [
+{_reference:'265'},{_reference:'267'},{_reference:'273'},{_reference:'280'},{_reference:'286'},{_reference:'290'},{_reference:'295'},{_reference:'296'}]},
+{id : '265',
+type:'page',page : '354',
+name: 'Enterprise Manager Components'
+,children: [
+{_reference:'266'}]},
+{id : '266',
+type:'page',page : '355',
+name: 'Differences between EM DB Control and EM Grid Control'
+},
+{id : '267',
+type:'page',page : '356',
+name: 'Enterprise Manager configuration'
+,children: [
+{_reference:'268'},{_reference:'269'},{_reference:'270'},{_reference:'271'},{_reference:'272'}]},
+{id : '268',
+type:'page',page : '356',
+name: 'How to find out if the console components are currently installed'
+},
+{id : '269',
+type:'page',page : '357',
+name: 'Console setup prerequisites '
+},
+{id : '270',
+type:'page',page : '358',
+name: 'Configuring EM using DBCA'
+},
+{id : '271',
+type:'page',page : '360',
+name: 'Manually configuring Enterprise Manager with EMCA'
+},
+{id : '272',
+type:'page',page : '364',
+name: 'Manually assigning EM managing ports'
+},
+{id : '273',
+type:'page',page : '367',
+name: 'EMCA Command Line Interface'
+,children: [
+{_reference:'274'},{_reference:'275'},{_reference:'276'},{_reference:'277'},{_reference:'278'},{_reference:'279'}]},
+{id : '274',
+type:'page',page : '368',
+name: 'EMCA commands'
+},
+{id : '275',
+type:'page',page : '369',
+name: 'EMCA flags'
+},
+{id : '276',
+type:'page',page : '370',
+name: 'EMCA general Command-Line Parameters'
+},
+{id : '277',
+type:'page',page : '371',
+name: 'EMCA backup parameters'
+},
+{id : '278',
+type:'page',page : '371',
+name: 'EMCA ASM parameters'
+},
+{id : '279',
+type:'page',page : '371',
+name: 'EMCA Cluster (RAC) parameters'
+},
+{id : '280',
+type:'page',page : '372',
+name: 'EMCA 10g Release 1'
+,children: [
+{_reference:'281'},{_reference:'282'},{_reference:'283'},{_reference:'284'},{_reference:'285'}]},
+{id : '281',
+type:'page',page : '372',
+name: 'EMCA 10gR1 syntax'
+},
+{id : '282',
+type:'page',page : '372',
+name: 'EMCA 10gR1 options'
+},
+{id : '283',
+type:'page',page : '373',
+name: 'EMCA 10gR1 parameters'
+},
+{id : '284',
+type:'page',page : '374',
+name: 'EMCA 10gR1 RAC parameters'
+},
+{id : '285',
+type:'page',page : '374',
+name: 'EMCA silent mode'
+},
+{id : '286',
+type:'page',page : '375',
+name: 'EM directory structure'
+,children: [
+{_reference:'287'},{_reference:'288'},{_reference:'289'}]},
+{id : '287',
+type:'page',page : '377',
+name: 'EMCA log files'
+},
+{id : '288',
+type:'page',page : '377',
+name: 'The SYSMAN configuration files'
+},
+{id : '289',
+type:'page',page : '377',
+name: 'The SYSMAN log files'
+},
+{id : '290',
+type:'page',page : '379',
+name: 'Environment changes'
+,children: [
+{_reference:'291'},{_reference:'292'}]},
+{id : '291',
+type:'page',page : '380',
+name: 'Changing the IP address or host name'
+},
+{id : '292',
+type:'page',page : '380',
+name: 'Changing administrative passwords'
+,children: [
+{_reference:'293'},{_reference:'294'}]},
+{id : '293',
+type:'page',page : '381',
+name: 'Changing SYSMAN password'
+},
+{id : '294',
+type:'page',page : '382',
+name: 'Changing DBSNMP password'
+},
+{id : '295',
+type:'page',page : '383',
+name: 'Securing Enterprise Manager'
+},
+{id : '296',
+type:'page',page : '384',
+name: 'Summary'
+},
+{id : '297',
+type:'chapter',page : '385',
+name: 'Chapter 13: OPatch'
+,children: [
+{_reference:'298'},{_reference:'299'},{_reference:'300'},{_reference:'301'},{_reference:'303'},{_reference:'304'},{_reference:'305'},{_reference:'306'},{_reference:'307'},{_reference:'308'},{_reference:'309'},{_reference:'310'},{_reference:'313'},{_reference:'314'},{_reference:'317'},{_reference:'322'},{_reference:'330'}]},
+{id : '298',
+type:'page',page : '385',
+name: 'OPatch'
+},
+{id : '299',
+type:'page',page : '386',
+name: 'Downloading the latest OPatch version'
+},
+{id : '300',
+type:'page',page : '387',
+name: 'OPatch requirements'
+},
+{id : '301',
+type:'page',page : '388',
+name: 'OPatch syntax'
+,children: [
+{_reference:'302'}]},
+{id : '302',
+type:'page',page : '389',
+name: 'OPatch options'
+},
+{id : '303',
+type:'page',page : '389',
+name: 'Oracle maintenance using OPatch'
+},
+{id : '304',
+type:'page',page : '390',
+name: 'Applying a single patch using OPatch'
+},
+{id : '305',
+type:'page',page : '392',
+name: 'Querying the Oracle inventory'
+},
+{id : '306',
+type:'page',page : '392',
+name: 'Rolling back a failed OPatch session'
+},
+{id : '307',
+type:'page',page : '393',
+name: 'Considerations after applying a patch'
+},
+{id : '308',
+type:'page',page : '394',
+name: 'OPatch in Oracle 11g'
+},
+{id : '309',
+type:'page',page : '396',
+name: 'Oracle Configuration Manager Registration'
+},
+{id : '310',
+type:'page',page : '397',
+name: 'Critical Patch Updates'
+,children: [
+{_reference:'311'},{_reference:'312'}]},
+{id : '311',
+type:'page',page : '397',
+name: 'Find out the installed patches'
+},
+{id : '312',
+type:'page',page : '399',
+name: 'Critical Patch Advisory'
+},
+{id : '313',
+type:'page',page : '399',
+name: 'Hot patching (11g only)'
+},
+{id : '314',
+type:'page',page : '400',
+name: 'Troubleshooting OPatch'
+,children: [
+{_reference:'315'},{_reference:'316'}]},
+{id : '315',
+type:'page',page : '400',
+name: 'PATH environment variable'
+},
+{id : '316',
+type:'page',page : '400',
+name: 'OPatch log files'
+},
+{id : '317',
+type:'page',page : '401',
+name: 'Using Enterprise Manager for software maintenance'
+,children: [
+{_reference:'318'},{_reference:'319'},{_reference:'320'},{_reference:'321'}]},
+{id : '318',
+type:'page',page : '401',
+name: 'Enterprise Manager Metalink configuration'
+},
+{id : '319',
+type:'page',page : '402',
+name: 'Refresh from Metalink Job'
+},
+{id : '320',
+type:'page',page : '405',
+name: 'Downloading and staging patches'
+},
+{id : '321',
+type:'page',page : '407',
+name: 'The Patch Cache'
+},
+{id : '322',
+type:'page',page : '408',
+name: 'Managing Patches in EM 11g'
+,children: [
+{_reference:'323'},{_reference:'326'},{_reference:'327'},{_reference:'328'},{_reference:'329'}]},
+{id : '323',
+type:'page',page : '410',
+name: 'Patch Advisor'
+,children: [
+{_reference:'324'},{_reference:'325'}]},
+{id : '324',
+type:'page',page : '410',
+name: 'Critical Security Patches'
+},
+{id : '325',
+type:'page',page : '411',
+name: 'Feature based patching'
+},
+{id : '326',
+type:'page',page : '412',
+name: 'View Patch Cache'
+},
+{id : '327',
+type:'page',page : '412',
+name: 'Patch prerequisites'
+},
+{id : '328',
+type:'page',page : '413',
+name: 'Stage patch'
+},
+{id : '329',
+type:'page',page : '413',
+name: 'Apply patch'
+},
+{id : '330',
+type:'page',page : '414',
+name: 'Summary'
+},
+{id : '331',
+type:'chapter',page : '415',
+name: 'Index'
+}
+]}
