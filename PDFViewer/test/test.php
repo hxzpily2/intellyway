@@ -343,7 +343,8 @@ hr.spacer {
 
 
 <div style="padding: 0;" dojoType="dijit.layout.ContentPane"
-	title="Titre"><span dojoType="dijit.Declaration"
+	title="Titre">
+	<span dojoType="dijit.Declaration"
 	widgetClass="ToolbarSectionStart" defaults="{ label: 'Label'}"> <span
 	dojoType="dijit.ToolbarSeparator"></span><i>${label}:</i> </span>
 
@@ -409,11 +410,20 @@ hr.spacer {
 	</span>	
 	
 	<div enabled="false" dojoType="dijit.form.Button" id="toolbar1.issigned"
-		iconClass="dijitEditorIcon dijitEditorIconInfoDoc" showLabel="false" onclick="javascript:commun.parseInfo('<?php echo PDFAJAXViewer::$INFOURL; ?>')" ></div>
+		iconClass="dijitEditorIcon dijitEditorIconInfoDoc" showLabel="false" onclick="javascript:commun.parseInfo('<?php echo PDFAJAXViewer::$INFOURL; ?>')" ></div>		
+		
 		
 </div>
 
-
+<!-- start image zone -->
+<center>
+<div id="page" style="width:100%;height:100%;border: 1px solid #000;overflow: scroll;margin: 0 auto;">
+	
+	<img src="/PDFViewer/cache/a85e9a0a2514a51e678dcfa853d332cf7a0aa51e/a85e9a0a2514a51e678dcfa853d332cf7a0aa51e1.png"/>
+		
+</div>
+</center>
+<!-- end image zone -->
 	
 </div>
 
