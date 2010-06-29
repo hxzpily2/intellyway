@@ -23,11 +23,9 @@ class PDFAJAXViewer{
     		 " @import '".ResourceBundle::get('pdfviewer.path.assets')."/js/dojo/dijit/themes/claro/claro.css'; ".
 		     " @import '".ResourceBundle::get('pdfviewer.path.assets')."/js/dojo/resources/dojo.css'; ".
 			 " html, body { height: 100%; width: 100%; padding: 0; border: 0; } ".
-			 " #main { height: 100%; width: 100%; border: 0; } ".
+			 " #main { height: 100%; width: 100%; border: 0; } ".			 
 			 " </style> ".
-			 " <link href='".ResourceBundle::get('pdfviewer.path.assets')."/js/prototype/theme/default.css' rel='stylesheet' type='text/css'/> ".
-		     " <script type='text/javascript' src='".ResourceBundle::get('pdfviewer.path.assets')."/js/prototype/prototype.js'></script> ".
-		     " <script type='text/javascript' src='".ResourceBundle::get('pdfviewer.path.assets')."/js/prototype/window.js'></script> ".
+			 " <link href='".ResourceBundle::get('pdfviewer.path.assets')."/js/prototype/theme/default.css' rel='stylesheet' type='text/css'/> ".		     
 			 " <script type='text/javascript' src='".ResourceBundle::get('pdfviewer.path.assets')."/js/dojo/dojo/dojo.js' djConfig='parseOnLoad: false'></script> ".
 			 " <script type='text/javascript'> ".
    			 " dojo.require('dijit.dijit'); ".   
@@ -39,7 +37,7 @@ class PDFAJAXViewer{
 			 " dojo.require('dijit.layout.ContentPane'); ".
 		     " dojo.require('dijit.layout.BorderContainer'); ".		
    			 " dojo.registerModulePath('bedreamy', '../../bedreamy'); ".
-   			 " dojo.require('bedreamy.integration.Commun'); ".
+   			 " dojo.require('bedreamy.integration.Commun'); ".		     
    			 " var commun = new bedreamy.integration.Commun(); ".   
 			 " </script> ";
 	}
@@ -81,14 +79,24 @@ class PDFAJAXViewer{
 	}
 	
 	public static function generatePage($page,$resolution){
-		$pagerel = ResourceBundle::get('pdfviewer.relatif.path.base')."/cache/".sha1(PDFAJAXViewer::$DOCUMENT);
-		$pageabs = ResourceBundle::get('pdfviewer.absolute.path.base')."/cache/".sha1(PFAJAXViewer::$DOCUMENT);
+		$classpath  = ResourceBundle::get('pdfviewer.absolute.path.base')."/bin/jar/pdfhandler.jar;";
+		$classpath .= ResourceBundle::get('pdfviewer.absolute.path.base')."/bin/jar/commons-logging.jar;";
+		$classpath .= ResourceBundle::get('pdfviewer.absolute.path.base')."/bin/jar/commons-logging-1.0.4.jar;";
+		$classpath .= ResourceBundle::get('pdfviewer.absolute.path.base')."/bin/jar/fontbox-1.1.0.jar;";
+		$classpath .= ResourceBundle::get('pdfviewer.absolute.path.base')."/bin/jar/jempbox-1.1.0.jar;";
+		$classpath .= ResourceBundle::get('pdfviewer.absolute.path.base')."/bin/jar/json_simple-1.1.jar;";
+		$classpath .= ResourceBundle::get('pdfviewer.absolute.path.base')."/bin/jar/log4j-1.2.15.jar;";
+		$classpath .= ResourceBundle::get('pdfviewer.absolute.path.base')."/bin/jar/lucene-core-3.0.2.jar;";
+		$classpath .= ResourceBundle::get('pdfviewer.absolute.path.base')."/bin/jar/pdfbox-1.1.0.jar";
+		
+		$pagerel = ResourceBundle::get('pdfviewer.relatif.path.base')."/cache/".PDFAJAXViewer::getForlderName(PDFAJAXViewer::$DOCUMENT)."/".PDFAJAXViewer::getForlderName(PDFAJAXViewer::$DOCUMENT);
+		$pageabs = ResourceBundle::get('pdfviewer.absolute.path.base')."/cache/".PDFAJAXViewer::getForlderName(PDFAJAXViewer::$DOCUMENT)."/".PDFAJAXViewer::getForlderName(PDFAJAXViewer::$DOCUMENT);
 		PDFAJAXViewer::$CURRENTPAGE = $pagerel;
-		echo "java -classpath $classpath com.bedreamy.base.PDFToImage ".PDFAJAXViewer::$DOCUMENT." -imageType png  -startPage $page -endPage $page -resolution $resolution -outputPrefix $pageabs";
-		if(!file_exists($pageabs)){
+		
+		if(!file_exists($pageabs.$page.".png")){
 			exec("java -classpath $classpath com.bedreamy.base.PDFToImage ".PDFAJAXViewer::$DOCUMENT." -imageType png  -startPage $page -endPage $page -resolution $resolution -outputPrefix $pageabs");
 		}
-		return PDFAJAXViewer::$CURRENTPAGE;
+		return $pageabs.$page.".png";
 	}
 	
 	public static function getPDFNameFromURL($pdfURL){
