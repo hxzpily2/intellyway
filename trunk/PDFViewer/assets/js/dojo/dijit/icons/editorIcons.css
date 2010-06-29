@@ -29,6 +29,7 @@ editorIcons.css contains references to the dijit editor widget icons. There are 
 .dijitEditorIconFindMot{ background-image: url('images/binocular.png'); }
 .dijitEditorIconPdfIsSigned{ background-image: url('images/lock--exclamation.png'); }
 .dijitEditorIconRefreshPage{ background-image: url('images/arrow-circle-135.png'); }
+.dijitEditorIconInfoDoc{ background-image: url('images/information-balloon.png'); }
 .dijitDisabled .dijitEditorIconPdfIsSigned{ background-image: url('images/lock--exclamation.png'); }
 .dijitDisabled .dijitEditorIconSepa{ background-image: url('images/i_half.gif'); }
 

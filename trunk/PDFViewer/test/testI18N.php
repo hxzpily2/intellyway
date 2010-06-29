@@ -6,8 +6,8 @@ require_once dirname(__FILE__).'/../copix/copix.inc.php';
 
 //echo CopixI18N::get('copix:copix.yes','fr');
 PDFAJAXViewer::includeDOJO();
+PDFAJAXViewer::getBookmarkJSON("C:\\wamp\\www\\PDFViewer\\pdf\\oracle-10g-11g-data-and-database-management-utilities.9781847196286.47538.pdf");
 
-;
 ?>
 <div dojoType="dojo.data.ItemFileReadStore" jsId="continentStore"
 	url="countries.json"></div>

@@ -11,7 +11,8 @@ require_once dirname(__FILE__).'/../copix/copix.inc.php';
 
 //echo CopixI18N::get('copix:copix.yes','fr');
 PDFAJAXViewer::includeDOJO();
-
+PDFAJAXViewer::getBookmarkJSON("C:/wamp/www/PDFViewer/pdf/oracle-10g-11g-data-and-database-management-utilities.9781847196286.47538.pdf");
+ 
 ?>
 
 <style type="text/css">
@@ -289,7 +290,7 @@ hr.spacer {
 
 <!-- data for tree and combobox -->
 <div dojoType="dojo.data.ItemFileReadStore" jsId="continentStore"
-	url="countries.json"></div>
+	url="<?php echo PDFAJAXViewer::$BOOKMARKURL; ?>"></div>
 <div dojoType="dijit.tree.ForestStoreModel" jsId="continentModel"
 	store="continentStore" query="{type:'chapter'}"
 	rootId="chapterRoot" rootLabel="Chapters" childrenAttrs="children"></div>
@@ -389,7 +390,8 @@ hr.spacer {
 		iconClass="dijitEditorIcon dijitEditorIconSepa" showLabel="false" disabled></div>	
 	<div dojoType="dijit.form.Button" id="toolbar1.previous"
 		iconClass="dijitEditorIcon dijitEditorIconPreviousPage" showLabel="false"></div>
-	<input style="width: 30px;" dojoType=dijit.form.TextBox type="text" id="user" name="user" >
+	<input style="width: 30px;" value="1" dojoType=dijit.form.TextBox type="text" id="user" name="user" >
+	<input dojoType=dijit.form.TextBox style="width: 30px;" value="/<?php echo PDFAJAXViewer::$NBPAGES ?>" type="text" disabled>	
 		
 	<div dojoType="dijit.form.Button" id="toolbar1.next"
 		iconClass="dijitEditorIcon dijitEditorIconNextPage" showLabel="false"></div>
@@ -404,7 +406,11 @@ hr.spacer {
 		iconClass="dijitEditorIcon dijitEditorIconPdfIsSigned" showLabel="false" disabled></div>
 	<span position="below" dojoType="dijit.Tooltip" connectId="isSignedDiv" style="display:none;">
 		Ce document est signé
-	</span>		
+	</span>	
+	
+	<div enabled="false" dojoType="dijit.form.Button" id="toolbar1.issigned"
+		iconClass="dijitEditorIcon dijitEditorIconInfoDoc" showLabel="false" onclick="javascript:commun.parseInfo('<?php echo PDFAJAXViewer::$INFOURL; ?>')" ></div>
+		
 </div>
 
 
@@ -417,6 +423,24 @@ hr.spacer {
 
 </div>
 
-
+<div id="infoDiag" dojoType="dijit.Dialog"
+		title="Informations" style="display:none;width: 400px;">
+		<div class="dijitDialogPaneContentArea">
+			<table>
+				<tr>
+					<td><label for="pages">Nombres de pages: </label></td>
+					<td><span id="nbpageSpn" name="pages"></span></td>
+				</tr>
+				<tr>
+					<td><label for="titre">Titre</label></td>
+					<td><span id="titleSpn" name="titre"></span></td>
+				</tr>
+				<tr>
+					<td><label for="auteur">Auteur</label></td>
+					<td><span id="auteurSpn" name="auteur"></span></td>
+				</tr>				
+			</table>
+		</div>		
+	</div>
 </body>
 </html>
