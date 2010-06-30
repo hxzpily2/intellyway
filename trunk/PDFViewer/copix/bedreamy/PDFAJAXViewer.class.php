@@ -27,6 +27,9 @@ class PDFAJAXViewer{
 			 " </style> ".
 			 " <link href='".ResourceBundle::get('pdfviewer.path.assets')."/js/prototype/theme/default.css' rel='stylesheet' type='text/css'/> ".		     
 			 " <script type='text/javascript' src='".ResourceBundle::get('pdfviewer.path.assets')."/js/dojo/dojo/dojo.js' djConfig='parseOnLoad: false'></script> ".
+			 " <script src='".ResourceBundle::get('pdfviewer.path.assets')."/js/scroller/jquery-1.3.1.min.js' type='text/javascript'></script>".
+			 " <script src='".ResourceBundle::get('pdfviewer.path.assets')."/js/scroller/jquery.scrollview.js' type='text/javascript'></script>".
+			 " <link rel='stylesheet' type='text/css' href='".ResourceBundle::get('pdfviewer.path.assets')."/js/scroller/style.css'/>".
 			 " <script type='text/javascript'> ".
    			 " dojo.require('dijit.dijit'); ".   
    			 " dojo.require('dojo.parser'); ".  
