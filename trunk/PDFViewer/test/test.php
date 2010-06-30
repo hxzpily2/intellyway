@@ -1,6 +1,6 @@
-
-<head>
-
+<?php
+session_start();
+?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
 	"http://www.w3.org/TR/html4/strict.dtd">
 <html>
@@ -12,7 +12,7 @@ require_once dirname(__FILE__).'/../copix/copix.inc.php';
 //echo CopixI18N::get('copix:copix.yes','fr');
 PDFAJAXViewer::includeDOJO();
 PDFAJAXViewer::getBookmarkJSON("C:/wamp/www/PDFViewer/pdf/oracle-10g-11g-data-and-database-management-utilities.9781847196286.47538.pdf");
- 
+$assets = ResourceBundle::get('pdfviewer.path.assets');
 ?>
 
 <style type="text/css">
@@ -393,12 +393,13 @@ hr.spacer {
 	
 	<div dojoType="dijit.form.Button" id="toolbar1.sepa1"
 		iconClass="dijitEditorIcon dijitEditorIconSepa" showLabel="false" disabled></div>	
-	<div dojoType="dijit.form.Button" id="toolbar1.previous"
+	<div onclick="javascript:commun.previousPage('<?php echo ResourceBundle::get('pdfviewer.relatif.path.base')."/copix/bedreamy/action/action.class.php" ?>','100','<?php echo $assets ?>')" dojoType="dijit.form.Button" id="toolbar1.previous"
 		iconClass="dijitEditorIcon dijitEditorIconPreviousPage" showLabel="false"></div>
-	<input style="width: 30px;" value="1" dojoType=dijit.form.TextBox type="text" id="user" name="user" >
+	<input style="width: 30px;" value="1" dojoType=dijit.form.TextBox type="text" id="numPage" name="numPage" >
+	<input type="hidden" id="maxPage" value="<?php echo PDFAJAXViewer::$NBPAGES ?>"/> 
 	<input dojoType=dijit.form.TextBox style="width: 30px;" value="/<?php echo PDFAJAXViewer::$NBPAGES ?>" type="text" disabled>	
 		
-	<div dojoType="dijit.form.Button" id="toolbar1.next"
+	<div onclick="javascript:commun.nextPage('<?php echo ResourceBundle::get('pdfviewer.relatif.path.base')."/copix/bedreamy/action/action.class.php" ?>','100','<?php echo $assets ?>')" dojoType="dijit.form.Button" id="toolbar1.next"
 		iconClass="dijitEditorIcon dijitEditorIconNextPage" showLabel="false"></div>
 		
 	<div dojoType="dijit.form.Button" id="toolbar1.sepa2"

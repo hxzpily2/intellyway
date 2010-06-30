@@ -13,6 +13,7 @@ class PDFAJAXViewer{
 	static $NBPAGES = "";
 	static $CURRENTPAGE = "";
 	static $DEFAULT_RESOL = "100";
+	static $UNIQUENAME = "";
 	
 	public static function showViewer(){
 		return "test";
@@ -45,8 +46,8 @@ class PDFAJAXViewer{
 			 " </script> ";
 	}
 	
-	public static function getBookmarkJSON($pdfURL){
-		PDFAJAXViewer::$DOCUMENT = $pdfURL;
+	public static function getBookmarkJSON($pdfURL){		
+		$_SESSION['DOCUMENT'] = $pdfURL;		
 		$classpath  = ResourceBundle::get('pdfviewer.absolute.path.base')."/bin/jar/pdfhandler.jar;";
 		$classpath .= ResourceBundle::get('pdfviewer.absolute.path.base')."/bin/jar/commons-logging.jar;";
 		$classpath .= ResourceBundle::get('pdfviewer.absolute.path.base')."/bin/jar/commons-logging-1.0.4.jar;";
@@ -57,7 +58,7 @@ class PDFAJAXViewer{
 		$classpath .= ResourceBundle::get('pdfviewer.absolute.path.base')."/bin/jar/lucene-core-3.0.2.jar;";
 		$classpath .= ResourceBundle::get('pdfviewer.absolute.path.base')."/bin/jar/pdfbox-1.1.0.jar";
 		
-		if(file_exists($pdfURL)){
+		if(file_exists($pdfURL)){			
 			$cacheDirectory = ResourceBundle::get('pdfviewer.absolute.path.base')."/cache/".PDFAJAXViewer::getForlderName($pdfURL);			
 			$jsonFile = $cacheDirectory."/".PDFAJAXViewer::BOOKMARKFILE;
 			$jsonInfoFile = $cacheDirectory."/".PDFAJAXViewer::INFORMATIONFILE;
@@ -82,6 +83,7 @@ class PDFAJAXViewer{
 	}
 	
 	public static function generatePage($page,$resolution){
+		
 		$classpath  = ResourceBundle::get('pdfviewer.absolute.path.base')."/bin/jar/pdfhandler.jar;";
 		$classpath .= ResourceBundle::get('pdfviewer.absolute.path.base')."/bin/jar/commons-logging.jar;";
 		$classpath .= ResourceBundle::get('pdfviewer.absolute.path.base')."/bin/jar/commons-logging-1.0.4.jar;";
@@ -92,14 +94,14 @@ class PDFAJAXViewer{
 		$classpath .= ResourceBundle::get('pdfviewer.absolute.path.base')."/bin/jar/lucene-core-3.0.2.jar;";
 		$classpath .= ResourceBundle::get('pdfviewer.absolute.path.base')."/bin/jar/pdfbox-1.1.0.jar";
 		
-		$pagerel = ResourceBundle::get('pdfviewer.relatif.path.base')."/cache/".PDFAJAXViewer::getForlderName(PDFAJAXViewer::$DOCUMENT)."/".PDFAJAXViewer::getForlderName(PDFAJAXViewer::$DOCUMENT);
-		$pageabs = ResourceBundle::get('pdfviewer.absolute.path.base')."/cache/".PDFAJAXViewer::getForlderName(PDFAJAXViewer::$DOCUMENT)."/".PDFAJAXViewer::getForlderName(PDFAJAXViewer::$DOCUMENT);
+		$pagerel = ResourceBundle::get('pdfviewer.relatif.path.base')."/cache/".PDFAJAXViewer::getForlderName($_SESSION['DOCUMENT'])."/".PDFAJAXViewer::getForlderName($_SESSION['DOCUMENT']);
+		$pageabs = ResourceBundle::get('pdfviewer.absolute.path.base')."/cache/".PDFAJAXViewer::getForlderName($_SESSION['DOCUMENT'])."/".PDFAJAXViewer::getForlderName($_SESSION['DOCUMENT']);
 		PDFAJAXViewer::$CURRENTPAGE = $pagerel;
 		
-		if(!file_exists($pageabs.$page.".png")){
-			exec("java -classpath $classpath com.bedreamy.base.PDFToImage ".PDFAJAXViewer::$DOCUMENT." -imageType png  -startPage $page -endPage $page -resolution $resolution -outputPrefix $pageabs");
-		}
-		return $pageabs.$page.".png";
+		if(!file_exists($pageabs.$page.".png")){			
+			exec("java -classpath $classpath com.bedreamy.base.PDFToImage ".$_SESSION['DOCUMENT']." -imageType png  -startPage $page -endPage $page -resolution $resolution -outputPrefix $pageabs");
+		}		
+		return $pagerel.$page.".png";
 	}
 	
 	public static function getPDFNameFromURL($pdfURL){
