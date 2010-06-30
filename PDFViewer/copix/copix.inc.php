@@ -162,6 +162,7 @@ Copix::RequireOnce (COPIX_CORE_PATH . 'CopixAutoloader.class.php');
 Copix::RequireOnce (COPIX_CORE_PATH . 'shortcuts.lib.php');
 Copix::RequireOnce (COPIX_PATH . 'bedreamy/PDFAJAXViewer.class.php');
 Copix::RequireOnce (COPIX_PATH . '../conf/ResourceBundle.class.php');
+Copix::RequireOnce (COPIX_PATH . 'bedreamy/action/action.class.php');
 ResourceBundle::_loadResources(COPIX_PATH.'/../conf/application.properties');
 //Copix::RequireOnce (COPIX_CORE_PATH . 'CopixErrorHandler.class.php');
 /* N'est plus nécessaire avec l'autoloader 
