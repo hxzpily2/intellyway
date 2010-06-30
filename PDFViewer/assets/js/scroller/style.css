@@ -1,0 +1,13 @@
+.gr {
+ cursor:url(/sv/images/openhand.cur), url(/sv/images/openhand.png), default;
+}
+
+#page {
+ width:900px;
+ height:700px;
+ border:1px solid #dadada;
+ overflow:hidden;
+}
+
+#map img { border:none; }
+a { color:gray; font-size:11px; }
