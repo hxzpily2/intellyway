@@ -1,5 +1,4 @@
 <?php 
-session_start();
 require_once dirname(__FILE__).'/../../copix.inc.php';
 class ApplicationAction
 {
@@ -13,7 +12,7 @@ class ApplicationAction
 }
 
 $action = new ApplicationAction();
-if($_GET['request']=='getpage'){
+if(isset($_GET['request']) && $_GET['request']=='getpage'){
 	echo ApplicationAction::executeGeneratepage($_GET);
 }
 ?>

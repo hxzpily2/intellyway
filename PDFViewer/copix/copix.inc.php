@@ -1,4 +1,5 @@
 <?php
+session_start();
 /**
 * @package   copix
 * @author   Croes Gérald, Jouanneau Laurent
