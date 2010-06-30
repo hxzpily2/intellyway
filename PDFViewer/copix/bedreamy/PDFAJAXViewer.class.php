@@ -96,7 +96,10 @@ class PDFAJAXViewer{
 		$pagerel = ResourceBundle::get('pdfviewer.relatif.path.base')."/cache/".PDFAJAXViewer::getForlderName($_SESSION['DOCUMENT'])."/".PDFAJAXViewer::getForlderName($_SESSION['DOCUMENT']).$resolution;
 		$pageabs = ResourceBundle::get('pdfviewer.absolute.path.base')."/cache/".PDFAJAXViewer::getForlderName($_SESSION['DOCUMENT'])."/".PDFAJAXViewer::getForlderName($_SESSION['DOCUMENT']).$resolution;
 		PDFAJAXViewer::$CURRENTPAGE = $pagerel;
-		
+		$cacheDirectory = ResourceBundle::get('pdfviewer.absolute.path.base')."/cache/".PDFAJAXViewer::getForlderName($_SESSION['DOCUMENT']);
+		if(!file_exists($cacheDirectory)){
+			mkdir($cacheDirectory,0777);
+		}
 		if(!file_exists($pageabs.$page.".png")){			
 			exec("java -classpath $classpath com.bedreamy.base.PDFToImage ".$_SESSION['DOCUMENT']." -imageType png  -startPage $page -endPage $page -resolution $resolution -outputPrefix $pageabs");
 		}		
