@@ -74,8 +74,7 @@ class PDFAJAXViewer{
 				mkdir($cacheDirectory,0777);
 				exec("java -classpath $classpath com.bedreamy.base.PDFGetBookmarks $pdfURL -destination $jsonFile -destinationInfo $jsonInfoFile");				 	
 			}
-			PDFAJAXViewer::getNbPages();
-			PDFAJAXViewer::generatePage(1,PDFAJAXViewer::$DEFAULT_RESOL);			
+			PDFAJAXViewer::getNbPages();					
 		}else{
 			throw new Exception(FILENOTFOUND);
 		}
