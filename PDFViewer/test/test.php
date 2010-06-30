@@ -1,12 +1,12 @@
 <?php
-session_start();
+require_once dirname(__FILE__).'/../copix/copix.inc.php';
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
 	"http://www.w3.org/TR/html4/strict.dtd">
 <html>
 <head>
 <?php
-require_once dirname(__FILE__).'/../copix/copix.inc.php';
+
 
 
 //echo CopixI18N::get('copix:copix.yes','fr');
