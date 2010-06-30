@@ -13,6 +13,7 @@ require_once dirname(__FILE__).'/../copix/copix.inc.php';
 PDFAJAXViewer::includeDOJO();
 PDFAJAXViewer::getBookmarkJSON("C:/wamp/www/PDFViewer/pdf/oracle-10g-11g-data-and-database-management-utilities.9781847196286.47538.pdf");
 $assets = ResourceBundle::get('pdfviewer.path.assets');
+$img = PDFAJAXViewer::generatePage(1,PDFAJAXViewer::$DEFAULT_RESOL);
 ?>
 
 <style type="text/css">
@@ -427,7 +428,7 @@ hr.spacer {
 <td valign="middle" align="center">
 <div id="page">
  <div>
-	<img src="/PDFViewer/cache/a85e9a0a2514a51e678dcfa853d332cf7a0aa51e/a85e9a0a2514a51e678dcfa853d332cf7a0aa51e1.png"/>
+	<img src="<?php echo $img ?>"/>
  </div>		
 </div>
 
