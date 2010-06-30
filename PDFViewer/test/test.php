@@ -184,6 +184,10 @@ hr.spacer {
 
 		dojo.addOnLoad(function() {
 
+			$("#page").scrollview({
+			    grab:"<?php echo ResourceBundle::get('pdfviewer.path.assets') ?>/js/scroller/images/openhand.cur",
+			    grabbing:"<?php echo ResourceBundle::get('pdfviewer.path.assets') ?>/js/scroller/images/closedhand.cur"
+			});	
 						
 			var start = new Date().getTime();
 			dojo.parser.parse(dojo.byId('container'));
@@ -417,11 +421,18 @@ hr.spacer {
 
 <!-- start image zone -->
 <center>
-<div id="page" style="width:100%;height:100%;border: 1px solid #000;overflow: scroll;margin: 0 auto;">
-	
+<table>
+<tr>
+<td valign="middle" align="center">
+<div id="page">
+ <div>
 	<img src="/PDFViewer/cache/a85e9a0a2514a51e678dcfa853d332cf7a0aa51e/a85e9a0a2514a51e678dcfa853d332cf7a0aa51e1.png"/>
-		
+ </div>		
 </div>
+
+</td>
+</tr>
+</table>
 </center>
 <!-- end image zone -->
 	
