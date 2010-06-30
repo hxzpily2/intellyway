@@ -94,8 +94,8 @@ class PDFAJAXViewer{
 		$classpath .= ResourceBundle::get('pdfviewer.absolute.path.base')."/bin/jar/lucene-core-3.0.2.jar;";
 		$classpath .= ResourceBundle::get('pdfviewer.absolute.path.base')."/bin/jar/pdfbox-1.1.0.jar";
 		
-		$pagerel = ResourceBundle::get('pdfviewer.relatif.path.base')."/cache/".PDFAJAXViewer::getForlderName($_SESSION['DOCUMENT'])."/".PDFAJAXViewer::getForlderName($_SESSION['DOCUMENT']);
-		$pageabs = ResourceBundle::get('pdfviewer.absolute.path.base')."/cache/".PDFAJAXViewer::getForlderName($_SESSION['DOCUMENT'])."/".PDFAJAXViewer::getForlderName($_SESSION['DOCUMENT']);
+		$pagerel = ResourceBundle::get('pdfviewer.relatif.path.base')."/cache/".PDFAJAXViewer::getForlderName($_SESSION['DOCUMENT'])."/".PDFAJAXViewer::getForlderName($_SESSION['DOCUMENT']).$resolution;
+		$pageabs = ResourceBundle::get('pdfviewer.absolute.path.base')."/cache/".PDFAJAXViewer::getForlderName($_SESSION['DOCUMENT'])."/".PDFAJAXViewer::getForlderName($_SESSION['DOCUMENT']).$resolution;
 		PDFAJAXViewer::$CURRENTPAGE = $pagerel;
 		
 		if(!file_exists($pageabs.$page.".png")){			
