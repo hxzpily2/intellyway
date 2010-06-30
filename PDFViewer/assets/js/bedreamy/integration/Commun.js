@@ -64,20 +64,29 @@ dojo.declare("bedreamy.integration.Commun",[],{
 		
     },
     
-    nextPage : function (url,resolution,assets){
-    	var page = parseInt(dojo.byId('numPage').value);    	
+    nextPage : function (url,assets){
+    	var page = parseInt(dojo.byId('numPage').value);
+    	var resolution = parseInt(dojo.byId('zoom').value);
     	if(page+1<=parseInt(dojo.byId('maxPage').value)){
     		this.getPage(url, page+1, resolution,assets);
     	}	        	
     },
     
-    previousPage : function (url,resolution,assets){   	
-    	var page = parseInt(dojo.byId('numPage').value);    	
+    previousPage : function (url,assets){   	
+    	var page = parseInt(dojo.byId('numPage').value);
+    	var resolution = parseInt(dojo.byId('zoom').value);
     	if(page-1>=1){
     		this.getPage(url, page-1, resolution,assets);    		
     	}
-    }
+    },
     
+    changeResolution : function (resolution,url,assets){
+    	dojo.byId('zoom').value = resolution;
+    	dijit.byId('zoomhtml').setLabel(resolution+"%");    	
+    	var page = parseInt(dojo.byId('numPage').value);
+    	var resolution = parseInt(dojo.byId('zoom').value);
+    	this.getPage(url, page, resolution,assets);
+    }   
     
  
 });

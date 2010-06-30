@@ -365,27 +365,27 @@ hr.spacer {
 	<div dojoType="dijit.form.Button" id="toolbar1.zoomin"
 		iconClass="dijitEditorIcon dijitEditorIconZoomIn" showLabel="false"></div>
 		
-	<button dojoType="dijit.form.DropDownButton" >
-		<span id="zoomhtml">100%</span>
+	<input type="hidden" id="zoom" value="100"/>	
+	<button id="zoomhtml" dojoType="dijit.form.DropDownButton" label="100%">	
 		<div dojoType="dijit.Menu" id="editMenu2" style="display: none;">
 			<div dojoType="dijit.MenuItem"				
-				onClick="console.debug('not actually cutting anything, just a test!')">
+				onClick="javascript:commun.changeResolution(100,'<?php echo ResourceBundle::get('pdfviewer.relatif.path.base')."/copix/bedreamy/action/action.class.php" ?>','<?php echo $assets; ?>')">
 				100%
 			</div>
 			<div dojoType="dijit.MenuItem"				 
-				onClick="console.debug('not actually copying anything, just a test!')">
+				onClick="javascript:commun.changeResolution(80,'<?php echo ResourceBundle::get('pdfviewer.relatif.path.base')."/copix/bedreamy/action/action.class.php" ?>','<?php echo $assets; ?>')">
 				80%
 			</div>
 			<div dojoType="dijit.MenuItem"				 
-				onClick="console.debug('not actually pasting anything, just a test!')">
+				onClick="javascript:commun.changeResolution(60,'<?php echo ResourceBundle::get('pdfviewer.relatif.path.base')."/copix/bedreamy/action/action.class.php" ?>','<?php echo $assets; ?>')">
 				60%
 			</div>
 			<div dojoType="dijit.MenuItem"				 
-				onClick="console.debug('not actually pasting anything, just a test!')">
+				onClick="javascript:commun.changeResolution(40,'<?php echo ResourceBundle::get('pdfviewer.relatif.path.base')."/copix/bedreamy/action/action.class.php" ?>','<?php echo $assets; ?>')">
 				40%
 			</div>
 			<div dojoType="dijit.MenuItem"				 
-				onClick="console.debug('not actually pasting anything, just a test!')">
+				onClick="javascript:commun.changeResolution(20,'<?php echo ResourceBundle::get('pdfviewer.relatif.path.base')."/copix/bedreamy/action/action.class.php" ?>','<?php echo $assets; ?>')">
 				20%
 			</div>
 		</div>
@@ -393,13 +393,13 @@ hr.spacer {
 	
 	<div dojoType="dijit.form.Button" id="toolbar1.sepa1"
 		iconClass="dijitEditorIcon dijitEditorIconSepa" showLabel="false" disabled></div>	
-	<div onclick="javascript:commun.previousPage('<?php echo ResourceBundle::get('pdfviewer.relatif.path.base')."/copix/bedreamy/action/action.class.php" ?>','100','<?php echo $assets ?>')" dojoType="dijit.form.Button" id="toolbar1.previous"
+	<div onclick="javascript:commun.previousPage('<?php echo ResourceBundle::get('pdfviewer.relatif.path.base')."/copix/bedreamy/action/action.class.php" ?>','<?php echo $assets ?>')" dojoType="dijit.form.Button" id="toolbar1.previous"
 		iconClass="dijitEditorIcon dijitEditorIconPreviousPage" showLabel="false"></div>
 	<input style="width: 30px;" value="1" dojoType=dijit.form.TextBox type="text" id="numPage" name="numPage" >
 	<input type="hidden" id="maxPage" value="<?php echo PDFAJAXViewer::$NBPAGES ?>"/> 
 	<input dojoType=dijit.form.TextBox style="width: 30px;" value="/<?php echo PDFAJAXViewer::$NBPAGES ?>" type="text" disabled>	
 		
-	<div onclick="javascript:commun.nextPage('<?php echo ResourceBundle::get('pdfviewer.relatif.path.base')."/copix/bedreamy/action/action.class.php" ?>','100','<?php echo $assets ?>')" dojoType="dijit.form.Button" id="toolbar1.next"
+	<div onclick="javascript:commun.nextPage('<?php echo ResourceBundle::get('pdfviewer.relatif.path.base')."/copix/bedreamy/action/action.class.php" ?>','<?php echo $assets ?>')" dojoType="dijit.form.Button" id="toolbar1.next"
 		iconClass="dijitEditorIcon dijitEditorIconNextPage" showLabel="false"></div>
 		
 	<div dojoType="dijit.form.Button" id="toolbar1.sepa2"
