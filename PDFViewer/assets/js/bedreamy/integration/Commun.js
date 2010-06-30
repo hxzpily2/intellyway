@@ -74,8 +74,7 @@ dojo.declare("bedreamy.integration.Commun",[],{
     previousPage : function (url,resolution,assets){   	
     	var page = parseInt(dojo.byId('numPage').value);    	
     	if(page-1>=1){
-    		this.getPage(url, page, resolution,assets);
-    		dojo.byId('numPage').value=page;
+    		this.getPage(url, page-1, resolution,assets);    		
     	}
     }
     
