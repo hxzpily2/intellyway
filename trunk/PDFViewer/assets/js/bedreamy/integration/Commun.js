@@ -86,7 +86,19 @@ dojo.declare("bedreamy.integration.Commun",[],{
     	var page = parseInt(dojo.byId('numPage').value);
     	var resolution = parseInt(dojo.byId('zoom').value);
     	this.getPage(url, page, resolution,assets);
-    }   
+    },
+    
+    keydownPage : function (url,assets,maxPage){
+    	try{
+    		var resolution = parseInt(dojo.byId('zoom').value);
+    		var page = parseInt(dojo.byId('numPage').value);
+    		
+    		if(!isNaN(parseInt(dojo.byId('numPage').value)))
+    			this.getPage(url, page, resolution,assets);
+    	}catch(err){
+    		
+    	}    		
+    }    
     
  
 });
