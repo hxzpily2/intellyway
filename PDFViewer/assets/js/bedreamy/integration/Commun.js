@@ -100,21 +100,37 @@ dojo.declare("bedreamy.integration.Commun",[],{
     	}    		
     },   
     
-    zoomIn : function (resolution,url,assets){
+    zoomIn : function (url,assets){
     	var resolution = parseInt(dojo.byId('zoom').value);    	
-    	dojo.byId('zoom').value = resolution;
-    	dijit.byId('zoomhtml').setLabel(resolution+"%");    	
-    	var page = parseInt(dojo.byId('numPage').value);
-    	var resolution = parseInt(dojo.byId('zoom').value);
-    	this.getPage(url, page, resolution,assets);
+    	if(resolution<100){
+    		resolution+=20;
+    		dojo.byId('zoom').value = resolution;
+        	dijit.byId('zoomhtml').setLabel(resolution+"%");    	
+        	var page = parseInt(dojo.byId('numPage').value);    	
+        	this.getPage(url, page, resolution,assets);
+    	}	
+    	
     },	
  
-    zoomOut : function (resolution,url,assets){
+    zoomOut : function (url,assets){
     	var resolution = parseInt(dojo.byId('zoom').value);
-    	dojo.byId('zoom').value = resolution;
-    	dijit.byId('zoomhtml').setLabel(resolution+"%");    	
-    	var page = parseInt(dojo.byId('numPage').value);
-    	var resolution = parseInt(dojo.byId('zoom').value);
-    	this.getPage(url, page, resolution,assets);
-    }
+    	if(resolution>20){
+    		resolution-=20;
+    		dojo.byId('zoom').value = resolution;
+        	dijit.byId('zoomhtml').setLabel(resolution+"%");    	
+        	var page = parseInt(dojo.byId('numPage').value);    	
+        	this.getPage(url, page, resolution,assets);
+    	}	
+    	
+    },
+    
+    fullScreen : function (){
+    
+    
+    },
+    
+    restoreScreen : function(){
+    
+    
+    }	
 });
