@@ -99,7 +99,10 @@ public class PDFGetBookmarks {
 				String titre = document.getDocumentInformation().getTitle();
 				String auteur = document.getDocumentInformation().getAuthor();	
 				SimpleDateFormat  simpleFormat = new SimpleDateFormat("dd/MM/yyyy");
-				String dateCreation = simpleFormat.format( new Date(document.getDocumentInformation().getCreationDate().getTime().getTime()) );				
+				String dateCreation = null;
+				if(document.getDocumentInformation().getCreationDate()!=null)
+					dateCreation = simpleFormat.format( new Date(document.getDocumentInformation().getCreationDate().getTime().getTime()) );
+				
 				String sujet = document.getDocumentInformation().getSubject();
 				
 				String info = "";
