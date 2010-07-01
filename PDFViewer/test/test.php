@@ -109,7 +109,8 @@ hr.spacer {
 		dojo.require("dijit.form.Button");
 		dojo.require("dijit.InlineEditBox");
 		dojo.require("dijit.form.NumberSpinner");
-
+		dojo.require("dijit.form.ValidationTextBox");
+		
 		dojo.require("dijit.form.VerticalSlider");
 		dojo.require("dijit.form.VerticalRuleLabels");
 		dojo.require("dijit.form.VerticalRule");
@@ -227,6 +228,13 @@ hr.spacer {
 					' - by: '+theme.author+' <br>';
 				
 			});
+
+			dojo.connect(dijit.byId("numPage"), "onKeyPress", function(event){
+	            if(event.keyCode==13){
+		            commun.keydownPage('<?php echo ResourceBundle::get('pdfviewer.relatif.path.base')."/copix/bedreamy/action/action.class.php" ?>','<?php echo $assets ?>',<?php echo PDFAJAXViewer::$NBPAGES ?>);
+	            }
+	        });
+				
 			
 		});
 
@@ -330,8 +338,9 @@ hr.spacer {
                     "noteIcon";
 	</script> 
 	<script type="dojo/method" event="onClick" args="item">
-			console.log("Execute of node " + this.model.getLabel(item)
-				+", population=" + continentStore.getValue(item, "population"));
+			commun.getPage('<?php echo ResourceBundle::get('pdfviewer.relatif.path.base')."/copix/bedreamy/action/action.class.php" ?>',parseInt(continentStore.getValue(item, "page"))+1,parseInt(dojo.byId('zoom').value),'<?php echo $assets; ?>');
+			/*console.log("Execute of node " + this.model.getLabel(item)
+				+", population=" + continentStore.getValue(item, "page"));*/
 	</script>
 </div>
 
@@ -397,7 +406,7 @@ hr.spacer {
 		iconClass="dijitEditorIcon dijitEditorIconSepa" showLabel="false" disabled></div>	
 	<div onclick="javascript:commun.previousPage('<?php echo ResourceBundle::get('pdfviewer.relatif.path.base')."/copix/bedreamy/action/action.class.php" ?>','<?php echo $assets ?>')" dojoType="dijit.form.Button" id="toolbar1.previous"
 		iconClass="dijitEditorIcon dijitEditorIconPreviousPage" showLabel="false"></div>
-	<input style="width: 30px;" value="1" dojoType=dijit.form.TextBox type="text" id="numPage" name="numPage" >
+	<input style="width: 30px;" value="1" regExp="\d" dojoType=dijit.form.NumberTextBox type="text" id="numPage" name="numPage" >
 	<input type="hidden" id="maxPage" value="<?php echo PDFAJAXViewer::$NBPAGES ?>"/> 
 	<input dojoType=dijit.form.TextBox style="width: 30px;" value="/<?php echo PDFAJAXViewer::$NBPAGES ?>" type="text" disabled>	
 		
