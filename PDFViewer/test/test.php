@@ -371,9 +371,9 @@ hr.spacer {
 	
 	<div dojoType="dijit.form.Button" id="toolbar1.sepa"
 		iconClass="dijitEditorIcon dijitEditorIconSepa" showLabel="false" disabled></div>	
-	<div dojoType="dijit.form.Button" id="toolbar1.zoomout"
+	<div onclick="javascript:commun.zoomOut('<?php echo ResourceBundle::get('pdfviewer.relatif.path.base')."/copix/bedreamy/action/action.class.php" ?>','<?php echo $assets; ?>')" dojoType="dijit.form.Button" id="toolbar1.zoomout"
 		iconClass="dijitEditorIcon dijitEditorIconZoomOut" showLabel="false"></div>
-	<div dojoType="dijit.form.Button" id="toolbar1.zoomin"
+	<div onclick="javascript:commun.zoomIn('<?php echo ResourceBundle::get('pdfviewer.relatif.path.base')."/copix/bedreamy/action/action.class.php" ?>','<?php echo $assets; ?>')" dojoType="dijit.form.Button" id="toolbar1.zoomin"
 		iconClass="dijitEditorIcon dijitEditorIconZoomIn" showLabel="false"></div>
 		
 	<input type="hidden" id="zoom" value="100"/>	
