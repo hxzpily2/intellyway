@@ -68,11 +68,11 @@ class PDFAJAXViewer{
 			PDFAJAXViewer::$INFOBASEURLXML = ResourceBundle::get('pdfviewer.absolute.path.base')."/cache/".PDFAJAXViewer::getForlderName($pdfURL)."/".PDFAJAXViewer::INFORMATIONFILE.".xml";
 			if(file_exists($cacheDirectory)){
 				if(!file_exists($jsonFile) || !file_exists($jsonInfoFile)){
-					exec("java -classpath $classpath com.bedreamy.base.PDFGetBookmarks $pdfURL -destination $jsonFile -destinationInfo $jsonInfoFile");
+					exec("java -classpath $classpath com.bedreamy.base.PDFGetBookmarks \"$pdfURL\" -destination $jsonFile -destinationInfo $jsonInfoFile");
 				}				
 			}else{								
 				mkdir($cacheDirectory,0777);
-				exec("java -classpath $classpath com.bedreamy.base.PDFGetBookmarks $pdfURL -destination $jsonFile -destinationInfo $jsonInfoFile");				 	
+				exec("java -classpath $classpath com.bedreamy.base.PDFGetBookmarks \"$pdfURL\" -destination $jsonFile -destinationInfo $jsonInfoFile");				 	
 			}
 			PDFAJAXViewer::getNbPages();					
 		}else{
@@ -101,7 +101,7 @@ class PDFAJAXViewer{
 			mkdir($cacheDirectory,0777);
 		}
 		if(!file_exists($pageabs.$page.".png")){			
-			exec("java -classpath $classpath com.bedreamy.base.PDFToImage ".$_SESSION['DOCUMENT']." -imageType png  -startPage $page -endPage $page -resolution $resolution -outputPrefix $pageabs");
+			exec("java -classpath $classpath com.bedreamy.base.PDFToImage \"".$_SESSION['DOCUMENT']."\" -imageType png  -startPage $page -endPage $page -resolution $resolution -outputPrefix $pageabs");
 		}		
 		return $pagerel.$page.".png";
 	}
