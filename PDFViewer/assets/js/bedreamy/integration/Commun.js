@@ -98,7 +98,23 @@ dojo.declare("bedreamy.integration.Commun",[],{
     	}catch(err){
     		
     	}    		
-    }    
+    },   
     
+    zoomIn : function (resolution,url,assets){
+    	var resolution = parseInt(dojo.byId('zoom').value);    	
+    	dojo.byId('zoom').value = resolution;
+    	dijit.byId('zoomhtml').setLabel(resolution+"%");    	
+    	var page = parseInt(dojo.byId('numPage').value);
+    	var resolution = parseInt(dojo.byId('zoom').value);
+    	this.getPage(url, page, resolution,assets);
+    },	
  
+    zoomOut : function (resolution,url,assets){
+    	var resolution = parseInt(dojo.byId('zoom').value);
+    	dojo.byId('zoom').value = resolution;
+    	dijit.byId('zoomhtml').setLabel(resolution+"%");    	
+    	var page = parseInt(dojo.byId('numPage').value);
+    	var resolution = parseInt(dojo.byId('zoom').value);
+    	this.getPage(url, page, resolution,assets);
+    }
 });
