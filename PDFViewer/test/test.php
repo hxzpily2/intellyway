@@ -187,6 +187,8 @@ hr.spacer {
 
 		dojo.addOnLoad(function() {
 
+			
+			
 			$("#page").scrollview({
 			    grab:"<?php echo ResourceBundle::get('pdfviewer.path.assets') ?>/js/scroller/images/openhand.cur",
 			    grabbing:"<?php echo ResourceBundle::get('pdfviewer.path.assets') ?>/js/scroller/images/closedhand.cur"
@@ -235,7 +237,7 @@ hr.spacer {
 	            }
 	        });
 				
-			
+			dojo.byId("pageContent").style.overflow = "hidden";
 		});
 
 		function logStrayGlobals(){
@@ -315,13 +317,19 @@ hr.spacer {
 
 
 <div id="main" dojoType="dijit.layout.BorderContainer"
-	liveSplitters="false" design="sidebar">
+	gutters="true">
+
+<!-- <div dojoType="dijit.layout.ContentPane" region="top" splitter="false">
+        header
+    </div>  -->
+    
+<!-- <div dojoType="dijit.layout.ContentPane" region="bottom" splitter="false">
+        footer
+    </div>  -->
 
 
 
-
-
-<div dojoType="dijit.layout.AccordionContainer" minSize="20"
+<div id="containerBookmark" dojoType="dijit.layout.AccordionContainer" minSize="20"
 	style="width: 300px;" id="leftAccordion" region="leading"
 	splitter="true">
 
@@ -352,12 +360,12 @@ hr.spacer {
 <!-- end AccordionContainer -->
 
 
-<div dojoType="dijit.layout.AccordionContainer" minSize="20"
-	region="center" id="topTabs">
+<div id="containerPage" dojoType="dijit.layout.AccordionContainer" minSize="20"
+	region="center" id="topTabs" >
 
 
 
-<div style="padding: 0;" dojoType="dijit.layout.ContentPane"
+<div id="pageContent" style="padding: 0;overflow: hidden;" dojoType="dijit.layout.ContentPane"
 	title="Titre">
 	<span dojoType="dijit.Declaration"
 	widgetClass="ToolbarSectionStart" defaults="{ label: 'Label'}"> <span
@@ -366,7 +374,7 @@ hr.spacer {
 <div id="toolbar1" dojoType="dijit.Toolbar">	
 	<div dojoType="dijit.form.Button" id="toolbar1.cut"
 		iconClass="dijitEditorIcon dijitEditorIconRestaure" showLabel="false"></div>
-	<div dojoType="dijit.form.Button" id="toolbar1.copy"
+	<div onclick="commun.fullScreen()" dojoType="dijit.form.Button" id="toolbar1.copy"
 		iconClass="dijitEditorIcon dijitEditorIconFull" showLabel="false"></div>
 	
 	<div dojoType="dijit.form.Button" id="toolbar1.sepa"
@@ -433,10 +441,10 @@ hr.spacer {
 
 <!-- start image zone -->
 <center>
-<table>
+<table style="overflow: scroll;">
 <tr>
 <td valign="middle" align="center">
-<div id="page">
+<div id="page" style="overflow: scroll;">
  <div>
 	<img src="<?php echo $img ?>"/>
  </div>		
