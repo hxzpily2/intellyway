@@ -124,9 +124,13 @@ dojo.declare("bedreamy.integration.Commun",[],{
     	
     },
     
-    fullScreen : function (){
-    
-    
+    fullScreen : function (url){ 
+    	/*dojo.byId("containerBookmark").style.display = "none";
+    	dojo.byId("containerPage").style.width="100%";
+    	dijit.byId("containerPage").resize();*/
+    	window.open(url, '', 'fullscreen=yes, scrollbars=auto');
+
+
     },
     
     restoreScreen : function(){
