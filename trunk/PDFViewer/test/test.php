@@ -374,7 +374,7 @@ hr.spacer {
 <div id="toolbar1" dojoType="dijit.Toolbar">	
 	<div dojoType="dijit.form.Button" id="toolbar1.cut"
 		iconClass="dijitEditorIcon dijitEditorIconRestaure" showLabel="false"></div>
-	<div onclick="commun.fullScreen()" dojoType="dijit.form.Button" id="toolbar1.copy"
+	<div onclick="commun.fullScreen('<?php echo ResourceBundle::get('pdfviewer.relatif.path.base')."/test/test.php" ;?>')" dojoType="dijit.form.Button" id="toolbar1.copy"
 		iconClass="dijitEditorIcon dijitEditorIconFull" showLabel="false"></div>
 	
 	<div dojoType="dijit.form.Button" id="toolbar1.sepa"
