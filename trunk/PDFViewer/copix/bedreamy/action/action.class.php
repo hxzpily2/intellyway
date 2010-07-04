@@ -15,4 +15,8 @@ $action = new ApplicationAction();
 if(isset($_GET['request']) && $_GET['request']=='getpage'){
 	echo ApplicationAction::executeGeneratepage($_GET);
 }
+
+else if(isset($_GET['request']) && $_GET['request']=='fullscreen'){
+	echo ApplicationAction::executeGeneratepage($_GET);
+}
 ?>
