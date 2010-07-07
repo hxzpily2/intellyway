@@ -1,5 +1,5 @@
 <?php 
-require_once dirname(__FILE__).'/../copix/copix.inc.php';
+require_once dirname(__FILE__).'/../copix/bedreamy/PDFAJAXViewer.class.php';
 ?>
 <head>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
@@ -46,7 +46,7 @@ $img = PDFAJAXViewer::generatePage(1,PDFAJAXViewer::$DEFAULT_RESOL);
 	background: #ededed;
 	z-index: 999;
 	vertical-align: middle;
-	-moz-opacity: 0.8;
+	-moz-opacity: 1.0;
 	opacity: 1.0;
 	filter: alpha(opacity = 100;
 }
