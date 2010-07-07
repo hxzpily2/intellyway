@@ -1,4 +1,6 @@
 <?php
+require_once dirname(__FILE__).'/../copix.inc.php';
+
 class PDFAJAXViewer{
 	
 	const FILENOTFOUND = "FILENOTFOUND";
@@ -8,6 +10,15 @@ class PDFAJAXViewer{
 	const SESSION_DOCUMENT = "SESSION_DOCUMENT";
 	const SESSION_PAGE = "SESSION_PAGE";
 	const SESSION_RESOLUTION = "SESSION_RESOLUTION";
+	
+	const BUTTON_FULLSCREEN = "BUTTON_FULLSCREEN";
+	const BUTTON_RESTORESCREEN = "BUTTON_FULLSCREEN";
+	const BUTTON_ZOOMOUT = "BUTTON_FULLSCREEN";
+	const BUTTON_ZOOMIN = "BUTTON_FULLSCREEN";
+	const BUTTON_NAVIGATION = "BUTTON_FULLSCREEN";
+	const BUTTON_SEARCH = "BUTTON_FULLSCREEN";
+	const BUTTON_ISSINGNED = "BUTTON_FULLSCREEN";
+	const BUTTON_PRINT = "BUTTON_FULLSCREEN";
 	
 	static $DOCUMENT = "";
 	static $INFOURL = "";
@@ -19,8 +30,11 @@ class PDFAJAXViewer{
 	static $DEFAULT_RESOL = "100";
 	static $UNIQUENAME = "";
 	
-	public static function showViewer(){
-		return "test";
+	public static function showViewer($file){
+		PDFAJAXViewer::includeDOJO();
+		PDFAJAXViewer::getBookmarkJSON($file);
+		$assets = ResourceBundle::get('pdfviewer.path.assets');
+		$img = PDFAJAXViewer::generatePage(1,PDFAJAXViewer::$DEFAULT_RESOL);
 	}
 	
 	public static function includeDOJO(){
