@@ -13,6 +13,9 @@ import java.util.List;
 import java.util.TreeSet;
 import java.util.Vector;
 
+import org.apache.pdfbox.cos.COSArray;
+import org.apache.pdfbox.cos.COSDictionary;
+import org.apache.pdfbox.cos.COSName;
 import org.apache.pdfbox.exceptions.InvalidPasswordException;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.interactive.documentnavigation.outline.PDDocumentOutline;
@@ -115,12 +118,32 @@ public class PDFGetBookmarks {
 				sortieInfo.write(info);
 				sortieInfo.close();				
 				
+				boolean isSigned = false;
+				
+				
+			    COSDictionary trailer = document.getDocument().getTrailer();
+			    COSDictionary racine = (COSDictionary) trailer.getDictionaryObject(COSName.ROOT);
+			    COSDictionary acroForm = (COSDictionary) racine.getDictionaryObject(COSName.getPDFName("AcroForm"));
+			    if (null != acroForm) {
+			      COSArray fields = (COSArray) acroForm.getDictionaryObject(COSName.getPDFName("Fields"));
+			      for (int i = 0; i < fields.size(); i++) {
+			        COSDictionary field = (COSDictionary) fields.getObject(i);
+			        String type = field.getNameAsString("FT");
+			        if ("Sig".equals(type)) {
+			        	isSigned = true;
+			        	break;
+			        }
+			      }
+			    }
+				
+				
 				sortieInfo = new FileWriter(destinationInfo+".xml");
 				String xml = "<document>";
 				xml+="<pages>"+nbPages+"</pages>";
 				xml+="<titre>"+titre+"</titre>";
 				xml+="<date>"+dateCreation+"</date>";
 				xml+="<sujet>"+sujet+"</sujet>";
+				xml+="<issigned>"+isSigned+"</issigned>";
 				xml+= "</document>";
 				sortieInfo.write(xml);
 				sortieInfo.close();
