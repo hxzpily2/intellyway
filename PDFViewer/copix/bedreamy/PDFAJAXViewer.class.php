@@ -26,6 +26,7 @@ class PDFAJAXViewer{
 	static $INFOBASEURLJSON = "";
 	static $INFOBASEURLXML = "";
 	static $NBPAGES = "";
+	static $ISSIGNED = "";
 	static $CURRENTPAGE = "";
 	static $DEFAULT_RESOL = "100";
 	static $UNIQUENAME = "";
@@ -148,6 +149,17 @@ class PDFAJAXViewer{
 				break;
 			}
 		}		
+	}
+	
+	public static function isSigned(){		
+		$xml = simplexml_load_file(PDFAJAXViewer::$INFOBASEURLXML);
+		foreach($xml as $nom=>$elem) {
+			if($nom="issigned"){
+				PDFAJAXViewer::$ISSIGNED = $elem;
+				return $elem;
+			}
+		}
+		return "";		
 	}
 }
 ?>
