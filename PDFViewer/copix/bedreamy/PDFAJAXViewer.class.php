@@ -100,7 +100,7 @@ class PDFAJAXViewer {
 		$data .= "<div id='toolbar1' dojoType='dijit.Toolbar'>";
 		// button restore screen			
 		if ($params [PDFAJAXViewer::BUTTON_RESTORESCREEN] == TRUE) {
-			$data .= "<div dojoType='dijit.form.Button' id='toolbar1.cut'
+			$data .= "<div onclick=\"commun.restoreScreen()\" dojoType='dijit.form.Button' id='toolbar1.cut'
 					iconClass='dijitEditorIcon dijitEditorIconRestaure' showLabel='false'></div>";
 		}
 		// button fullscreen

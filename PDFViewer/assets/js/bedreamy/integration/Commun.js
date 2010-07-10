@@ -134,7 +134,8 @@ dojo.declare("bedreamy.integration.Commun",[],{
     },
     
     restoreScreen : function(){
-    
-    
+    	if(dojo.byId("mode").value=="fullscreen"){
+    		window.close();
+    	}    
     }	
 });
