@@ -10,15 +10,17 @@ class PDFAJAXViewer{
 	const SESSION_DOCUMENT = "SESSION_DOCUMENT";
 	const SESSION_PAGE = "SESSION_PAGE";
 	const SESSION_RESOLUTION = "SESSION_RESOLUTION";
+	const SESSION_PARAMS = "SESSION_PARAMS";
 	
 	const BUTTON_FULLSCREEN = "BUTTON_FULLSCREEN";
-	const BUTTON_RESTORESCREEN = "BUTTON_FULLSCREEN";
-	const BUTTON_ZOOMOUT = "BUTTON_FULLSCREEN";
-	const BUTTON_ZOOMIN = "BUTTON_FULLSCREEN";
-	const BUTTON_NAVIGATION = "BUTTON_FULLSCREEN";
-	const BUTTON_SEARCH = "BUTTON_FULLSCREEN";
-	const BUTTON_ISSINGNED = "BUTTON_FULLSCREEN";
-	const BUTTON_PRINT = "BUTTON_FULLSCREEN";
+	const BUTTON_RESTORESCREEN = "BUTTON_RESTORESCREEN";
+	const BUTTON_ZOOM = "BUTTON_ZOOMOUT";
+	const BUTTON_NAVIGATION = "BUTTON_NAVIGATION";
+	const BUTTON_SEARCH = "BUTTON_SEARCH";
+	const BUTTON_ISSINGNED = "BUTTON_ISSINGNED";
+	const BUTTON_PRINT = "BUTTON_PRINT";
+	const BUTTON_INFO = "BUTTON_INFO";
+	const TREE_BOOKMARK = "TREE_BOOKMARK";
 	
 	static $DOCUMENT = "";
 	static $INFOURL = "";
@@ -39,7 +41,9 @@ class PDFAJAXViewer{
 	
 	}
 	
-	public static function getContent(){
+	public static function getContent(){		
+		$params = $_SESSION[PDFAJAXViewer::SESSION_PARAMS];
+		
 		$data =  "<body class='claro'>".
 			"<div id='loader'><!-- <div id='loaderInner' style='direction: ltr;'>Loading theme Tester ...</div>  -->
 			<table width='100%' height='100%'>
@@ -61,6 +65,7 @@ class PDFAJAXViewer{
 			gutters='true'>";
 			////header ici
 			////footer ici
+		if($params[PDFAJAXViewer::TREE_BOOKMARK]==TRUE){
 			$data.="<div id='containerBookmark' dojoType='dijit.layout.AccordionContainer' minSize='20'
 			style='width: 300px;' id='leftAccordion' region='leading'
 			splitter='true'>".
@@ -80,7 +85,7 @@ class PDFAJAXViewer{
 					
 			</script>
 			</div></div></div>";
-			
+		}	
 			///PDFViewer
 			$data.="
 			<div id='containerPage' dojoType='dijit.layout.AccordionContainer' minSize='20'
@@ -93,21 +98,30 @@ class PDFAJAXViewer{
 			
 			////Toolbar
 			$data.="<div id='toolbar1' dojoType='dijit.Toolbar'>";	
-			// button restore screen
-			$data.="<div dojoType='dijit.form.Button' id='toolbar1.cut'
-				iconClass='dijitEditorIcon dijitEditorIconRestaure' showLabel='false'></div>";
+			// button restore screen			
+			if($params[PDFAJAXViewer::BUTTON_RESTORESCREEN]==TRUE){
+				$data.="<div dojoType='dijit.form.Button' id='toolbar1.cut'
+					iconClass='dijitEditorIcon dijitEditorIconRestaure' showLabel='false'></div>";
+			}
 			// button fullscreen
-			$data.="<div onclick=\"commun.fullScreen('".ResourceBundle::get('pdfviewer.relatif.path.base')."/test/test.php')\" dojoType='dijit.form.Button' id='toolbar1.copy'
-				iconClass='dijitEditorIcon dijitEditorIconFull' showLabel='false'></div>";
+			if($params[PDFAJAXViewer::BUTTON_FULLSCREEN]==TRUE){
+				$data.="<div onclick=\"commun.fullScreen('".ResourceBundle::get('pdfviewer.relatif.path.base')."/test/test.php')\" dojoType='dijit.form.Button' id='toolbar1.copy'
+					iconClass='dijitEditorIcon dijitEditorIconFull' showLabel='false'></div>";
+			}
+			if($params[PDFAJAXViewer::BUTTON_FULLSCREEN]==TRUE || $params[PDFAJAXViewer::BUTTON_RESTORESCREEN]==TRUE){
+				$data.="<div dojoType='dijit.form.Button' id='toolbar1.sepa'
+					iconClass='dijitEditorIcon dijitEditorIconSepa' showLabel='false' disabled></div>";
+			}
+			if($params[PDFAJAXViewer::BUTTON_ZOOM]==TRUE){	
+				$data.="<div onclick=\"javascript:commun.zoomOut('".ResourceBundle::get('pdfviewer.relatif.path.base')."/copix/bedreamy/action/action.class.php','".ResourceBundle::get('pdfviewer.path.assets')."')\" dojoType='dijit.form.Button' id='toolbar1.zoomout'
+					iconClass='dijitEditorIcon dijitEditorIconZoomOut' showLabel='false'></div>";
 			
-			$data.="<div dojoType='dijit.form.Button' id='toolbar1.sepa'
-				iconClass='dijitEditorIcon dijitEditorIconSepa' showLabel='false' disabled></div>";	
-			$data.="<div onclick=\"javascript:commun.zoomOut('".ResourceBundle::get('pdfviewer.relatif.path.base')."/copix/bedreamy/action/action.class.php','".ResourceBundle::get('pdfviewer.path.assets')."')\" dojoType='dijit.form.Button' id='toolbar1.zoomout'
-				iconClass='dijitEditorIcon dijitEditorIconZoomOut' showLabel='false'></div>";
-			$data.="<div onclick=\"javascript:commun.zoomIn('".ResourceBundle::get('pdfviewer.relatif.path.base')."/copix/bedreamy/action/action.class.php','".ResourceBundle::get('pdfviewer.path.assets')."')\" dojoType='dijit.form.Button' id='toolbar1.zoomin'
-				iconClass='dijitEditorIcon dijitEditorIconZoomIn' showLabel='false'></div>";
+		
+				$data.="<div onclick=\"javascript:commun.zoomIn('".ResourceBundle::get('pdfviewer.relatif.path.base')."/copix/bedreamy/action/action.class.php','".ResourceBundle::get('pdfviewer.path.assets')."')\" dojoType='dijit.form.Button' id='toolbar1.zoomin'
+					iconClass='dijitEditorIcon dijitEditorIconZoomIn' showLabel='false'></div>";
 				
-			$data.="<input type='hidden' id='zoom' value='100'/>";	
+			$data.="<input type='hidden' id='zoom' value='100'/>";
+				
 			$data.="<button id='zoomhtml' dojoType='dijit.form.DropDownButton' label='100%'>	
 				<div dojoType='dijit.Menu' id='editMenu2' style='display: none;'>
 					<div dojoType='dijit.MenuItem'				
@@ -134,7 +148,10 @@ class PDFAJAXViewer{
 			</button>";
 			
 			$data.="<div dojoType='dijit.form.Button' id='toolbar1.sepa1'
-				iconClass='dijitEditorIcon dijitEditorIconSepa' showLabel='false' disabled></div>";	
+				iconClass='dijitEditorIcon dijitEditorIconSepa' showLabel='false' disabled></div>";
+			}	
+			
+			if($params[PDFAJAXViewer::BUTTON_NAVIGATION]==TRUE){	
 			$data.="<div onclick=\"javascript:commun.previousPage('".ResourceBundle::get('pdfviewer.relatif.path.base')."/copix/bedreamy/action/action.class.php','".ResourceBundle::get('pdfviewer.path.assets')."')\" dojoType='dijit.form.Button' id='toolbar1.previous'
 				iconClass='dijitEditorIcon dijitEditorIconPreviousPage' showLabel='false'></div>";
 			$data.="<input style='width: 30px;' value='1' regExp='\d' dojoType=dijit.form.NumberTextBox type='text' id='numPage' name='numPage' >
@@ -146,20 +163,27 @@ class PDFAJAXViewer{
 				iconClass='dijitEditorIcon dijitEditorIconNextPage' showLabel='false'></div>";
 				
 			$data.="<div dojoType='dijit.form.Button' id='toolbar1.sepa2'
-				iconClass='dijitEditorIcon dijitEditorIconSepa' showLabel='false' disabled></div>";			
+				iconClass='dijitEditorIcon dijitEditorIconSepa' showLabel='false' disabled></div>";
+			}	
+			if($params[PDFAJAXViewer::BUTTON_PRINT]==TRUE){		
 			$data.="<div dojoType='dijit.form.Button' id='toolbar1.print'
-				iconClass='dijitEditorIcon dijitEditorIconPrintPage' showLabel='false'></div>";		
+				iconClass='dijitEditorIcon dijitEditorIconPrintPage' showLabel='false'></div>";
+			}
+			if($params[PDFAJAXViewer::BUTTON_SEARCH]==TRUE){		
 			$data.="<div dojoType='dijit.form.Button' id='toolbar1.search'
 				iconClass='dijitEditorIcon dijitEditorIconFindMot' showLabel='false'></div>";
-			$data.="<div id='isSignedDiv' enabled='false' dojoType='dijit.form.Button' id='toolbar1.issigned'
-				iconClass='dijitEditorIcon dijitEditorIconPdfIsSigned' showLabel='false' disabled></div>
-				<span position='below' dojoType='dijit.Tooltip' connectId='isSignedDiv' style='display:none;'>
-				Ce document est signé
-			</span>";	
-			
-			$data.="<div enabled='false' dojoType='dijit.form.Button' id='toolbar1.issigned'
+			}
+			if($params[PDFAJAXViewer::BUTTON_ISSINGNED]==TRUE && PDFAJAXViewer::isSigned()=="true"){
+				$data.="<div id='isSignedDiv' enabled='false' dojoType='dijit.form.Button' id='toolbar1.issigned'
+				iconClass='dijitEditorIcon dijitEditorIconPdfIsSigned' showLabel='false' disabled></div>";
+					$data.="<span position='below' dojoType='dijit.Tooltip' connectId='isSignedDiv' style='display:none;'>
+					Ce document est signé
+					</span>";				
+			}	
+			if($params[PDFAJAXViewer::BUTTON_INFO]==TRUE){
+			$data.="<div enabled='false' dojoType='dijit.form.Button' id='toolbar1.info'
 				iconClass='dijitEditorIcon dijitEditorIconInfoDoc' showLabel='false' onclick=\"javascript:commun.parseInfo('".PDFAJAXViewer::$INFOURL."')\" ></div>";		
-				
+			}	
 				
 		$data.="</div>";
 			
@@ -414,13 +438,20 @@ class PDFAJAXViewer{
 	
 	public static function isSigned(){		
 		$xml = simplexml_load_file(PDFAJAXViewer::$INFOBASEURLXML);
-		foreach($xml as $nom=>$elem) {
-			if($nom="issigned"){
+		foreach($xml as $nom=>$elem) {			
+			if($nom=="issigned"){
 				PDFAJAXViewer::$ISSIGNED = $elem;
 				return $elem;
 			}
 		}
 		return "";		
+	}
+	
+	
+	static $params = array();
+	public static function buttonToActivate($paramsIN){
+		PDFAJAXViewer::$params = $paramsIN;
+		$_SESSION[PDFAJAXViewer::SESSION_PARAMS] = $paramsIN;	
 	}
 }
 ?>
