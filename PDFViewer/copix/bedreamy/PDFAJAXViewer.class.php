@@ -244,7 +244,7 @@ class PDFAJAXViewer {
 				vertical-align: middle;
 				-moz-opacity: 1.0;
 				opacity: 1.0;
-				filter: alpha(opacity = 100;
+				filter: alpha(opacity = 100);
 			 }
 			
 			 #loaderInner {
