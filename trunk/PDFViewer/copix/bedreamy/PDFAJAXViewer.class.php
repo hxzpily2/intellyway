@@ -290,7 +290,9 @@ class PDFAJAXViewer {
 				
 			 dojo.byId('pageContent').style.overflow =  'hidden';
 		  });		
-		</script> " . "</head> ";
+		</script> " . "</head> ".
+		"<title>PDF Viewer</title>"
+		;
 	}
 	
 	public static function getBookmarkJSON($pdfURL) {
