@@ -36,13 +36,13 @@ class PDFAJAXViewer {
 	public static function showViewer($file) {
 		PDFAJAXViewer::getBookmarkJSON ( $file );
 		PDFAJAXViewer::includeDOJO ();
-		echo PDFAJAXViewer::getContent ();
+		echo PDFAJAXViewer::getContent ($file);
 		//echo CopixI18N::get('copix:copix.yes','fr');	
 	
 
 	}
 	
-	public static function getContent() {
+	public static function getContent($file) {
 		$params = $_SESSION [PDFAJAXViewer::SESSION_PARAMS];
 		
 		$data = "<body class='claro'>" . "<div id='loader'><!-- <div id='loaderInner' style='direction: ltr;'>Loading theme Tester ...</div>  -->
@@ -91,7 +91,7 @@ class PDFAJAXViewer {
 			<div id='containerPage' dojoType='dijit.layout.AccordionContainer' minSize='20'
 			region='center' id='topTabs' >
 			<div id='pageContent' style='padding: 0;overflow: hidden;' dojoType='dijit.layout.ContentPane'
-			title='Titre'>
+			title='".((PDFAJAXViewer::getTitle()=="null")?PDFAJAXViewer::getPDFNameFromURL($file):PDFAJAXViewer::getTitle())."'>
 			<span dojoType='dijit.Declaration'
 			widgetClass='ToolbarSectionStart' defaults=\"{ label: 'Label'}\"> <span
 			dojoType='dijit.ToolbarSeparator'></span><i>\${label}:</i> </span>";
@@ -384,6 +384,16 @@ class PDFAJAXViewer {
 		foreach ( $xml as $nom => $elem ) {
 			if ($nom == "issigned") {
 				PDFAJAXViewer::$ISSIGNED = $elem;
+				return $elem;
+			}
+		}
+		return "";
+	}
+	
+	public static function getTitle() {
+		$xml = simplexml_load_file ( PDFAJAXViewer::$INFOBASEURLXML );
+		foreach ( $xml as $nom => $elem ) {
+			if ($nom == "titre") {
 				return $elem;
 			}
 		}
