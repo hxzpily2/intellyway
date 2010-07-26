@@ -96,7 +96,7 @@ public class PDFGetBookmarks {
 				
 			    document.getDocumentCatalog().getPages().getAllKids(allpages);
 				PDDocumentOutline root = document.getDocumentCatalog().getDocumentOutline();
-				PDOutlineItem item = root.getFirstChild();
+				
 				
 				String nbPages = new Integer(allpages.size()).toString();
 				String titre = document.getDocumentInformation().getTitle();
@@ -148,17 +148,19 @@ public class PDFGetBookmarks {
 				sortieInfo.write(xml);
 				sortieInfo.close();
 				
-				while (item != null) {
-					BookmarkItem bookItem = new BookmarkItem();
-					bookItem.id = (count++).toString();
-					bookItem.name = item.getTitle();
-					bookItem.page = allpages.indexOf(item.findDestinationPage(document))+1;
-					bookItem.type = BookmarkItem.CHAPTER;
-					items.add(bookItem);
-					bookItem.children = getJsonTreeForChild(item,allpages,document);					
-					item = item.getNextSibling();
+				if(root!=null){
+					PDOutlineItem item = root.getFirstChild();
+					while (item != null) {
+						BookmarkItem bookItem = new BookmarkItem();
+						bookItem.id = (count++).toString();
+						bookItem.name = item.getTitle();
+						bookItem.page = allpages.indexOf(item.findDestinationPage(document))+1;
+						bookItem.type = BookmarkItem.CHAPTER;
+						items.add(bookItem);
+						bookItem.children = getJsonTreeForChild(item,allpages,document);					
+						item = item.getNextSibling();
+					}
 				}
-				
 				String json = "";
 				json+="{ identifier: 'id',\n"+
 					  "label: 'name',\n"+
