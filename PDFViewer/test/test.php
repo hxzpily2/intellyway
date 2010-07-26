@@ -14,7 +14,7 @@ $params = array(
 			);
 			
 PDFAJAXViewer::buttonToActivate($params);			
-PDFAJAXViewer::showViewer("C:/wamp/www/PDFViewer/pdf/oracle-10g-11g-data-and-database-management-utilities.9781847196286.47538.pdf");
+PDFAJAXViewer::showViewer("C:/test.pdf");
 
 
 ?>

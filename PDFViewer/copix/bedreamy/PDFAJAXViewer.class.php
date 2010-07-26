@@ -297,15 +297,15 @@ class PDFAJAXViewer {
 	
 	public static function getBookmarkJSON($pdfURL) {
 		$_SESSION [PDFAJAXViewer::SESSION_DOCUMENT] = $pdfURL;
-		$classpath = ResourceBundle::get ( 'pdfviewer.absolute.path.base' ) . "/bin/jar/pdfhandler.jar;";
-		$classpath .= ResourceBundle::get ( 'pdfviewer.absolute.path.base' ) . "/bin/jar/commons-logging.jar;";
-		$classpath .= ResourceBundle::get ( 'pdfviewer.absolute.path.base' ) . "/bin/jar/commons-logging-1.0.4.jar;";
-		$classpath .= ResourceBundle::get ( 'pdfviewer.absolute.path.base' ) . "/bin/jar/fontbox-1.1.0.jar;";
-		$classpath .= ResourceBundle::get ( 'pdfviewer.absolute.path.base' ) . "/bin/jar/jempbox-1.1.0.jar;";
-		$classpath .= ResourceBundle::get ( 'pdfviewer.absolute.path.base' ) . "/bin/jar/json_simple-1.1.jar;";
-		$classpath .= ResourceBundle::get ( 'pdfviewer.absolute.path.base' ) . "/bin/jar/log4j-1.2.15.jar;";
-		$classpath .= ResourceBundle::get ( 'pdfviewer.absolute.path.base' ) . "/bin/jar/lucene-core-3.0.2.jar;";
-		$classpath .= ResourceBundle::get ( 'pdfviewer.absolute.path.base' ) . "/bin/jar/pdfbox-1.1.0.jar";
+		$classpath = "\"".ResourceBundle::get ( 'pdfviewer.absolute.path.base' ) . "/bin/jar/pdfhandler.jar\";";
+		$classpath .= "\"".ResourceBundle::get ( 'pdfviewer.absolute.path.base' ) . "/bin/jar/commons-logging.jar\";";
+		$classpath .= "\"".ResourceBundle::get ( 'pdfviewer.absolute.path.base' ) . "/bin/jar/commons-logging-1.0.4.jar\";";
+		$classpath .= "\"".ResourceBundle::get ( 'pdfviewer.absolute.path.base' ) . "/bin/jar/fontbox-1.1.0.jar\";";
+		$classpath .= "\"".ResourceBundle::get ( 'pdfviewer.absolute.path.base' ) . "/bin/jar/jempbox-1.1.0.jar\";";
+		$classpath .= "\"".ResourceBundle::get ( 'pdfviewer.absolute.path.base' ) . "/bin/jar/json_simple-1.1.jar\";";
+		$classpath .= "\"".ResourceBundle::get ( 'pdfviewer.absolute.path.base' ) . "/bin/jar/log4j-1.2.15.jar\";";
+		$classpath .= "\"".ResourceBundle::get ( 'pdfviewer.absolute.path.base' ) . "/bin/jar/lucene-core-3.0.2.jar\";";
+		$classpath .= "\"".ResourceBundle::get ( 'pdfviewer.absolute.path.base' ) . "/bin/jar/pdfbox-1.1.0.jar\"";
 		
 		if (file_exists ( $pdfURL )) {
 			$cacheDirectory = ResourceBundle::get ( 'pdfviewer.absolute.path.base' ) . "/cache/" . PDFAJAXViewer::getForlderName ( $pdfURL );
@@ -317,11 +317,11 @@ class PDFAJAXViewer {
 			PDFAJAXViewer::$INFOBASEURLXML = ResourceBundle::get ( 'pdfviewer.absolute.path.base' ) . "/cache/" . PDFAJAXViewer::getForlderName ( $pdfURL ) . "/" . PDFAJAXViewer::INFORMATIONFILE . ".xml";
 			if (file_exists ( $cacheDirectory )) {
 				if (! file_exists ( $jsonFile ) || ! file_exists ( $jsonInfoFile )) {
-					exec ( "java -classpath $classpath com.bedreamy.base.PDFGetBookmarks \"$pdfURL\" -destination $jsonFile -destinationInfo $jsonInfoFile" );
+					exec ( "java -classpath $classpath com.bedreamy.base.PDFGetBookmarks \"$pdfURL\" -destination \"$jsonFile\" -destinationInfo \"$jsonInfoFile\"" );
 				}
 			} else {
 				mkdir ( $cacheDirectory, 0777 );
-				exec ( "java -classpath $classpath com.bedreamy.base.PDFGetBookmarks \"$pdfURL\" -destination $jsonFile -destinationInfo $jsonInfoFile" );
+				exec ( "java -classpath $classpath com.bedreamy.base.PDFGetBookmarks \"$pdfURL\" -destination \"$jsonFile\" -destinationInfo \"$jsonInfoFile\"" );
 			}
 			PDFAJAXViewer::getNbPages ();
 		} else {
@@ -334,15 +334,15 @@ class PDFAJAXViewer {
 		$_SESSION [PDFAJAXViewer::SESSION_PAGE] = $page;
 		$_SESSION [PDFAJAXViewer::SESSION_RESOLUTION] = $resolution;
 		
-		$classpath = ResourceBundle::get ( 'pdfviewer.absolute.path.base' ) . "/bin/jar/pdfhandler.jar;";
-		$classpath .= ResourceBundle::get ( 'pdfviewer.absolute.path.base' ) . "/bin/jar/commons-logging.jar;";
-		$classpath .= ResourceBundle::get ( 'pdfviewer.absolute.path.base' ) . "/bin/jar/commons-logging-1.0.4.jar;";
-		$classpath .= ResourceBundle::get ( 'pdfviewer.absolute.path.base' ) . "/bin/jar/fontbox-1.1.0.jar;";
-		$classpath .= ResourceBundle::get ( 'pdfviewer.absolute.path.base' ) . "/bin/jar/jempbox-1.1.0.jar;";
-		$classpath .= ResourceBundle::get ( 'pdfviewer.absolute.path.base' ) . "/bin/jar/json_simple-1.1.jar;";
-		$classpath .= ResourceBundle::get ( 'pdfviewer.absolute.path.base' ) . "/bin/jar/log4j-1.2.15.jar;";
-		$classpath .= ResourceBundle::get ( 'pdfviewer.absolute.path.base' ) . "/bin/jar/lucene-core-3.0.2.jar;";
-		$classpath .= ResourceBundle::get ( 'pdfviewer.absolute.path.base' ) . "/bin/jar/pdfbox-1.1.0.jar";
+		$classpath = "\"".ResourceBundle::get ( 'pdfviewer.absolute.path.base' ) . "/bin/jar/pdfhandler.jar\";";
+		$classpath .= "\"".ResourceBundle::get ( 'pdfviewer.absolute.path.base' ) . "/bin/jar/commons-logging.jar\";";
+		$classpath .= "\"".ResourceBundle::get ( 'pdfviewer.absolute.path.base' ) . "/bin/jar/commons-logging-1.0.4.jar\";";
+		$classpath .= "\"".ResourceBundle::get ( 'pdfviewer.absolute.path.base' ) . "/bin/jar/fontbox-1.1.0.jar\";";
+		$classpath .= "\"".ResourceBundle::get ( 'pdfviewer.absolute.path.base' ) . "/bin/jar/jempbox-1.1.0.jar\";";
+		$classpath .= "\"".ResourceBundle::get ( 'pdfviewer.absolute.path.base' ) . "/bin/jar/json_simple-1.1.jar\";";
+		$classpath .= "\"".ResourceBundle::get ( 'pdfviewer.absolute.path.base' ) . "/bin/jar/log4j-1.2.15.jar\";";
+		$classpath .= "\"".ResourceBundle::get ( 'pdfviewer.absolute.path.base' ) . "/bin/jar/lucene-core-3.0.2.jar\";";
+		$classpath .= "\"".ResourceBundle::get ( 'pdfviewer.absolute.path.base' ) . "/bin/jar/pdfbox-1.1.0.jar\"";
 		
 		$pagerel = ResourceBundle::get ( 'pdfviewer.relatif.path.base' ) . "/cache/" . PDFAJAXViewer::getForlderName ( $_SESSION [PDFAJAXViewer::SESSION_DOCUMENT] ) . "/" . PDFAJAXViewer::getForlderName ( $_SESSION [PDFAJAXViewer::SESSION_DOCUMENT] ) . $resolution;
 		$pageabs = ResourceBundle::get ( 'pdfviewer.absolute.path.base' ) . "/cache/" . PDFAJAXViewer::getForlderName ( $_SESSION [PDFAJAXViewer::SESSION_DOCUMENT] ) . "/" . PDFAJAXViewer::getForlderName ( $_SESSION [PDFAJAXViewer::SESSION_DOCUMENT] ) . $resolution;
@@ -352,7 +352,7 @@ class PDFAJAXViewer {
 			mkdir ( $cacheDirectory, 0777 );
 		}
 		if (! file_exists ( $pageabs . $page . ".png" )) {
-			exec ( "java -classpath $classpath com.bedreamy.base.PDFToImage \"" . $_SESSION [PDFAJAXViewer::SESSION_DOCUMENT] . "\" -imageType png  -startPage $page -endPage $page -resolution $resolution -outputPrefix $pageabs" );
+			exec ( "java -classpath $classpath com.bedreamy.base.PDFToImage \"" . $_SESSION [PDFAJAXViewer::SESSION_DOCUMENT] . "\" -imageType png  -startPage $page -endPage $page -resolution $resolution -outputPrefix \"$pageabs\"" );
 		}
 		return $pagerel . $page . ".png";
 	}
