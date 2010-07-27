@@ -316,7 +316,7 @@ class PDFAJAXViewer {
 			PDFAJAXViewer::$INFOBASEURLJSON = RessourceBundle::get ( 'pdfviewer.absolute.path.base' ) . "/cache/" . PDFAJAXViewer::getForlderName ( $pdfURL ) . "/" . PDFAJAXViewer::INFORMATIONFILE . ".json";
 			PDFAJAXViewer::$INFOBASEURLXML = RessourceBundle::get ( 'pdfviewer.absolute.path.base' ) . "/cache/" . PDFAJAXViewer::getForlderName ( $pdfURL ) . "/" . PDFAJAXViewer::INFORMATIONFILE . ".xml";
 			if (file_exists ( $cacheDirectory )) {
-				if (! file_exists ( $jsonFile ) || ! file_exists ( $jsonInfoFile )) {
+				if (! file_exists ( $jsonFile ) || ! file_exists ( $jsonInfoFile.".xml" )) {
 					exec ( "java -classpath $classpath com.bedreamy.base.PDFGetBookmarks \"$pdfURL\" -destination \"$jsonFile\" -destinationInfo \"$jsonInfoFile\"" );
 				}
 			} else {
