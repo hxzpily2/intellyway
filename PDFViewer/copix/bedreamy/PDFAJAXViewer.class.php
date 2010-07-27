@@ -300,12 +300,12 @@ class PDFAJAXViewer {
 		$classpath = "\"".RessourceBundle::get ( 'pdfviewer.absolute.path.base' ) . "/bin/jar/pdfhandler.jar\";";
 		$classpath .= "\"".RessourceBundle::get ( 'pdfviewer.absolute.path.base' ) . "/bin/jar/commons-logging.jar\";";
 		$classpath .= "\"".RessourceBundle::get ( 'pdfviewer.absolute.path.base' ) . "/bin/jar/commons-logging-1.0.4.jar\";";
-		$classpath .= "\"".RessourceBundle::get ( 'pdfviewer.absolute.path.base' ) . "/bin/jar/fontbox-1.1.0.jar\";";
-		$classpath .= "\"".RessourceBundle::get ( 'pdfviewer.absolute.path.base' ) . "/bin/jar/jempbox-1.1.0.jar\";";
+		$classpath .= "\"".RessourceBundle::get ( 'pdfviewer.absolute.path.base' ) . "/bin/jar/fontbox-1.2.1.jar\";";
+		$classpath .= "\"".RessourceBundle::get ( 'pdfviewer.absolute.path.base' ) . "/bin/jar/jempbox-1.2.1.jar\";";
 		$classpath .= "\"".RessourceBundle::get ( 'pdfviewer.absolute.path.base' ) . "/bin/jar/json_simple-1.1.jar\";";
 		$classpath .= "\"".RessourceBundle::get ( 'pdfviewer.absolute.path.base' ) . "/bin/jar/log4j-1.2.15.jar\";";
 		$classpath .= "\"".RessourceBundle::get ( 'pdfviewer.absolute.path.base' ) . "/bin/jar/lucene-core-3.0.2.jar\";";
-		$classpath .= "\"".RessourceBundle::get ( 'pdfviewer.absolute.path.base' ) . "/bin/jar/pdfbox-1.1.0.jar\"";
+		$classpath .= "\"".RessourceBundle::get ( 'pdfviewer.absolute.path.base' ) . "/bin/jar/pdfbox-1.2.1.jar\"";
 		
 		if (file_exists ( $pdfURL )) {
 			$cacheDirectory = RessourceBundle::get ( 'pdfviewer.absolute.path.base' ) . "/cache/" . PDFAJAXViewer::getForlderName ( $pdfURL );
@@ -337,12 +337,12 @@ class PDFAJAXViewer {
 		$classpath = "\"".RessourceBundle::get ( 'pdfviewer.absolute.path.base' ) . "/bin/jar/pdfhandler.jar\";";
 		$classpath .= "\"".RessourceBundle::get ( 'pdfviewer.absolute.path.base' ) . "/bin/jar/commons-logging.jar\";";
 		$classpath .= "\"".RessourceBundle::get ( 'pdfviewer.absolute.path.base' ) . "/bin/jar/commons-logging-1.0.4.jar\";";
-		$classpath .= "\"".RessourceBundle::get ( 'pdfviewer.absolute.path.base' ) . "/bin/jar/fontbox-1.1.0.jar\";";
-		$classpath .= "\"".RessourceBundle::get ( 'pdfviewer.absolute.path.base' ) . "/bin/jar/jempbox-1.1.0.jar\";";
+		$classpath .= "\"".RessourceBundle::get ( 'pdfviewer.absolute.path.base' ) . "/bin/jar/fontbox-1.2.1.jar\";";
+		$classpath .= "\"".RessourceBundle::get ( 'pdfviewer.absolute.path.base' ) . "/bin/jar/jempbox-1.2.1.jar\";";
 		$classpath .= "\"".RessourceBundle::get ( 'pdfviewer.absolute.path.base' ) . "/bin/jar/json_simple-1.1.jar\";";
 		$classpath .= "\"".RessourceBundle::get ( 'pdfviewer.absolute.path.base' ) . "/bin/jar/log4j-1.2.15.jar\";";
 		$classpath .= "\"".RessourceBundle::get ( 'pdfviewer.absolute.path.base' ) . "/bin/jar/lucene-core-3.0.2.jar\";";
-		$classpath .= "\"".RessourceBundle::get ( 'pdfviewer.absolute.path.base' ) . "/bin/jar/pdfbox-1.1.0.jar\"";
+		$classpath .= "\"".RessourceBundle::get ( 'pdfviewer.absolute.path.base' ) . "/bin/jar/pdfbox-1.2.1.jar\"";
 		
 		$pagerel = RessourceBundle::get ( 'pdfviewer.relatif.path.base' ) . "/cache/" . PDFAJAXViewer::getForlderName ( $_SESSION [PDFAJAXViewer::SESSION_DOCUMENT] ) . "/" . PDFAJAXViewer::getForlderName ( $_SESSION [PDFAJAXViewer::SESSION_DOCUMENT] ) . $resolution;
 		$pageabs = RessourceBundle::get ( 'pdfviewer.absolute.path.base' ) . "/cache/" . PDFAJAXViewer::getForlderName ( $_SESSION [PDFAJAXViewer::SESSION_DOCUMENT] ) . "/" . PDFAJAXViewer::getForlderName ( $_SESSION [PDFAJAXViewer::SESSION_DOCUMENT] ) . $resolution;
