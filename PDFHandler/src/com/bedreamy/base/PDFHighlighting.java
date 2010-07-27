@@ -19,7 +19,7 @@ import org.apache.pdfbox.pdmodel.font.PDFont;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import org.apache.pdfbox.pdmodel.graphics.color.PDGamma;
 import org.apache.pdfbox.pdmodel.interactive.annotation.PDAnnotationTextMarkup;
-import org.apache.pdfbox.searchengine.lucene.LucenePDFDocument;
+
 
 
 
