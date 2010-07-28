@@ -1,0 +1,9 @@
+#page {
+ width:900px;
+ height:700px;
+ border:1px solid #dadada;
+ overflow:hidden;
+}
+
+#page img { border:none; }
+
