@@ -390,7 +390,7 @@ class PDFAJAXViewer {
 			mkdir ( $cacheDirectory, 0777 );
 		}
 		if (! file_exists ( $pageabs . $page . ".png" )) {
-			exec ( "convert -density 400 -scale ".($resolution)."0x".($resolution)."0 \"" . $_SESSION [PDFAJAXViewer::SESSION_DOCUMENT] . "\"[".($page-1)."] $pageabs$page.png\"" );
+			exec ( "imconvert -density 400 -scale ".($resolution)."0x".($resolution)."0 \"" . $_SESSION [PDFAJAXViewer::SESSION_DOCUMENT] . "\"[".($page-1)."] \"$pageabs$page.png\"" );
 		}
 		return $pagerel . $page . ".png";
 	}
