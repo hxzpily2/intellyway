@@ -33,6 +33,9 @@ class PDFAJAXViewer {
 	static $DEFAULT_RESOL = "100";
 	static $UNIQUENAME = "";
 	
+	const GSBINPATH = "/gs8.71/bin"
+	const IMBINPATH = "/imagemagick-6.6.3.1"
+	
 	public static function showViewer($file) {
 		PDFAJAXViewer::getBookmarkJSON ( $file );
 		PDFAJAXViewer::includeDOJO ();
@@ -379,6 +382,7 @@ class PDFAJAXViewer {
 	
 	
 	public static function generatePageFromImageMagick($page, $resolution) {
+		putenv("PATH=".$_SERVER['PATH'].";".RessourceBundle::get ( 'pdfviewer.relatif.path.base' ).PDFAJAXViewer::GSBINPATH.";".RessourceBundle::get ( 'pdfviewer.relatif.path.base' ).PDFAJAXViewer::IMBINPATH);
 		$_SESSION [PDFAJAXViewer::SESSION_PAGE] = $page;
 		$_SESSION [PDFAJAXViewer::SESSION_RESOLUTION] = $resolution;		
 		
