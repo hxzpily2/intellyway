@@ -1,0 +1,1 @@
+convert test.png -fill black  -stroke black -draw  "fill-opacity 0.8    rectangle 20,10 30,50" test2.png
