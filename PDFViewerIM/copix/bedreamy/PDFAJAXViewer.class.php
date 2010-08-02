@@ -33,9 +33,6 @@ class PDFAJAXViewer {
 	static $DEFAULT_RESOL = "100";
 	static $UNIQUENAME = "";
 	
-	const GSBINPATH = "/gs8.71/bin";
-	const IMBINPATH = "/imagemagick-6.6.3.1";
-	
 	public static function showViewer($file) {
 		PDFAJAXViewer::getBookmarkJSON ( $file );
 		PDFAJAXViewer::includeDOJO ();
@@ -199,7 +196,7 @@ class PDFAJAXViewer {
 			$data .= "<div id='isSignedDiv' enabled='false' dojoType='dijit.form.Button' id='toolbar1.issigned'
 				iconClass='dijitEditorIcon dijitEditorIconPdfIsSigned' showLabel='false' disabled></div>";
 			$data .= "<span position='below' dojoType='dijit.Tooltip' connectId='isSignedDiv' style='display:none;'>
-					Ce document est signï¿½
+					Ce document est signé
 					</span>";
 		}
 		if ($params [PDFAJAXViewer::BUTTON_INFO] == TRUE) {
@@ -382,7 +379,6 @@ class PDFAJAXViewer {
 	
 	
 	public static function generatePageFromImageMagick($page, $resolution) {
-		putenv("PATH=".$_SERVER['PATH'].";".RessourceBundle::get ( 'pdfviewer.path.bin' ).PDFAJAXViewer::GSBINPATH.";".RessourceBundle::get ( 'pdfviewer.path.bin' ).PDFAJAXViewer::IMBINPATH);
 		$_SESSION [PDFAJAXViewer::SESSION_PAGE] = $page;
 		$_SESSION [PDFAJAXViewer::SESSION_RESOLUTION] = $resolution;		
 		
