@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.lucene.document.Document;
-import org.apache.pdfbox.examples.util.PrintTextLocations;
+
 import org.apache.pdfbox.exceptions.COSVisitorException;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
@@ -21,6 +21,8 @@ import org.apache.pdfbox.pdmodel.graphics.color.PDGamma;
 import org.apache.pdfbox.pdmodel.interactive.annotation.PDAnnotationTextMarkup;
 import org.apache.pdfbox.searchengine.lucene.LucenePDFDocument;
 
+import com.bedreamy.commun.PrintTextLocations;
+
 
 
 public class PDFHighlighting {
@@ -29,18 +31,19 @@ public class PDFHighlighting {
 	private static final String OCCURENCE = "-occurence";
     
 	public static void main( String[] args ) throws IOException, COSVisitorException{		
-		 PDDocument doc = PDDocument.load(new File("oracle-10g-11g-data-and-database-management-utilities.9781847196286.47538.pdf"));
+		 PDDocument doc = PDDocument.load(new File("test.pdf"));
 		 PrintTextLocations printer = new PrintTextLocations();
 		 ArrayList allPages = (ArrayList) doc.getDocumentCatalog().getAllPages();
 		 System.out.println(allPages.size());
 
-		/*for (int i = 0; i < allPages.size(); i++) {
+		for (int i = 0; i < allPages.size(); i++) {
 			PDPage page = (PDPage) allPages.get(i);
+			printer.setPage(i);
 			System.out.println("Processing page: " + i);
 			printer.processStream(page, page.findResources(), page.getContents().getStream());						
-		}*/
-		
-		PDPageContentStream contentStream = new PDPageContentStream(doc,(PDPage)allPages.get(0),true,false);		
+		}
+		System.out.println(printer.getItems().size());
+		/*PDPageContentStream contentStream = new PDPageContentStream(doc,(PDPage)allPages.get(0),true,false);		
 		contentStream.setNonStrokingColor( Color.CYAN );
 		//contentStream.fillRect( 0,0, ((PDPage)allPages.get(0)).findMediaBox().getWidth(), ((PDPage)allPages.get(0)).findMediaBox().getHeight() );
 		contentStream.setNonStrokingColor( Color.LIGHT_GRAY );
@@ -100,10 +103,10 @@ public class PDFHighlighting {
 		txtMark.setQuadPoints(quads);
 		
 
-		annotations.add(txtMark);*/	
+		annotations.add(txtMark);	
 
 		doc.save("test.pdf");
-		doc.close();
+		doc.close();*/
 		
 	}
 	
