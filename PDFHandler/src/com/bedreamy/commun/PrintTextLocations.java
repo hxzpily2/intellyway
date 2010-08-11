@@ -29,6 +29,7 @@ import com.bedreamy.model.PDFHighlightingItem;
 
 import java.io.IOException;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Vector;
 
@@ -50,8 +51,17 @@ public class PrintTextLocations extends PDFTextStripper
 	private int compteur = 0;
 	private Vector<PDFHighlightingItem> items = new Vector<PDFHighlightingItem>();
 	private int page;
+	private HashMap<Integer, Vector<PDFHighlightingItem>> map = new HashMap<Integer, Vector<PDFHighlightingItem>>();
 	
-    public int getPage() {
+    public HashMap<Integer, Vector<PDFHighlightingItem>> getMap() {
+		return map;
+	}
+
+	public void setMap(HashMap<Integer, Vector<PDFHighlightingItem>> map) {
+		this.map = map;
+	}
+
+	public int getPage() {
 		return page;
 	}
 
@@ -142,12 +152,13 @@ public class PrintTextLocations extends PDFTextStripper
      */
     protected void processTextPosition( TextPosition text )
     {
-        System.out.println( "String[" + text.getXDirAdj() + "," +
-                text.getYDirAdj() + " fs=" + text.getFontSize() + " xscale=" +
-                text.getXScale() + " height=" + text.getHeightDir() + " space=" +
+        System.out.println( "String[" + text.getX() + "," +
+                text.getY() + " fs=" + text.getFontSize() + " xscale=" +
+                text.getXScale() + " yscale="+text.getYScale()+ " height=" + text.getHeightDir() + " space=" +
                 text.getWidthOfSpace() + " width=" +
-                text.getWidthDirAdj() + "]" + text.getCharacter() );
+                text.getWidthDirAdj() + " + fontSize="+text.getFontSizeInPt()+"]" + text.getCharacter() );
         this.compteur++;
+        Vector<PDFHighlightingItem> temp = map.get(this.page);
         PDFHighlightingItem item = new PDFHighlightingItem();
         item.setFontsize(text.getFontSize());
         item.setHeight(text.getHeight());
@@ -159,7 +170,14 @@ public class PrintTextLocations extends PDFTextStripper
         item.setWidthofspace(text.getWidthOfSpace());
         item.setX(text.getXDirAdj());
         item.setY(text.getYDirAdj());
-       
+        if(temp==null){
+        	temp = new Vector<PDFHighlightingItem>(); 
+        	temp.add(item);
+        	map.put(this.page,temp);
+        }else{
+        	temp.add(item);
+        	map.put(this.page,temp);
+        }
         this.items.add(item);
     }
 
