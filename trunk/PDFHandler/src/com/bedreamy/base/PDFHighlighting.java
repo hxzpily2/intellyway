@@ -4,22 +4,40 @@ package com.bedreamy.base;
 
 import java.awt.Color;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.lucene.document.Document;
+import javax.management.Query;
+import javax.swing.text.Highlighter;
 
+import org.apache.lucene.analysis.Analyzer;
+import org.apache.lucene.analysis.standard.StandardAnalyzer;
+import org.apache.lucene.document.Document;
+import org.apache.lucene.index.IndexWriter;
+import org.apache.lucene.index.Term;
+import org.apache.lucene.search.IndexSearcher;
+import org.apache.lucene.search.TermQuery;
+import org.apache.lucene.store.Directory;
+import org.apache.lucene.store.RAMDirectory;
+
+import org.apache.pdfbox.cos.COSDocument;
 import org.apache.pdfbox.exceptions.COSVisitorException;
+import org.apache.pdfbox.pdfparser.PDFParser;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.common.PDRectangle;
 import org.apache.pdfbox.pdmodel.edit.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.font.PDFont;
+import org.apache.pdfbox.pdmodel.font.PDTrueTypeFont;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import org.apache.pdfbox.pdmodel.graphics.color.PDGamma;
 import org.apache.pdfbox.pdmodel.interactive.annotation.PDAnnotationTextMarkup;
+import org.apache.pdfbox.pdmodel.interactive.documentnavigation.outline.PDDocumentOutline;
 import org.apache.pdfbox.searchengine.lucene.LucenePDFDocument;
+import org.apache.pdfbox.util.PDFTextStripper;
+
 
 import com.bedreamy.commun.PrintTextLocations;
 
@@ -30,22 +48,22 @@ public class PDFHighlighting {
 	private static final String LASTPAGE = "-lastPage";    
 	private static final String OCCURENCE = "-occurence";
     
-	public static void main( String[] args ) throws IOException, COSVisitorException{		
-		 PDDocument doc = PDDocument.load(new File("test.pdf"));
-		 PrintTextLocations printer = new PrintTextLocations();
+	/*public static void main( String[] args ) throws IOException, COSVisitorException{		
+		 //PDDocument doc = PDDocument.load(new File("test.pdf"));
+		 /*PrintTextLocations printer = new PrintTextLocations();
 		 ArrayList allPages = (ArrayList) doc.getDocumentCatalog().getAllPages();
-		 System.out.println(allPages.size());
+		 //System.out.println(allPages.size());
 
 		for (int i = 0; i < allPages.size(); i++) {
 			PDPage page = (PDPage) allPages.get(i);
 			printer.setPage(i);
-			System.out.println("Processing page: " + i);
+			//System.out.println("Processing page: " + i);
 			printer.processStream(page, page.findResources(), page.getContents().getStream());						
 		}
-		System.out.println(printer.getItems().size());
-		/*PDPageContentStream contentStream = new PDPageContentStream(doc,(PDPage)allPages.get(0),true,false);		
+		System.out.println(printer.getMap().size());
+		PDPageContentStream contentStream = new PDPageContentStream(doc,(PDPage)allPages.get(0),true,false);		
 		contentStream.setNonStrokingColor( Color.CYAN );
-		//contentStream.fillRect( 0,0, ((PDPage)allPages.get(0)).findMediaBox().getWidth(), ((PDPage)allPages.get(0)).findMediaBox().getHeight() );
+		contentStream.fillRect( 0,0, ((PDPage)allPages.get(0)).findMediaBox().getWidth(), ((PDPage)allPages.get(0)).findMediaBox().getHeight() );
 		contentStream.setNonStrokingColor( Color.LIGHT_GRAY );
 		contentStream.fillRect( 100, 700, 100, 12 );
 		
@@ -60,54 +78,83 @@ public class PDFHighlighting {
 
 		contentStream.close();
 		
-		/*List annotations = ((PDPage)allPages.get(0)).getAnnotations();
-		
-		PDGamma colourBlue = new PDGamma();
-		colourBlue.setB(1);
-
-		PDAnnotationTextMarkup txtMark = new PDAnnotationTextMarkup(PDAnnotationTextMarkup.SUB_TYPE_HIGHLIGHT);
-		txtMark.setColour(colourBlue);
-		txtMark.setConstantOpacity((float)0.1);
 		
 
-		// Set the rectangle containing the markup
+		doc.save("test2.pdf");
+		doc.close();
+		 org.apache.lucene.document.Document doc =
+			 LucenePDFDocument.getDocument(new File("test.pdf"));
+		 /*Highlighter highlighter = new Highlighter(new
+				 QueryScorer(query));
+				             TokenStream tokenStream = new
+				 SimpleAnalyzer().tokenStream(FIELD_NAME,
+				                     new FileReader(f));
 
-		float textWidth = 10;
-		float inch = 72;
-		float pw = ((PDPage)allPages.get(0)).getMediaBox().getUpperRightX();
-		float ph = ((PDPage)allPages.get(0)).getMediaBox().getUpperRightY();
+				             doc.add(Field.Text("contents", new FileReader(f)));
+		 
+
 
 		
-		PDRectangle position = new PDRectangle();
-		position.setLowerLeftX(inch);
-		position.setLowerLeftY(ph - inch - 18);
-		position.setUpperRightX(72 + textWidth);
-		position.setUpperRightY(ph - inch);
-		txtMark.setRectangle(position);
+	}*/
+	
+	public static final void main(String[] args) throws IOException, COSVisitorException
+    {
+		/*Document doc = LucenePDFDocument.getDocument(new File("test.pdf"));
+		
+		
+		/*System.out.println(doc.getField("Keywords"));*/
+		
+		PDDocument doc = PDDocument.load(new File("test.pdf"));
+		ArrayList allPages = (ArrayList) doc.getDocumentCatalog().getAllPages();
+		/* PrintTextLocations printer = new PrintTextLocations();
+		 
+		 //System.out.println(allPages.size());
 
-		// work out the points forming the four corners of the annotations
-		// set out in anti clockwise form (Completely wraps the text)
-		// OK, the below doesn't match that description.
-		// It's what acrobat 7 does and displays properly!
-		float[] quads = new float[8];
+		for (int i = 0; i < allPages.size(); i++) {
+			PDPage page = (PDPage) allPages.get(i);
+			printer.setPage(i);
+			//System.out.println("Processing page: " + i);
+			printer.processStream(page, page.findResources(), page.getContents().getStream());						
+		}
+		System.out.println(printer.getMap().size());*/
+		
+		PDPageContentStream contentStream = new PDPageContentStream(doc,(PDPage)allPages.get(458),true,false);		
+		
+		
+		contentStream.setNonStrokingColor( Color.YELLOW );
+		int x0 = (int) Math.round(307.55);
+		int y0 = Math.round((float) (((PDPage)allPages.get(458)).findMediaBox().getHeight()-519.1374));
+		
+		contentStream.fillRect( x0-2, y0-2, Math.round(158.94897)+2, 6+4 );
+		
+		PDFont font = PDType1Font.HELVETICA;		
+		
+		contentStream.setNonStrokingColor( Color.BLACK );
+		contentStream.beginText();		
+		contentStream.setFont( font, (float) 8.8 );
+		contentStream.moveTextPositionByAmount( (float) 307.55, (float) (((PDPage)allPages.get(458)).findMediaBox().getHeight()-519.1374) );
+		contentStream.drawString( "Master the most important areas of Java" );
+		contentStream.endText();
 
-		quads[0] = position.getLowerLeftX(); // x1
-		quads[1] = position.getUpperRightY() - 5; // y1
-		quads[2] = position.getUpperRightX(); // x2
-		quads[3] = quads[1]; // y2
-		quads[4] = quads[0]; // x3
-		quads[5] = position.getLowerLeftY() - 5; // y3
-		quads[6] = quads[2]; // x4
-		quads[7] = quads[5]; // y5
-
-		txtMark.setQuadPoints(quads);
+		contentStream.close();
+		
 		
 
-		annotations.add(txtMark);	
-
-		doc.save("test.pdf");
-		doc.close();*/
+		doc.save("test2.pdf");
+		doc.close();
 		
-	}
+		  /* FileInputStream fi = new FileInputStream(new File("test.pdf"));  
+		    
+		   PDFParser parser = new PDFParser(fi);  
+		   parser.parse();  
+		   COSDocument cd = parser.getDocument();  
+		   PDFTextStripper stripper = new PDFTextStripper();  
+		   String text = stripper.getText(new PDDocument(cd));
+		   System.out.println(cd.toString()); */
+		
+
+
+		   
+    }
 	
 }
