@@ -1,0 +1,5 @@
+#Tue Jul 24 16:48:58 CEST 2007
+default.configuration=AccountConsole
+eclipse.preferences.version=1
+hibernate3.enabled=true
+instance/org.eclipse.core.net/org.eclipse.core.net.hasMigrated=true
