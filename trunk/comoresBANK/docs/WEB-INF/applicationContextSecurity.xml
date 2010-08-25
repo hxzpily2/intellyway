@@ -10,7 +10,7 @@
 			<value>
 				CONVERT_URL_TO_LOWERCASE_BEFORE_COMPARISON
 				PATTERN_TYPE_APACHE_ANT
-				/login=httpSessionContextIntegrationFilter
+				/login.do=httpSessionContextIntegrationFilter
 				/login.form=httpSessionContextIntegrationFilter
 				/assets/**=httpSessionContextIntegrationFilter
 				/j_acegi_security_check=httpSessionContextIntegrationFilter,formAuthenticationProcessingFilter
@@ -54,7 +54,7 @@
 	<bean id="formLoginAuthenticationEntryPoint"
 		  class="org.acegisecurity.ui.webapp.AuthenticationProcessingFilterEntryPoint">
 		<property name="loginFormUrl">
-			<value>/login</value>
+			<value>/Login.do</value>
 		</property>
 		<property name="forceHttps">
 			<value>false</value>
@@ -75,7 +75,7 @@
 		</property>
 		<property name="filterProcessesUrl">
 			<value>/j_acegi_security_check</value>
-		</property>
+		</property>		
 	</bean>
 	
 	<!-- ===================== authenticationManager ==================== -->
@@ -147,7 +147,7 @@
 		</property>
 	</bean>
 	
-	<bean id="himselfVoter" class="tuto.webssh.security.HimselfVoter">
+	<bean id="himselfVoter" class="com.account.security.service.HimselfVoter">
 		<property name="rolePrefix">
 			<value>HIMSELF</value>
 		</property>
