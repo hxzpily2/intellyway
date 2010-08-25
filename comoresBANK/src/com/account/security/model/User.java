@@ -18,7 +18,7 @@ import org.directwebremoting.annotations.RemoteProperty;
 
 @DataTransferObject
 @Entity
-@Table(name = "user", catalog = "experiments")
+@Table(name = "ACCOUNT_USER", catalog = "VAD")
 public class User implements java.io.Serializable {
 
 	private static final long serialVersionUID = 1073256708139002061L;

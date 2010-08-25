@@ -1,0 +1,33 @@
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN" "http://struts.apache.org/dtds/struts-config_1_2.dtd">
+<struts-config>
+	<form-beans>
+		<form-bean name="loginForm" type="org.apache.struts.action.DynaActionForm">
+			<form-property name="login" type="java.lang.String" />
+			<form-property name="password" type="java.lang.String" />
+		</form-bean>
+	</form-beans>
+	
+	<action-mappings>
+		<!-- errors -->
+		<action path="/AccessDenied" 
+				type="org.apache.struts.actions.ForwardAction" 
+				parameter="/WEB-INF/jsp/accessDenied.jsp" />
+		<action path="/AuthenticationFailed" name="loginForm"
+				type="org.apache.struts.actions.ForwardAction"
+				parameter="/LoginForm.do" />
+		
+		
+		<action path="/Login" 
+				type="org.apache.struts.actions.ForwardAction" 
+				parameter="/WEB-INF/jsp/loginForm.jsp" />
+		<action path="/LogonProcess" name="loginForm"
+				type="org.apache.struts.actions.ForwardAction"
+				parameter="/Authenticated.do" />
+		<action path="/Authenticated" 
+				type="org.apache.struts.actions.ForwardAction"
+				parameter="/WEB-INF/jsp/authenticated.jsp" />
+		<action path="/LogOff" 
+				type="org.apache.struts.actions.ForwardAction"
+				parameter="/index.jsp" />
+	</action-mappings>
+</struts-config>
