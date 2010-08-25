@@ -12,8 +12,9 @@
 				PATTERN_TYPE_APACHE_ANT
 				/login.do=httpSessionContextIntegrationFilter
 				/login.form=httpSessionContextIntegrationFilter
+				/logonprocess.do=httpSessionContextIntegrationFilter
 				/assets/**=httpSessionContextIntegrationFilter
-				/j_acegi_security_check=httpSessionContextIntegrationFilter,formAuthenticationProcessingFilter
+				/j_acegi_security_check.do=httpSessionContextIntegrationFilter,formAuthenticationProcessingFilter
 				/**=httpSessionContextIntegrationFilter,exceptionTranslationFilter,filterSecurityInterceptor
 			</value>
 		</property>
@@ -74,7 +75,7 @@
 			<value>/home</value>
 		</property>
 		<property name="filterProcessesUrl">
-			<value>/j_acegi_security_check</value>
+			<value>/j_acegi_security_check.do</value>
 		</property>		
 	</bean>
 	

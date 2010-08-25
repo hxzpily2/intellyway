@@ -2,10 +2,11 @@
 <struts-config>
 	<form-beans>
 		<form-bean name="loginForm" type="org.apache.struts.action.DynaActionForm">
-			<form-property name="login" type="java.lang.String" />
-			<form-property name="password" type="java.lang.String" />
-		</form-bean>
-	</form-beans>
+			<form-property name="j_username" type="java.lang.String" />
+			<form-property name="j_password" type="java.lang.String" />
+		</form-bean>	
+		
+	</form-beans>	
 	
 	<action-mappings>
 		<!-- errors -->
@@ -20,9 +21,13 @@
 		<action path="/Login" 
 				type="org.apache.struts.actions.ForwardAction" 
 				parameter="/WEB-INF/jsp/loginForm.jsp" />
+		<action path="/j_acegi_security_check" 
+				type="org.apache.struts.actions.ForwardAction" 
+				parameter="/j_acegi_security_check"
+				name="loginForm" />						
 		<action path="/LogonProcess" name="loginForm"
-				type="org.apache.struts.actions.ForwardAction"
-				parameter="/Authenticated.do" />
+				type="com.account.web.action.UserAction"
+				parameter="reqCode"/>
 		<action path="/Authenticated" 
 				type="org.apache.struts.actions.ForwardAction"
 				parameter="/WEB-INF/jsp/authenticated.jsp" />
