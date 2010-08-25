@@ -28,8 +28,8 @@ public class UserAction   extends DispatchAction{
 			HttpServletResponse response) {
  
 		HttpSession session = request.getSession(false);
+		
 
-
-		return mapping.findForward(Forwards.LOGIN_SUCCESS);
+		return mapping.findForward(Forwards.LOGIN);
 	}
 }
