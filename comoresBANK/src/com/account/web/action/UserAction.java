@@ -27,9 +27,10 @@ public class UserAction   extends DispatchAction{
 			ActionForm form, HttpServletRequest request,
 			HttpServletResponse response) {
  
-		HttpSession session = request.getSession(false);
+		HttpSession session = request.getSession(false);		
 		
+		
+		return new ActionForward("/j_acegi_check.do");
 
-		return mapping.findForward(Forwards.LOGIN);
 	}
 }

@@ -8,7 +8,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-<html:form action="/j_acegi_security_check"  method="post"  >
+<html:form action="/j_acegi_security_check.do"  method="post"  >
+<input type="hidden" name="reqCode" value="login" />
 <fieldset id="loginFieldSet">
 <legend>authentication</legend>
 you can enter admin/admin in user/password fields to authenticate

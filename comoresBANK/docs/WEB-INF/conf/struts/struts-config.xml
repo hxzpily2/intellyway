@@ -23,11 +23,13 @@
 				parameter="/WEB-INF/jsp/loginForm.jsp" />
 		<action path="/j_acegi_security_check" 
 				type="org.apache.struts.actions.ForwardAction" 
-				parameter="/j_acegi_security_check"
+				parameter="/j_acegi_security_check.do"
 				name="loginForm" />						
 		<action path="/LogonProcess" name="loginForm"
 				type="com.account.web.action.UserAction"
-				parameter="reqCode"/>
+				parameter="reqCode">
+				<forward name="login" path="/j_acegi_security_check"/>
+		</action>
 		<action path="/Authenticated" 
 				type="org.apache.struts.actions.ForwardAction"
 				parameter="/WEB-INF/jsp/authenticated.jsp" />

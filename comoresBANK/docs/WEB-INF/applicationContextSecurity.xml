@@ -64,7 +64,7 @@
 	
 	<!-- ===================== formAuthenticationProcessingFilter ==================== -->
 	<bean id="formAuthenticationProcessingFilter"
-		class="org.acegisecurity.ui.webapp.AuthenticationProcessingFilter">
+		class="com.account.security.service.AuthenticationManager">
 		<property name="authenticationManager">
 			<ref bean="authenticationManager" />
 		</property>
@@ -153,11 +153,16 @@
 			<value>HIMSELF</value>
 		</property>
 	</bean>
-	
-	<!-- ===================== objectDefinitionSource ==================== -->
-	<bean id="attributes" class="org.acegisecurity.annotation.SecurityAnnotationAttributes"/>
-	<bean id="secureObjectDefinitionSource" class="org.acegisecurity.intercept.method.MethodDefinitionAttributes">
-	  <property name="attributes"><ref local="attributes"/></property>
-	</bean>
 
+	<!--
+		===================== objectDefinitionSource ====================
+	-->
+	<bean id="attributes"
+		class="org.acegisecurity.annotation.SecurityAnnotationAttributes" />
+	<bean id="secureObjectDefinitionSource"
+		class="org.acegisecurity.intercept.method.MethodDefinitionAttributes">
+		<property name="attributes">
+			<ref local="attributes" />
+		</property>
+	</bean>
 </beans>
