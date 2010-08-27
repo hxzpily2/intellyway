@@ -19,8 +19,15 @@
 		
 		
 		<action path="/Login" 
-				type="org.apache.struts.actions.ForwardAction" 
-				parameter="/WEB-INF/jsp/loginForm.jsp" />
+				type="com.account.web.action.UserAction" 
+				parameter="reqCode">
+				<forward name="loginPage" path="/WEB-INF/jsp/loginForm.jsp"/>
+		</action>
+		<action path="/Home" 
+				type="com.account.web.action.AccountAction" 
+				parameter="reqCode">
+				<forward name="homePage" path="/WEB-INF/jsp/loginForm.jsp"/>
+		</action>
 		<action path="/j_acegi_security_check" 
 				type="org.apache.struts.actions.ForwardAction" 
 				parameter="/j_acegi_security_check.do"

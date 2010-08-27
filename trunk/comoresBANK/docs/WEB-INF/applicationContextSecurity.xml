@@ -15,7 +15,7 @@
 				/logonprocess.do=httpSessionContextIntegrationFilter
 				/assets/**=httpSessionContextIntegrationFilter
 				/j_acegi_security_check.do=httpSessionContextIntegrationFilter,formAuthenticationProcessingFilter
-				/**=httpSessionContextIntegrationFilter,exceptionTranslationFilter,filterSecurityInterceptor
+				/**=httpSessionContextIntegrationFilter,exceptionTranslationFilter,filterSecurityInterceptor							
 			</value>
 		</property>
 	</bean>
@@ -45,8 +45,9 @@
 		<property name="objectDefinitionSource">
 			<value>
 				CONVERT_URL_TO_LOWERCASE_BEFORE_COMPARISON
-				PATTERN_TYPE_APACHE_ANT
-				/**=ROLE_AUTH
+				PATTERN_TYPE_APACHE_ANT	
+				/cache/**=ROLE_ANONYMOUS 
+				/**=ROLE_AUTH				
 			</value>
 		</property>
 	</bean>
@@ -55,7 +56,7 @@
 	<bean id="formLoginAuthenticationEntryPoint"
 		  class="org.acegisecurity.ui.webapp.AuthenticationProcessingFilterEntryPoint">
 		<property name="loginFormUrl">
-			<value>/Login.do</value>
+			<value>/Login.do?reqCode=authentication</value>
 		</property>
 		<property name="forceHttps">
 			<value>false</value>
@@ -72,7 +73,7 @@
 			<value>/login?error=true</value>
 		</property>
 		<property name="defaultTargetUrl">
-			<value>/home</value>
+			<value>/Home.do?reqCode=consultation</value>
 		</property>
 		<property name="filterProcessesUrl">
 			<value>/j_acegi_security_check.do</value>
