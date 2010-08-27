@@ -12,7 +12,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<html:form action="/j_acegi_security_check.do"  method="post"  >
+<html:form action="/authentication/j_acegi_security_check.do"  method="post"  >
 <input type="hidden" name="reqCode" value="login" />
 <fieldset id="loginFieldSet">
 <legend>authentication</legend>

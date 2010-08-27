@@ -10,7 +10,7 @@
 	
 	<action-mappings>
 		<!-- errors -->
-		<action path="/AccessDenied" 
+		<action path="/authentication/AccessDenied" 
 				type="org.apache.struts.actions.ForwardAction" 
 				parameter="/WEB-INF/jsp/accessDenied.jsp" />
 		<action path="/AuthenticationFailed" name="loginForm"
@@ -18,29 +18,27 @@
 				parameter="/LoginForm.do" />
 		
 		
-		<action path="/Login" 
+		<action path="/authentication/Login" 
 				type="com.account.web.action.UserAction" 
 				parameter="reqCode">
 				<forward name="loginPage" path="/WEB-INF/jsp/loginForm.jsp"/>
 		</action>
-		<action path="/Home" 
+		<action path="/application/Home" 
 				type="com.account.web.action.AccountAction" 
 				parameter="reqCode">
 				<forward name="homePage" path="/WEB-INF/jsp/loginForm.jsp"/>
 		</action>
-		<action path="/j_acegi_security_check" 
+		<action path="/authentication/j_acegi_security_check" 
 				type="org.apache.struts.actions.ForwardAction" 
-				parameter="/j_acegi_security_check.do"
+				parameter="/authentication/j_acegi_security_check.do"
 				name="loginForm" />						
-		<action path="/LogonProcess" name="loginForm"
+		<action path="/authentication/LogonProcess" name="loginForm"
 				type="com.account.web.action.UserAction"
 				parameter="reqCode">
 				<forward name="login" path="/j_acegi_security_check"/>
 		</action>
-		<action path="/Authenticated" 
-				type="org.apache.struts.actions.ForwardAction"
-				parameter="/WEB-INF/jsp/authenticated.jsp" />
-		<action path="/LogOff" 
+		
+		<action path="/authentication/LogOff" 
 				type="org.apache.struts.actions.ForwardAction"
 				parameter="/index.jsp" />
 	</action-mappings>

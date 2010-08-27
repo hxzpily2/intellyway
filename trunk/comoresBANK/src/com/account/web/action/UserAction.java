@@ -1,5 +1,7 @@
 package com.account.web.action;
 
+import java.io.IOException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -9,7 +11,11 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.actions.DispatchAction;
 
+import com.account.commun.Constantes;
 import com.account.commun.Forwards;
+import com.account.commun.ImageGrille;
+import com.account.commun.SecuriteGrilleGenerator;
+import com.account.commun.Sessions;
 import com.account.security.service.UserManager;
 
 
@@ -23,6 +29,23 @@ public class UserAction   extends DispatchAction{
 		this.userManager = userManager;
 	}
 	
+	public ActionForward authentication(ActionMapping mapping,
+			ActionForm form, HttpServletRequest request,
+			HttpServletResponse response) throws IOException {
+ 
+		HttpSession session = request.getSession(false);
+		int[] grille = SecuriteGrilleGenerator.getGrilleToLogin();
+		session.setAttribute(Sessions.GRILLE_LOGIN,grille);
+		long timestamp = System.currentTimeMillis();
+		SecuriteGrilleGenerator.updateImageWithGrilleToLogin(grille,getServlet().getServletContext().getRealPath("/")+Constantes.GRILLE_URL,getServlet().getServletContext().getRealPath("/cache/")+"/",timestamp);
+				
+		ImageGrille imG = new ImageGrille();
+		imG.setUrl(new Long(timestamp).toString());
+		
+		session.setAttribute(Sessions.GRILLE_IMAGE, imG);
+		return mapping.findForward(Forwards.SHOWLOGINPAGE);
+	}
+	
 	public ActionForward login(ActionMapping mapping,
 			ActionForm form, HttpServletRequest request,
 			HttpServletResponse response) {
@@ -30,7 +53,8 @@ public class UserAction   extends DispatchAction{
 		HttpSession session = request.getSession(false);		
 		
 		
-		return new ActionForward("/j_acegi_check.do");
-
+		
+		
+		return new ActionForward("/Login.do");
 	}
 }
