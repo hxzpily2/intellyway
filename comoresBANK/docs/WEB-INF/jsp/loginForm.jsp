@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<%@ taglib prefix="html" uri="http://struts.apache.org/tags-html-el" %>
-<%@ taglib uri="/WEB-INF/conf/tld/struts-bean.tld" prefix="bean" %>
-<%@ taglib uri="/WEB-INF/conf/tld/struts-logic.tld" prefix="logic" %>
+	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="html" uri="http://struts.apache.org/tags-html-el"%>
+<%@ taglib uri="/WEB-INF/conf/tld/struts-bean.tld" prefix="bean"%>
+<%@ taglib uri="/WEB-INF/conf/tld/struts-logic.tld" prefix="logic"%>
 
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -12,31 +12,32 @@
 <title>Insert title here</title>
 </head>
 <body>
-<html:form action="/authentication/j_acegi_security_check.do"  method="post"  >
-<input type="hidden" name="reqCode" value="login" />
-<fieldset id="loginFieldSet">
-<legend>authentication</legend>
-you can enter admin/admin in user/password fields to authenticate
-<div>
-    <label for="login">Login</label>
-    <input id="j_username" type="text" maxlength="20" size="30" name="j_username" tabindex="1" />
-</div>
+<html:form action="/authentication/j_acegi_security_check.do"
+	method="post">
+	<input type="hidden" name="reqCode" value="login" />
+	<fieldset id="loginFieldSet"><legend>authentication</legend>
+	you can enter admin/admin in user/password fields to authenticate
+	<div><label for="login">Login</label> <input id="j_username"
+		type="text" maxlength="20" size="30" name="j_username" tabindex="1" />
+	</div>
 
 
-<div>
-	<label for="password">Password</label>
-    <input id="j_password" type="password" value="" size="30" name="j_password"  tabindex="2" />
-</div>
-  <div class="spacer">
-  &nbsp;
-  </div>   
-  	<input type="submit" value="submit" tabindex="4"/>
-	<input type="reset" value="reset" tabindex="5"/>
-</fieldset>
+	<div><label for="password">Password</label> <input
+		id="j_password" type="password" value="" size="30" name="j_password"
+		tabindex="2" /></div>
+	<div class="spacer">&nbsp;</div>
+	<input type="submit" value="submit" tabindex="4" /> <input type="reset"
+		value="reset" tabindex="5" /></fieldset>
 
-<logic:present name="grilleImage">
-	<img src="/account/cache/<bean:write name="grilleImage" property="url"/>.PNG" />	
-</logic:present>
+	<logic:present name="grilleImage">
+		<img width="129" height="129" BORDER="0"
+			src="/account/cache/<bean:write name="grilleImage" property="url"/>.PNG" usemap="#securitygrille"/>
+		<map name="securitygrille">
+			<area shape="rect" coords="0,0,26,26" href="javascript:alert('ok')" alt="Sun" />
+			<area shape="circle" coords="90,58,3" href="mercur.htm" />
+			<area shape="circle" coords="124,58,8" href="venus.htm" />
+		</map>
+	</logic:present>
 </html:form>
 </body>
 </html>
