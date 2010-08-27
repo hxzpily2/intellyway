@@ -1,4 +1,4 @@
-package com.account.test;
+package com.account.commun;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -12,11 +12,7 @@ import java.util.Vector;
 
 import javax.imageio.ImageIO;
 
-public class LoginTest {
-	public static void main(String argv[]) throws IOException {		
-		updateImageWithGrilleToLogin();
-	}
-
+public class SecuriteGrilleGenerator {
 	public static int[] getGrilleToLogin() {
 		Vector<Integer> keys = new Vector<Integer>();
 		Vector<Integer> items = new Vector<Integer>();
@@ -43,19 +39,13 @@ public class LoginTest {
 			items.remove(randomI);
 			tableau[itemI] = itemK;
 			// System.out.println(randomK+" "+randomI);
-		}
-		for (int i = 0; i < 25; i++) {
-			System.out.print(tableau[i] + " ");
-		}
+		}		
 		return tableau;
 	}
-
-	public static void updateImageWithGrilleToLogin() throws IOException {
-		int width = 200, height = 200;
-		int[] tableau = getGrilleToLogin(); 
-		// TYPE_INT_ARGB specifies the image format: 8-bit RGBA packed
-		// into integer pixels
-		File file = new File("test.gif");
+	
+	public static String updateImageWithGrilleToLogin(int[] tableau,String imageURLIN,String imageURLOUT,long timestamp) throws IOException {
+		
+		File file = new File(imageURLIN);
 		Image image = ImageIO.read(file);
 
 		BufferedImage bi = bufferImage(image, BufferedImage.TYPE_INT_RGB);
@@ -65,9 +55,8 @@ public class LoginTest {
 		Font font = new Font("Tahoma", Font.BOLD, 16);
 		ig2.setFont(font);
 		
-		int PLUS = 26;
+		int PLUS = 26;		
 		
-		FontMetrics fontMetrics = ig2.getFontMetrics();
 		ig2.setPaint(Color.WHITE);
 		int Ytemp = 0;
 		for(int i=0;i<5;i++){
@@ -75,12 +64,13 @@ public class LoginTest {
 			for(int j=0;j<5;j++){
 				if(tableau[i*5+j]!=0)
 					ig2.drawString(new Integer(tableau[i*5+j]).toString(), 8+Xtemp, 18+Ytemp);
-				Xtemp+=26;
+				Xtemp+=PLUS;
 			}
-			Ytemp+=26;
+			Ytemp+=PLUS;
 		}		
 		
-		ImageIO.write(bi, "PNG", new File("c:\\"+System.currentTimeMillis()+".PNG"));			
+		ImageIO.write(bi, "PNG", new File(imageURLOUT+timestamp+".PNG"));
+		return "c:\\"+timestamp+".PNG";
 	}
 
 	public static BufferedImage bufferImage(Image image, int type) {
