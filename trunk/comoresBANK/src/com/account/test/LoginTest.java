@@ -8,13 +8,17 @@ import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 import java.util.Vector;
 
 import javax.imageio.ImageIO;
 
+import com.account.commun.SecuriteGrilleGenerator;
+
 public class LoginTest {
-	public static void main(String argv[]) throws IOException {		
-		updateImageWithGrilleToLogin();
+	public static void main(String argv[]) throws IOException, NoSuchAlgorithmException {		
+		//updateImageWithGrilleToLogin();
+		System.out.println(SecuriteGrilleGenerator.SHA1("12345"));
 	}
 
 	public static int[] getGrilleToLogin() {
