@@ -253,7 +253,7 @@ html, body { height: 100%; width: 100%; padding: 0; border: 0; }
 						<tr>
 							<td width="20" height="20" background="/account/image/notice_left.jpg">&nbsp;</td>
 							<td width="460">							
-								<table>
+								<table cellpadding="0" cellspacing="0">
 									<tr>
 										<td width="59">
 											<img src="/account/image/notice.gif"/>				
@@ -265,10 +265,10 @@ html, body { height: 100%; width: 100%; padding: 0; border: 0; }
 									<tr height="10">
 										<td colspan="3"></td>										
 									</tr>
-									<tr>
+									<tr height="10">
 										<td colspan="3">
-											<table width="460">
-												<tr>
+											<table width="460" height="10" cellpadding="0" cellspacing="0">
+												<tr height="10">
 													<td width="9"><img src="/account/image/point.jpg"/></td>
 													<td width="10">&nbsp;</td>
 													<td align="left" valign="middle" style="color: #6d6d6d;"><span
@@ -278,9 +278,9 @@ html, body { height: 100%; width: 100%; padding: 0; border: 0; }
 															
 										</td>										
 									</tr>
-									<tr>
+									<tr height="10">
 										<td colspan="3">
-											<table width="460">
+											<table width="460" cellpadding="0" cellspacing="0">
 												<tr>
 													<td width="9"><img src="/account/image/point.jpg"/></td>
 													<td width="10">&nbsp;</td>
@@ -291,9 +291,9 @@ html, body { height: 100%; width: 100%; padding: 0; border: 0; }
 															
 										</td>										
 									</tr>
-									<tr>
+									<tr height="10">
 										<td colspan="3">
-											<table width="460">
+											<table width="460" cellpadding="0" cellspacing="0">
 												<tr>
 													<td width="9"><img src="/account/image/point.jpg"/></td>
 													<td width="10">&nbsp;</td>
