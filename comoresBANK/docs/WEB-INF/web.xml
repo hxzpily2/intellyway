@@ -107,6 +107,6 @@
   	</listener>
 	
 	<welcome-file-list>
-		<welcome-file>Login</welcome-file>
+		<welcome-file>/WEB-INF/jsp/index.jsp</welcome-file>
 	</welcome-file-list>
 </web-app>
