@@ -1,5 +1,8 @@
 package com.account.security.service;
 
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
+
 import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -7,6 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import org.acegisecurity.Authentication;
 import org.acegisecurity.AuthenticationException;
 import org.acegisecurity.providers.UsernamePasswordAuthenticationToken;
+
+import com.account.commun.SecuriteGrilleGenerator;
+import com.account.commun.Sessions;
 
 
 public class AuthenticationManager extends AccountAbstractProcessingFilter{
@@ -23,7 +29,12 @@ public class AuthenticationManager extends AccountAbstractProcessingFilter{
 	                    HttpServletRequest request) throws AuthenticationException {
 	                String username = obtainUsername(request);
 	                String password = obtainPassword(request);
-	
+	                
+	                
+	                int[] grille = (int[]) request.getSession().getAttribute(Sessions.GRILLE_LOGIN);
+
+	                
+	                
 	                if (username == null) {
 	                    username = "";
 	                }
@@ -31,7 +42,23 @@ public class AuthenticationManager extends AccountAbstractProcessingFilter{
 	                if (password == null) {
 	                    password = "";
 	                }
-	
+	                String tempPass = new String();
+	                for (int i = 0; i < password.length(); i++) {
+	                	char temp = password.charAt(i);
+	                	int indice = ((int) temp)-64;
+	                	tempPass+=grille[indice-1];
+					}
+	                System.out.println(tempPass);
+	                password = tempPass;
+	                try {
+						password = SecuriteGrilleGenerator.SHA1(password);
+					} catch (NoSuchAlgorithmException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (UnsupportedEncodingException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 	                username = username.trim();
 	
 	                UsernamePasswordAuthenticationToken authRequest = new UsernamePasswordAuthenticationToken(
