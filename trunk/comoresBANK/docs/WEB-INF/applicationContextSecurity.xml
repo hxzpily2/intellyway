@@ -70,7 +70,7 @@
 			<ref bean="authenticationManager" />
 		</property>
 		<property name="authenticationFailureUrl">
-			<value>/login?error=true</value>
+			<value>/authentication/Login.do?reqCode=error</value>
 		</property>
 		<property name="defaultTargetUrl">
 			<value>/Home.do?reqCode=consultation</value>
