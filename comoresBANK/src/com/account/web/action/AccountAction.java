@@ -21,6 +21,6 @@ public class AccountAction    extends DispatchAction{
 		
 		
 		
-		return mapping.findForward(Forwards.SHOWLOGINPAGE);
+		return mapping.findForward(Forwards.SHOWHOMEPAGE);
 	}
 }
