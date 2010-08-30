@@ -24,6 +24,7 @@
 				type="com.account.web.action.UserAction" 
 				parameter="reqCode">
 				<forward name="loginPage" path="/WEB-INF/jsp/authentication/loginForm.jsp"/>
+				<forward name="logout" path="/authentication/Login.do?reqCode=authentication"/>
 		</action>
 		<action path="/application/Home" 
 				type="com.account.web.action.AccountAction" 
@@ -33,7 +34,8 @@
 		<action path="/authentication/j_acegi_security_check" 
 				type="org.apache.struts.actions.ForwardAction" 
 				parameter="/authentication/j_acegi_security_check.do"
-				name="loginForm" />						
+				name="loginForm" />	
+									
 		<action path="/authentication/LogonProcess" name="loginForm"
 				type="com.account.web.action.UserAction"
 				parameter="reqCode">
