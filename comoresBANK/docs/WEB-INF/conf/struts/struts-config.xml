@@ -28,7 +28,7 @@
 		<action path="/application/Home" 
 				type="com.account.web.action.AccountAction" 
 				parameter="reqCode">
-				<forward name="homePage" path="/WEB-INF/jsp/authentication/loginForm.jsp"/>
+				<forward name="homePage" path="/WEB-INF/jsp/consultation/homepage.jsp"/>
 		</action>
 		<action path="/authentication/j_acegi_security_check" 
 				type="org.apache.struts.actions.ForwardAction" 
