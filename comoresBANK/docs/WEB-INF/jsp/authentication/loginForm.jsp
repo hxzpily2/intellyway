@@ -57,7 +57,7 @@ html, body { height: 100%; width: 100%; padding: 0; border: 0; }
 				<td width="300">
 				<!-- SAISIR LOGIN -->
 				<table width="380" cellspacing="0" cellpadding="0">
-					<tr>
+					<tr height="61">
 						<td width="21" height="61" background="/account/image/ltop.jpg">
 
 						</td>
@@ -84,7 +84,7 @@ html, body { height: 100%; width: 100%; padding: 0; border: 0; }
 						<td width="21" height="61" background="/account/image/left.jpg">
 							
 						</td>
-						<td colspan="2" width="250" height="61" style="padding-left: 45px;">
+						<td colspan="2" width="250" height="61" style="background-image:url(/account/image/centre.jpg);background-repeat:repeat-x;background-position: top;padding-left: 45px;">
 							<input style="border-style: solid;border-color: #b5b5b5;border-width: 1px;" id="j_username" type="text" maxlength="20" size="30" name="j_username" tabindex="1" />
 							<br/>
 							<SPAN style="color: red;font-family: tahoma;font-size: 10pt;"><html:errors/></SPAN>
@@ -111,7 +111,7 @@ html, body { height: 100%; width: 100%; padding: 0; border: 0; }
 				</table>
 				<!-- FIN SAISIR LOGIN --> <!-- SAISIR PASS -->
 				<table width="380" cellspacing="0" cellpadding="0">
-					<tr>
+					<tr height="61">
 						<td width="21" height="61" background="/account/image/ltop.jpg">
 
 						</td>
@@ -138,7 +138,7 @@ html, body { height: 100%; width: 100%; padding: 0; border: 0; }
 						<td width="21" height="61" background="/account/image/left.jpg">
 
 						</td>
-						<td colspan="2" width="300" height="61">
+						<td colspan="2" width="300" height="61" style="background-image:url(/account/image/centre.jpg);background-repeat:repeat-x;background-position: top;">
 						<table width="250">
 							<tr>
 								<td width="129"><logic:present name="grilleImage">
