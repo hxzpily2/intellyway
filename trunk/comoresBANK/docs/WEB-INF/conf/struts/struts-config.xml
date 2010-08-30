@@ -8,7 +8,7 @@
 		
 	</form-beans>	
 	<global-forwards>
-		<forward name="homePage" path="application/Home.do?reqCode=consultation"/>
+		<forward name="homePage" path="/application/Home.do?reqCode=consultation"/>
 	</global-forwards>
 	<action-mappings>
 		<!-- errors -->
