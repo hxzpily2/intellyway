@@ -34,7 +34,7 @@ dojo.declare("account.integration.Commun",[],{
     }, 
     
     writePWD : function (number){
-    	if(dojo.byId('password').value.length<5){
+    	if(dojo.byId('password').value.length<6){
     		dojo.byId('j_password').value=dojo.byId('j_password').value+String.fromCharCode(number+64);
     		dojo.byId('password').value=dojo.byId('password').value+String.fromCharCode(number+64);
     	}
