@@ -44,4 +44,7 @@
 				type="org.apache.struts.actions.ForwardAction"
 				parameter="/index.jsp" />
 	</action-mappings>
+	
+	<message-resources parameter="I18nIhmAccount" />
+	
 </struts-config>
