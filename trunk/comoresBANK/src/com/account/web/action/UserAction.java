@@ -81,4 +81,15 @@ public class UserAction   extends DispatchAction{
 		
 		return mapping.findForward(Forwards.SHOWLOGINPAGE);
 	}
+	
+	public ActionForward logout(ActionMapping mapping,
+			ActionForm form, HttpServletRequest request,
+			HttpServletResponse response) throws IOException {
+		
+		HttpSession session = request.getSession(false);
+		
+		session.invalidate();
+		
+		return mapping.findForward(Forwards.LOGOUT);
+	}
 }
