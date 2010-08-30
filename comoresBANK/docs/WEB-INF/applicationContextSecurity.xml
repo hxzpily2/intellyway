@@ -73,7 +73,7 @@
 			<value>/authentication/Login.do?reqCode=error</value>
 		</property>
 		<property name="defaultTargetUrl">
-			<value>/Home.do?reqCode=consultation</value>
+			<value>/application/Home.do?reqCode=consultation</value>
 		</property>
 		<property name="filterProcessesUrl">
 			<value>/authentication/j_acegi_security_check.do</value>
