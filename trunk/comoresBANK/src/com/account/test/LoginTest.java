@@ -13,12 +13,22 @@ import java.util.Vector;
 
 import javax.imageio.ImageIO;
 
-import com.account.commun.SecuriteGrilleGenerator;
+import org.hibernate.Session;
+import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
-public class LoginTest {
+import com.account.commun.SecuriteGrilleGenerator;
+import com.account.dao.UserDao;
+import com.account.dao.UserDaoImpl;
+import com.account.security.model.User;
+
+public class LoginTest extends HibernateDaoSupport{
 	public static void main(String argv[]) throws IOException, NoSuchAlgorithmException {		
-		//updateImageWithGrilleToLogin();
-		System.out.println(SecuriteGrilleGenerator.SHA1("12345"));
+		UserDao userDao = new UserDaoImpl();
+		User user = new User();
+		user.setLoginUser("aaaa");
+		user.setPasswordUser("bbbbbbbb");
+		
+		userDao.addUser(user);
 	}
 
 	public static int[] getGrilleToLogin() {

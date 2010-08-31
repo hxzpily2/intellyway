@@ -32,4 +32,6 @@ public interface UserDao {
      */
     public User getUser(String login);
     
+    public User addUser(User user);
+    
 }

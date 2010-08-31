@@ -2,6 +2,7 @@ package com.account.security.model;
 
 // Generated 7 août 2007 14:54:35 by Hibernate Tools 3.2.0.b9
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -26,6 +27,12 @@ public class User implements java.io.Serializable {
 	private int idUser;
 	private String loginUser;
 	private String passwordUser;
+	private String email;
+	private int cptNum;
+	private Date dateCreation;
+	private Date lastLogin;
+	
+	
 	private Set<Rights> rights = new HashSet<Rights>(0);
 
 	public User() {
@@ -74,6 +81,46 @@ public class User implements java.io.Serializable {
 
 	public void setPasswordUser(String passwordUser) {
 		this.passwordUser = passwordUser;
+	}
+	
+	@RemoteProperty
+	@Column(name = "email_user", nullable = true, length = 50)
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
+	@RemoteProperty
+	@Column(name = "cpt_num", nullable = true)
+	public int getCptNum() {
+		return cptNum;
+	}
+
+	public void setCptNum(int cptNum) {
+		this.cptNum = cptNum;
+	}
+	
+	@RemoteProperty
+	@Column(name = "date_creation", nullable = true)
+	public Date getDateCreation() {
+		return dateCreation;
+	}
+
+	public void setDateCreation(Date dateCreation) {
+		this.dateCreation = dateCreation;
+	}
+	
+	@RemoteProperty
+	@Column(name = "last_login", nullable = true)
+	public Date getLastLogin() {
+		return lastLogin;
+	}
+
+	public void setLastLogin(Date lastLogin) {
+		this.lastLogin = lastLogin;
 	}
 
 	@RemoteProperty
