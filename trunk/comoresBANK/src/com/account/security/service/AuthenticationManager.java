@@ -48,7 +48,7 @@ public class AuthenticationManager extends AccountAbstractProcessingFilter{
 	                	int indice = ((int) temp)-64;
 	                	tempPass+=grille[indice-1];
 					}
-	                System.out.println(tempPass);
+	                
 	                password = tempPass;
 	                try {
 						password = SecuriteGrilleGenerator.SHA1(password);
