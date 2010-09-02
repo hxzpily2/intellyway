@@ -22,6 +22,9 @@ public class Rights implements java.io.Serializable {
 	private int id;
 	private User user;
 	private String label;
+	private String I18nkey;
+
+	
 
 	public Rights() {
 	}
@@ -62,6 +65,16 @@ public class Rights implements java.io.Serializable {
 
 	public void setLabel(String label) {
 		this.label = label;
+	}
+	
+	@RemoteProperty
+	@Column(name = "i18nkey", nullable = false, length = 100)
+	public String getI18nkey() {
+		return I18nkey;
+	}
+
+	public void setI18nkey(String i18nkey) {
+		I18nkey = i18nkey;
 	}
 	
 	@Override
