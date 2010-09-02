@@ -8,10 +8,13 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.actions.DispatchAction;
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.struts.DispatchActionSupport;
 
 import com.account.commun.Forwards;
+import com.account.security.service.UserManager;
 
-public class AccountAction    extends DispatchAction{
+public class AccountAction    extends DispatchActionSupport{
 	
 	public ActionForward consultation(ActionMapping mapping,
 			ActionForm form, HttpServletRequest request,
@@ -19,8 +22,8 @@ public class AccountAction    extends DispatchAction{
  
 		HttpSession session = request.getSession(false);		
 		
-		
-		
+		ApplicationContext ctx = getWebApplicationContext();   
+		UserManager userManager = (UserManager) ctx.getBean("userManager");
 		return mapping.findForward(Forwards.SHOWHOMEPAGE);
 	}
 }
