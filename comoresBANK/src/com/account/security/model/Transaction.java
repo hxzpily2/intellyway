@@ -22,8 +22,8 @@ public class Transaction {
 	private int idTrx;	
 	private String description;
 	private Date dateValeur;	
-	private int minDebit;
-	private int maxDebit;
+	private int mntDebit;
+	private int mntCredit;
 	private Compte compte;
 	
 	
@@ -56,26 +56,26 @@ public class Transaction {
 	}
 	
 	@RemoteProperty	
-	@Column(name = "trx_min_debit", nullable = true)
-	public int getMinDebit() {
-		return minDebit;
+	@Column(name = "trx_mnt_debit", nullable = true)
+	public int getMntDebit() {
+		return mntDebit;
 	}
-	public void setMinDebit(int minDebit) {
-		this.minDebit = minDebit;
+	public void setMntDebit(int mntDebit) {
+		this.mntDebit = mntDebit;
 	}
 	
 	@RemoteProperty	
-	@Column(name = "trx_max_debit", nullable = true)
-	public int getMaxDebit() {
-		return maxDebit;
+	@Column(name = "trx_mnt_credit", nullable = true)
+	public int getMntCredit() {
+		return mntCredit;
 	}
-	public void setMaxDebit(int maxDebit) {
-		this.maxDebit = maxDebit;
+	public void setMntCredit(int mntCredit) {
+		this.mntCredit = mntCredit;
 	}
 	
 	@RemoteProperty
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "cpt_num", nullable = false)
+	@JoinColumn(name = "trx_cpt_num", nullable = false)
 	public Compte getCompte() {
 		return compte;
 	}
