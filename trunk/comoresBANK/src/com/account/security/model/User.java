@@ -11,6 +11,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -28,7 +30,7 @@ public class User implements java.io.Serializable {
 	private String loginUser;
 	private String passwordUser;
 	private String email;
-	private int cptNum;
+	private Compte cptNum;
 	private Date dateCreation;
 	private Date lastLogin;
 	
@@ -94,12 +96,13 @@ public class User implements java.io.Serializable {
 	}
 	
 	@RemoteProperty
-	@Column(name = "cpt_num", nullable = true)
-	public int getCptNum() {
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "cpt_num", nullable = false)
+	public Compte getCptNum() {
 		return cptNum;
 	}
 
-	public void setCptNum(int cptNum) {
+	public void setCptNum(Compte cptNum) {
 		this.cptNum = cptNum;
 	}
 	
