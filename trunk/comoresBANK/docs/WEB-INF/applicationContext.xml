@@ -15,4 +15,20 @@
 			<bean class="org.springframework.transaction.annotation.AnnotationTransactionAttributeSource"/>
 		</property>
 	</bean>
+	
+	<bean id="accountManagerTarget" class="com.account.service.AccountService">
+		<property name="accountDao">
+			<ref bean="accountDao" />
+		</property>
+	</bean>
+	
+	<bean id="accountManager" parent="transactionProxy">
+		<property name="target">
+			<ref bean="accountManagerTarget"/>
+		</property>
+		<property name="transactionAttributeSource">
+			<bean class="org.springframework.transaction.annotation.AnnotationTransactionAttributeSource"/>
+		</property>
+	</bean>
+	
 </beans>
