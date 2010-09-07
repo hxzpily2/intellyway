@@ -5,6 +5,7 @@
 <%@ taglib uri="/WEB-INF/conf/tld/struts-logic.tld" prefix="logic"%>
 <%@ taglib uri="http://displaytag.sf.net" prefix="display" %>
 <%@ taglib uri="http://acegisecurity.org/authz" prefix="authz" %>
+  
 <jsp:include page="../template/header.jsp"/>
 		<table width="100%" height="79">
 			<tr>
@@ -18,13 +19,18 @@
 				<td width="800">
 					<authz:authorize ifAllGranted="ROLE_USER">
 						<a href="/account/authentication/Login.do?reqCode=logout">Logout</a>
-					</authz:authorize>
-					&nbsp;
-					<authz:authorize ifAllGranted="ROLE_ADMIN">
-						<!-- ADMIN  -->
-						<a href="/account/application/Home.do?reqCode=newuser">Créer un utilisateur</a>
-					</authz:authorize>
+					</authz:authorize>					
 				</td>				
 			</tr>
 		</table>
-<jsp:include page="../template/footer.jsp"/>
+		
+		<display:table name="sessionScope.listeComptes" export="true" pagesize="10">			
+			<display:column property="idCompte" title="N°" />
+			<display:column property="descriptif" title="Nom"  />
+			<display:column property="nom" title="Prénom"  />
+			<display:column property="prenom" title="Email"  />
+		</display:table>
+		<html:form action='/authentication/j_acegi_security_check.do'> 
+			 
+		</html:form>
+<jsp:include page="../template/footer.jsp"/>		

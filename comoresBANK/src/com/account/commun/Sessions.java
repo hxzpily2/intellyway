@@ -5,4 +5,5 @@ public class Sessions {
 	public static String GRILLE_IMAGE = "grilleImage";
 	public static String USER = "userConnected";
 	public static String COMPTE = "compteConnected";
+	public static String LISTECOMPTES = "listeComptes";
 }

@@ -12,6 +12,12 @@
 		</property>
 	</bean>
 	
+	<bean id="accountDao" class="com.account.dao.AccountDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	
 
 	<!-- sessionFactory  -->
 	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">

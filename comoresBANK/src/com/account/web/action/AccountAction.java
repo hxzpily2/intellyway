@@ -19,6 +19,7 @@ import com.account.security.model.Transaction;
 import com.account.security.model.User;
 import com.account.security.service.AuthenticationManager;
 import com.account.security.service.UserManager;
+import com.account.service.AccountService;
 
 public class AccountAction    extends DispatchActionSupport{
 	
@@ -34,7 +35,22 @@ public class AccountAction    extends DispatchActionSupport{
 		session.setAttribute(Sessions.USER, user);
 		session.setAttribute(Sessions.COMPTE, user.getCptNum());
 		Set<Transaction> set = user.getCptNum().getTransactions();
-		System.out.println(set.size());
+		
 		return mapping.findForward(Forwards.SHOWHOMEPAGE);
+	}
+	
+	public ActionForward newuser(ActionMapping mapping,
+			ActionForm form, HttpServletRequest request,
+			HttpServletResponse response) {
+ 
+		HttpSession session = request.getSession(false);		
+		
+		ApplicationContext ctx = getWebApplicationContext();   
+		AccountService userManager = (AccountService) ctx.getBean("accountManager");
+		
+		session.setAttribute(Sessions.LISTECOMPTES,userManager.getComptes());
+		
+		
+		return mapping.findForward(Forwards.CREATEUSER);
 	}
 }

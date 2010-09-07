@@ -1,12 +1,46 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="html" uri="http://struts.apache.org/tags-html-el"%>
+<%@ taglib uri="/WEB-INF/conf/tld/struts-bean.tld" prefix="bean"%>
+<%@ taglib uri="/WEB-INF/conf/tld/struts-logic.tld" prefix="logic"%>
+<%@ taglib uri="http://displaytag.sf.net" prefix="display" %>
+<%@ taglib uri="http://acegisecurity.org/authz" prefix="authz" %>
+
+<link rel="stylesheet" href="/account/css/displaytag.css" type="text/css" />
+
+
+<!-- DOJO INCLUDE -->
+<script type='text/javascript' src='/account/js/dojo/dojo.js' djConfig='parseOnLoad: false'></script>
+<script type='text/javascript'>
+	
+	dojo.require('dojo.parser');
+	
+	dojo.registerModulePath('account', '../account');
+	dojo.require('account.integration.Commun');
+	var commun = new account.integration.Commun();
+</script>
+<!-- END DOJO INCLUDE -->
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<style type="text/css">
+html, body { height: 100%; width: 100%; padding: 0; border: 0; }
+</style>
+
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 </head>
 <body>
-
-</body>
-</html>
+<table width="100%" height="79">
+	<tr>
+		<td width="50%">&nbsp;</td>
+		<td width="1000">
+		<img src="/account/image/header.jpg"/>
+		</td>
+		<td width="50%">&nbsp;</td>
+	</tr>
+</table>
+<table width="100%">
+	<tr>
+		<td width="50%"></td>
+		<td width="860">
