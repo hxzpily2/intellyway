@@ -1,12 +1,5 @@
-
-th,td {
-	padding: 2px 4px 2px 4px !important;
-	text-align: left;
-	vertical-align: top;
-}
-
 thead tr {
-	background-color: #fc0;
+	background-color: #fc0;	
 }
 
 th.sorted {
@@ -30,14 +23,17 @@ th.sorted a,th.sortable a {
 
 th.sortable a {
 	background-image: url(../img/arrow_off.png);
+	background-repeat: no-repeat;
 }
 
 th.order1 a {
 	background-image: url(../img/arrow_down.png);
+	background-repeat: no-repeat;
 }
 
 th.order2 a {
 	background-image: url(../img/arrow_up.png);
+	background-repeat: no-repeat;
 }
 
 tr.odd {
@@ -59,79 +55,111 @@ div.exportlinks {
 span.export {
 	padding: 0 4px 1px 20px;
 	display: inline;
-	display: inline-block;
 	cursor: pointer;
 }
 
 span.excel {
 	background-image: url(../img/ico_file_excel.png);
+	background-repeat: no-repeat;
+	width: 10px;
+	color: #8c8c8c;;
+	font-size: 10pt;
+	font-family: Tahoma;
+	text-decoration: underline;
 }
 
 span.csv {
 	background-image: url(../img/ico_file_csv.png);
+	background-repeat: no-repeat;
+	width: 10px;
+	color: #8c8c8c;
+	font-size: 10pt;
+	font-family: Tahoma;
+	text-decoration: underline;
 }
 
 span.xml {
 	background-image: url(../img/ico_file_xml.png);
+	background-repeat: no-repeat;
+	width: 10px;
+	color: #8c8c8c;;
+    font-size: 10pt;
+    font-family: Tahoma;
+    text-decoration: underline;
 }
 
 span.pdf {
 	background-image: url(../img/ico_file_pdf.png);
+	background-repeat: no-repeat;
+	width: 10px;
+	color: #8c8c8c;;
+    font-size: 10pt;
+    font-family: Tahoma;
+    text-decoration: underline;
 }
 
 span.rtf {
 	background-image: url(../img/ico_file_rtf.png);
+	background-repeat: no-repeat;
+	width: 10px;
+	color: #8c8c8c;;
+    font-size: 10pt;
+    font-family: Tahoma;
+    text-decoration: underline;
 }
 
 span.pagebanner {
 	background-color: #eee;
 	border: 1px dotted #999;
 	padding: 2px 4px 2px 4px;
-	width: 79%;
-	margin-top: 10px;
+	width: 100%;
 	display: block;
 	border-bottom: none;
 }
 
 span.pagelinks {
-	background-color: #eee;
+	background-color: #FFFFFF;
 	border: 1px dotted #999;
 	padding: 2px 4px 2px 4px;
-	width: 79%;
+	width: 100%;
 	display: block;
 	border-top: none;
-	margin-bottom: -5px;
 }
-
 
 .group-1 {
-    font-weight:bold;
-    padding-bottom:10px;
-    border-top:1px solid black;
+	font-weight: bold;
+	padding-bottom: 10px;
+	border-top: 1px solid black;
 }
-.group-2 {
-    font-style:italic;
-    border-top: 1px solid black;
 
+.group-2 {
+	font-style: italic;
+	border-top: 1px solid black;
 }
-.subtotal-sum, .grandtotal-sum {
-    font-weight:bold;
-    text-align:right;
+
+.subtotal-sum,.grandtotal-sum {
+	font-weight: bold;
+	text-align: right;
 }
+
 .subtotal-header {
-    padding-bottom: 0px;
-    border-top: 1px solid white;
+	padding-bottom: 0px;
+	border-top: 1px solid white;
 }
-.subtotal-label, .grandtotal-label {
-    border-top: 1px solid white;
-    font-weight: bold;
+
+.subtotal-label,.grandtotal-label {
+	border-top: 1px solid white;
+	font-weight: bold;
 }
+
 .grouped-table tr.even {
-    background-color: #fff;
+	background-color: #fff;
 }
+
 .grouped-table tr.odd {
-    background-color: #fff;
+	background-color: #fff;
 }
+
 .grandtotal-row {
-    border-top: 2px solid black;
+	border-top: 2px solid black;
 }

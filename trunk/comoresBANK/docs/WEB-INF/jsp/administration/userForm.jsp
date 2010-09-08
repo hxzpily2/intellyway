@@ -23,12 +23,12 @@
 				</td>				
 			</tr>
 		</table>
-		
-		<display:table name="sessionScope.listeComptes" export="true" pagesize="10">			
-			<display:column property="idCompte" title="N°" />
-			<display:column property="descriptif" title="Nom"  />
-			<display:column property="nom" title="Prénom"  />
-			<display:column property="prenom" title="Email"  />
+		<br/>
+		<display:table name="sessionScope.listeComptes" sort="external" defaultsort="1" export="true" pagesize="10" requestURI="/application/Home.do?reqCode=newuser">			
+			<display:column sortable="true" style="width : 50px;" property="idCompte" sortName="idCompte" title="N°" />
+			<display:column sortable="true" style="width : 200px;" property="descriptif" sortName="descriptif" title="Descriptif"  />
+			<display:column sortable="true" style="width : 100px;" property="nom" sortName="nom" title="Nom"  />
+			<display:column sortable="true" style="width : 100px;" property="prenom" sortName="prenom" title="Prénom"  />
 		</display:table>
 		<html:form action='/authentication/j_acegi_security_check.do'> 
 			 
