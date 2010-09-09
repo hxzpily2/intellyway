@@ -1,17 +1,17 @@
 thead tr {
 	background-color: #F2F2F2;	
+	 	
 }
 
 th.sorted {
-	background-color: #E0E0E0;
+	background-color: #E0E0E0;	
 }
 
 th a,th a:visited {
 	color: black;
 	text-decoration: none;
 	font-size: 10pt;
-	font-family: tahoma;
-	
+	font-family: tahoma;	
 }
 
 th a:hover {
@@ -19,10 +19,13 @@ th a:hover {
 	color: black;	
 }
 
+th.sortable{
+	padding-right: 8px;
+}
 th.sorted a,th.sortable a {
 	background-position: right;
 	display: block;
-	width: 100%;
+	width: 100%;	
 }
 
 th.sortable a {
