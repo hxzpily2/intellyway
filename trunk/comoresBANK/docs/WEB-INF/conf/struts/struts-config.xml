@@ -31,7 +31,7 @@
 				parameter="reqCode"
 				>
 				<forward name="homePage" path="/WEB-INF/jsp/consultation/homepage.jsp"/>
-				<forward name="newUser" path="/WEB-INF/jsp/administration/userForm.jsp"/>
+				<forward name="newUser" path="/WEB-INF/jsp/administration/searchCompte.jsp"/>
 		</action>
 		<action path="/authentication/j_acegi_security_check" 
 				type="org.apache.struts.actions.ForwardAction" 

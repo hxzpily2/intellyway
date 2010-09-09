@@ -1,18 +1,22 @@
 thead tr {
-	background-color: #fc0;	
+	background-color: #F2F2F2;	
 }
 
 th.sorted {
-	background-color: orange;
+	background-color: #E0E0E0;
 }
 
 th a,th a:visited {
 	color: black;
+	text-decoration: none;
+	font-size: 10pt;
+	font-family: tahoma;
+	
 }
 
 th a:hover {
 	text-decoration: underline;
-	color: black;
+	color: black;	
 }
 
 th.sorted a,th.sortable a {
@@ -37,11 +41,11 @@ th.order2 a {
 }
 
 tr.odd {
-	background-color: #fff
+	background-color: #B7E854
 }
 
 tr.tableRowEven,tr.even {
-	background-color: #fea
+	background-color: #E1FFA6
 }
 
 div.exportlinks {
@@ -109,8 +113,7 @@ span.rtf {
 }
 
 span.pagebanner {
-	background-color: #eee;
-	border: 1px dotted #999;
+	background-color: #eee;	
 	padding: 2px 4px 2px 4px;
 	width: 100%;
 	display: block;
@@ -119,11 +122,10 @@ span.pagebanner {
 
 span.pagelinks {
 	background-color: #FFFFFF;
-	border: 1px dotted #999;
+	/*border: 1px dotted #999;*/
 	padding: 2px 4px 2px 4px;
 	width: 100%;
 	display: block;
-	border-top: none;
 }
 
 .group-1 {
