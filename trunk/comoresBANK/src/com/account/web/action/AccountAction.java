@@ -32,10 +32,12 @@ public class AccountAction    extends DispatchActionSupport{
 		ApplicationContext ctx = getWebApplicationContext();   
 		UserManager userManager = (UserManager) ctx.getBean("userManager");
 		User user = userManager.getUser(login);
-		session.setAttribute(Sessions.USER, user);
-		session.setAttribute(Sessions.COMPTE, user.getCptNum());
-		Set<Transaction> set = user.getCptNum().getTransactions();
-		
+		if(user.getCptNum()!=null){
+			session.setAttribute(Sessions.USER, user);
+			session.setAttribute(Sessions.COMPTE, user.getCptNum());
+			Set<Transaction> set = user.getCptNum().getTransactions();
+			session.setAttribute(Sessions.LISTETRANSACTIONS, set);
+		}
 		return mapping.findForward(Forwards.SHOWHOMEPAGE);
 	}
 	
