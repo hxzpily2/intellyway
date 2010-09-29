@@ -18,6 +18,14 @@
 				<td width="800">
 					<authz:authorize ifAllGranted="ROLE_USER">
 						<a href="/account/authentication/Login.do?reqCode=logout">Logout</a>
+						<br/><br/>
+						<display:table name="sessionScope.listeTransactions" sort="external" defaultsort="1" export="true" pagesize="10" requestURI="/application/Home.do?reqCode=newuser">			
+							<display:column sortable="true" style="width : 50px;" property="idTrx" sortName="idTrx" title="Id" />
+							<display:column sortable="true" style="width : 200px;" property="description" sortName="description" title="Descriptif"  />
+							<display:column sortable="true" style="width : 150px;" property="dateValeur" sortName="dateValeur" title="Date"  />
+							<display:column sortable="true" style="width : 130px;" property="mntDebit" sortName="mntDebit" title="Montant débit"  />
+							<display:column sortable="true" style="width : 130px;" property="mntCredit" sortName="mntCredit" title="Montant crédit"  />
+						</display:table>
 					</authz:authorize>
 					&nbsp;
 					<authz:authorize ifAllGranted="ROLE_ADMIN">
