@@ -30,6 +30,8 @@
 					&nbsp;
 					<authz:authorize ifAllGranted="ROLE_ADMIN">
 						<!-- ADMIN  -->
+						<a href="/account/authentication/Login.do?reqCode=logout">Logout</a>
+						&nbsp;&nbsp;
 						<a href="/account/application/Home.do?reqCode=newuser">Créer un utilisateur</a>
 					</authz:authorize>
 				</td>				
