@@ -4,6 +4,7 @@ package com.account.security.model;
 
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -12,6 +13,8 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -36,6 +39,9 @@ public class User implements java.io.Serializable {
 	
 	
 	private Set<Rights> rights = new HashSet<Rights>(0);
+	private Set<Compte> comptes = new HashSet<Compte>(0);
+
+	
 
 	public User() {
 	}
@@ -135,12 +141,24 @@ public class User implements java.io.Serializable {
 	public void setRights(Set<Rights> rights) {
 		this.rights = rights;
 	}
+	
+	///////////////////////////////
+	@RemoteProperty
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinTable(name = "COMPTES_USER",joinColumns = { @JoinColumn(name = "ID_USER") }, inverseJoinColumns = { @JoinColumn(name = "CPT_NUM") })
+	public Set<Compte> getComptes() {
+		return comptes;
+	}
 
+	public void setComptes(Set<Compte> comptes) {
+		this.comptes = comptes;
+	}
+    //////////////////////
+	
 	@Override
 	public String toString() {
 		return "User: [id: "+idUser+",login: "+loginUser+", rights: "+rights+"]";
 	}
-	
 	
 
 }
