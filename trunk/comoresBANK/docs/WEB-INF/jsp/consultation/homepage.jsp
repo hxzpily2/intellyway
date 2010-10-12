@@ -9,7 +9,7 @@
 		<table width="100%" height="79">
 			<tr>
 				<td style="color: #7dc327;" width="860" align="center">
-					<span style="font-weight: bold;font-family: tahoma;font-size: 12pt;">Bienvenue sur Comores BANK</span>
+					<span style="font-weight: bold;font-family: tahoma;font-size: 12pt;">Bienvenue sur la poste comores</span>
 				</td>		
 			</tr>
 		</table>
@@ -17,21 +17,32 @@
 			<tr>
 				<td width="800">
 					<authz:authorize ifAllGranted="ROLE_USER">
-						<a href="/account/authentication/Login.do?reqCode=logout">Logout</a>
+						<table width="100%">
+							<tr>
+								<td width="100%" valign="top"><span style="font-family: tahoma;font-size: 12pt;">Bienvenue <b><bean:write name="compteConnected" property="nom"/> <bean:write name="compteConnected" property="prenom"/></b></span></td>
+								<td align="right" valign="top"><a href="/account/authentication/Login.do?reqCode=logout">Déconnexion</a></td>
+							</tr>
+							<tr>
+								<td width="100%" colspan="2"></td>								
+							</tr>
+							<tr>
+								<td width="100%" style="font-family: tahoma;font-size: 12pt;">Votre compte numéro <b><bean:write name="compteConnected" property="idCompte"/></b> est créditeur d'un solde de <span style="font-weight: bold;font-family: tahoma;font-size: 12pt;color: #4AB1FF;"><bean:write name="compteConnected" property="solde"/></span></td>
+								<td align="right"></td>
+							</tr>
+						</table>
+						
 						<br/><br/>
-						<display:table name="sessionScope.listeTransactions" sort="external" defaultsort="1" export="true" pagesize="10" requestURI="/application/Home.do?reqCode=newuser">			
-							<display:column sortable="true" style="width : 50px;" property="idTrx" sortName="idTrx" title="Id" />
-							<display:column sortable="true" style="width : 200px;" property="description" sortName="description" title="Descriptif"  />
-							<display:column sortable="true" style="width : 150px;" property="dateValeur" sortName="dateValeur" title="Date"  />
-							<display:column sortable="true" style="width : 130px;" property="mntDebit" sortName="mntDebit" title="Montant débit"  />
-							<display:column sortable="true" style="width : 130px;" property="mntCredit" sortName="mntCredit" title="Montant crédit"  />
+						<display:table name="sessionScope.listeTransactions" sort="external" defaultsort="3" defaultorder="descending" export="true" pagesize="10" requestURI="/application/Home.do?reqCode=newuser">			
+							<display:column style="width : 50px;" property="idTrx" title="Id" />
+							<display:column sortable="true" style="width : 200px;" property="description" title="Descriptif"  />
+							<display:column sortable="true" style="width : 150px;" property="dateValeur" title="Date"  />
+							<display:column sortable="true" style="width : 130px;" property="mntDebit" title="Montant débit" format="{0,number,###,###,##0.00}"/>
+							<display:column sortable="true" style="width : 130px;" property="mntCredit" title="Montant crédit"  format="{0,number,###,###,##0.00}" />
 						</display:table>
 					</authz:authorize>
 					&nbsp;
 					<authz:authorize ifAllGranted="ROLE_ADMIN">
 						<!-- ADMIN  -->
-						<a href="/account/authentication/Login.do?reqCode=logout">Logout</a>
-						&nbsp;&nbsp;
 						<a href="/account/application/Home.do?reqCode=newuser">Créer un utilisateur</a>
 					</authz:authorize>
 				</td>				
