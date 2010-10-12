@@ -24,7 +24,7 @@ html, body { height: 100%; width: 100%; padding: 0; border: 0; }
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>La Poste Comores : Consultation des Comptes</title>
 </head>
 <body>
 <html:form styleId="loginForm" action="/authentication/j_acegi_security_check.do"
