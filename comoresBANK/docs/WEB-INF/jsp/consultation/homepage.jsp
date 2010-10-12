@@ -26,7 +26,7 @@
 								<td width="100%" colspan="2"></td>								
 							</tr>
 							<tr>
-								<td width="100%" style="font-family: tahoma;font-size: 12pt;">Votre compte numéro <b><bean:write name="compteConnected" property="idCompte"/></b> est créditeur d'un solde de <span style="font-weight: bold;font-family: tahoma;font-size: 12pt;color: #4AB1FF;"><bean:write name="compteConnected" property="solde"/></span></td>
+								<td width="100%" style="font-family: tahoma;font-size: 12pt;">Votre compte numéro <b><bean:write name="compteConnected" property="idCompte"/></b> est créditeur d'un solde de <span style="font-weight: bold;font-family: tahoma;font-size: 12pt;color: #4AB1FF;"><bean:write name="compteConnected" property="solde"/> FC</span></td>
 								<td align="right"></td>
 							</tr>
 						</table>
@@ -36,8 +36,8 @@
 							<display:column style="width : 50px;" property="idTrx" title="Id" />
 							<display:column sortable="true" style="width : 200px;" property="description" title="Descriptif"  />
 							<display:column sortable="true" style="width : 150px;" property="dateValeur" title="Date"  />
-							<display:column sortable="true" style="width : 130px;" property="mntDebit" title="Montant débit" format="{0,number,###,###,##0.00}"/>
-							<display:column sortable="true" style="width : 130px;" property="mntCredit" title="Montant crédit"  format="{0,number,###,###,##0.00}" />
+							<display:column sortable="true" style="width : 130px;text-align:right;" property="mntDebit" title="Montant débit" format="{0,number,###,###,##0.00}" />
+							<display:column sortable="true" style="width : 130px;text-align:right;" property="mntCredit" title="Montant crédit"  format="{0,number,###,###,##0.00}" />
 						</display:table>
 					</authz:authorize>
 					&nbsp;
