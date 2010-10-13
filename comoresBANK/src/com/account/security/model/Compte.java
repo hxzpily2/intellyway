@@ -18,7 +18,7 @@ import org.directwebremoting.annotations.RemoteProperty;
 @DataTransferObject
 @Entity
 @Table(name = "T_CPT", catalog = "VAD")
-public class Compte {
+public class Compte implements Comparable<Compte>{
 	private static final long serialVersionUID = 1915698369828935704L;
 	
 	private int idCompte;
@@ -103,6 +103,10 @@ public class Compte {
 	}
 	public void setUsers(Set<User> users) {
 		this.users = users;
+	}
+	public int compareTo(Compte arg0) {
+		// TODO Auto-generated method stub
+		return (new Integer(this.idCompte).compareTo(new Integer(arg0.idCompte)));
 	}
 	
 	

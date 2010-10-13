@@ -37,6 +37,9 @@ public class User implements java.io.Serializable {
 	private Date dateCreation;
 	private Date lastLogin;
 	
+	private String nom;
+	private String prenom;
+	
 	
 	private Set<Rights> rights = new HashSet<Rights>(0);
 	private Set<Compte> comptes = new HashSet<Compte>(0);
@@ -155,9 +158,27 @@ public class User implements java.io.Serializable {
 	}
     //////////////////////
 	
+	
+	
 	@Override
 	public String toString() {
 		return "User: [id: "+idUser+",login: "+loginUser+", rights: "+rights+"]";
+	}
+
+	public String getNom() {
+		return nom;
+	}
+
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+
+	public String getPrenom() {
+		return prenom;
+	}
+
+	public void setPrenom(String prenom) {
+		this.prenom = prenom;
 	}
 	
 

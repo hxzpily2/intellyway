@@ -6,4 +6,5 @@ public class Forwards {
 	public static String SHOWHOMEPAGE = "homePage";
 	public static String LOGOUT = "logout";
 	public static String CREATEUSER = "newUser";
+	public static String LISTETRANSACTIONS = "listeTransactions";
 }
