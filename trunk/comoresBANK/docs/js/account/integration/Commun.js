@@ -11,20 +11,15 @@ dojo.declare("account.integration.Commun",[],{
                 url: url+"?request=getpage&page="+page+"&resolution="+resolution,
                 handleAs: "text",
                 preventCache:true,
-                load: dojo.hitch(this,function (response) {
-                	dojo.byId('page').innerHTML = response;
-                	dojo.byId('numPage').value=page;
-                	$("#page").scrollview({
-        			    grab:assets+"/js/scroller/images/openhand.cur",
-        			    grabbing:assets+"/js/scroller/images/closedhand.cur"
-        			});
-                	
-                	dojo.fadeOut({ node: loader, duration:500,
-        				onEnd: function(){
-        					loader.style.display = "none";
-        				}
-        			}).play();
-                }
+	                load: dojo.hitch(this,function (response) {
+	                	dojo.byId('content').innerHTML = response;	   
+	                	
+	                	dojo.fadeOut({ node: loader, duration:500,
+	        				onEnd: function(){
+	        					loader.style.display = "none";
+	        				}
+	        			}).play();
+	                }
                 ),
                 error: function (data) {
                     console.error('Error: chargement services', data);
@@ -43,6 +38,23 @@ dojo.declare("account.integration.Commun",[],{
     corPWD : function (){
     	dojo.byId('j_password').value= "";
     	dojo.byId('password').value= "";
+    },
+    
+    sortOrPaginate : function (url){
+    	dojo.xhrPost ({
+            url: url,
+            handleAs: "text",
+            preventCache:true,
+            	load: dojo.hitch(this,function (response) {
+            		dojo.byId('content').innerHTML = response;       	
+            	}
+            ),
+            error: function (data) {
+                console.error('Error: chargement services', data);
+            }
+        });
     }
+    
+    
     
 });

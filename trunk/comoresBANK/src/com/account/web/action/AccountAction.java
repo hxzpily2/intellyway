@@ -1,6 +1,7 @@
 package com.account.web.action;
 
 import java.util.Set;
+import java.util.TreeSet;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -33,10 +34,14 @@ public class AccountAction extends DispatchActionSupport{
 		ApplicationContext ctx = getWebApplicationContext();   
 		UserManager userManager = (UserManager) ctx.getBean("userManager");
 		User user = userManager.getUser(login);
+		session.setAttribute(Sessions.USER, user);
 		
-		//System.out.println(user.getComptes().size());
+		if(user.getComptes()!=null && user.getComptes().size()>0){
+			session.setAttribute(Sessions.LISTECOMPTES, new TreeSet<Compte>(user.getComptes()));			
+		}
+		
 		if(user.getCptNum()!=null){
-			session.setAttribute(Sessions.USER, user);
+			
 			session.setAttribute(Sessions.COMPTE, user.getCptNum());
 			Set<Transaction> set = user.getCptNum().getTransactions();
 			session.setAttribute(Sessions.LISTETRANSACTIONS, set);
