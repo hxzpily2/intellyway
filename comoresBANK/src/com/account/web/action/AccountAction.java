@@ -40,12 +40,6 @@ public class AccountAction extends DispatchActionSupport{
 			session.setAttribute(Sessions.LISTECOMPTES, new TreeSet<Compte>(user.getComptes()));			
 		}
 		
-		if(user.getCptNum()!=null){
-			
-			session.setAttribute(Sessions.COMPTE, user.getCptNum());
-			Set<Transaction> set = user.getCptNum().getTransactions();
-			session.setAttribute(Sessions.LISTETRANSACTIONS, set);
-		}
 		return mapping.findForward(Forwards.SHOWHOMEPAGE);
 	}
 	
@@ -53,21 +47,59 @@ public class AccountAction extends DispatchActionSupport{
 			ActionForm form, HttpServletRequest request,
 			HttpServletResponse response) {
 		
+		/*HttpSession session = request.getSession(false);		
+		String login = (String)session.getAttribute(AuthenticationManager.ACEGI_SECURITY_LAST_USERNAME_KEY);
+		ApplicationContext ctx = getWebApplicationContext();   
+		UserManager userManager = (UserManager) ctx.getBean("userManager");
+		User user = userManager.getUser(login);
+		session.setAttribute(Sessions.USER, user);
+		
+		if(user.getComptes()!=null && user.getComptes().size()>0){
+			session.setAttribute(Sessions.LISTECOMPTES, new TreeSet<Compte>(user.getComptes()));			
+		}
+		
+		if(user.getCptNum()!=null){
+			
+			session.setAttribute(Sessions.COMPTE, user.getCptNum());
+			Set<Transaction> set = user.getCptNum().getTransactions();
+			session.setAttribute(Sessions.LISTETRANSACTIONS, set);
+		}*/	
+		
 		HttpSession session = request.getSession(false);		
 		String login = (String)session.getAttribute(AuthenticationManager.ACEGI_SECURITY_LAST_USERNAME_KEY);
 		ApplicationContext ctx = getWebApplicationContext();   
 		UserManager userManager = (UserManager) ctx.getBean("userManager");
 		
+		User user = userManager.getUser(login);
+		session.setAttribute(Sessions.USER, user);
 		
-		Compte compte = (Compte) session.getAttribute(Sessions.COMPTE);
+		if(request.getParameter("id")!=""){
+			int id = (new Integer(request.getParameter("id"))).intValue();
+			
+			if(user!=null){
+				TreeSet<Compte> setc = new TreeSet<Compte>(user.getComptes());
+				Compte compte = (Compte) setc.toArray()[id];
+				
+				if(compte!=null){
+					
+					session.setAttribute(Sessions.COMPTE, compte);
+					Set<Transaction> sett = compte.getTransactions();
+					if(sett.size()>0)
+						session.setAttribute(Sessions.LISTETRANSACTIONS, sett);
+					else
+						session.setAttribute(Sessions.LISTETRANSACTIONS, null);
+						
+				}
+				/*if(user.getCptNum()!=null){
+					
+					session.setAttribute(Sessions.COMPTE, user.getCptNum());
+					Set<Transaction> set = user.getCptNum().getTransactions();
+					session.setAttribute(Sessions.LISTETRANSACTIONS, set);
+				}*/
+			}
+		}	
 		
-		if(compte!=null){
-			session.setAttribute(Sessions.COMPTE, compte);
-			Set<Transaction> set = compte.getTransactions();
-			session.setAttribute(Sessions.LISTETRANSACTIONS, set);
-		}
-		
-		return mapping.findForward(Forwards.SHOWHOMEPAGE);
+		return mapping.findForward(Forwards.LISTETRANSACTIONS);
 	}
 	
 	public ActionForward newuser(ActionMapping mapping,
