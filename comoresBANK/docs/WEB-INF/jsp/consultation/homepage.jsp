@@ -37,7 +37,7 @@
 								</tr>
 								<logic:iterate indexId="indexData" name="listeComptes" id="unCompte">
 									<tr>
-										<td align="left" width="100%" colspan="2"><img src="/account/image/point.jpg">&nbsp;<a href="javascript:commun.sortOrPaginate('/account/application/Home.do?reqCode=compte&id=<bean:write name="indexData"/>')" style="color: #7dc327;text-decoration: none;"><bean:write name="unCompte" property="idCompte"/></a></td>								
+										<td align="left" width="100%" colspan="2"><img src="/account/image/point.jpg">&nbsp;<a href="javascript:commun.sortOrPaginate('/account/application/Home.do?reqCode=compte&id=<bean:write name="indexData"/>')" style="color: #7dc327;text-decoration: none;"><bean:write name="unCompte" property="idCompte"/> de solde <bean:write name="unCompte" property="solde"/> FC ( <bean:write name="unCompte" property="descriptif"/> )</a></td>								
 									</tr>
 								</logic:iterate>
 							</logic:present>							
