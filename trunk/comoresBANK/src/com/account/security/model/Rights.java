@@ -14,7 +14,7 @@ import org.directwebremoting.annotations.RemoteProperty;
 
 @DataTransferObject
 @Entity
-@Table(name = "ACCOUNT_RIGHTS", catalog = "VAD")
+@Table(name = "ACCOUNT_RIGHTS"/*, catalog = "SYSTEM"*/)
 public class Rights implements java.io.Serializable {
 
 	private static final long serialVersionUID = -8905167784828935704L;

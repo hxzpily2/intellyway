@@ -24,7 +24,7 @@ import org.directwebremoting.annotations.RemoteProperty;
 
 @DataTransferObject
 @Entity
-@Table(name = "ACCOUNT_USER", catalog = "VAD")
+@Table(name = "ACCOUNT_USER"/*, catalog = "SYSTEM"*/)
 public class User implements java.io.Serializable {
 
 	private static final long serialVersionUID = 1073256708139002061L;
@@ -33,7 +33,7 @@ public class User implements java.io.Serializable {
 	private String loginUser;
 	private String passwordUser;
 	private String email;
-	private Compte cptNum;
+	
 	private Date dateCreation;
 	private Date lastLogin;
 	
@@ -102,17 +102,6 @@ public class User implements java.io.Serializable {
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-	
-	@RemoteProperty
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "cpt_num", nullable = false)
-	public Compte getCptNum() {
-		return cptNum;
-	}
-
-	public void setCptNum(Compte cptNum) {
-		this.cptNum = cptNum;
 	}
 	
 	@RemoteProperty
