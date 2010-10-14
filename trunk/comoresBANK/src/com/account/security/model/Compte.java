@@ -9,6 +9,9 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -30,7 +33,7 @@ public class Compte implements Comparable<Compte>{
 	private Set<User> users = new HashSet<User>(0);
 	
 	private Set<Transaction> transactions = new HashSet<Transaction>(0);
-	
+	private Set<User> usersc = new HashSet<User>(0);
 	
 	@RemoteProperty
 	@Id
@@ -107,6 +110,16 @@ public class Compte implements Comparable<Compte>{
 	public int compareTo(Compte arg0) {
 		// TODO Auto-generated method stub
 		return (new Integer(this.idCompte).compareTo(new Integer(arg0.idCompte)));
+	}
+	
+	@RemoteProperty
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinTable(name = "COMPTES_USER",joinColumns = { @JoinColumn(name = "CPT_NUM") }, inverseJoinColumns = { @JoinColumn(name = "ID_USER") })
+	public Set<User> getUsersc() {
+		return usersc;
+	}
+	public void setUsersc(Set<User> usersc) {
+		this.usersc = usersc;
 	}
 	
 	

@@ -41,12 +41,16 @@ dojo.declare("account.integration.Commun",[],{
     },
     
     sortOrPaginate : function (url){
+    	dojo.byId('content').style.display="none";
+    	dojo.byId('preloader').style.display="block";
     	dojo.xhrPost ({
             url: url,
             handleAs: "text",
             preventCache:true,
             	load: dojo.hitch(this,function (response) {
-            		dojo.byId('content').innerHTML = response;       	
+            		dojo.byId('content').innerHTML = response;  
+            		dojo.byId('content').style.display="block";
+                	dojo.byId('preloader').style.display="none";
             	}
             ),
             error: function (data) {

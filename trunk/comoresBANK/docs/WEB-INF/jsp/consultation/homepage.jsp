@@ -4,7 +4,6 @@
 <%@ taglib uri="/WEB-INF/conf/tld/struts-bean.tld" prefix="bean"%>
 <%@ taglib uri="/WEB-INF/conf/tld/struts-logic.tld" prefix="logic"%>
 <%@ taglib uri="http://displaytag.sf.net" prefix="display" %>
-<%@ taglib uri="http://ajaxtags.sourceforge.net/tags/ajaxtags" prefix="ajax" %>
 <%@ taglib uri="http://acegisecurity.org/authz" prefix="authz" %>
 <jsp:include page="../template/header.jsp"/>
 		<table width="100%" height="79">
@@ -36,22 +35,16 @@
 								<tr>
 									<td width="100%" colspan="2"></td>								
 								</tr>
-								<logic:iterate name="listeComptes" id="unCompte">
+								<logic:iterate indexId="indexData" name="listeComptes" id="unCompte">
 									<tr>
-										<td align="left" width="100%" colspan="2"><img src="/account/image/point.jpg">&nbsp;<a href="#" style="color: #7dc327;text-decoration: none;"><bean:write name="unCompte" property="idCompte"/></a></td>								
+										<td align="left" width="100%" colspan="2"><img src="/account/image/point.jpg">&nbsp;<a href="javascript:commun.sortOrPaginate('/account/application/Home.do?reqCode=compte&id=<bean:write name="indexData"/>')" style="color: #7dc327;text-decoration: none;"><bean:write name="unCompte" property="idCompte"/></a></td>								
 									</tr>
 								</logic:iterate>
-							</logic:present>	
-							<logic:present name="compteConnected">	
-								<tr>
-									<td width="100%" style="font-family: tahoma;font-size: 12pt;">Votre compte numéro <b><bean:write name="compteConnected" property="idCompte"/></b> est créditeur d'un solde de <span style="font-weight: bold;font-family: tahoma;font-size: 12pt;color: #4AB1FF;"><bean:write name="compteConnected" property="solde"/> FC</span></td>
-									<td align="right"></td>
-								</tr>
-							</logic:present>
+							</logic:present>							
 						</table>
 						
 						<br/><br/>
-						<div id="preloader" align="center">
+						<div id="preloader" align="center" style="display: none;">
 							<table height="200">
 								<tr>
 									<td align="center" height="200" valign="middle">
@@ -62,18 +55,28 @@
 							</table>						
 						</div>
 						<div id="content">
-							
 							<logic:present name="compteConnected">
-								<!-- excludedParams="*" -->
-									<display:table  uid="listeTransactions" name="sessionScope.listeTransactions" sort="external" defaultsort="3" defaultorder="descending" export="true" pagesize="10" requestURI="/application/Home.do?reqCode=newuser">			
-										<display:column style="width : 50px;" property="idTrx" title="Id" />
-										<display:column sortable="true" style="width : 200px;" property="description" title="Descriptif"  />
-										<display:column sortable="true" style="width : 150px;" property="dateValeur" title="Date"  />
-										<display:column sortable="true" style="width : 130px;text-align:right;" property="mntDebit" title="Montant débit" format="{0,number,###,###,##0.00}" />
-										<display:column sortable="true" style="width : 130px;text-align:right;" property="mntCredit" title="Montant crédit"  format="{0,number,###,###,##0.00}" />
-									</display:table>
-																
-							</logic:present>
+								<table>										
+									<tr>
+										<td width="100%" style="font-family: tahoma;font-size: 12pt;">Votre compte numéro <b><bean:write name="compteConnected" property="idCompte"/></b> est créditeur d'un solde de <span style="font-weight: bold;font-family: tahoma;font-size: 12pt;color: #4AB1FF;"><bean:write name="compteConnected" property="solde"/> FC</span></td>
+										<td align="right"></td>
+									</tr>							
+								</table>
+								<br/>
+								<!--  -->
+									<logic:present name="listeTransactions">
+										<display:table excludedParams="reqCode" uid="listeTransactions" name="sessionScope.listeTransactions" sort="external" defaultsort="3" defaultorder="descending" export="true" pagesize="10" requestURI="/application/Home.do?reqCode=compte">			
+											<display:column style="width : 50px;" property="idTrx" title="Id" />
+											<display:column sortable="true" style="width : 200px;" property="description" title="Descriptif"  />
+											<display:column sortable="true" style="width : 150px;" property="dateValeur" title="Date"  />
+											<display:column sortable="true" style="width : 130px;text-align:right;" property="mntDebit" title="Montant débit" format="{0,number,###,###,##0.00}" />
+											<display:column sortable="true" style="width : 130px;text-align:right;" property="mntCredit" title="Montant crédit"  format="{0,number,###,###,##0.00}" />
+										</display:table>						
+									</logic:present>
+									<logic:notPresent name="listeTransactions">
+										Aucun enregistrement trouvé	
+									</logic:notPresent>																
+							</logic:present>							
 						</div>
 					</authz:authorize>
 					&nbsp;
