@@ -20,7 +20,7 @@ import org.directwebremoting.annotations.RemoteProperty;
 
 @DataTransferObject
 @Entity
-@Table(name = "T_CPT", catalog = "VAD")
+@Table(name = "T_CPT"/*, catalog = "SYSTEM"*/)
 public class Compte implements Comparable<Compte>{
 	private static final long serialVersionUID = 1915698369828935704L;
 	

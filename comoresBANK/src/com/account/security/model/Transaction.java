@@ -15,7 +15,7 @@ import org.directwebremoting.annotations.RemoteProperty;
 
 @DataTransferObject
 @Entity
-@Table(name = "T_TRX", catalog = "VAD")
+@Table(name = "T_TRX"/*, catalog = "SYSTEM"*/)
 public class Transaction {
 	private static final long serialVersionUID = -8915698784828935704L;
 	
