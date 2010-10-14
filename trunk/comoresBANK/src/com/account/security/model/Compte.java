@@ -30,7 +30,6 @@ public class Compte implements Comparable<Compte>{
 	private Date dateSolde;
 	private String nom;
 	private String prenom;
-	private Set<User> users = new HashSet<User>(0);
 	
 	private Set<Transaction> transactions = new HashSet<Transaction>(0);
 	private Set<User> usersc = new HashSet<User>(0);
@@ -99,14 +98,6 @@ public class Compte implements Comparable<Compte>{
 		this.transactions = transactions;
 	}
 	
-	@RemoteProperty
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "cptNum")
-	public Set<User> getUsers() {
-		return users;
-	}
-	public void setUsers(Set<User> users) {
-		this.users = users;
-	}
 	public int compareTo(Compte arg0) {
 		// TODO Auto-generated method stub
 		return (new Integer(this.idCompte).compareTo(new Integer(arg0.idCompte)));
