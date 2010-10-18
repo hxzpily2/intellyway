@@ -36,13 +36,13 @@ public class SearchCompteDecorateur extends TableDecorator{
 	public String getLienNewUser() {
 		Object object = getCurrentRowObject();
 
-		/*if ( object instanceof Compte){
-			if(((Compte) object).getUsers().size()>0){
-				return "<a href=\"#\">Modifier utilisateru</a>";
+		if ( object instanceof Compte){
+			if(((Compte) object).getUsersc().size()>0){
+				return "<a style=\"font-family: tahoma;font-size: 10pt;\" href=\"/account/application/Home.do?reqCode=userupdate&id="+((Compte) object).getIdCompte()+"\">Modifier</a>";
 			}else{
-				return "<a href=\"#\">Créer utilisateur</a>";
+				return "<a style=\"font-family: tahoma;font-size: 10pt;\" href=\"/account/application/Home.do?reqCode=usercreate&id="+((Compte) object).getIdCompte()+"\">Créer</a>";
 			}
-		}*/
+		}
 		return "";
 	}
 	

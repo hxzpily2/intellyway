@@ -29,10 +29,15 @@
 		<action path="/application/Home" 
 				type="com.account.web.action.AccountAction" 
 				parameter="reqCode"
+				name="createUserForm"				
+                scope="request"
+                validate="false"				
 				>
 				<forward name="homePage" path="/WEB-INF/jsp/consultation/homepage.jsp"/>
 				<forward name="listeTransactions" path="/WEB-INF/jsp/consultation/transactions.jsp"/>
-				<forward name="newUser" path="/WEB-INF/jsp/administration/searchCompte.jsp"/>
+				<forward name="searchCompte" path="/WEB-INF/jsp/administration/searchCompte.jsp"/>
+				<forward name="createUser" path="/WEB-INF/jsp/administration/createuser.jsp"/>
+				<forward name="updateUser" path="/WEB-INF/jsp/administration/updateuser.jsp"/>
 		</action>
 		<action path="/authentication/j_acegi_security_check" 
 				type="org.apache.struts.actions.ForwardAction" 
