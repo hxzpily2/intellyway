@@ -114,6 +114,36 @@ public class AccountAction extends DispatchActionSupport{
 		session.setAttribute(Sessions.LISTECOMPTES,userManager.getComptes());
 		
 		
+		return mapping.findForward(Forwards.SEARCHCOMPTE);
+	}
+	
+	public ActionForward userupdate(ActionMapping mapping,
+			ActionForm form, HttpServletRequest request,
+			HttpServletResponse response) {
+ 
+		HttpSession session = request.getSession(false);		
+		
+		ApplicationContext ctx = getWebApplicationContext();   
+		AccountService userManager = (AccountService) ctx.getBean("accountManager");
+		
+		session.setAttribute(Sessions.LISTECOMPTES,userManager.getComptes());
+		
+		
+		return mapping.findForward(Forwards.UPDATEUSER);
+	}
+	
+	public ActionForward usercreate(ActionMapping mapping,
+			ActionForm form, HttpServletRequest request,
+			HttpServletResponse response) {
+ 
+		HttpSession session = request.getSession(false);		
+		
+		ApplicationContext ctx = getWebApplicationContext();   
+		AccountService userManager = (AccountService) ctx.getBean("accountManager");
+		
+		session.setAttribute(Sessions.LISTECOMPTES,userManager.getComptes());
+		
+		
 		return mapping.findForward(Forwards.CREATEUSER);
 	}
 }

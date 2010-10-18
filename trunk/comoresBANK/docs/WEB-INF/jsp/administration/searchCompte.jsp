@@ -29,7 +29,7 @@
 			<display:column sortable="true" style="width : 200px;" property="descriptif" sortName="descriptif" title="Descriptif"  />
 			<display:column sortable="true" style="width : 100px;" property="nom" sortName="nom" title="Nom"  />
 			<display:column sortable="true" style="width : 100px;" property="prenom" sortName="prenom" title="Prénom"  />												
-			<display:column style="width : 80px;" property="lienNewUser" title="Prénom"  />
+			<display:column style="width : 100px;" property="lienNewUser" title="Utilisateur"  />
 		</display:table>
 		<html:form action='/authentication/j_acegi_security_check.do'> 
 			 

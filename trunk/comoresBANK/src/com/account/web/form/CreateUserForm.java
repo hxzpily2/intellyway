@@ -10,6 +10,9 @@ import org.apache.struts.action.ActionMessage;
 public class CreateUserForm extends ActionForm{
 	protected String email = null;
     protected String numcompte = null;
+    protected String nom = null;
+    protected String prenom = null;
+    protected String login = null;
     
     
     public String getEmail() {
