@@ -24,7 +24,7 @@ import org.directwebremoting.annotations.RemoteProperty;
 public class Compte implements Comparable<Compte>{
 	private static final long serialVersionUID = 1915698369828935704L;
 	
-	private int idCompte;
+	private long idCompte;
 	private String descriptif;
 	private float solde;
 	private Date dateSolde;
@@ -37,10 +37,10 @@ public class Compte implements Comparable<Compte>{
 	@RemoteProperty
 	@Id
 	@Column(name = "cpt_num", unique = true, nullable = false, length = 24)
-	public int getIdCompte() {
+	public long getIdCompte() {
 		return idCompte;
 	}
-	public void setIdCompte(int idCompte) {
+	public void setIdCompte(long idCompte) {
 		this.idCompte = idCompte;
 	}
 	
@@ -100,7 +100,7 @@ public class Compte implements Comparable<Compte>{
 	
 	public int compareTo(Compte arg0) {
 		// TODO Auto-generated method stub
-		return (new Integer(this.idCompte).compareTo(new Integer(arg0.idCompte)));
+		return (new Long(this.idCompte).compareTo(new Long(arg0.idCompte)));
 	}
 	
 	@RemoteProperty

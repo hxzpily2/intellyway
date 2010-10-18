@@ -73,7 +73,7 @@ public class AccountAction extends DispatchActionSupport{
 		User user = userManager.getUser(login);
 		session.setAttribute(Sessions.USER, user);
 		
-		if(request.getParameter("id")!=""){
+		if(request.getParameter("id")!="" && request.getParameter("id")!=null){
 			int id = (new Integer(request.getParameter("id"))).intValue();
 			
 			if(user!=null){

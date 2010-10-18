@@ -316,7 +316,12 @@ html, body { height: 100%; width: 100%; padding: 0; border: 0; }
 							<td width="460" background="/account/image/notice_botom.jpg">&nbsp;</td>
 							<td width="20" height="20" background="/account/image/notice_rbotom.jpg">&nbsp;</td>
 						</tr>
-					</table>			
+					</table>
+					<!-- ADDED -->
+					<div style="padding-left: 10px;width: 460px;">
+						<center><img height="200" src="/account/image/batimentSNPSF.jpg"/></center>
+					</div>			
+					<!-- FIN ADDED -->
 				</td>
 			</tr>
 		</table>

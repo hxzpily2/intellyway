@@ -25,11 +25,11 @@
 		</table>
 		<br/>
 		<display:table decorator="com.account.commun.decorateurs.SearchCompteDecorateur" name="sessionScope.listeComptes" sort="external" defaultsort="1" export="true" pagesize="10" requestURI="/application/Home.do?reqCode=newuser">			
-			<display:column sortable="true" style="width : 50px;" property="idCompte" sortName="idCompte" title="N°" />
-			<display:column sortable="true" style="width : 200px;" property="descriptif" sortName="descriptif" title="Descriptif"  />
-			<display:column sortable="true" style="width : 100px;" property="nom" sortName="nom" title="Nom"  />
-			<display:column sortable="true" style="width : 100px;" property="prenom" sortName="prenom" title="Prénom"  />												
-			<display:column style="width : 100px;" property="lienNewUser" title="Utilisateur"  />
+			<display:column sortable="true" style="width : 50px;font-size:10pt;font-family:tahoma;" property="idCompte" sortName="idCompte" title="N°" />
+			<display:column sortable="true" style="width : 200px;font-size:10pt;font-family:tahoma;" property="descriptif" sortName="descriptif" title="Descriptif"  />
+			<display:column sortable="true" style="width : 100px;font-size:10pt;font-family:tahoma;" property="nom" sortName="nom" title="Nom"  />
+			<display:column sortable="true" style="width : 220px;font-size:10pt;font-family:tahoma;" property="prenom" sortName="prenom" title="Prénom"  />												
+			<display:column style="width : 70px;" property="lienNewUser" title="Utilisateur"  />
 		</display:table>
 		<html:form action='/authentication/j_acegi_security_check.do'> 
 			 
