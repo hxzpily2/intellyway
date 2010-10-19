@@ -9,7 +9,7 @@
 		<table width="100%" height="79">
 			<tr>
 				<td style="color: #7dc327;" width="860" align="center">
-					<span style="font-weight: bold;font-family: tahoma;font-size: 12pt;">Bienvenue sur la poste comores</span>
+					<span style="font-weight: bold;font-family: tahoma;font-size: 12pt;">Bienvenue sur la Banque de la Postale des Comores SNPSF</span>
 				</td>		
 			</tr>
 		</table>
