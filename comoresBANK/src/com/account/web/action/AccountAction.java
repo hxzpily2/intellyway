@@ -97,8 +97,7 @@ public class AccountAction extends DispatchActionSupport{
 					session.setAttribute(Sessions.LISTETRANSACTIONS, set);
 				}*/
 			}
-		}	
-		
+		}	//
 		return mapping.findForward(Forwards.LISTETRANSACTIONS);
 	}
 	
@@ -145,5 +144,18 @@ public class AccountAction extends DispatchActionSupport{
 		
 		
 		return mapping.findForward(Forwards.CREATEUSER);
+	}
+	
+	public ActionForward expired(ActionMapping mapping,
+			ActionForm form, HttpServletRequest request,
+			HttpServletResponse response) {
+ 
+		HttpSession session = request.getSession(false);		
+		
+				
+		session.invalidate();
+		
+		
+		return mapping.findForward(Forwards.SESSIONEXPIRED);
 	}
 }

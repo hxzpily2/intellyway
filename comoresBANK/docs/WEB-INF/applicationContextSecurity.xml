@@ -10,10 +10,10 @@
 			<value>
 				CONVERT_URL_TO_LOWERCASE_BEFORE_COMPARISON
 				PATTERN_TYPE_APACHE_ANT
-				/authentication/login.do=httpSessionContextIntegrationFilter				
-				/authentication/logonprocess.do=httpSessionContextIntegrationFilter				
-				/authentication/j_acegi_security_check.do=httpSessionContextIntegrationFilter,formAuthenticationProcessingFilter
-				/**=httpSessionContextIntegrationFilter,exceptionTranslationFilter,filterSecurityInterceptor
+				/authentication/login.do=concurrentSessionFilter,httpSessionContextIntegrationFilter				
+				/authentication/logonprocess.do=concurrentSessionFilter,httpSessionContextIntegrationFilter				
+				/authentication/j_acegi_security_check.do=concurrentSessionFilter,httpSessionContextIntegrationFilter,formAuthenticationProcessingFilter
+				/**=concurrentSessionFilter,httpSessionContextIntegrationFilter,exceptionTranslationFilter,filterSecurityInterceptor
 				/cache/**=#NONE#							
 				/image/**=#NONE#
 			</value>
@@ -31,6 +31,11 @@
 		<property name="authenticationEntryPoint">
 			<ref bean="formLoginAuthenticationEntryPoint" />
 		</property>
+	</bean>
+	
+	<bean id="cheatAuthenticationProcessingFilterEntryPoint" class="org.acegisecurity.ui.webapp.AuthenticationProcessingFilterEntryPoint">
+		<property name="loginFormUrl"><value>/application/Home.do?reqCode=expired</value></property>
+		<property name="forceHttps"><value>false</value></property>
 	</bean>
 	
 	<!-- ===================== filterSecurityInterceptor ==================== -->
@@ -88,8 +93,20 @@
 				<ref local="authenticationProvider"/>
 			</list>
 		</property>
+		<property name="sessionController"><ref bean="concurrentSessionController"/></property>		
 	</bean>
 	
+	<bean id="concurrentSessionFilter" class="org.acegisecurity.concurrent.ConcurrentSessionFilter">
+		<property name="sessionRegistry"><ref local="sessionRegistry"/></property>
+		<property name="expiredUrl"><value>/application/Home.do?reqCode=expired</value></property>
+	</bean>
+	
+	<bean id="concurrentSessionController" class="org.acegisecurity.concurrent.ConcurrentSessionControllerImpl">
+	  <property name="maximumSessions"><value>1</value></property>
+	  <property name="sessionRegistry"><ref local="sessionRegistry"/></property>	  	    
+	</bean>
+	
+	<bean id="sessionRegistry" class="org.acegisecurity.concurrent.SessionRegistryImpl"/>
 	<!-- ===================== authenticationProvider ==================== -->
 	<bean id="authenticationProvider"
 		class="org.acegisecurity.providers.dao.DaoAuthenticationProvider">
