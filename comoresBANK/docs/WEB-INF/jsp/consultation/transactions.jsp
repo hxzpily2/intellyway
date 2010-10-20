@@ -27,7 +27,8 @@
 				<display:column style="width : 150px;font-size:10pt;font-family:tahoma;" property="dateValeur" title="Date"  />
 				<display:column style="width : 130px;text-align:right;font-size:10pt;font-family:tahoma;" property="mntDebit" title="Montant débit" format="{0,number,###,###,##0.00}" />
 				<display:column style="width : 130px;text-align:right;font-size:10pt;font-family:tahoma;" property="mntCredit" title="Montant crédit"  format="{0,number,###,###,##0.00}" />
-			</display:table>						
+			</display:table>			
+			<span style="font-family: tahoma;font-size: 7pt;color: #b0b0b0;"><sup>*</sup> rafraîchissement de deux mois</span>						
 		</logic:present>
 		<logic:notPresent name="listeTransactions">
 			Aucun enregistrement trouvé	
