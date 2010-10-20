@@ -14,7 +14,7 @@
 <logic:present name="compteConnected">
 	<table>										
 		<tr>
-			<td width="100%" style="font-family: tahoma;font-size: 12pt;">Votre compte numéro <b><bean:write name="compteConnected" property="idCompte"/></b> est <logic:greaterEqual value="0" name="compteConnected" property="solde">créditeur</logic:greaterEqual><logic:lessThan value="-1" name="compteConnected" property="solde">débiteur</logic:lessThan> d'une somme de <span style="font-weight: bold;font-family: tahoma;font-size: 12pt;color: #4AB1FF;"><bean:write name="compteConnected" property="solde"/> FC</span></td>
+			<td width="100%" style="font-family: tahoma;font-size: 12pt;">Votre compte numéro <b><bean:write name="compteConnected" property="idCompte"/></b> est <logic:greaterEqual value="0" name="compteConnected" property="solde">créditeur</logic:greaterEqual><logic:lessThan value="-1" name="compteConnected" property="solde">débiteur</logic:lessThan> d'une somme de <span style="font-weight: bold;font-family: tahoma;font-size: 12pt;color: #4AB1FF;"><bean:write name="compteConnected" property="solde" format="###.##"/> FC</span></td>
 			<td align="right"></td>
 		</tr>							
 	</table>
