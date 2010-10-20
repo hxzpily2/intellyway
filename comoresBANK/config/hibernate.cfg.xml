@@ -5,9 +5,9 @@
 <hibernate-configuration>
     <session-factory>
         <property name="hibernate.connection.driver_class">oracle.jdbc.OracleDriver</property>
-        <property name="hibernate.connection.password">VAD</property>
-        <property name="hibernate.connection.url">jdbc:oracle:thin:@10.0.0.120:20300:PM22DB1</property>
-        <property name="hibernate.connection.username">VAD</property>
+        <property name="hibernate.connection.password">oracle</property>
+        <property name="hibernate.connection.url">jdbc:oracle:thin:@87.98.175.17:1521:XE</property>
+        <property name="hibernate.connection.username">system</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
         <mapping class="com.account.security.model.User"/>
         <mapping class="com.account.security.model.Rights"/>
