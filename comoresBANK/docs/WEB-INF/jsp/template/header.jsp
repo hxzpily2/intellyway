@@ -35,7 +35,7 @@ html, body { height: 100%; width: 100%; padding: 0; border: 0; }
 	<tr>
 		<td width="50%">&nbsp;</td>
 		<td width="1000">
-		<img src="/account/image/header.jpg"/>
+		<a href="/account/authentication/Login.do?reqCode=logout" style="border-style: none;text-decoration: none;"><img style="border-style: none;" src="/account/image/header.jpg"/></a>
 		</td>
 		<td width="50%">&nbsp;</td>
 	</tr>
