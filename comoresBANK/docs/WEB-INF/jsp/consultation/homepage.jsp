@@ -82,11 +82,14 @@
 					</authz:authorize>
 					&nbsp;
 					<authz:authorize ifAllGranted="ROLE_ADMIN">
+						<jsp:include page="../template/menu.jsp"/>
 						<!-- ADMIN  -->
 						<table width="100%">						
 								<tr>
-									<td width="100%" valign="top"><a href="/account/application/Home.do?reqCode=newuser">Créer un utilisateur</a></td>
-									<td align="right" valign="top"><a href="/account/authentication/Login.do?reqCode=logout">Déconnexion</a></td>
+									<td width="100%" valign="top">
+										
+										
+									</td>									
 								</tr>
 								<tr>
 									<td width="100%" colspan="2"></td>								
