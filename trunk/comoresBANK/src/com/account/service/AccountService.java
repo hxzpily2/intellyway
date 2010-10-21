@@ -8,6 +8,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 
+import com.account.commun.vo.SearchCompteVO;
 import com.account.dao.AccountDAO;
 import com.account.dao.UserDao;
 import com.account.security.model.Compte;
@@ -33,5 +34,9 @@ public class AccountService {
 	
 	public List<Compte> getComptes(){
 		return accountDao.getComptes();
+	}
+	
+	public List<Compte> searchComptes(SearchCompteVO scVO){
+		return accountDao.searchComptes();
 	}
 }

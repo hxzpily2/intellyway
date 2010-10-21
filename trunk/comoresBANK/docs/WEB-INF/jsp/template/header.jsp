@@ -10,9 +10,18 @@
 
 
 <!-- DOJO INCLUDE -->
-<script type='text/javascript' src='/account/js/dojo/dojo.js' djConfig='parseOnLoad: false'></script>
+<style type='text/css'>
+	@import '/account/js/dijit/themes/claro/claro.css';
+	@import '/account/js/dojo/resources/dojo.css';
+</style>
+<script type='text/javascript' src='/account/js/dojo/dojo.js' djConfig='parseOnLoad: true'></script>
 <script type='text/javascript'>
-	
+	dojo.require("dijit.MenuBar");
+	dojo.require("dijit.PopupMenuBarItem");
+	dojo.require("dijit.Menu");
+	dojo.require("dijit.MenuItem");
+	dojo.require("dijit.PopupMenuItem");
+
 	dojo.require('dojo.parser');
 	
 	dojo.registerModulePath('account', '../account');
@@ -30,7 +39,7 @@ html, body { height: 100%; width: 100%; padding: 0; border: 0; }
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>La Poste Comores : Consultation des Comptes</title>
 </head>
-<body>
+<body class="claro">
 <table width="100%" height="79">
 	<tr>
 		<td width="50%">&nbsp;</td>

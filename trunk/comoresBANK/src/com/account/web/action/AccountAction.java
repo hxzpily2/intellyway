@@ -16,6 +16,7 @@ import org.springframework.web.struts.DispatchActionSupport;
 
 import com.account.commun.Forwards;
 import com.account.commun.Sessions;
+import com.account.commun.vo.SearchCompteVO;
 import com.account.security.model.Compte;
 import com.account.security.model.Transaction;
 import com.account.security.model.User;
@@ -110,7 +111,7 @@ public class AccountAction extends DispatchActionSupport{
 		ApplicationContext ctx = getWebApplicationContext();   
 		AccountService userManager = (AccountService) ctx.getBean("accountManager");
 		
-		session.setAttribute(Sessions.LISTECOMPTES,userManager.getComptes());
+		//session.setAttribute(Sessions.LISTECOMPTES,userManager.getComptes());
 		
 		
 		return mapping.findForward(Forwards.SEARCHCOMPTE);
@@ -157,5 +158,25 @@ public class AccountAction extends DispatchActionSupport{
 		
 		
 		return mapping.findForward(Forwards.SESSIONEXPIRED);
+	}
+	
+	public ActionForward searchcompte(ActionMapping mapping,
+			ActionForm form, HttpServletRequest request,
+			HttpServletResponse response) {
+ 
+		HttpSession session = request.getSession(false);		
+		
+				
+		ApplicationContext ctx = getWebApplicationContext();   
+		AccountService userManager = (AccountService) ctx.getBean("accountManager");
+		
+		SearchCompteVO scVO = new SearchCompteVO();
+		scVO.setLogin(request.getParameter("login"));
+		scVO.setNom(request.getParameter("nom"));
+		scVO.setPrenom(request.getParameter("prenom"));
+		scVO.setNumcompte(request.getParameter("num"));
+		
+		
+		return mapping.findForward(Forwards.LISTECOMPTES);
 	}
 }

@@ -32,4 +32,24 @@ public class AccountDAO  extends HibernateDaoSupport{
             return null;
         }
     }
+	
+	
+   public List<Compte> searchComptes() {
+        
+        try {
+            logger.info("get User with login: ");
+            Session session = getHibernateTemplate().getSessionFactory().getCurrentSession();
+            // create a new criteria
+            Criteria crit = session.createCriteria(User.class);
+            
+            
+            return session.createQuery("from Compte").list();            
+        }
+        catch(DataAccessException e) {
+            // Critical errors : database unreachable, etc.
+            logger.error("Exception - DataAccessException occurs : "+e.getMessage()
+                    +" on complete getUser().");
+            return null;
+        }
+    }
 }

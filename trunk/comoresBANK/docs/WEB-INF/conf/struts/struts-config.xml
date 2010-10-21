@@ -39,6 +39,7 @@
 				<forward name="createUser" path="/WEB-INF/jsp/administration/createuser.jsp"/>
 				<forward name="updateUser" path="/WEB-INF/jsp/administration/updateuser.jsp"/>
 				<forward name="sessionExpired" path="/WEB-INF/jsp/authentication/expired.jsp"/>
+				<forward name="listeComptes" path="/WEB-INF/jsp/administration/comptes.jsp"/>				
 		</action>
 		<action path="/authentication/j_acegi_security_check" 
 				type="org.apache.struts.actions.ForwardAction" 
