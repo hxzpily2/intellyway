@@ -7,4 +7,6 @@ public class Sessions {
 	public static String COMPTE = "compteConnected";
 	public static String LISTECOMPTES = "listeComptes";
 	public static String LISTETRANSACTIONS = "listeTransactions";
+	public static String COMPTEUSER = "compteUser";
+	public static String PASSWORD = "password";
 }

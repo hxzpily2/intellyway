@@ -114,5 +114,32 @@ public class SecuriteGrilleGenerator {
 		sha1hash = md.digest();
 		return convertToHex(sha1hash);
 	}
+	
+	public static String generatePassword() {
+		Vector<Integer> keys = new Vector<Integer>();
+		
+
+		for (int j = 0; j < 10; j++) {
+			keys.add(j);
+		}
+
+		
+
+		int tableau[] = new int[6];
+		for (int i = 0; i < tableau.length; i++) {
+			tableau[i] = 0;
+		}
+		String pass = "";
+		for (int i = 0; i < 6; i++) {
+			int randomK = (int) (Math.random() * (keys.size() - 0)) + 0;
+			int itemK = (Integer) keys.get(randomK).intValue();
+			keys.remove(randomK);
+			
+			tableau[i] = itemK;
+			pass+=itemK;
+			// System.out.println(randomK+" "+randomI);
+		}
+		return pass;
+	}
 
 }

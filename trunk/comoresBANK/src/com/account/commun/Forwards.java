@@ -13,4 +13,7 @@ public class Forwards {
 	
 	public static String SESSIONEXPIRED = "sessionExpired";
 	public static String LISTECOMPTES = "listeComptes";
+	
+	public static String USERCREATESUCCESS = "userCreateSuccess";
+	public static String USERUPDATESUCCESS = "userUpdateSuccess";
 }

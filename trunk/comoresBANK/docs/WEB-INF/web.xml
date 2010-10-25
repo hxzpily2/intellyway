@@ -3,6 +3,10 @@
 	xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
 	<display-name>BlankApplicationTapestryDWR</display-name>
+	<session-config>
+		<!-- 2 hour timeout -->
+		<session-timeout>120</session-timeout>
+	</session-config>
 
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
@@ -25,12 +29,14 @@
 
 	<filter>
 		<filter-name>Hibernate Session In View Filter</filter-name>
-		<filter-class>org.springframework.orm.hibernate3.support.OpenSessionInViewFilter</filter-class>
+		<filter-class>
+			org.springframework.orm.hibernate3.support.OpenSessionInViewFilter</filter-class>
 	</filter>
-	
+
 	<listener>
-		<listener-class>org.acegisecurity.ui.session.HttpSessionEventPublisher</listener-class>
-	</listener> 
+		<listener-class>
+			org.acegisecurity.ui.session.HttpSessionEventPublisher</listener-class>
+	</listener>
 	<!--
 		<filter> <filter-name>app</filter-name>
 		<filter-class>org.apache.tapestry.spring.TapestrySpringFilter</filter-class>
@@ -43,13 +49,13 @@
 			<param-name>redirect</param-name>
 			<param-value>/WEB-INF/jsp/authentication/expired.jsp</param-value>
 		</init-param>
-	</filter> 
+	</filter>
 
 	<filter-mapping>
-	  <filter-name>SessionExpireFilter</filter-name>
-	  <url-pattern>*.jsp</url-pattern>
-	</filter-mapping> 
-	
+		<filter-name>SessionExpireFilter</filter-name>
+		<url-pattern>*.jsp</url-pattern>
+	</filter-mapping>
+
 	<filter-mapping>
 		<filter-name>Hibernate Session In View Filter</filter-name>
 		<url-pattern>/*</url-pattern>
@@ -67,7 +73,7 @@
 
 	<servlet>
 		<servlet-name>action</servlet-name>
-		<servlet-class>org.apache.struts.action.ActionServlet</servlet-class>		
+		<servlet-class>org.apache.struts.action.ActionServlet</servlet-class>
 		<init-param>
 			<param-name>config</param-name>
 			<param-value>/WEB-INF/conf/struts/struts-config.xml</param-value>
