@@ -59,32 +59,33 @@
 			</tr>
 		</table>
 		<br/><br/>
-		
-		<table id="preloader" height="200" width="100%" style="display: none;">
-			<tr>
-				<td align="center" height="200" valign="middle">
-					<img src="/account/image/chargement.gif"/><br/>
-					<span style="font-family: tahoma;font-size: 10pt;">Chargement</span>
-				</td>
-			</tr>									
-		</table>						
-		
+		<div id="preloader" height="200" width="100%" style="display: none;position: relative;
+					 top: 25%;
+					 left: 25%;
+					 width: 50%;
+					 height: 50%;					 
+					 padding: 5px;" >
+			<table height="200" width="100%">
+				<tr>					
+					<td align="center" height="200" valign="middle">
+						<img src="/account/image/chargement.gif"/><br/>
+						<span style="font-family: tahoma;font-size: 10pt;">Chargement</span>
+					</td>					
+				</tr>									
+			</table>						
+		</div>
 		<div id="content">				
 				<br/>
 				<!--  -->
 				<logic:present name="listeComptes">
-					<display:table excludedParams="reqCode" uid="listeComptes" name="sessionScope.listeTransactions" sort="external" defaultsort="3" defaultorder="descending" export="true" pagesize="10" requestURI="/application/Home.do?reqCode=compte">			
-						<display:column style="width : 50px;font-size:10pt;font-family:tahoma;" property="idTrx" title="Id" />
-						<display:column style="width : 300px;font-size:10pt;font-family:tahoma;" property="description" title="Descriptif"  />
-						<display:column style="width : 150px;font-size:10pt;font-family:tahoma;" property="dateValeur" title="Date"  />
-						<display:column style="width : 130px;text-align:right;font-size:10pt;font-family:tahoma;" property="mntDebit" title="Montant débit" format="{0,number,###,###,##0.00}" />
-						<display:column style="width : 130px;text-align:right;font-size:10pt;font-family:tahoma;" property="mntCredit" title="Montant crédit"  format="{0,number,###,###,##0.00}" />
-					</display:table>
-					<span style="font-family: tahoma;font-size: 7pt;color: #b0b0b0;"><sup>*</sup> rafraîchissement de deux mois</span>						
+					<display:table excludedParams="reqCode" uid="listeComptes" name="sessionScope.listeComptes" sort="external" defaultsort="3" defaultorder="descending" export="true" pagesize="10" requestURI="/application/Home.do?reqCode=searchcompte">			
+						<display:column style="width : 50px;font-size:10pt;font-family:tahoma;" property="idCompte" title="Id" />
+						<display:column style="width : 200px;font-size:10pt;font-family:tahoma;" property="nom" title="Nom"  />
+						<display:column style="width : 200px;font-size:10pt;font-family:tahoma;" property="prenom" title="Prenom"  />						
+					</display:table>							
 				</logic:present>
 				<logic:notPresent name="listeComptes">
 					Aucun enregistrement trouvé	
-				</logic:notPresent>								
-										
+				</logic:notPresent>										
 		</div>
 <jsp:include page="../template/footer.jsp"/>		
