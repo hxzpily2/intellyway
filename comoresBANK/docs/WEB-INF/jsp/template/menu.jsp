@@ -18,20 +18,7 @@
 	                Modifier un utilisateur
 	            </div>
 	        </div>
-	    </div>
-	    <div dojoType="dijit.PopupMenuBarItem">
-	        <span>
-	            Edit
-	        </span>
-	        <div dojoType="dijit.Menu" id="editMenu">
-	            <div dojoType="dijit.MenuItem" onClick="alert('edit 1')">
-	                Edit #1
-	            </div>
-	            <div dojoType="dijit.MenuItem" onClick="alert('edit 2')">
-	                Edit #2
-	            </div>
-	        </div>
-	    </div>
+	    </div>	    
 	    <authz:authorize ifAllGranted="ROLE_ADMIN">
 		    <div dojoType="dijit.PopupMenuBarItem">
 		        <span>
