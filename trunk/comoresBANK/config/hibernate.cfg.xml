@@ -9,6 +9,8 @@
         <property name="hibernate.connection.url">jdbc:oracle:thin:@87.98.175.17:1521:XE</property>
         <property name="hibernate.connection.username">system</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        <property name="hibernate.show_sql">true</property>
+    	<property name="format_sql">true</property>
         
         <property name="c3p0.acquire_increment">1</property> 
 		<property name="c3p0.idle_test_period">100</property> <!-- seconds --> 

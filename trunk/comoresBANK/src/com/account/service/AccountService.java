@@ -37,6 +37,6 @@ public class AccountService {
 	}
 	
 	public List<Compte> searchComptes(SearchCompteVO scVO){
-		return accountDao.searchComptes();
+		return accountDao.searchComptes(scVO);
 	}
 }

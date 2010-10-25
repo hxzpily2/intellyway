@@ -176,7 +176,7 @@ public class AccountAction extends DispatchActionSupport{
 		scVO.setPrenom(request.getParameter("prenom"));
 		scVO.setNumcompte(request.getParameter("num"));
 		
-		
+		session.setAttribute(Sessions.LISTECOMPTES, userManager.searchComptes(scVO));
 		return mapping.findForward(Forwards.LISTECOMPTES);
 	}
 }
