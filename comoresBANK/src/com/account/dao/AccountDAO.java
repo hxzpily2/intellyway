@@ -10,6 +10,7 @@ import org.hibernate.criterion.Expression;
 import org.springframework.dao.DataAccessException;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
+import com.account.commun.vo.SearchCompteVO;
 import com.account.security.model.Compte;
 import com.account.security.model.User;
 
@@ -34,7 +35,7 @@ public class AccountDAO  extends HibernateDaoSupport{
     }
 	
 	
-   public List<Compte> searchComptes() {
+   public List<Compte> searchComptes(SearchCompteVO scVO) {
         
         try {
             logger.info("get User with login: ");
@@ -42,8 +43,12 @@ public class AccountDAO  extends HibernateDaoSupport{
             // create a new criteria
             Criteria crit = session.createCriteria(User.class);
             
-            
-            return session.createQuery("from Compte").list();            
+            String sql = "from Compte as compte where 1=1 ";
+            if(scVO.getNom()!="")
+            	sql += " and compte.nom like '%"+scVO.getNom()+"%' ";	
+            if(scVO.getPrenom()!="")
+            	sql += " and compte.prenom like '%"+scVO.getPrenom()+"%' ";
+            return session.createQuery(sql).list();            
         }
         catch(DataAccessException e) {
             // Critical errors : database unreachable, etc.
