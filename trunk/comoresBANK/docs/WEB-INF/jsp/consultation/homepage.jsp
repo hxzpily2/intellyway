@@ -20,7 +20,8 @@
 						<table width="100%">
 							<logic:present name="userConnected">
 								<tr>
-									<td width="100%" valign="top"><span style="font-family: tahoma;font-size: 12pt;">Bienvenue <b><bean:write name="userConnected" property="nom"/> <bean:write name="userConnected" property="prenom"/></b></span></td>
+									<td width="700" valign="top"><span style="font-family: tahoma;font-size: 12pt;">Bienvenue <b><bean:write name="userConnected" property="nom"/> <bean:write name="userConnected" property="prenom"/></b></span></td>
+									<td width="150" align="left" valign="top"><a href="javascript:dijit.byId('formDialog').show();">Modifier mot de passe</a></td>
 									<td align="right" valign="top"><a href="/account/authentication/Login.do?reqCode=logout">Déconnexion</a></td>
 								</tr>
 								<tr>
@@ -29,11 +30,11 @@
 							</logic:present>
 							<logic:present name="listeComptes">
 								<tr>
-									<td width="100%" style="font-family: tahoma;font-size: 12pt;">Vous êtes titulaire des comptes : </td>
-									<td align="right"></td>
+									<td width="700" style="font-family: tahoma;font-size: 12pt;">Vous êtes titulaire des comptes : </td>
+									<td colspan="2" align="right"></td>
 								</tr>
 								<tr>
-									<td width="100%" colspan="2"></td>								
+									<td width="100%" colspan="3"></td>								
 								</tr>
 								<logic:iterate indexId="indexData" name="listeComptes" id="unCompte">
 									<tr>
@@ -99,4 +100,50 @@
 				</td>				
 			</tr>
 		</table>
+<authz:authorize ifAllGranted="ROLE_USER">		
+<div dojoType="dijit.Dialog" id="formDialog" title="Form Dialog" execute="alert('submitted w/args:\n' + dojo.toJson(arguments[0], true));">
+    <table>
+        <tr>
+            <td>
+                <label for="name">
+                    Ancien password:
+                </label>
+            </td>
+            <td>
+                <input dojoType="dijit.form.TextBox" type="text" name="passwordold" id="passwordold">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="loc">
+                    Noveau password:
+                </label>
+            </td>
+            <td>
+                <input dojoType="dijit.form.TextBox" type="text" name="passwordnew" id="passwordnew">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="date">
+                    Confirmez password:
+                </label>
+            </td>
+            <td>
+                <input dojoType="dijit.form.TextBox" type="text" name="passwordconf" id="passwordconf">
+            </td>
+        </tr>        
+        <tr>
+            <td align="center" colspan="2">
+                <button dojoType="dijit.form.Button" type="submit" onClick="return dijit.byId('formDialog').isValid();">
+                    OK
+                </button>
+                <button dojoType="dijit.form.Button" type="button" onClick="dijit.byId('formDialog').hide();">
+                    Cancel
+                </button>
+            </td>
+        </tr>
+    </table>
+</div>
+</authz:authorize>
 <jsp:include page="../template/footer.jsp"/>

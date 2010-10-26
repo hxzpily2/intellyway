@@ -21,7 +21,10 @@
 	dojo.require("dijit.Menu");
 	dojo.require("dijit.MenuItem");
 	dojo.require("dijit.PopupMenuItem");
-
+	dojo.require("dijit.form.Button");
+    dojo.require("dijit.Dialog");
+    dojo.require("dijit.form.TextBox");
+	
 	dojo.require('dojo.parser');
 	
 	dojo.registerModulePath('account', '../account');
