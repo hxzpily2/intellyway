@@ -212,7 +212,7 @@ public class AccountAction extends DispatchActionSupport{
 			user.setNom(request.getParameter("nom"));
 			user.setPrenom(request.getParameter("prenom"));
 			
-			Compte compte = (Compte) session.getAttribute(Sessions.COMPTE);
+			Compte compte = (Compte) session.getAttribute(Sessions.COMPTEUSER);
 			Set<Compte> list = new HashSet<Compte>();
 			list.add(compte);
 			user.setComptes(list);
@@ -220,7 +220,7 @@ public class AccountAction extends DispatchActionSupport{
 			Rights right = new Rights();
 			right.setUser(user);
 			right.setLabel(Constantes.USER);
-			right.setI18nkey("I18nIhmAccount");
+			right.setI18nkey("");
 			rights.add(right);
 			user.setRights(rights);
 			
@@ -229,7 +229,7 @@ public class AccountAction extends DispatchActionSupport{
 			try{
 				userManager.saveUser(user,right);
 			}catch(Exception e){
-				
+				e.printStackTrace();
 			}
 
 		}

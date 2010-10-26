@@ -11,12 +11,15 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import org.directwebremoting.annotations.DataTransferObject;
@@ -24,12 +27,13 @@ import org.directwebremoting.annotations.RemoteProperty;
 
 @DataTransferObject
 @Entity
+@SequenceGenerator(name="user_seq", sequenceName="SEQ_USER",allocationSize = 1)
 @Table(name = "ACCOUNT_USER"/*, catalog = "SYSTEM"*/)
 public class User implements java.io.Serializable {
 
 	private static final long serialVersionUID = 1073256708139002061L;
 	
-	private int idUser;
+	private Integer idUser;
 	private String loginUser;
 	private String passwordUser;
 	private String email;
@@ -49,13 +53,13 @@ public class User implements java.io.Serializable {
 	public User() {
 	}
 
-	public User(int idUser, String loginUser, String passwordUser) {
+	public User(Integer idUser, String loginUser, String passwordUser) {
 		this.idUser = idUser;
 		this.loginUser = loginUser;
 		this.passwordUser = passwordUser;
 	}
 
-	public User(int idUser, String loginUser, String passwordUser,
+	public User(Integer idUser, String loginUser, String passwordUser,
 			Set<Rights> rights) {
 		this.idUser = idUser;
 		this.loginUser = loginUser;
@@ -65,12 +69,13 @@ public class User implements java.io.Serializable {
 
 	@RemoteProperty
 	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE ,generator="user_seq")
 	@Column(name = "id_user", unique = true, nullable = false)
-	public int getIdUser() {
+	public Integer getIdUser() {
 		return this.idUser;
 	}
 
-	public void setIdUser(int idUser) {
+	public void setIdUser(Integer idUser) {
 		this.idUser = idUser;
 	}
 

@@ -115,6 +115,7 @@ public class AccountDAO extends HibernateDaoSupport {
 			
 			
 			session.getTransaction().commit();
+			session.refresh(user);
 			
 			session.close();
 

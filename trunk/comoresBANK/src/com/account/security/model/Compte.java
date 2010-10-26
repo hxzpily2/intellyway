@@ -104,7 +104,7 @@ public class Compte implements Comparable<Compte>{
 	}
 	
 	@RemoteProperty
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@ManyToMany( fetch = FetchType.LAZY)
 	@JoinTable(name = "COMPTES_USER",joinColumns = { @JoinColumn(name = "CPT_NUM") }, inverseJoinColumns = { @JoinColumn(name = "ID_USER") })
 	public Set<User> getUsersc() {
 		return usersc;
