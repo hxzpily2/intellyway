@@ -1,6 +1,7 @@
 package com.account.security.model;
 
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -47,7 +48,7 @@ public class Rights implements java.io.Serializable {
 	}
 
 	@RemoteProperty
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY,cascade = {CascadeType.PERSIST,CascadeType.MERGE,CascadeType.REFRESH,CascadeType.MERGE})
 	@JoinColumn(name = "id_user", nullable = false)
 	public User getUser() {
 		return this.user;

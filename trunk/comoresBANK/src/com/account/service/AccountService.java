@@ -1,11 +1,13 @@
 package com.account.service;
 
+import java.sql.SQLException;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.hibernate.HibernateException;
 
 
 import com.account.commun.vo.SearchCompteVO;
@@ -50,8 +52,8 @@ public class AccountService {
 		return accountDao.getRightByLib(lib);
 	}
 	
-	public void saveUser(User user){
-		accountDao.saveUser(user);
+	public void saveUser(User user,Rights right) throws HibernateException, SQLException{
+		accountDao.saveUser(user,right);
 	}
 	
 	public void saveRight(Rights right){

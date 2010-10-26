@@ -216,15 +216,21 @@ public class AccountAction extends DispatchActionSupport{
 			Set<Compte> list = new HashSet<Compte>();
 			list.add(compte);
 			user.setComptes(list);
-			
-			
-			userManager.saveUser(user);
-			
+			Set<Rights> rights = new HashSet<Rights>();
 			Rights right = new Rights();
 			right.setUser(user);
 			right.setLabel(Constantes.USER);
-			right.setI18nkey("");
-			userManager.saveRight(right);
+			right.setI18nkey("I18nIhmAccount");
+			rights.add(right);
+			user.setRights(rights);
+			
+			
+			
+			try{
+				userManager.saveUser(user,right);
+			}catch(Exception e){
+				
+			}
 
 		}
 		
