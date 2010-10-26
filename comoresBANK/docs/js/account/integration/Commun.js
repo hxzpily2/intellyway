@@ -81,6 +81,30 @@ dojo.declare("account.integration.Commun",[],{
                 console.error('Error: chargement services', data);
             }
         });
+    },
+    
+    updatePassword : function (){
+    	var passwordold = dojo.byId('passwordold').value;
+    	var passwordnew = dojo.byId('passwordnew').value;
+    	var passwordconf = dojo.byId('passwordconf').value;
+    	
+    	
+    	dojo.byId('content').style.display="none";
+    	dojo.byId('preloader').style.display="";
+    	dojo.xhrPost ({
+            url: '/account/application/Home.do?reqCode=searchcompte'+'&nom='+nom+'&prenom='+prenom+'&num='+numero_compte+'&login='+login,
+            handleAs: "text",
+            preventCache:true,
+            	load: dojo.hitch(this,function (response) {
+            		dojo.byId('content').innerHTML = response;  
+            		dojo.byId('content').style.display="block";
+                	dojo.byId('preloader').style.display="none";
+            	}
+            ),
+            error: function (data) {
+                console.error('Error: chargement services', data);
+            }
+        });
     }
     
     

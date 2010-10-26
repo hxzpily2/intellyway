@@ -8,7 +8,7 @@
         <property name="hibernate.connection.password">oracle</property>
         <property name="hibernate.connection.url">jdbc:oracle:thin:@87.98.175.17:1521:XE</property>
         <property name="hibernate.connection.username">system</property>
-        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.OracleDialect</property>
         <property name="hibernate.show_sql">true</property>
     	<property name="format_sql">true</property>
         
