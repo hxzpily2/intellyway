@@ -1,10 +1,12 @@
 package com.account.dao;
 
+import java.sql.SQLException;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 import org.hibernate.Criteria;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.criterion.Expression;
 import org.springframework.dao.DataAccessException;
@@ -98,13 +100,25 @@ public class AccountDAO extends HibernateDaoSupport {
 		}
 	}
 
-	public void saveUser(User user) {
+	public void saveUser(User user,Rights right) throws HibernateException, SQLException {
 
 		try {
 			logger.info("get User with login: ");
-			Session session = getHibernateTemplate().getSessionFactory()
-					.getCurrentSession();
+			Session session = getHibernateTemplate().getSessionFactory().openSession();
+					
+			session.beginTransaction();
+
+			
 			session.save(user);
+			
+			
+			
+			
+			session.getTransaction().commit();
+			
+			session.close();
+
+			
 		} catch (DataAccessException e) {
 			// Critical errors : database unreachable, etc.
 			logger.error("Exception - DataAccessException occurs : "

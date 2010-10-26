@@ -33,13 +33,13 @@
 				<tr>
 					<td>Login</td>
 					<td width="10"></td>
-					<td><input value="<logic:present name="compteUser"><bean:write name="compteUser" property="idCompte"/></logic:present>" type="text" id="login" name="login" style="border: 1px solid rgb(181, 181, 181);"/></td>
+					<td><input value="<logic:present name="compteUser"><bean:write name="compteUser" property="idCompte"/></logic:present>" type="text" id="login" name="login" style="border: 1px solid rgb(181, 181, 181);width: 250px;"/></td>
 				</tr>
 				<tr>
 					<td>Nom</td>
 					<td width="10"></td>
 					<td>
-						<input disabled="disabled" value="<logic:present name="compteUser"><bean:write name="compteUser" property="nom"/></logic:present>" type="text" id="nomC" name="nomC" style="border: 1px solid rgb(181, 181, 181);"/>
+						<input disabled="disabled" value="<logic:present name="compteUser"><bean:write name="compteUser" property="nom"/></logic:present>" type="text" id="nomC" name="nomC" style="border: 1px solid rgb(181, 181, 181);width: 250px;"/>
 						<input value="<logic:present name="compteUser"><bean:write name="compteUser" property="nom"/></logic:present>" type="hidden" id="nom" name="nom" style="border: 1px solid rgb(181, 181, 181);"/>
 					</td>
 				</tr>
@@ -47,7 +47,7 @@
 					<td>Prenom</td>
 					<td width="10"></td>
 					<td>
-						<input disabled="disabled" value="<logic:present name="compteUser"><bean:write name="compteUser" property="prenom"/></logic:present>" type="text" id="prenomC" name="prenomC" style="border: 1px solid rgb(181, 181, 181);"/>
+						<input disabled="disabled" value="<logic:present name="compteUser"><bean:write name="compteUser" property="prenom"/></logic:present>" type="text" id="prenomC" name="prenomC" style="border: 1px solid rgb(181, 181, 181);width: 250px;"/>
 						<input value="<logic:present name="compteUser"><bean:write name="compteUser" property="prenom"/></logic:present>" type="hidden" id="prenom" name="prenom" style="border: 1px solid rgb(181, 181, 181);"/>
 					</td>
 				</tr>
