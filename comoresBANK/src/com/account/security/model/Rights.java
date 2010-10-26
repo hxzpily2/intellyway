@@ -5,9 +5,12 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import org.directwebremoting.annotations.DataTransferObject;
@@ -15,12 +18,13 @@ import org.directwebremoting.annotations.RemoteProperty;
 
 @DataTransferObject
 @Entity
+@SequenceGenerator(name="right_seq", sequenceName="SEQ_RIGHTS",allocationSize = 1)
 @Table(name = "ACCOUNT_RIGHTS"/*, catalog = "SYSTEM"*/)
 public class Rights implements java.io.Serializable {
 
 	private static final long serialVersionUID = -8905167784828935704L;
 	
-	private int id;
+	private Integer id;
 	private User user;
 	private String label;
 	private String I18nkey;
@@ -30,25 +34,26 @@ public class Rights implements java.io.Serializable {
 	public Rights() {
 	}
 
-	public Rights(int id, User user, String label) {
+	public Rights(Integer id, User user, String label) {
 		this.id = id;
 		this.user = user;
 		this.label = label;
 	}
 
 	@RemoteProperty
-	@Id
+	@Id	
+	@GeneratedValue(strategy = GenerationType.SEQUENCE ,generator="right_seq")
 	@Column(name = "id", unique = true, nullable = false)
-	public int getId() {
+	public Integer getId() {
 		return this.id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
 	@RemoteProperty
-	@ManyToOne(fetch = FetchType.LAZY,cascade = {CascadeType.PERSIST,CascadeType.MERGE,CascadeType.REFRESH,CascadeType.MERGE})
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_user", nullable = false)
 	public User getUser() {
 		return this.user;
