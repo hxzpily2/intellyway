@@ -21,7 +21,7 @@
 							<logic:present name="userConnected">
 								<tr>
 									<td width="700" valign="top"><span style="font-family: tahoma;font-size: 12pt;">Bienvenue <b><bean:write name="userConnected" property="nom"/> <bean:write name="userConnected" property="prenom"/></b></span></td>
-									<td width="150" align="left" valign="top"><a href="javascript:commun.showDialogPassUpdate();">Modifier mot de passe</a></td>
+									<td width="170" align="left" valign="top"><a href="javascript:commun.showDialogPassUpdate();">Modifier mot de passe</a></td>
 									<td align="right" valign="top"><a href="/account/authentication/Login.do?reqCode=logout">Déconnexion</a></td>
 								</tr>
 								<tr>
@@ -103,7 +103,7 @@
 <authz:authorize ifAllGranted="ROLE_USER">		
 <div style="width: 350px;height: 300px;" dojoType="dijit.Dialog" id="formDialog" title="Modifier password" execute="alert('submitted w/args:\n' + dojo.toJson(arguments[0], true));">
     
-			<table height="100%" width="100%" id="preloaderDialog" style="display: none;">
+			<table height="300" width="100%" id="preloaderDialog" style="display: none;">
 				<tr>					
 					<td align="center" height="200" valign="middle">
 						<img src="/account/image/chargement.gif"/><br/>
@@ -114,8 +114,8 @@
 		
 	<div id="errorContent">
 	</div>
-    <table id="contentDialog" width="100%" height="100%">
-        <tr>            
+    <table id="contentDialog" width="100%" height="250">
+        <tr height="10">            
             <td>
                 <input type="radio" dojoType="dijit.form.RadioButton" name="drink" id="radioOne" checked="checked" />
                 <label for="name">
@@ -125,7 +125,7 @@
             <td>
                 <input disabled="disabled" maxlength="6" dojoType="dijit.form.TextBox" type="password" name="passwordold" id="passwordold">                
             </td>
-        </tr>
+        </tr height="10">
         <tr>
             <td>
                 <input type="radio" dojoType="dijit.form.RadioButton" name="drink" id="radioTwo" />
@@ -137,7 +137,7 @@
                 <input disabled="disabled" maxlength="6" dojoType="dijit.form.TextBox" type="password" name="passwordnew" id="passwordnew">
             </td>
         </tr>
-        <tr>
+        <tr height="10">
             <td>
                 <input type="radio" dojoType="dijit.form.RadioButton" name="drink" id="radioTree" />
                 <label for="date">
@@ -148,8 +148,8 @@
                 <input disabled="disabled" maxlength="6" dojoType="dijit.form.TextBox" type="password" name="passwordconf" id="passwordconf">
             </td>
         </tr>
-        <tr>
-            <td colspan="3" align="center">
+        <tr height="129">
+            <td colspan="3" align="center" height="129">
                 <br/>
                 <logic:present name="GRILLE_IMAGE_UPDATE_PASSWORD">
 									<img width="129" height="129" BORDER="0"

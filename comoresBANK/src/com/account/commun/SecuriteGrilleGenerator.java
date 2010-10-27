@@ -119,8 +119,8 @@ public class SecuriteGrilleGenerator {
 		Vector<Integer> keys = new Vector<Integer>();
 		
 
-		for (int j = 0; j < 10; j++) {
-			keys.add(j);
+		for (int j = 0; j < 9; j++) {
+			keys.add(j+1);
 		}
 
 		
