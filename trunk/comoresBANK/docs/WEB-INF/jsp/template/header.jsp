@@ -24,6 +24,7 @@
 	dojo.require("dijit.form.Button");
     dojo.require("dijit.Dialog");
     dojo.require("dijit.form.TextBox");
+    dojo.require("dijit.form.RadioButton");
 	
 	dojo.require('dojo.parser');
 	

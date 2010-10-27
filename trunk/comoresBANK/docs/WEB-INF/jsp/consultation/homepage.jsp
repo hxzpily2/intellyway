@@ -21,7 +21,7 @@
 							<logic:present name="userConnected">
 								<tr>
 									<td width="700" valign="top"><span style="font-family: tahoma;font-size: 12pt;">Bienvenue <b><bean:write name="userConnected" property="nom"/> <bean:write name="userConnected" property="prenom"/></b></span></td>
-									<td width="150" align="left" valign="top"><a href="javascript:dijit.byId('formDialog').show();">Modifier mot de passe</a></td>
+									<td width="150" align="left" valign="top"><a href="javascript:commun.showDialogPassUpdate();">Modifier mot de passe</a></td>
 									<td align="right" valign="top"><a href="/account/authentication/Login.do?reqCode=logout">Déconnexion</a></td>
 								</tr>
 								<tr>
@@ -67,16 +67,16 @@
 								<!--  -->
 									<logic:present name="listeTransactions">
 										<display:table excludedParams="reqCode" uid="listeTransactions" name="sessionScope.listeTransactions" sort="external" defaultsort="3" defaultorder="descending" export="true" pagesize="10" requestURI="/application/Home.do?reqCode=compte">			
-											<display:column style="width : 50px;font-size:10pt;font-family:tahoma;" property="idTrx" title="Id" />
-											<display:column style="width : 300px;font-size:10pt;font-family:tahoma;" property="description" title="Descriptif"  />
-											<display:column style="width : 150px;font-size:10pt;font-family:tahoma;" property="dateValeur" title="Date"  />
+											<display:column style="width : 50px;font-size:10pt;font-family:tahoma;" property="idTrx" title="Numéro" />
+											<display:column style="width : 300px;font-size:10pt;font-family:tahoma;" property="description" title="Opération"  />
+											<display:column style="width : 150px;font-size:10pt;font-family:tahoma;" property="dateValeur" title="Date de valeur"  />
 											<display:column style="width : 130px;text-align:right;font-size:10pt;font-family:tahoma;" property="mntDebit" title="Montant débit" format="{0,number,###,###,##0.00}" />
 											<display:column style="width : 130px;text-align:right;font-size:10pt;font-family:tahoma;" property="mntCredit" title="Montant crédit"  format="{0,number,###,###,##0.00}" />
 										</display:table>
 										<span style="font-family: tahoma;font-size: 7pt;color: #b0b0b0;"><sup>*</sup> rafraîchissement de deux mois</span>						
 									</logic:present>
 									<logic:notPresent name="listeTransactions">
-										Aucun enregistrement trouvé	
+										Aucune opération trouvée	
 									</logic:notPresent>																
 							</logic:present>							
 						</div>
@@ -101,45 +101,110 @@
 			</tr>
 		</table>
 <authz:authorize ifAllGranted="ROLE_USER">		
-<div dojoType="dijit.Dialog" id="formDialog" title="Form Dialog" execute="alert('submitted w/args:\n' + dojo.toJson(arguments[0], true));">
-    <table>
-        <tr>
+<div style="width: 350px;height: 300px;" dojoType="dijit.Dialog" id="formDialog" title="Modifier password" execute="alert('submitted w/args:\n' + dojo.toJson(arguments[0], true));">
+    
+			<table height="100%" width="100%" id="preloaderDialog" style="display: none;">
+				<tr>					
+					<td align="center" height="200" valign="middle">
+						<img src="/account/image/chargement.gif"/><br/>
+						<span style="font-family: tahoma;font-size: 10pt;">Chargement</span>
+					</td>					
+				</tr>									
+			</table>						
+		
+	<div id="errorContent">
+	</div>
+    <table id="contentDialog" width="100%" height="100%">
+        <tr>            
             <td>
+                <input type="radio" dojoType="dijit.form.RadioButton" name="drink" id="radioOne" checked="checked" />
                 <label for="name">
                     Ancien password:
                 </label>
             </td>
             <td>
-                <input dojoType="dijit.form.TextBox" type="text" name="passwordold" id="passwordold">
+                <input disabled="disabled" maxlength="6" dojoType="dijit.form.TextBox" type="password" name="passwordold" id="passwordold">                
             </td>
         </tr>
         <tr>
             <td>
+                <input type="radio" dojoType="dijit.form.RadioButton" name="drink" id="radioTwo" />
                 <label for="loc">
                     Noveau password:
-                </label>
+                </label>                
             </td>
             <td>
-                <input dojoType="dijit.form.TextBox" type="text" name="passwordnew" id="passwordnew">
+                <input disabled="disabled" maxlength="6" dojoType="dijit.form.TextBox" type="password" name="passwordnew" id="passwordnew">
             </td>
         </tr>
         <tr>
             <td>
+                <input type="radio" dojoType="dijit.form.RadioButton" name="drink" id="radioTree" />
                 <label for="date">
                     Confirmez password:
                 </label>
             </td>
             <td>
-                <input dojoType="dijit.form.TextBox" type="text" name="passwordconf" id="passwordconf">
+                <input disabled="disabled" maxlength="6" dojoType="dijit.form.TextBox" type="password" name="passwordconf" id="passwordconf">
             </td>
-        </tr>        
+        </tr>
+        <tr>
+            <td colspan="3" align="center">
+                <br/>
+                <logic:present name="GRILLE_IMAGE_UPDATE_PASSWORD">
+									<img width="129" height="129" BORDER="0"
+										src="/account/cache/<bean:write name="GRILLE_IMAGE_UPDATE_PASSWORD" property="url"/>.PNG"
+										usemap="#securitygrille" />
+									<map name="securitygrille">
+										<area shape="rect" coords="0,0,26,26" href="javascript:commun.writeUpdatePWD(1)" />
+										<area shape="rect" coords="26,0,52,26" href="javascript:commun.writeUpdatePWD(2)" />										
+										<area shape="rect" coords="52,0,78,26" href="javascript:commun.writeUpdatePWD(3)" />
+										<area shape="rect" coords="78,0,104,26" href="javascript:commun.writeUpdatePWD(4)" />
+										<area shape="rect" coords="104,0,130,26" href="javascript:commun.writeUpdatePWD(5)" />
+										
+										<area shape="rect" coords="0,26,26,52" href="javascript:commun.writeUpdatePWD(6)" />
+										<area shape="rect" coords="26,26,52,52" href="javascript:commun.writeUpdatePWD(7)" />										
+										<area shape="rect" coords="52,26,78,52" href="javascript:commun.writeUpdatePWD(8)" />
+										<area shape="rect" coords="78,26,104,52" href="javascript:commun.writeUpdatePWD(9)" />
+										<area shape="rect" coords="104,26,130,52" href="javascript:commun.writeUpdatePWD(10)" />
+										
+										<area shape="rect" coords="0,52,26,78" href="javascript:commun.writeUpdatePWD(11)" />
+										<area shape="rect" coords="26,52,52,78" href="javascript:commun.writeUpdatePWD(12)" />										
+										<area shape="rect" coords="52,52,78,78" href="javascript:commun.writeUpdatePWD(13)" />
+										<area shape="rect" coords="78,52,104,78" href="javascript:commun.writeUpdatePWD(14)" />
+										<area shape="rect" coords="104,52,130,78" href="javascript:commun.writeUpdatePWD(15)" />
+										
+										<area shape="rect" coords="0,78,26,104" href="javascript:commun.writeUpdatePWD(16)" />
+										<area shape="rect" coords="26,78,52,104" href="javascript:commun.writeUpdatePWD(17)" />										
+										<area shape="rect" coords="52,78,78,104" href="javascript:commun.writeUpdatePWD(18)" />
+										<area shape="rect" coords="78,78,104,104" href="javascript:commun.writeUpdatePWD(19)" />
+										<area shape="rect" coords="104,78,130,104" href="javascript:commun.writeUpdatePWD(20)" />
+										
+										<area shape="rect" coords="0,104,26,130" href="javascript:commun.writeUpdatePWD(21)" />
+										<area shape="rect" coords="26,104,52,130" href="javascript:commun.writeUpdatePWD(22)" />										
+										<area shape="rect" coords="52,104,78,130" href="javascript:commun.writeUpdatePWD(23)" />
+										<area shape="rect" coords="78,104,104,130" href="javascript:commun.writeUpdatePWD(24)" />
+										<area shape="rect" coords="104,104,130,130" href="javascript:commun.writeUpdatePWD(25)" />
+									</map>
+								</logic:present>
+								<br/>
+            </td>            
+        </tr> 
+        <tr>
+        	<td align="center" colspan="2">
+                
+            </td>
+        </tr>       
         <tr>
             <td align="center" colspan="2">
-                <button dojoType="dijit.form.Button" type="submit" onClick="return dijit.byId('formDialog').isValid();">
+                <button dojoType="dijit.form.Button" type="button" onClick="commun.updatePassword();">
                     OK
                 </button>
                 <button dojoType="dijit.form.Button" type="button" onClick="dijit.byId('formDialog').hide();">
                     Cancel
+                </button>
+                <button dojoType="dijit.form.Button" type="button" onClick="commun.corrigerPass();">
+                    CORRIGER
                 </button>
             </td>
         </tr>

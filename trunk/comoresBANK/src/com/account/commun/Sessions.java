@@ -9,4 +9,12 @@ public class Sessions {
 	public static String LISTETRANSACTIONS = "listeTransactions";
 	public static String COMPTEUSER = "compteUser";
 	public static String PASSWORD = "password";
+	
+	public static String GRILLE_UPDATE_PASSWORD = "GRILLE_UPDATE_PASSWORD";
+	public static String GRILLE_IMAGE_UPDATE_PASSWORD = "GRILLE_IMAGE_UPDATE_PASSWORD";
+	public static String ERROR_UPDATE_PASS = "errorUpdatePass";
+	
+	public static String OK_UPDATE_PASS = "okUpdatePass";
+	
+	
 }

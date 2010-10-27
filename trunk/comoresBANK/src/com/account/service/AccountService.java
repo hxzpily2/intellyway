@@ -59,4 +59,8 @@ public class AccountService {
 	public void saveRight(Rights right){
 		accountDao.saveRight(right);
 	}
+	
+	public void updatePass(User user){
+		accountDao.updatePass(user);
+	}
 }

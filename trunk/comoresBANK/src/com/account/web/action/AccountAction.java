@@ -1,5 +1,6 @@
 package com.account.web.action;
 
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 import java.util.HashSet;
@@ -22,6 +23,7 @@ import org.springframework.web.struts.DispatchActionSupport;
 
 import com.account.commun.Constantes;
 import com.account.commun.Forwards;
+import com.account.commun.ImageGrille;
 import com.account.commun.SecuriteGrilleGenerator;
 import com.account.commun.Sessions;
 import com.account.commun.vo.SearchCompteVO;
@@ -34,10 +36,71 @@ import com.account.security.service.UserManager;
 import com.account.service.AccountService;
 
 public class AccountAction extends DispatchActionSupport{
+	public ActionForward updatepass(ActionMapping mapping,
+			ActionForm form, HttpServletRequest request,
+			HttpServletResponse response) throws NoSuchAlgorithmException, UnsupportedEncodingException {
+ 
+		HttpSession session = request.getSession(false);		
+		
+		
+		String passold = request.getParameter("passwordold");
+		String passnew = request.getParameter("passwordnew");
+		String passconf = request.getParameter("passwordconf");
+		int[] grille = (int[]) request.getSession().getAttribute(Sessions.GRILLE_UPDATE_PASSWORD);
+		
+		String tempPass = new String();
+        for (int i = 0; i < passold.length(); i++) {
+        	char temp = passold.charAt(i);
+        	int indice = ((int) temp)-64;
+        	tempPass+=grille[indice-1];
+		}
+        passold = tempPass;
+        tempPass="";
+        for (int i = 0; i < passnew.length(); i++) {
+        	char temp = passnew.charAt(i);
+        	int indice = ((int) temp)-64;
+        	tempPass+=grille[indice-1];
+		}
+        passnew = tempPass;
+        tempPass="";
+        for (int i = 0; i < passconf.length(); i++) {
+        	char temp = passconf.charAt(i);
+        	int indice = ((int) temp)-64;
+        	tempPass+=grille[indice-1];
+		}
+        passconf = tempPass;
+        tempPass="";
+        
+        passold = SecuriteGrilleGenerator.SHA1(passold);
+        passnew = SecuriteGrilleGenerator.SHA1(passnew);
+        passconf = SecuriteGrilleGenerator.SHA1(passconf);
+        
+        String login = (String)session.getAttribute(AuthenticationManager.ACEGI_SECURITY_LAST_USERNAME_KEY);
+		ApplicationContext ctx = getWebApplicationContext();   
+		UserManager userManager = (UserManager) ctx.getBean("userManager");
+		AccountService userService = (AccountService) ctx.getBean("accountManager");
+		
+		User user = userManager.getUser(login);
+		session.setAttribute(Sessions.ERROR_UPDATE_PASS, "");
+		session.setAttribute(Sessions.OK_UPDATE_PASS, "");
+		if(user.getPasswordUser().equals(passold)){
+			if(passnew.equals(passconf)){
+				//update user
+				user.setPasswordUser(passnew);
+				userService.updatePass(user);
+				session.setAttribute(Sessions.OK_UPDATE_PASS, "ok");
+			}else{
+				session.setAttribute(Sessions.ERROR_UPDATE_PASS, "Le mot de pass n'a pas été correctement confirmé");
+			}
+		}else{
+			session.setAttribute(Sessions.ERROR_UPDATE_PASS, "Le mot de pass que vous avez saisie est incorret");
+		}
+		return mapping.findForward(Forwards.UPDATEPASSWORD);
+	}
 	
 	public ActionForward consultation(ActionMapping mapping,
 			ActionForm form, HttpServletRequest request,
-			HttpServletResponse response) {
+			HttpServletResponse response) throws IOException {
  
 		HttpSession session = request.getSession(false);		
 		String login = (String)session.getAttribute(AuthenticationManager.ACEGI_SECURITY_LAST_USERNAME_KEY);
@@ -49,7 +112,17 @@ public class AccountAction extends DispatchActionSupport{
 		if(user.getComptes()!=null && user.getComptes().size()>0){
 			session.setAttribute(Sessions.LISTECOMPTES, new TreeSet<Compte>(user.getComptes()));			
 		}
+		///////////////////
+		int[] grille = SecuriteGrilleGenerator.getGrilleToLogin();
+		session.setAttribute(Sessions.GRILLE_UPDATE_PASSWORD,grille);
+		long timestamp = System.currentTimeMillis();
+		SecuriteGrilleGenerator.updateImageWithGrilleToLogin(grille,getServlet().getServletContext().getRealPath("/")+Constantes.GRILLE_URL,getServlet().getServletContext().getRealPath("/cache/")+"/",timestamp);
+				
+		ImageGrille imG = new ImageGrille();
+		imG.setUrl(new Long(timestamp).toString());
 		
+		session.setAttribute(Sessions.GRILLE_IMAGE_UPDATE_PASSWORD, imG);
+		///////////
 		return mapping.findForward(Forwards.SHOWHOMEPAGE);
 	}
 	
