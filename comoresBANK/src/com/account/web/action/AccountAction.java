@@ -81,8 +81,8 @@ public class AccountAction extends DispatchActionSupport{
 		AccountService userService = (AccountService) ctx.getBean("accountManager");
 		
 		User user = userManager.getUser(login);
-		session.setAttribute(Sessions.ERROR_UPDATE_PASS, "");
-		session.setAttribute(Sessions.OK_UPDATE_PASS, "");
+		session.removeAttribute(Sessions.ERROR_UPDATE_PASS);
+		session.removeAttribute(Sessions.OK_UPDATE_PASS);
 		if(user.getPasswordUser().equals(passold)){
 			if(passnew.equals(passconf)){
 				//update user
