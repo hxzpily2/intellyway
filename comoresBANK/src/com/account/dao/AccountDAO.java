@@ -49,7 +49,11 @@ public class AccountDAO extends HibernateDaoSupport {
 			if (scVO.getNom() != "")
 				sql += " and compte.nom like '%" + scVO.getNom() + "%' ";
 			if (scVO.getPrenom() != "")
-				sql += " and compte.prenom like '%" + scVO.getPrenom() + "%' ";
+				sql += " and compte.prenom like '%" + scVO.getPrenom() + "%' ";			
+			
+			if (scVO.getNumcompte() != ""){
+				sql += " and compte.idCompte like '%" + scVO.getNumcompte()  + "%' ";
+			}
 			return session.createQuery(sql).list();
 		} catch (DataAccessException e) {
 			// Critical errors : database unreachable, etc.
