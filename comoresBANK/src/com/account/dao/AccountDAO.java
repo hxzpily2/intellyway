@@ -142,5 +142,27 @@ public class AccountDAO extends HibernateDaoSupport {
 			
 		}
 	}
+	
+	public void updatePass(User user) {
+
+		try {
+			logger.info("get User with login: ");
+			Session session = getHibernateTemplate().getSessionFactory().openSession();
+			
+			session.beginTransaction();
+			
+			User temp = (User) session.get(User.class,user.getIdUser());
+			temp.setPasswordUser(user.getPasswordUser());
+			session.update(temp);
+			
+			session.getTransaction().commit();
+			session.close();
+		} catch (DataAccessException e) {
+			// Critical errors : database unreachable, etc.
+			logger.error("Exception - DataAccessException occurs : "
+					+ e.getMessage() + " on complete getUser().");
+			
+		}
+	}
 
 }
