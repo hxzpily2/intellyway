@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.acegisecurity.context.SecurityContextHolder;
 import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
@@ -34,7 +35,7 @@ public class UserAction   extends DispatchAction{
 	public ActionForward authentication(ActionMapping mapping,
 			ActionForm form, HttpServletRequest request,
 			HttpServletResponse response) throws IOException {
- 
+		
 		HttpSession session = request.getSession(false);
 		int[] grille = SecuriteGrilleGenerator.getGrilleToLogin();
 		session.setAttribute(Sessions.GRILLE_LOGIN,grille);

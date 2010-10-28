@@ -31,7 +31,7 @@ public class AuthenticationManager extends AccountAbstractProcessingFilter{
 	                String password = obtainPassword(request);
 	                
 	                
-	                int[] grille = (int[]) request.getSession().getAttribute(Sessions.GRILLE_LOGIN);
+	                int[] grille = (int[]) request.getSession(false).getAttribute(Sessions.GRILLE_LOGIN);
 
 	                
 	                

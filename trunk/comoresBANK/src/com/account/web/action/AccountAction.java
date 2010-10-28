@@ -309,4 +309,45 @@ public class AccountAction extends DispatchActionSupport{
 		
 		return mapping.findForward(Forwards.USERCREATESUCCESS);
 	}
+	
+	public ActionForward userupdateform(ActionMapping mapping,
+			ActionForm form, HttpServletRequest request,
+			HttpServletResponse response) throws NoSuchAlgorithmException, UnsupportedEncodingException {
+ 
+		HttpSession session = request.getSession(false);		
+		
+		ApplicationContext ctx = getWebApplicationContext();   
+		AccountService userManager = (AccountService) ctx.getBean("accountManager");
+		
+		if(request.getParameter("login")!=""){
+			User user = new User();
+			user.setLoginUser(request.getParameter("login"));
+			user.setPasswordUser(SecuriteGrilleGenerator.SHA1(request.getParameter("password")));
+			user.setNom(request.getParameter("nom"));
+			user.setPrenom(request.getParameter("prenom"));
+			
+			Compte compte = (Compte) session.getAttribute(Sessions.COMPTEUSER);
+			Set<Compte> list = new HashSet<Compte>();
+			list.add(compte);
+			user.setComptes(list);
+			Set<Rights> rights = new HashSet<Rights>();
+			Rights right = new Rights();
+			right.setUser(user);
+			right.setLabel(Constantes.USER);
+			right.setI18nkey("");
+			rights.add(right);
+			user.setRights(rights);
+			
+			
+			
+			try{
+				userManager.saveUser(user,right);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+
+		}
+		
+		return mapping.findForward(Forwards.USERCREATESUCCESS);
+	}
 }
