@@ -35,15 +35,17 @@ public class SearchCompteDecorateur extends TableDecorator{
 	
 	public String getLienNewUser() {
 		Object object = getCurrentRowObject();
-
+		String url = "<center>";
 		if ( object instanceof Compte){
 			if(((Compte) object).getUsersc().size()>0){
-				return "<a style=\"font-family: tahoma;font-size: 10pt;\" href=\"/account/application/Home.do?reqCode=userupdate&id="+((Compte) object).getIdCompte()+"\">Modifier</a>";
+				url+="<a style=\"font-family: tahoma;font-size: 10pt;\" href=\"/account/application/Home.do?reqCode=userupdate&id="+((Compte) object).getIdCompte()+"\"><img alt=\"Modifier un utilisateur\" width=\"20\" height=\"20\" src=\"/account/images/pencil_32.png\"/></a>";				
 			}else{
-				return "<a style=\"font-family: tahoma;font-size: 10pt;\" href=\"/account/application/Home.do?reqCode=usercreate&id="+((Compte) object).getIdCompte()+"\">Créer</a>";
+				url+="<a style=\"font-family: tahoma;font-size: 10pt;\" href=\"/account/application/Home.do?reqCode=usercreate&id="+((Compte) object).getIdCompte()+"\"><img alt=\"Ajouter un utilisateur\" width=\"20\" height=\"20\" src=\"/account/images/user_add_32.png\"/></a>";				
 			}
 		}
-		return "";
+		url+="&nbsp;<a style=\"font-family: tahoma;font-size: 10pt;\" href=\"/account/application/Home.do?reqCode=associer&id="+((Compte) object).getIdCompte()+"\"><img alt=\"Associer à un utilisateur\" width=\"20\" height=\"20\" src=\"/account/images/users_32.png\"/></a>";
+		url+="</center>";
+		return url;
 	}
 	
 	
