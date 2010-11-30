@@ -92,6 +92,30 @@ CarMarque:
       primary: false
       notnull: true
       autoincrement: false
+    notevisiteur:
+      type: integer(2)
+      fixed: false
+      unsigned: false
+      primary: false
+      autoincrement: false
+    nbnotevisiteur:
+      type: integer(2)
+      fixed: false
+      unsigned: false
+      primary: false
+      autoincrement: false
+    noteadmin:
+      type: integer(2)
+      fixed: false
+      unsigned: false
+      primary: false
+      autoincrement: false
+    nbnoteadmin:
+      type: integer(2)
+      fixed: false
+      unsigned: false
+      primary: false
+      autoincrement: false        
     active:
       type: integer(1)
       fixed: false
@@ -130,6 +154,30 @@ CarModele:
       primary: false
       notnull: true
       autoincrement: false
+    notevisiteur:
+      type: integer(2)
+      fixed: false
+      unsigned: false
+      primary: false
+      autoincrement: false
+    nbnotevisiteur:
+      type: integer(2)
+      fixed: false
+      unsigned: false
+      primary: false
+      autoincrement: false
+    noteadmin:
+      type: integer(2)
+      fixed: false
+      unsigned: false
+      primary: false
+      autoincrement: false
+    nbnoteadmin:
+      type: integer(2)
+      fixed: false
+      unsigned: false
+      primary: false
+      autoincrement: false        
     active:
       type: integer(1)
       fixed: false
@@ -175,6 +223,30 @@ CarGar:
       primary: false
       notnull: true
       autoincrement: false
+    notevisiteur:
+      type: integer(2)
+      fixed: false
+      unsigned: false
+      primary: false
+      autoincrement: false
+    nbnotevisiteur:
+      type: integer(2)
+      fixed: false
+      unsigned: false
+      primary: false
+      autoincrement: false
+    noteadmin:
+      type: integer(2)
+      fixed: false
+      unsigned: false
+      primary: false
+      autoincrement: false
+    nbnoteadmin:
+      type: integer(2)
+      fixed: false
+      unsigned: false
+      primary: false
+      autoincrement: false        
     active:
       type: integer(1)
       fixed: false
@@ -227,6 +299,30 @@ CarCon:
       primary: false
       notnull: true
       autoincrement: false
+    notevisiteur:
+      type: integer(2)
+      fixed: false
+      unsigned: false
+      primary: false
+      autoincrement: false
+    nbnotevisiteur:
+      type: integer(2)
+      fixed: false
+      unsigned: false
+      primary: false
+      autoincrement: false
+    noteadmin:
+      type: integer(2)
+      fixed: false
+      unsigned: false
+      primary: false
+      autoincrement: false
+    nbnoteadmin:
+      type: integer(2)
+      fixed: false
+      unsigned: false
+      primary: false
+      autoincrement: false        
     active:
       type: integer(1)
       fixed: false
@@ -397,6 +493,30 @@ CarExpert:
       primary: false
       notnull: true
       autoincrement: false
+    notevisiteur:
+      type: integer(2)
+      fixed: false
+      unsigned: false
+      primary: false
+      autoincrement: false
+    nbnotevisiteur:
+      type: integer(2)
+      fixed: false
+      unsigned: false
+      primary: false
+      autoincrement: false
+    noteadmin:
+      type: integer(2)
+      fixed: false
+      unsigned: false
+      primary: false
+      autoincrement: false
+    nbnoteadmin:
+      type: integer(2)
+      fixed: false
+      unsigned: false
+      primary: false
+      autoincrement: false        
     active:
       type: integer(1)
       fixed: false

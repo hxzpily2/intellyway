@@ -11,27 +11,39 @@ Doctrine_Manager::getInstance()->bindComponent('CarMarque', 'doctrine');
  * @property string $title
  * @property string $information
  * @property string $description
+ * @property integer $notevisiteur
+ * @property integer $nbnotevisiteur
+ * @property integer $noteadmin
+ * @property integer $nbnoteadmin
  * @property integer $active
  * @property Doctrine_Collection $CarModele
  * @property Doctrine_Collection $CarCon
  * @property Doctrine_Collection $CarAuto
  * 
- * @method integer             getIdmarque()    Returns the current record's "idmarque" value
- * @method string              getTitle()       Returns the current record's "title" value
- * @method string              getInformation() Returns the current record's "information" value
- * @method string              getDescription() Returns the current record's "description" value
- * @method integer             getActive()      Returns the current record's "active" value
- * @method Doctrine_Collection getCarModele()   Returns the current record's "CarModele" collection
- * @method Doctrine_Collection getCarCon()      Returns the current record's "CarCon" collection
- * @method Doctrine_Collection getCarAuto()     Returns the current record's "CarAuto" collection
- * @method CarMarque           setIdmarque()    Sets the current record's "idmarque" value
- * @method CarMarque           setTitle()       Sets the current record's "title" value
- * @method CarMarque           setInformation() Sets the current record's "information" value
- * @method CarMarque           setDescription() Sets the current record's "description" value
- * @method CarMarque           setActive()      Sets the current record's "active" value
- * @method CarMarque           setCarModele()   Sets the current record's "CarModele" collection
- * @method CarMarque           setCarCon()      Sets the current record's "CarCon" collection
- * @method CarMarque           setCarAuto()     Sets the current record's "CarAuto" collection
+ * @method integer             getIdmarque()       Returns the current record's "idmarque" value
+ * @method string              getTitle()          Returns the current record's "title" value
+ * @method string              getInformation()    Returns the current record's "information" value
+ * @method string              getDescription()    Returns the current record's "description" value
+ * @method integer             getNotevisiteur()   Returns the current record's "notevisiteur" value
+ * @method integer             getNbnotevisiteur() Returns the current record's "nbnotevisiteur" value
+ * @method integer             getNoteadmin()      Returns the current record's "noteadmin" value
+ * @method integer             getNbnoteadmin()    Returns the current record's "nbnoteadmin" value
+ * @method integer             getActive()         Returns the current record's "active" value
+ * @method Doctrine_Collection getCarModele()      Returns the current record's "CarModele" collection
+ * @method Doctrine_Collection getCarCon()         Returns the current record's "CarCon" collection
+ * @method Doctrine_Collection getCarAuto()        Returns the current record's "CarAuto" collection
+ * @method CarMarque           setIdmarque()       Sets the current record's "idmarque" value
+ * @method CarMarque           setTitle()          Sets the current record's "title" value
+ * @method CarMarque           setInformation()    Sets the current record's "information" value
+ * @method CarMarque           setDescription()    Sets the current record's "description" value
+ * @method CarMarque           setNotevisiteur()   Sets the current record's "notevisiteur" value
+ * @method CarMarque           setNbnotevisiteur() Sets the current record's "nbnotevisiteur" value
+ * @method CarMarque           setNoteadmin()      Sets the current record's "noteadmin" value
+ * @method CarMarque           setNbnoteadmin()    Sets the current record's "nbnoteadmin" value
+ * @method CarMarque           setActive()         Sets the current record's "active" value
+ * @method CarMarque           setCarModele()      Sets the current record's "CarModele" collection
+ * @method CarMarque           setCarCon()         Sets the current record's "CarCon" collection
+ * @method CarMarque           setCarAuto()        Sets the current record's "CarAuto" collection
  * 
  * @package    car
  * @subpackage model
@@ -77,6 +89,38 @@ abstract class BaseCarMarque extends sfDoctrineRecord
              'notnull' => true,
              'autoincrement' => false,
              'length' => '',
+             ));
+        $this->hasColumn('notevisiteur', 'integer', 2, array(
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'autoincrement' => false,
+             'length' => '2',
+             ));
+        $this->hasColumn('nbnotevisiteur', 'integer', 2, array(
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'autoincrement' => false,
+             'length' => '2',
+             ));
+        $this->hasColumn('noteadmin', 'integer', 2, array(
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'autoincrement' => false,
+             'length' => '2',
+             ));
+        $this->hasColumn('nbnoteadmin', 'integer', 2, array(
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'autoincrement' => false,
+             'length' => '2',
              ));
         $this->hasColumn('active', 'integer', 1, array(
              'type' => 'integer',

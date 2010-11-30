@@ -11,18 +11,30 @@ Doctrine_Manager::getInstance()->bindComponent('CarExpert', 'doctrine');
  * @property string $nom
  * @property string $prenom
  * @property string $description
+ * @property integer $notevisiteur
+ * @property integer $nbnotevisiteur
+ * @property integer $noteadmin
+ * @property integer $nbnoteadmin
  * @property integer $active
  * 
- * @method integer   getIdexpert()    Returns the current record's "idexpert" value
- * @method string    getNom()         Returns the current record's "nom" value
- * @method string    getPrenom()      Returns the current record's "prenom" value
- * @method string    getDescription() Returns the current record's "description" value
- * @method integer   getActive()      Returns the current record's "active" value
- * @method CarExpert setIdexpert()    Sets the current record's "idexpert" value
- * @method CarExpert setNom()         Sets the current record's "nom" value
- * @method CarExpert setPrenom()      Sets the current record's "prenom" value
- * @method CarExpert setDescription() Sets the current record's "description" value
- * @method CarExpert setActive()      Sets the current record's "active" value
+ * @method integer   getIdexpert()       Returns the current record's "idexpert" value
+ * @method string    getNom()            Returns the current record's "nom" value
+ * @method string    getPrenom()         Returns the current record's "prenom" value
+ * @method string    getDescription()    Returns the current record's "description" value
+ * @method integer   getNotevisiteur()   Returns the current record's "notevisiteur" value
+ * @method integer   getNbnotevisiteur() Returns the current record's "nbnotevisiteur" value
+ * @method integer   getNoteadmin()      Returns the current record's "noteadmin" value
+ * @method integer   getNbnoteadmin()    Returns the current record's "nbnoteadmin" value
+ * @method integer   getActive()         Returns the current record's "active" value
+ * @method CarExpert setIdexpert()       Sets the current record's "idexpert" value
+ * @method CarExpert setNom()            Sets the current record's "nom" value
+ * @method CarExpert setPrenom()         Sets the current record's "prenom" value
+ * @method CarExpert setDescription()    Sets the current record's "description" value
+ * @method CarExpert setNotevisiteur()   Sets the current record's "notevisiteur" value
+ * @method CarExpert setNbnotevisiteur() Sets the current record's "nbnotevisiteur" value
+ * @method CarExpert setNoteadmin()      Sets the current record's "noteadmin" value
+ * @method CarExpert setNbnoteadmin()    Sets the current record's "nbnoteadmin" value
+ * @method CarExpert setActive()         Sets the current record's "active" value
  * 
  * @package    car
  * @subpackage model
@@ -68,6 +80,38 @@ abstract class BaseCarExpert extends sfDoctrineRecord
              'notnull' => true,
              'autoincrement' => false,
              'length' => '',
+             ));
+        $this->hasColumn('notevisiteur', 'integer', 2, array(
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'autoincrement' => false,
+             'length' => '2',
+             ));
+        $this->hasColumn('nbnotevisiteur', 'integer', 2, array(
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'autoincrement' => false,
+             'length' => '2',
+             ));
+        $this->hasColumn('noteadmin', 'integer', 2, array(
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'autoincrement' => false,
+             'length' => '2',
+             ));
+        $this->hasColumn('nbnoteadmin', 'integer', 2, array(
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'autoincrement' => false,
+             'length' => '2',
              ));
         $this->hasColumn('active', 'integer', 1, array(
              'type' => 'integer',

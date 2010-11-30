@@ -15,23 +15,31 @@ abstract class BaseCarGarForm extends BaseFormDoctrine
   public function setup()
   {
     $this->setWidgets(array(
-      'idgar'       => new sfWidgetFormInputHidden(),
-      'title'       => new sfWidgetFormTextarea(),
-      'information' => new sfWidgetFormTextarea(),
-      'description' => new sfWidgetFormTextarea(),
-      'active'      => new sfWidgetFormInputText(),
-      'created_at'  => new sfWidgetFormDateTime(),
-      'updated_at'  => new sfWidgetFormDateTime(),
+      'idgar'          => new sfWidgetFormInputHidden(),
+      'title'          => new sfWidgetFormTextarea(),
+      'information'    => new sfWidgetFormTextarea(),
+      'description'    => new sfWidgetFormTextarea(),
+      'notevisiteur'   => new sfWidgetFormInputText(),
+      'nbnotevisiteur' => new sfWidgetFormInputText(),
+      'noteadmin'      => new sfWidgetFormInputText(),
+      'nbnoteadmin'    => new sfWidgetFormInputText(),
+      'active'         => new sfWidgetFormInputText(),
+      'created_at'     => new sfWidgetFormDateTime(),
+      'updated_at'     => new sfWidgetFormDateTime(),
     ));
 
     $this->setValidators(array(
-      'idgar'       => new sfValidatorDoctrineChoice(array('model' => $this->getModelName(), 'column' => 'idgar', 'required' => false)),
-      'title'       => new sfValidatorString(),
-      'information' => new sfValidatorString(),
-      'description' => new sfValidatorString(),
-      'active'      => new sfValidatorInteger(),
-      'created_at'  => new sfValidatorDateTime(),
-      'updated_at'  => new sfValidatorDateTime(),
+      'idgar'          => new sfValidatorDoctrineChoice(array('model' => $this->getModelName(), 'column' => 'idgar', 'required' => false)),
+      'title'          => new sfValidatorString(),
+      'information'    => new sfValidatorString(),
+      'description'    => new sfValidatorString(),
+      'notevisiteur'   => new sfValidatorInteger(array('required' => false)),
+      'nbnotevisiteur' => new sfValidatorInteger(array('required' => false)),
+      'noteadmin'      => new sfValidatorInteger(array('required' => false)),
+      'nbnoteadmin'    => new sfValidatorInteger(array('required' => false)),
+      'active'         => new sfValidatorInteger(),
+      'created_at'     => new sfValidatorDateTime(),
+      'updated_at'     => new sfValidatorDateTime(),
     ));
 
     $this->widgetSchema->setNameFormat('car_gar[%s]');

@@ -13,28 +13,40 @@ Doctrine_Manager::getInstance()->bindComponent('CarCon', 'doctrine');
  * @property string $tel1
  * @property string $tel2
  * @property string $fax
+ * @property integer $notevisiteur
+ * @property integer $nbnotevisiteur
+ * @property integer $noteadmin
+ * @property integer $nbnoteadmin
  * @property integer $active
  * @property CarVille $CarVille
  * @property CarMarque $CarMarque
  * 
- * @method integer   getIdmarque()  Returns the current record's "idmarque" value
- * @method integer   getIdville()   Returns the current record's "idville" value
- * @method string    getAdresse()   Returns the current record's "adresse" value
- * @method string    getTel1()      Returns the current record's "tel1" value
- * @method string    getTel2()      Returns the current record's "tel2" value
- * @method string    getFax()       Returns the current record's "fax" value
- * @method integer   getActive()    Returns the current record's "active" value
- * @method CarVille  getCarVille()  Returns the current record's "CarVille" value
- * @method CarMarque getCarMarque() Returns the current record's "CarMarque" value
- * @method CarCon    setIdmarque()  Sets the current record's "idmarque" value
- * @method CarCon    setIdville()   Sets the current record's "idville" value
- * @method CarCon    setAdresse()   Sets the current record's "adresse" value
- * @method CarCon    setTel1()      Sets the current record's "tel1" value
- * @method CarCon    setTel2()      Sets the current record's "tel2" value
- * @method CarCon    setFax()       Sets the current record's "fax" value
- * @method CarCon    setActive()    Sets the current record's "active" value
- * @method CarCon    setCarVille()  Sets the current record's "CarVille" value
- * @method CarCon    setCarMarque() Sets the current record's "CarMarque" value
+ * @method integer   getIdmarque()       Returns the current record's "idmarque" value
+ * @method integer   getIdville()        Returns the current record's "idville" value
+ * @method string    getAdresse()        Returns the current record's "adresse" value
+ * @method string    getTel1()           Returns the current record's "tel1" value
+ * @method string    getTel2()           Returns the current record's "tel2" value
+ * @method string    getFax()            Returns the current record's "fax" value
+ * @method integer   getNotevisiteur()   Returns the current record's "notevisiteur" value
+ * @method integer   getNbnotevisiteur() Returns the current record's "nbnotevisiteur" value
+ * @method integer   getNoteadmin()      Returns the current record's "noteadmin" value
+ * @method integer   getNbnoteadmin()    Returns the current record's "nbnoteadmin" value
+ * @method integer   getActive()         Returns the current record's "active" value
+ * @method CarVille  getCarVille()       Returns the current record's "CarVille" value
+ * @method CarMarque getCarMarque()      Returns the current record's "CarMarque" value
+ * @method CarCon    setIdmarque()       Sets the current record's "idmarque" value
+ * @method CarCon    setIdville()        Sets the current record's "idville" value
+ * @method CarCon    setAdresse()        Sets the current record's "adresse" value
+ * @method CarCon    setTel1()           Sets the current record's "tel1" value
+ * @method CarCon    setTel2()           Sets the current record's "tel2" value
+ * @method CarCon    setFax()            Sets the current record's "fax" value
+ * @method CarCon    setNotevisiteur()   Sets the current record's "notevisiteur" value
+ * @method CarCon    setNbnotevisiteur() Sets the current record's "nbnotevisiteur" value
+ * @method CarCon    setNoteadmin()      Sets the current record's "noteadmin" value
+ * @method CarCon    setNbnoteadmin()    Sets the current record's "nbnoteadmin" value
+ * @method CarCon    setActive()         Sets the current record's "active" value
+ * @method CarCon    setCarVille()       Sets the current record's "CarVille" value
+ * @method CarCon    setCarMarque()      Sets the current record's "CarMarque" value
  * 
  * @package    car
  * @subpackage model
@@ -97,6 +109,38 @@ abstract class BaseCarCon extends sfDoctrineRecord
              'notnull' => true,
              'autoincrement' => false,
              'length' => '',
+             ));
+        $this->hasColumn('notevisiteur', 'integer', 2, array(
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'autoincrement' => false,
+             'length' => '2',
+             ));
+        $this->hasColumn('nbnotevisiteur', 'integer', 2, array(
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'autoincrement' => false,
+             'length' => '2',
+             ));
+        $this->hasColumn('noteadmin', 'integer', 2, array(
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'autoincrement' => false,
+             'length' => '2',
+             ));
+        $this->hasColumn('nbnoteadmin', 'integer', 2, array(
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'autoincrement' => false,
+             'length' => '2',
              ));
         $this->hasColumn('active', 'integer', 1, array(
              'type' => 'integer',
