@@ -139,85 +139,85 @@ abstract class BaseCarAuto extends sfDoctrineRecord
     public function setTableDefinition()
     {
         $this->setTableName('car_auto');
-        $this->hasColumn('idauto', 'integer', 4, array(
+        $this->hasColumn('idauto', 'integer', 10, array(
              'type' => 'integer',
              'fixed' => 0,
              'unsigned' => false,
              'primary' => true,
              'autoincrement' => true,
-             'length' => '4',
+             'length' => '10',
              ));
-        $this->hasColumn('idmarque', 'integer', 4, array(
+        $this->hasColumn('idmarque', 'integer', 10, array(
              'type' => 'integer',
              'fixed' => 0,
              'unsigned' => false,
              'primary' => false,
              'autoincrement' => false,
-             'length' => '4',
+             'length' => '10',
              ));
-        $this->hasColumn('idmodele', 'integer', 4, array(
+        $this->hasColumn('idmodele', 'integer', 10, array(
              'type' => 'integer',
              'fixed' => 0,
              'unsigned' => false,
              'primary' => false,
              'autoincrement' => false,
-             'length' => '4',
+             'length' => '10',
              ));
-        $this->hasColumn('idmoteur', 'integer', 4, array(
+        $this->hasColumn('idmoteur', 'integer', 10, array(
              'type' => 'integer',
              'fixed' => 0,
              'unsigned' => false,
              'primary' => false,
              'autoincrement' => false,
-             'length' => '4',
+             'length' => '10',
              ));
-        $this->hasColumn('idtype', 'integer', 4, array(
+        $this->hasColumn('idtype', 'integer', 10, array(
              'type' => 'integer',
              'fixed' => 0,
              'unsigned' => false,
              'primary' => false,
              'autoincrement' => false,
-             'length' => '4',
+             'length' => '10',
              ));
-        $this->hasColumn('idetat', 'integer', 4, array(
+        $this->hasColumn('idetat', 'integer', 10, array(
              'type' => 'integer',
              'fixed' => 0,
              'unsigned' => false,
              'primary' => false,
              'autoincrement' => false,
-             'length' => '4',
+             'length' => '10',
              ));
-        $this->hasColumn('idcouleur', 'integer', 4, array(
+        $this->hasColumn('idcouleur', 'integer', 10, array(
              'type' => 'integer',
              'fixed' => 0,
              'unsigned' => false,
              'primary' => false,
              'autoincrement' => false,
-             'length' => '4',
+             'length' => '10',
              ));
-        $this->hasColumn('idcarosserie', 'integer', 4, array(
+        $this->hasColumn('idcarosserie', 'integer', 10, array(
              'type' => 'integer',
              'fixed' => 0,
              'unsigned' => false,
              'primary' => false,
              'autoincrement' => false,
-             'length' => '4',
+             'length' => '10',
              ));
-        $this->hasColumn('idboite', 'integer', 4, array(
+        $this->hasColumn('idboite', 'integer', 10, array(
              'type' => 'integer',
              'fixed' => 0,
              'unsigned' => false,
              'primary' => false,
              'autoincrement' => false,
-             'length' => '4',
+             'length' => '10',
              ));
-        $this->hasColumn('anneecir', 'integer', 4, array(
+        $this->hasColumn('anneecir', 'integer', 10, array(
              'type' => 'integer',
              'fixed' => 0,
              'unsigned' => false,
              'primary' => false,
              'autoincrement' => false,
-             'length' => '4',
+             'length' => '10',
              ));
         $this->hasColumn('moiscir', 'integer', 2, array(
              'type' => 'integer',
@@ -227,13 +227,13 @@ abstract class BaseCarAuto extends sfDoctrineRecord
              'autoincrement' => false,
              'length' => '2',
              ));
-        $this->hasColumn('anneeded', 'integer', 4, array(
+        $this->hasColumn('anneeded', 'integer', 10, array(
              'type' => 'integer',
              'fixed' => 0,
              'unsigned' => false,
              'primary' => false,
              'autoincrement' => false,
-             'length' => '4',
+             'length' => '10',
              ));
         $this->hasColumn('moisded', 'integer', 2, array(
              'type' => 'integer',
@@ -316,13 +316,13 @@ abstract class BaseCarAuto extends sfDoctrineRecord
              'autoincrement' => false,
              'length' => '2',
              ));
-        $this->hasColumn('prixstart', 'integer', 4, array(
+        $this->hasColumn('prixstart', 'integer', 10, array(
              'type' => 'integer',
              'fixed' => 0,
              'unsigned' => false,
              'primary' => false,
              'autoincrement' => false,
-             'length' => '4',
+             'length' => '10',
              ));
         $this->hasColumn('reprise', 'integer', 1, array(
              'type' => 'integer',

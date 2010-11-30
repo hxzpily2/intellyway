@@ -34,13 +34,13 @@ abstract class BaseCarAccessoire extends sfDoctrineRecord
     public function setTableDefinition()
     {
         $this->setTableName('car_accessoire');
-        $this->hasColumn('idacc', 'integer', 4, array(
+        $this->hasColumn('idacc', 'integer', 10, array(
              'type' => 'integer',
              'fixed' => 0,
              'unsigned' => false,
              'primary' => true,
              'autoincrement' => true,
-             'length' => '4',
+             'length' => '10',
              ));
         $this->hasColumn('title', 'string', null, array(
              'type' => 'string',

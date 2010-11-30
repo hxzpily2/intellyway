@@ -32,15 +32,15 @@ abstract class BasesfGuardRememberKey extends sfDoctrineRecord
     public function setTableDefinition()
     {
         $this->setTableName('sf_guard_remember_key');
-        $this->hasColumn('id', 'integer', 4, array(
+        $this->hasColumn('id', 'integer', 10, array(
              'type' => 'integer',
              'primary' => true,
              'autoincrement' => true,
-             'length' => '4',
+             'length' => '10',
              ));
-        $this->hasColumn('user_id', 'integer', 4, array(
+        $this->hasColumn('user_id', 'integer', 10, array(
              'type' => 'integer',
-             'length' => '4',
+             'length' => '10',
              ));
         $this->hasColumn('remember_key', 'string', 32, array(
              'type' => 'string',

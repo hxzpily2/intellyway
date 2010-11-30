@@ -37,13 +37,13 @@ abstract class BaseCarPrestation extends sfDoctrineRecord
     public function setTableDefinition()
     {
         $this->setTableName('car_prestation');
-        $this->hasColumn('idprestation', 'integer', 4, array(
+        $this->hasColumn('idprestation', 'integer', 10, array(
              'type' => 'integer',
              'fixed' => 0,
              'unsigned' => false,
              'primary' => true,
              'autoincrement' => false,
-             'length' => '4',
+             'length' => '10',
              ));
         $this->hasColumn('type', 'string', null, array(
              'type' => 'string',
@@ -53,13 +53,13 @@ abstract class BaseCarPrestation extends sfDoctrineRecord
              'autoincrement' => false,
              'length' => '',
              ));
-        $this->hasColumn('prix', 'integer', 4, array(
+        $this->hasColumn('prix', 'integer', 10, array(
              'type' => 'integer',
              'fixed' => 0,
              'unsigned' => false,
              'primary' => false,
              'autoincrement' => false,
-             'length' => '4',
+             'length' => '10',
              ));
         $this->hasColumn('active', 'integer', 1, array(
              'type' => 'integer',

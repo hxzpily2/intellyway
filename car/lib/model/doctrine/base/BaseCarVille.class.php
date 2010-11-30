@@ -40,13 +40,13 @@ abstract class BaseCarVille extends sfDoctrineRecord
     public function setTableDefinition()
     {
         $this->setTableName('car_ville');
-        $this->hasColumn('idville', 'integer', 4, array(
+        $this->hasColumn('idville', 'integer', 10, array(
              'type' => 'integer',
              'fixed' => 0,
              'unsigned' => false,
              'primary' => true,
              'autoincrement' => true,
-             'length' => '4',
+             'length' => '10',
              ));
         $this->hasColumn('title', 'string', null, array(
              'type' => 'string',
@@ -57,13 +57,13 @@ abstract class BaseCarVille extends sfDoctrineRecord
              'autoincrement' => false,
              'length' => '',
              ));
-        $this->hasColumn('idpays', 'integer', 4, array(
+        $this->hasColumn('idpays', 'integer', 10, array(
              'type' => 'integer',
              'fixed' => 0,
              'unsigned' => false,
              'primary' => false,
              'autoincrement' => false,
-             'length' => '4',
+             'length' => '10',
              ));
         $this->hasColumn('active', 'integer', 1, array(
              'type' => 'integer',

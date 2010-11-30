@@ -49,29 +49,29 @@ abstract class BaseCarAdresseGar extends sfDoctrineRecord
     public function setTableDefinition()
     {
         $this->setTableName('car_adress_gar');
-        $this->hasColumn('idadressegar', 'integer', 4, array(
+        $this->hasColumn('idadressegar', 'integer', 10, array(
              'type' => 'integer',
              'fixed' => 0,
              'unsigned' => false,
              'primary' => true,
              'autoincrement' => true,
-             'length' => '4',
+             'length' => '10',
              ));
-        $this->hasColumn('idgar', 'integer', 4, array(
+        $this->hasColumn('idgar', 'integer', 10, array(
              'type' => 'integer',
              'fixed' => 0,
              'unsigned' => false,
              'primary' => false,
              'autoincrement' => false,
-             'length' => '4',
+             'length' => '10',
              ));
-        $this->hasColumn('idville', 'integer', 4, array(
+        $this->hasColumn('idville', 'integer', 10, array(
              'type' => 'integer',
              'fixed' => 0,
              'unsigned' => false,
              'primary' => false,
              'autoincrement' => false,
-             'length' => '4',
+             'length' => '10',
              ));
         $this->hasColumn('adresse', 'string', null, array(
              'type' => 'string',

@@ -2,7 +2,7 @@ sfGuardGroup:
   actAs: [Timestampable]
   columns:
     id:
-      type: integer(4)
+      type: integer(10)
       primary: true
       autoincrement: true
     name:
@@ -27,7 +27,7 @@ sfGuardPermission:
   actAs: [Timestampable]
   columns:
     id:
-      type: integer(4)
+      type: integer(10)
       primary: true
       autoincrement: true
     name:
@@ -43,10 +43,10 @@ sfGuardGroupPermission:
   actAs: [Timestampable]
   columns:
     group_id:
-      type: integer(4)
+      type: integer(10)
       primary: true
     permission_id:
-      type: integer(4)
+      type: integer(10)
       primary: true
   relations:
     sfGuardGroup:
@@ -60,13 +60,17 @@ sfGuardUser:
   actAs: [Timestampable]
   columns:
     id:
-      type: integer(4)
+      type: integer(10)
       primary: true
       autoincrement: true
     username:
       type: string(128)
       notnull: true
       unique: true
+    soldeannonce: integer(2)            
+    soldeproposition: integer(2)    
+    soldeencher: integer(2)    
+    soldeexpert: integer(2)    
     nom: string(1000)      
     prenom: string(1000)    
     mail: string(1000)
@@ -80,6 +84,12 @@ sfGuardUser:
     is_active:
       type: boolean
       default: 1
+    newsletter:
+      type: boolean
+      default: 1      
+    offre:
+      type: boolean
+      default: 1      
     is_super_admin:
       type: boolean
       default: false
@@ -110,10 +120,10 @@ sfGuardUserPermission:
   actAs: [Timestampable]
   columns:
     user_id:
-      type: integer(4)
+      type: integer(10)
       primary: true
     permission_id:
-      type: integer(4)
+      type: integer(10)
       primary: true
   relations:
     sfGuardUser:
@@ -131,10 +141,10 @@ sfGuardUserGroup:
   actAs: [Timestampable]
   columns:
     user_id:
-      type: integer(4)
+      type: integer(10)
       primary: true
     group_id:
-      type: integer(4)
+      type: integer(10)
       primary: true
   relations:
     sfGuardUser:
@@ -152,11 +162,11 @@ sfGuardRememberKey:
   actAs: [Timestampable]
   columns:
     id:
-      type: integer(4)
+      type: integer(10)
       primary: true
       autoincrement: true
     user_id:
-      type: integer(4)
+      type: integer(10)
     remember_key: string(32)
     ip_address:
       type: string(50)

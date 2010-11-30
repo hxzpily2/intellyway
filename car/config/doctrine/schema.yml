@@ -4,7 +4,7 @@ CarVille:
   tableName: car_ville
   columns:
     idville:
-      type: integer(4)
+      type: integer(10)
       fixed: false
       unsigned: false
       primary: true
@@ -17,7 +17,7 @@ CarVille:
       notnull: true
       autoincrement: false
     idpays:
-      type: integer(4)
+      type: integer(10)
       fixed: false
       unsigned: false
       primary: false
@@ -41,7 +41,7 @@ CarPays:
   tableName: car_pays
   columns:
     idpays:
-      type: integer(4)
+      type: integer(10)
       fixed: false
       unsigned: false
       primary: true
@@ -66,7 +66,7 @@ CarMarque:
   tableName: car_marque
   columns:
     idmarque:
-      type: integer(4)
+      type: integer(10)
       fixed: false
       unsigned: false
       primary: true
@@ -105,13 +105,13 @@ CarModele:
   tableName: car_modele
   columns:
     idmodele:
-      type: integer(4)
+      type: integer(10)
       fixed: false
       unsigned: false
       primary: true
       autoincrement: true
     idmarque:
-      type: integer(4)
+      type: integer(10)
       fixed: false
       unsigned: false
       primary: false
@@ -149,7 +149,7 @@ CarGar:
   tableName: car_gar
   columns:
     idgar:
-      type: integer(4)
+      type: integer(10)
       fixed: false
       unsigned: false
       primary: true
@@ -188,13 +188,13 @@ CarCon:
   tableName: car_con
   columns:
     idmarque:
-      type: integer(4)
+      type: integer(10)
       fixed: false
       unsigned: false
       primary: true
       autoincrement: false
     idville:
-      type: integer(4)
+      type: integer(10)
       fixed: false
       unsigned: false
       primary: true
@@ -250,19 +250,19 @@ CarAdresseGar:
   tableName: car_adress_gar
   columns:
     idadressegar:
-      type: integer(4)
+      type: integer(10)
       fixed: false
       unsigned: false
       primary: true
       autoincrement: true
     idgar:
-      type: integer(4)
+      type: integer(10)
       fixed: false
       unsigned: false
       primary: false
       autoincrement: false
     idville:
-      type: integer(4)
+      type: integer(10)
       fixed: false
       unsigned: false
       primary: false
@@ -318,7 +318,7 @@ CarEvent:
   tableName: car_event
   columns:
     idevent:
-      type: integer(4)
+      type: integer(10)
       fixed: false
       unsigned: false
       primary: true
@@ -371,7 +371,7 @@ CarExpert:
   tableName: car_expert
   columns:
     idexpert:
-      type: integer(4)
+      type: integer(10)
       fixed: false
       unsigned: false
       primary: true
@@ -410,7 +410,7 @@ CarMoteur:
   tableName: car_moteur
   columns:
     idmoteur:
-      type: integer(4)
+      type: integer(10)
       fixed: false
       unsigned: false
       primary: true
@@ -442,7 +442,7 @@ CarType:
   tableName: car_type
   columns:
     idtype:
-      type: integer(4)
+      type: integer(10)
       fixed: false
       unsigned: false
       primary: true
@@ -474,7 +474,7 @@ CarAccessoire:
   tableName: car_accessoire
   columns:
     idacc:
-      type: integer(4)
+      type: integer(10)
       fixed: false
       unsigned: false
       primary: true
@@ -506,7 +506,7 @@ CarEtat:
   tableName: car_etat
   columns:
     idetat:
-      type: integer(4)
+      type: integer(10)
       fixed: false
       unsigned: false
       primary: true
@@ -538,7 +538,7 @@ CarCouleur:
   tableName: car_couleur
   columns:
     idcouleur:
-      type: integer(4)
+      type: integer(10)
       fixed: false
       unsigned: false
       primary: true
@@ -563,7 +563,7 @@ CarCarosserie:
   tableName: car_carosserie
   columns:
     idcarosserie:
-      type: integer(4)
+      type: integer(10)
       fixed: false
       unsigned: false
       primary: true
@@ -595,7 +595,7 @@ CarBoite:
   tableName: car_boite
   columns:
     idboite:
-      type: integer(4)
+      type: integer(10)
       fixed: false
       unsigned: false
       primary: true
@@ -627,61 +627,61 @@ CarAuto:
   tableName: car_auto
   columns:
     idauto:
-      type: integer(4)
+      type: integer(10)
       fixed: false
       unsigned: false
       primary: true
       autoincrement: true
     idmarque:
-      type: integer(4)
+      type: integer(10)
       fixed: false
       unsigned: false
       primary: false
       autoincrement: false
     idmodele:
-      type: integer(4)
+      type: integer(10)
       fixed: false
       unsigned: false
       primary: false
       autoincrement: false
     idmoteur:
-      type: integer(4)
+      type: integer(10)
       fixed: false
       unsigned: false
       primary: false
       autoincrement: false
     idtype:
-      type: integer(4)
+      type: integer(10)
       fixed: false
       unsigned: false
       primary: false
       autoincrement: false
     idetat:
-      type: integer(4)
+      type: integer(10)
       fixed: false
       unsigned: false
       primary: false
       autoincrement: false                       
     idcouleur:
-      type: integer(4)
+      type: integer(10)
       fixed: false
       unsigned: false
       primary: false
       autoincrement: false
     idcarosserie:
-      type: integer(4)
+      type: integer(10)
       fixed: false
       unsigned: false
       primary: false
       autoincrement: false
     idboite:
-      type: integer(4)
+      type: integer(10)
       fixed: false
       unsigned: false
       primary: false
       autoincrement: false      
     anneecir:
-      type: integer(4)
+      type: integer(10)
       fixed: false
       unsigned: false
       primary: false
@@ -693,7 +693,7 @@ CarAuto:
       primary: false
       autoincrement: false   
     anneeded:
-      type: integer(4)
+      type: integer(10)
       fixed: false
       unsigned: false
       primary: false
@@ -760,7 +760,7 @@ CarAuto:
       primary: false
       autoincrement: false
     prixstart:
-      type: integer(4)
+      type: integer(10)
       fixed: false
       unsigned: false
       primary: false
@@ -818,13 +818,13 @@ CarAccessoires:
   tableName: car_accessoires
   columns:
     idacc:
-      type: integer(4)
+      type: integer(10)
       fixed: false
       unsigned: false
       primary: false
       autoincrement: false
     idauto:
-      type: integer(4)
+      type: integer(10)
       fixed: false
       unsigned: false
       primary: false
@@ -853,7 +853,7 @@ CarImage:
   tableName: car_image
   columns:
     idimage:
-      type: integer(4)
+      type: integer(10)
       fixed: false
       unsigned: false
       primary: true
@@ -871,13 +871,13 @@ CarImages:
   tableName: car_images
   columns:
     idimage:
-      type: integer(4)
+      type: integer(10)
       fixed: false
       unsigned: false
       primary: true
       autoincrement: false
     idauto:
-      type: integer(4)
+      type: integer(10)
       fixed: false
       unsigned: false
       primary: true
@@ -899,31 +899,31 @@ CarEncher:
   tableName: car_encher
   columns:
     idencher:
-      type: integer(4)
+      type: integer(10)
       fixed: false
       unsigned: false
       primary: false
       autoincrement: false
     idauto:
-      type: integer(4)
+      type: integer(10)
       fixed: false
       unsigned: false
       primary: true
       autoincrement: false      
     idgroup:
-      type: integer(4)
+      type: integer(10)
       fixed: false
       unsigned: false
       primary: false
       autoincrement: false
     iduser:
-      type: integer(4)
+      type: integer(10)
       fixed: false
       unsigned: false
       primary: false
       autoincrement: false      
     prixstart:
-      type: integer(4)
+      type: integer(10)
       fixed: false
       unsigned: false
       primary: false
@@ -961,31 +961,31 @@ CarProposition:
   tableName: car_proposition
   columns:
     idproposition:
-      type: integer(4)
+      type: integer(10)
       fixed: false
       unsigned: false
       primary: true
       autoincrement: false
     idencher:
-      type: integer(4)
+      type: integer(10)
       fixed: false
       unsigned: false
       primary: false
       autoincrement: false     
     idgroup:
-      type: integer(4)
+      type: integer(10)
       fixed: false
       unsigned: false
       primary: false
       autoincrement: false
     iduser:
-      type: integer(4)
+      type: integer(10)
       fixed: false
       unsigned: false
       primary: false
       autoincrement: false      
     prix:
-      type: integer(4)
+      type: integer(10)
       fixed: false
       unsigned: false
       primary: false
@@ -1016,25 +1016,25 @@ CarCreneau:
   tableName: car_creneau
   columns:
     idcrenau:
-      type: integer(4)
+      type: integer(10)
       fixed: false
       unsigned: false
       primary: true
       autoincrement: true
     idauto:
-      type: integer(4)
+      type: integer(10)
       fixed: false
       unsigned: false
       primary: false
       autoincrement: false     
     idgroup:
-      type: integer(4)
+      type: integer(10)
       fixed: false
       unsigned: false
       primary: false
       autoincrement: false
     iduser:
-      type: integer(4)
+      type: integer(10)
       fixed: false
       unsigned: false
       primary: false
@@ -1089,25 +1089,25 @@ CarCreneauProposition:
   tableName: car_creneauprop
   columns:
     idcrenauprop:
-      type: integer(4)
+      type: integer(10)
       fixed: false
       unsigned: false
       primary: true
       autoincrement: false
     idauto:
-      type: integer(4)
+      type: integer(10)
       fixed: false
       unsigned: false
       primary: false
       autoincrement: false     
     idgroup:
-      type: integer(4)
+      type: integer(10)
       fixed: false
       unsigned: false
       primary: false
       autoincrement: false
     iduser:
-      type: integer(4)
+      type: integer(10)
       fixed: false
       unsigned: false
       primary: false
@@ -1138,25 +1138,25 @@ CarCommentaire:
   tableName: car_commentaire
   columns:
     idcommentaire:
-      type: integer(4)
+      type: integer(10)
       fixed: false
       unsigned: false
       primary: true
       autoincrement: false 
     idauto:
-      type: integer(4)
+      type: integer(10)
       fixed: false
       unsigned: false
       primary: false
       autoincrement: false        
     idgroup:
-      type: integer(4)
+      type: integer(10)
       fixed: false
       unsigned: false
       primary: false
       autoincrement: false
     iduser:
-      type: integer(4)
+      type: integer(10)
       fixed: false
       unsigned: false
       primary: false
@@ -1180,7 +1180,7 @@ CarPrestation:
   tableName: car_prestation
   columns:
     idprestation:
-      type: integer(4)
+      type: integer(10)
       fixed: false
       unsigned: false
       primary: true
@@ -1192,7 +1192,7 @@ CarPrestation:
       primary: false
       autoincrement: false     
     prix:
-      type: integer(4)
+      type: integer(10)
       fixed: false
       unsigned: false
       primary: false
@@ -1210,25 +1210,25 @@ CarPrestations:
   tableName: car_prestations
   columns:
     idprestation:
-      type: integer(4)
+      type: integer(10)
       fixed: false
       unsigned: false
       primary: false
       autoincrement: false 
     idgroup:
-      type: integer(4)
+      type: integer(10)
       fixed: false
       unsigned: false
       primary: false
       autoincrement: false
     iduser:
-      type: integer(4)
+      type: integer(10)
       fixed: false
       unsigned: false
       primary: false
       autoincrement: false               
     prix:
-      type: integer(4)
+      type: integer(10)
       fixed: false
       unsigned: false
       primary: false
@@ -1252,31 +1252,31 @@ CarAutoPrestations:
   tableName: car_autoprestations
   columns:
     idprestation:
-      type: integer(4)
+      type: integer(10)
       fixed: false
       unsigned: false
       primary: false
       autoincrement: false   
     idauto:
-      type: integer(4)
+      type: integer(10)
       fixed: false
       unsigned: false
       primary: false
       autoincrement: false    
     idgroup:
-      type: integer(4)
+      type: integer(10)
       fixed: false
       unsigned: false
       primary: false
       autoincrement: false
     iduser:
-      type: integer(4)
+      type: integer(10)
       fixed: false
       unsigned: false
       primary: false
       autoincrement: false               
     prix:
-      type: integer(4)
+      type: integer(10)
       fixed: false
       unsigned: false
       primary: false

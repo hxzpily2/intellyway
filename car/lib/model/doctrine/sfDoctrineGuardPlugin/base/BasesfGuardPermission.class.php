@@ -38,11 +38,11 @@ abstract class BasesfGuardPermission extends sfDoctrineRecord
     public function setTableDefinition()
     {
         $this->setTableName('sf_guard_permission');
-        $this->hasColumn('id', 'integer', 4, array(
+        $this->hasColumn('id', 'integer', 10, array(
              'type' => 'integer',
              'primary' => true,
              'autoincrement' => true,
-             'length' => '4',
+             'length' => '10',
              ));
         $this->hasColumn('name', 'string', 255, array(
              'type' => 'string',

@@ -31,21 +31,21 @@ abstract class BaseCarImages extends sfDoctrineRecord
     public function setTableDefinition()
     {
         $this->setTableName('car_images');
-        $this->hasColumn('idimage', 'integer', 4, array(
+        $this->hasColumn('idimage', 'integer', 10, array(
              'type' => 'integer',
              'fixed' => 0,
              'unsigned' => false,
              'primary' => true,
              'autoincrement' => false,
-             'length' => '4',
+             'length' => '10',
              ));
-        $this->hasColumn('idauto', 'integer', 4, array(
+        $this->hasColumn('idauto', 'integer', 10, array(
              'type' => 'integer',
              'fixed' => 0,
              'unsigned' => false,
              'primary' => true,
              'autoincrement' => false,
-             'length' => '4',
+             'length' => '10',
              ));
     }
 

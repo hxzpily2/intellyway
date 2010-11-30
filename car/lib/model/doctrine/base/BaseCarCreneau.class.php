@@ -52,37 +52,37 @@ abstract class BaseCarCreneau extends sfDoctrineRecord
     public function setTableDefinition()
     {
         $this->setTableName('car_creneau');
-        $this->hasColumn('idcrenau', 'integer', 4, array(
+        $this->hasColumn('idcrenau', 'integer', 10, array(
              'type' => 'integer',
              'fixed' => 0,
              'unsigned' => false,
              'primary' => true,
              'autoincrement' => true,
-             'length' => '4',
+             'length' => '10',
              ));
-        $this->hasColumn('idauto', 'integer', 4, array(
+        $this->hasColumn('idauto', 'integer', 10, array(
              'type' => 'integer',
              'fixed' => 0,
              'unsigned' => false,
              'primary' => false,
              'autoincrement' => false,
-             'length' => '4',
+             'length' => '10',
              ));
-        $this->hasColumn('idgroup', 'integer', 4, array(
+        $this->hasColumn('idgroup', 'integer', 10, array(
              'type' => 'integer',
              'fixed' => 0,
              'unsigned' => false,
              'primary' => false,
              'autoincrement' => false,
-             'length' => '4',
+             'length' => '10',
              ));
-        $this->hasColumn('iduser', 'integer', 4, array(
+        $this->hasColumn('iduser', 'integer', 10, array(
              'type' => 'integer',
              'fixed' => 0,
              'unsigned' => false,
              'primary' => false,
              'autoincrement' => false,
-             'length' => '4',
+             'length' => '10',
              ));
         $this->hasColumn('dated', 'timestamp', 25, array(
              'type' => 'timestamp',

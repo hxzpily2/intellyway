@@ -34,13 +34,13 @@ abstract class BaseCarExpert extends sfDoctrineRecord
     public function setTableDefinition()
     {
         $this->setTableName('car_expert');
-        $this->hasColumn('idexpert', 'integer', 4, array(
+        $this->hasColumn('idexpert', 'integer', 10, array(
              'type' => 'integer',
              'fixed' => 0,
              'unsigned' => false,
              'primary' => true,
              'autoincrement' => true,
-             'length' => '4',
+             'length' => '10',
              ));
         $this->hasColumn('nom', 'string', null, array(
              'type' => 'string',

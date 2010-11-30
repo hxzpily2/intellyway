@@ -40,37 +40,37 @@ abstract class BaseCarCreneauProposition extends sfDoctrineRecord
     public function setTableDefinition()
     {
         $this->setTableName('car_creneauprop');
-        $this->hasColumn('idcrenauprop', 'integer', 4, array(
+        $this->hasColumn('idcrenauprop', 'integer', 10, array(
              'type' => 'integer',
              'fixed' => 0,
              'unsigned' => false,
              'primary' => true,
              'autoincrement' => false,
-             'length' => '4',
+             'length' => '10',
              ));
-        $this->hasColumn('idauto', 'integer', 4, array(
+        $this->hasColumn('idauto', 'integer', 10, array(
              'type' => 'integer',
              'fixed' => 0,
              'unsigned' => false,
              'primary' => false,
              'autoincrement' => false,
-             'length' => '4',
+             'length' => '10',
              ));
-        $this->hasColumn('idgroup', 'integer', 4, array(
+        $this->hasColumn('idgroup', 'integer', 10, array(
              'type' => 'integer',
              'fixed' => 0,
              'unsigned' => false,
              'primary' => false,
              'autoincrement' => false,
-             'length' => '4',
+             'length' => '10',
              ));
-        $this->hasColumn('iduser', 'integer', 4, array(
+        $this->hasColumn('iduser', 'integer', 10, array(
              'type' => 'integer',
              'fixed' => 0,
              'unsigned' => false,
              'primary' => false,
              'autoincrement' => false,
-             'length' => '4',
+             'length' => '10',
              ));
         $this->hasColumn('commentaire', 'string', null, array(
              'type' => 'string',

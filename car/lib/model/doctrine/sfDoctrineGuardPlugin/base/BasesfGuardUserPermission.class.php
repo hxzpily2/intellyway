@@ -29,15 +29,15 @@ abstract class BasesfGuardUserPermission extends sfDoctrineRecord
     public function setTableDefinition()
     {
         $this->setTableName('sf_guard_user_permission');
-        $this->hasColumn('user_id', 'integer', 4, array(
+        $this->hasColumn('user_id', 'integer', 10, array(
              'type' => 'integer',
              'primary' => true,
-             'length' => '4',
+             'length' => '10',
              ));
-        $this->hasColumn('permission_id', 'integer', 4, array(
+        $this->hasColumn('permission_id', 'integer', 10, array(
              'type' => 'integer',
              'primary' => true,
-             'length' => '4',
+             'length' => '10',
              ));
 
         $this->option('symfony', array(

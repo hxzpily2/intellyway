@@ -34,13 +34,13 @@ abstract class BaseCarEtat extends sfDoctrineRecord
     public function setTableDefinition()
     {
         $this->setTableName('car_etat');
-        $this->hasColumn('idetat', 'integer', 4, array(
+        $this->hasColumn('idetat', 'integer', 10, array(
              'type' => 'integer',
              'fixed' => 0,
              'unsigned' => false,
              'primary' => true,
              'autoincrement' => true,
-             'length' => '4',
+             'length' => '10',
              ));
         $this->hasColumn('title', 'string', null, array(
              'type' => 'string',

@@ -7,6 +7,10 @@
  * 
  * @property integer $id
  * @property string $username
+ * @property integer $soldeannonce
+ * @property integer $soldeproposition
+ * @property integer $soldeencher
+ * @property integer $soldeexpert
  * @property string $nom
  * @property string $prenom
  * @property string $mail
@@ -15,6 +19,8 @@
  * @property string $salt
  * @property string $password
  * @property boolean $is_active
+ * @property boolean $newsletter
+ * @property boolean $offre
  * @property boolean $is_super_admin
  * @property timestamp $last_login
  * @property Doctrine_Collection $groups
@@ -25,6 +31,10 @@
  * 
  * @method integer             getId()                    Returns the current record's "id" value
  * @method string              getUsername()              Returns the current record's "username" value
+ * @method integer             getSoldeannonce()          Returns the current record's "soldeannonce" value
+ * @method integer             getSoldeproposition()      Returns the current record's "soldeproposition" value
+ * @method integer             getSoldeencher()           Returns the current record's "soldeencher" value
+ * @method integer             getSoldeexpert()           Returns the current record's "soldeexpert" value
  * @method string              getNom()                   Returns the current record's "nom" value
  * @method string              getPrenom()                Returns the current record's "prenom" value
  * @method string              getMail()                  Returns the current record's "mail" value
@@ -33,6 +43,8 @@
  * @method string              getSalt()                  Returns the current record's "salt" value
  * @method string              getPassword()              Returns the current record's "password" value
  * @method boolean             getIsActive()              Returns the current record's "is_active" value
+ * @method boolean             getNewsletter()            Returns the current record's "newsletter" value
+ * @method boolean             getOffre()                 Returns the current record's "offre" value
  * @method boolean             getIsSuperAdmin()          Returns the current record's "is_super_admin" value
  * @method timestamp           getLastLogin()             Returns the current record's "last_login" value
  * @method Doctrine_Collection getGroups()                Returns the current record's "groups" collection
@@ -42,6 +54,10 @@
  * @method sfGuardRememberKey  getRememberKeys()          Returns the current record's "RememberKeys" value
  * @method sfGuardUser         setId()                    Sets the current record's "id" value
  * @method sfGuardUser         setUsername()              Sets the current record's "username" value
+ * @method sfGuardUser         setSoldeannonce()          Sets the current record's "soldeannonce" value
+ * @method sfGuardUser         setSoldeproposition()      Sets the current record's "soldeproposition" value
+ * @method sfGuardUser         setSoldeencher()           Sets the current record's "soldeencher" value
+ * @method sfGuardUser         setSoldeexpert()           Sets the current record's "soldeexpert" value
  * @method sfGuardUser         setNom()                   Sets the current record's "nom" value
  * @method sfGuardUser         setPrenom()                Sets the current record's "prenom" value
  * @method sfGuardUser         setMail()                  Sets the current record's "mail" value
@@ -50,6 +66,8 @@
  * @method sfGuardUser         setSalt()                  Sets the current record's "salt" value
  * @method sfGuardUser         setPassword()              Sets the current record's "password" value
  * @method sfGuardUser         setIsActive()              Sets the current record's "is_active" value
+ * @method sfGuardUser         setNewsletter()            Sets the current record's "newsletter" value
+ * @method sfGuardUser         setOffre()                 Sets the current record's "offre" value
  * @method sfGuardUser         setIsSuperAdmin()          Sets the current record's "is_super_admin" value
  * @method sfGuardUser         setLastLogin()             Sets the current record's "last_login" value
  * @method sfGuardUser         setGroups()                Sets the current record's "groups" collection
@@ -68,17 +86,33 @@ abstract class BasesfGuardUser extends sfDoctrineRecord
     public function setTableDefinition()
     {
         $this->setTableName('sf_guard_user');
-        $this->hasColumn('id', 'integer', 4, array(
+        $this->hasColumn('id', 'integer', 10, array(
              'type' => 'integer',
              'primary' => true,
              'autoincrement' => true,
-             'length' => '4',
+             'length' => '10',
              ));
         $this->hasColumn('username', 'string', 128, array(
              'type' => 'string',
              'notnull' => true,
              'unique' => true,
              'length' => '128',
+             ));
+        $this->hasColumn('soldeannonce', 'integer', 2, array(
+             'type' => 'integer',
+             'length' => '2',
+             ));
+        $this->hasColumn('soldeproposition', 'integer', 2, array(
+             'type' => 'integer',
+             'length' => '2',
+             ));
+        $this->hasColumn('soldeencher', 'integer', 2, array(
+             'type' => 'integer',
+             'length' => '2',
+             ));
+        $this->hasColumn('soldeexpert', 'integer', 2, array(
+             'type' => 'integer',
+             'length' => '2',
              ));
         $this->hasColumn('nom', 'string', 1000, array(
              'type' => 'string',
@@ -111,6 +145,14 @@ abstract class BasesfGuardUser extends sfDoctrineRecord
              'length' => '128',
              ));
         $this->hasColumn('is_active', 'boolean', null, array(
+             'type' => 'boolean',
+             'default' => 1,
+             ));
+        $this->hasColumn('newsletter', 'boolean', null, array(
+             'type' => 'boolean',
+             'default' => 1,
+             ));
+        $this->hasColumn('offre', 'boolean', null, array(
              'type' => 'boolean',
              'default' => 1,
              ));

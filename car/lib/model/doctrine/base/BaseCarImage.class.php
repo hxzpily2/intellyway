@@ -28,13 +28,13 @@ abstract class BaseCarImage extends sfDoctrineRecord
     public function setTableDefinition()
     {
         $this->setTableName('car_image');
-        $this->hasColumn('idimage', 'integer', 4, array(
+        $this->hasColumn('idimage', 'integer', 10, array(
              'type' => 'integer',
              'fixed' => 0,
              'unsigned' => false,
              'primary' => true,
              'autoincrement' => true,
-             'length' => '4',
+             'length' => '10',
              ));
         $this->hasColumn('image', 'string', 200, array(
              'type' => 'string',
