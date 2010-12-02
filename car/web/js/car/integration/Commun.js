@@ -1,7 +1,7 @@
 
-dojo.provide("bedreamy.integration.Commun");
+dojo.provide("car.integration.Commun");
 
-dojo.declare("bedreamy.integration.Commun",[],{
+dojo.declare("car.integration.Commun",[],{
 
 	
     parseInfo : function (urlInfos){

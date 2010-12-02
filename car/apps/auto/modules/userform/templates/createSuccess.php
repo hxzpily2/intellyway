@@ -37,54 +37,81 @@
 			  }
 			 });
 			});
+
+		   
+		      $(document).ready(function() {
+		         $("#userform").validationEngine({scroll:true});		   
+		      });
+
+				    
 		
 	</script>
 	
 </head>
 <body>
 
-<form action="post.php" method="POST" id="userform">
+
+<form action="post.php" method="POST" id="userform" class="formular">	
 	<table>
+		<tr>
+			<td><label>Vous &ecirc;tes ?</label></td>
+			<td></td>
+			<td>
+				<div class="rowElem">										
+					<select id="profil" name="profil" >
+						<option value="">&nbsp;</option>
+						<option value="<?php echo Constantes::PROFIL_USER;?>">Un particulier</option>
+						<option value="<?php echo Constantes::PROFIL_USER;?>">Un concessionnaire</option>
+						<option value="<?php echo Constantes::PROFIL_USER;?>">Un professionnel</option>						
+					</select>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></div></td>
+		</tr>
 		<tr>
 			<td><label>Nom:</label></td>
 			<td></td>
-			<td><div class="rowElem"><input type="text" name="inputtext"/></div></td>
-		</tr>
+			<td><div class="rowElem"><input id="nom" name="nom" class="validate[required]" type="text" /></div></td>
+		</tr>		
 		<tr>
 			<td><label>Prenom:</label></td>
 			<td></td>
-			<td><div class="rowElem"><input type="inputtext" /></div></td>
+			<td><div class="rowElem"><input id="prenom" name="prenom" class="validate[required]" type="inputtext" /></div></td>
 		</tr>
 		<tr>
 			<td><label>Login:</label></td>
 			<td></td>
-			<td><div class="rowElem"><input type="inputtext" /></div></td>
+			<td><div class="rowElem"><input id="login" name="login" class="validate[required,custom[noSpecialCaracters],ajax[ajaxUser]]" type="inputtext" /></div></td>
 		</tr>
 		<tr>
 			<td><label>Password:</label></td>
 			<td></td>
-			<td><div class="rowElem"><input type="password" /></div></td>
+			<td><div class="rowElem"><input id="password" name="password" class="validate[required,custom[noSpecialCaracters]]" type="password" /></div></td>
 		</tr>
 		<tr>
 			<td><label>Confirmer password:</label></td>
 			<td></td>
-			<td><div class="rowElem"><input type="password" /></div></td>
+			<td><div class="rowElem"><input id="confpassword" name="confpassword" class="validate[required,custom[noSpecialCaracters]]" type="password" /></div></td>
 		</tr>
 		<tr>
 			<td><label>E-mail:</label></td>
 			<td></td>
-			<td><div class="rowElem"><input style="width: 200px;" type="inputtext" /></div></td>
+			<td><div class="rowElem"><input id="email" name="email" class="validate[required,custom[email],ajax[ajaxUser]]" style="width: 200px;" type="inputtext" /></div></td>
 		</tr>
 		<tr>
 			<td><label>Tel:</label></td>
 			<td></td>
-			<td><div class="rowElem"><input type="inputtext" /></div></td>
+			<td><div class="rowElem"><input id="tel" name="tel" class="validate[required,custom[telephone]]" type="inputtext" /></div></td>
 		</tr>
 	</table>
 	<table width="500">
 		<tr>
 			<td valign="middle">
-				<div class="rowElem"><input type="checkbox" name="chbox" id=""></div>		
+				<div class="rowElem"><input type="checkbox" ></div>		
 			</td>					
 			<td valign="middle">
 				<label>J'ai lu et j'accepte  <b>les conditions g&eacute;n&eacute;rales d'utilisation de</b></label>	
@@ -92,7 +119,7 @@
 		</tr>
 		<tr>
 			<td valign="middle">
-				<div class="rowElem"><input type="checkbox" name="chbox" id=""></div>			
+				<div class="rowElem"><input type="checkbox" ></div>			
 			</td>						
 			<td valign="middle">
 				<label>J'accepte de recevoir des annonces qui pourraient m'interesser</label>	
@@ -100,7 +127,7 @@
 		</tr>
 		<tr>
 			<td valign="middle">
-				<div class="rowElem"><input type="checkbox" name="chbox" id=""></div>
+				<div class="rowElem"><input type="checkbox" name="chbox" id="chbox"></div>
 			</td>			
 			<td valign="middle">
 				<label>Je m'abonne &agrave; votre newsletter </label>
@@ -108,6 +135,8 @@
 		</tr>
 	</table>
 	
+	
+	<input class="submit" type="submit" value="Valider"/>
 	
 	<!-- <div class="rowElem"><label>Checkbox: </label><input type="checkbox" name="chbox" id=""></div>
 	<div class="rowElem"><label>Radio :</label> 
