@@ -9,7 +9,6 @@ Doctrine_Manager::getInstance()->bindComponent('CarCreneauProposition', 'doctrin
  * 
  * @property integer $idcrenauprop
  * @property integer $idauto
- * @property integer $idgroup
  * @property integer $iduser
  * @property string $commentaire
  * @property integer $active
@@ -17,14 +16,12 @@ Doctrine_Manager::getInstance()->bindComponent('CarCreneauProposition', 'doctrin
  * 
  * @method integer               getIdcrenauprop() Returns the current record's "idcrenauprop" value
  * @method integer               getIdauto()       Returns the current record's "idauto" value
- * @method integer               getIdgroup()      Returns the current record's "idgroup" value
  * @method integer               getIduser()       Returns the current record's "iduser" value
  * @method string                getCommentaire()  Returns the current record's "commentaire" value
  * @method integer               getActive()       Returns the current record's "active" value
  * @method CarAuto               getCarAuto()      Returns the current record's "CarAuto" value
  * @method CarCreneauProposition setIdcrenauprop() Sets the current record's "idcrenauprop" value
  * @method CarCreneauProposition setIdauto()       Sets the current record's "idauto" value
- * @method CarCreneauProposition setIdgroup()      Sets the current record's "idgroup" value
  * @method CarCreneauProposition setIduser()       Sets the current record's "iduser" value
  * @method CarCreneauProposition setCommentaire()  Sets the current record's "commentaire" value
  * @method CarCreneauProposition setActive()       Sets the current record's "active" value
@@ -49,14 +46,6 @@ abstract class BaseCarCreneauProposition extends sfDoctrineRecord
              'length' => '10',
              ));
         $this->hasColumn('idauto', 'integer', 10, array(
-             'type' => 'integer',
-             'fixed' => 0,
-             'unsigned' => false,
-             'primary' => false,
-             'autoincrement' => false,
-             'length' => '10',
-             ));
-        $this->hasColumn('idgroup', 'integer', 10, array(
              'type' => 'integer',
              'fixed' => 0,
              'unsigned' => false,

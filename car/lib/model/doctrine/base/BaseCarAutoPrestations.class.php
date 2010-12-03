@@ -9,7 +9,6 @@ Doctrine_Manager::getInstance()->bindComponent('CarAutoPrestations', 'doctrine')
  * 
  * @property integer $idprestation
  * @property integer $idauto
- * @property integer $idgroup
  * @property integer $iduser
  * @property integer $prix
  * @property integer $active
@@ -18,7 +17,6 @@ Doctrine_Manager::getInstance()->bindComponent('CarAutoPrestations', 'doctrine')
  * 
  * @method integer            getIdprestation()  Returns the current record's "idprestation" value
  * @method integer            getIdauto()        Returns the current record's "idauto" value
- * @method integer            getIdgroup()       Returns the current record's "idgroup" value
  * @method integer            getIduser()        Returns the current record's "iduser" value
  * @method integer            getPrix()          Returns the current record's "prix" value
  * @method integer            getActive()        Returns the current record's "active" value
@@ -26,7 +24,6 @@ Doctrine_Manager::getInstance()->bindComponent('CarAutoPrestations', 'doctrine')
  * @method CarPrestation      getCarPrestation() Returns the current record's "CarPrestation" value
  * @method CarAutoPrestations setIdprestation()  Sets the current record's "idprestation" value
  * @method CarAutoPrestations setIdauto()        Sets the current record's "idauto" value
- * @method CarAutoPrestations setIdgroup()       Sets the current record's "idgroup" value
  * @method CarAutoPrestations setIduser()        Sets the current record's "iduser" value
  * @method CarAutoPrestations setPrix()          Sets the current record's "prix" value
  * @method CarAutoPrestations setActive()        Sets the current record's "active" value
@@ -52,14 +49,6 @@ abstract class BaseCarAutoPrestations extends sfDoctrineRecord
              'length' => '10',
              ));
         $this->hasColumn('idauto', 'integer', 10, array(
-             'type' => 'integer',
-             'fixed' => 0,
-             'unsigned' => false,
-             'primary' => false,
-             'autoincrement' => false,
-             'length' => '10',
-             ));
-        $this->hasColumn('idgroup', 'integer', 10, array(
              'type' => 'integer',
              'fixed' => 0,
              'unsigned' => false,

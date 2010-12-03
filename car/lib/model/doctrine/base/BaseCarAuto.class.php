@@ -47,6 +47,8 @@ Doctrine_Manager::getInstance()->bindComponent('CarAuto', 'doctrine');
  * @property Doctrine_Collection $CarCreneauProposition
  * @property Doctrine_Collection $CarCommentaire
  * @property Doctrine_Collection $CarAutoPrestations
+ * @property Doctrine_Collection $CarPromotion
+ * @property Doctrine_Collection $CarEvaluation
  * 
  * @method integer             getIdauto()                Returns the current record's "idauto" value
  * @method integer             getIdmarque()              Returns the current record's "idmarque" value
@@ -88,6 +90,8 @@ Doctrine_Manager::getInstance()->bindComponent('CarAuto', 'doctrine');
  * @method Doctrine_Collection getCarCreneauProposition() Returns the current record's "CarCreneauProposition" collection
  * @method Doctrine_Collection getCarCommentaire()        Returns the current record's "CarCommentaire" collection
  * @method Doctrine_Collection getCarAutoPrestations()    Returns the current record's "CarAutoPrestations" collection
+ * @method Doctrine_Collection getCarPromotion()          Returns the current record's "CarPromotion" collection
+ * @method Doctrine_Collection getCarEvaluation()         Returns the current record's "CarEvaluation" collection
  * @method CarAuto             setIdauto()                Sets the current record's "idauto" value
  * @method CarAuto             setIdmarque()              Sets the current record's "idmarque" value
  * @method CarAuto             setIdmodele()              Sets the current record's "idmodele" value
@@ -128,6 +132,8 @@ Doctrine_Manager::getInstance()->bindComponent('CarAuto', 'doctrine');
  * @method CarAuto             setCarCreneauProposition() Sets the current record's "CarCreneauProposition" collection
  * @method CarAuto             setCarCommentaire()        Sets the current record's "CarCommentaire" collection
  * @method CarAuto             setCarAutoPrestations()    Sets the current record's "CarAutoPrestations" collection
+ * @method CarAuto             setCarPromotion()          Sets the current record's "CarPromotion" collection
+ * @method CarAuto             setCarEvaluation()         Sets the current record's "CarEvaluation" collection
  * 
  * @package    car
  * @subpackage model
@@ -404,6 +410,14 @@ abstract class BaseCarAuto extends sfDoctrineRecord
              'foreign' => 'idauto'));
 
         $this->hasMany('CarAutoPrestations', array(
+             'local' => 'idauto',
+             'foreign' => 'idauto'));
+
+        $this->hasMany('CarPromotion', array(
+             'local' => 'idauto',
+             'foreign' => 'idauto'));
+
+        $this->hasMany('CarEvaluation', array(
              'local' => 'idauto',
              'foreign' => 'idauto'));
 

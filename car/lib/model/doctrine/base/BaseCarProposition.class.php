@@ -9,7 +9,6 @@ Doctrine_Manager::getInstance()->bindComponent('CarProposition', 'doctrine');
  * 
  * @property integer $idproposition
  * @property integer $idencher
- * @property integer $idgroup
  * @property integer $iduser
  * @property integer $prix
  * @property integer $accepted
@@ -18,7 +17,6 @@ Doctrine_Manager::getInstance()->bindComponent('CarProposition', 'doctrine');
  * 
  * @method integer        getIdproposition() Returns the current record's "idproposition" value
  * @method integer        getIdencher()      Returns the current record's "idencher" value
- * @method integer        getIdgroup()       Returns the current record's "idgroup" value
  * @method integer        getIduser()        Returns the current record's "iduser" value
  * @method integer        getPrix()          Returns the current record's "prix" value
  * @method integer        getAccepted()      Returns the current record's "accepted" value
@@ -26,7 +24,6 @@ Doctrine_Manager::getInstance()->bindComponent('CarProposition', 'doctrine');
  * @method CarEncher      getCarEncher()     Returns the current record's "CarEncher" value
  * @method CarProposition setIdproposition() Sets the current record's "idproposition" value
  * @method CarProposition setIdencher()      Sets the current record's "idencher" value
- * @method CarProposition setIdgroup()       Sets the current record's "idgroup" value
  * @method CarProposition setIduser()        Sets the current record's "iduser" value
  * @method CarProposition setPrix()          Sets the current record's "prix" value
  * @method CarProposition setAccepted()      Sets the current record's "accepted" value
@@ -52,14 +49,6 @@ abstract class BaseCarProposition extends sfDoctrineRecord
              'length' => '10',
              ));
         $this->hasColumn('idencher', 'integer', 10, array(
-             'type' => 'integer',
-             'fixed' => 0,
-             'unsigned' => false,
-             'primary' => false,
-             'autoincrement' => false,
-             'length' => '10',
-             ));
-        $this->hasColumn('idgroup', 'integer', 10, array(
              'type' => 'integer',
              'fixed' => 0,
              'unsigned' => false,

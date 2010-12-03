@@ -9,7 +9,6 @@ Doctrine_Manager::getInstance()->bindComponent('CarCreneau', 'doctrine');
  * 
  * @property integer $idcrenau
  * @property integer $idauto
- * @property integer $idgroup
  * @property integer $iduser
  * @property timestamp $dated
  * @property integer $heured
@@ -21,7 +20,6 @@ Doctrine_Manager::getInstance()->bindComponent('CarCreneau', 'doctrine');
  * 
  * @method integer    getIdcrenau() Returns the current record's "idcrenau" value
  * @method integer    getIdauto()   Returns the current record's "idauto" value
- * @method integer    getIdgroup()  Returns the current record's "idgroup" value
  * @method integer    getIduser()   Returns the current record's "iduser" value
  * @method timestamp  getDated()    Returns the current record's "dated" value
  * @method integer    getHeured()   Returns the current record's "heured" value
@@ -32,7 +30,6 @@ Doctrine_Manager::getInstance()->bindComponent('CarCreneau', 'doctrine');
  * @method CarAuto    getCarAuto()  Returns the current record's "CarAuto" value
  * @method CarCreneau setIdcrenau() Sets the current record's "idcrenau" value
  * @method CarCreneau setIdauto()   Sets the current record's "idauto" value
- * @method CarCreneau setIdgroup()  Sets the current record's "idgroup" value
  * @method CarCreneau setIduser()   Sets the current record's "iduser" value
  * @method CarCreneau setDated()    Sets the current record's "dated" value
  * @method CarCreneau setHeured()   Sets the current record's "heured" value
@@ -61,14 +58,6 @@ abstract class BaseCarCreneau extends sfDoctrineRecord
              'length' => '10',
              ));
         $this->hasColumn('idauto', 'integer', 10, array(
-             'type' => 'integer',
-             'fixed' => 0,
-             'unsigned' => false,
-             'primary' => false,
-             'autoincrement' => false,
-             'length' => '10',
-             ));
-        $this->hasColumn('idgroup', 'integer', 10, array(
              'type' => 'integer',
              'fixed' => 0,
              'unsigned' => false,
