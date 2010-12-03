@@ -259,11 +259,17 @@ CarCon:
   connection: doctrine
   tableName: car_con
   columns:
-    idmarque:
+    idcon:
       type: integer(10)
       fixed: false
       unsigned: false
       primary: true
+      autoincrement: false  
+    idmarque:
+      type: integer(10)
+      fixed: false
+      unsigned: false
+      primary: false
       autoincrement: false
     idville:
       type: integer(10)
@@ -1029,12 +1035,6 @@ CarEncher:
       fixed: false
       unsigned: false
       primary: true
-      autoincrement: false      
-    idgroup:
-      type: integer(10)
-      fixed: false
-      unsigned: false
-      primary: false
       autoincrement: false
     iduser:
       type: integer(10)
@@ -1091,12 +1091,6 @@ CarProposition:
       fixed: false
       unsigned: false
       primary: false
-      autoincrement: false     
-    idgroup:
-      type: integer(10)
-      fixed: false
-      unsigned: false
-      primary: false
       autoincrement: false
     iduser:
       type: integer(10)
@@ -1142,12 +1136,6 @@ CarCreneau:
       primary: true
       autoincrement: true
     idauto:
-      type: integer(10)
-      fixed: false
-      unsigned: false
-      primary: false
-      autoincrement: false     
-    idgroup:
       type: integer(10)
       fixed: false
       unsigned: false
@@ -1219,12 +1207,6 @@ CarCreneauProposition:
       fixed: false
       unsigned: false
       primary: false
-      autoincrement: false     
-    idgroup:
-      type: integer(10)
-      fixed: false
-      unsigned: false
-      primary: false
       autoincrement: false
     iduser:
       type: integer(10)
@@ -1268,19 +1250,20 @@ CarCommentaire:
       fixed: false
       unsigned: false
       primary: false
-      autoincrement: false        
-    idgroup:
-      type: integer(10)
-      fixed: false
-      unsigned: false
-      primary: false
       autoincrement: false
     iduser:
       type: integer(10)
       fixed: false
       unsigned: false
       primary: false
-      autoincrement: false     
+      autoincrement: false
+    commentaire:
+      type: string()
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false              
     active:
       type: integer(1)
       fixed: false
@@ -1334,12 +1317,6 @@ CarPrestations:
       fixed: false
       unsigned: false
       primary: false
-      autoincrement: false 
-    idgroup:
-      type: integer(10)
-      fixed: false
-      unsigned: false
-      primary: false
       autoincrement: false
     iduser:
       type: integer(10)
@@ -1382,12 +1359,6 @@ CarAutoPrestations:
       fixed: false
       unsigned: false
       primary: false
-      autoincrement: false    
-    idgroup:
-      type: integer(10)
-      fixed: false
-      unsigned: false
-      primary: false
       autoincrement: false
     iduser:
       type: integer(10)
@@ -1418,4 +1389,180 @@ CarAutoPrestations:
       local: idprestation
       foreign: idprestation
       type: one   
-      onDelete: CASCADE                         
+      onDelete: CASCADE
+CarPromotion:
+  actAs: [Timestampable]
+  connection: doctrine
+  tableName: car_promotion
+  columns:
+    idpromotion:
+      type: integer(10)
+      fixed: false
+      unsigned: false
+      primary: false
+      autoincrement: false
+    idcon:
+      type: integer(10)
+      fixed: false
+      unsigned: false
+      primary: false
+      autoincrement: false
+    idauto:
+      type: integer(10)
+      fixed: false
+      unsigned: false
+      primary: false
+      autoincrement: false                      
+    prix:
+      type: integer(10)
+      fixed: false
+      unsigned: false
+      primary: false
+      autoincrement: false 
+    datedebut:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    datefin:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false        
+    active:
+      type: integer(1)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+  relations:
+    CarAuto:
+      local: idauto
+      foreign: idauto
+      type: one 
+      onDelete: CASCADE
+    CarCon:
+      local: idcon
+      foreign: idcon
+      type: one 
+      onDelete: CASCADE
+CarEvaluation:
+  actAs: [Timestampable]
+  connection: doctrine
+  tableName: car_evaluation
+  columns:
+    idevaluation:
+      type: integer(10)
+      fixed: false
+      unsigned: false
+      primary: false
+      autoincrement: false
+    iduser:
+      type: integer(10)
+      fixed: false
+      unsigned: false
+      primary: false
+      autoincrement: false
+    idauto:
+      type: integer(10)
+      fixed: false
+      unsigned: false
+      primary: false
+      autoincrement: false                         
+    noteprix:
+      type: integer(10)
+      fixed: false
+      unsigned: false
+      primary: false
+      autoincrement: false   
+    notemoteur:
+      type: integer(10)
+      fixed: false
+      unsigned: false
+      primary: false
+      autoincrement: false      
+    notekm:
+      type: integer(10)
+      fixed: false
+      unsigned: false
+      primary: false
+      autoincrement: false      
+    noteconso:
+      type: integer(10)
+      fixed: false
+      unsigned: false
+      primary: false
+      autoincrement: false
+    noteetat:
+      type: integer(10)
+      fixed: false
+      unsigned: false
+      primary: false
+      autoincrement: false      
+    noteoption:
+      type: integer(10)
+      fixed: false
+      unsigned: false
+      primary: false
+      autoincrement: false      
+    noteglobal:
+      type: integer(10)
+      fixed: false
+      unsigned: false
+      primary: false
+      autoincrement: false            
+    active:
+      type: integer(1)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+  relations:
+    CarAuto:
+      local: idauto
+      foreign: idauto
+      type: one 
+      onDelete: CASCADE
+CarMessage:
+  actAs: [Timestampable]
+  connection: doctrine
+  tableName: car_message
+  columns:
+    idmessage:
+      type: integer(10)
+      fixed: false
+      unsigned: false
+      primary: false
+      autoincrement: false
+    iduserfrom:
+      type: integer(10)
+      fixed: false
+      unsigned: false
+      primary: false
+      autoincrement: false
+    iduserto:
+      type: integer(10)
+      fixed: false
+      unsigned: false
+      primary: false
+      autoincrement: false      
+    commentaire:
+      type: string()
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false               
+    active:
+      type: integer(1)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false                                                                                            
