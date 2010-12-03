@@ -14,7 +14,6 @@ abstract class BaseCarCreneauFormFilter extends BaseFormFilterDoctrine
   {
     $this->setWidgets(array(
       'idauto'     => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('CarAuto'), 'add_empty' => true)),
-      'idgroup'    => new sfWidgetFormFilterInput(),
       'iduser'     => new sfWidgetFormFilterInput(),
       'dated'      => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
       'heured'     => new sfWidgetFormFilterInput(),
@@ -28,7 +27,6 @@ abstract class BaseCarCreneauFormFilter extends BaseFormFilterDoctrine
 
     $this->setValidators(array(
       'idauto'     => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('CarAuto'), 'column' => 'idauto')),
-      'idgroup'    => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'iduser'     => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'dated'      => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
       'heured'     => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
@@ -59,7 +57,6 @@ abstract class BaseCarCreneauFormFilter extends BaseFormFilterDoctrine
     return array(
       'idcrenau'   => 'Number',
       'idauto'     => 'ForeignKey',
-      'idgroup'    => 'Number',
       'iduser'     => 'Number',
       'dated'      => 'Date',
       'heured'     => 'Number',

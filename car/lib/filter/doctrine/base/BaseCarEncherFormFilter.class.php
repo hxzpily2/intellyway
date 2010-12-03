@@ -14,7 +14,6 @@ abstract class BaseCarEncherFormFilter extends BaseFormFilterDoctrine
   {
     $this->setWidgets(array(
       'idencher'   => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('CarProposition'), 'add_empty' => true)),
-      'idgroup'    => new sfWidgetFormFilterInput(),
       'iduser'     => new sfWidgetFormFilterInput(),
       'prixstart'  => new sfWidgetFormFilterInput(),
       'datedebut'  => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
@@ -26,7 +25,6 @@ abstract class BaseCarEncherFormFilter extends BaseFormFilterDoctrine
 
     $this->setValidators(array(
       'idencher'   => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('CarProposition'), 'column' => 'idproposition')),
-      'idgroup'    => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'iduser'     => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'prixstart'  => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'datedebut'  => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
@@ -55,7 +53,6 @@ abstract class BaseCarEncherFormFilter extends BaseFormFilterDoctrine
     return array(
       'idencher'   => 'ForeignKey',
       'idauto'     => 'Number',
-      'idgroup'    => 'Number',
       'iduser'     => 'Number',
       'prixstart'  => 'Number',
       'datedebut'  => 'Date',

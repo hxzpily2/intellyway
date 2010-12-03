@@ -17,7 +17,6 @@ abstract class BaseCarPrestationsForm extends BaseFormDoctrine
     $this->setWidgets(array(
       'id'           => new sfWidgetFormInputHidden(),
       'idprestation' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('CarPrestation'), 'add_empty' => true)),
-      'idgroup'      => new sfWidgetFormInputText(),
       'iduser'       => new sfWidgetFormInputText(),
       'prix'         => new sfWidgetFormInputText(),
       'active'       => new sfWidgetFormInputText(),
@@ -28,7 +27,6 @@ abstract class BaseCarPrestationsForm extends BaseFormDoctrine
     $this->setValidators(array(
       'id'           => new sfValidatorDoctrineChoice(array('model' => $this->getModelName(), 'column' => 'id', 'required' => false)),
       'idprestation' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('CarPrestation'), 'required' => false)),
-      'idgroup'      => new sfValidatorInteger(array('required' => false)),
       'iduser'       => new sfValidatorInteger(array('required' => false)),
       'prix'         => new sfValidatorInteger(array('required' => false)),
       'active'       => new sfValidatorInteger(),

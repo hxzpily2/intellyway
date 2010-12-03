@@ -17,7 +17,6 @@ abstract class BaseCarPropositionForm extends BaseFormDoctrine
     $this->setWidgets(array(
       'idproposition' => new sfWidgetFormInputHidden(),
       'idencher'      => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('CarEncher'), 'add_empty' => true)),
-      'idgroup'       => new sfWidgetFormInputText(),
       'iduser'        => new sfWidgetFormInputText(),
       'prix'          => new sfWidgetFormInputText(),
       'accepted'      => new sfWidgetFormInputText(),
@@ -29,7 +28,6 @@ abstract class BaseCarPropositionForm extends BaseFormDoctrine
     $this->setValidators(array(
       'idproposition' => new sfValidatorDoctrineChoice(array('model' => $this->getModelName(), 'column' => 'idproposition', 'required' => false)),
       'idencher'      => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('CarEncher'), 'required' => false)),
-      'idgroup'       => new sfValidatorInteger(array('required' => false)),
       'iduser'        => new sfValidatorInteger(array('required' => false)),
       'prix'          => new sfValidatorInteger(array('required' => false)),
       'accepted'      => new sfValidatorInteger(),

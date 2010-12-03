@@ -15,7 +15,6 @@ abstract class BaseCarAutoPrestationsFormFilter extends BaseFormFilterDoctrine
     $this->setWidgets(array(
       'idprestation' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('CarPrestation'), 'add_empty' => true)),
       'idauto'       => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('CarAuto'), 'add_empty' => true)),
-      'idgroup'      => new sfWidgetFormFilterInput(),
       'iduser'       => new sfWidgetFormFilterInput(),
       'prix'         => new sfWidgetFormFilterInput(),
       'active'       => new sfWidgetFormFilterInput(array('with_empty' => false)),
@@ -26,7 +25,6 @@ abstract class BaseCarAutoPrestationsFormFilter extends BaseFormFilterDoctrine
     $this->setValidators(array(
       'idprestation' => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('CarPrestation'), 'column' => 'idprestation')),
       'idauto'       => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('CarAuto'), 'column' => 'idauto')),
-      'idgroup'      => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'iduser'       => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'prix'         => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'active'       => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
@@ -54,7 +52,6 @@ abstract class BaseCarAutoPrestationsFormFilter extends BaseFormFilterDoctrine
       'id'           => 'Number',
       'idprestation' => 'ForeignKey',
       'idauto'       => 'ForeignKey',
-      'idgroup'      => 'Number',
       'iduser'       => 'Number',
       'prix'         => 'Number',
       'active'       => 'Number',

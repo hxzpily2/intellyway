@@ -14,7 +14,6 @@ abstract class BaseCarCreneauPropositionFormFilter extends BaseFormFilterDoctrin
   {
     $this->setWidgets(array(
       'idauto'       => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('CarAuto'), 'add_empty' => true)),
-      'idgroup'      => new sfWidgetFormFilterInput(),
       'iduser'       => new sfWidgetFormFilterInput(),
       'commentaire'  => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'active'       => new sfWidgetFormFilterInput(array('with_empty' => false)),
@@ -24,7 +23,6 @@ abstract class BaseCarCreneauPropositionFormFilter extends BaseFormFilterDoctrin
 
     $this->setValidators(array(
       'idauto'       => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('CarAuto'), 'column' => 'idauto')),
-      'idgroup'      => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'iduser'       => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'commentaire'  => new sfValidatorPass(array('required' => false)),
       'active'       => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
@@ -51,7 +49,6 @@ abstract class BaseCarCreneauPropositionFormFilter extends BaseFormFilterDoctrin
     return array(
       'idcrenauprop' => 'Number',
       'idauto'       => 'ForeignKey',
-      'idgroup'      => 'Number',
       'iduser'       => 'Number',
       'commentaire'  => 'Text',
       'active'       => 'Number',

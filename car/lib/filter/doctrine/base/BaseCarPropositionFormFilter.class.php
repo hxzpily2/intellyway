@@ -14,7 +14,6 @@ abstract class BaseCarPropositionFormFilter extends BaseFormFilterDoctrine
   {
     $this->setWidgets(array(
       'idencher'      => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('CarEncher'), 'add_empty' => true)),
-      'idgroup'       => new sfWidgetFormFilterInput(),
       'iduser'        => new sfWidgetFormFilterInput(),
       'prix'          => new sfWidgetFormFilterInput(),
       'accepted'      => new sfWidgetFormFilterInput(array('with_empty' => false)),
@@ -25,7 +24,6 @@ abstract class BaseCarPropositionFormFilter extends BaseFormFilterDoctrine
 
     $this->setValidators(array(
       'idencher'      => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('CarEncher'), 'column' => 'idauto')),
-      'idgroup'       => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'iduser'        => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'prix'          => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'accepted'      => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
@@ -53,7 +51,6 @@ abstract class BaseCarPropositionFormFilter extends BaseFormFilterDoctrine
     return array(
       'idproposition' => 'Number',
       'idencher'      => 'ForeignKey',
-      'idgroup'       => 'Number',
       'iduser'        => 'Number',
       'prix'          => 'Number',
       'accepted'      => 'Number',

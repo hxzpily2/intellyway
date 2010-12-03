@@ -13,6 +13,7 @@ abstract class BaseCarConFormFilter extends BaseFormFilterDoctrine
   public function setup()
   {
     $this->setWidgets(array(
+      'idmarque'       => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('CarMarque'), 'add_empty' => true)),
       'adresse'        => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'tel1'           => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'tel2'           => new sfWidgetFormFilterInput(array('with_empty' => false)),
@@ -27,6 +28,7 @@ abstract class BaseCarConFormFilter extends BaseFormFilterDoctrine
     ));
 
     $this->setValidators(array(
+      'idmarque'       => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('CarMarque'), 'column' => 'idmarque')),
       'adresse'        => new sfValidatorPass(array('required' => false)),
       'tel1'           => new sfValidatorPass(array('required' => false)),
       'tel2'           => new sfValidatorPass(array('required' => false)),
@@ -57,7 +59,8 @@ abstract class BaseCarConFormFilter extends BaseFormFilterDoctrine
   public function getFields()
   {
     return array(
-      'idmarque'       => 'Number',
+      'idcon'          => 'Number',
+      'idmarque'       => 'ForeignKey',
       'idville'        => 'Number',
       'adresse'        => 'Text',
       'tel1'           => 'Text',
