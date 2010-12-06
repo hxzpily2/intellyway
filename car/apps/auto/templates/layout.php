@@ -19,6 +19,8 @@
 <link rel="stylesheet" href="/car/web/css/validationEngine.jquery.css"	type="text/css" media="screen" charset="utf-8" />
 <script src="/car/web/js/jquery/jquery.validationEngine-fr.js"	type="text/javascript"></script>
 <script	src="/car/web/js/jquery/jquery.validationEngine.js"	type="text/javascript"></script>
+
+<script	src="/car/web/js/jquery/jquery-ui-1.8.6.custom.min.js"	type="text/javascript"></script>
 <!-- FIN FORM VALIDATIOn -->
 
 <!-- DOJO -->
@@ -34,10 +36,11 @@ html,body {
 	border: 0;
 }
 
-#main {
-	height: 100%;
-	width: 100%;
+#main {	
+	width: 850px;
 	border: 0;
+	margin-left: auto;
+    margin-right: auto
 }
 </style>
 
@@ -127,7 +130,8 @@ password?</a></p>
 	  $('#forgot_username_link').tipsy({gravity: 'w'});   
     });
   </script>
-
+<div id="main">
 <?php echo $sf_content ?>
+</div>
 </body>
 </html>

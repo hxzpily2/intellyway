@@ -40,8 +40,41 @@
 
 		   
 		      $(document).ready(function() {
-		         $("#userform").validationEngine({scroll:true});		   
+		         /*$("#userform").validationEngine({
+			         scroll:true,
+			         ajaxSubmit: true,
+					 ajaxSubmitFile: "ajaxSubmit.php",
+					 ajaxSubmitMessage: "Thank you, we received your inscription!",
+					 success :  function() {alert('ok')},
+					 failure : function() {}
+				         
+			     });*/		   
 		      });
+
+		      function runEffect() {
+			      	
+					// get effect type from 
+					var selectedEffect = 'blind';
+
+					// most effect types need no options passed by default
+					var options = {};
+					// some effects have required parameters
+					if ( selectedEffect === "scale" ) {
+						options = { percent: 100 };
+					} else if ( selectedEffect === "size" ) {
+						options = { to: { width: 280, height: 185 } };
+					}
+
+					// run the effect
+					$( "#effect" ).show( selectedEffect, options, 500, callback );
+				};
+
+				function callback() {
+					setTimeout(function() {
+						$( "#effect:visible" ).removeAttr( "style" ).fadeOut();
+					}, 1000 );
+				};
+						
 
 				    
 		
@@ -58,8 +91,7 @@
 			<td></td>
 			<td>
 				<div class="rowElem">										
-					<select id="profil" name="profil" >
-						<option value="">&nbsp;</option>
+					<select id="profil" name="profil" >						
 						<option value="<?php echo Constantes::PROFIL_USER;?>">Un particulier</option>
 						<option value="<?php echo Constantes::PROFIL_USER;?>">Un concessionnaire</option>
 						<option value="<?php echo Constantes::PROFIL_USER;?>">Un professionnel</option>						
@@ -136,7 +168,7 @@
 	</table>
 	
 	
-	<input class="submit" type="submit" value="Valider"/>
+	
 	
 	<!-- <div class="rowElem"><label>Checkbox: </label><input type="checkbox" name="chbox" id=""></div>
 	<div class="rowElem"><label>Radio :</label> 
@@ -171,6 +203,14 @@
 			
 </form>
 	
+<input type="button" value="Valider" onclick="runEffect();"/>
+
+	<!-- <div id="effect" class="ui-widget-content ui-corner-all">
+		<h3 class="ui-widget-header ui-corner-all">Show</h3>
+		<p>
+			Etiam libero neque, luctus a, eleifend nec, semper at, lorem. Sed pede. Nulla lorem metus, adipiscing ut, luctus sed, hendrerit vitae, mi.
+		</p>
+	</div>  -->
 
 
 
