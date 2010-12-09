@@ -1,9 +1,12 @@
 
 dojo.provide("car.integration.Commun");
 
+
+
 dojo.declare("car.integration.Commun",[],{
 
 	
+
     parseInfo : function (urlInfos){
         
         if(urlInfos!=""){
@@ -137,5 +140,116 @@ dojo.declare("car.integration.Commun",[],{
     	if(dojo.byId("mode").value=="fullscreen"){
     		window.close();
     	}    
-    }	
+    },
+    
+    createUser : function(){
+    	if(dojo.byId('profil').value=='PROFIL_USER'){
+	    	dojo.style(dojo.byId('errorNom'), 'opacity', .0);
+			dojo.style(dojo.byId('errorNom'), 'display', 'none');
+		  	dojo.style(dojo.byId('errorPrenom'), 'opacity', .0);
+		  	dojo.style(dojo.byId('errorPrenom'), 'display', 'none');
+		  	dojo.style(dojo.byId('errorLogin'), 'opacity', .0);
+		  	dojo.style(dojo.byId('errorLogin'), 'display', 'none');
+		  	dojo.style(dojo.byId('errorPassword'), 'opacity', .0);
+		  	dojo.style(dojo.byId('errorPassword'), 'display', 'none');
+		  	dojo.style(dojo.byId('errorConfpassword'), 'opacity', .0);
+		  	dojo.style(dojo.byId('errorConfpassword'), 'display', 'none');
+		  	dojo.style(dojo.byId('errorEmail'), 'opacity', .0);      
+		  	dojo.style(dojo.byId('errorEmail'), 'display', 'none');
+		  	dojo.style(dojo.byId('errorTel'), 'opacity', .0);
+		  	dojo.style(dojo.byId('errorTel'), 'display', 'none');
+		  	dojo.style(dojo.byId('errorCondition'), 'opacity', .0);
+		  	dojo.style(dojo.byId('errorCondition'), 'display', 'none');
+	    	
+	    	var nom = dojo.byId('nom').value;
+	    	var prenom = dojo.byId('prenom').value;
+	    	var login = dojo.byId('login').value;
+	    	var password = dojo.byId('passwordd').value;
+	    	var confpassword = dojo.byId('confpassword').value;
+	    	var email = dojo.byId('email').value;
+	    	var tel = dojo.byId('tel').value;
+	    	var errors = false;
+	    	if(nom==''){
+	    		errors = true;
+	    		this.runEffect("errorNom");
+	    	}
+	    	if(prenom==''){
+	    		errors = true;
+	    		this.runEffect("errorPrenom");
+	    	}
+	    	if(login==''){
+	    		errors = true;
+	    		this.runEffect("errorLogin");
+	    	}    	
+	    	if(password==''){
+	    		errors = true;
+	    		this.runEffect("errorPassword");
+	    	}
+	    	if(password!='' && password!=confpassword){    		
+	    		errors = true;
+	    		this.runEffect("errorConfpassword");    		
+	    	}
+	    	if(email=='' || !dojox.validate.isEmailAddress(email)){
+	    		errors = true;
+	    		this.runEffect("errorEmail");   
+	    	}
+	    	if(tel=='' || !dojox.validate.isNumberFormat(tel,{ format : "0#########" })){
+	    		errors = true;
+	    		this.runEffect("errorTel");   
+	    	}
+	    	if(dojo.byId('condition').checked==false){
+	    		errors = true;    		
+	    		this.runEffect("errorCondition");  
+	    	}
+	    	
+	    	if(errors == false){
+	    		dojo.style(dojo.byId('errorNom'), 'opacity', .0);
+	    		dojo.style(dojo.byId('errorNom'), 'display', 'none');
+	  		  	dojo.style(dojo.byId('errorPrenom'), 'opacity', .0);
+	  		  	dojo.style(dojo.byId('errorPrenom'), 'display', 'none');
+	  		  	dojo.style(dojo.byId('errorLogin'), 'opacity', .0);
+	  		  	dojo.style(dojo.byId('errorLogin'), 'display', 'none');
+	  		  	dojo.style(dojo.byId('errorPassword'), 'opacity', .0);
+	  		  	dojo.style(dojo.byId('errorPassword'), 'display', 'none');
+	  		  	dojo.style(dojo.byId('errorConfpassword'), 'opacity', .0);
+	  		  	dojo.style(dojo.byId('errorConfpassword'), 'display', 'none');
+	  		  	dojo.style(dojo.byId('errorEmail'), 'opacity', .0);      
+	  		  	dojo.style(dojo.byId('errorEmail'), 'display', 'none');
+	  		  	dojo.style(dojo.byId('errorTel'), 'opacity', .0);
+	  		  	dojo.style(dojo.byId('errorTel'), 'display', 'none');
+	  		  	dojo.style(dojo.byId('errorCondition'), 'opacity', .0);
+	  		  	dojo.style(dojo.byId('errorCondition'), 'display', 'none');
+	  		  	
+	  		  dojo.style(dojo.byId('loader'), 'display', '');
+		    	dojo.xhrPost ({
+		            url: "/car/web/auto.php/userform/save?profil=PROFIL_USER&nom="+nom+"&prenom="+prenom+"&login="+login+"&password="+password+"&email="+email+"&tel="+tel,
+		            handleAs: "text",
+		            preventCache:true,
+			            load: dojo.hitch(this,function (response) {
+			            	dojo.style(dojo.byId('loader'), 'display', 'none');
+			            }
+		            ),
+		            error: function (data) {
+		                console.error('Error: chargement services', data);
+		            }
+		        });
+	    	}
+    	}
+    },
+    
+    runEffect : function (node) {   
+    	dojo.style(dojo.byId(node), 'display', '');
+    	var fadeOut = dojo.fadeOut({node: dojo.byId(node),duration: 1000});
+    	var fadeIn = dojo.fadeIn({node: dojo.byId(node),duration: 800});
+    	var currentAnimation;
+    	currentAnimation = dojo.fx.chain([fadeIn]);
+    	currentAnimation.play();  
+    	
+	},
+
+	callback : function() {
+		setTimeout(function() {
+			$( "#effect:visible" ).removeAttr( "style" ).fadeOut();
+		}, 1000 );
+	}
 });
