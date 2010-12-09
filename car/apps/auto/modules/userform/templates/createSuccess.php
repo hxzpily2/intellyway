@@ -1,87 +1,112 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta http-equiv="Content-Script-Type" content="text/javascript" />
-	<meta http-equiv="Content-Style-Type" content="text/css" />
-	<meta name="gmapkey" content="" />
-	<meta name="description" content="" />
-	<meta name="keywords" content="" />
+<link rel="stylesheet" href="/car/web/js/jqtransform/jqtransformplugin/jqtransform.css" type="text/css" media="all" />
 
-	<title></title>
 
-	<link rel="stylesheet" href="/car/web/js/jqtransform/jqtransformplugin/jqtransform.css" type="text/css" media="all" />
+
+<script type="text/javascript" src="/car/web/js/jqtransform/jqtransformplugin/jquery.jqtransform.js" ></script>
+<script language="javascript">
+
 	
+	dojo.addOnLoad(
+	  function(){		  
+		  dojo.style(dojo.byId('errorNom'), 'opacity', .0);
+		  dojo.style(dojo.byId('errorPrenom'), 'opacity', .0);
+		  dojo.style(dojo.byId('errorLogin'), 'opacity', .0);
+		  dojo.style(dojo.byId('errorPassword'), 'opacity', .0);
+		  dojo.style(dojo.byId('errorConfpassword'), 'opacity', .0);
+		  dojo.style(dojo.byId('errorEmail'), 'opacity', .0);        
+		  dojo.style(dojo.byId('errorTel'), 'opacity', .0);
+		  dojo.style(dojo.byId('errorCondition'), 'opacity', .0);
+		  dojo.style(dojo.byId('errorCondition'), 'display', 'none');
+		  /*dojo.connect(dojo.byId('myButton'), "onclick", function(e){
+			  doAnimation(1);
+		  });*/
+	  }
+	);
+				
 	
+	function doAnimation(index) {
+	    switch(index) {
+	      case 1:
+	        currentAnimation = fadeOut;
+	        break;
+	      case 2: 
+	        currentAnimation = fadeIn;
+	        break;
+	      case 3:
+	        //Chain two animations to run in sequence.
+	        //Note the array passed as an argument.
+	        currentAnimation = dojo.fx.chain([fadeOut, fadeIn]);
+	        break;
+	    }
+	    //Play the animation. Without this call, it will not run.
+	    currentAnimation.play();
+	  }
+			
+	$(function(){
+		$("form#userform").jqTransform({imgPath:'/car/web/js/jqtransform/jqtransformplugin/img/'});
+	});
 	
-	<script type="text/javascript" src="/car/web/js/jqtransform/jqtransformplugin/jquery.jqtransform.js" ></script>
-	<script language="javascript">
-		$(function(){
-			$("form#userform").jqTransform({imgPath:'/car/web/js/jqtransform/jqtransformplugin/img/'});
+	$(function(){
+		 $('.hover-star').rating({
+		  focus: function(value, link){
+		    // 'this' is the hidden form element holding the current value
+		    // 'value' is the value selected
+		    // 'element' points to the link element that received the click.
+		    var tip = $('#hover-test');
+		    tip[0].data = tip[0].data || tip.html();
+		    tip.html(link.title || 'value: '+value);
+		  },
+		  blur: function(value, link){
+		    var tip = $('#hover-test');
+		    $('#hover-test').html(tip[0].data || '');
+		  }
+		 });
 		});
-		
-		$(function(){
-			 $('.hover-star').rating({
-			  focus: function(value, link){
-			    // 'this' is the hidden form element holding the current value
-			    // 'value' is the value selected
-			    // 'element' points to the link element that received the click.
-			    var tip = $('#hover-test');
-			    tip[0].data = tip[0].data || tip.html();
-			    tip.html(link.title || 'value: '+value);
-			  },
-			  blur: function(value, link){
-			    var tip = $('#hover-test');
-			    $('#hover-test').html(tip[0].data || '');
-			  }
-			 });
-			});
 
-		   
-		      $(document).ready(function() {
-		         /*$("#userform").validationEngine({
-			         scroll:true,
-			         ajaxSubmit: true,
-					 ajaxSubmitFile: "ajaxSubmit.php",
-					 ajaxSubmitMessage: "Thank you, we received your inscription!",
-					 success :  function() {alert('ok')},
-					 failure : function() {}
-				         
-			     });*/		   
-		      });
+	   
+	      $(document).ready(function() {
+	         /*$("#userform").validationEngine({
+		         scroll:true,
+		         ajaxSubmit: true,
+				 ajaxSubmitFile: "ajaxSubmit.php",
+				 ajaxSubmitMessage: "Thank you, we received your inscription!",
+				 success :  function() {alert('ok')},
+				 failure : function() {}
+			         
+		     });*/		   
+	      });
 
-		      function runEffect() {
-			      	
-					// get effect type from 
-					var selectedEffect = 'blind';
+	      function runEffect() {
+		      	
+				// get effect type from 
+				var selectedEffect = 'blind';
 
-					// most effect types need no options passed by default
-					var options = {};
-					// some effects have required parameters
-					if ( selectedEffect === "scale" ) {
-						options = { percent: 100 };
-					} else if ( selectedEffect === "size" ) {
-						options = { to: { width: 280, height: 185 } };
-					}
+				// most effect types need no options passed by default
+				var options = {};
+				// some effects have required parameters
+				if ( selectedEffect === "scale" ) {
+					options = { percent: 100 };
+				} else if ( selectedEffect === "size" ) {
+					options = { to: { width: 280, height: 185 } };
+				}
 
-					// run the effect
-					$( "#effect" ).show( selectedEffect, options, 500, callback );
-				};
+				// run the effect
+				$( "#effect" ).show( selectedEffect, options, 500, callback );
+			};
 
-				function callback() {
-					setTimeout(function() {
-						$( "#effect:visible" ).removeAttr( "style" ).fadeOut();
-					}, 1000 );
-				};
-						
+			function callback() {
+				setTimeout(function() {
+					$( "#effect:visible" ).removeAttr( "style" ).fadeOut();
+				}, 1000 );
+			};
+					
 
-				    
-		
-	</script>
+			    
 	
-</head>
-<body>
+</script>
+	
+
+
 
 
 <form action="post.php" method="POST" id="userform" class="formular">	
@@ -93,8 +118,8 @@
 				<div class="rowElem">										
 					<select id="profil" name="profil" >						
 						<option value="<?php echo Constantes::PROFIL_USER;?>">Un particulier</option>
-						<option value="<?php echo Constantes::PROFIL_USER;?>">Un concessionnaire</option>
-						<option value="<?php echo Constantes::PROFIL_USER;?>">Un professionnel</option>						
+						<option value="<?php echo Constantes::PROFIL_CONC;?>">Un concessionnaire</option>
+						<option value="<?php echo Constantes::PROFIL_PROF;?>">Un professionnel</option>						
 					</select>
 				</div>
 			</td>
@@ -107,46 +132,117 @@
 		<tr>
 			<td><label>Nom:</label></td>
 			<td></td>
-			<td><div class="rowElem"><input id="nom" name="nom" class="validate[required]" type="text" /></div></td>
-		</tr>		
+			<td>
+				<div class="rowElem"><input id="nom" name="nom" class="validate[required]" type="text" /></div>																				
+			</td>
+		</tr>
+		<tr id="errorNom" style="display: none;">
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>			
+				<div><span style="color: red;font-family: TAHOMA;">Le nom est obligatoire</span></div>																
+			</td>
+		</tr>						
 		<tr>
 			<td><label>Prenom:</label></td>
 			<td></td>
-			<td><div class="rowElem"><input id="prenom" name="prenom" class="validate[required]" type="inputtext" /></div></td>
+			<td>
+				<div class="rowElem"><input id="prenom" name="prenom" class="validate[required]" type="inputtext" /></div>				
+			</td>
+		</tr>
+		<tr id="errorPrenom" style="display: none;">
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>			
+				<div><span style="color: red;font-family: TAHOMA;">Le prenom est obligatoire</span></div>																
+			</td>
 		</tr>
 		<tr>
 			<td><label>Login:</label></td>
 			<td></td>
-			<td><div class="rowElem"><input id="login" name="login" class="validate[required,custom[noSpecialCaracters],ajax[ajaxUser]]" type="inputtext" /></div></td>
+			<td>
+				<div class="rowElem"><input id="login" name="login" class="validate[required,custom[noSpecialCaracters],ajax[ajaxUser]]" type="inputtext" /></div>				
+			</td>
+		</tr>
+		<tr id="errorLogin" style="display: none;">
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>			
+				<div><span style="color: red;font-family: TAHOMA;">Le login est obligatoire</span></div>																
+			</td>
 		</tr>
 		<tr>
 			<td><label>Password:</label></td>
 			<td></td>
-			<td><div class="rowElem"><input id="password" name="password" class="validate[required,custom[noSpecialCaracters]]" type="password" /></div></td>
+			<td>
+				<div class="rowElem"><input id="passwordd" name="passwordd" class="validate[required,custom[noSpecialCaracters]]" type="password" /></div>								
+			</td>
+		</tr>
+		<tr id="errorPassword" style="display: none;">
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>			
+				<div><span style="color: red;font-family: TAHOMA;">Le password est obligatoire</span></div>																
+			</td>
 		</tr>
 		<tr>
 			<td><label>Confirmer password:</label></td>
 			<td></td>
-			<td><div class="rowElem"><input id="confpassword" name="confpassword" class="validate[required,custom[noSpecialCaracters]]" type="password" /></div></td>
+			<td>
+				<div class="rowElem"><input id="confpassword" name="confpassword" class="validate[required,custom[noSpecialCaracters]]" type="password" /></div>								
+			</td>
+		</tr>
+		<tr id="errorConfpassword" style="display: none;">
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>			
+				<div><span style="color: red;font-family: TAHOMA;">Le password est invalide</span></div>																
+			</td>
 		</tr>
 		<tr>
 			<td><label>E-mail:</label></td>
 			<td></td>
-			<td><div class="rowElem"><input id="email" name="email" class="validate[required,custom[email],ajax[ajaxUser]]" style="width: 200px;" type="inputtext" /></div></td>
+			<td>
+				<div class="rowElem"><input id="email" name="email" class="validate[required,custom[email],ajax[ajaxUser]]" style="width: 200px;" type="inputtext" /></div>				
+			</td>
+		</tr>
+		<tr id="errorEmail" style="display: none;">
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>			
+				<div><span style="color: red;font-family: TAHOMA;">L'adresse mail est invalide</span></div>																
+			</td>
 		</tr>
 		<tr>
 			<td><label>Tel:</label></td>
 			<td></td>
-			<td><div class="rowElem"><input id="tel" name="tel" class="validate[required,custom[telephone]]" type="inputtext" /></div></td>
+			<td>
+				<div class="rowElem"><input id="tel" name="tel" class="validate[required,custom[telephone]]" type="inputtext" /></div>				
+			</td>
+		</tr>
+		<tr id="errorTel" style="display: none;">
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>			
+				<div><span style="color: red;font-family: TAHOMA;">Le num&eacute;ro de t&eacute;l&eacute;phone est invalide</span></div>																
+			</td>
 		</tr>
 	</table>
 	<table width="500">
 		<tr>
 			<td valign="middle">
-				<div class="rowElem"><input type="checkbox" ></div>		
+				<div class="rowElem"><input id="condition" type="checkbox" ></div>		
 			</td>					
 			<td valign="middle">
 				<label>J'ai lu et j'accepte  <b>les conditions g&eacute;n&eacute;rales d'utilisation de</b></label>	
+			</td>
+		</tr>
+		<tr id="errorCondition" style="display: none;">
+			<td valign="middle">
+				&nbsp;		
+			</td>
+			<td > 
+				<span style="color: red;font-family: TAHOMA;">Vous n'avez pas acc&eacute;pter les termes d'utilisations</span>	
 			</td>
 		</tr>
 		<tr>
@@ -202,9 +298,12 @@
 	<div class="rowElem"><label>Input button:</label><input type="button" value="bouton" /></div> -->
 			
 </form>
-	
-<input type="button" value="Valider" onclick="runEffect();"/>
 
+<input id="myButton" type="button" value="Valider" onclick="commun.createUser()" />
+
+<div id="effect" style="display: none;">
+	test
+</div>	
 	<!-- <div id="effect" class="ui-widget-content ui-corner-all">
 		<h3 class="ui-widget-header ui-corner-all">Show</h3>
 		<p>
@@ -231,5 +330,4 @@
 				
 				
 	
-</body>
-</html>
+

@@ -50,6 +50,9 @@ html,body {
 <script type='text/javascript'>  
 dojo.require('dijit.dijit');
 dojo.require('dojo.parser');
+dojo.require("dojo.fx");
+dojo.require("dojox.validate.web");
+dojo.require("dojox.validate._base");
 //dojo.require('dijit.Tree');
 //dojo.require('dojo.data.ItemFileReadStore');
 //dojo.require('dijit.tree.ForestStoreModel');
@@ -60,7 +63,7 @@ dojo.require('dojo.parser');
 //dojo.require('dijit.Tooltip');
 //dojo.require('dijit.Tree');
 //dojo.require('dijit.form.TextBox');
-//dojo.require('dijit.form.Button');
+dojo.require('dijit.form.Button');
 //dojo.require('dijit.form.NumberSpinner');
 //dojo.require('dijit.form.ValidationTextBox');
 //dojo.require('dijit.layout.AccordionContainer');
@@ -76,6 +79,7 @@ dojo.require('dojo.data.ItemFileReadStore');
 dojo.registerModulePath('car', '../../car');
 dojo.require('car.integration.Commun');
 var commun = new car.integration.Commun();
+
 </script>
 <!-- FIN DOJO --> 
 <?php include_stylesheets() ?>
@@ -133,5 +137,15 @@ password?</a></p>
 <div id="main">
 <?php echo $sf_content ?>
 </div>
+
+<div id='loader' style="display: none;"><!-- <div id='loaderInner' style='direction: ltr;'>Loading theme Tester ...</div>  -->
+	<table width='100%' height='100%'>
+		<tr>
+			<td valign='middle' align='center'><img
+				src='/car/web/images/preloader.gif' /></td>
+		</tr>
+	</table>
+</div>
+
 </body>
 </html>
