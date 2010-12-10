@@ -1,0 +1,13 @@
+sfGuardGroup:
+  sgg_user:
+    name:           PROFIL_USER
+    description:    Particulier
+  sgg_conc:
+    name:           PROFIL_CONC
+    description:    Concessionaire    
+  sgg_prof:
+    name:           PROFIL_PROF
+    description:    Proffessionel    
+  sgg_expe:
+    name:           PROFIL_EXPE
+    description:    Expert
