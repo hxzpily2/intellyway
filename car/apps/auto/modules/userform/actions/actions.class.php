@@ -47,7 +47,7 @@ class userformActions extends sfActions
   	    	$email = $request->getParameter ( 'email' );
   	    	$tel = $request->getParameter ( 'tel' );
   	    	
-  	    	AccountService::createUser($nom,$prenom,$login,$password,$email,$tel);
+  	    	AccountService::createUser($nom,$prenom,$login,$password,$email,$tel,Constantes::PROFIL_USER);
   	    }
   	   
   }
