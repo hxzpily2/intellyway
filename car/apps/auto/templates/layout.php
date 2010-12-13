@@ -23,6 +23,8 @@
 <script	src="/car/web/js/jquery/jquery-ui-1.8.6.custom.min.js"	type="text/javascript"></script>
 <!-- FIN FORM VALIDATIOn -->
 
+<script	src="/car/web/js/jquery/jQuery.fullBg.js"	type="text/javascript"></script>
+
 <!-- DOJO -->
 <style type='text/css'>
 @import '/car/web/js/dojo/dijit/themes/claro/claro.css';
@@ -36,12 +38,6 @@ html,body {
 	border: 0;
 }
 
-#main {	
-	width: 850px;
-	border: 0;
-	margin-left: auto;
-    margin-right: auto
-}
 </style>
 
 <script type='text/javascript'	src='/car/web/js/dojo/dojo/dojo.js'	djConfig='parseOnLoad: false'></script>
@@ -80,6 +76,8 @@ dojo.registerModulePath('car', '../../car');
 dojo.require('car.integration.Commun');
 var commun = new car.integration.Commun();
 
+
+	
 </script>
 <!-- FIN DOJO --> 
 <?php include_stylesheets() ?>
@@ -87,6 +85,11 @@ var commun = new car.integration.Commun();
 
 </head>
 <body>
+<!-- <img src="/car/web/images/bg/Bugatti-Galibier_Concept_2009_1600x1200_wallpaper_17.jpg" alt="" id="background" />
+<div id="maincontent">
+  web site here
+</div>-->
+
 <div id="topnav" class="topnav">Have an account? <a href="#"
 	class="signin"><span>Sign in</span></a></div>
 <fieldset id="signin_menu">
@@ -124,7 +127,11 @@ password?</a></p>
 					$(".signin").removeClass("menu-open");
 					$("fieldset#signin_menu").hide();
 				}
-			});			
+			});	
+
+			(function($) {
+			  $("#background").fullBg();
+			})(jQuery);		
 			
         });
   </script>
@@ -134,9 +141,16 @@ password?</a></p>
 	  $('#forgot_username_link').tipsy({gravity: 'w'});   
     });
   </script>
-<div id="main">
-<?php echo $sf_content ?>
+
+
+
+<div id="main">	
+	<?php echo $sf_content ?>
 </div>
+
+
+
+
 
 <div id='loader' style="display: none;"><!-- <div id='loaderInner' style='direction: ltr;'>Loading theme Tester ...</div>  -->
 	<table width='100%' height='100%'>
