@@ -29,7 +29,7 @@
         </channel-definition>
 
         <channel-definition id="my-amf-absolute" class="mx.messaging.channels.AMFChannel">
-            <endpoint uri="http://localhost/weborb/PHP/weborb.php" class="flex.messaging.endpoints.AMFEndpoint"/>
+            <endpoint uri="http://localhost:8085/weborb/PHP/weborb.php" class="flex.messaging.endpoints.AMFEndpoint"/>
             <properties>
                 <polling-enabled>false</polling-enabled>
             </properties>
