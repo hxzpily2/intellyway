@@ -40,14 +40,14 @@
         </channel-definition>
 
         <channel-definition id="my-air-amf" class="mx.messaging.channels.AMFChannel">
-            <endpoint uri="http://localhost/amji/lib/weborb/weborb.php" class="flex.messaging.endpoints.AMFEndpoint"/>
+            <endpoint uri="http://localhost:8085/amji/lib/weborb/weborb.php" class="flex.messaging.endpoints.AMFEndpoint"/>
             <properties>
                 <polling-enabled>false</polling-enabled>
             </properties>
         </channel-definition>
 		
 		<channel-definition id="my-air-polling-amf" class="mx.messaging.channels.AMFChannel">
-            <endpoint uri="http://localhost/amji/lib/weborb/weborb.php" class="flex.messaging.endpoints.AMFEndpoint"/>
+            <endpoint uri="http://localhost:8085/amji/lib/weborb/weborb.php" class="flex.messaging.endpoints.AMFEndpoint"/>
             <properties>
                 <polling-enabled>true</polling-enabled>
                 <polling-interval-seconds>0</polling-interval-seconds>
