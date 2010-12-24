@@ -12,5 +12,20 @@ class CarPaysForm extends BaseCarPaysForm
 {
   public function configure()
   {
+  	$this->setWidgets(array(
+      'idpays'     => new sfWidgetFormInputHidden(),
+      'title'      => new sfWidgetFormTextarea(),
+      'active'     => new sfWidgetFormInputCheckbox(array('value_attribute_value' => true)),      
+    ));
+
+    $this->setValidators(array(
+      'idpays'     => new sfValidatorDoctrineChoice(array('model' => $this->getModelName(), 'column' => 'idpays', 'required' => false)),
+      'title'      => new sfValidatorString(),
+      'active'     => new sfValidatorBoolean(),      
+    ));
+
+    $this->widgetSchema->setNameFormat('car_pays[%s]');
+
+    $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
   }
 }
