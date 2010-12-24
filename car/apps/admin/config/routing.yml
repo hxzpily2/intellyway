@@ -1,3 +1,21 @@
+car_ville:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                CarVille
+    module:               ville
+    prefix_path:          /ville
+    column:               idville
+    with_wildcard_routes: true
+
+car_pays:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                CarPays
+    module:               pays
+    prefix_path:          /pays
+    column:               idpays
+    with_wildcard_routes: true
+
 car_marque_marque:
   class: sfDoctrineRouteCollection
   options:
