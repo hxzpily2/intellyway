@@ -9,6 +9,8 @@ Doctrine_Manager::getInstance()->bindComponent('CarMarque', 'doctrine');
  * 
  * @property integer $idmarque
  * @property string $title
+ * @property string $image
+ * @property string $imagelittle
  * @property string $information
  * @property string $description
  * @property integer $notevisiteur
@@ -22,6 +24,8 @@ Doctrine_Manager::getInstance()->bindComponent('CarMarque', 'doctrine');
  * 
  * @method integer             getIdmarque()       Returns the current record's "idmarque" value
  * @method string              getTitle()          Returns the current record's "title" value
+ * @method string              getImage()          Returns the current record's "image" value
+ * @method string              getImagelittle()    Returns the current record's "imagelittle" value
  * @method string              getInformation()    Returns the current record's "information" value
  * @method string              getDescription()    Returns the current record's "description" value
  * @method integer             getNotevisiteur()   Returns the current record's "notevisiteur" value
@@ -34,6 +38,8 @@ Doctrine_Manager::getInstance()->bindComponent('CarMarque', 'doctrine');
  * @method Doctrine_Collection getCarAuto()        Returns the current record's "CarAuto" collection
  * @method CarMarque           setIdmarque()       Sets the current record's "idmarque" value
  * @method CarMarque           setTitle()          Sets the current record's "title" value
+ * @method CarMarque           setImage()          Sets the current record's "image" value
+ * @method CarMarque           setImagelittle()    Sets the current record's "imagelittle" value
  * @method CarMarque           setInformation()    Sets the current record's "information" value
  * @method CarMarque           setDescription()    Sets the current record's "description" value
  * @method CarMarque           setNotevisiteur()   Sets the current record's "notevisiteur" value
@@ -64,6 +70,24 @@ abstract class BaseCarMarque extends sfDoctrineRecord
              'length' => '10',
              ));
         $this->hasColumn('title', 'string', null, array(
+             'type' => 'string',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => true,
+             'autoincrement' => false,
+             'length' => '',
+             ));
+        $this->hasColumn('image', 'string', null, array(
+             'type' => 'string',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => true,
+             'autoincrement' => false,
+             'length' => '',
+             ));
+        $this->hasColumn('imagelittle', 'string', null, array(
              'type' => 'string',
              'fixed' => 0,
              'unsigned' => false,

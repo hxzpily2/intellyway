@@ -78,6 +78,20 @@ CarMarque:
       primary: false
       notnull: true
       autoincrement: false
+    image:
+      type: string()
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    imagelittle:
+      type: string()
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false              
     information:
       type: string()
       fixed: false
@@ -885,6 +899,54 @@ CarAuto:
       unsigned: false
       primary: false
       autoincrement: false
+    notedesign:
+      type: integer(2)
+      fixed: false
+      unsigned: false
+      primary: false
+      autoincrement: false
+    nbnotedesign:
+      type: integer(2)
+      fixed: false
+      unsigned: false
+      primary: false
+      autoincrement: false  
+    noteperf:
+      type: integer(2)
+      fixed: false
+      unsigned: false
+      primary: false
+      autoincrement: false
+    nbnoteperf:
+      type: integer(2)
+      fixed: false
+      unsigned: false
+      primary: false
+      autoincrement: false
+    noteconf:
+      type: integer(2)
+      fixed: false
+      unsigned: false
+      primary: false
+      autoincrement: false
+    nbnoteconf:
+      type: integer(2)
+      fixed: false
+      unsigned: false
+      primary: false
+      autoincrement: false 
+    notecond:
+      type: integer(2)
+      fixed: false
+      unsigned: false
+      primary: false
+      autoincrement: false
+    nbnotecond:
+      type: integer(2)
+      fixed: false
+      unsigned: false
+      primary: false
+      autoincrement: false                         
     prixstart:
       type: integer(10)
       fixed: false

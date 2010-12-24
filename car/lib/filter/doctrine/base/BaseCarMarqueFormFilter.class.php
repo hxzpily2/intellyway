@@ -14,6 +14,8 @@ abstract class BaseCarMarqueFormFilter extends BaseFormFilterDoctrine
   {
     $this->setWidgets(array(
       'title'          => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'image'          => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'imagelittle'    => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'information'    => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'description'    => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'notevisiteur'   => new sfWidgetFormFilterInput(),
@@ -27,6 +29,8 @@ abstract class BaseCarMarqueFormFilter extends BaseFormFilterDoctrine
 
     $this->setValidators(array(
       'title'          => new sfValidatorPass(array('required' => false)),
+      'image'          => new sfValidatorPass(array('required' => false)),
+      'imagelittle'    => new sfValidatorPass(array('required' => false)),
       'information'    => new sfValidatorPass(array('required' => false)),
       'description'    => new sfValidatorPass(array('required' => false)),
       'notevisiteur'   => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
@@ -57,6 +61,8 @@ abstract class BaseCarMarqueFormFilter extends BaseFormFilterDoctrine
     return array(
       'idmarque'       => 'Number',
       'title'          => 'Text',
+      'image'          => 'Text',
+      'imagelittle'    => 'Text',
       'information'    => 'Text',
       'description'    => 'Text',
       'notevisiteur'   => 'Number',

@@ -29,6 +29,14 @@ Doctrine_Manager::getInstance()->bindComponent('CarAuto', 'doctrine');
  * @property integer $pfiscale
  * @property integer $kilometrage
  * @property integer $cylindres
+ * @property integer $notedesign
+ * @property integer $nbnotedesign
+ * @property integer $noteperf
+ * @property integer $nbnoteperf
+ * @property integer $noteconf
+ * @property integer $nbnoteconf
+ * @property integer $notecond
+ * @property integer $nbnotecond
  * @property integer $prixstart
  * @property integer $reprise
  * @property integer $active
@@ -72,6 +80,14 @@ Doctrine_Manager::getInstance()->bindComponent('CarAuto', 'doctrine');
  * @method integer             getPfiscale()              Returns the current record's "pfiscale" value
  * @method integer             getKilometrage()           Returns the current record's "kilometrage" value
  * @method integer             getCylindres()             Returns the current record's "cylindres" value
+ * @method integer             getNotedesign()            Returns the current record's "notedesign" value
+ * @method integer             getNbnotedesign()          Returns the current record's "nbnotedesign" value
+ * @method integer             getNoteperf()              Returns the current record's "noteperf" value
+ * @method integer             getNbnoteperf()            Returns the current record's "nbnoteperf" value
+ * @method integer             getNoteconf()              Returns the current record's "noteconf" value
+ * @method integer             getNbnoteconf()            Returns the current record's "nbnoteconf" value
+ * @method integer             getNotecond()              Returns the current record's "notecond" value
+ * @method integer             getNbnotecond()            Returns the current record's "nbnotecond" value
  * @method integer             getPrixstart()             Returns the current record's "prixstart" value
  * @method integer             getReprise()               Returns the current record's "reprise" value
  * @method integer             getActive()                Returns the current record's "active" value
@@ -114,6 +130,14 @@ Doctrine_Manager::getInstance()->bindComponent('CarAuto', 'doctrine');
  * @method CarAuto             setPfiscale()              Sets the current record's "pfiscale" value
  * @method CarAuto             setKilometrage()           Sets the current record's "kilometrage" value
  * @method CarAuto             setCylindres()             Sets the current record's "cylindres" value
+ * @method CarAuto             setNotedesign()            Sets the current record's "notedesign" value
+ * @method CarAuto             setNbnotedesign()          Sets the current record's "nbnotedesign" value
+ * @method CarAuto             setNoteperf()              Sets the current record's "noteperf" value
+ * @method CarAuto             setNbnoteperf()            Sets the current record's "nbnoteperf" value
+ * @method CarAuto             setNoteconf()              Sets the current record's "noteconf" value
+ * @method CarAuto             setNbnoteconf()            Sets the current record's "nbnoteconf" value
+ * @method CarAuto             setNotecond()              Sets the current record's "notecond" value
+ * @method CarAuto             setNbnotecond()            Sets the current record's "nbnotecond" value
  * @method CarAuto             setPrixstart()             Sets the current record's "prixstart" value
  * @method CarAuto             setReprise()               Sets the current record's "reprise" value
  * @method CarAuto             setActive()                Sets the current record's "active" value
@@ -315,6 +339,70 @@ abstract class BaseCarAuto extends sfDoctrineRecord
              'length' => '2',
              ));
         $this->hasColumn('cylindres', 'integer', 2, array(
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'autoincrement' => false,
+             'length' => '2',
+             ));
+        $this->hasColumn('notedesign', 'integer', 2, array(
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'autoincrement' => false,
+             'length' => '2',
+             ));
+        $this->hasColumn('nbnotedesign', 'integer', 2, array(
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'autoincrement' => false,
+             'length' => '2',
+             ));
+        $this->hasColumn('noteperf', 'integer', 2, array(
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'autoincrement' => false,
+             'length' => '2',
+             ));
+        $this->hasColumn('nbnoteperf', 'integer', 2, array(
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'autoincrement' => false,
+             'length' => '2',
+             ));
+        $this->hasColumn('noteconf', 'integer', 2, array(
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'autoincrement' => false,
+             'length' => '2',
+             ));
+        $this->hasColumn('nbnoteconf', 'integer', 2, array(
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'autoincrement' => false,
+             'length' => '2',
+             ));
+        $this->hasColumn('notecond', 'integer', 2, array(
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'autoincrement' => false,
+             'length' => '2',
+             ));
+        $this->hasColumn('nbnotecond', 'integer', 2, array(
              'type' => 'integer',
              'fixed' => 0,
              'unsigned' => false,

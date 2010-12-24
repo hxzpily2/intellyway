@@ -15,3 +15,18 @@
 #     password: changeme
 #     name:     Kris Wallsmith
 #     email:    kris.wallsmith@symfony-project.com
+
+
+CarMarque:
+  Renault:
+    title: Renault
+    image: changeme
+    information:     Fabien Potencier
+    description:    fabien.potencier@symfony-project.com
+    active: 1
+  Peugeot:
+    title: Peugeot
+    image: changeme
+    information:     Fabien Potencier
+    description:    fabien.potencier@symfony-project.com
+    active: 1

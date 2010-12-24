@@ -5,6 +5,8 @@ class Constantes
 	const PROFIL_CONC = "PROFIL_CONC";
 	const PROFIL_PROF = "PROFIL_PROF";
 	const PROFIL_EXPE = "PROFIL_EXPE";
+	
+	const EMBLEM_DIR = "emblem";
 }
 
 ?>

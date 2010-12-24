@@ -17,6 +17,8 @@ abstract class BaseCarMarqueForm extends BaseFormDoctrine
     $this->setWidgets(array(
       'idmarque'       => new sfWidgetFormInputHidden(),
       'title'          => new sfWidgetFormTextarea(),
+      'image'          => new sfWidgetFormTextarea(),
+      'imagelittle'    => new sfWidgetFormTextarea(),
       'information'    => new sfWidgetFormTextarea(),
       'description'    => new sfWidgetFormTextarea(),
       'notevisiteur'   => new sfWidgetFormInputText(),
@@ -31,6 +33,8 @@ abstract class BaseCarMarqueForm extends BaseFormDoctrine
     $this->setValidators(array(
       'idmarque'       => new sfValidatorDoctrineChoice(array('model' => $this->getModelName(), 'column' => 'idmarque', 'required' => false)),
       'title'          => new sfValidatorString(),
+      'image'          => new sfValidatorString(),
+      'imagelittle'    => new sfValidatorString(),
       'information'    => new sfValidatorString(),
       'description'    => new sfValidatorString(),
       'notevisiteur'   => new sfValidatorInteger(array('required' => false)),
