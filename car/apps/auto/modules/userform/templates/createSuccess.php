@@ -130,7 +130,7 @@
 			<td></div></td>
 		</tr>
 		<tr>
-			<td><label>Nom:</label></td>
+			<td><label><?php echo __('Nom') ?> :</label></td>
 			<td></td>
 			<td>
 				<div class="rowElem"><input id="nom" name="nom" class="validate[required]" type="text" /></div>																				
