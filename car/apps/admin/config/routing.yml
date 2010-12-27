@@ -1,3 +1,138 @@
+car_etat:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                CarEtat
+    module:               etat
+    prefix_path:          /etat
+    column:               idetat
+    with_wildcard_routes: true
+
+car_accessoire:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                CarAccessoire
+    module:               accessoire
+    prefix_path:          /accessoire
+    column:               idacc
+    with_wildcard_routes: true
+
+car_auto:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                CarAuto
+    module:               auto
+    prefix_path:          /auto
+    column:               idauto
+    with_wildcard_routes: true
+
+car_boite:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                CarBoite
+    module:               vitesse
+    prefix_path:          /vitesse
+    column:               idboite
+    with_wildcard_routes: true
+
+car_carosserie:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                CarCarosserie
+    module:               carosserie
+    prefix_path:          /carosserie
+    column:               idcarosserie
+    with_wildcard_routes: true
+
+car_couleur:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                CarCouleur
+    module:               couleur
+    prefix_path:          /couleur
+    column:               idcouleur
+    with_wildcard_routes: true
+
+car_type:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                CarType
+    module:               type
+    prefix_path:          /type
+    column:               idtype
+    with_wildcard_routes: true
+
+car_moteur:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                CarMoteur
+    module:               energie
+    prefix_path:          /energie
+    column:               idmoteur
+    with_wildcard_routes: true
+
+car_expert:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                CarExpert
+    module:               expert
+    prefix_path:          /expert
+    column:               idexpert
+    with_wildcard_routes: true
+
+car_event:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                CarEvent
+    module:               events
+    prefix_path:          /events
+    column:               idevent
+    with_wildcard_routes: true
+
+car_con_concessio:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                CarCon
+    module:               concessio
+    prefix_path:          /concessio
+    column:               Array
+    with_wildcard_routes: true
+
+car_con_concessionaire:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                CarCon
+    module:               concessionaire
+    prefix_path:          /concessionaire
+    column:               Array
+    with_wildcard_routes: true
+
+car_con:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                CarCon
+    module:               con
+    prefix_path:          /con
+    column:               Array
+    with_wildcard_routes: true
+
+car_gar:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                CarGar
+    module:               pro
+    prefix_path:          /pro
+    column:               idgar
+    with_wildcard_routes: true
+
+car_modele:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                CarModele
+    module:               modele
+    prefix_path:          /modele
+    column:               idmodele
+    with_wildcard_routes: true
+
 car_ville:
   class: sfDoctrineRouteCollection
   options:
