@@ -129,7 +129,19 @@ CarMarque:
       fixed: false
       unsigned: false
       primary: false
-      autoincrement: false        
+      autoincrement: false  
+    notesav:
+      type: integer(2)
+      fixed: false
+      unsigned: false
+      primary: false
+      autoincrement: false
+    nbnotesav:
+      type: integer(2)
+      fixed: false
+      unsigned: false
+      primary: false
+      autoincrement: false              
     active:
       type: integer(1)
       fixed: false
@@ -593,7 +605,7 @@ CarType:
       unsigned: false
       primary: false
       notnull: true
-      autoincrement: false
+      autoincrement: false  
     description:
       type: string()
       fixed: false
@@ -690,6 +702,13 @@ CarCouleur:
       primary: false
       notnull: true
       autoincrement: false
+    hexrep:
+      type: string(8)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false      
     active:
       type: integer(1)
       fixed: false
@@ -715,6 +734,13 @@ CarCarosserie:
       primary: false
       notnull: true
       autoincrement: false
+    image:
+      type: string(200)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false          
     description:
       type: string()
       fixed: false
