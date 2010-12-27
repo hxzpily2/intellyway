@@ -17,6 +17,8 @@ Doctrine_Manager::getInstance()->bindComponent('CarMarque', 'doctrine');
  * @property integer $nbnotevisiteur
  * @property integer $noteadmin
  * @property integer $nbnoteadmin
+ * @property integer $notesav
+ * @property integer $nbnotesav
  * @property integer $active
  * @property Doctrine_Collection $CarModele
  * @property Doctrine_Collection $CarCon
@@ -32,6 +34,8 @@ Doctrine_Manager::getInstance()->bindComponent('CarMarque', 'doctrine');
  * @method integer             getNbnotevisiteur() Returns the current record's "nbnotevisiteur" value
  * @method integer             getNoteadmin()      Returns the current record's "noteadmin" value
  * @method integer             getNbnoteadmin()    Returns the current record's "nbnoteadmin" value
+ * @method integer             getNotesav()        Returns the current record's "notesav" value
+ * @method integer             getNbnotesav()      Returns the current record's "nbnotesav" value
  * @method integer             getActive()         Returns the current record's "active" value
  * @method Doctrine_Collection getCarModele()      Returns the current record's "CarModele" collection
  * @method Doctrine_Collection getCarCon()         Returns the current record's "CarCon" collection
@@ -46,6 +50,8 @@ Doctrine_Manager::getInstance()->bindComponent('CarMarque', 'doctrine');
  * @method CarMarque           setNbnotevisiteur() Sets the current record's "nbnotevisiteur" value
  * @method CarMarque           setNoteadmin()      Sets the current record's "noteadmin" value
  * @method CarMarque           setNbnoteadmin()    Sets the current record's "nbnoteadmin" value
+ * @method CarMarque           setNotesav()        Sets the current record's "notesav" value
+ * @method CarMarque           setNbnotesav()      Sets the current record's "nbnotesav" value
  * @method CarMarque           setActive()         Sets the current record's "active" value
  * @method CarMarque           setCarModele()      Sets the current record's "CarModele" collection
  * @method CarMarque           setCarCon()         Sets the current record's "CarCon" collection
@@ -139,6 +145,22 @@ abstract class BaseCarMarque extends sfDoctrineRecord
              'length' => '2',
              ));
         $this->hasColumn('nbnoteadmin', 'integer', 2, array(
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'autoincrement' => false,
+             'length' => '2',
+             ));
+        $this->hasColumn('notesav', 'integer', 2, array(
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'autoincrement' => false,
+             'length' => '2',
+             ));
+        $this->hasColumn('nbnotesav', 'integer', 2, array(
              'type' => 'integer',
              'fixed' => 0,
              'unsigned' => false,

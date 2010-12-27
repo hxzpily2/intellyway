@@ -12,5 +12,7 @@
  */
 class CarCouleur extends BaseCarCouleur
 {
-
+	public function __toString(){
+		return $this->getTitle();
+	}
 }

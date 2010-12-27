@@ -12,5 +12,7 @@
  */
 class CarPays extends BaseCarPays
 {
-
+	public function __toString(){
+		return $this->getTitle();
+	}
 }

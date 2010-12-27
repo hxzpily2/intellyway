@@ -17,6 +17,7 @@ abstract class BaseCarCarosserieForm extends BaseFormDoctrine
     $this->setWidgets(array(
       'idcarosserie' => new sfWidgetFormInputHidden(),
       'title'        => new sfWidgetFormTextarea(),
+      'image'        => new sfWidgetFormInputText(),
       'description'  => new sfWidgetFormTextarea(),
       'active'       => new sfWidgetFormInputText(),
       'created_at'   => new sfWidgetFormDateTime(),
@@ -26,6 +27,7 @@ abstract class BaseCarCarosserieForm extends BaseFormDoctrine
     $this->setValidators(array(
       'idcarosserie' => new sfValidatorDoctrineChoice(array('model' => $this->getModelName(), 'column' => 'idcarosserie', 'required' => false)),
       'title'        => new sfValidatorString(),
+      'image'        => new sfValidatorString(array('max_length' => 200)),
       'description'  => new sfValidatorString(),
       'active'       => new sfValidatorInteger(),
       'created_at'   => new sfValidatorDateTime(),

@@ -12,5 +12,7 @@
  */
 class CarBoite extends BaseCarBoite
 {
-
+	public function __toString(){
+		return $this->getTitle();
+	}
 }

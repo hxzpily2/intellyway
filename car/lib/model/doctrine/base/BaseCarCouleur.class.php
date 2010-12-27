@@ -9,15 +9,18 @@ Doctrine_Manager::getInstance()->bindComponent('CarCouleur', 'doctrine');
  * 
  * @property integer $idcouleur
  * @property string $title
+ * @property string $hexrep
  * @property integer $active
  * @property Doctrine_Collection $CarAuto
  * 
  * @method integer             getIdcouleur() Returns the current record's "idcouleur" value
  * @method string              getTitle()     Returns the current record's "title" value
+ * @method string              getHexrep()    Returns the current record's "hexrep" value
  * @method integer             getActive()    Returns the current record's "active" value
  * @method Doctrine_Collection getCarAuto()   Returns the current record's "CarAuto" collection
  * @method CarCouleur          setIdcouleur() Sets the current record's "idcouleur" value
  * @method CarCouleur          setTitle()     Sets the current record's "title" value
+ * @method CarCouleur          setHexrep()    Sets the current record's "hexrep" value
  * @method CarCouleur          setActive()    Sets the current record's "active" value
  * @method CarCouleur          setCarAuto()   Sets the current record's "CarAuto" collection
  * 
@@ -47,6 +50,15 @@ abstract class BaseCarCouleur extends sfDoctrineRecord
              'notnull' => true,
              'autoincrement' => false,
              'length' => '',
+             ));
+        $this->hasColumn('hexrep', 'string', 8, array(
+             'type' => 'string',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => true,
+             'autoincrement' => false,
+             'length' => '8',
              ));
         $this->hasColumn('active', 'integer', 1, array(
              'type' => 'integer',

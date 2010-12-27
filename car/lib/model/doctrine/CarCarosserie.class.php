@@ -12,5 +12,7 @@
  */
 class CarCarosserie extends BaseCarCarosserie
 {
-
+	public function __toString(){
+		return $this->getTitle();
+	}
 }

@@ -12,5 +12,7 @@
  */
 class CarVille extends BaseCarVille
 {
-
+	public function __toString(){
+		return $this->getTitle();
+	}
 }

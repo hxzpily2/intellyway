@@ -12,5 +12,7 @@
  */
 class CarMarque extends BaseCarMarque
 {
-
+	public function __toString(){
+		return $this->getTitle();
+	}
 }

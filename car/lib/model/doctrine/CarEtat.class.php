@@ -12,5 +12,7 @@
  */
 class CarEtat extends BaseCarEtat
 {
-
+	public function __toString(){
+		return $this->getTitle();
+	}
 }

@@ -9,17 +9,20 @@ Doctrine_Manager::getInstance()->bindComponent('CarCarosserie', 'doctrine');
  * 
  * @property integer $idcarosserie
  * @property string $title
+ * @property string $image
  * @property string $description
  * @property integer $active
  * @property CarAuto $CarAuto
  * 
  * @method integer       getIdcarosserie() Returns the current record's "idcarosserie" value
  * @method string        getTitle()        Returns the current record's "title" value
+ * @method string        getImage()        Returns the current record's "image" value
  * @method string        getDescription()  Returns the current record's "description" value
  * @method integer       getActive()       Returns the current record's "active" value
  * @method CarAuto       getCarAuto()      Returns the current record's "CarAuto" value
  * @method CarCarosserie setIdcarosserie() Sets the current record's "idcarosserie" value
  * @method CarCarosserie setTitle()        Sets the current record's "title" value
+ * @method CarCarosserie setImage()        Sets the current record's "image" value
  * @method CarCarosserie setDescription()  Sets the current record's "description" value
  * @method CarCarosserie setActive()       Sets the current record's "active" value
  * @method CarCarosserie setCarAuto()      Sets the current record's "CarAuto" value
@@ -50,6 +53,15 @@ abstract class BaseCarCarosserie extends sfDoctrineRecord
              'notnull' => true,
              'autoincrement' => false,
              'length' => '',
+             ));
+        $this->hasColumn('image', 'string', 200, array(
+             'type' => 'string',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => true,
+             'autoincrement' => false,
+             'length' => '200',
              ));
         $this->hasColumn('description', 'string', null, array(
              'type' => 'string',
