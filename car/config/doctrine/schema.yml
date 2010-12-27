@@ -877,6 +877,19 @@ CarAuto:
       primary: false
       notnull: true
       autoincrement: false
+    adresse_ip:
+      type: string()
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false 
+    visitors:
+      type: integer(10)
+      fixed: false
+      unsigned: false
+      primary: false
+      autoincrement: false              
     notevisiteur:
       type: integer(2)
       fixed: false
