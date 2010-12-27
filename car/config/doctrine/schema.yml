@@ -798,6 +798,12 @@ CarAuto:
       unsigned: false
       primary: true
       autoincrement: true
+    idpays:
+      type: integer(10)
+      fixed: false
+      unsigned: false
+      primary: false
+      autoincrement: false        
     idmarque:
       type: integer(10)
       fixed: false
@@ -1039,6 +1045,10 @@ CarAuto:
       local: idboite
       foreign: idboite
       type: on 
+    CarPays:
+      local: idpays
+      foreign: idpays
+      type: one           
 CarAccessoires:
   actAs: [Timestampable]
   connection: doctrine
