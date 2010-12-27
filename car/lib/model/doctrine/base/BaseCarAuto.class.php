@@ -21,6 +21,8 @@ Doctrine_Manager::getInstance()->bindComponent('CarAuto', 'doctrine');
  * @property integer $anneeded
  * @property integer $moisded
  * @property string $description
+ * @property string $adresse_ip
+ * @property integer $visitors
  * @property integer $notevisiteur
  * @property integer $nbnotevisiteur
  * @property integer $noteadmin
@@ -72,6 +74,8 @@ Doctrine_Manager::getInstance()->bindComponent('CarAuto', 'doctrine');
  * @method integer             getAnneeded()              Returns the current record's "anneeded" value
  * @method integer             getMoisded()               Returns the current record's "moisded" value
  * @method string              getDescription()           Returns the current record's "description" value
+ * @method string              getAdresseIp()             Returns the current record's "adresse_ip" value
+ * @method integer             getVisitors()              Returns the current record's "visitors" value
  * @method integer             getNotevisiteur()          Returns the current record's "notevisiteur" value
  * @method integer             getNbnotevisiteur()        Returns the current record's "nbnotevisiteur" value
  * @method integer             getNoteadmin()             Returns the current record's "noteadmin" value
@@ -122,6 +126,8 @@ Doctrine_Manager::getInstance()->bindComponent('CarAuto', 'doctrine');
  * @method CarAuto             setAnneeded()              Sets the current record's "anneeded" value
  * @method CarAuto             setMoisded()               Sets the current record's "moisded" value
  * @method CarAuto             setDescription()           Sets the current record's "description" value
+ * @method CarAuto             setAdresseIp()             Sets the current record's "adresse_ip" value
+ * @method CarAuto             setVisitors()              Sets the current record's "visitors" value
  * @method CarAuto             setNotevisiteur()          Sets the current record's "notevisiteur" value
  * @method CarAuto             setNbnotevisiteur()        Sets the current record's "nbnotevisiteur" value
  * @method CarAuto             setNoteadmin()             Sets the current record's "noteadmin" value
@@ -281,6 +287,23 @@ abstract class BaseCarAuto extends sfDoctrineRecord
              'notnull' => true,
              'autoincrement' => false,
              'length' => '',
+             ));
+        $this->hasColumn('adresse_ip', 'string', null, array(
+             'type' => 'string',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => true,
+             'autoincrement' => false,
+             'length' => '',
+             ));
+        $this->hasColumn('visitors', 'integer', 10, array(
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'autoincrement' => false,
+             'length' => '10',
              ));
         $this->hasColumn('notevisiteur', 'integer', 2, array(
              'type' => 'integer',
