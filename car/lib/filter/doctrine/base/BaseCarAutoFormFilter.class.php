@@ -13,6 +13,7 @@ abstract class BaseCarAutoFormFilter extends BaseFormFilterDoctrine
   public function setup()
   {
     $this->setWidgets(array(
+      'idpays'         => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('CarPays'), 'add_empty' => true)),
       'idmarque'       => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('CarMarque'), 'add_empty' => true)),
       'idmodele'       => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('CarModele'), 'add_empty' => true)),
       'idmoteur'       => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('CarMoteur'), 'add_empty' => true)),
@@ -26,6 +27,8 @@ abstract class BaseCarAutoFormFilter extends BaseFormFilterDoctrine
       'anneeded'       => new sfWidgetFormFilterInput(),
       'moisded'        => new sfWidgetFormFilterInput(),
       'description'    => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'adresse_ip'     => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'visitors'       => new sfWidgetFormFilterInput(),
       'notevisiteur'   => new sfWidgetFormFilterInput(),
       'nbnotevisiteur' => new sfWidgetFormFilterInput(),
       'noteadmin'      => new sfWidgetFormFilterInput(),
@@ -50,6 +53,7 @@ abstract class BaseCarAutoFormFilter extends BaseFormFilterDoctrine
     ));
 
     $this->setValidators(array(
+      'idpays'         => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('CarPays'), 'column' => 'idpays')),
       'idmarque'       => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('CarMarque'), 'column' => 'idmarque')),
       'idmodele'       => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('CarModele'), 'column' => 'idmodele')),
       'idmoteur'       => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('CarMoteur'), 'column' => 'idmoteur')),
@@ -63,6 +67,8 @@ abstract class BaseCarAutoFormFilter extends BaseFormFilterDoctrine
       'anneeded'       => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'moisded'        => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'description'    => new sfValidatorPass(array('required' => false)),
+      'adresse_ip'     => new sfValidatorPass(array('required' => false)),
+      'visitors'       => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'notevisiteur'   => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'nbnotevisiteur' => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'noteadmin'      => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
@@ -104,6 +110,7 @@ abstract class BaseCarAutoFormFilter extends BaseFormFilterDoctrine
   {
     return array(
       'idauto'         => 'Number',
+      'idpays'         => 'ForeignKey',
       'idmarque'       => 'ForeignKey',
       'idmodele'       => 'ForeignKey',
       'idmoteur'       => 'ForeignKey',
@@ -117,6 +124,8 @@ abstract class BaseCarAutoFormFilter extends BaseFormFilterDoctrine
       'anneeded'       => 'Number',
       'moisded'        => 'Number',
       'description'    => 'Text',
+      'adresse_ip'     => 'Text',
+      'visitors'       => 'Number',
       'notevisiteur'   => 'Number',
       'nbnotevisiteur' => 'Number',
       'noteadmin'      => 'Number',
