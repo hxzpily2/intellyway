@@ -3,8 +3,10 @@
 
 prod:
   .settings:
+    charset: utf-8
     no_script_name:         false
     logging_enabled:        false
+    i18n: true
 
 dev:
   .settings:
