@@ -34,6 +34,8 @@ class CarAutoForm extends BaseCarAutoForm
       'cylindres'      => new sfWidgetFormInputText(),
       'prixstart'      => new sfWidgetFormInputText(),
       'reprise'        => new sfWidgetFormInputCheckbox(array('value_attribute_value' => true)),
+      'garantie'       => new sfWidgetFormInputCheckbox(array('value_attribute_value' => true)),
+      'anneegarantie'  => new sfWidgetFormInputText(),  	
       'active'         => new sfWidgetFormInputCheckbox(array('value_attribute_value' => true)),      
     ));
 
@@ -59,6 +61,8 @@ class CarAutoForm extends BaseCarAutoForm
       'cylindres'      => new sfValidatorInteger(array('required' => false)),
       'prixstart'      => new sfValidatorInteger(array('required' => false)),
       'reprise'        => new sfValidatorBoolean(),	
+      'garantie'       => new sfValidatorBoolean(),	
+      'anneegarantie'  => new sfValidatorInteger(),    
       'active'         => new sfValidatorBoolean(),	      
     ));
 

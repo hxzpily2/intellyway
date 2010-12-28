@@ -42,6 +42,8 @@ Doctrine_Manager::getInstance()->bindComponent('CarAuto', 'doctrine');
  * @property integer $nbnotecond
  * @property integer $prixstart
  * @property integer $reprise
+ * @property integer $garantie
+ * @property integer $anneegarantie
  * @property integer $active
  * @property CarMarque $CarMarque
  * @property CarModele $CarModele
@@ -97,6 +99,8 @@ Doctrine_Manager::getInstance()->bindComponent('CarAuto', 'doctrine');
  * @method integer             getNbnotecond()            Returns the current record's "nbnotecond" value
  * @method integer             getPrixstart()             Returns the current record's "prixstart" value
  * @method integer             getReprise()               Returns the current record's "reprise" value
+ * @method integer             getGarantie()              Returns the current record's "garantie" value
+ * @method integer             getAnneegarantie()         Returns the current record's "anneegarantie" value
  * @method integer             getActive()                Returns the current record's "active" value
  * @method CarMarque           getCarMarque()             Returns the current record's "CarMarque" value
  * @method CarModele           getCarModele()             Returns the current record's "CarModele" value
@@ -151,6 +155,8 @@ Doctrine_Manager::getInstance()->bindComponent('CarAuto', 'doctrine');
  * @method CarAuto             setNbnotecond()            Sets the current record's "nbnotecond" value
  * @method CarAuto             setPrixstart()             Sets the current record's "prixstart" value
  * @method CarAuto             setReprise()               Sets the current record's "reprise" value
+ * @method CarAuto             setGarantie()              Sets the current record's "garantie" value
+ * @method CarAuto             setAnneegarantie()         Sets the current record's "anneegarantie" value
  * @method CarAuto             setActive()                Sets the current record's "active" value
  * @method CarAuto             setCarMarque()             Sets the current record's "CarMarque" value
  * @method CarAuto             setCarModele()             Sets the current record's "CarModele" value
@@ -463,6 +469,24 @@ abstract class BaseCarAuto extends sfDoctrineRecord
              'notnull' => true,
              'autoincrement' => false,
              'length' => '1',
+             ));
+        $this->hasColumn('garantie', 'integer', 1, array(
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => true,
+             'autoincrement' => false,
+             'length' => '1',
+             ));
+        $this->hasColumn('anneegarantie', 'integer', 2, array(
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => true,
+             'autoincrement' => false,
+             'length' => '2',
              ));
         $this->hasColumn('active', 'integer', 1, array(
              'type' => 'integer',

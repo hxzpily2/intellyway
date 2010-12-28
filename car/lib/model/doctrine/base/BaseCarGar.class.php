@@ -11,6 +11,8 @@ Doctrine_Manager::getInstance()->bindComponent('CarGar', 'doctrine');
  * @property string $title
  * @property string $information
  * @property string $description
+ * @property string $logo
+ * @property string $baniere
  * @property integer $notevisiteur
  * @property integer $nbnotevisiteur
  * @property integer $noteadmin
@@ -22,6 +24,8 @@ Doctrine_Manager::getInstance()->bindComponent('CarGar', 'doctrine');
  * @method string              getTitle()          Returns the current record's "title" value
  * @method string              getInformation()    Returns the current record's "information" value
  * @method string              getDescription()    Returns the current record's "description" value
+ * @method string              getLogo()           Returns the current record's "logo" value
+ * @method string              getBaniere()        Returns the current record's "baniere" value
  * @method integer             getNotevisiteur()   Returns the current record's "notevisiteur" value
  * @method integer             getNbnotevisiteur() Returns the current record's "nbnotevisiteur" value
  * @method integer             getNoteadmin()      Returns the current record's "noteadmin" value
@@ -32,6 +36,8 @@ Doctrine_Manager::getInstance()->bindComponent('CarGar', 'doctrine');
  * @method CarGar              setTitle()          Sets the current record's "title" value
  * @method CarGar              setInformation()    Sets the current record's "information" value
  * @method CarGar              setDescription()    Sets the current record's "description" value
+ * @method CarGar              setLogo()           Sets the current record's "logo" value
+ * @method CarGar              setBaniere()        Sets the current record's "baniere" value
  * @method CarGar              setNotevisiteur()   Sets the current record's "notevisiteur" value
  * @method CarGar              setNbnotevisiteur() Sets the current record's "nbnotevisiteur" value
  * @method CarGar              setNoteadmin()      Sets the current record's "noteadmin" value
@@ -76,6 +82,24 @@ abstract class BaseCarGar extends sfDoctrineRecord
              'length' => '',
              ));
         $this->hasColumn('description', 'string', null, array(
+             'type' => 'string',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => true,
+             'autoincrement' => false,
+             'length' => '',
+             ));
+        $this->hasColumn('logo', 'string', null, array(
+             'type' => 'string',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => true,
+             'autoincrement' => false,
+             'length' => '',
+             ));
+        $this->hasColumn('baniere', 'string', null, array(
              'type' => 'string',
              'fixed' => 0,
              'unsigned' => false,

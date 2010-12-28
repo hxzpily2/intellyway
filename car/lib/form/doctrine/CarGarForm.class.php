@@ -16,7 +16,9 @@ class CarGarForm extends BaseCarGarForm
       'idgar'          => new sfWidgetFormInputHidden(),
       'title'          => new sfWidgetFormTextarea(),
       'information'    => new sfWidgetFormTextarea(),
-      'description'    => new sfWidgetFormTextarea(),      
+      'description'    => new sfWidgetFormTextarea(), 
+      'logo'           => new sfWidgetFormInputFile(),
+      'baniere'        => new sfWidgetFormInputFile(),  	     
       'active'         => new sfWidgetFormInputCheckbox(array('value_attribute_value' => true)),      
     ));
 
@@ -24,7 +26,17 @@ class CarGarForm extends BaseCarGarForm
       'idgar'          => new sfValidatorDoctrineChoice(array('model' => $this->getModelName(), 'column' => 'idgar', 'required' => false)),
       'title'          => new sfValidatorString(),
       'information'    => new sfValidatorString(),
-      'description'    => new sfValidatorString(),      
+      'description'    => new sfValidatorString(), 
+      'logo'           => new sfValidatorFile(array(
+                                        'required' => false,
+                                        'path' => sfConfig::get('sf_upload_dir').'/pro/',
+                                        'mime_types' => 'web_images',
+									)),
+      'baniere'        => new sfValidatorFile(array(
+                                        'required' => false,
+                                        'path' => sfConfig::get('sf_upload_dir').'/pro/',
+                                        'mime_types' => 'web_images',
+									)),         
       'active'         => new sfValidatorBoolean(),      
     ));
 

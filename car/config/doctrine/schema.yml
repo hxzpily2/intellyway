@@ -249,6 +249,20 @@ CarGar:
       primary: false
       notnull: true
       autoincrement: false
+    logo:
+      type: string()
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    baniere:
+      type: string()
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false            
     notevisiteur:
       type: integer(2)
       fixed: false
@@ -1005,6 +1019,20 @@ CarAuto:
       primary: false
       notnull: true
       autoincrement: false                               
+    garantie:
+      type: integer(1)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false      
+    anneegarantie:
+      type: integer(2)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false      
     active:
       type: integer(1)
       fixed: false
