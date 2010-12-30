@@ -261,9 +261,7 @@
 				<label>Je m'abonne &agrave; votre newsletter </label>
 			</td>
 		</tr>
-	</table>
-	
-	
+	</table>	
 	
 	
 	<!-- <div class="rowElem"><label>Checkbox: </label><input type="checkbox" name="chbox" id=""></div>
@@ -299,7 +297,8 @@
 			
 </form>
 
-<input id="myButton" type="button" value="Valider" onclick="commun.createUser()" />
+<a class="medium blue awesome" onclick="javascript:commun.createUser()">Valider &raquo;</a>
+<!-- <input id="myButton" type="button" value="Valider" onclick="commun.createUser()" />  -->
 
 <div id="effect" style="display: none;">
 	test
