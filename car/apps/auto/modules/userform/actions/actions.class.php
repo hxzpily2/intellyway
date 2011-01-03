@@ -22,7 +22,7 @@ class userformActions extends sfActions
   
   public function executeCreate(sfWebRequest $request)
   {
-   	
+   	//echo Country::getCoutryByIp("82.243.37.107");
   }
   
   public function executeSave(sfWebRequest $request)

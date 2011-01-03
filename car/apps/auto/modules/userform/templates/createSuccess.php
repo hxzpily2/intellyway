@@ -297,12 +297,9 @@
 			
 </form>
 
-<a class="medium blue awesome" onclick="javascript:commun.createUser()">Valider &raquo;</a>
+<a class="large red awesome" onclick="javascript:commun.createUser()">Valider &raquo;</a>
 <!-- <input id="myButton" type="button" value="Valider" onclick="commun.createUser()" />  -->
 
-<div id="effect" style="display: none;">
-	test
-</div>	
 	<!-- <div id="effect" class="ui-widget-content ui-corner-all">
 		<h3 class="ui-widget-header ui-corner-all">Show</h3>
 		<p>
