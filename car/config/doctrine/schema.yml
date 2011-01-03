@@ -53,6 +53,20 @@ CarPays:
       primary: false
       notnull: true
       autoincrement: false
+    code:
+      type: string(2)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false      
+    bigcode:
+      type: string(3)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false      
     active:
       type: integer(1)
       fixed: false
@@ -812,12 +826,18 @@ CarAuto:
       unsigned: false
       primary: true
       autoincrement: true
+    idville:
+      type: integer(10)
+      fixed: false
+      unsigned: false
+      primary: false
+      autoincrement: false
     idpays:
       type: integer(10)
       fixed: false
       unsigned: false
       primary: false
-      autoincrement: false        
+      autoincrement: false              
     idmarque:
       type: integer(10)
       fixed: false
@@ -1073,10 +1093,14 @@ CarAuto:
       local: idboite
       foreign: idboite
       type: on 
+    CarVille:
+      local: idville
+      foreign: idville
+      type: one 
     CarPays:
       local: idpays
       foreign: idpays
-      type: one           
+      type: one                 
 CarAccessoires:
   actAs: [Timestampable]
   connection: doctrine
@@ -1704,4 +1728,85 @@ CarMessage:
       unsigned: false
       primary: false
       notnull: true
-      autoincrement: false                                                                                            
+      autoincrement: false
+Country:
+  connection: doctrine
+  tableName: car_country
+  columns:
+    iso:
+      type: string(2)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: false
+    name:
+      type: string(80)
+      fixed: false
+      unsigned: false
+      primary: false
+      autoincrement: false
+    printable_name:
+      type: string(80)
+      fixed: false
+      unsigned: false
+      primary: false
+      autoincrement: false      
+    iso3:
+      type: string(3)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    numcode:
+      type: integer()
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false 
+Ip2country:
+  connection: doctrine
+  tableName: car_ipcountry
+  columns:
+    ip_from:
+      type: integer()
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: false
+    ip_to:
+      type: integer()
+      fixed: false
+      unsigned: false
+      primary: false
+      autoincrement: false
+    country_code2:
+      type: string(2)
+      fixed: false
+      unsigned: false
+      primary: false
+      autoincrement: false      
+    country_code3:
+      type: string(2)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    country_name:
+      type: string(50)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+  indexes:
+    name_index:
+      fields:
+        ip_from:
+          sorting: ASC
+          length: 10
+          primary: false
+        last_name: []
+      type: index      
