@@ -14,8 +14,8 @@ class CarAutoForm extends BaseCarAutoForm
   {
   	$this->setWidgets(array(
       'idauto'         => new sfWidgetFormInputHidden(),
-      'idpays'         => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('CarPays'), 'add_empty' => true)),  	
-      'idmarque'       => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('CarMarque'), 'add_empty' => true)),
+      'idpays'         => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('CarPays'), 'add_empty' => true)),
+      'idville'        => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('CarVille'), 'add_empty' => true)),
       'idmodele'       => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('CarModele'), 'add_empty' => true)),
       'idmoteur'       => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('CarMoteur'), 'add_empty' => true)),
       'idtype'         => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('CarType'), 'add_empty' => true)),
@@ -27,7 +27,21 @@ class CarAutoForm extends BaseCarAutoForm
       'moiscir'        => new sfWidgetFormInputText(),
       'anneeded'       => new sfWidgetFormInputText(),
       'moisded'        => new sfWidgetFormInputText(),
-      'description'    => new sfWidgetFormTextarea(),
+      'description'    => new isicsWidgetFormTinyMCE(array('tiny_options' => array(
+      										'theme' => 'advanced',
+      										'mode'=>'textareas',
+      										'theme_advanced_buttons1'=>'save,newdocument,|,bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,|,styleselect,formatselect,fontselect,fontsizeselect',
+  											'theme_advanced_buttons2'=>'cut,copy,paste,pastetext,pasteword,|,search,replace,|,bullist,numlist,|,outdent,indent,blockquote,|,undo,redo,|,link,unlink,anchor,image,cleanup,help,code,|,insertdate,inserttime,preview,|,forecolor,backcolor',
+  											'theme_advanced_buttons3'=>'tablecontrols,|,hr,removeformat,visualaid,|,sub,sup,|,charmap,emotions,iespell,media,advhr,|,print,|,ltr,rtl,|,fullscreen',
+  											'theme_advanced_buttons4'=>'insertlayer,moveforward,movebackward,absolute,|,styleprops,spellchecker,|,cite,abbr,acronym,del,ins,attribs,|,visualchars,nonbreaking,template,blockquote,pagebreak,|,insertfile,insertimage',
+  											'theme_advanced_toolbar_location'=>'top',
+  											'theme_advanced_toolbar_align'=>'left',
+  											'theme_advanced_statusbar_location'=> 'bottom',
+    										'theme_advanced_resizing'=> 'true',
+  											'skin'=> 'o2k7',
+  											'skin_variant'=> 'silver'
+  																				  	
+  							))),  	
       'nbportes'       => new sfWidgetFormInputText(),
       'pfiscale'       => new sfWidgetFormInputText(),
       'kilometrage'    => new sfWidgetFormInputText(),
@@ -41,7 +55,8 @@ class CarAutoForm extends BaseCarAutoForm
 
     $this->setValidators(array(
       'idauto'         => new sfValidatorDoctrineChoice(array('model' => $this->getModelName(), 'column' => 'idauto', 'required' => false)),
-      'idpays'         => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('CarPays'), 'required' => false)),    
+      'idpays'         => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('CarPays'), 'required' => false)),
+      'idville'        => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('CarVille'), 'required' => false)),        
       'idmarque'       => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('CarMarque'), 'required' => false)),
       'idmodele'       => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('CarModele'), 'required' => false)),
       'idmoteur'       => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('CarMoteur'), 'required' => false)),
