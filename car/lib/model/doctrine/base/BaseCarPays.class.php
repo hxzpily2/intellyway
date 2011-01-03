@@ -9,17 +9,23 @@ Doctrine_Manager::getInstance()->bindComponent('CarPays', 'doctrine');
  * 
  * @property integer $idpays
  * @property string $title
+ * @property string $code
+ * @property string $bigcode
  * @property integer $active
  * @property Doctrine_Collection $CarVille
  * @property Doctrine_Collection $CarAuto
  * 
  * @method integer             getIdpays()   Returns the current record's "idpays" value
  * @method string              getTitle()    Returns the current record's "title" value
+ * @method string              getCode()     Returns the current record's "code" value
+ * @method string              getBigcode()  Returns the current record's "bigcode" value
  * @method integer             getActive()   Returns the current record's "active" value
  * @method Doctrine_Collection getCarVille() Returns the current record's "CarVille" collection
  * @method Doctrine_Collection getCarAuto()  Returns the current record's "CarAuto" collection
  * @method CarPays             setIdpays()   Sets the current record's "idpays" value
  * @method CarPays             setTitle()    Sets the current record's "title" value
+ * @method CarPays             setCode()     Sets the current record's "code" value
+ * @method CarPays             setBigcode()  Sets the current record's "bigcode" value
  * @method CarPays             setActive()   Sets the current record's "active" value
  * @method CarPays             setCarVille() Sets the current record's "CarVille" collection
  * @method CarPays             setCarAuto()  Sets the current record's "CarAuto" collection
@@ -50,6 +56,24 @@ abstract class BaseCarPays extends sfDoctrineRecord
              'notnull' => true,
              'autoincrement' => false,
              'length' => '',
+             ));
+        $this->hasColumn('code', 'string', 2, array(
+             'type' => 'string',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => true,
+             'autoincrement' => false,
+             'length' => '2',
+             ));
+        $this->hasColumn('bigcode', 'string', 3, array(
+             'type' => 'string',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => true,
+             'autoincrement' => false,
+             'length' => '3',
              ));
         $this->hasColumn('active', 'integer', 1, array(
              'type' => 'integer',

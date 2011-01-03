@@ -14,6 +14,7 @@ Doctrine_Manager::getInstance()->bindComponent('CarVille', 'doctrine');
  * @property CarPays $CarPays
  * @property Doctrine_Collection $CarCon
  * @property Doctrine_Collection $CarAdresseGar
+ * @property Doctrine_Collection $CarAuto
  * 
  * @method integer             getIdville()       Returns the current record's "idville" value
  * @method string              getTitle()         Returns the current record's "title" value
@@ -22,6 +23,7 @@ Doctrine_Manager::getInstance()->bindComponent('CarVille', 'doctrine');
  * @method CarPays             getCarPays()       Returns the current record's "CarPays" value
  * @method Doctrine_Collection getCarCon()        Returns the current record's "CarCon" collection
  * @method Doctrine_Collection getCarAdresseGar() Returns the current record's "CarAdresseGar" collection
+ * @method Doctrine_Collection getCarAuto()       Returns the current record's "CarAuto" collection
  * @method CarVille            setIdville()       Sets the current record's "idville" value
  * @method CarVille            setTitle()         Sets the current record's "title" value
  * @method CarVille            setIdpays()        Sets the current record's "idpays" value
@@ -29,6 +31,7 @@ Doctrine_Manager::getInstance()->bindComponent('CarVille', 'doctrine');
  * @method CarVille            setCarPays()       Sets the current record's "CarPays" value
  * @method CarVille            setCarCon()        Sets the current record's "CarCon" collection
  * @method CarVille            setCarAdresseGar() Sets the current record's "CarAdresseGar" collection
+ * @method CarVille            setCarAuto()       Sets the current record's "CarAuto" collection
  * 
  * @package    car
  * @subpackage model
@@ -89,6 +92,10 @@ abstract class BaseCarVille extends sfDoctrineRecord
              'foreign' => 'idville'));
 
         $this->hasMany('CarAdresseGar', array(
+             'local' => 'idville',
+             'foreign' => 'idville'));
+
+        $this->hasMany('CarAuto', array(
              'local' => 'idville',
              'foreign' => 'idville'));
 
