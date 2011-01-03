@@ -16,6 +16,7 @@ abstract class BaseCarAutoForm extends BaseFormDoctrine
   {
     $this->setWidgets(array(
       'idauto'         => new sfWidgetFormInputHidden(),
+      'idville'        => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('CarVille'), 'add_empty' => true)),
       'idpays'         => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('CarPays'), 'add_empty' => true)),
       'idmarque'       => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('CarMarque'), 'add_empty' => true)),
       'idmodele'       => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('CarModele'), 'add_empty' => true)),
@@ -59,6 +60,7 @@ abstract class BaseCarAutoForm extends BaseFormDoctrine
 
     $this->setValidators(array(
       'idauto'         => new sfValidatorDoctrineChoice(array('model' => $this->getModelName(), 'column' => 'idauto', 'required' => false)),
+      'idville'        => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('CarVille'), 'required' => false)),
       'idpays'         => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('CarPays'), 'required' => false)),
       'idmarque'       => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('CarMarque'), 'required' => false)),
       'idmodele'       => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('CarModele'), 'required' => false)),
