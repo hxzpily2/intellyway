@@ -20,6 +20,10 @@
 		  /*dojo.connect(dojo.byId('myButton'), "onclick", function(e){
 			  doAnimation(1);
 		  });*/
+
+		  $("#carButton").mouseover(function(e) {						
+				$("#carButton").toggleClass("hover");											
+		  });
 	  }
 	);
 				
@@ -296,8 +300,7 @@
 	<div class="rowElem"><label>Input button:</label><input type="button" value="bouton" /></div> -->
 			
 </form>
-
-<a class="large red awesome" onclick="javascript:commun.createUser()">Valider &raquo;</a>
+<div id="carButton" onclick="javascript:commun.createUser()"><label class="buttonLabel">Valider &raquo;</label></div>
 <!-- <input id="myButton" type="button" value="Valider" onclick="commun.createUser()" />  -->
 
 	<!-- <div id="effect" class="ui-widget-content ui-corner-all">
