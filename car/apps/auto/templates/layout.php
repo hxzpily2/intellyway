@@ -191,7 +191,7 @@ dojo.addOnLoad(
 						</div>			        	
 			            <div class="sub">
 			            	<ul>			                	
-			                	<li><a href="#">Navigation Link</a></li>
+			                	<li><a href="#">&raquo; Navigation Link</a></li>
 			                    <li><a href="#">Navigation Link</a></li>
 			                    <li><a href="#">Navigation Link</a></li>
 			                    <li><a href="#">Navigation Link</a></li>
