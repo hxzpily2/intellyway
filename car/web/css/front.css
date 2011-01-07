@@ -656,8 +656,9 @@ ul#menu li a.current{
 #navigation ul li a:hover {
 	background-position: 0 -75px;
 }
-#navigation #current a {
-	background-position: 0 -150px;
+#navigation ul li a.currentItem {	
+	color: #000;
+	text-shadow: none;
 }
 #navigation #current a span {
 	background-position: 100% -150px;
