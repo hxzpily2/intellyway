@@ -1,13 +1,21 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<title>PauseAuto</title>
 <head>
 <?php include_http_metas() ?>
 <?php include_metas() ?>
 <?php include_title() ?>
-<link rel="shortcut icon" href="/favicon.ico" />
-<link href="/car/web/css/front.css" media="screen, projection"
-	rel="stylesheet" type="text/css"><script
-	src="/car/web/js/jquery/jquery.min.js" type="text/javascript"></script>
+<link rel="icon" type="image/png" href="/car/web/images/faveicon.png" />
+<!--[if IE]><link rel="shortcut icon" type="image/x-icon" href="/car/web/images/faveicon.ico" /><![endif]-->
+
+<link href="/car/web/css/dropdown/dropdown.css" media="all" rel="stylesheet" type="text/css" />
+<link href="/car/web/css/dropdown/themes/default/default.ultimate.css" media="all" rel="stylesheet" type="text/css" />
+
+
+<link href="/car/web/css/dropdown.css" media="screen, projection" rel="stylesheet" type="text/css">
+<link href="/car/web/css/front.css" media="screen, projection" rel="stylesheet" type="text/css">
+<!--[if IE]><link href="/car/web/css/frontie.css" media="screen, projection" rel="stylesheet" type="text/css"><![endif]-->
+<script src="/car/web/js/jquery/jquery.min.js" type="text/javascript"></script>
 
 <!-- RATING --> 
 <script src='/car/web/js/jquery/jquery.MetaData.js'	type="text/javascript" language="javascript"></script>
@@ -25,6 +33,13 @@
 
 <script	src="/car/web/js/jquery/jQuery.fullBg.js"	type="text/javascript"></script>
 
+<script type="text/javascript" src="/car/web/js/jquery/jquery.hoverIntent.minified.js"></script>
+
+<script type="text/javascript" src="/car/web/js/jquery/jquery.corners.min.js"></script>
+
+
+<script type="text/javascript" src="/car/web/js/car/menu.js"></script>
+<script type="text/javascript" src="/car/web/js/car/shadedborder.js"></script>
 <!-- DOJO -->
 <style type='text/css'>
 @import '/car/web/js/dojo/dijit/themes/claro/claro.css';
@@ -39,6 +54,15 @@ html,body {
 }
 
 </style>
+<!--[if lt IE 7]><style>
+/* style for IE 6 + IE5.5 + IE5.0 */ 
+.gainlayout { height: 0; }
+</style><![endif]-->
+
+<!--[if IE 7]><style>
+.gainlayout { zoom: 1;}
+/* or whatever we might need tomorrow */ 
+</style><![endif]-->
 
 <script type='text/javascript'	src='/car/web/js/dojo/dojo/dojo.js'	djConfig='parseOnLoad: false'></script>
 
@@ -97,7 +121,7 @@ dojo.addOnLoad(
 
 </head>
 <body>
-<img src="/car/web/images/bg/red-christmas-lights.jpg" alt="" id="background" />
+<!-- <img src="/car/web/images/bg/red-christmas-lights.jpg" alt="" id="background" />  -->
 <div>  
 	
 	
@@ -105,24 +129,28 @@ dojo.addOnLoad(
 	<script type="text/javascript">
 	        $(document).ready(function() {
 	
-	            $(".signin").click(function() {
-	                $("fieldset#signin_menu").toggle();
-					$(".signin").toggleClass("menu-open");
+	            $(".mySignin").click(function() {
+	                $("fieldset#mySignin_menu").toggle();
+					$(".mySignin").toggleClass("hover");
 	            });
 				
-				$("fieldset#signin_menu").mouseup(function() {
+				$("fieldset#mySignin_menu").mouseup(function() {
 					return false;
 				});
-				$(document).mouseup(function(e) {
-					if($(e.target).parent("a.signin").length==0) {
-						$(".signin").removeClass("menu-open");
-						$("fieldset#signin_menu").hide();
-					}
+				$(".mySignin").mouseover(function(e) {						
+						$(".mySignin").toggleClass("hover");											
 				});	
-	
-				(function($) {
+				$(document).mouseup(function(e) {
+					$("fieldset#mySignin_menu").hide();
+				});		
+				/*(function($) {
 				  $("#background").fullBg();
-				})(jQuery);		
+				})(jQuery);*/
+					
+				//$(".sub").corners();
+				
+			     
+										
 				
 	        });
 	  </script>
@@ -136,55 +164,194 @@ dojo.addOnLoad(
 	
 	<!-- CONTENT -->
 	<div id="maincontent">
-		<div style="width: 100%;height:120px;background-color: white;">
-			<div id="topnav" class="topnav">
-			   Have an account? 
-			   <a href="#" class="signin"><span>Sign in</span></a>
+		<div style="width: 100%;z-index: -5">
+			<div id="topnav" class="topnav" style="background-color: white;">			   		   	
+			   <div class="mySigninLabel">Have an account?</div>
+			   <div class="mySignin">Login</div>			   					   		    
 			</div>
+			<div id="topMenu">			
+			</div>
+			<div id="topMenuBg">
+				<div id="logo"></div>
+			</div>			
+			<div id="navigation">
+			    <ul id="topnav">
+			    	<li>
+			        	<div class="item">
+							<div class="leftItem leftFloat"><a href="#" title=""></a></div>
+							<div class="bgItem"><a href="#" title="">Home</a></div>
+							<div class="rightItem rightFloat"><a href="#" title=""></a></div>
+						</div>
+			        </li>
+			        <li>
+			        	<div class="item">
+							<div class="leftItem leftFloat"><a href="#" title=""></a></div>
+							<div class="bgItem"><a href="#" title="">Products</a></div>
+							<div class="rightItem rightFloat"><a href="#" title=""></a></div>
+						</div>			        	
+			            <div class="sub">
+			            	<ul>			                	
+			                	<li><a href="#">Navigation Link</a></li>
+			                    <li><a href="#">Navigation Link</a></li>
+			                    <li><a href="#">Navigation Link</a></li>
+			                    <li><a href="#">Navigation Link</a></li>
+			                    <li><a href="#">Navigation Link</a></li>			
+			                    <li><a href="#">Navigation Link</a></li>
+			                    <li><a href="#">Navigation Link</a></li>
+			                </ul>			                			                
+			            </div>
+			        </li>
+			        <li>			        	
+			        	<div class="item">
+							<div class="leftItem leftFloat"><a href="#" title=""></a></div>
+							<div class="bgItem"><a href="#" title="">Sales</a></div>
+							<div class="rightItem rightFloat"><a href="#" title=""></a></div>
+						</div>
+			            <div class="sub">
+			            	<div class="row">
+			                    <ul style="width: 225px;">
+			
+			                        <li><h2><a href="#">Deal of the Week</a></h2></li>
+			                        <li><a href="#">Navigation Link - 2 Column</a></li>
+			                        <li><a href="#">Navigation Link - 2 Column</a></li>
+			                        <li><a href="#">Navigation Link - 2 Column</a></li>
+			                        <li><a href="#">Navigation Link - 2 Column</a></li>
+			                    </ul>
+			
+			                    <ul style="width: 225px;">
+			                        <li><h2><a href="#">Clearance Items</a></h2></li>
+			                        <li><a href="#">Navigation Link - 2 Column</a></li>
+			                        <li><a href="#">Navigation Link - 2 Column</a></li>
+			                        <li><a href="#">Navigation Link - 2 Column</a></li>
+			                        <li><a href="#">Navigation Link - 2 Column</a></li>
+			
+			                    </ul>
+			                </div>
+			                <div class="row">
+			                    <ul>
+			                        <li><h2><a href="#">Deal of the Week</a></h2></li>
+			                        <li><a href="#">Navigation Link</a></li>
+			                        <li><a href="#">Navigation Link</a></li>
+			
+			                        <li><a href="#">Navigation Link</a></li>
+			                        <li><a href="#">Navigation Link</a></li>
+			                    </ul>
+			                    <ul>
+			                        <li><h2><a href="#">Clearance Items</a></h2></li>
+			                        <li><a href="#">Navigation Link</a></li>
+			                        <li><a href="#">Navigation Link</a></li>
+			
+			                        <li><a href="#">Navigation Link</a></li>
+			                        <li><a href="#">Navigation Link</a></li>
+			                    </ul>
+			                    <ul>
+			                        <li><h2><a href="#">Open Box Items</a></h2></li>
+			                        <li><a href="#">Navigation Link</a></li>
+			                        <li><a href="#">Navigation Link</a></li>
+			
+			                        <li><a href="#">Navigation Link</a></li>
+			                        <li><a href="#">Navigation Link</a></li>
+			                    </ul>
+			                </div>
+			            </div>
+			        </li>
+			        <li>			        	
+						<div class="item">
+							<div class="curLeftItem leftFloat"><a href="#" title=""></a></div>
+							<div class="curBgItem"><a class="currentItem" href="#" title="">Community</a></div>
+							<div class="curRightItem rightFloat"><a href="#" title=""></a></div>
+						</div>
+			        </li>
+			        <li>			        	
+			        	<div class="item">
+							<div class="leftItem leftFloat"><a href="#" title=""></a></div>
+							<div class="bgItem"><a href="#" title="">Store Locator</a></div>
+							<div class="rightItem rightFloat"><a href="#" title=""></a></div>
+						</div>
+			        </li>
+			    </ul>
+			</div>			
 		</div>
-		<fieldset id="signin_menu">
-		<form method="post" id="signin" action="">
-			<label for="username">Username or email</label>
-			<input id="username" name="username" value="" title="username" tabindex="4" type="text">
-		
-		<p>
-			<label for="password">Password</label>
-			<input id="password" name="password" value="" title="password" tabindex="5" type="password">
-		</p>
-		<p class="remember">
-			<input id="signin_submit" value="Sign in" tabindex="6" type="submit">
-			<input id="remember" name="remember_me" value="1" tabindex="7" type="checkbox">
-			<label for="remember">Remember me</label>
-		</p>
-		<p class="forgot">
-			<a href="#" id="resend_password_link">Forgot your password?</a>
-		</p>
-		<!-- <p class="forgot-username">
-		          <A id=forgot_username_link title="If you remember your password, try logging in with your email" href="#">Forgot your username?</A>        </p> --></form>
+		<fieldset id="mySignin_menu">					
+			<table width="274" height="226" cellpadding="0" cellspacing="0">
+				<tr>
+					<td style="background-image:url(/car/web/images/bglogin.png);padding-left: 20px;">
+						<form method="post" id="signin" action="">							
+							<table cellpadding="0" cellspacing="0" border="0">
+								<tr>
+									<td valign="middle"><img src="/car/web/images/beat.png"/></td>
+									<td width="5"></td>
+									<td valign="middle"><label for="username">Username or email</label></td>
+									<td width="5"></td>
+									<td valign="middle"><div style="height: 2px;background-color: #CACACA;width: 80px;">&nbsp;</div></td>
+								</tr>
+								<tr>
+									<td valign="middle" colspan="5"><input id="username" name="username" value="" title="username" tabindex="4" type="text"></td>									
+								</tr>
+								<tr>
+									<td valign="middle"><img src="/car/web/images/beat.png"/></td>
+									<td width="5"></td>
+									<td valign="middle"><label for="password">Password</label></td>
+									<td width="5"></td>
+									<td valign="middle"><div style="height: 2px;background-color: #CACACA;width: 80px;">&nbsp;</div></td>
+								</tr>
+								<tr>
+									<td valign="middle" colspan="5"><input id="password" name="password" value="" title="password" tabindex="5" type="password"></td>									
+								</tr>
+							</table>					
+							<p class="remember">							
+								<input id="mySignin_submit" value="" tabindex="6" type="submit">
+								<input id="remember" name="remember_me" value="1" tabindex="7" type="checkbox">
+								<label for="remember">Remember me</label>
+							</p>
+							<p class="forgot">
+								<a href="#" id="resend_password_link">Forgot your password?</a>
+							</p>			
+						</form>
+					</td>
+				</tr>
+			</table>
 		</fieldset>
-		<div style="clear: both;"></div>
-		<div id="main">
-			<?php echo $sf_content ?>
+		<div style="clear: both;"></div>		
+			<!-- <table id="tableMain" cellpadding="0" cellspacing="0" border="0">
+				<tr>
+					<td align="right" width="50%">
+						<img src="/car/web/images/bg_right.png" width="12" height="100%"/>
+					</td>
+					<td valign="top" style="background-color: white;">
+														
+					</td>
+					<td align="left" width="50%">
+						<img src="/car/web/images/bg_left.png" width="12" height="100%"/>
+					</td>
+				</tr>				
+			</table> -->
+			<div id="main">
+				<?php echo $sf_content ?>
+			</div>		
+		<div id="footerOutsideTop">
 		</div>
+		<div id="footerOutside">
+			<div id="footer">
+				<!-- <ul class="nav">
+					<li><a href="#">contact</a></li>
+					<li><a href="#">forum</a>|</li>
+					<li><a href="#">blog</a>|</li>
+					<li><a href="#">chat</a>|</li>
+					<li><a href="#">support</a>|</li>
+					<li><a href="#">home</a>|</li>
+				</ul>
+				<a href="http://validator.w3.org/check?uri=referer" target="_blank" class="xhtml" title="xhtml">XHTML</a>
+				<a href="http://jigsaw.w3.org/css-validator/check/referer" target="_blank" class="css" title="css">CSS</a><br class="spacer" />
+				<p class="copyright">&copy;pauseauto . All rights reserved.</p>
+				<p class="design">Designed By: <a href="http://www.templateworld.com" target="_blank" title="template world">Template World</a></p>
+			 -->
+			</div>
+		</div>	
 	</div>
 	<!-- FIN CONTENT -->	
 </div>
-<div id="footerOutside">
-	<div id="footer">
-		<ul class="nav">
-			<li><a href="#">contact</a></li>
-			<li><a href="#">forum</a>|</li>
-			<li><a href="#">blog</a>|</li>
-			<li><a href="#">chat</a>|</li>
-			<li><a href="#">support</a>|</li>
-			<li><a href="#">home</a>|</li>
-		</ul>
-	<a href="http://validator.w3.org/check?uri=referer" target="_blank" class="xhtml" title="xhtml">XHTML</a>
-	<a href="http://jigsaw.w3.org/css-validator/check/referer" target="_blank" class="css" title="css">CSS</a><br class="spacer" />
-	<p class="copyright">©yellow web. All rights reserved.</p>
-	<p class="design">Designed By: <a href="http://www.templateworld.com" target="_blank" title="template world">Template World</a></p>
-	</div>
-</div>	
+
 <div id='loader' style="display: none;"><!-- <div id='loaderInner' style='direction: ltr;'>Loading theme Tester ...</div>  -->
 	<table width='100%' height='100%'>
 		<tr>
@@ -193,5 +360,6 @@ dojo.addOnLoad(
 		</tr>
 	</table>
 </div>
+
 </body>
 </html>
