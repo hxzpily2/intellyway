@@ -35,7 +35,7 @@
 
 <script type="text/javascript" src="/car/web/js/jquery/jquery.hoverIntent.minified.js"></script>
 
-<script type="text/javascript" src="/car/web/js/jquery/jquery.corners.min.js"></script>
+<script type="text/javascript" src="/car/web/js/jquery/jquery.corner.js"></script>
 
 
 <script type="text/javascript" src="/car/web/js/car/menu.js"></script>
@@ -147,7 +147,8 @@ dojo.addOnLoad(
 				  $("#background").fullBg();
 				})(jQuery);*/
 					
-				//$(".sub").corners();
+				$(".sub").corner();
+
 				
 			     
 										
