@@ -16,6 +16,7 @@
 <link href="/car/web/css/front.css" media="screen, projection" rel="stylesheet" type="text/css">
 <!--[if IE]><link href="/car/web/css/frontie.css" media="screen, projection" rel="stylesheet" type="text/css"><![endif]-->
 <script src="/car/web/js/jquery/jquery.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="/car/web/js/jquery/jquery.corner.js"></script>
 
 <!-- RATING --> 
 <script src='/car/web/js/jquery/jquery.MetaData.js'	type="text/javascript" language="javascript"></script>
@@ -23,19 +24,10 @@
 <link href='/car/web/css/jquery.rating.css' type="text/css" rel="stylesheet" />
 <!-- FIN RATING -->
 
-<!-- FORM VALIDATION -->
-<link rel="stylesheet" href="/car/web/css/validationEngine.jquery.css"	type="text/css" media="screen" charset="utf-8" />
-<script src="/car/web/js/jquery/jquery.validationEngine-fr.js"	type="text/javascript"></script>
-<script	src="/car/web/js/jquery/jquery.validationEngine.js"	type="text/javascript"></script>
-
-<script	src="/car/web/js/jquery/jquery-ui-1.8.6.custom.min.js"	type="text/javascript"></script>
-<!-- FIN FORM VALIDATIOn -->
-
-<script	src="/car/web/js/jquery/jQuery.fullBg.js"	type="text/javascript"></script>
 
 <script type="text/javascript" src="/car/web/js/jquery/jquery.hoverIntent.minified.js"></script>
 
-<script type="text/javascript" src="/car/web/js/jquery/jquery.corner.js"></script>
+
 
 
 <script type="text/javascript" src="/car/web/js/car/menu.js"></script>
@@ -146,15 +138,15 @@ dojo.addOnLoad(
 				/*(function($) {
 				  $("#background").fullBg();
 				})(jQuery);*/
-					
-				$(".sub").corner();
-
 				
-			     
+
+				$(".sub").corner();		     
 										
 				
 	        });
 	  </script>
+	  
+		
 	<script src="/car/web/js/jquery/jquery.tipsy.js" type="text/javascript"></script>
 	<script type='text/javascript'>
 	    $(function() {
@@ -210,8 +202,7 @@ dojo.addOnLoad(
 						</div>
 			            <div class="sub">
 			            	<div class="row">
-			                    <ul style="width: 225px;">
-			
+			                    <ul style="width: 225px;">			
 			                        <li><h2><a href="#">Deal of the Week</a></h2></li>
 			                        <li><a href="#">Navigation Link - 2 Column</a></li>
 			                        <li><a href="#">Navigation Link - 2 Column</a></li>
