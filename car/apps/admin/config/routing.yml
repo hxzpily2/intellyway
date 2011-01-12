@@ -1,3 +1,12 @@
+car_type_accessoire:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                CarTypeAccessoire
+    module:               typeacc
+    prefix_path:          /typeacc
+    column:               idtypeacc
+    with_wildcard_routes: true
+
 car_etat:
   class: sfDoctrineRouteCollection
   options:
