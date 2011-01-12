@@ -1,19 +1,18 @@
 <?php
 
 /**
- * CarAccessoire filter form base class.
+ * CarTypeAccessoire filter form base class.
  *
  * @package    car
  * @subpackage filter
  * @author     Your name here
  * @version    SVN: $Id: sfDoctrineFormFilterGeneratedTemplate.php 24171 2009-11-19 16:37:50Z Kris.Wallsmith $
  */
-abstract class BaseCarAccessoireFormFilter extends BaseFormFilterDoctrine
+abstract class BaseCarTypeAccessoireFormFilter extends BaseFormFilterDoctrine
 {
   public function setup()
   {
     $this->setWidgets(array(
-      'idtypeacc'   => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('CarTypeAccessoire'), 'add_empty' => true)),
       'title'       => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'description' => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'active'      => new sfWidgetFormFilterInput(array('with_empty' => false)),
@@ -22,7 +21,6 @@ abstract class BaseCarAccessoireFormFilter extends BaseFormFilterDoctrine
     ));
 
     $this->setValidators(array(
-      'idtypeacc'   => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('CarTypeAccessoire'), 'column' => 'idtypeacc')),
       'title'       => new sfValidatorPass(array('required' => false)),
       'description' => new sfValidatorPass(array('required' => false)),
       'active'      => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
@@ -30,7 +28,7 @@ abstract class BaseCarAccessoireFormFilter extends BaseFormFilterDoctrine
       'updated_at'  => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
     ));
 
-    $this->widgetSchema->setNameFormat('car_accessoire_filters[%s]');
+    $this->widgetSchema->setNameFormat('car_type_accessoire_filters[%s]');
 
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
 
@@ -41,14 +39,13 @@ abstract class BaseCarAccessoireFormFilter extends BaseFormFilterDoctrine
 
   public function getModelName()
   {
-    return 'CarAccessoire';
+    return 'CarTypeAccessoire';
   }
 
   public function getFields()
   {
     return array(
-      'idacc'       => 'Number',
-      'idtypeacc'   => 'ForeignKey',
+      'idtypeacc'   => 'Number',
       'title'       => 'Text',
       'description' => 'Text',
       'active'      => 'Number',
