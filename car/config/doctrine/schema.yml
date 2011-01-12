@@ -648,12 +648,12 @@ CarType:
       primary: false
       notnull: true
       autoincrement: false
-CarAccessoire:
+CarTypeAccessoire:
   actAs: [Timestampable]
   connection: doctrine
-  tableName: car_accessoire
+  tableName: car_type_accessoire
   columns:
-    idacc:
+    idtypeacc:
       type: integer(10)
       fixed: false
       unsigned: false
@@ -679,7 +679,50 @@ CarAccessoire:
       unsigned: false
       primary: false
       notnull: true
+      autoincrement: false      
+CarAccessoire:
+  actAs: [Timestampable]
+  connection: doctrine
+  tableName: car_accessoire
+  columns:
+    idacc:
+      type: integer(10)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: true
+    idtypeacc:
+      type: integer(10)
+      fixed: false
+      unsigned: false
+      primary: false
+      autoincrement: false      
+    title:
+      type: string()
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
       autoincrement: false
+    description:
+      type: string()
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    active:
+      type: integer(1)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+  relations:
+    CarTypeAccessoire:
+      local: idtypeacc
+      foreign: idtypeacc
+      type: one         
 CarEtat:
   actAs: [Timestampable]
   connection: doctrine
@@ -736,7 +779,14 @@ CarCouleur:
       unsigned: false
       primary: false
       notnull: true
-      autoincrement: false      
+      autoincrement: false
+    image:
+      type: string()
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false            
     active:
       type: integer(1)
       fixed: false
@@ -1039,6 +1089,20 @@ CarAuto:
       primary: false
       notnull: true
       autoincrement: false                               
+    etranger:
+      type: integer(1)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false      
+    dedouane:
+      type: integer(1)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false      
     garantie:
       type: integer(1)
       fixed: false
@@ -1801,12 +1865,3 @@ Ip2country:
       primary: false
       notnull: false
       autoincrement: false
-  indexes:
-    name_index:
-      fields:
-        ip_from:
-          sorting: ASC
-          length: 10
-          primary: false
-        last_name: []
-      type: index      
