@@ -1,22 +1,21 @@
 <?php
 
 /**
- * CarAccessoire form base class.
+ * CarTypeAccessoire form base class.
  *
- * @method CarAccessoire getObject() Returns the current form's model object
+ * @method CarTypeAccessoire getObject() Returns the current form's model object
  *
  * @package    car
  * @subpackage form
  * @author     Your name here
  * @version    SVN: $Id: sfDoctrineFormGeneratedTemplate.php 24171 2009-11-19 16:37:50Z Kris.Wallsmith $
  */
-abstract class BaseCarAccessoireForm extends BaseFormDoctrine
+abstract class BaseCarTypeAccessoireForm extends BaseFormDoctrine
 {
   public function setup()
   {
     $this->setWidgets(array(
-      'idacc'       => new sfWidgetFormInputHidden(),
-      'idtypeacc'   => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('CarTypeAccessoire'), 'add_empty' => true)),
+      'idtypeacc'   => new sfWidgetFormInputHidden(),
       'title'       => new sfWidgetFormTextarea(),
       'description' => new sfWidgetFormTextarea(),
       'active'      => new sfWidgetFormInputText(),
@@ -25,8 +24,7 @@ abstract class BaseCarAccessoireForm extends BaseFormDoctrine
     ));
 
     $this->setValidators(array(
-      'idacc'       => new sfValidatorDoctrineChoice(array('model' => $this->getModelName(), 'column' => 'idacc', 'required' => false)),
-      'idtypeacc'   => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('CarTypeAccessoire'), 'required' => false)),
+      'idtypeacc'   => new sfValidatorDoctrineChoice(array('model' => $this->getModelName(), 'column' => 'idtypeacc', 'required' => false)),
       'title'       => new sfValidatorString(),
       'description' => new sfValidatorString(),
       'active'      => new sfValidatorInteger(),
@@ -34,7 +32,7 @@ abstract class BaseCarAccessoireForm extends BaseFormDoctrine
       'updated_at'  => new sfValidatorDateTime(),
     ));
 
-    $this->widgetSchema->setNameFormat('car_accessoire[%s]');
+    $this->widgetSchema->setNameFormat('car_type_accessoire[%s]');
 
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
 
@@ -45,7 +43,7 @@ abstract class BaseCarAccessoireForm extends BaseFormDoctrine
 
   public function getModelName()
   {
-    return 'CarAccessoire';
+    return 'CarTypeAccessoire';
   }
 
 }

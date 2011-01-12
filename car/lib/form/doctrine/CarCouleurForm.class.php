@@ -16,6 +16,7 @@ class CarCouleurForm extends BaseCarCouleurForm
       'idcouleur'  => new sfWidgetFormInputHidden(),
       'title'      => new sfWidgetFormTextarea(),
       'hexrep'     => new sfWidgetFormInputText(),
+	  'image'        => new sfWidgetFormInputFile(),
       'active'     => new sfWidgetFormInputCheckbox(array('value_attribute_value' => true)),     
     ));
 
@@ -23,6 +24,11 @@ class CarCouleurForm extends BaseCarCouleurForm
       'idcouleur'  => new sfValidatorDoctrineChoice(array('model' => $this->getModelName(), 'column' => 'idcouleur', 'required' => false)),
       'title'      => new sfValidatorString(),
       'hexrep'     => new sfValidatorString(array('max_length' => 8)),
+      'image'      => new sfValidatorFile(array(
+                                        'required' => false,
+                                        'path' => sfConfig::get('sf_upload_dir').'/couleur/',
+                                        'mime_types' => 'web_images',
+									)),
       'active'     => new sfValidatorBoolean(),      
     ));
 

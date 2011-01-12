@@ -43,6 +43,8 @@ Doctrine_Manager::getInstance()->bindComponent('CarAuto', 'doctrine');
  * @property integer $nbnotecond
  * @property integer $prixstart
  * @property integer $reprise
+ * @property integer $etranger
+ * @property integer $dedouane
  * @property integer $garantie
  * @property integer $anneegarantie
  * @property integer $active
@@ -102,6 +104,8 @@ Doctrine_Manager::getInstance()->bindComponent('CarAuto', 'doctrine');
  * @method integer             getNbnotecond()            Returns the current record's "nbnotecond" value
  * @method integer             getPrixstart()             Returns the current record's "prixstart" value
  * @method integer             getReprise()               Returns the current record's "reprise" value
+ * @method integer             getEtranger()              Returns the current record's "etranger" value
+ * @method integer             getDedouane()              Returns the current record's "dedouane" value
  * @method integer             getGarantie()              Returns the current record's "garantie" value
  * @method integer             getAnneegarantie()         Returns the current record's "anneegarantie" value
  * @method integer             getActive()                Returns the current record's "active" value
@@ -160,6 +164,8 @@ Doctrine_Manager::getInstance()->bindComponent('CarAuto', 'doctrine');
  * @method CarAuto             setNbnotecond()            Sets the current record's "nbnotecond" value
  * @method CarAuto             setPrixstart()             Sets the current record's "prixstart" value
  * @method CarAuto             setReprise()               Sets the current record's "reprise" value
+ * @method CarAuto             setEtranger()              Sets the current record's "etranger" value
+ * @method CarAuto             setDedouane()              Sets the current record's "dedouane" value
  * @method CarAuto             setGarantie()              Sets the current record's "garantie" value
  * @method CarAuto             setAnneegarantie()         Sets the current record's "anneegarantie" value
  * @method CarAuto             setActive()                Sets the current record's "active" value
@@ -476,6 +482,24 @@ abstract class BaseCarAuto extends sfDoctrineRecord
              'length' => '10',
              ));
         $this->hasColumn('reprise', 'integer', 1, array(
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => true,
+             'autoincrement' => false,
+             'length' => '1',
+             ));
+        $this->hasColumn('etranger', 'integer', 1, array(
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => true,
+             'autoincrement' => false,
+             'length' => '1',
+             ));
+        $this->hasColumn('dedouane', 'integer', 1, array(
              'type' => 'integer',
              'fixed' => 0,
              'unsigned' => false,
