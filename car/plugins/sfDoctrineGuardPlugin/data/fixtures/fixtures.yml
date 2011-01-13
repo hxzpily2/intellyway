@@ -11,3 +11,6 @@ sfGuardGroup:
   sgg_expe:
     name:           PROFIL_EXPE
     description:    Expert
+  sgg_loc:
+    name:           PROFIL_LOC
+    description:    Agence de location    
