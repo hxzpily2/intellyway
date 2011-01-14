@@ -31,6 +31,39 @@ CarPays:
      active:    1
           
 
+CarType:
+   neuf:
+     title: NEUF
+     description: Neuve
+     active:    1
+   occasion:
+     title: OCCA
+     description: Occasion
+     active:    1     
+   location:
+     title: LOCA
+     description: De location
+     active:    1
+     
+
+CarEtat:
+   neuf:
+     title: Neuve
+     description: Voiture neuve
+     active:    1
+   bonetat:
+     title: Bon état
+     description: Bon état
+     active:    1 
+   arep:
+     title: A réparer
+     description: Voiture à réparer
+     active:    1           
+   acc:
+     title: Accidentée
+     description: Voiture accidentée
+     active:    1          
+
 
 #CarMarque:
 #  Renault:
