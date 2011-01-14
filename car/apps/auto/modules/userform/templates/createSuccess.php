@@ -124,6 +124,7 @@
 						<option value="<?php echo Constantes::PROFIL_USER;?>">Un particulier</option>
 						<option value="<?php echo Constantes::PROFIL_CONC;?>">Un concessionnaire</option>
 						<option value="<?php echo Constantes::PROFIL_PROF;?>">Un professionnel</option>						
+						<option value="<?php echo Constantes::PROFIL_LOC;?>">Une agence de location</option>
 					</select>
 				</div>
 			</td>
