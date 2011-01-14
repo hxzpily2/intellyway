@@ -9,6 +9,7 @@ Doctrine_Manager::getInstance()->bindComponent('CarPays', 'doctrine');
  * 
  * @property integer $idpays
  * @property string $title
+ * @property string $devise
  * @property string $code
  * @property string $bigcode
  * @property integer $active
@@ -17,6 +18,7 @@ Doctrine_Manager::getInstance()->bindComponent('CarPays', 'doctrine');
  * 
  * @method integer             getIdpays()   Returns the current record's "idpays" value
  * @method string              getTitle()    Returns the current record's "title" value
+ * @method string              getDevise()   Returns the current record's "devise" value
  * @method string              getCode()     Returns the current record's "code" value
  * @method string              getBigcode()  Returns the current record's "bigcode" value
  * @method integer             getActive()   Returns the current record's "active" value
@@ -24,6 +26,7 @@ Doctrine_Manager::getInstance()->bindComponent('CarPays', 'doctrine');
  * @method Doctrine_Collection getCarAuto()  Returns the current record's "CarAuto" collection
  * @method CarPays             setIdpays()   Sets the current record's "idpays" value
  * @method CarPays             setTitle()    Sets the current record's "title" value
+ * @method CarPays             setDevise()   Sets the current record's "devise" value
  * @method CarPays             setCode()     Sets the current record's "code" value
  * @method CarPays             setBigcode()  Sets the current record's "bigcode" value
  * @method CarPays             setActive()   Sets the current record's "active" value
@@ -49,6 +52,15 @@ abstract class BaseCarPays extends sfDoctrineRecord
              'length' => '10',
              ));
         $this->hasColumn('title', 'string', null, array(
+             'type' => 'string',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => true,
+             'autoincrement' => false,
+             'length' => '',
+             ));
+        $this->hasColumn('devise', 'string', null, array(
              'type' => 'string',
              'fixed' => 0,
              'unsigned' => false,

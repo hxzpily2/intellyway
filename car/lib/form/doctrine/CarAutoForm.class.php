@@ -51,6 +51,7 @@ class CarAutoForm extends BaseCarAutoForm
       'etranger'       => new sfWidgetFormInputCheckbox(array('value_attribute_value' => true)),
       'dedouane'       => new sfWidgetFormInputCheckbox(array('value_attribute_value' => true)),  							
       'garantie'       => new sfWidgetFormInputCheckbox(array('value_attribute_value' => true)),
+      'urgent'         => new sfWidgetFormInputCheckbox(array('value_attribute_value' => true)),
       'anneegarantie'  => new sfWidgetFormInputText(),  	
       'active'         => new sfWidgetFormInputCheckbox(array('value_attribute_value' => true)),      
     ));
@@ -80,7 +81,8 @@ class CarAutoForm extends BaseCarAutoForm
       'reprise'        => new sfValidatorBoolean(),
       'etranger'       => new sfValidatorBoolean(),	
       'dedouane'       => new sfValidatorBoolean(),		
-      'garantie'       => new sfValidatorBoolean(),	
+      'garantie'       => new sfValidatorBoolean(),
+      'urgent'         => new sfValidatorBoolean(),
       'anneegarantie'  => new sfValidatorInteger(),    
       'active'         => new sfValidatorBoolean(),	      
     ));

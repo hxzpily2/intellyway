@@ -13,4 +13,29 @@ sfGuardGroup:
     description:    Expert
   sgg_loc:
     name:           PROFIL_LOC
-    description:    Agence de location    
+    description:    Agence de location   
+  sgg_admin:
+    name:           admin
+    description:    Administrator group
+
+
+sfGuardUser:
+  sgu_admin:
+    username:       admin
+    password:       admin
+    is_super_admin: true
+
+sfGuardPermission:
+  sgp_admin:
+    name:           admin
+    description:    Administrator permission
+    
+sfGuardGroupPermission:
+  sggp_admin:
+    sfGuardGroup:       sgg_admin
+    sfGuardPermission:  sgp_admin
+
+sfGuardUserGroup:
+  sgug_admin:
+    sfGuardGroup:       sgg_admin
+    sfGuardUser:        sgu_admin             

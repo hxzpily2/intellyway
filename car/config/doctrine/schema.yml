@@ -53,6 +53,13 @@ CarPays:
       primary: false
       notnull: true
       autoincrement: false
+    devise:
+      type: string()
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false      
     code:
       type: string(2)
       fixed: false
@@ -1109,7 +1116,14 @@ CarAuto:
       unsigned: false
       primary: false
       notnull: true
-      autoincrement: false      
+      autoincrement: false
+    urgent:
+      type: integer(1)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false            
     anneegarantie:
       type: integer(2)
       fixed: false

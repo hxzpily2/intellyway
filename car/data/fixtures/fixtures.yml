@@ -4,7 +4,7 @@
 # # 
 # # See documentation for your ORM's *:data-load task for more information.
 # 
-# User:
+#User:
 #   fabien:
 #     username: fabien
 #     password: changeme
@@ -16,17 +16,32 @@
 #     name:     Kris Wallsmith
 #     email:    kris.wallsmith@symfony-project.com
 
+CarPays:
+   maroc:
+     title: Maroc
+     devise: DH
+     code:     MA
+     bigcode:    MAR
+     active:    1
+   france:
+     title: France
+     devise: '&euro;'
+     code:     FR
+     bigcode:    FRA
+     active:    1
+          
 
-CarMarque:
-  Renault:
-    title: Renault
-    image: changeme
-    information:     Fabien Potencier
-    description:    fabien.potencier@symfony-project.com
-    active: 1
-  Peugeot:
-    title: Peugeot
-    image: changeme
-    information:     Fabien Potencier
-    description:    fabien.potencier@symfony-project.com
-    active: 1
+
+#CarMarque:
+#  Renault:
+#    title: Renault
+#    image: changeme
+#    information:     Fabien Potencier
+#    description:    fabien.potencier@symfony-project.com
+#    active: 1
+#  Peugeot:
+#    title: Peugeot
+#    image: changeme
+#    information:     Fabien Potencier
+#    description:    fabien.potencier@symfony-project.com
+#    active: 1

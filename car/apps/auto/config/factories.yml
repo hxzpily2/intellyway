@@ -29,6 +29,8 @@ dev:
       delivery_strategy: none
 
 all:
+  user:
+   class:  sfGuardSecurityUser
   routing:
     class: sfPatternRouting
     param:

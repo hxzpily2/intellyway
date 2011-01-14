@@ -46,6 +46,7 @@ Doctrine_Manager::getInstance()->bindComponent('CarAuto', 'doctrine');
  * @property integer $etranger
  * @property integer $dedouane
  * @property integer $garantie
+ * @property integer $urgent
  * @property integer $anneegarantie
  * @property integer $active
  * @property CarMarque $CarMarque
@@ -107,6 +108,7 @@ Doctrine_Manager::getInstance()->bindComponent('CarAuto', 'doctrine');
  * @method integer             getEtranger()              Returns the current record's "etranger" value
  * @method integer             getDedouane()              Returns the current record's "dedouane" value
  * @method integer             getGarantie()              Returns the current record's "garantie" value
+ * @method integer             getUrgent()                Returns the current record's "urgent" value
  * @method integer             getAnneegarantie()         Returns the current record's "anneegarantie" value
  * @method integer             getActive()                Returns the current record's "active" value
  * @method CarMarque           getCarMarque()             Returns the current record's "CarMarque" value
@@ -167,6 +169,7 @@ Doctrine_Manager::getInstance()->bindComponent('CarAuto', 'doctrine');
  * @method CarAuto             setEtranger()              Sets the current record's "etranger" value
  * @method CarAuto             setDedouane()              Sets the current record's "dedouane" value
  * @method CarAuto             setGarantie()              Sets the current record's "garantie" value
+ * @method CarAuto             setUrgent()                Sets the current record's "urgent" value
  * @method CarAuto             setAnneegarantie()         Sets the current record's "anneegarantie" value
  * @method CarAuto             setActive()                Sets the current record's "active" value
  * @method CarAuto             setCarMarque()             Sets the current record's "CarMarque" value
@@ -509,6 +512,15 @@ abstract class BaseCarAuto extends sfDoctrineRecord
              'length' => '1',
              ));
         $this->hasColumn('garantie', 'integer', 1, array(
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => true,
+             'autoincrement' => false,
+             'length' => '1',
+             ));
+        $this->hasColumn('urgent', 'integer', 1, array(
              'type' => 'integer',
              'fixed' => 0,
              'unsigned' => false,
