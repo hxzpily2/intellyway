@@ -14,6 +14,7 @@ abstract class BaseCarPaysFormFilter extends BaseFormFilterDoctrine
   {
     $this->setWidgets(array(
       'title'      => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'devise'     => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'code'       => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'bigcode'    => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'active'     => new sfWidgetFormFilterInput(array('with_empty' => false)),
@@ -23,6 +24,7 @@ abstract class BaseCarPaysFormFilter extends BaseFormFilterDoctrine
 
     $this->setValidators(array(
       'title'      => new sfValidatorPass(array('required' => false)),
+      'devise'     => new sfValidatorPass(array('required' => false)),
       'code'       => new sfValidatorPass(array('required' => false)),
       'bigcode'    => new sfValidatorPass(array('required' => false)),
       'active'     => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
@@ -49,6 +51,7 @@ abstract class BaseCarPaysFormFilter extends BaseFormFilterDoctrine
     return array(
       'idpays'     => 'Number',
       'title'      => 'Text',
+      'devise'     => 'Text',
       'code'       => 'Text',
       'bigcode'    => 'Text',
       'active'     => 'Number',
