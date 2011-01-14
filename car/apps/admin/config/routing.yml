@@ -1,3 +1,21 @@
+car_adresse_loc:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                CarAdresseLoc
+    module:               adrloc
+    prefix_path:          /adrloc
+    column:               idadresseloc
+    with_wildcard_routes: true
+
+car_loc:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                CarLoc
+    module:               location
+    prefix_path:          /location
+    column:               idloc
+    with_wildcard_routes: true
+
 car_type_accessoire:
   class: sfDoctrineRouteCollection
   options:
