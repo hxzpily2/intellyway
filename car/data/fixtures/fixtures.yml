@@ -52,16 +52,16 @@ CarEtat:
      description: Voiture neuve
      active:    1
    bonetat:
-     title: Bon état
-     description: Bon état
+     title: Bon Ã©tat
+     description: Bon Ã©tat
      active:    1 
    arep:
-     title: A réparer
-     description: Voiture à réparer
+     title: A rÃ©parer
+     description: Voiture Ã  rÃ©parer
      active:    1           
    acc:
-     title: Accidentée
-     description: Voiture accidentée
+     title: AccidentÃ©e
+     description: Voiture accidentÃ©e
      active:    1          
 
 
