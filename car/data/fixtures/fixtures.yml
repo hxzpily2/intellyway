@@ -54,7 +54,11 @@ CarEtat:
    bonetat:
      title: Bon état
      description: Bon état
-     active:    1 
+     active:    1
+   tunin:
+     title: Voiture de tuning
+     description: Voiture améliorée
+     active:    1      
    arep:
      title: A réparer
      description: Voiture à réparer
