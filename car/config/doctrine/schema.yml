@@ -1123,7 +1123,28 @@ CarAuto:
       unsigned: false
       primary: false
       notnull: true
-      autoincrement: false            
+      autoincrement: false
+    nonfumeur:
+      type: integer(1)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    garaged:
+      type: integer(1)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false                              
+    hand:
+      type: integer(1)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
     anneegarantie:
       type: integer(2)
       fixed: false

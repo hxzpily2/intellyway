@@ -47,6 +47,9 @@ Doctrine_Manager::getInstance()->bindComponent('CarAuto', 'doctrine');
  * @property integer $dedouane
  * @property integer $garantie
  * @property integer $urgent
+ * @property integer $nonfumeur
+ * @property integer $garaged
+ * @property integer $hand
  * @property integer $anneegarantie
  * @property integer $active
  * @property CarMarque $CarMarque
@@ -109,6 +112,9 @@ Doctrine_Manager::getInstance()->bindComponent('CarAuto', 'doctrine');
  * @method integer             getDedouane()              Returns the current record's "dedouane" value
  * @method integer             getGarantie()              Returns the current record's "garantie" value
  * @method integer             getUrgent()                Returns the current record's "urgent" value
+ * @method integer             getNonfumeur()             Returns the current record's "nonfumeur" value
+ * @method integer             getGaraged()               Returns the current record's "garaged" value
+ * @method integer             getHand()                  Returns the current record's "hand" value
  * @method integer             getAnneegarantie()         Returns the current record's "anneegarantie" value
  * @method integer             getActive()                Returns the current record's "active" value
  * @method CarMarque           getCarMarque()             Returns the current record's "CarMarque" value
@@ -170,6 +176,9 @@ Doctrine_Manager::getInstance()->bindComponent('CarAuto', 'doctrine');
  * @method CarAuto             setDedouane()              Sets the current record's "dedouane" value
  * @method CarAuto             setGarantie()              Sets the current record's "garantie" value
  * @method CarAuto             setUrgent()                Sets the current record's "urgent" value
+ * @method CarAuto             setNonfumeur()             Sets the current record's "nonfumeur" value
+ * @method CarAuto             setGaraged()               Sets the current record's "garaged" value
+ * @method CarAuto             setHand()                  Sets the current record's "hand" value
  * @method CarAuto             setAnneegarantie()         Sets the current record's "anneegarantie" value
  * @method CarAuto             setActive()                Sets the current record's "active" value
  * @method CarAuto             setCarMarque()             Sets the current record's "CarMarque" value
@@ -521,6 +530,33 @@ abstract class BaseCarAuto extends sfDoctrineRecord
              'length' => '1',
              ));
         $this->hasColumn('urgent', 'integer', 1, array(
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => true,
+             'autoincrement' => false,
+             'length' => '1',
+             ));
+        $this->hasColumn('nonfumeur', 'integer', 1, array(
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => true,
+             'autoincrement' => false,
+             'length' => '1',
+             ));
+        $this->hasColumn('garaged', 'integer', 1, array(
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => true,
+             'autoincrement' => false,
+             'length' => '1',
+             ));
+        $this->hasColumn('hand', 'integer', 1, array(
              'type' => 'integer',
              'fixed' => 0,
              'unsigned' => false,
