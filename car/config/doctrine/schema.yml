@@ -1865,3 +1865,148 @@ Ip2country:
       primary: false
       notnull: false
       autoincrement: false
+CarLoc:
+  actAs: [Timestampable]
+  connection: doctrine
+  tableName: car_loc
+  columns:
+    idloc:
+      type: integer(10)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: true
+    title:
+      type: string()
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    information:
+      type: string()
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    description:
+      type: string()
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    logo:
+      type: string()
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    baniere:
+      type: string()
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false            
+    notevisiteur:
+      type: integer(2)
+      fixed: false
+      unsigned: false
+      primary: false
+      autoincrement: false
+    nbnotevisiteur:
+      type: integer(2)
+      fixed: false
+      unsigned: false
+      primary: false
+      autoincrement: false
+    noteadmin:
+      type: integer(2)
+      fixed: false
+      unsigned: false
+      primary: false
+      autoincrement: false
+    nbnoteadmin:
+      type: integer(2)
+      fixed: false
+      unsigned: false
+      primary: false
+      autoincrement: false        
+    active:
+      type: integer(1)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+CarAdresseLoc:
+  actAs: [Timestampable]
+  connection: doctrine
+  tableName: car_adress_loc
+  columns:
+    idadresseloc:
+      type: integer(10)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: true
+    idloc:
+      type: integer(10)
+      fixed: false
+      unsigned: false
+      primary: false
+      autoincrement: false
+    idville:
+      type: integer(10)
+      fixed: false
+      unsigned: false
+      primary: false
+      autoincrement: false
+    adresse:
+      type: string()
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false      
+    tel1:
+      type: string()
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    tel2:
+      type: string()
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    fax:
+      type: string()
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    active:
+      type: integer(1)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+  relations:
+    CarVille:
+      local: idville
+      foreign: idville
+      type: one
+    CarLoc:
+      local: idloc
+      foreign: idloc
+      type: one
+      onDelete: CASCADE            
