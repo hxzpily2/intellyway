@@ -3,8 +3,9 @@ body {
 	padding:0;
 	font:13px/16px "Lucida Grande", Arial, Sans-serif;
 	color:#789;	
-	background-repeat: repeat;	
-	background: #e6e6e6 url(../images/body-bg2.jpg) repeat-x 450px top;
+	background-repeat: no-repeat;
+	background: #FFFFFF url(../images/287.jpg) center center fixed;
+        /*background: #FFFFFF;*/
 }
 #container {
 	width:780px;
