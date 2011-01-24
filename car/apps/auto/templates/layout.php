@@ -317,10 +317,29 @@ dojo.addOnLoad(
 						<img src="/car/web/images/bg_left.png" width="12" height="100%"/>
 					</td>
 				</tr>				
-			</table> -->
+			</table> -->                        
 			<div id="main">
-				<?php echo $sf_content ?>
-			</div>		
+                            <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                                    <tr>
+                                        <td width="20" height="20" style="background-image: url(/car/web/images/layout_tl.png)">&nbsp;</td>
+                                        <td style="background-image: url(/car/web/images/layout_t.png)">&nbsp;</td>
+                                        <td width="20" style="background-image: url(/car/web/images/layout_tr.png)">&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td height="100%" width="20" style="background-image: url(/car/web/images/layout_l.png)">&nbsp;</td>
+                                        <td style="background-color: #FFFFFF">
+                                            <?php echo $sf_content ?>
+                                        </td>
+                                        <td width="20" style="background-image: url(/car/web/images/layout_r.png)">&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td height="20" width="20" style="background-image: url(/car/web/images/layout_bl.png)">&nbsp;</td>
+                                        <td style="background-image: url(/car/web/images/layout_b.png)">&nbsp;</td>
+                                        <td width="20" style="background-image: url(/car/web/images/layout_br.png)">&nbsp;</td>
+                                    </tr>
+                                </table>				
+			</div>
+                        <br/>
 		<div id="footerOutsideTop">
 		</div>
 		<div id="footerOutside">
