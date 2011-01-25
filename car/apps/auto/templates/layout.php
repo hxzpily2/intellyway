@@ -5,8 +5,23 @@
 <?php include_http_metas() ?>
 <?php include_metas() ?>
 <?php include_title() ?>
+
 <link rel="icon" type="image/png" href="/car/web/images/faveicon.png" />
 <!--[if IE]><link rel="shortcut icon" type="image/x-icon" href="/car/web/images/faveicon.ico" /><![endif]-->
+
+<link rel="stylesheet" type="text/css" href="/car/web/js/ext/resources/css/ext-all.css" />
+<link rel="stylesheet" type="text/css" href="/car/web/js/ext/resources/css/xtheme-gray.css" />
+
+<!-- GC -->
+    <!-- LIBS -->
+    <script type="text/javascript" src="/car/web/js/ext/adapter/ext/ext-base.js"></script>
+    <!-- ENDLIBS -->
+
+<script type="text/javascript" src="/car/web/js/ext/ext-all.js"></script>
+
+<script type="text/javascript" src="/car/web/js/ext/combos/states.js"></script>
+<script type="text/javascript" src="/car/web/js/ext/combos/combos.js"></script>
+<link rel="stylesheet" type="text/css" href="/car/web/js/ext/combos/combos.css" />
 
 <link href="/car/web/css/dropdown/dropdown.css" media="all" rel="stylesheet" type="text/css" />
 <link href="/car/web/css/dropdown/themes/default/default.ultimate.css" media="all" rel="stylesheet" type="text/css" />
@@ -65,29 +80,10 @@ dojo.require('dojo.parser');
 dojo.require("dojo.fx");
 dojo.require("dojox.validate.web");
 dojo.require("dojox.validate._base");
-//dojo.require('dijit.Tree');
-//dojo.require('dojo.data.ItemFileReadStore');
-//dojo.require('dijit.tree.ForestStoreModel');
-//dojo.require('dijit.layout.AccordionContainer');
-//dojo.require('dijit.layout.ContentPane');
-//dojo.require('dijit.layout.BorderContainer');
-//dojo.require('dijit.Menu');
-//dojo.require('dijit.Tooltip');
-//dojo.require('dijit.Tree');
-//dojo.require('dijit.form.TextBox');
-dojo.require('dijit.form.Button');
-//dojo.require('dijit.form.NumberSpinner');
-//dojo.require('dijit.form.ValidationTextBox');
-//dojo.require('dijit.layout.AccordionContainer');
-//dojo.require('dijit.layout.ContentPane');
-//dojo.require('dijit.layout.BorderContainer');
-//dojo.require('dijit.Dialog');
-//dojo.require('dijit.Declaration');
-//dojo.require('dijit.Toolbar');
-//dojo.require('dijit.ToolbarSeparator');
+
 dojo.require('dojo.parser');
 dojo.require('dojo.date.locale');
-dojo.require('dojo.data.ItemFileReadStore');
+
 dojo.registerModulePath('car', '../../car');
 dojo.require('car.integration.Commun');
 var commun = new car.integration.Commun();
@@ -327,7 +323,7 @@ dojo.addOnLoad(
                                     </tr>
                                     <tr>
                                         <td height="100%" width="20" style="background-image: url(/car/web/images/layout_l.png)">&nbsp;</td>
-                                        <td style="background-color: #FFFFFF">
+                                        <td style="background-color: #FFFFFF" align="left">
                                             <?php echo $sf_content ?>
                                         </td>
                                         <td width="20" style="background-image: url(/car/web/images/layout_r.png)">&nbsp;</td>
