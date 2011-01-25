@@ -778,3 +778,9 @@ ul.myMenu ul li{
 	 
 }
 
+#autoDiv{
+    padding-left: 20px;
+    display : block;
+    text-align: left;
+    width: 100%
+}
