@@ -68,6 +68,12 @@ CarEtat:
      description: Voiture accidentée
      active:    1          
 
+CarMarque:
+   renault:
+     title: Renault
+     imagelittle: renault.png
+     active:    1
+
 
 #CarMarque:
 #  Renault:
