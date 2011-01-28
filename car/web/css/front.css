@@ -770,7 +770,7 @@ ul.myMenu ul{
 
 ul.myMenu ul li{
 	 display : block;	 
-	 background: url(images/dropdown_pane.png) 0 100% no-repeat;
+	 background: url(../images/dropdown_pane.png) 0 100% no-repeat;
 	 color: #000;
 	 font-size: 11px;
 	 font-weight: normal;
@@ -783,4 +783,455 @@ ul.myMenu ul li{
     display : block;
     text-align: left;
     width: 100%
+}
+
+
+
+
+/*
+Modern table design - template
+Download more PSD stuff from www.psdgraphics.com
+*/
+
+
+
+
+#psdgraphics-com-table {
+	margin:0;
+	padding: 3px;
+	width: 578px;
+	font: 11px Arial, Helvetica, sans-serif;
+	color:#747474;
+	background-color:#6a6a6a;
+}
+
+
+#psdg-header {
+	margin:0;
+	padding: 14px 0 0 24px;
+	width: 554px;
+	height: 55px;
+	color:#FFF;
+	font-size:13px;
+	background: #0c2c65 url(../images/head-bcg.jpg) no-repeat right top;
+}
+
+.psdg-bold {
+	font: bold 22px Arial, Helvetica, sans-serif;
+
+}
+
+
+
+#psdg-middle {
+	margin:0;
+	padding: 0;
+	width: 578px;
+	background: #f6f6f6 url(../images/center-bcg.png) repeat-y right top;
+}
+
+.psdg-left {
+	float:left;
+	margin:0;
+	padding: 10px 0 0 24px;
+	width: 200px;
+	text-align: left;
+	height: 25px;
+	border-right: 1px solid #e2978b;
+	border-bottom: 1px solid #e2978b;
+	color:#000000;
+	font: 13px Arial, Helvetica, sans-serif;
+        font-weight: bold;
+	background: #FFFFFF url(../images/center-blue.png) repeat-y left top;
+}
+
+
+
+.psdg-right {
+	float:left;
+	margin:0;
+	padding: 11px 0 0 0;
+	width: 352px;
+	text-align:center;
+	height: 24px;
+	border-right: 1px solid #e2978b;
+	border-bottom: 1px solid #e2978b;
+}
+
+#psdg-bottom {
+	clear:both;
+	margin:0;
+	padding: 0;
+	width: 578px;
+	height: 48px;
+	border-top: 2px solid #FFF;
+	background: #e4e3e3 url(../images/bottom-line.png) repeat-x left top;
+}
+
+
+.psdg-bottom-cell {
+	float:left;
+	padding: 15px 0 0 0;
+	text-align:center;
+	width:105px;
+	height: 33px;
+	border-right: 1px solid #ced9ec;
+	color:#070707;
+	font: 13px Arial, Helvetica, sans-serif;
+}
+
+#psdg-top {
+	margin:0;
+	padding: 0;
+	width: 578px;
+	height: 46px;
+	border-top: 2px solid #FFF;
+        font-weight: bold;
+	background: #eff4ff url(../images/top-light-blue.png) repeat-x left top;
+}
+
+#psdg-footer {
+	font-size: 10px;
+	color:#8a8a8a;
+	margin:0;
+	padding: 8px 0 8px 12px;
+	width: 566px;
+	background: #f6f6f6 url(../images/center-bcg.png) repeat-y right top;
+}
+
+.psdg-top-cell {
+	float:left;
+	padding: 15px 0 0 0;
+	text-align:center;
+	width:578px;
+	height: 31px;
+	color:#AAAAAA;
+	font: 14px Arial, Helvetica, sans-serif;
+        font-weight: bold;
+}
+
+
+#carSuivant1 {
+	background: url('../images/buttonMode.png') repeat-x scroll 0 0;
+	border:none;
+	text-shadow:0 -1px 0 #39d;
+	font-size:11px;
+	margin:0 5px 0 0;
+	font-weight:bold;
+	width: 125px;
+	height: 40px;
+	cursor: pointer;
+	color: #FFFFFF;
+	text-align: center;
+	padding-top: 12px;
+}
+
+#carSuivant1:hover{
+	background: url('../images/buttonModeOver.png') repeat-x scroll 0 0;
+	border:none;
+	text-shadow:0 -1px 0 #39d;
+	font-size:11px;
+	margin:0 5px 0 0;
+	font-weight:bold;
+	width: 125px;
+	height: 40px;
+	cursor: pointer;
+	color: #FFFFFF;
+	text-align: center;
+	padding-top: 12px;
+}
+
+#carBack1 {
+	background: url('../images/buttonModeGrey.png') repeat-x scroll 0 0;
+	border:none;
+	text-shadow:0 -1px 0 #39d;
+	font-size:11px;
+	margin:0 5px 0 0;
+	font-weight:bold;
+	width: 125px;
+	height: 40px;
+	cursor: pointer;
+	color: #FFFFFF;
+	text-align: center;
+	padding-top: 12px;
+}
+
+#carBack1:hover{
+	background: url('../images/buttonModeGreyOver.png') repeat-x scroll 0 0;
+	border:none;
+	text-shadow:0 -1px 0 #39d;
+	font-size:11px;
+	margin:0 5px 0 0;
+	font-weight:bold;
+	width: 125px;
+	height: 40px;
+	cursor: pointer;
+	color: #FFFFFF;
+	text-align: center;
+	padding-top: 12px;
+}
+
+#carSuivant2 {
+	background: url('../images/buttonMode.png') repeat-x scroll 0 0;
+	border:none;
+	text-shadow:0 -1px 0 #39d;
+	font-size:11px;
+	margin:0 5px 0 0;
+	font-weight:bold;
+	width: 125px;
+	height: 40px;
+	cursor: pointer;
+	color: #FFFFFF;
+	text-align: center;
+	padding-top: 12px;
+}
+
+#carSuivant2:hover{
+	background: url('../images/buttonModeOver.png') repeat-x scroll 0 0;
+	border:none;
+	text-shadow:0 -1px 0 #39d;
+	font-size:11px;
+	margin:0 5px 0 0;
+	font-weight:bold;
+	width: 125px;
+	height: 40px;
+	cursor: pointer;
+	color: #FFFFFF;
+	text-align: center;
+	padding-top: 12px;
+}
+
+#carSuivant3 {
+	background: url('../images/buttonMode.png') repeat-x scroll 0 0;
+	border:none;
+	text-shadow:0 -1px 0 #39d;
+	font-size:11px;
+	margin:0 5px 0 0;
+	font-weight:bold;
+	width: 125px;
+	height: 40px;
+	cursor: pointer;
+	color: #FFFFFF;
+	text-align: center;
+	padding-top: 12px;
+}
+
+#carSuivant3:hover{
+	background: url('../images/buttonModeOver.png') repeat-x scroll 0 0;
+	border:none;
+	text-shadow:0 -1px 0 #39d;
+	font-size:11px;
+	margin:0 5px 0 0;
+	font-weight:bold;
+	width: 125px;
+	height: 40px;
+	cursor: pointer;
+	color: #FFFFFF;
+	text-align: center;
+	padding-top: 12px;
+}
+
+#carAnnuler1 {
+	background: url('../images/buttonModeGrey.png') repeat-x scroll 0 0;
+	border:none;
+	text-shadow:0 -1px 0 #39d;
+	font-size:11px;
+	margin:0 5px 0 0;
+	font-weight:bold;
+	width: 125px;
+	height: 40px;
+	cursor: pointer;
+	color: #FFFFFF;
+	text-align: center;
+	padding-top: 12px;
+}
+
+#carAnnuler1:hover{
+	background: url('../images/buttonModeGreyOver.png') repeat-x scroll 0 0;
+	border:none;
+	text-shadow:0 -1px 0 #39d;
+	font-size:11px;
+	margin:0 5px 0 0;
+	font-weight:bold;
+	width: 125px;
+	height: 40px;
+	cursor: pointer;
+	color: #FFFFFF;
+	text-align: center;
+	padding-top: 12px;
+}
+
+#carValider {
+	background: url('../images/buttonMode.png') repeat-x scroll 0 0;
+	border:none;
+	text-shadow:0 -1px 0 #39d;
+	font-size:11px;
+	margin:0 5px 0 0;
+	font-weight:bold;
+	width: 125px;
+	height: 40px;
+	cursor: pointer;
+	color: #FFFFFF;
+	text-align: center;
+	padding-top: 12px;
+}
+
+#carValider:hover{
+	background: url('../images/buttonModeOver.png') repeat-x scroll 0 0;
+	border:none;
+	text-shadow:0 -1px 0 #39d;
+	font-size:11px;
+	margin:0 5px 0 0;
+	font-weight:bold;
+	width: 125px;
+	height: 40px;
+	cursor: pointer;
+	color: #FFFFFF;
+	text-align: center;
+	padding-top: 12px;
+}
+
+#custom-demo .uploadifyQueueItem {
+  background-color: #FFFFFF;
+  border: none;
+  border-bottom: 1px solid #E5E5E5;
+  font: 11px Verdana, Geneva, sans-serif;
+  height: 50px;
+  margin-top: 0;
+  padding: 10px;
+  width: 350px;
+}
+#custom-demo .uploadifyError {
+  background-color: #FDE5DD !important;
+  border: none !important;
+  border-bottom: 1px solid #FBCBBC !important;
+}
+#custom-demo .uploadifyQueueItem .cancel {
+  float: right;
+}
+#custom-demo .uploadifyQueue .completed {
+  color: #C5C5C5;
+}
+#custom-demo .uploadifyProgress {
+  background-color: #E5E5E5;
+  margin-top: 10px;
+  width: 100%;
+}
+#custom-demo .uploadifyProgressBar {
+  background-color: #0099FF;
+  height: 3px;
+  width: 1px;
+}
+#custom-demo #custom-queue {
+  border: 1px solid #E5E5E5;
+  height: 213px;
+margin-bottom: 10px;
+  width: 370px;
+}
+
+ul.thumb {
+	float: left;
+	list-style: none;
+	margin: 0; padding: 10px;
+	width: 360px;
+}
+ul.thumb li {
+	margin: 0; padding: 5px;
+	float: left;
+	position: relative;  /* Set the absolute positioning base coordinate */
+	width: 110px;
+	height: 110px;
+}
+ul.thumb li img {
+	width: 100px; height: 100px; /* Set the small thumbnail size */
+	-ms-interpolation-mode: bicubic; /* IE Fix for Bicubic Scaling */
+	border: 1px solid #ddd;
+	padding: 5px;
+	background: #f0f0f0;
+	position: absolute;
+	left: 0; top: 0;
+}
+ul.thumb li img.hover {
+	background:url(../images/thumb_bg.png) no-repeat center center;  /* Image used as background on hover effect
+	border: none; /* Get rid of border on hover */
+}
+
+#image_view {
+	float: left;
+	padding: 9px 0;
+	margin-left: -10px;
+}
+
+.pikachoose{width: 520px; }
+
+.pika-image {position: relative; height: 280px; width: 500px; background: #fafafa; border: 1px solid #e5e5e5; padding: 10px;}
+/*position image holders */
+.pika-image .animation, .pika-image .main-image {position: absolute; top: 10px; left: 10px;}
+.pika-image .animation {display: none;z-index:2;}
+.pika-image img {border:0;}
+
+/*
+.pika-image .caption {position: absolute; background: url(../images/75-black.png);  border: 1px solid #141414; font-size: 11px; color: #fafafa; padding: 10px; text-align: right; bottom: 50px; right: 10px;}
+.pika-image .caption p {padding: 0; margin: 0; line-height: 14px;}
+*/
+
+.pika-imgnav a {position: absolute; text-indent: -5000px; display: block;z-index:3;}
+.pika-imgnav a.previous {background: url(../images/prev.png) no-repeat left 50%; height: 260px; width: 50px; top: 10px; left: 10px;cursor:pointer;}
+.pika-imgnav a.next {background: url(../images/next.png) no-repeat right 50%; height: 260px; width: 50px; top: 10px; right: 10px;cursor:pointer;}
+.pika-imgnav a.play {background: url(../images/play.png) no-repeat 50% 50%; height: 100px; width: 40px;top:0;left:50%;display: none;cursor:pointer;}
+.pika-imgnav a.pause {background: url(../images/pause.png) no-repeat 50% 50%; height: 100px; width: 40px;top:0;left:50%;display:none;cursor:pointer;}
+
+.pika-textnav {overflow: hidden; margin: 10px 0 0 0;}
+.pika-textnav a {font-size: 12px; text-decoration: none; font-family:  helvetica, arial, sans-serif; color: #333; padding: 4px;}
+.pika-textnav a:hover {background: #e5e5e5; color: #0065B2;}
+.pika-textnav a.previous {float: left; width: auto; display: block;}
+.pika-textnav a.next {float: right; width: auto; display: block;}
+
+.pika-thumbs {margin: 10px 0 0 0; padding: 0; overflow: hidden; }
+.pika-thumbs li {float: left; list-style-type: none; width: 74px; padding: 3px; margin: 0 2px; background: #fafafa; border: 1px solid #e5e5e5; cursor: pointer;}
+.pika-thumbs li:last {margin: 0;}
+.pika-thumbs li .clip {position:relative;width: 74px; height: 74px; text-align: center; vertical-align: center; overflow: hidden;}
+
+.clip span{background-color:black;position:absolute;top:5px;left:5px;display:block;}
+.pika-tooltip{font-size:12px;position:absolute;color:white;padding:3px; background-color: rgba(0,0,0,0.7);border:3px solid black;}
+
+ul#pikame{width:570px;margin-bottom:10px;}
+
+
+/* jCarousel Styles */
+/*if you're not using the carousel you can delete everything below this */
+.jcarousel-skin-pika .jcarousel-container-horizontal { padding: 15px 30px;}
+.jcarousel-skin-pika .jcarousel-container-vertical { width: 90px; height: 350px; padding: 20px 20px;}
+.jcarousel-skin-pika .jcarousel-clip-horizontal {height: 90px; width: 460px;}
+.jcarousel-skin-pika .jcarousel-clip-vertical { width:  90px; height: 350px;}
+.jcarousel-skin-pika .jcarousel-item-horizontal { margin-right: 10px;}
+.jcarousel-skin-pika .jcarousel-item-vertical {margin-bottom: 10px;}
+.jcarousel-skin-pika .jcarousel-item-placeholder {background: #fff; color: #000;}
+
+
+
+div.actifstep{
+    background-image: url(../images/step_actif.png);
+    background-repeat: no-repeat;
+    width: 154 px;
+    height: 52px;    
+    color: #FFFFFF;
+    font-family: TAHOMA;
+    font-size: 10pt;
+    font-weight: bold;    
+    display: block;
+    padding-top: 5px;
+}
+
+div.inactifstep{
+    background-image: url(../images/step_inactif.png);
+    background-repeat: no-repeat;
+    width: 156 px;
+    height: 52px;
+    color: #000000;
+    font-family: TAHOMA;
+    font-size: 10pt;
+    font-weight: bold;
+    display: block;
+    padding-top: 5px;
 }
