@@ -33,8 +33,8 @@ CarPays:
 
 CarType:
    neuf:
-     title: NEUF
-     description: Neuve
+     title: CONC
+     description: Chez concessionnaire
      active:    1
    occasion:
      title: OCCA
@@ -43,6 +43,10 @@ CarType:
    location:
      title: LOCA
      description: De location
+     active:    1
+   collection:
+     title: COLL
+     description: Voiture de collection
      active:    1
      
 
@@ -66,12 +70,32 @@ CarEtat:
    acc:
      title: Accidentée
      description: Voiture accidentée
-     active:    1          
+     active:    1
 
 CarMarque:
    renault:
      title: Renault
      imagelittle: renault.png
+     active:    1
+   alfa:
+     title: Alfa Romeo
+     imagelittle: alpha_romeo.png
+     active:    1
+
+CarMoteur:
+   diesel:
+     title: Diesel
+     active:    1
+   essence:
+     title: Essence
+     active:    1
+
+CarBoite:
+   diesel:
+     title: Manuelle
+     active:    1
+   essence:
+     title: Automatique
      active:    1
 
 
