@@ -19,9 +19,7 @@
 
 <script type="text/javascript" src="/car/web/js/ext/ext-all.js"></script>
 
-<script type="text/javascript" src="/car/web/js/ext/combos/states.js"></script>
-<script type="text/javascript" src="/car/web/js/ext/combos/combos.js"></script>
-<link rel="stylesheet" type="text/css" href="/car/web/js/ext/combos/combos.css" />
+
 
 <link href="/car/web/css/dropdown/dropdown.css" media="all" rel="stylesheet" type="text/css" />
 <link href="/car/web/css/dropdown/themes/default/default.ultimate.css" media="all" rel="stylesheet" type="text/css" />
@@ -49,7 +47,7 @@
 <script type="text/javascript" src="/car/web/js/car/shadedborder.js"></script>
 <!-- DOJO -->
 <style type='text/css'>
-@import '/car/web/js/dojo/dijit/themes/claro/claro.css';
+@import '/car/web/js/dojo/dijit/themes/soria/soria.css';
 
 @import '/car/web/js/dojo/resources/dojo.css';
 
@@ -71,7 +69,7 @@ html,body {
 /* or whatever we might need tomorrow */ 
 </style><![endif]-->
 
-<script type='text/javascript'	src='/car/web/js/dojo/dojo/dojo.js'	djConfig='parseOnLoad: false'></script>
+<script type='text/javascript'	src='/car/web/js/dojo/dojo/dojo.js'	djConfig='parseOnLoad: true'></script>
 
 
 <script type='text/javascript'>  
