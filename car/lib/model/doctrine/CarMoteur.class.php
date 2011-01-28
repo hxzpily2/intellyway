@@ -15,4 +15,9 @@ class CarMoteur extends BaseCarMoteur
 	public function __toString(){
 		return $this->getTitle();
 	}
+
+        public static function getAll(){
+            $q = Doctrine_Query::create ()->from ( 'CarMoteur c' )->where("c.active = 1");
+            return $q->execute ();
+        }
 }

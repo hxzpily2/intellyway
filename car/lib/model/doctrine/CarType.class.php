@@ -15,4 +15,9 @@ class CarType extends BaseCarType
 	public function __toString(){
 		return $this->getDescription();
 	}
+
+        public static function getAllTypes(){
+            $q = Doctrine_Query::create ()->from ( 'CarType c' )->where("c.active = 1");
+            return $q->execute ();
+        }
 }

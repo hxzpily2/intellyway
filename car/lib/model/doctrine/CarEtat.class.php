@@ -15,4 +15,9 @@ class CarEtat extends BaseCarEtat
 	public function __toString(){
 		return $this->getTitle();
 	}
+
+        public static function getAllEtats(){
+            $q = Doctrine_Query::create ()->from ( 'CarEtat c' )->where("c.active = 1");
+            return $q->execute ();
+        }
 }

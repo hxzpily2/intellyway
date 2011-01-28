@@ -15,4 +15,9 @@ class CarCarosserie extends BaseCarCarosserie
 	public function __toString(){
 		return $this->getTitle();
 	}
+
+        public static function getAll(){
+            $q = Doctrine_Query::create ()->from ( 'CarCarosserie c' )->where("c.active = 1");
+            return $q->execute ();
+        }
 }

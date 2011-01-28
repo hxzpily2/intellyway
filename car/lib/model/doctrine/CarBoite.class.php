@@ -15,4 +15,9 @@ class CarBoite extends BaseCarBoite
 	public function __toString(){
 		return $this->getTitle();
 	}
+
+        public static function getAll(){
+            $q = Doctrine_Query::create ()->from ( 'CarBoite c' )->where("c.active = 1");
+            return $q->execute ();
+        }
 }
