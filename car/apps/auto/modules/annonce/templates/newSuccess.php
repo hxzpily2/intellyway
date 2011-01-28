@@ -1,3 +1,8 @@
+<link rel="stylesheet" type="text/css" href="/car/web/js/ext/spiner/Spinner.css" />
+<script type="text/javascript" src="/car/web/js/ext/spiner/Spinner.js"></script>
+<script type="text/javascript" src="/car/web/js/ext/spiner/SpinnerField.js"></script>
+
+
 <script type='text/javascript' src='/car/web/js/jquery/jquery.scrollTo-min.js'></script>
 <script type="text/javascript" src="/car/web/js/ext/combos/states.js"></script>
 <script type="text/javascript" src="/car/web/js/ext/combos/combos.js"></script>
@@ -347,7 +352,7 @@
                     <td width="5"></td>
                     <td>
                         <div>
-                            <input id="anneegarantie" name="anneegarantie" type="text" size="20"/>
+                            <input id="anneegarantie" name="anneegarantie" type="text" size="20" value="0"/>
                         </div>
                     </td>
                 </tr>
