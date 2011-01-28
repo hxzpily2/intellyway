@@ -311,4 +311,14 @@ class annonceActions extends sfActions
   {
     return Doctrine::getTable('CarAuto')->hasColumn($column);
   }
+
+  public function executeMarquesjson(sfWebRequest $request)
+  {
+    $this->setTemplate('marquesjson');
+  }
+
+  public function executeShow(sfWebRequest $request)
+  {
+    
+  }
 }
