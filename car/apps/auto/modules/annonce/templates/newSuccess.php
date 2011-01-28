@@ -616,7 +616,7 @@
                 <table id="buttonsBlockPhotos">
                         <tr>
                             <td><div id="carBack1" onclick="javascript:commun.showMsgBlock()"><label class="buttonLabel">Annuler</label></div></td>
-                            <td style="background-image: url(/car/web/images/pixeldot.png)">&nbsp;</td>
+                            <td></td>
                             <td><div id="carBack1" onclick="javascript:commun.hidePhotosBlock()"><label class="buttonLabel">Retour</label></div></td>
                             <td></td>
                             <td><div id="carValider" onclick="javascript:commun.showPhotosBlock()"><label class="buttonLabel">Suivant &raquo;</label></div></td>
