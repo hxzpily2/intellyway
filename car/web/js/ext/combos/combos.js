@@ -229,5 +229,18 @@ Ext.onReady(function(){
         decimalPrecision : 3,
         applyTo: 'prixstart'
     });
+
+
+    var combo = new Ext.ux.form.SpinnerField({
+        store: dsMoteur,
+        displayField: "name",
+        valueField: "id",
+        hiddenName: 'car_auto[anneegarantie]',
+        typeAhead: true,
+        selectOnFocus:true,
+        width:100,
+        minValue: 0,
+        applyTo: 'anneegarantie'
+    });
     
 });
