@@ -347,7 +347,7 @@
                     <td width="5"></td>
                     <td>
                         <div>
-                            <input type="text" size="20"/>
+                            <input id="anneegarantie" name="anneegarantie" type="text" size="20"/>
                         </div>
                     </td>
                 </tr>
