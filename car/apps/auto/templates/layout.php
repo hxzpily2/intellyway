@@ -166,7 +166,7 @@ dojo.addOnLoad(
 			    	<li>
 			        	<div class="item">
 							<div class="leftItem leftFloat"><a href="#" title=""></a></div>
-							<div class="bgItem"><a href="#" title="">Home</a></div>
+							<div class="bgItem"><a href="#" title="">Accueil</a></div>
 							<div class="rightItem rightFloat"><a href="#" title=""></a></div>
 						</div>
 			        </li>
@@ -338,6 +338,17 @@ dojo.addOnLoad(
 		</div>
 		<div id="footerOutside">
 			<div id="footer">
+                            <table width="100%" height="100%" cellpadding="0" cellspacing="0" border="0">
+                                <tr>
+                                    <td>
+                                        &nbsp;
+                                    </td>
+                                    <td width="1"><img src="/car/web/images/footer_sep.png"/></td>
+                                    <td width="300">
+                                        &nbsp;
+                                    </td>
+                                </tr>
+                            </table>
 				<!-- <ul class="nav">
 					<li><a href="#">contact</a></li>
 					<li><a href="#">forum</a>|</li>

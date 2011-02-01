@@ -237,7 +237,11 @@
                                         <td><img src="/car/web/images/fleche3.png"/></td>
                                         <td><span style="font-family: TAHOMA;font-weight: normal;color: #C61B00;">Puissance fiscale</span></td>
                                         <td width="5"></td>
-                                        <td><?php echo $form['idcarosserie']->render(); ?></td>
+                                        <td>
+                                            <div>
+                                                <input type="text" id="pfiscale" name="pfiscale" size="20"/>
+                                            </div>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td colspan="4" style="height: 10px;background-image: url(/car/web/images/pixeldot.png)">&nbsp;</td>
@@ -246,7 +250,11 @@
                                         <td><img src="/car/web/images/fleche3.png"/></td>
                                         <td><span style="font-family: TAHOMA;font-weight: normal;color: #C61B00;">Cylindres</span></td>
                                         <td width="5"></td>
-                                        <td><?php echo $form['idcarosserie']->render(); ?></td>
+                                        <td>
+                                            <div>
+                                                <input type="text" id="cylindres" name="cylindres" size="20"/> CC
+                                            </div>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td colspan="4" style="height: 10px;background-image: url(/car/web/images/pixeldot.png)">&nbsp;</td>
@@ -255,7 +263,11 @@
                                         <td><img src="/car/web/images/fleche3.png"/></td>
                                         <td><span style="font-family: TAHOMA;font-weight: normal;color: #C61B00;">Nombre de portes</span></td>
                                         <td width="5"></td>
-                                        <td><?php echo $form['idcarosserie']->render(); ?></td>
+                                        <td>
+                                            <div>
+                                                <input type="text" id="nbportes" name="nbportes" size="20"/>
+                                            </div>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td colspan="4" style="height: 10px;background-image: url(/car/web/images/pixeldot.png)">&nbsp;</td>
@@ -699,7 +711,12 @@
                     </tr>
                 </table>
                 <center>
-                    <object height="250" width="300" id="pub_Flash3914460" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000">  <param value="always" name="allowScriptAccess"> <param value="http://akamai.smartadserver.com/diff/2/966929/300x250videoLEFIGARO.swf" name="movie">  <param value="target=_blank&amp;clicktag=http%3A//ad.fr.doubleclick.net/click%3Bh%3Dv8/3aa0/3/0/*/d%3B235323533%3B0-0%3B0%3B40176023%3B4307-300/250%3B40368753/40386540/1%3B%3B%7Esscs%3D%3Fhttp%3A//www.smartadserver.com/diff/2/966929/go1.asp%3F966929%253B113%253B8166596871963398825%253B466679%253BM%253B3914460%253Bclickvars%3D&amp;clickTag=http%3A//ad.fr.doubleclick.net/click%3Bh%3Dv8/3aa0/3/0/*/d%3B235323533%3B0-0%3B0%3B40176023%3B4307-300/250%3B40368753/40386540/1%3B%3B%7Esscs%3D%3Fhttp%3A//www.smartadserver.com/diff/2/966929/go1.asp%3F966929%253B113%253B8166596871963398825%253B466679%253BM%253B3914460%253Bclickvars%3D&amp;clickTAG=http%3A//ad.fr.doubleclick.net/click%3Bh%3Dv8/3aa0/3/0/*/d%3B235323533%3B0-0%3B0%3B40176023%3B4307-300/250%3B40368753/40386540/1%3B%3B%7Esscs%3D%3Fhttp%3A//www.smartadserver.com/diff/2/966929/go1.asp%3F966929%253B113%253B8166596871963398825%253B466679%253BM%253B3914460%253Bclickvars%3D" name="flashvars">  <param value="high" name="quality">  <param value="Opaque" name="wmode">  <embed height="250" width="300" pluginspage="http://www.adobe.com/go/getflashplayer" type="application/x-shockwave-flash" allowscriptaccess="always" wmode="Opaque" quality="high" swliveconnect="true" flashvars="target=_blank&amp;clicktag=http%3A//ad.fr.doubleclick.net/click%3Bh%3Dv8/3aa0/3/0/*/d%3B235323533%3B0-0%3B0%3B40176023%3B4307-300/250%3B40368753/40386540/1%3B%3B%7Esscs%3D%3Fhttp%3A//www.smartadserver.com/diff/2/966929/go1.asp%3F966929%253B113%253B8166596871963398825%253B466679%253BM%253B3914460%253Bclickvars%3D&amp;clickTag=http%3A//ad.fr.doubleclick.net/click%3Bh%3Dv8/3aa0/3/0/*/d%3B235323533%3B0-0%3B0%3B40176023%3B4307-300/250%3B40368753/40386540/1%3B%3B%7Esscs%3D%3Fhttp%3A//www.smartadserver.com/diff/2/966929/go1.asp%3F966929%253B113%253B8166596871963398825%253B466679%253BM%253B3914460%253Bclickvars%3D&amp;clickTAG=http%3A//ad.fr.doubleclick.net/click%3Bh%3Dv8/3aa0/3/0/*/d%3B235323533%3B0-0%3B0%3B40176023%3B4307-300/250%3B40368753/40386540/1%3B%3B%7Esscs%3D%3Fhttp%3A//www.smartadserver.com/diff/2/966929/go1.asp%3F966929%253B113%253B8166596871963398825%253B466679%253BM%253B3914460%253Bclickvars%3D" src="http://akamai.smartadserver.com/diff/2/966929/300x250videoLEFIGARO.swf" id="pub_Flash3914460" name="pub_Flash3914460">  </object>
+                    <object height="180" width="300" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,0,0" classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000">
+                        <param value="always" name="allowScriptAccess">
+                        <param value="http://medias.autoplus.fr/swf/top-renault/300x180-jean-hubert.swf?clickTag=http%3A%2F%2Fpetites-annonces.autoplus.fr%2Ftoprenault" name="movie">
+                        <param value="high" name="quality">
+                        <embed height="180" align="middle" width="300" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" allowfullscreen="false" allowscriptaccess="sameDomain" quality="high" src="http://medias.autoplus.fr/swf/top-renault/300x180-jean-hubert.swf?clickTag=http%3A%2F%2Fpetites-annonces.autoplus.fr%2Ftoprenault">
+                    </object>
                 </center>
                 <br/><br/>
                 <center>

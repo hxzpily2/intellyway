@@ -256,5 +256,57 @@ Ext.onReady(function(){
         width:200,
         applyTo: 'idmodele'
     });
+
+    var combo = new Ext.form.NumberField({
+        store: dsMoteur,
+        displayField: "name",
+        valueField: "id",
+        hiddenName: 'car_auto[cylindres]',
+        typeAhead: true,
+        selectOnFocus:true,
+        width:100,
+        decimalPrecision : 3,
+        applyTo: 'cylindres'
+    });
+
+    var storeFiscale = new Ext.data.ArrayStore({
+        fields: ['id', 'name',],
+        data : Ext.exampledata.fiscale // from states.js
+    });
+
+    var combo = new Ext.form.ComboBox({
+        store: storeFiscale,
+        displayField: "name",
+        valueField: "id",
+        hiddenName: 'car_auto[pfiscale]',
+        typeAhead: true,
+        mode: 'local',
+        forceSelection: true,
+        triggerAction: 'all',
+        emptyText:'Puissance fiscale...',
+        selectOnFocus:true,
+        width:200,
+        applyTo: 'pfiscale'
+    });
+
+    var storePortes = new Ext.data.ArrayStore({
+        fields: ['id', 'name',],
+        data : Ext.exampledata.portes // from states.js
+    });
+
+    var combo = new Ext.form.ComboBox({
+        store: storePortes,
+        displayField: "name",
+        valueField: "id",
+        hiddenName: 'car_auto[nbportes]',
+        typeAhead: true,
+        mode: 'local',
+        forceSelection: true,
+        triggerAction: 'all',
+        emptyText:'Nombre de portes...',
+        selectOnFocus:true,
+        width:200,
+        applyTo: 'nbportes'
+    });
     
 });
