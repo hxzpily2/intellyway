@@ -322,5 +322,20 @@ dojo.declare("car.integration.Commun",[],{
             width:200,
             applyTo: 'car_auto[idmarque]'
         });
+    },
+    showServicesBlock : function () {
+        dojo.style(dojo.byId("blockServices"), 'display', '');
+        dojo.style(dojo.byId("blockPhotos"), 'display', 'none');
+        dojo.style(dojo.byId("buttonsBlockPhotos"), 'display', 'none');
+        var $target = $('#autoDiv');
+        $(document).stop().scrollTo( $target , 800 );
+    },
+
+    hideServicesBlock : function () {
+        dojo.style(dojo.byId("blockPhotos"), 'display', '');
+        dojo.style(dojo.byId("blockServices"), 'display', 'none');
+        dojo.style(dojo.byId("buttonsBlockPhotos"), 'display', '');        
+        var $target = $('#autoDiv');
+        $(document).stop().scrollTo( $target , 800 );
     }
 });

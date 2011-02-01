@@ -98,6 +98,17 @@ CarBoite:
      title: Automatique
      active:    1
 
+CarTypeAccessoire:
+   interne:
+     title: EQUIPEMENTS EXTÉRIEURS
+     active:    1
+   externe:
+     title: EQUIPEMENTS FONCTIONNELS
+     active:    1
+   securite:
+     title: EQUIPEMENTS DE SÉCURITÉ
+     active:    1
+
 
 #CarMarque:
 #  Renault:
