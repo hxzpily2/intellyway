@@ -242,5 +242,19 @@ Ext.onReady(function(){
         minValue: 0,
         applyTo: 'anneegarantie'
     });
+
+    var combo = new Ext.form.ComboBox({
+        displayField: "name",
+        valueField: "id",
+        hiddenName: 'car_auto[idmodele]',
+        typeAhead: true,
+        mode: 'local',
+        forceSelection: true,
+        triggerAction: 'all',
+        emptyText:'Selectionner un modèle...',
+        selectOnFocus:true,
+        width:200,
+        applyTo: 'idmodele'
+    });
     
 });

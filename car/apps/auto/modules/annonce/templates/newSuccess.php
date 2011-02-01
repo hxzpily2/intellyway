@@ -57,6 +57,7 @@
     <tr>
         <td width="630" valign="top">
                     <div id="autoDiv">
+                        <img src="/car/web/images/banner.png" />
                         <br/><br/>
                         <span style="font-family: TAHOMA;font-weight: bold;">Voici quelques conseils pour rendre votre annonce de plus en plus attirante vis &aacute; vis des futurs acheteurs :</span>
                         <br/><br/>
@@ -122,13 +123,9 @@
                                         <td align="left"><span style="font-family: TAHOMA;font-weight: normal;color: #C61B00;">Mod&egrave;le</span></td>
                                         <td width="5"></td>
                                         <td align="left">
-                                            <select id="car_auto[idmodele]" name="car_auto[idmodele]" >
-                                                    <option value="<?php echo Constantes::PROFIL_USER;?>">&nbsp;</option>
-                                                    <option value="<?php echo Constantes::PROFIL_USER;?>">Un particulier</option>
-                                                    <option value="<?php echo Constantes::PROFIL_CONC;?>">Un concessionnaire</option>
-                                                    <option value="<?php echo Constantes::PROFIL_PROF;?>">Un professionnel</option>
-                                                    <option value="<?php echo Constantes::PROFIL_LOC;?>">Une agence de location</option>
-                                            </select>
+                                            <div>
+                                                <input type="text" id="idmodele" name="idmodele" size="20"/>
+                                            </div>                                            
                                         </td>
                                     </tr>
                                     <tr>
@@ -660,7 +657,18 @@
             <td valign="top" style="padding-left: 10px;" width="300">
                 <br/>
                 <div id="right_tab1">
-                <br/><br/><br/>
+                    <br/>
+                        <table width="100%">
+                            <tr>
+                                <td width="49"><img src="/car/web/images/lien_utile.png" width="49"/></td>
+                                <td width="20" valign="middle" align="center"></td>
+                                <td width="100%" valign="middle"><span style="font-weight: bold;color: #C61B00;font-size: 10pt;">Liens utiles</span></td>
+                            </tr>                            
+                            <!--<tr>
+                                <td style="background-image: url(/car/web/images/limH.png);background-repeat: repeat-x;background-position: center;">&nbsp;</td>
+                            </tr>!-->
+                        </table>
+                        <br/>
                         <table>
                             <tr>
                                 <td width="10" valign="top" style="padding-top: 5px;"><img src="/car/web/images/red_fleche.png"/></td>
@@ -680,6 +688,16 @@
                         </table>                
                 </div>
                 <br/><br/>
+                <table width="100%">
+                    <tr>
+                        <td width="32"><img src="/car/web/images/adversiting.png" width="32"/></td>
+                        <td width="20" valign="middle" align="center"><img src="/car/web/images/limV.png"/></td>
+                        <td valign="middle"><span style="font-weight: bold;color: #C61B00;font-size: 10pt;">Publicit&eacute;</span></td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" align="center"><img src="/car/web/images/shadowH.png"/></td>
+                    </tr>
+                </table>
                 <center>
                     <object height="250" width="300" id="pub_Flash3914460" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000">  <param value="always" name="allowScriptAccess"> <param value="http://akamai.smartadserver.com/diff/2/966929/300x250videoLEFIGARO.swf" name="movie">  <param value="target=_blank&amp;clicktag=http%3A//ad.fr.doubleclick.net/click%3Bh%3Dv8/3aa0/3/0/*/d%3B235323533%3B0-0%3B0%3B40176023%3B4307-300/250%3B40368753/40386540/1%3B%3B%7Esscs%3D%3Fhttp%3A//www.smartadserver.com/diff/2/966929/go1.asp%3F966929%253B113%253B8166596871963398825%253B466679%253BM%253B3914460%253Bclickvars%3D&amp;clickTag=http%3A//ad.fr.doubleclick.net/click%3Bh%3Dv8/3aa0/3/0/*/d%3B235323533%3B0-0%3B0%3B40176023%3B4307-300/250%3B40368753/40386540/1%3B%3B%7Esscs%3D%3Fhttp%3A//www.smartadserver.com/diff/2/966929/go1.asp%3F966929%253B113%253B8166596871963398825%253B466679%253BM%253B3914460%253Bclickvars%3D&amp;clickTAG=http%3A//ad.fr.doubleclick.net/click%3Bh%3Dv8/3aa0/3/0/*/d%3B235323533%3B0-0%3B0%3B40176023%3B4307-300/250%3B40368753/40386540/1%3B%3B%7Esscs%3D%3Fhttp%3A//www.smartadserver.com/diff/2/966929/go1.asp%3F966929%253B113%253B8166596871963398825%253B466679%253BM%253B3914460%253Bclickvars%3D" name="flashvars">  <param value="high" name="quality">  <param value="Opaque" name="wmode">  <embed height="250" width="300" pluginspage="http://www.adobe.com/go/getflashplayer" type="application/x-shockwave-flash" allowscriptaccess="always" wmode="Opaque" quality="high" swliveconnect="true" flashvars="target=_blank&amp;clicktag=http%3A//ad.fr.doubleclick.net/click%3Bh%3Dv8/3aa0/3/0/*/d%3B235323533%3B0-0%3B0%3B40176023%3B4307-300/250%3B40368753/40386540/1%3B%3B%7Esscs%3D%3Fhttp%3A//www.smartadserver.com/diff/2/966929/go1.asp%3F966929%253B113%253B8166596871963398825%253B466679%253BM%253B3914460%253Bclickvars%3D&amp;clickTag=http%3A//ad.fr.doubleclick.net/click%3Bh%3Dv8/3aa0/3/0/*/d%3B235323533%3B0-0%3B0%3B40176023%3B4307-300/250%3B40368753/40386540/1%3B%3B%7Esscs%3D%3Fhttp%3A//www.smartadserver.com/diff/2/966929/go1.asp%3F966929%253B113%253B8166596871963398825%253B466679%253BM%253B3914460%253Bclickvars%3D&amp;clickTAG=http%3A//ad.fr.doubleclick.net/click%3Bh%3Dv8/3aa0/3/0/*/d%3B235323533%3B0-0%3B0%3B40176023%3B4307-300/250%3B40368753/40386540/1%3B%3B%7Esscs%3D%3Fhttp%3A//www.smartadserver.com/diff/2/966929/go1.asp%3F966929%253B113%253B8166596871963398825%253B466679%253BM%253B3914460%253Bclickvars%3D" src="http://akamai.smartadserver.com/diff/2/966929/300x250videoLEFIGARO.swf" id="pub_Flash3914460" name="pub_Flash3914460">  </object>
                 </center>
