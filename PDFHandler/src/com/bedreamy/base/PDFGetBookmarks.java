@@ -96,7 +96,7 @@ public class PDFGetBookmarks {
 				
 			    document.getDocumentCatalog().getPages().getAllKids(allpages);
 				PDDocumentOutline root = document.getDocumentCatalog().getDocumentOutline();
-				PDOutlineItem item = root.getFirstChild();
+				
 				
 				String nbPages = new Integer(allpages.size()).toString();
 				String titre = document.getDocumentInformation().getTitle();
@@ -148,53 +148,57 @@ public class PDFGetBookmarks {
 				sortieInfo.write(xml);
 				sortieInfo.close();
 				
-				while (item != null) {
-					BookmarkItem bookItem = new BookmarkItem();
-					bookItem.id = (count++).toString();
-					bookItem.name = item.getTitle();
-					bookItem.page = allpages.indexOf(item.findDestinationPage(document))+1;
-					bookItem.type = BookmarkItem.CHAPTER;
-					items.add(bookItem);
-					bookItem.children = getJsonTreeForChild(item,allpages,document);					
-					item = item.getNextSibling();
-				}
 				
 				String json = "";
 				json+="{ identifier: 'id',\n"+
 					  "label: 'name',\n"+
 					  "items: [\n";
-				for(int i=0;i<items.size();i++){
-					BookmarkItem bookItemtem = new BookmarkItem();
-					bookItemtem = (BookmarkItem) items.get(i);
-					json+="{id : '"+i+"',\n";
-					if(bookItemtem.children.size()>0){
-						json+="type:'"+bookItemtem.type+"',";
-					}else{
-						json+="type:'"+bookItemtem.type+"',";
-					}
-					json+=	  "page : '"+bookItemtem.page+"',\n"+
-						  "name: '"+HTMLEntities.forJSON(bookItemtem.name)+"'\n";
-					
-						  
-					if(bookItemtem.children.size()>0){
-						json+=",children: [\n";
-						for (int j = 0; j < bookItemtem.children.size(); j++) {
-							if(j==0)
-								json+="{_reference:'"+bookItemtem.children.get(j)+"'}";
-							else
-								json+=",{_reference:'"+bookItemtem.children.get(j)+"'}";
-						}
-						json+="]";
-					}
-					
-					if(i==items.size()-1)
-						json+="}\n";
-					else
-						json+="},\n";
-					
-				}
-				json+="]}";
 				
+				if(root!=null){
+					PDOutlineItem item = root.getFirstChild();
+					while (item != null) {
+						BookmarkItem bookItem = new BookmarkItem();
+						bookItem.id = (count++).toString();
+						bookItem.name = item.getTitle();
+						bookItem.page = allpages.indexOf(item.findDestinationPage(document))+1;
+						bookItem.type = BookmarkItem.CHAPTER;
+						items.add(bookItem);
+						bookItem.children = getJsonTreeForChild(item,allpages,document);					
+						item = item.getNextSibling();
+					}
+					
+					
+					for(int i=0;i<items.size();i++){
+						BookmarkItem bookItemtem = new BookmarkItem();
+						bookItemtem = (BookmarkItem) items.get(i);
+						json+="{id : '"+i+"',\n";
+						if(bookItemtem.children.size()>0){
+							json+="type:'"+bookItemtem.type+"',";
+						}else{
+							json+="type:'"+bookItemtem.type+"',";
+						}
+						json+=	  "page : '"+bookItemtem.page+"',\n"+
+							  "name: '"+HTMLEntities.forJSON(bookItemtem.name)+"'\n";
+						
+							  
+						if(bookItemtem.children.size()>0){
+							json+=",children: [\n";
+							for (int j = 0; j < bookItemtem.children.size(); j++) {
+								if(j==0)
+									json+="{_reference:'"+bookItemtem.children.get(j)+"'}";
+								else
+									json+=",{_reference:'"+bookItemtem.children.get(j)+"'}";
+							}
+							json+="]";
+						}
+						
+						if(i==items.size()-1)
+							json+="}\n";
+						else
+							json+="},\n";						
+					}					
+				}				
+				json+="]}";
 				FileWriter sortie = new FileWriter(destination);
 				sortie.write(json);
 				sortie.close();				
