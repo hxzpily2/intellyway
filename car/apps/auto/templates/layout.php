@@ -346,7 +346,7 @@ dojo.addOnLoad(
                                     <td width="1"><img src="/car/web/images/footer_sep.png"/></td>
                                     <td width="300" valign="top">
                                         <table cellpadding="0" cellspacing="0" border="0" width="100%">
-                                            <tr height="20">
+                                            <tr height="40">
                                                 <td colspan="3"></td>
                                             </tr>
                                             <tr>
@@ -362,11 +362,16 @@ dojo.addOnLoad(
                                                 <td>
                                                     <table cellpadding="0" cellspacing="0" border="0">
                                                         <tr>
-                                                            <td valign="top"><span style="font-size: 11pt;color:#2380ff;font-weight: bold;text-shadow:0 -1px 0 #000000;">Envoyer</span><span style="font-size: 11pt;color:#FFFFFF;font-weight: bold;">&nbsp;&agrave; un ami</span></td>
+                                                            <td valign="top"><img src="/car/web/images/sendToFriendLbl.png"/><br style="line-height: 3px;"/><br style="line-height: 3px;"/></td>
                                                         </tr>
                                                         <tr>
                                                             <td valign="top">
-                                                                <input type="text" id="pass" value="" style="width: 120px; height: 18px;" class="header_textbox"/>
+                                                                <table>
+                                                                    <tr>
+                                                                        <td valign="middle"><input type="text" id="pass" value="" style="width: 120px; height: 18px;" class="header_textbox"/></td>
+                                                                        <td valign="middle"><img src="/car/web/images/tellOK.png"/></td>
+                                                                    </tr>
+                                                                </table>
                                                             </td>
                                                         </tr>
                                                     </table>
