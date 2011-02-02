@@ -153,7 +153,7 @@ dojo.addOnLoad(
 	<div id="maincontent">
 		<div style="width: 100%;z-index: -5">
 			<div id="topnav" class="topnav" style="background-color: white;">			   		   	
-			   <div class="mySigninLabel">Have an account?</div>
+			   <div class="mySigninLabel">Vous avez un compte?</div>
 			   <div class="mySignin">Login</div>			   					   		    
 			</div>
 			<div id="topMenu">			
@@ -338,14 +338,41 @@ dojo.addOnLoad(
 		</div>
 		<div id="footerOutside">
 			<div id="footer">
-                            <table width="100%" height="100%" cellpadding="0" cellspacing="0" border="0">
+                            <table width="100%" height="100%" cellpadding="0" cellspacing="0" border="0">                                
                                 <tr>
                                     <td>
                                         &nbsp;
                                     </td>
                                     <td width="1"><img src="/car/web/images/footer_sep.png"/></td>
-                                    <td width="300">
-                                        &nbsp;
+                                    <td width="300" valign="top">
+                                        <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                                            <tr height="20">
+                                                <td colspan="3"></td>
+                                            </tr>
+                                            <tr>
+                                                <td width="10" valign="top">
+                                                    &nbsp;
+                                                </td>
+                                                <td width="82" valign="top">
+                                                    <img src="/car/web/images/sendToFriend.png"/>
+                                                </td>
+                                                <td width="10" valign="top">
+                                                    &nbsp;
+                                                </td>
+                                                <td>
+                                                    <table cellpadding="0" cellspacing="0" border="0">
+                                                        <tr>
+                                                            <td valign="top"><span style="font-size: 11pt;color:#2380ff;font-weight: bold;text-shadow:0 -1px 0 #000000;">Envoyer</span><span style="font-size: 11pt;color:#FFFFFF;font-weight: bold;">&nbsp;&agrave; un ami</span></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td valign="top">
+                                                                <input type="text" id="pass" value="" style="width: 120px; height: 18px;" class="header_textbox"/>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </table>
                                     </td>
                                 </tr>
                             </table>
