@@ -1303,3 +1303,11 @@ padding: 0 !important;
     min-height: 177px;
     padding-left: 20px;
 }
+
+.header_textbox {
+	background-color:#111923;
+	border:1px solid #414953;
+	color:#7F8690;
+	font-family:tahoma;
+	font-size:10px;
+}
