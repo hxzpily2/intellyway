@@ -123,8 +123,9 @@
                                         <td align="left"><span style="font-family: TAHOMA;font-weight: normal;color: #C61B00;">Mod&egrave;le</span></td>
                                         <td width="5"></td>
                                         <td align="left">
-                                            <div>
-                                                <input type="text" id="idmodele" name="idmodele" size="20"/>
+                                            <img src="/car/web/images/loaderS.gif" id="loaderModele" style="display: none;"/>
+                                            <div id="divModele">
+                                                <input type="text" id="idmodele" name="idmodele" size="20" />
                                             </div>                                            
                                         </td>
                                     </tr>
@@ -162,9 +163,70 @@
                                         <td align="left"><span style="font-family: TAHOMA;font-weight: normal;color: #C61B00;">Carrosserie</span></td>
                                         <td width="5"></td>
                                         <td align="left">
-                                            <div>
-                                                <input type="text" id="idcarosserie" name="idcarosserie" size="20"/>
-                                            </div>
+                                            <table class="soria">
+                                                <tr>
+                                                    <td>
+                                                        <img src="/car/web/uploads/carosserie/monospace.png"/>
+                                                        <center><span>Monospaces</span></center>
+                                                        <center><input dojoType="dijit.form.RadioButton" type="radio" name="car_auto[idcarosserie]" id="caro1" value="0"></center>
+                                                        <br style="line-height: 10px;"/>
+                                                    </td>
+                                                    <td width="10"></td>
+                                                    <td>
+                                                        <img src="/car/web/uploads/carosserie/44.png"/>
+                                                        <center><span>4x4</span></center>
+                                                        <center><input dojoType="dijit.form.RadioButton" type="radio" name="car_auto[idcarosserie]" id="caro2" value="0"></center>
+                                                        <br style="line-height: 10px;"/>
+                                                    </td>
+                                                    <td width="10"></td>
+                                                    <td>
+                                                        <img src="/car/web/uploads/carosserie/util.png"/>
+                                                        <center><span>Utilitaires</span></center>
+                                                        <center><input dojoType="dijit.form.RadioButton" type="radio" name="car_auto[idcarosserie]" id="caro3" value="0"></center>
+                                                        <br style="line-height: 10px;"/>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <img src="/car/web/uploads/carosserie/break.png"/>
+                                                        <center><span>Breaks</span></center>
+                                                        <center><input dojoType="dijit.form.RadioButton" type="radio" name="car_auto[idcarosserie]" id="caro4" value="0"></center>
+                                                        <br style="line-height: 10px;"/>
+                                                    </td>
+                                                    <td width="10"></td>
+                                                    <td>
+                                                        <img src="/car/web/uploads/carosserie/cab.png"/>
+                                                        <center><span>Cabriolets</span></center>
+                                                        <center><input dojoType="dijit.form.RadioButton" type="radio" name="car_auto[idcarosserie]" id="caro5" value="0"></center>
+                                                        <br style="line-height: 10px;"/>
+                                                    </td>
+                                                    <td width="10"></td>
+                                                    <td>
+                                                        <img src="/car/web/uploads/carosserie/coupe.png"/>
+                                                        <center><span>Coupés</span></center>
+                                                        <center><input dojoType="dijit.form.RadioButton" type="radio" name="car_auto[idcarosserie]" id="caro6" value="0"></center>
+                                                        <br style="line-height: 10px;"/>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <img src="/car/web/uploads/carosserie/berline.png"/>
+                                                        <center><span>Berlines</span></center>
+                                                        <center><input dojoType="dijit.form.RadioButton" type="radio" name="car_auto[idcarosserie]" id="caro7" value="0"></center>
+                                                        <br style="line-height: 10px;"/>
+                                                    </td>
+                                                    <td width="10"></td>
+                                                    <td>
+                                                        <img src="/car/web/uploads/carosserie/citadine.png"/>
+                                                        <center><span>Citadines</span></center>
+                                                        <center><input dojoType="dijit.form.RadioButton" type="radio" name="car_auto[idcarosserie]" id="caro8" value="0"></center>
+                                                        <br style="line-height: 10px;"/>
+                                                    </td>
+                                                    <td width="10"></td>
+                                                    <td></td>
+                                                </tr>
+                                            </table>
+                                            
                                         </td>
                                     </tr>
                                     <tr>
@@ -276,7 +338,11 @@
                                         <td><img src="/car/web/images/fleche3.png"/></td>
                                         <td><span style="font-family: TAHOMA;font-weight: normal;color: #C61B00;">Couleur</span></td>
                                         <td width="5"></td>
-                                        <td><?php echo $form['idcarosserie']->render(); ?></td>
+                                        <td>
+                                            <div>
+                                                <input type="text" id="idcouleur" name="idcouleur" size="20"/>
+                                            </div>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td colspan="4" style="height: 10px;background-image: url(/car/web/images/pixeldot.png)">&nbsp;</td>
@@ -646,7 +712,27 @@
                                             <td><div class="actifstep" style="width: 154px;height: 52px;"><center>Services <br/> PauseAuto</center></div></td>
                                         </tr>
                                     </table>
-                                    
+                                    <br/><br/>                                    
+                                    <table align="center" cellpadding="0" cellspacing="0" id="price-chart" class="soria" width="100%">
+                                          <tbody>                                            
+                                            <tr class="blue" height="125">
+                                              <td width="131" class="ligne3-col1">&nbsp;</td>
+                                              <td class="ligne3-col2" width="10">&nbsp;</td>
+                                              <td class="ligne3-col3">waived</td>
+                                            </tr>
+                                            <tr class="yellow" height="125">
+                                              <td class="ligne2-col1">&nbsp;</td>
+                                              <td class="ligne2-col2">&nbsp;</td>
+                                              <td class="ligne2-col3">&nbsp;</td>
+                                            </tr>
+                                            <tr class="red" height="125">
+                                              <td class="ligne1-col1">&nbsp;</td>
+                                              <td class="ligne1-col2">&nbsp;</td>
+                                              <td class="ligne1-col3">&nbsp;</td>
+                                            </tr>                                          
+                                          </tbody>
+                                        </table>
+                                    <br/><br/>
                                     <table id="buttonsBlockServices">
                                             <tr>
                                                 <td><div id="carBack1" onclick="javascript:commun.showMsgBlock()"><label class="buttonLabel">Annuler</label></div></td>

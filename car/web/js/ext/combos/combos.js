@@ -20,29 +20,10 @@ Ext.onReady(function(){
                 root: 'marques',
                 fields: [ {name: 'id'},{name: 'name'}]
             })
-    });*/
+    });*/ 
 
-    var ds = new Ext.data.JsonStore({
-            autoLoad: true,
-            url: '/car/web/auto.php/json/marquesjson?active=true',
-            root: 'marques',            
-            fields:['id', 'name']
-    });        
+    
 
-    var combo = new Ext.form.ComboBox({
-        store: ds,
-        displayField: "name",
-        valueField: "id",
-        hiddenName: 'car_auto[idmarque]',
-        typeAhead: true,
-        mode: 'local',
-        forceSelection: true,
-        triggerAction: 'all',
-        emptyText:'Selectionner une marque...',
-        selectOnFocus:true,
-        width:200,
-        applyTo: 'idmarque'
-    });
 
     var dsEtat = new Ext.data.JsonStore({
             autoLoad: true,
@@ -243,7 +224,15 @@ Ext.onReady(function(){
         applyTo: 'anneegarantie'
     });
 
-    var combo = new Ext.form.ComboBox({
+    var dsModele = new Ext.data.JsonStore({
+            autoLoad: true,
+            url: '/car/web/auto.php/json/modelejson?active=true',
+            root: 'modeles',
+            fields:['id', 'name']
+    });
+
+    var comboModele = new Ext.form.ComboBox({
+        store : dsModele,
         displayField: "name",
         valueField: "id",
         hiddenName: 'car_auto[idmodele]',
@@ -255,6 +244,45 @@ Ext.onReady(function(){
         selectOnFocus:true,
         width:200,
         applyTo: 'idmodele'
+    });
+
+    var ds = new Ext.data.JsonStore({
+            autoLoad: true,
+            url: '/car/web/auto.php/json/marquesjson?active=true',
+            root: 'marques',
+            fields:['id', 'name']
+    });
+
+    var comboMarque = new Ext.form.ComboBox({
+        store: ds,
+        displayField: "name",
+        valueField: "id",
+        hiddenName: 'car_auto[idmarque]',
+        typeAhead: true,
+        mode: 'local',
+        forceSelection: true,
+        triggerAction: 'all',
+        emptyText:'Selectionner une marque...',
+        selectOnFocus:true,
+        width:200,
+        applyTo: 'idmarque'
+    });
+
+    comboMarque.on('select', function(){
+        commun.showLoader("loaderModele","divModele");
+        comboModele.store.removeAll();
+        comboModele.setDisabled(true);
+        comboModele.setValue('');
+        //reload region store and enable region
+        var dsModeleNew = new Ext.data.JsonStore({
+            autoLoad: true,
+            url: '/car/web/auto.php/json/modelejson?id='+comboMarque.getValue(),
+            root: 'modeles',
+            fields:['id', 'name']
+        });
+        comboModele.bindStore(dsModeleNew);
+        comboModele.setDisabled(false);
+        commun.hideLoader("loaderModele","divModele");
     });
 
     var combo = new Ext.form.NumberField({
@@ -307,6 +335,28 @@ Ext.onReady(function(){
         selectOnFocus:true,
         width:200,
         applyTo: 'nbportes'
+    });
+
+    var dsCouleurs = new Ext.data.JsonStore({
+            autoLoad: true,
+            url: '/car/web/auto.php/json/colorjson?active=true',
+            root: 'couleurs',
+            fields:['id', 'name']
+    });
+
+    var combo = new Ext.form.ComboBox({
+        store: dsCouleurs,
+        displayField: "name",
+        valueField: "id",
+        hiddenName: 'car_auto[idcouleur]',
+        typeAhead: true,
+        mode: 'local',
+        forceSelection: true,
+        triggerAction: 'all',
+        emptyText:'Couleur...',
+        selectOnFocus:true,
+        width:200,
+        applyTo: 'idcouleur'
     });
     
 });

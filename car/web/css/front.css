@@ -11,6 +11,7 @@ body {
 	padding:0;
 	font:13px/16px "Lucida Grande", Arial, Sans-serif;
 	color:#789;	
+        /*color:#878787;*/
 	/*background-repeat: no-repeat;*/
 	/*background: #FFFFFF url(../images/287.jpg) center center fixed;*/
         /*background: #FFFFFF;*/
@@ -1311,3 +1312,65 @@ padding: 0 !important;
 	font-family:tahoma;
 	font-size:10px;        
 }
+
+
+/***** table price ***/
+
+table#price-chart {
+	MARGIN: 0px;
+	padding: 0px;
+}
+
+table#price-chart .ligne1-col3{
+    background-color: #f1d5d5;
+}
+
+table#price-chart .ligne1-col2{
+    background-color: #e9bfbf;
+}
+
+table#price-chart .ligne1-col1{
+    background-image: url(../images/price/premium.png);
+    background-repeat: no-repeat;
+}
+
+table#price-chart .ligne2-col3{
+    background-color: #f1e7c7;
+}
+
+table#price-chart .ligne2-col2{
+    background-color: #e9dbaa;
+}
+
+table#price-chart .ligne2-col1{
+    background-image: url(../images/price/medium.png);
+    background-repeat: no-repeat;
+}
+
+table#price-chart .ligne3-col3{
+    background-color: #d8ecf2;
+}
+
+table#price-chart .ligne3-col2{
+    background-color: #c4e2ec;
+}
+
+table#price-chart .ligne3-col1{
+    background-image: url(../images/price/basic.png);
+    background-repeat: no-repeat;
+}
+
+.left-col-captions {
+	width: 152px;
+	font-weight: bold;
+	color: #424242;
+	text-align:right !important;
+	padding-right: 8px !important;
+}
+.black-bg {
+	background-color: #373737 !important;
+	color: #FFF;
+}
+
+
+/**** end table price ***/

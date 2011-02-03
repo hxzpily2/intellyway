@@ -337,5 +337,19 @@ dojo.declare("car.integration.Commun",[],{
         dojo.style(dojo.byId("buttonsBlockPhotos"), 'display', '');        
         var $target = $('#autoDiv');
         $(document).stop().scrollTo( $target , 800 );
+    },
+
+    delImageAuto:function(){
+        alert('ok');
+    },
+
+    showLoader:function(id,div){
+        dojo.style(dojo.byId(id), 'display', '');
+        dojo.style(dojo.byId(div), 'display', 'none');
+    },
+
+    hideLoader:function(id,div){
+        dojo.style(dojo.byId(id), 'display', 'none');
+        dojo.style(dojo.byId(div), 'display', '');
     }
 });

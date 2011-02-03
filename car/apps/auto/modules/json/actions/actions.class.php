@@ -162,4 +162,47 @@ class jsonActions extends sfActions
 
     return sfView::NONE;
   }
+
+  public function executeModelejson(sfWebRequest $request)
+  {   
+
+    $i=0;
+    $output = "";
+    if($request->getParameter("id")!=""){
+        $data = CarModele::getAllByMarque($request->getParameter("id"));
+        foreach ($data as $marque){
+            $output .= "{'id':'".$marque->getIdmodele()."','name':'".$marque->getTitle()."'}";
+            $i++;
+            if($i!=count($data))
+                $output .= ",";
+        }
+    }
+
+    $this->getResponse()->setHttpHeader('Content-type', 'application/json');
+
+    $this->getResponse()->setContent("{'modeles':[".$output."]}");
+
+    return sfView::NONE;
+  }
+
+  public function executeColorjson(sfWebRequest $request)
+  {
+
+    $data = CarCouleur::getAll();
+
+    $i=0;
+    $output = "";
+    foreach ($data as $marque){
+        $output .= "{'id':'".$marque->getIdcouleur()."','name':'".$marque->getTitle()."'}";
+        $i++;
+        if($i!=count($data))
+            $output .= ",";
+    }
+
+    $this->getResponse()->setHttpHeader('Content-type', 'application/json');
+
+    $this->getResponse()->setContent("{'couleurs':[".$output."]}");
+
+    return sfView::NONE;
+  }
 }

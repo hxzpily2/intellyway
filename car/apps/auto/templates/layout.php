@@ -153,7 +153,7 @@ dojo.addOnLoad(
 	<div id="maincontent">
 		<div style="width: 100%;z-index: -5">
 			<div id="topnav" class="topnav" style="background-color: white;">			   		   	
-			   <div class="mySigninLabel">Vous avez un compte?</div>
+			   <div class="mySigninLabel"><a href="/car/web/auto.php/userform/create">Vous avez un compte?</a></div>
 			   <div class="mySignin">Login</div>			   					   		    
 			</div>
 			<div id="topMenu">			

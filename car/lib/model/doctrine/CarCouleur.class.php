@@ -15,4 +15,9 @@ class CarCouleur extends BaseCarCouleur
 	public function __toString(){
 		return $this->getTitle();
 	}
+
+        public static function getAll($id){
+            $q = Doctrine_Query::create ()->from ( 'CarCouleur m' )->where("m.active = 1")->orderBy("m.title asc");
+            return $q->execute ();
+        }
 }

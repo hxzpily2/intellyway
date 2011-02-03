@@ -82,6 +82,12 @@ CarMarque:
      imagelittle: alpha_romeo.png
      active:    1
 
+CarModele:
+   Megane II:
+     title: Megane II
+     active:    1
+     CarMarque:    renault
+
 CarMoteur:
    diesel:
      title: Diesel
@@ -107,6 +113,109 @@ CarTypeAccessoire:
      active:    1
    securite:
      title: EQUIPEMENTS DE SÉCURITÉ
+     active:    1
+
+CarCarosserie:
+   mono:
+     title: Monospaces
+     image: EQUIPEMENTS EXTÉRIEURS
+     active:    1
+   4x4:
+     title: 4x4
+     image: EQUIPEMENTS EXTÉRIEURS
+     active:    1
+   util:
+     title: Utilitaires
+     image: EQUIPEMENTS EXTÉRIEURS
+     active:    1
+   cab:
+     title: Cabriolets
+     image: EQUIPEMENTS EXTÉRIEURS
+     active:    1
+   break:
+     title: Breaks
+     image: EQUIPEMENTS EXTÉRIEURS
+     active:    1
+   berline:
+     title: Berlines
+     image: EQUIPEMENTS EXTÉRIEURS
+     active:    1
+   coupe:
+     title: Coupés
+     image: EQUIPEMENTS EXTÉRIEURS
+     active:    1
+   citadine:
+     title: Citadine
+     image: EQUIPEMENTS EXTÉRIEURS
+     active:    1
+
+
+CarCouleur:
+   argent:
+     title: Argent
+     active:    1
+   beige:
+     title: Beige
+     active:    1
+   blanc:
+     title: Blanc
+     active:    1
+   bleuc:
+     title: Bleu clair
+     active:    1
+   bleuf:
+     title: Bleu foncé
+     active:    1
+   bleug:
+     title: Bleu glock
+     active:    1
+   bordo:
+     title: Argent
+     active:    1
+   bronze:
+     title: Bronze
+     active:    1
+   brun:
+     title: Brun
+     active:    1
+   grisc:
+     title: Gris clair
+     active:    1
+   grisf:
+     title: Gris foncé
+     active:    1
+   jaune:
+     title: Jaune
+     active:    1
+   marron:
+     title: Marron
+     active:    1
+   mauve:
+     title: Mauve
+     active:    1
+   noir:
+     title: Noir
+     active:    1
+   or:
+     title: Or
+     active:    1
+   orange:
+     title: Orange
+     active:    1
+   rose:
+     title: Rose
+     active:    1
+   rouge:
+     title: Rouge
+     active:    1
+   vertc:
+     title: Vert clair
+     active:    1
+   vertf:
+     title: Vert foncé
+     active:    1
+   violet:
+     title: Violet
      active:    1
 
 
