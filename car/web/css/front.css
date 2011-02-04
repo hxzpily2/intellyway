@@ -1374,3 +1374,10 @@ table#price-chart .ligne3-col1{
 
 
 /**** end table price ***/
+
+
+.gridbg{
+    background-image: url(../images/accGrid.png);
+    background-position: right;
+    background-repeat: repeat-y;
+}
