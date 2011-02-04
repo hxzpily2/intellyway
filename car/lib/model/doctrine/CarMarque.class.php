@@ -20,4 +20,9 @@ class CarMarque extends BaseCarMarque
             $q = Doctrine_Query::create ()->from ( 'CarMarque c' )->where("c.active = 1");
             return $q->execute ();
         }
+
+        public static function getLogo($id){
+            $q = Doctrine_Query::create ()->from ( 'CarMarque c' )->where("c.active = 1")->andWhere("c.idmarque = $id");
+            return $q->execute ();
+        }
 }
