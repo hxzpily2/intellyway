@@ -205,4 +205,18 @@ class jsonActions extends sfActions
 
     return sfView::NONE;
   }
+
+  public function executeLogomarque(sfWebRequest $request)
+  {
+    $output = "noimage.png";
+    if($request->getParameter("id")!=""){
+        $data = CarMarque::getLogo($request->getParameter("id"));
+        $output = "/car/web/uploads/".Constantes::EMBLEM_DIR."/".$data[0]->getImagelittle();
+    }
+    $this->getResponse()->setHttpHeader('Content-type', 'application/text');
+
+    $this->getResponse()->setContent($output);
+
+    return sfView::NONE;
+  }
 }

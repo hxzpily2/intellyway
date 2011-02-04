@@ -20,4 +20,9 @@ class CarTypeAccessoire extends BaseCarTypeAccessoire
             $q = Doctrine_Query::create ()->from ( 'CarTypeAccessoire c' )->where("c.active = 1")->orderBy('c.title ASC');
             return $q->execute ();
         }
+
+        public static function getAccessoireByType($id){
+            $q = Doctrine_Query::create ()->from ( 'CarAccessoire c' )->leftJoin("c.CarTypeAccessoire t")->where("c.active = 1")->andWhere("t.idtypeacc = $id")->orderBy('c.title ASC');
+            return $q->execute ();            
+        }
 }

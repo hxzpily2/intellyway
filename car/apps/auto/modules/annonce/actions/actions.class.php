@@ -76,6 +76,7 @@ class annonceActions extends sfActions
   {
     $this->form = $this->configuration->getForm();
     $this->car_auto = $this->form->getObject();
+    $this->typesaccessoire = CarTypeAccessoire::getAll();
   }
 
   public function executeCreate(sfWebRequest $request)
