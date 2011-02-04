@@ -49,6 +49,19 @@
                     };
                     $("#pikame").PikaChoose({buildFinished:a});
 
+                    //Set default open/close settings
+                    $('.acc_container').hide(); //Hide/close all containers
+                    $('.acc_trigger:first').addClass('active').next().show(); //Add "active" class to first trigger, then show/open the immediate next container
+
+                    //On Click
+                    $('.acc_trigger').click(function(){
+                            if( $(this).next().is(':hidden') ) { //If immediate next container is closed...
+                                    $('.acc_trigger').removeClass('active').next().slideUp(); //Remove all .acc_trigger classes and slide up the immediate next container
+                                    $(this).toggleClass('active').next().slideDown(); //Add .acc_trigger class to clicked trigger and slide down the immediate next container
+                            }
+                            return false; //Prevent the browser jump to the link anchor
+                    });
+
                     
 
           });
@@ -63,17 +76,17 @@
                         <br/><br/>
                         <table>
                             <tr>
-                                <td width="10" valign="top" style="padding-top: 5px;"><img src="/car/web/images/fleche_grey.png"/></td>
+                                <td width="10" valign="top" style="padding-top: 4px;"><img src="/car/web/images/fleche_grey.png"/></td>
                                 <td width="3"></td>
                                 <td valign="top"><span style="font-family: TAHOMA;">Plus vous attachez de photos &aacute; votre annonce plus vous mettez en valeur votre voiture.</span></td>
                             </tr>
                             <tr>
-                                <td valign="top" style="padding-top: 5px;"><img src="/car/web/images/fleche_grey.png"/></td>
+                                <td valign="top" style="padding-top: 4px;"><img src="/car/web/images/fleche_grey.png"/></td>
                                 <td></td>
                                 <td valign="top"><span style="font-family: TAHOMA;">Ne surchargez pas votre annonce avec des accessoires que votre voiture ne poss&egrave;de pas au risque de perdre votre cr&eacute;dibilit&eacute;.</span></td>
                             </tr>
                             <tr>
-                                <td valign="top" style="padding-top: 5px;"><img src="/car/web/images/fleche_grey.png"/></td>
+                                <td valign="top" style="padding-top: 4px;"><img src="/car/web/images/fleche_grey.png"/></td>
                                 <td></td>
                                 <td valign="top"><span style="font-family: TAHOMA;">Il est pr&eacute;f&eacute;rable que votre message soit clair et d&eacute;crive tous les aspects de votre voiture (l'&eacute;tat du salon, son historique, son conducteur...) </span></td>
                             </tr>
@@ -102,12 +115,12 @@
                             <div style="background: url(/car/web/images/slider.jpg) no-repeat center center;width: 630px;height: 71px;padding-top: 30px;">
                                <span style="font-family: TAHOMA;color: #6a6a6a;font-size: 12pt;padding-left: 10px;"><span style="font-weight: bold;">Informations </span></span>
                             </div>
-                            <img style="padding-left: 10px;height: 75px;width: 75px;" src="/car/web/images/noimage.png"/>
+                            <img id="imageMarque" style="padding-left: 10px;height: 75px;width: 75px;" src="/car/web/images/noimage.png"/>
                             <br/><br/>
                                 <table width="100%">
                                     <tr>
                                         <td><img src="/car/web/images/fleche3.png"/></td>
-                                        <td align="left" width="200"><span style="font-family: TAHOMA;font-weight: normal;color: #C61B00;">Marque</span></td>
+                                        <td align="left" width="200"><span style="font-family: TAHOMA;font-weight: normal;color: #C61B00;">Marque</span><img src="/car/web/images/asterisk.png"/></td>
                                         <td width="5"></td>
                                         <td align="left">
                                             <div>
@@ -120,7 +133,7 @@
                                     </tr>
                                     <tr>
                                         <td><img src="/car/web/images/fleche3.png"/></td>
-                                        <td align="left"><span style="font-family: TAHOMA;font-weight: normal;color: #C61B00;">Mod&egrave;le</span></td>
+                                        <td align="left"><span style="font-family: TAHOMA;font-weight: normal;color: #C61B00;">Mod&egrave;le</span><img src="/car/web/images/asterisk.png"/></td>
                                         <td width="5"></td>
                                         <td align="left">
                                             <img src="/car/web/images/loaderS.gif" id="loaderModele" style="display: none;"/>
@@ -134,7 +147,7 @@
                                     </tr>
                                     <tr>
                                         <td><img src="/car/web/images/fleche3.png"/></td>
-                                        <td align="left"><span style="font-family: TAHOMA;font-weight: normal;color: #C61B00;">Type</span></td>
+                                        <td align="left"><span style="font-family: TAHOMA;font-weight: normal;color: #C61B00;">Type</span><img src="/car/web/images/asterisk.png"/></td>
                                         <td width="5"></td>
                                         <td align="left">
                                             <div>
@@ -147,7 +160,7 @@
                                     </tr>
                                     <tr>
                                         <td><img src="/car/web/images/fleche3.png"/></td>
-                                        <td align="left"><span style="font-family: TAHOMA;font-weight: normal;color: #C61B00;">Etat</span></td>
+                                        <td align="left"><span style="font-family: TAHOMA;font-weight: normal;color: #C61B00;">Etat</span><img src="/car/web/images/asterisk.png"/></td>
                                         <td width="5"></td>
                                         <td align="left">
                                             <div>
@@ -160,7 +173,7 @@
                                     </tr>
                                     <tr>
                                         <td><img src="/car/web/images/fleche3.png"/></td>
-                                        <td align="left"><span style="font-family: TAHOMA;font-weight: normal;color: #C61B00;">Carrosserie</span></td>
+                                        <td align="left"><span style="font-family: TAHOMA;font-weight: normal;color: #C61B00;">Carrosserie</span><img src="/car/web/images/asterisk.png"/></td>
                                         <td width="5"></td>
                                         <td align="left">
                                             <table class="soria">
@@ -234,7 +247,7 @@
                                     </tr>
                                     <tr>
                                         <td><img src="/car/web/images/fleche3.png"/></td>
-                                        <td><span style="font-family: TAHOMA;font-weight: normal;color: #C61B00;">Moteur</span></td>
+                                        <td><span style="font-family: TAHOMA;font-weight: normal;color: #C61B00;">Moteur</span><img src="/car/web/images/asterisk.png"/></td>
                                         <td width="5"></td>
                                         <td>
                                             <div>
@@ -247,7 +260,7 @@
                                     </tr>
                                     <tr>
                                         <td><img src="/car/web/images/fleche3.png"/></td>
-                                        <td><span style="font-family: TAHOMA;font-weight: normal;color: #C61B00;">Ann&eacute;e de mise en circulation</span></td>
+                                        <td><span style="font-family: TAHOMA;font-weight: normal;color: #C61B00;">Ann&eacute;e de mise en circulation</span><img src="/car/web/images/asterisk.png"/></td>
                                         <td width="5"></td>
                                         <td>
                                             <table>
@@ -297,7 +310,7 @@
                                     </tr>
                                     <tr>
                                         <td><img src="/car/web/images/fleche3.png"/></td>
-                                        <td><span style="font-family: TAHOMA;font-weight: normal;color: #C61B00;">Puissance fiscale</span></td>
+                                        <td><span style="font-family: TAHOMA;font-weight: normal;color: #C61B00;">Puissance fiscale</span><img src="/car/web/images/asterisk.png"/></td>
                                         <td width="5"></td>
                                         <td>
                                             <div>
@@ -310,7 +323,7 @@
                                     </tr>
                                     <tr>
                                         <td><img src="/car/web/images/fleche3.png"/></td>
-                                        <td><span style="font-family: TAHOMA;font-weight: normal;color: #C61B00;">Cylindres</span></td>
+                                        <td><span style="font-family: TAHOMA;font-weight: normal;color: #C61B00;">Cylindres</span><img src="/car/web/images/asterisk.png"/></td>
                                         <td width="5"></td>
                                         <td>
                                             <div>
@@ -323,7 +336,7 @@
                                     </tr>
                                     <tr>
                                         <td><img src="/car/web/images/fleche3.png"/></td>
-                                        <td><span style="font-family: TAHOMA;font-weight: normal;color: #C61B00;">Nombre de portes</span></td>
+                                        <td><span style="font-family: TAHOMA;font-weight: normal;color: #C61B00;">Nombre de portes</span><img src="/car/web/images/asterisk.png"/></td>
                                         <td width="5"></td>
                                         <td>
                                             <div>
@@ -336,7 +349,7 @@
                                     </tr>
                                     <tr>
                                         <td><img src="/car/web/images/fleche3.png"/></td>
-                                        <td><span style="font-family: TAHOMA;font-weight: normal;color: #C61B00;">Couleur</span></td>
+                                        <td><span style="font-family: TAHOMA;font-weight: normal;color: #C61B00;">Couleur</span><img src="/car/web/images/asterisk.png"/></td>
                                         <td width="5"></td>
                                         <td>
                                             <div>
@@ -478,11 +491,26 @@
                                     <tr>
                                         <td align="left" colspan="4">
                                             <div>
-                                                D&eacute;crivez tous les aspects de votre voiture (l'&eacute;tat du salon, son historique, son conducteur, r&eacute;parations, entretien...)
                                                 <br/>
-                                                Essayez d'&ecirc;tre le plus explicite possible
-                                                <br/>
-                                                Ne chargez pas trop votre message
+                                                <p>
+                                                    <table>
+                                                        <tr>
+                                                            <td width="10" valign="top" style="padding-top: 4px;"><img src="/car/web/images/fleche_grey.png"/></td>
+                                                            <td width="3"></td>
+                                                            <td valign="top"><span style="font-family: TAHOMA;">D&eacute;crivez tous les aspects de votre voiture (l'&eacute;tat du salon, son historique, son conducteur, r&eacute;parations, entretien...)</span></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td width="10" valign="top" style="padding-top: 4px;"><img src="/car/web/images/fleche_grey.png"/></td>
+                                                            <td width="3"></td>
+                                                            <td valign="top"><span style="font-family: TAHOMA;">Essayez d'&ecirc;tre le plus explicite possible</span></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td width="10" valign="top" style="padding-top: 4px;"><img src="/car/web/images/fleche_grey.png"/></td>
+                                                            <td width="3"></td>
+                                                            <td valign="top"><span style="font-family: TAHOMA;">Ne chargez pas trop votre message</span></td>
+                                                        </tr>
+                                                    </table>
+                                                </p>
                                                 <br/><br/>
                                                 <?php echo $form['description']->render(); ?>
                                             </div>
@@ -516,7 +544,51 @@
                                     <div style="background: url(/car/web/images/slider.jpg) no-repeat center center;width: 630px;height: 71px;padding-top: 30px;">
                                         <span style="font-family: TAHOMA;color: #6a6a6a;font-size: 12pt;padding-left: 10px;"><span style="font-weight: bold;">Acc&eacute;ssoires et options</span></span>
                                     </div>
-                                    <div class="soria">
+                                    <br/>
+                                    <p>
+                                        <table>
+                                            <tr>
+                                                <td width="10" valign="top" style="padding-top: 4px;"><img src="/car/web/images/fleche_grey.png"/></td>
+                                                <td width="3"></td>
+                                                <td valign="top"><span style="font-family: TAHOMA;">Cochez les options et équipements dont diposent votre véhicule</span></td>
+                                            </tr>
+                                        </table>
+                                    </p>
+                                    <br/><br/>
+                                    <table>
+                                        <tr>
+                                        <?php
+                                            foreach ($typesaccessoire as $type){
+                                                echo "<td align='left' width='200'><span style='font-family: TAHOMA;font-weight: bold;color: #C61B00;'>".$type->getTitle()."</span></td><td width='10'>&nbsp;</td>";
+                                            }
+                                        ?>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="<?php echo count($typeaccessoire); ?>"></td>
+                                        </tr>
+                                        <tr>
+                                        <?php
+                                            foreach ($typesaccessoire as $type){
+                                                echo "<td align='left' valign='top' width='200' class='gridbg'>";
+                                                $accessoires = $type->getAccessoireByType($type->getIdtypeacc());
+                                                echo "<table class='soria'>";
+                                                echo "<tr><td width='100%'>&nbsp;</td><td>&nbsp;</td>";
+                                                foreach ($accessoires as $acc){
+                                                    echo "<tr><td width='100%'>";
+                                                    echo "<span>".$acc->getTitle()."</span>";
+                                                    echo "</td>";
+                                                    echo "<td>";
+                                                    echo "<input dojoType='dijit.form.CheckBox' type='radio' name='acc".$acc->getIdacc()."_type".$type->getIdtypeacc()."' id='acc".$acc->getIdacc()."_type".$type->getIdtypeacc()."' value='0'>";
+                                                    echo "</td></tr>";
+                                                }
+                                                echo "<tr><td width='100%'>&nbsp;</td><td>&nbsp;</td>";
+                                                echo "</table>";
+                                                echo"</td><td width='10'>&nbsp;</td>";
+                                            }
+                                        ?>
+                                        </tr>
+                                    </table>
+                                    <!--<div class="soria">
                                         <div id="psdgraphics-com-table">
                                                 <div id="psdg-header">
                                                     <span class="psdg-bold">Acc&eacute;ssoires & Options</span><br />
@@ -586,7 +658,7 @@
                                                 </div>
 
                                         </div>
-                                    </div>
+                                    </div>-->
                                     <br/><br/>
                                     <table id="buttonsBlockAcc">
                                         <tr>
@@ -660,15 +732,15 @@
                                         <br/><br/>
                                         <hr width=100% size="1" color="" align="center">
                                         <br/>
-                                            <p>
-                                                <table>
-                                                    <tr>
-                                                        <td width="10"><img src="/car/web/images/fleche_grey.png"/></td>
-                                                        <td width="3"></td>
-                                                        <td><span style="font-family: TAHOMA;">Visualisez vos photos, vous pouvez s&eacute;l&eacute;tionner celle qui ne vous intersse pas et la supprimer : </span></td>
-                                                    </tr>
-                                                </table>
-                                            </p>
+                                        <p>
+                                            <table>
+                                                <tr>
+                                                    <td width="10"><img src="/car/web/images/fleche_grey.png"/></td>
+                                                    <td width="3"></td>
+                                                    <td><span style="font-family: TAHOMA;">Visualisez vos photos, vous pouvez s&eacute;l&eacute;tionner celle qui ne vous intersse pas et la supprimer : </span></td>
+                                                </tr>
+                                            </table>
+                                        </p>
                                         <br/>
                                         <div class="pikachoose">
                                             <ul id="pikame">
@@ -677,17 +749,7 @@
                                                     <li><a href="/car/web/uploads/annonces/0573146961.jpg"><img src="/car/web/uploads/annonces/0573146961.jpg" alt="" /></a></li>
                                             </ul>
                                         </div>
-                                    </fieldset>
-                                    <br/>
-                                    <p>
-                                        <table>
-                                            <tr>
-                                                <td width="10"><img src="/car/web/images/fleche_grey.png"/></td>
-                                                <td width="3"></td>
-                                                <td><span style="font-family: TAHOMA;">Vous avez finis de saisir le formulaire vous pouvez cliquer sur le bouton <b>&laquo;Terminer&raquo;</b> pour valider votre annonce</span></td>
-                                            </tr>
-                                        </table>
-                                    </p>
+                                    </fieldset>                                    
                                     <br/><br/>
                                     <table id="buttonsBlockPhotos">
                                             <tr>
@@ -712,26 +774,52 @@
                                             <td><div class="actifstep" style="width: 154px;height: 52px;"><center>Services <br/> PauseAuto</center></div></td>
                                         </tr>
                                     </table>
+                                    <br/>
+                                    <p>
+                                        <table>
+                                            <tr>
+                                                <td width="10" valign="top" style="padding-top: 4px;"><img src="/car/web/images/fleche_grey.png"/></td>
+                                                <td width="3"></td>
+                                                <td valign="top"><span style="font-family: TAHOMA;">Vous avez finis de saisir le formulaire vous pouvez cliquer sur le bouton <b>&laquo;Terminer&raquo;</b> pour valider votre annonce</span></td>
+                                            </tr>
+                                        </table>
+                                    </p>
                                     <br/><br/>                                    
                                     <table align="center" cellpadding="0" cellspacing="0" id="price-chart" class="soria" width="100%">
                                           <tbody>                                            
                                             <tr class="blue" height="125">
                                               <td width="131" class="ligne3-col1">&nbsp;</td>
-                                              <td class="ligne3-col2" width="10">&nbsp;</td>
-                                              <td class="ligne3-col3">waived</td>
+                                              <td class="ligne3-col2" width="10">
+                                                  <input dojoType="dijit.form.RadioButton" type="radio" name="serviceP" id="serviceBasic" value="1">
+                                              </td>
+                                              <td class="ligne3-col3">&nbsp;</td>
                                             </tr>
                                             <tr class="yellow" height="125">
                                               <td class="ligne2-col1">&nbsp;</td>
-                                              <td class="ligne2-col2">&nbsp;</td>
+                                              <td class="ligne2-col2">
+                                                  <input dojoType="dijit.form.RadioButton" type="radio" name="serviceP" id="serviceMedium" value="2">
+                                              </td>
                                               <td class="ligne2-col3">&nbsp;</td>
                                             </tr>
                                             <tr class="red" height="125">
                                               <td class="ligne1-col1">&nbsp;</td>
-                                              <td class="ligne1-col2">&nbsp;</td>
+                                              <td class="ligne1-col2">
+                                                  <input dojoType="dijit.form.RadioButton" type="radio" name="serviceP" id="servicePremium" value="3">
+                                              </td>
                                               <td class="ligne1-col3">&nbsp;</td>
                                             </tr>                                          
                                           </tbody>
                                         </table>
+                                    <br/>
+                                    <p>
+                                        <table>
+                                            <tr>
+                                                <td width="10" valign="top" style="padding-top: 4px;"><img src="/car/web/images/fleche_grey.png"/></td>
+                                                <td width="3"></td>
+                                                <td valign="top"><span style="font-family: TAHOMA;">Vous avez finis de saisir le formulaire vous pouvez cliquer sur le bouton <b>&laquo;Terminer&raquo;</b> pour valider votre annonce</span></td>
+                                            </tr>
+                                        </table>
+                                    </p>
                                     <br/><br/>
                                     <table id="buttonsBlockServices">
                                             <tr>
@@ -769,17 +857,17 @@
                         <br/>
                         <table>
                             <tr>
-                                <td width="10" valign="top" style="padding-top: 5px;"><img src="/car/web/images/red_fleche.png"/></td>
+                                <td width="10" valign="top" style="padding-top: 4px;"><img src="/car/web/images/red_fleche.png"/></td>
                                 <td width="3"></td>
                                 <td valign="top"><span style="font-family: TAHOMA;">Plus vous attachez de photos &aacute; votre annonce plus vous mettez en valeur votre voiture.</span></td>
                             </tr>
                             <tr>
-                                <td valign="top" style="padding-top: 5px;"><img src="/car/web/images/red_fleche.png"/></td>
+                                <td valign="top" style="padding-top: 4px;"><img src="/car/web/images/red_fleche.png"/></td>
                                 <td></td>
                                 <td valign="top"><span style="font-family: TAHOMA;">Ne surchargez pas votre annonce avec des accessoires que votre voiture ne poss&egrave;de pas au risque de perdre votre cr&eacute;dibilit&eacute;.</span></td>
                             </tr>
                             <tr>
-                                <td valign="top" style="padding-top: 5px;"><img src="/car/web/images/red_fleche.png"/></td>
+                                <td valign="top" style="padding-top: 4px;"><img src="/car/web/images/red_fleche.png"/></td>
                                 <td></td>
                                 <td valign="top"><span style="font-family: TAHOMA;">Il est pr&eacute;f&eacute;rable que votre message soit clair et d&eacute;crive tous les aspects de votre voiture (l'&eacute;tat du salon, son historique, son conducteur...) </span></td>
                             </tr>
