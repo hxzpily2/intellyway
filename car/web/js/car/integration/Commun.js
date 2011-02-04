@@ -351,5 +351,20 @@ dojo.declare("car.integration.Commun",[],{
     hideLoader:function(id,div){
         dojo.style(dojo.byId(id), 'display', 'none');
         dojo.style(dojo.byId(div), 'display', '');
+    },
+
+    showLogoMarque:function(id){
+        dojo.xhrPost ({
+            url: "/car/web/auto.php/json/logomarque?id="+id,
+            handleAs: "text",
+            preventCache:true,
+                load: dojo.hitch(this,function (response) {
+                    dojo.byId("imageMarque").src = response;
+                }
+            ),
+            error: function (data) {
+                console.error('Error: chargement services', data);
+            }
+        });
     }
 });

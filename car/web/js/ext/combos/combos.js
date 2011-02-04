@@ -270,6 +270,7 @@ Ext.onReady(function(){
 
     comboMarque.on('select', function(){
         commun.showLoader("loaderModele","divModele");
+        commun.showLogoMarque(comboMarque.getValue());
         comboModele.store.removeAll();
         comboModele.setDisabled(true);
         comboModele.setValue('');

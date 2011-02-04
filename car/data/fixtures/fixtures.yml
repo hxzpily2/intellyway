@@ -105,15 +105,213 @@ CarBoite:
      active:    1
 
 CarTypeAccessoire:
-   interne:
+   externe:
      title: EQUIPEMENTS EXTÉRIEURS
      active:    1
-   externe:
+   interne:
      title: EQUIPEMENTS FONCTIONNELS
      active:    1
    securite:
      title: EQUIPEMENTS DE SÉCURITÉ
      active:    1
+
+
+CarAccessoire:
+   airbagf:
+     title: Airbags frontaux
+     description:
+     active:    1
+     CarTypeAccessoire: securite
+   airbagl:
+     title: Airbags latéraux
+     description:
+     active:    1
+     CarTypeAccessoire: securite
+   abs:
+     title: ABS
+     description:
+     active:    1
+     CarTypeAccessoire: securite
+   esp:
+     title: ESP
+     description:
+     active:    1
+     CarTypeAccessoire: securite
+   alarme:
+     title: Alarme
+     description:
+     active:    1
+     CarTypeAccessoire: securite
+   patinage:
+     title: Anti patinage
+     description:
+     active:    1
+     CarTypeAccessoire: securite
+   pluie:
+     title: Détecteur de pluie
+     description:
+     active:    1
+     CarTypeAccessoire: securite
+   asr:
+     title: ASR
+     description:
+     active:    1
+     CarTypeAccessoire: securite
+   verrou:
+     title: Verrouillage Centralisé
+     description:
+     active:    1
+     CarTypeAccessoire: securite
+   brouillard:
+     title: Anti brouillard
+     description:
+     active:    1
+     CarTypeAccessoire: securite
+   assistee:
+     title: Direction assistée
+     description:
+     active:    1
+     CarTypeAccessoire: securite
+   radar:
+     title: Parking Radar
+     description:
+     active:    1
+     CarTypeAccessoire: securite
+   remorque:
+     title: Attache remorque
+     description:
+     active:    1
+     CarTypeAccessoire: externe
+   jantealu:
+     title: Jantes alu
+     description:
+     active:    1
+     CarTypeAccessoire: externe
+   bagage:
+     title: Porte-bagages
+     description:
+     active:    1
+     CarTypeAccessoire: externe
+   toitouvrant:
+     title: Toit ouvrant
+     description:
+     active:    1
+     CarTypeAccessoire: externe
+   vitreteintee:
+     title: Vitres teintées
+     description:
+     active:    1
+     CarTypeAccessoire: externe
+   xenon:
+     title: Phares Xénon
+     description:
+     active:    1
+     CarTypeAccessoire: externe
+   chassissport:
+     title: Châssis sport
+     description:
+     active:    1
+     CarTypeAccessoire: externe
+   carter:
+     title: Protège carter
+     description:
+     active:    1
+     CarTypeAccessoire: externe
+   bluetooth:
+     title: Bluetooth
+     description:
+     active:    1
+     CarTypeAccessoire: interne
+   cruise:
+     title: Cruise Control
+     description:
+     active:    1
+     CarTypeAccessoire: interne
+   rcm:
+     title: radio CD MP3
+     description:
+     active:    1
+     CarTypeAccessoire: interne
+   rc:
+     title: radio CD
+     description:
+     active:    1
+     CarTypeAccessoire: interne
+   dvd:
+     title: DVD
+     description:
+     active:    1
+     CarTypeAccessoire: interne
+   go:
+     title: Keyless GO
+     description:
+     active:    1
+     CarTypeAccessoire: interne
+   radiocassette:
+     title: Radio - cassette
+     description:
+     active:    1
+     CarTypeAccessoire: interne
+   retroelec:
+     title: Rétroviseurs électriques
+     description:
+     active:    1
+     CarTypeAccessoire: interne
+   siegecuir:
+     title: Sièges cuir
+     description:
+     active:    1
+     CarTypeAccessoire: interne     
+   siegechauffant:
+     title: Sièges Chauffants
+     description:
+     active:    1
+     CarTypeAccessoire: interne
+   siegeelec:
+     title: Sièges électriques
+     description:
+     active:    1
+     CarTypeAccessoire: interne
+   sysnav:
+     title: Système de navigation
+     description:
+     active:    1
+     CarTypeAccessoire: interne
+   vitelec:
+     title: Vitres électriques
+     description:
+     active:    1
+     CarTypeAccessoire: interne
+   ordbord:
+     title: Ordinateur de bord
+     description:
+     active:    1
+     CarTypeAccessoire: interne
+   acccent:
+     title: Accoudoir central
+     description:
+     active:    1
+     CarTypeAccessoire: interne
+   sieenfant:
+     title: Sièges enfants
+     description:
+     active:    1
+     CarTypeAccessoire: interne
+   parsoleil:
+     title: Rideaux pare soleil
+     description:
+     active:    1
+     CarTypeAccessoire: interne
+   clim:
+     title: Climatisation
+     description:
+     active:    1
+     CarTypeAccessoire: interne
+   recul:
+     title: Caméra de recul
+     description:
+     active:    1
+     CarTypeAccessoire: interne
 
 CarCarosserie:
    mono:
