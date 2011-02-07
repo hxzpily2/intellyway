@@ -588,77 +588,16 @@
                                         ?>
                                         </tr>
                                     </table>
-                                    <!--<div class="soria">
-                                        <div id="psdgraphics-com-table">
-                                                <div id="psdg-header">
-                                                    <span class="psdg-bold">Acc&eacute;ssoires & Options</span><br />
-                                                </div>
-
-                                                <div id="psdg-top">
-                                                    <div class="psdg-top-cell" style="width:129px; text-align:left; padding-left: 24px;">Summary</div>
-                                                </div>
-
-
-                                                <div id="psdg-middle">
-                                                    <div class="psdg-left"><span style="padding-left : 20px;">Daily Unique</span></div>
-                                                    <div class="psdg-right"><input dojoType="dijit.form.CheckBox" type="radio" name="car_auto[dedouane]" id="chek1" value="0"></div>
-
-                                                    <div class="psdg-left"><span style="padding-left : 20px;">Unique Visitors</span></div>
-                                                    <div class="psdg-right">300 000</div>
-
-                                                    <div class="psdg-left"><span style="padding-left : 20px;">Browser</span> </div>
-                                                    <div class="psdg-right">Firefox</div>
-
-                                                    <div class="psdg-left"><span style="padding-left : 20px;">Operating System</span></div>
-                                                    <div class="psdg-right">Windows 7</div>
-
-                                                    <div class="psdg-left"><span style="padding-left : 20px;">Screen Resolution</span></div>
-                                                    <div class="psdg-right">1280x1024</div>
-
-                                                    <div class="psdg-left"><span style="padding-left : 20px;">Domain/Country</span></div>
-                                                    <div class="psdg-right">.com</div>
-
-                                                    <div class="psdg-left"><span style="padding-left : 20px;">Continent</span></div>
-                                                    <div class="psdg-right">Europe</div>
-                                                </div>
-
-                                                <div id="psdg-footer">
-                                                    &nbsp;
-                                                </div>
-
-                                                <div id="psdg-top">
-                                                        <div class="psdg-top-cell" style="width:129px; text-align:left; padding-left: 24px;">Summary</div>
-                                                </div>
-
-                                                <div id="psdg-middle">
-                                                    <div class="psdg-left"><span style="padding-left : 20px;">Daily Unique</span></div>
-                                                    <div class="psdg-right">10 000</div>
-
-                                                    <div class="psdg-left"><span style="padding-left : 20px;">Unique Visitors</span></div>
-                                                    <div class="psdg-right">300 000</div>
-
-                                                    <div class="psdg-left"><span style="padding-left : 20px;">Browser</span> </div>
-                                                    <div class="psdg-right">Firefox</div>
-
-                                                    <div class="psdg-left"><span style="padding-left : 20px;">Operating System</span></div>
-                                                    <div class="psdg-right">Windows 7</div>
-
-                                                    <div class="psdg-left"><span style="padding-left : 20px;">Screen Resolution</span></div>
-                                                    <div class="psdg-right">1280x1024</div>
-
-                                                    <div class="psdg-left"><span style="padding-left : 20px;">Domain/Country</span></div>
-                                                    <div class="psdg-right">.com</div>
-
-                                                    <div class="psdg-left"><span style="padding-left : 20px;">Continent</span></div>
-                                                    <div class="psdg-right">Europe</div>
-                                                </div>
-
-                                                <div id="psdg-footer">
-                                                    &nbsp;
-                                                </div>
-
-                                        </div>
-                                    </div>-->
+                                    <br/>
+                                    <p>
+                                        <table>
+                                            <tr>
+                                                <td width="10" valign="top" style="padding-top: 4px;"><img src="/car/web/images/fleche_grey.png"/></td>
+                                                <td width="3"></td>
+                                                <td valign="top"><span style="font-family: TAHOMA;">Vous avez finis de saisir le formulaire vous pouvez cliquer sur le bouton <b>&laquo;Terminer&raquo;</b> pour valider votre annonce</span></td>
+                                            </tr>
+                                        </table>
+                                    </p>
                                     <br/><br/>
                                     <table id="buttonsBlockAcc">
                                         <tr>
@@ -784,8 +723,12 @@
                                             </tr>
                                         </table>
                                     </p>
+                                    <br/>
+                                    <div style="background: url(/car/web/images/slider.jpg) no-repeat center center;width: 630px;height: 71px;padding-top: 30px;">
+                                        <span style="font-family: TAHOMA;color: #6a6a6a;font-size: 12pt;padding-left: 10px;"><span style="font-weight: bold;">Services PauseAuto </span></span>
+                                    </div>
                                     <br/><br/>                                    
-                                    <table align="center" cellpadding="0" cellspacing="0" id="price-chart" class="soria" width="100%">
+                                    <!--<table align="center" cellpadding="0" cellspacing="0" id="price-chart" class="soria" width="100%">
                                           <tbody>                                            
                                             <tr class="blue" height="125">
                                               <td width="131" class="ligne3-col1">&nbsp;</td>
@@ -809,7 +752,137 @@
                                               <td class="ligne1-col3">&nbsp;</td>
                                             </tr>                                          
                                           </tbody>
-                                        </table>
+                                        </table>-->
+                                    <table cellpadding="0" cellspacing="0" border="0" height="388">
+                                        <tr>
+                                            <td width="195" class="pricingL" valign="top">
+                                                <table width="100%" cellpadding="0" cellspacing="0" border="0" height="100%">
+                                                    <tr height="37">
+                                                        <td><br style="line-height: 37px;"/></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td valign="top" style="padding-left: 25px;padding-top: 10px;">
+                                                            <span style="font-weight: bold;font-family: tahoma;font-size: 12Pt;color : #d91515;">Premium Plus</span>
+                                                            <br/>
+                                                            <span style="font-family: tahoma;font-size: 8pt;">Gratuit</span>
+                                                        </td>
+                                                    </tr>
+                                                    <tr height="151">
+                                                        <td valign="top" style="padding-left: 25px;">
+                                                            <table cellpadding="0" cellspacing="0" border="0">
+                                                                <tr style="height: 30px;">
+                                                                    <td width="191">
+                                                                        test
+                                                                    </td>
+                                                                </tr>
+                                                                <tr style="height: 30px;">
+                                                                    <td width="191">
+                                                                        test
+                                                                    </td>
+                                                                </tr>
+                                                                <tr style="height: 30px;">
+                                                                    <td width="191">
+                                                                        test
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+                                                    <tr height="56">
+                                                        <td class="soria" align="center"><input dojoType="dijit.form.RadioButton" type="radio" name="serviceP" id="serviceBasic" value="1"></td>
+                                                    </tr>
+                                                    <tr height="26">
+                                                        <td>&nbsp;</td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                            <td width="217" class="pricingM">
+                                                <table width="100%" cellpadding="0" cellspacing="0" border="0" height="100%">
+                                                    <tr height="75">
+                                                        <td style="padding-left: 15px;padding-top: 5px;">
+                                                            <span style="font-weight: bold;font-family: tahoma;font-size: 12Pt;color : #d91515;">Professionnel</span>
+                                                            <br/>
+                                                            <span style="font-family: tahoma;font-size: 8pt;">Gratuit</span>
+                                                            
+                                                        </td>
+                                                    </tr>
+                                                    <tr height="20">
+                                                        <td style="padding-left: 15px;padding-top: 5px;">
+                                                            &nbsp;
+                                                        </td>
+                                                    </tr>   
+                                                    <tr height="151">
+                                                        <td valign="top" style="padding-left: 15px;">
+                                                            <table cellpadding="0" cellspacing="0" border="0">
+                                                                <tr style="height: 30px;">
+                                                                    <td width="191">
+                                                                        <table width="100%"><tr><td width="14"><img src="/car/web/images/bullet.png"/></td><td style="padding-left: 5px;">Test</td></tr></table><center><img width="70" src="/car/web/images/slider.jpg"/></center>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr style="height: 30px;">
+                                                                    <td width="191">
+                                                                        test
+                                                                    </td>
+                                                                </tr>
+                                                                <tr style="height: 30px;">
+                                                                    <td width="191">
+                                                                        test
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+                                                    <tr height="98">
+                                                        <td class="soria" align="center"><br style="line-height: 98px;"/></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="soria" align="center"><input dojoType="dijit.form.RadioButton" type="radio" name="serviceP" id="servicePro" value="1"></td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                            <td width="196" class="pricingR">
+                                                <table width="100%" cellpadding="0" cellspacing="0" border="0" height="100%">
+                                                    <tr height="37">
+                                                        <td><br style="line-height: 37px;"/></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td valign="top" style="padding-left: 15px;padding-top: 10px;">
+                                                            <span style="font-weight: bold;font-family: tahoma;font-size: 12Pt;color : #d91515;">Basic</span>
+                                                            <br/>
+                                                            <span style="font-family: tahoma;font-size: 8pt;">Gratuit</span>
+                                                        </td>
+                                                    </tr>
+                                                    <tr height="151">
+                                                        <td valign="top" style="padding-left: 15px;">
+                                                            <table cellpadding="0" cellspacing="0" border="0">
+                                                                <tr style="height: 30px;">
+                                                                    <td width="191">
+                                                                        test
+                                                                    </td>
+                                                                </tr>
+                                                                <tr style="height: 30px;">
+                                                                    <td width="191">
+                                                                        test
+                                                                    </td>
+                                                                </tr>
+                                                                <tr style="height: 30px;">
+                                                                    <td width="191">
+                                                                        test
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+                                                    <tr height="56">
+                                                        <td>&nbsp;</td>
+                                                    </tr>
+                                                    <tr height="26">
+                                                        <td>&nbsp;</td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </table>
                                     <br/>
                                     <p>
                                         <table>

@@ -1381,3 +1381,18 @@ table#price-chart .ligne3-col1{
     background-position: right;
     background-repeat: repeat-y;
 }
+
+.pricingL{
+    background-image: url(../images/pricingL.png);    
+    background-repeat: no-repeat;
+}
+
+.pricingM{
+    background-image: url(../images/pricingM.png);
+    background-repeat: no-repeat;
+}
+
+.pricingR{
+    background-image: url(../images/pricingR.png);
+    background-repeat: no-repeat;
+}
