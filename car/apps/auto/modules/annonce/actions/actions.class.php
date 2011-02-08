@@ -77,6 +77,7 @@ class annonceActions extends sfActions
     $this->form = $this->configuration->getForm();
     $this->car_auto = $this->form->getObject();
     $this->typesaccessoire = CarTypeAccessoire::getAll();
+    $this->carosserie = CarCarosserie::getAll();
   }
 
   public function executeCreate(sfWebRequest $request)
@@ -84,9 +85,20 @@ class annonceActions extends sfActions
     $this->form = $this->configuration->getForm();
     $this->car_auto = $this->form->getObject();
 
-    $this->processForm($request, $this->form);
+    //$this->processForm($request, $this->form);
 
-    $this->setTemplate('new');
+    $annonce = new CarAuto();
+    $annonce->setActive(1);
+    
+    
+    $accs = $request->getParameter("acc");
+    for($i=0;$i<(int)count($accs);$i++){
+        echo $accs[$i]."<br/>";
+    }
+    
+    //$annonce->save();
+    
+    $this->setTemplate('annonce');
   }
 
   public function executeEdit(sfWebRequest $request)
@@ -321,5 +333,10 @@ class annonceActions extends sfActions
   public function executeShow(sfWebRequest $request)
   {
     
+  }
+
+  public function executeSave(sfWebRequest $request)
+  {
+
   }
 }

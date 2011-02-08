@@ -316,35 +316,35 @@ CarAccessoire:
 CarCarosserie:
    mono:
      title: Monospaces
-     image: EQUIPEMENTS EXTÉRIEURS
+     image: monospace.png
      active:    1
    4x4:
      title: 4x4
-     image: EQUIPEMENTS EXTÉRIEURS
+     image: 44.png
      active:    1
    util:
      title: Utilitaires
-     image: EQUIPEMENTS EXTÉRIEURS
+     image: util.png
      active:    1
    cab:
      title: Cabriolets
-     image: EQUIPEMENTS EXTÉRIEURS
+     image: cab.png
      active:    1
    break:
      title: Breaks
-     image: EQUIPEMENTS EXTÉRIEURS
+     image: break.png
      active:    1
    berline:
      title: Berlines
-     image: EQUIPEMENTS EXTÉRIEURS
+     image: berline.png
      active:    1
    coupe:
      title: Coupés
-     image: EQUIPEMENTS EXTÉRIEURS
+     image: coupe.png
      active:    1
    citadine:
      title: Citadine
-     image: EQUIPEMENTS EXTÉRIEURS
+     image: citadine.png
      active:    1
 
 

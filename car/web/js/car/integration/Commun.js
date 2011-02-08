@@ -366,5 +366,100 @@ dojo.declare("car.integration.Commun",[],{
                 console.error('Error: chargement services', data);
             }
         });
+    },
+
+    sendForm:function(idForm){           
+            dojo.xhrPost({
+              form: dojo.byId(idForm),              
+              content: {
+                  'idetat':dojo.byId("car_auto[idetat]").value,
+                  'idtype':dojo.byId("car_auto[idtype]").value,
+                  'idmoteur':dojo.byId("car_auto[idmoteur]").value,
+                  'idboite':dojo.byId("car_auto[idboite]").value,
+                  'kilometrage':Ext.getCmp('kilometragetxt').getValue(),
+                  'anneeded':dojo.byId("car_auto[anneeded]").value,
+                  'moisded':dojo.byId("car_auto[moisded]").value,
+                  'anneecir':dojo.byId("car_auto[anneecir]").value,
+                  'moiscir':dojo.byId("car_auto[moiscir]").value,
+                  'prixstart':Ext.getCmp('prixstarttxt').getValue(),
+                  'anneegarantie':Ext.getCmp('anneegarantiespin').getValue(),
+                  'idmodele':dojo.byId("car_auto[idmodele]").value,
+                  'idmarque':dojo.byId("car_auto[idmarque]").value,
+                  'cylindres':Ext.getCmp('cylindrestxt').getValue(),
+                  'pfiscale':dojo.byId("car_auto[pfiscale]").value,
+                  'nbportes':dojo.byId("car_auto[nbportes]").value,
+                  'idcouleur':dojo.byId("car_auto[idcouleur]").value,
+                  
+                  'idcarosserie':dojo.byId("carosserieId").value,
+                  'etranger':dojo.byId("etrangerId").value,
+                  'dedouane':dojo.byId("dedouaneId").value,
+                  'garantie':dojo.byId("garantieId").value,
+                  'reprise':dojo.byId("repriseId").value,
+                  'hand':dojo.byId("handId").value,
+                  'garaged':dojo.byId("garagedId").value,
+
+                  'nbacc':nbacc,
+                  'acc[]' : dojo.query('input[name^="acc_"]:checked').attr('value')
+              },
+              handleAs: "text",
+              load: function(data) {
+                  //dojo.byId("response").innerHTML = "Form posted.";
+              },
+              error: function(error) {
+                  //We'll 404 in the demo, but that's okay.  We don't have a 'postIt' service on the
+                  //docs server.
+                  //dojo.byId("response").innerHTML = "Form posted.";
+              }
+            });
+    },
+
+    showDedPanel:function(){
+        if(dojo.byId('etrO').checked){
+            dojo.style(dojo.byId('lineDed'), 'display', '');
+            dojo.style(dojo.byId('blockDed'), 'display', '');
+            dojo.style(dojo.byId('lineAnneeDed'), 'display', '');
+            dojo.style(dojo.byId('blockAnneeDed'), 'display', '');
+            this.runEffect('blockDed');
+            this.runEffect('lineDed');
+            this.runEffect('lineAnneeDed');
+            this.runEffect('blockAnneeDed');
+            
+            dojo.byId('etrangerId').value=1;
+        }else{
+            dojo.style(dojo.byId('lineDed'), 'display', 'none');
+            dojo.style(dojo.byId('blockDed'), 'display', 'none');
+            dojo.style(dojo.byId('lineAnneeDed'), 'display', 'none');
+            dojo.style(dojo.byId('blockAnneeDed'), 'display', 'none');
+
+            dojo.style(dojo.byId('lineDed'), 'opacity', .0);
+            dojo.style(dojo.byId('blockDed'), 'opacity', .0);
+            dojo.style(dojo.byId('lineAnneeDed'), 'opacity', .0);
+            dojo.style(dojo.byId('blockAnneeDed'), 'opacity', .0);
+
+            dojo.byId('etrangerId').value=0;
+        }
+            
+    },
+
+    showGarPanel:function(){
+        if(dojo.byId('garO').checked){
+            dojo.style(dojo.byId('lineGarantie'), 'display', 'inline-block');
+            dojo.style(dojo.byId('blockGarantie'), 'display', 'inline-block');
+            
+            this.runEffect('blockGarantie');
+            this.runEffect('lineGarantie');
+            
+        }else{
+            dojo.style(dojo.byId('lineGarantie'), 'display', 'none');
+            dojo.style(dojo.byId('blockGarantie'), 'display', 'none');
+            
+            dojo.style(dojo.byId('lineGarantie'), 'opacity', .0);
+            dojo.style(dojo.byId('blockGarantie'), 'opacity', .0);
+        }
+
+    },
+
+    setCarosserie:function(value){
+        dojo.byId('carosserieId').value=value;
     }
 });

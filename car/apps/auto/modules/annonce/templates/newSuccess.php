@@ -40,7 +40,10 @@
                             'fileDesc'       : 'Image Files (.JPG, .GIF, .PNG)',
                             'removeCompleted': false,
                             'onAllComplete'  : function(event,data) {
-                              alert('ok');
+                              
+                            },
+                            'onComplete': function(event, queueID, fileObj, response, data) {
+                                alert(response);                                
                             }
                     });
 
@@ -62,7 +65,13 @@
                             return false; //Prevent the browser jump to the link anchor
                     });
 
-                    
+                    dojo.style(dojo.byId('lineDed'), 'opacity', .0);
+		    dojo.style(dojo.byId('blockDed'), 'opacity', .0);
+                    dojo.style(dojo.byId('lineAnneeDed'), 'opacity', .0);
+		    dojo.style(dojo.byId('blockAnneeDed'), 'opacity', .0);
+
+                    dojo.style(dojo.byId('blockAnneeDed'), 'opacity', .0);
+                    dojo.style(dojo.byId('blockAnneeDed'), 'opacity', .0);
 
           });
 </script>
@@ -97,18 +106,18 @@
                         <span style="font-family: TAHOMA;color: #b7b7b7;">Votre adresse IP : <span style="font-weight: bold;"><?php echo $_SERVER['REMOTE_ADDR']; ?></span></span>
                         <br/><br/>
                         <div id="autoForm">
-                        <form>
+                        <form method="post" id="annonceAuto" action="/car/web/auto.php/annonce/create">
                         <div id="blockInfo">
                             <br/><br/>
                             <table>
                                 <tr>
-                                    <td><div class="actifstep" style="width: 154px;height: 52px;"><center>Informations<br/> sur le v&eacute;hicule</center></div></td>
+                                    <td><div class="actifstep" style="width: 154px;height: 52px;cursor: pointer"><center>Informations<br/> sur le v&eacute;hicule</center></div></td>
                                     <td width="5"></td>
-                                    <td><div class="inactifstep" style="width: 156px;height: 52px;"><center>Options <br/> du v&eacute;hicule</center></div></td>
+                                    <td><div class="inactifstep" style="width: 156px;height: 52px;cursor: pointer"><center>Options <br/> du v&eacute;hicule</center></div></td>
                                     <td width="5"></td>
-                                    <td><div class="inactifstep" style="width: 156px;height: 52px;"><center>Photos <br/> du v&eacute;hicule</center></div></td>
+                                    <td><div class="inactifstep" style="width: 156px;height: 52px;cursor: pointer"><center>Photos <br/> du v&eacute;hicule</center></div></td>
                                     <td width="5"></td>
-                                    <td><div class="inactifstep" style="width: 156px;height: 52px;"><center>Services <br/> PauseAuto</center></div></td>
+                                    <td><div class="inactifstep" style="width: 156px;height: 52px;cursor: pointer"><center>Services <br/> PauseAuto</center></div></td>
                                 </tr>
                             </table>
                             <br/>
@@ -175,71 +184,40 @@
                                         <td><img src="/car/web/images/fleche3.png"/></td>
                                         <td align="left"><span style="font-family: TAHOMA;font-weight: normal;color: #C61B00;">Carrosserie</span><img src="/car/web/images/asterisk.png"/></td>
                                         <td width="5"></td>
-                                        <td align="left">
+                                        <td align="left">                                            
                                             <table class="soria">
-                                                <tr>
-                                                    <td>
-                                                        <img src="/car/web/uploads/carosserie/monospace.png"/>
-                                                        <center><span>Monospaces</span></center>
-                                                        <center><input dojoType="dijit.form.RadioButton" type="radio" name="car_auto[idcarosserie]" id="caro1" value="0"></center>
-                                                        <br style="line-height: 10px;"/>
-                                                    </td>
-                                                    <td width="10"></td>
-                                                    <td>
-                                                        <img src="/car/web/uploads/carosserie/44.png"/>
-                                                        <center><span>4x4</span></center>
-                                                        <center><input dojoType="dijit.form.RadioButton" type="radio" name="car_auto[idcarosserie]" id="caro2" value="0"></center>
-                                                        <br style="line-height: 10px;"/>
-                                                    </td>
-                                                    <td width="10"></td>
-                                                    <td>
-                                                        <img src="/car/web/uploads/carosserie/util.png"/>
-                                                        <center><span>Utilitaires</span></center>
-                                                        <center><input dojoType="dijit.form.RadioButton" type="radio" name="car_auto[idcarosserie]" id="caro3" value="0"></center>
-                                                        <br style="line-height: 10px;"/>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <img src="/car/web/uploads/carosserie/break.png"/>
-                                                        <center><span>Breaks</span></center>
-                                                        <center><input dojoType="dijit.form.RadioButton" type="radio" name="car_auto[idcarosserie]" id="caro4" value="0"></center>
-                                                        <br style="line-height: 10px;"/>
-                                                    </td>
-                                                    <td width="10"></td>
-                                                    <td>
-                                                        <img src="/car/web/uploads/carosserie/cab.png"/>
-                                                        <center><span>Cabriolets</span></center>
-                                                        <center><input dojoType="dijit.form.RadioButton" type="radio" name="car_auto[idcarosserie]" id="caro5" value="0"></center>
-                                                        <br style="line-height: 10px;"/>
-                                                    </td>
-                                                    <td width="10"></td>
-                                                    <td>
-                                                        <img src="/car/web/uploads/carosserie/coupe.png"/>
-                                                        <center><span>Coupés</span></center>
-                                                        <center><input dojoType="dijit.form.RadioButton" type="radio" name="car_auto[idcarosserie]" id="caro6" value="0"></center>
-                                                        <br style="line-height: 10px;"/>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <img src="/car/web/uploads/carosserie/berline.png"/>
-                                                        <center><span>Berlines</span></center>
-                                                        <center><input dojoType="dijit.form.RadioButton" type="radio" name="car_auto[idcarosserie]" id="caro7" value="0"></center>
-                                                        <br style="line-height: 10px;"/>
-                                                    </td>
-                                                    <td width="10"></td>
-                                                    <td>
-                                                        <img src="/car/web/uploads/carosserie/citadine.png"/>
-                                                        <center><span>Citadines</span></center>
-                                                        <center><input dojoType="dijit.form.RadioButton" type="radio" name="car_auto[idcarosserie]" id="caro8" value="0"></center>
-                                                        <br style="line-height: 10px;"/>
-                                                    </td>
-                                                    <td width="10"></td>
-                                                    <td></td>
-                                                </tr>
+                                                <?php
+                                                $col=0;
+                                                foreach ($carosserie as $car){
+                                                    $col++;
+                                                }
+                                                $nbligne=(int)($col/3);
+                                                if($col%3!=0){
+                                                    $nbligne++;
+                                                }                                                
+                                                for($i=0;$i<$nbligne;$i++){
+                                                    //echo $carosserie[$i]->getIdCarosserie()."<br/>";
+                                                    echo "<tr>";
+                                                    for($j=0;$j<3;$j++){
+                                                        if($i+$j*3<$col){
+                                                        ?>
+                                                        <td>
+                                                            <img src="/car/web/uploads/carosserie/<?php echo $carosserie[$i+$j*3]->getImage(); ?>"/>
+                                                            <center><span><?php echo $carosserie[$i+$j*3]->getTitle(); ?></span></center>
+                                                            <center><input dojoType="dijit.form.RadioButton" type="radio" name="car_auto[idcarosserie]" onClick="commun.setCarosserie(<?php echo $carosserie[$i+$j*3]->getIdcarosserie(); ?>)" value="<?php echo $carosserie[$i+$j*3]->getIdcarosserie(); ?>"></center>
+                                                            <br style="line-height: 10px;"/>
+                                                        </td>
+                                                        <?php
+                                                        }else{
+                                                            echo "<td></td>";
+                                                        }
+                                                        echo "<td width='10'></td>";
+                                                    }
+                                                    echo "</tr>";
+                                                }
+                                                ?>                                                
                                             </table>
-                                            
+                                            <input type="hidden" id="carosserieId" value="" />
                                         </td>
                                     </tr>
                                     <tr>
@@ -365,35 +343,37 @@
                                         <td colspan="3" valign="middle" class="soria">
                                             <span style="font-family: TAHOMA;font-weight: normal;color: #C61B00;">Ma voiture a &eacute;t&eacute; import&eacute;e de l'ext&eacute;rieur :</span>
                                             <span>Oui</span>
-                                            <input dojoType="dijit.form.RadioButton" type="radio" name="car_auto[etranger]" id="etrO" value="1">
+                                            <input dojoType="dijit.form.RadioButton" type="radio" name="car_auto[etranger]" id="etrO" value="1" onChange="commun.showDedPanel();">
                                             <span>Non</span>
-                                            <input dojoType="dijit.form.RadioButton" type="radio" name="car_auto[etranger]" id="etrN" value="0">
+                                            <input dojoType="dijit.form.RadioButton" type="radio" name="car_auto[etranger]" id="etrN" value="0" checked="checked">
+                                            <input type="hidden" id="etrangerId" value="0" />
                                         </td>
                                     </tr>
-                                    <tr>
+                                    <tr id="lineDed" style="display: none;">
                                         <td colspan="4" style="height: 10px;background-image: url(/car/web/images/pixeldot.png)">&nbsp;</td>
                                     </tr>
-                                    <tr>
+                                    <tr id="blockDed" style="display: none;">
                                         <td><img src="/car/web/images/fleche3.png"/></td>
                                         <td colspan="3" valign="middle" class="soria">
                                             <span style="font-family: TAHOMA;font-weight: normal;color: #C61B00;">Ma voiture a &eacute;t&eacute; d&eacute;douan&eacute;e :&nbsp;&nbsp;&nbsp;</span>
                                             <span>Oui</span>
-                                            <input dojoType="dijit.form.RadioButton" type="radio" name="car_auto[dedouane]" id="dedO" value="1">
+                                            <input dojoType="dijit.form.RadioButton" type="radio" name="car_auto[dedouane]" id="dedO" value="1" onClick="dojo.byId('dedouaneId').value=1">
                                             <span>Non</span>
-                                            <input dojoType="dijit.form.RadioButton" type="radio" name="car_auto[dedouane]" id="dedN" value="0">
+                                            <input dojoType="dijit.form.RadioButton" type="radio" name="car_auto[dedouane]" id="dedN" value="0" onClick="dojo.byId('dedouaneId').value=0">
+                                            <input type="hidden" id="dedouaneId" value="0" />
                                         </td>
                                     </tr>
-                                    <tr>
+                                    <tr id="lineAnneeDed" style="display: none;">
                                         <td colspan="4" style="height: 10px;background-image: url(/car/web/images/pixeldot.png)">&nbsp;</td>
                                     </tr>
-                                    <tr>
+                                    <tr id="blockAnneeDed" style="display: none;">
                                         <td><img src="/car/web/images/fleche3.png"/></td>
                                         <td><span style="font-family: TAHOMA;font-weight: normal;color: #C61B00;">Ann&eacute;e de d&eacute;douanement</span></td>
                                         <td width="5"></td>
                                         <td>
                                             <table>
                                                 <tr>
-                                                    <td>
+                                                    <td width="100">
                                                         <div>
                                                             <input type="text" id="moisded" name="moisded" size="20"/>
                                                         </div>
@@ -415,9 +395,10 @@
                                         <td colspan="3" valign="middle" class="soria">
                                             <span style="font-family: TAHOMA;font-weight: normal;color: #C61B00;">Acceptez vous une &eacute;ventuelle reprise sur votre voiture :&nbsp;&nbsp;&nbsp;</span>
                                             <span>Oui</span>
-                                            <input dojoType="dijit.form.RadioButton" type="radio" name="car_auto[etranger]" id="repO" value="1">
+                                            <input dojoType="dijit.form.RadioButton" type="radio" name="car_auto[reprise]" id="repO" value="1" onClick="dojo.byId('repriseId').value=1">
                                             <span>Non</span>
-                                            <input dojoType="dijit.form.RadioButton" type="radio" name="car_auto[etranger]" id="repN" value="0">
+                                            <input dojoType="dijit.form.RadioButton" type="radio" name="car_auto[reprise]" id="repN" value="0" onClick="dojo.byId('repriseId').value=0" checked>
+                                            <input type="hidden" id="repriseId" value="0" />
                                         </td>
                                     </tr>
                                     <tr>
@@ -428,9 +409,10 @@
                                         <td colspan="3" valign="middle" class="soria">
                                             <span style="font-family: TAHOMA;font-weight: normal;color: #C61B00;">Proposez vous une garantie sur votre voiture :&nbsp;&nbsp;&nbsp;</span>
                                             <span>Oui</span>
-                                            <input dojoType="dijit.form.RadioButton" type="radio" name="car_auto[etranger]" id="garO" value="1">
+                                            <input dojoType="dijit.form.RadioButton" type="radio" name="car_auto[garantie]" id="garO" value="1" onClick="dojo.byId('garantieId').value=1">
                                             <span>Non</span>
-                                            <input dojoType="dijit.form.RadioButton" type="radio" name="car_auto[etranger]" id="garN" value="0">
+                                            <input dojoType="dijit.form.RadioButton" type="radio" name="car_auto[garantie]" id="garN" value="0" checked="checked" onClick="dojo.byId('garantieId').value=0">
+                                            <input type="hidden" id="garantieId" value="0" />
                                         </td>
                                     </tr>
                                     <tr>
@@ -439,8 +421,8 @@
                                     <tr>
                                         <td><img src="/car/web/images/fleche3.png"/></td>
                                         <td><span style="font-family: TAHOMA;font-weight: normal;color: #C61B00;">Nombre de mois de garantie</span></td>
-                                        <td width="5"></td>
-                                        <td>
+                                        <td width="5">&nbsp;</td>
+                                        <td>                                            
                                             <div>
                                                 <input id="anneegarantie" name="anneegarantie" type="text" size="20" value="0"/>
                                             </div>
@@ -454,9 +436,10 @@
                                         <td colspan="3" valign="middle" class="soria">
                                             <span style="font-family: TAHOMA;font-weight: normal;color: #C61B00;">Votre voiture est actuellement en circulation :&nbsp;&nbsp;&nbsp;</span>
                                             <span>Oui</span>
-                                            <input dojoType="dijit.form.RadioButton" type="radio" name="car_auto[etranger]" id="cirO" value="1">
+                                            <input dojoType="dijit.form.RadioButton" type="radio" name="car_auto[garaged]" id="cirO" value="1" onClick="dojo.byId('garagedId').value=1">
                                             <span>Non</span>
-                                            <input dojoType="dijit.form.RadioButton" type="radio" name="car_auto[etranger]" id="cirN" value="0">
+                                            <input dojoType="dijit.form.RadioButton" type="radio" name="car_auto[garaged]" id="cirN" value="0" onClick="dojo.byId('garagedId').value=0">
+                                            <input type="hidden" id="garagedId" value="" />
                                         </td>
                                     </tr>
                                     <tr>
@@ -467,9 +450,10 @@
                                         <td colspan="3" valign="middle" class="soria">
                                             <span style="font-family: TAHOMA;font-weight: normal;color: #C61B00;">Votre voiture est r&eacute;am&eacute;nag&eacute;e pour les handicap&eacute;s :&nbsp;&nbsp;&nbsp;</span>
                                             <span>Oui</span>
-                                            <input dojoType="dijit.form.RadioButton" type="radio" name="car_auto[etranger]" id="hanO" value="1">
+                                            <input dojoType="dijit.form.RadioButton" type="radio" name="car_auto[hand]" id="hanO" value="1" onClick="dojo.byId('handId').value=1">
                                             <span>Non</span>
-                                            <input dojoType="dijit.form.RadioButton" type="radio" name="car_auto[etranger]" id="hanN" value="0">
+                                            <input dojoType="dijit.form.RadioButton" type="radio" name="car_auto[hand]" id="hanN" value="0" onClick="dojo.byId('handId').value=0">
+                                            <input type="hidden" id="handId" value="" />
                                         </td>
                                     </tr>
                                     <tr>
@@ -531,13 +515,13 @@
                                     <br/><br/>
                                     <table>
                                         <tr>
-                                            <td><div class="inactifstep" style="width: 156px;height: 52px;"><center>Informations<br/> sur le v&eacute;hicule</center></div></td>
+                                            <td><div class="inactifstep" style="width: 156px;height: 52px;cursor: pointer"><center>Informations<br/> sur le v&eacute;hicule</center></div></td>
                                             <td width="5"></td>
-                                            <td><div class="actifstep" style="width: 154px;height: 52px;"><center>Options <br/> du v&eacute;hicule</center></div></td>
+                                            <td><div class="actifstep" style="width: 154px;height: 52px;cursor: pointer"><center>Options <br/> du v&eacute;hicule</center></div></td>
                                             <td width="5"></td>
-                                            <td><div class="inactifstep" style="width: 156px;height: 52px;"><center>Photos <br/> du v&eacute;hicule</center></div></td>
+                                            <td><div class="inactifstep" style="width: 156px;height: 52px;cursor: pointer"><center>Photos <br/> du v&eacute;hicule</center></div></td>
                                             <td width="5"></td>
-                                            <td><div class="inactifstep" style="width: 156px;height: 52px;"><center>Services <br/> PauseAuto</center></div></td>
+                                            <td><div class="inactifstep" style="width: 156px;height: 52px;cursor: pointer"><center>Services <br/> PauseAuto</center></div></td>
                                         </tr>
                                     </table>
                                     <br/>
@@ -568,6 +552,7 @@
                                         </tr>
                                         <tr>
                                         <?php
+                                            $nbacc = 0;
                                             foreach ($typesaccessoire as $type){
                                                 echo "<td align='left' valign='top' width='200' class='gridbg'>";
                                                 $accessoires = $type->getAccessoireByType($type->getIdtypeacc());
@@ -578,8 +563,9 @@
                                                     echo "<span>".$acc->getTitle()."</span>";
                                                     echo "</td>";
                                                     echo "<td>";
-                                                    echo "<input dojoType='dijit.form.CheckBox' type='radio' name='acc".$acc->getIdacc()."_type".$type->getIdtypeacc()."' id='acc".$acc->getIdacc()."_type".$type->getIdtypeacc()."' value='0'>";
+                                                    echo "<input dojoType='dijit.form.CheckBox' type='radio' name='acc_".$acc->getIdacc()."_type".$type->getIdtypeacc()."' id='acc_".$nbacc."' value='".$acc->getIdacc()."'>";
                                                     echo "</td></tr>";
+                                                    $nbacc++;
                                                 }
                                                 echo "<tr><td width='100%'>&nbsp;</td><td>&nbsp;</td>";
                                                 echo "</table>";
@@ -588,16 +574,7 @@
                                         ?>
                                         </tr>
                                     </table>
-                                    <br/>
-                                    <p>
-                                        <table>
-                                            <tr>
-                                                <td width="10" valign="top" style="padding-top: 4px;"><img src="/car/web/images/fleche_grey.png"/></td>
-                                                <td width="3"></td>
-                                                <td valign="top"><span style="font-family: TAHOMA;">Vous avez finis de saisir le formulaire vous pouvez cliquer sur le bouton <b>&laquo;Terminer&raquo;</b> pour valider votre annonce</span></td>
-                                            </tr>
-                                        </table>
-                                    </p>
+                                    <input type="hidden" name="nbacc" id="nbacc" value="<?php echo $nbacc; ?>"/>
                                     <br/><br/>
                                     <table id="buttonsBlockAcc">
                                         <tr>
@@ -614,13 +591,13 @@
                                     <br/><br/>
                                     <table>
                                         <tr>
-                                            <td><div class="inactifstep" style="width: 156px;height: 52px;"><center>Informations<br/> sur le v&eacute;hicule</center></div></td>
+                                            <td><div class="inactifstep" style="width: 156px;height: 52px;cursor: pointer"><center>Informations<br/> sur le v&eacute;hicule</center></div></td>
                                             <td width="5"></td>
-                                            <td><div class="inactifstep" style="width: 156px;height: 52px;"><center>Options <br/> du v&eacute;hicule</center></div></td>
+                                            <td><div class="inactifstep" style="width: 156px;height: 52px;cursor: pointer"><center>Options <br/> du v&eacute;hicule</center></div></td>
                                             <td width="5"></td>
-                                            <td><div class="actifstep" style="width: 154px;height: 52px;"><center>Photos <br/> du v&eacute;hicule</center></div></td>
+                                            <td><div class="actifstep" style="width: 154px;height: 52px;cursor: pointer"><center>Photos <br/> du v&eacute;hicule</center></div></td>
                                             <td width="5"></td>
-                                            <td><div class="inactifstep" style="width: 156px;height: 52px;"><center>Services <br/> PauseAuto</center></div></td>
+                                            <td><div class="inactifstep" style="width: 156px;height: 52px;cursor: pointer"><center>Services <br/> PauseAuto</center></div></td>
                                         </tr>
                                     </table>
                                     <br/>
@@ -687,8 +664,23 @@
                                                     <li><a href="/car/web/uploads/annonces/0503976711.jpg"><img src="/car/web/uploads/annonces/0503976711.jpg" alt="" /></a></li>
                                                     <li><a href="/car/web/uploads/annonces/0573146961.jpg"><img src="/car/web/uploads/annonces/0573146961.jpg" alt="" /></a></li>
                                             </ul>
+                                            <div>
+                                                <input type="hidden" id="img_1" value="/car/web/uploads/annonces/0514988146.jpg"/>
+                                                <input type="hidden" id="img_2" value="/car/web/uploads/annonces/0503976711.jpg"/>
+                                                <input type="hidden" id="img_3" value="/car/web/uploads/annonces/0573146961.jpg"/>
+                                            </div>
                                         </div>
-                                    </fieldset>                                    
+                                    </fieldset>
+                                    <br/>
+                                    <p>
+                                        <table>
+                                            <tr>
+                                                <td width="10" valign="top" style="padding-top: 4px;"><img src="/car/web/images/fleche_grey.png"/></td>
+                                                <td width="3"></td>
+                                                <td valign="top"><span style="font-family: TAHOMA;">Vous avez finis de saisir le formulaire vous pouvez cliquer sur le bouton <b>&laquo;Terminer&raquo;</b> pour valider votre annonce</span></td>
+                                            </tr>
+                                        </table>
+                                    </p>
                                     <br/><br/>
                                     <table id="buttonsBlockPhotos">
                                             <tr>
@@ -704,13 +696,13 @@
                                     <br/><br/>
                                     <table>
                                         <tr>
-                                            <td><div class="inactifstep" style="width: 156px;height: 52px;"><center>Informations<br/> sur le v&eacute;hicule</center></div></td>
+                                            <td><div class="inactifstep" style="width: 156px;height: 52px;cursor: pointer"><center>Informations<br/> sur le v&eacute;hicule</center></div></td>
                                             <td width="5"></td>
-                                            <td><div class="inactifstep" style="width: 156px;height: 52px;"><center>Options <br/> du v&eacute;hicule</center></div></td>
+                                            <td><div class="inactifstep" style="width: 156px;height: 52px;cursor: pointer"><center>Options <br/> du v&eacute;hicule</center></div></td>
                                             <td width="5"></td>
-                                            <td><div class="inactifstep" style="width: 156px;height: 52px;"><center>Photos <br/> du v&eacute;hicule</center></div></td>
+                                            <td><div class="inactifstep" style="width: 156px;height: 52px;cursor: pointer"><center>Photos <br/> du v&eacute;hicule</center></div></td>
                                             <td width="5"></td>
-                                            <td><div class="actifstep" style="width: 154px;height: 52px;"><center>Services <br/> PauseAuto</center></div></td>
+                                            <td><div class="actifstep" style="width: 154px;height: 52px;cursor: pointer"><center>Services <br/> PauseAuto</center></div></td>
                                         </tr>
                                     </table>
                                     <br/>
@@ -727,32 +719,7 @@
                                     <div style="background: url(/car/web/images/slider.jpg) no-repeat center center;width: 630px;height: 71px;padding-top: 30px;">
                                         <span style="font-family: TAHOMA;color: #6a6a6a;font-size: 12pt;padding-left: 10px;"><span style="font-weight: bold;">Services PauseAuto </span></span>
                                     </div>
-                                    <br/><br/>                                    
-                                    <!--<table align="center" cellpadding="0" cellspacing="0" id="price-chart" class="soria" width="100%">
-                                          <tbody>                                            
-                                            <tr class="blue" height="125">
-                                              <td width="131" class="ligne3-col1">&nbsp;</td>
-                                              <td class="ligne3-col2" width="10">
-                                                  <input dojoType="dijit.form.RadioButton" type="radio" name="serviceP" id="serviceBasic" value="1">
-                                              </td>
-                                              <td class="ligne3-col3">&nbsp;</td>
-                                            </tr>
-                                            <tr class="yellow" height="125">
-                                              <td class="ligne2-col1">&nbsp;</td>
-                                              <td class="ligne2-col2">
-                                                  <input dojoType="dijit.form.RadioButton" type="radio" name="serviceP" id="serviceMedium" value="2">
-                                              </td>
-                                              <td class="ligne2-col3">&nbsp;</td>
-                                            </tr>
-                                            <tr class="red" height="125">
-                                              <td class="ligne1-col1">&nbsp;</td>
-                                              <td class="ligne1-col2">
-                                                  <input dojoType="dijit.form.RadioButton" type="radio" name="serviceP" id="servicePremium" value="3">
-                                              </td>
-                                              <td class="ligne1-col3">&nbsp;</td>
-                                            </tr>                                          
-                                          </tbody>
-                                        </table>-->
+                                    <br/><br/>                                                                        
                                     <table cellpadding="0" cellspacing="0" border="0" height="388">
                                         <tr>
                                             <td width="195" class="pricingL" valign="top">
@@ -900,7 +867,7 @@
                                                 <td></td>
                                                 <td><div id="carBack1" onclick="javascript:commun.hideServicesBlock()"><label class="buttonLabel">Retour</label></div></td>
                                                 <td></td>
-                                                <td><div id="carValider" onclick="javascript:commun.showPhotosBlock()"><label class="buttonLabel">Terminer &raquo;</label></div></td>
+                                                <td><div id="carValider" onclick="javascript:commun.sendForm('annonceAuto')"><label class="buttonLabel">Terminer &raquo;</label></div></td>
                                             </tr>
                                     </table>
                                 </div>
