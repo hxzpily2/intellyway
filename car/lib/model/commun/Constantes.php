@@ -8,6 +8,8 @@ class Constantes
 	const PROFIL_LOC  = "PROFIL_LOC";
 	
 	const EMBLEM_DIR = "emblem";
+
+        const SESSION_ANNONCES = "SESSION_ANNONCES";
 }
 
 ?>

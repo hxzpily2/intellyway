@@ -78,6 +78,7 @@ class annonceActions extends sfActions
     $this->car_auto = $this->form->getObject();
     $this->typesaccessoire = CarTypeAccessoire::getAll();
     $this->carosserie = CarCarosserie::getAll();
+    $this->getUser ()->setAttribute ( Constantes::SESSION_ANNONCES, NULL);
   }
 
   public function executeCreate(sfWebRequest $request)

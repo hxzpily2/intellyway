@@ -461,5 +461,21 @@ dojo.declare("car.integration.Commun",[],{
 
     setCarosserie:function(value){
         dojo.byId('carosserieId').value=value;
+    },
+
+    getSlideShow:function(){
+        dojo.xhrPost ({
+            url: "/car/web/auto.php/commun/slideshow",
+            handleAs: "text",
+            preventCache:true,
+                load: dojo.hitch(this,function (response) {                    
+                    dojo.byId("slideshow").innerHTML = response;
+                    $("a.fancyauto").fancybox();
+                }
+            ),
+            error: function (data) {
+                console.error('Error: chargement services', data);
+            }
+        });
     }
 });

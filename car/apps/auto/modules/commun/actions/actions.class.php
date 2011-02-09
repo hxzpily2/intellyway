@@ -22,9 +22,7 @@ class communActions extends sfActions
 
   public function executeSlideshow(sfWebRequest $request)
   {
-    $this->files = $this->getUser ()->getAttribute ( Constantes::SESSION_ANNONCES );
-
-    echo count($this->files);
+    $this->files = $this->getUser ()->getAttribute ( Constantes::SESSION_ANNONCES );   
   }
 
   public function executeUploadannonce(sfWebRequest $request)
@@ -43,7 +41,7 @@ class communActions extends sfActions
       $this->getUser ()->setAttribute ( Constantes::SESSION_ANNONCES, $this->files);
       
       
-      echo "1";
+      echo count($this->files);
       return sfView::NONE;
   }
 

@@ -1,4 +1,5 @@
 <link rel="stylesheet" type="text/css" href="/car/web/js/ext/spiner/Spinner.css" />
+<link rel="stylesheet" type="text/css" href="/car/web/css/hoverbox.css" />
 <script type="text/javascript" src="/car/web/js/ext/spiner/Spinner.js"></script>
 <script type="text/javascript" src="/car/web/js/ext/spiner/SpinnerField.js"></script>
 
@@ -13,7 +14,7 @@
 
 <script type="text/javascript" src="/car/web/js/uploadify/jquery.uploadify.js"></script>
 
-<script type="text/javascript" src="/car/web/js/jquery/jquery.pikachoose.js"></script>
+<!--<script type="text/javascript" src="/car/web/js/jquery/jquery.pikachoose.js"></script>-->
 <script type="text/javascript" src="/car/web/js/jquery/jquery.fancybox-1.3.3.pack.js"></script>
 <link rel="stylesheet" type="text/css" href="/car/web/js/jquery/jquery.fancybox-1.3.3.css" media="screen" />
 
@@ -26,12 +27,13 @@
                     $("#fileUploadstyle").fileUpload({
                             'uploader': '/car/web/js/uploadify/uploader.swf',
                             'cancelImg': '/car/web/js/uploadify/cancel.png',
-                            'script': '/car/web/js/uploadify/upload_annonce.php',
+                            //'script': '/car/web/js/uploadify/upload_annonce.php',
+                            'script': '/car/web/auto.php/commun/uploadannonce',
                             'folder': '/car/web/uploads/annonces',                                                        
                             'buttonImg': '/car/web/images/finder.png',
                             'buttonText': 'Enregistrer',
-                            'width': 123,
-                            'height': 38,
+                            'width': 24,
+                            'height': 23,
                             'multi': true,
                             'displayData': 'speed',                            
                             'rollover': true,
@@ -42,17 +44,18 @@
                             'onAllComplete'  : function(event,data) {
                               
                             },
-                            'onComplete': function(event, queueID, fileObj, response, data) {
-                                alert(response);                                
+                            'onComplete': function(event, queueID, fileObj, response, data) {                                
+                                commun.getSlideShow();
+                                //dojo.byId("slideshow").innerHTML = response;
                             }
                     });
 
                     var a = function(self){
                             self.anchor.fancybox();
                     };
-                    $("#pikame").PikaChoose({buildFinished:a});
+                    //$("#pikame").PikaChoose({buildFinished:a});
 
-                    //Set default open/close settings
+                    /*
                     $('.acc_container').hide(); //Hide/close all containers
                     $('.acc_trigger:first').addClass('active').next().show(); //Add "active" class to first trigger, then show/open the immediate next container
 
@@ -63,7 +66,7 @@
                                     $(this).toggleClass('active').next().slideDown(); //Add .acc_trigger class to clicked trigger and slide down the immediate next container
                             }
                             return false; //Prevent the browser jump to the link anchor
-                    });
+                    });*/
 
                     dojo.style(dojo.byId('lineDed'), 'opacity', .0);
 		    dojo.style(dojo.byId('blockDed'), 'opacity', .0);
@@ -645,30 +648,20 @@
                                                 <div id="fileUploadstyle">You have a problem with your javascript</div>
                                                 <a href="javascript:$('#fileUploadstyle').fileUploadStart()">Uploader</a> |  <a href="javascript:$('#fileUploadstyle').fileUploadClearQueue()">Vider la liste</a>
                                         <p></p>
-                                        <br/><br/>
-                                        <hr width=100% size="1" color="" align="center">
                                         <br/>
-                                        <p>
-                                            <table>
-                                                <tr>
-                                                    <td width="10"><img src="/car/web/images/fleche_grey.png"/></td>
-                                                    <td width="3"></td>
-                                                    <td><span style="font-family: TAHOMA;">Visualisez vos photos, vous pouvez s&eacute;l&eacute;tionner celle qui ne vous intersse pas et la supprimer : </span></td>
-                                                </tr>
-                                            </table>
-                                        </p>
-                                        <br/>
-                                        <div class="pikachoose">
-                                            <ul id="pikame">
-                                                    <li><a href="/car/web/uploads/annonces/0514988146.jpg"><img src="/car/web/uploads/annonces/0514988146.jpg" alt="" /></a></li>
-                                                    <li><a href="/car/web/uploads/annonces/0503976711.jpg"><img src="/car/web/uploads/annonces/0503976711.jpg" alt="" /></a></li>
-                                                    <li><a href="/car/web/uploads/annonces/0573146961.jpg"><img src="/car/web/uploads/annonces/0573146961.jpg" alt="" /></a></li>
-                                            </ul>
-                                            <div>
-                                                <input type="hidden" id="img_1" value="/car/web/uploads/annonces/0514988146.jpg"/>
-                                                <input type="hidden" id="img_2" value="/car/web/uploads/annonces/0503976711.jpg"/>
-                                                <input type="hidden" id="img_3" value="/car/web/uploads/annonces/0573146961.jpg"/>
-                                            </div>
+                                        <div id="slideshow">                                       
+                                            <!--<div class="pikachoose">
+                                                <ul id="pikame">
+                                                        <li><a href="/car/web/uploads/annonces/0514988146.jpg"><img src="/car/web/uploads/annonces/0514988146.jpg" alt="" /></a></li>
+                                                        <li><a href="/car/web/uploads/annonces/0503976711.jpg"><img src="/car/web/uploads/annonces/0503976711.jpg" alt="" /></a></li>
+                                                        <li><a href="/car/web/uploads/annonces/0573146961.jpg"><img src="/car/web/uploads/annonces/0573146961.jpg" alt="" /></a></li>
+                                                </ul>
+                                                <div>
+                                                    <input type="hidden" id="img_1" value="/car/web/uploads/annonces/0514988146.jpg"/>
+                                                    <input type="hidden" id="img_2" value="/car/web/uploads/annonces/0503976711.jpg"/>
+                                                    <input type="hidden" id="img_3" value="/car/web/uploads/annonces/0573146961.jpg"/>
+                                                </div>
+                                            </div>-->
                                         </div>
                                     </fieldset>
                                     <br/>
