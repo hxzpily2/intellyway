@@ -398,7 +398,7 @@ dojo.declare("car.integration.Commun",[],{
                   'hand':dojo.byId("handId").value,
                   'garaged':dojo.byId("garagedId").value,
 
-                  'nbacc':nbacc,
+                  'nbacc':dojo.byId('nbacc').value,
                   'acc[]' : dojo.query('input[name^="acc_"]:checked').attr('value')
               },
               handleAs: "text",
@@ -477,5 +477,19 @@ dojo.declare("car.integration.Commun",[],{
                 console.error('Error: chargement services', data);
             }
         });
+    },
+
+    sendFile:function(){
+
+      dojo.io.iframe.send({
+        url: "/car/web/auto.php/commun/uploadannonce",
+        method: "post",
+        handleAs: "text",
+        form: dojo.byId('annonceAuto'),
+        handle: function(data,ioArgs){
+          alert(data);
+        }
+      });
     }
+
 });

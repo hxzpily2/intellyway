@@ -21,7 +21,9 @@
 <script language="javascript">
     dojo.require("dijit.form.CheckBox");
     dojo.require("dijit.form.RadioButton");
-    
+    dojo.require("dojo.io.iframe");
+    dojo.require("dijit.ProgressBar");
+
     dojo.addOnLoad(            
 	  function(){
                     $("#fileUploadstyle").fileUpload({
@@ -29,7 +31,8 @@
                             'cancelImg': '/car/web/js/uploadify/cancel.png',
                             //'script': '/car/web/js/uploadify/upload_annonce.php',
                             'script': '/car/web/auto.php/commun/uploadannonce',
-                            'folder': '/car/web/uploads/annonces',                                                        
+                            'scriptData': { '<?php echo session_name() ?>': '<?php echo session_id() ?>' },
+                            'folder': '/car/web/uploads/annonces',
                             'buttonImg': '/car/web/images/finder.png',
                             'buttonText': 'Enregistrer',
                             'width': 24,
@@ -44,13 +47,13 @@
                             'onAllComplete'  : function(event,data) {
                               
                             },
-                            'onComplete': function(event, queueID, fileObj, response, data) {                                
-                                commun.getSlideShow();
-                                //dojo.byId("slideshow").innerHTML = response;
+                            'onComplete': function(event, queueID, fileObj, response, data) {                                                                
+                                dojo.byId("slideshow").innerHTML = response;
+                                $("a.fancyauto").fancybox();
                             }
                     });
 
-                    var a = function(self){
+                    /*var a = function(self){
                             self.anchor.fancybox();
                     };
                     //$("#pikame").PikaChoose({buildFinished:a});
