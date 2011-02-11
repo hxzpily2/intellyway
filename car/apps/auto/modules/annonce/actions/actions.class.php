@@ -80,7 +80,7 @@ class annonceActions extends sfActions
     $this->carosserie = CarCarosserie::getAll();
 
     
-    $this->getUser()->setAttribute(Constantes::SESSION_ANNONCES,NULL);
+    $this->getUser()->setAttribute(Constantes::SESSION_PREFIX_ANNONCE,strtotime("now")."_");
 
   }
 
