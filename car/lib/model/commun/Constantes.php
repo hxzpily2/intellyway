@@ -10,6 +10,7 @@ class Constantes
 	const EMBLEM_DIR = "emblem";
 
         const SESSION_ANNONCES = "SESSION_ANNONCES";
+        const SESSION_PREFIX_ANNONCE = "SESSION_PREFIX_ANNONCE";
 }
 
 ?>
