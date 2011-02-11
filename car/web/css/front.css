@@ -1396,3 +1396,34 @@ table#price-chart .ligne3-col1{
     background-image: url(../images/pricingR.png);
     background-repeat: no-repeat;
 }
+
+
+#carTerminer {
+	background: url('../images/buttonModeBlack.png') repeat-x scroll 0 0;
+	border:none;
+	text-shadow:0 -1px 0 #39d;
+	font-size:11px;
+	margin:0 5px 0 0;
+	font-weight:bold;
+	width: 125px;
+	height: 40px;
+	cursor: pointer;
+	color: #FFFFFF;
+	text-align: center;
+	padding-top: 12px;
+}
+
+#carTerminer:hover{
+	background: url('../images/buttonModeOverBlack.png') repeat-x scroll 0 0;
+	border:none;
+	text-shadow:0 -1px 0 #39d;
+	font-size:11px;
+	margin:0 5px 0 0;
+	font-weight:bold;
+	width: 125px;
+	height: 40px;
+	cursor: pointer;
+	color: #FFFFFF;
+	text-align: center;
+	padding-top: 12px;
+}
