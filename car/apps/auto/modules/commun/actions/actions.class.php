@@ -73,17 +73,18 @@ class communActions extends sfActions
 
   public function executeUploadannonce(sfWebRequest $request)
   {
+      
       $fileName = $request->getFiles('Filedata');
-
-      $fileFinalName = strtotime("now").$this->getFileExtension($fileName['name']);
+      $prefix = $request->getParameter(Constantes::SESSION_PREFIX_ANNONCE);
+      
+      $fileFinalName = $prefix.strtotime("now").$this->getFileExtension($fileName['name']);
       $uploadDir = sfConfig::get("sf_upload_dir");
       $annonces_uploads = $uploadDir.'/annonces';
       move_uploaded_file($fileName['tmp_name'], "$annonces_uploads/$fileFinalName");
-      
-      $this->files = $this->getUser ()->getAttribute ( Constantes::SESSION_ANNONCES,array());
-      
-      $this->files[] = $fileFinalName;
-      $this->getUser ()->setAttribute ( Constantes::SESSION_ANNONCES, $this->files);
+
+      $finder = sfFinder::type('file');
+      $finder = $finder->name($prefix.'*');
+      $this->files = $finder->in($annonces_uploads);
       
       $this->setLayout(false);
       $this->setTemplate('slideshow');
