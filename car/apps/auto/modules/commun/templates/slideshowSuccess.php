@@ -3,7 +3,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
 */
-echo count($files);
 if(count($files)>0){
 ?>
     <hr width=100% size="1" color="" align="center">
@@ -23,9 +22,9 @@ if(count($files)>0){
         for($i=0;$i<count($files);$i++){
         ?>
         <li>
-            <a class="fancyauto" href="/car/web/uploads/annonces/0514988146.jpg"><img src="/car/web/uploads/annonces/0514988146.jpg" alt="description" /><img src="/car/web/uploads/annonces/0514988146.jpg" alt="description" class="preview" /></a>
+            <a class="fancyauto" href="/car/web/uploads/annonces/<?php echo basename($files[$i]) ?>"><img src="/car/web/uploads/annonces/<?php echo basename($files[$i]) ?>" alt="description" /><img src="/car/web/uploads/annonces/<?php echo basename($files[$i]) ?>" alt="description" class="preview" /></a>
             <br/>
-            <a href="#" style="cursor: pointer;color:#C61B00" >Supprimer</a>
+            <a href="javascript:commun.delPhotosAnnonce()" style="cursor: pointer;color:#C61B00" >Supprimer</a>
         </li>
         <?php
         }
@@ -34,5 +33,3 @@ if(count($files)>0){
 <?php
 }
 ?>
-<!--<textarea>{'status':'success',details: {name:'',size:}}</textarea>-->
-
