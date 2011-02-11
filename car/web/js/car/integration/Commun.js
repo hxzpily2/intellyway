@@ -479,17 +479,20 @@ dojo.declare("car.integration.Commun",[],{
         });
     },
 
-    sendFile:function(){
-
-      dojo.io.iframe.send({
-        url: "/car/web/auto.php/commun/uploadannonce",
-        method: "post",
-        handleAs: "text",
-        form: dojo.byId('annonceAuto'),
-        handle: function(data,ioArgs){
-          alert(data);
-        }
-      });
+    delPhotosAnnonce:function(){
+        dojo.xhrPost ({
+            url: "/car/web/auto.php/commun/slideshow",
+            handleAs: "text",
+            preventCache:true,
+                load: dojo.hitch(this,function (response) {
+                    dojo.byId("slideshow").innerHTML = response;
+                    $("a.fancyauto").fancybox();
+                }
+            ),
+            error: function (data) {
+                console.error('Error: chargement services', data);
+            }
+        });
     }
 
 });
