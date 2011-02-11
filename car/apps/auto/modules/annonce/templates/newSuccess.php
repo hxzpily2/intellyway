@@ -31,7 +31,7 @@
                             'cancelImg': '/car/web/js/uploadify/cancel.png',
                             //'script': '/car/web/js/uploadify/upload_annonce.php',
                             'script': '/car/web/auto.php/commun/uploadannonce',
-                            'scriptData': { '<?php echo session_name() ?>': '<?php echo session_id() ?>' },
+                            'scriptData': { '<?php echo Constantes::SESSION_PREFIX_ANNONCE; ?>': '<?php echo $sf_user->getAttribute(Constantes::SESSION_PREFIX_ANNONCE); ?>' },
                             'folder': '/car/web/uploads/annonces',
                             'buttonImg': '/car/web/images/finder.png',
                             'buttonText': 'Enregistrer',
@@ -582,13 +582,25 @@
                                     </table>
                                     <input type="hidden" name="nbacc" id="nbacc" value="<?php echo $nbacc; ?>"/>
                                     <br/><br/>
+                                    <p>
+                                        <table>
+                                            <tr>
+                                                <td width="10" valign="top" style="padding-top: 4px;"><img src="/car/web/images/fleche_grey.png"/></td>
+                                                <td width="3"></td>
+                                                <td valign="top"><span style="font-family: TAHOMA;">Cliquez sur <b>&laquo;Suivant&raquo;</b> pour attacher les photos de votre véhicule à votre annonce, ou sur le bouton <b>&laquo;Terminer&raquo;</b> pour enregistrer votre annonce </span></td>
+                                            </tr>
+                                        </table>
+                                    </p>
+                                    <br/><br/>
                                     <table id="buttonsBlockAcc">
                                         <tr>
                                             <td><div id="carBack1" onclick="javascript:commun.showPhotosBlock()"><label class="buttonLabel">Annuler</label></div></td>
                                             <td></td>
-                                            <td><div id="carBack1" onclick="javascript:commun.hideAccBlock()"><label class="buttonLabel">Retour</label></div></td>
+                                            <td><div id="carBack1" onclick="javascript:commun.hideAccBlock()"><label class="buttonLabel">&laquo; Retour</label></div></td>
                                             <td></td>
                                             <td><div id="carSuivant2" onclick="javascript:commun.showPhotosBlock()"><label class="buttonLabel">Suivant &raquo;</label></div></td>
+                                            <td></td>
+                                            <td><div id="carTerminer" onclick="javascript:commun.showServicesBlock()"><label class="buttonLabel">Terminer</label></div></td>
                                         </tr>
                                     </table>
                                     <br/><br/>
@@ -618,7 +630,7 @@
                                                         <tr>
                                                             <td width="10"><img src="/car/web/images/fleche_grey.png"/></td>
                                                             <td width="3"></td>
-                                                            <td><span style="font-family: TAHOMA;">Cliquez sur le bouton <b>&laquo;Enregistrer&raquo;</b> pour charger vos images.</span></td>
+                                                            <td><span style="font-family: TAHOMA;">Cliquez sur l'ic&ocirc;ne de recherche pour charger vos images.</span></td>
                                                         </tr>
                                                         <tr>
                                                             <td><img src="/car/web/images/fleche_grey.png"/></td>
@@ -673,7 +685,7 @@
                                             <tr>
                                                 <td width="10" valign="top" style="padding-top: 4px;"><img src="/car/web/images/fleche_grey.png"/></td>
                                                 <td width="3"></td>
-                                                <td valign="top"><span style="font-family: TAHOMA;">Vous avez finis de saisir le formulaire vous pouvez cliquer sur le bouton <b>&laquo;Terminer&raquo;</b> pour valider votre annonce</span></td>
+                                                <td valign="top"><span style="font-family: TAHOMA;">Vous avez finis de saisir le formulaire vous pouvez cliquer sur le bouton <b>&laquo;Terminer&raquo;</b> pour valider votre annonce ou sur le bouton <b>&laquo;Suivant&raquo;</b> pour découvrir les services <span style="font-weight: bold;color:#C61B00">PauseAuto</span></b></span></td>
                                             </tr>
                                         </table>
                                     </p>
@@ -682,9 +694,11 @@
                                             <tr>
                                                 <td><div id="carBack1" onclick="javascript:commun.showMsgBlock()"><label class="buttonLabel">Annuler</label></div></td>
                                                 <td></td>
-                                                <td><div id="carBack1" onclick="javascript:commun.hidePhotosBlock()"><label class="buttonLabel">Retour</label></div></td>
+                                                <td><div id="carBack1" onclick="javascript:commun.hidePhotosBlock()"><label class="buttonLabel">&laquo; Retour</label></div></td>
                                                 <td></td>
                                                 <td><div id="carValider" onclick="javascript:commun.showServicesBlock()"><label class="buttonLabel">Suivant &raquo;</label></div></td>
+                                                <td></td>
+                                                <td><div id="carTerminer" onclick="javascript:commun.showServicesBlock()"><label class="buttonLabel">Terminer</label></div></td>
                                             </tr>
                                     </table>
                                 </div>
@@ -701,6 +715,10 @@
                                             <td><div class="actifstep" style="width: 154px;height: 52px;cursor: pointer"><center>Services <br/> PauseAuto</center></div></td>
                                         </tr>
                                     </table>
+                                    
+                                    <div style="background: url(/car/web/images/slider.jpg) no-repeat center center;width: 630px;height: 71px;padding-top: 30px;">
+                                        <span style="font-family: TAHOMA;color: #6a6a6a;font-size: 12pt;padding-left: 10px;"><span style="font-weight: bold;">Services PauseAuto </span></span>
+                                    </div>                                    
                                     <br/>
                                     <p>
                                         <table>
@@ -712,10 +730,6 @@
                                         </table>
                                     </p>
                                     <br/>
-                                    <div style="background: url(/car/web/images/slider.jpg) no-repeat center center;width: 630px;height: 71px;padding-top: 30px;">
-                                        <span style="font-family: TAHOMA;color: #6a6a6a;font-size: 12pt;padding-left: 10px;"><span style="font-weight: bold;">Services PauseAuto </span></span>
-                                    </div>
-                                    <br/><br/>                                                                        
                                     <table cellpadding="0" cellspacing="0" border="0" height="388">
                                         <tr>
                                             <td width="195" class="pricingL" valign="top">
@@ -861,9 +875,9 @@
                                             <tr>
                                                 <td><div id="carBack1" onclick="javascript:commun.showMsgBlock()"><label class="buttonLabel">Annuler</label></div></td>
                                                 <td></td>
-                                                <td><div id="carBack1" onclick="javascript:commun.hideServicesBlock()"><label class="buttonLabel">Retour</label></div></td>
+                                                <td><div id="carBack1" onclick="javascript:commun.hideServicesBlock()"><label class="buttonLabel">&laquo; Retour</label></div></td>
                                                 <td></td>
-                                                <td><div id="carValider" onclick="javascript:commun.sendForm('annonceAuto')"><label class="buttonLabel">Terminer &raquo;</label></div></td>
+                                                <td><div id="carTerminer" onclick="javascript:commun.sendForm('annonceAuto')"><label class="buttonLabel">Terminer &raquo;</label></div></td>
                                             </tr>
                                     </table>
                                 </div>
