@@ -92,21 +92,22 @@ class communActions extends sfActions
 
   public function executeDeluploadannonce(sfWebRequest $request)
   {
-      $fileName = $request->getFiles('Filedata');
+      $fileName = $request->getParameter('image');
 
-      $fileFinalName = strtotime("now").$this->getFileExtension($fileName['name']);
-      $uploadDir = sfConfig::get("sf_upload_dir");
-      $annonces_uploads = $uploadDir.'/annonces';
-      move_uploaded_file($fileName['tmp_name'], "$annonces_uploads/$fileFinalName");
-
-      $files = $this->getUser ()->getAttribute ( Constantes::SESSION_ANNONCES );
-      if($files==NULL)
-          $files = array();
-      $files[] = $fileFinalName;
       
-      $this->getUser ()->setAttribute ( Constantes::SESSION_ANNONCES, $files);
-
-      return sfView::NONE;
+      $uploadDir = sfConfig::get("sf_upload_dir");
+      $annonces_uploads = $uploadDir.'/annonces/';
+      
+      unlink($annonces_uploads.$fileName);
+      
+      $prefix = $this->getUser ()->getAttribute ( Constantes::SESSION_PREFIX_ANNONCE );
+      
+      $finder = sfFinder::type('file');
+      $finder = $finder->name($prefix.'*');
+      $this->files = $finder->in($annonces_uploads);
+      
+      $this->setLayout(false);
+      $this->setTemplate('slideshow');
   }
   
 
