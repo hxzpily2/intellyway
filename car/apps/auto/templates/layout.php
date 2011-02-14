@@ -31,6 +31,9 @@
 <script src="/car/web/js/jquery/jquery.min.js" type="text/javascript"></script>
 <script type="text/javascript" src="/car/web/js/jquery/jquery.corner.js"></script>
 
+<script type="text/javascript" src="/car/web/js/jquery/jquery.nyroModal-1.5.5.pack.js"></script>
+<link href='/car/web/js/jquery/nyroModal.css' type="text/css" rel="stylesheet" />
+
 <!-- RATING --> 
 <script src='/car/web/js/jquery/jquery.MetaData.js'	type="text/javascript" language="javascript"></script>
 <script	src='/car/web/js/jquery/jquery.rating.js' type="text/javascript" language="javascript"></script>
@@ -400,7 +403,7 @@ dojo.addOnLoad(
 	<!-- FIN CONTENT -->	
 </div>
 
-<div id='loader' style="display: none;"><!-- <div id='loaderInner' style='direction: ltr;'>Loading theme Tester ...</div>  -->
+<div id='loader' style="display: none;z-index: 99999"><!-- <div id='loaderInner' style='direction: ltr;'>Loading theme Tester ...</div>  -->
 	<table width='100%' height='100%'>
 		<tr>
 			<td valign='middle' align='center'><img
