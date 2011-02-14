@@ -23,9 +23,9 @@
     dojo.require("dijit.form.RadioButton");
     dojo.require("dojo.io.iframe");
     dojo.require("dijit.ProgressBar");
-
+    
     dojo.addOnLoad(            
-	  function(){
+	  function(){                    
                     $("#fileUploadstyle").fileUpload({
                             'uploader': '/car/web/js/uploadify/uploader.swf',
                             'cancelImg': '/car/web/js/uploadify/cancel.png',
@@ -79,6 +79,22 @@
                     dojo.style(dojo.byId('blockAnneeDed'), 'opacity', .0);
                     dojo.style(dojo.byId('blockAnneeDed'), 'opacity', .0);
 
+                    dojo.style(dojo.byId('marqueError'), 'opacity', .0);
+                    dojo.style(dojo.byId('modeleError'), 'opacity', .0);
+                    dojo.style(dojo.byId('typeError'), 'opacity', .0);
+                    dojo.style(dojo.byId('etatError'), 'opacity', .0);
+                    dojo.style(dojo.byId('carosserieError'), 'opacity', .0);
+                    dojo.style(dojo.byId('moteurError'), 'opacity', .0);
+                    dojo.style(dojo.byId('anneecirError'), 'opacity', .0);
+                    dojo.style(dojo.byId('boiteError'), 'opacity', .0);
+                    dojo.style(dojo.byId('pfError'), 'opacity', .0);
+                    dojo.style(dojo.byId('cylError'), 'opacity', .0);
+                    dojo.style(dojo.byId('nbporteError'), 'opacity', .0);
+                    dojo.style(dojo.byId('couleurError'), 'opacity', .0);
+                    dojo.style(dojo.byId('anneededError'), 'opacity', .0);
+                    dojo.style(dojo.byId('dedError'), 'opacity', .0);
+
+
           });
 </script>
 <table width="100%">
@@ -87,6 +103,7 @@
                     <div id="autoDiv">
                         <img src="/car/web/images/banner.png" />
                         <br/><br/>
+                        <div id="autoForm">
                         <span style="font-family: TAHOMA;font-weight: bold;">Voici quelques conseils pour rendre votre annonce de plus en plus attirante vis &aacute; vis des futurs acheteurs :</span>
                         <br/><br/>
                         <table>
@@ -110,8 +127,7 @@
                         <center><span style="font-family: TAHOMA;font-weight: bold;color: #C61B00;padding-right:20px;">Bonne vente !</span></center>
                         <br/>
                         <span style="font-family: TAHOMA;color: #b7b7b7;">Votre adresse IP : <span style="font-weight: bold;"><?php echo $_SERVER['REMOTE_ADDR']; ?></span></span>
-                        <br/><br/>
-                        <div id="autoForm">
+                        <br/><br/>                        
                         <form method="post" id="annonceAuto" action="/car/web/auto.php/annonce/create">
                         <div id="blockInfo">
                             <br/><br/>
@@ -143,6 +159,16 @@
                                             </div>
                                         </td>
                                     </tr>
+                                    <tr id="marqueError" style="display: none;">
+                                        <td></td>
+                                        <td align="left" width="200"></td>
+                                        <td width="5"></td>
+                                        <td align="left">
+                                            <div style="border-width: 1px;  border-style: dotted; border-color: red; padding-top: 2px;padding-bottom: 2px;padding-right: 2px;padding-left: 2px;">
+                                                <span style="font-family: TAHOMA;font-weight: bold;color : RED">Veuillez choisir la marque de votre v&eacute;hicule</span>
+                                            </div>
+                                        </td>
+                                    </tr>
                                     <tr>
                                         <td colspan="4" style="height: 10px;background-image: url(/car/web/images/pixeldot.png)">&nbsp;</td>
                                     </tr>
@@ -155,6 +181,16 @@
                                             <div id="divModele">
                                                 <input type="text" id="idmodele" name="idmodele" size="20" />
                                             </div>                                            
+                                        </td>
+                                    </tr>
+                                    <tr id="modeleError" style="display: none;">
+                                        <td></td>
+                                        <td align="left" width="200"></td>
+                                        <td width="5"></td>
+                                        <td align="left">
+                                            <div style="border-width: 1px;  border-style: dotted; border-color: red; padding-top: 2px;padding-bottom: 2px;padding-right: 2px;padding-left: 2px;">
+                                                <span style="font-family: TAHOMA;font-weight: bold;color : RED">Veuillez choisir le mod&egrave;le de votre v&eacute;hicule</span>
+                                            </div>
                                         </td>
                                     </tr>
                                     <tr>
@@ -170,6 +206,16 @@
                                             </div>
                                         </td>
                                     </tr>
+                                    <tr id="typeError" style="display: none;">
+                                        <td></td>
+                                        <td align="left" width="200"></td>
+                                        <td width="5"></td>
+                                        <td align="left">
+                                            <div style="border-width: 1px;  border-style: dotted; border-color: red; padding-top: 2px;padding-bottom: 2px;padding-right: 2px;padding-left: 2px;">
+                                                <span style="font-family: TAHOMA;font-weight: bold;color : RED">Veuillez sp&eacute;cifier le type de votre v&eacute;hicule</span>
+                                            </div>
+                                        </td>
+                                    </tr>
                                     <tr>
                                         <td colspan="4" style="height: 10px;background-image: url(/car/web/images/pixeldot.png)">&nbsp;</td>
                                     </tr>
@@ -180,6 +226,16 @@
                                         <td align="left">
                                             <div>
                                                 <input type="text" id="idetat" name="idetat" size="20"/>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr id="etatError" style="display: none;">
+                                        <td></td>
+                                        <td align="left" width="200"></td>
+                                        <td width="5"></td>
+                                        <td align="left">
+                                            <div style="border-width: 1px;  border-style: dotted; border-color: red; padding-top: 2px;padding-bottom: 2px;padding-right: 2px;padding-left: 2px;">
+                                                <span style="font-family: TAHOMA;font-weight: bold;color : RED">Veuillez sp&eacute;cifier l&rsquo;&eacute;tat de votre v&eacute;hicule</span>
                                             </div>
                                         </td>
                                     </tr>
@@ -226,6 +282,16 @@
                                             <input type="hidden" id="carosserieId" value="" />
                                         </td>
                                     </tr>
+                                    <tr id="carosserieError" style="display: none;">
+                                        <td></td>
+                                        <td align="left" width="200"></td>
+                                        <td width="5"></td>
+                                        <td align="left">
+                                            <div style="border-width: 1px;  border-style: dotted; border-color: red; padding-top: 2px;padding-bottom: 2px;padding-right: 2px;padding-left: 2px;">
+                                                <span style="font-family: TAHOMA;font-weight: bold;color : RED">Veuillez choisir la carrosserie de votre v&eacute;hicule</span>
+                                            </div>
+                                        </td>
+                                    </tr>
                                     <tr>
                                         <td colspan="4" style="height: 10px;background-image: url(/car/web/images/pixeldot.png)">&nbsp;</td>
                                     </tr>
@@ -236,6 +302,16 @@
                                         <td>
                                             <div>
                                                 <input type="text" id="idmoteur" name="idmoteur" size="20"/>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr id="moteurError" style="display: none;">
+                                        <td></td>
+                                        <td align="left" width="200"></td>
+                                        <td width="5"></td>
+                                        <td align="left">
+                                            <div style="border-width: 1px;  border-style: dotted; border-color: red; padding-top: 2px;padding-bottom: 2px;padding-right: 2px;padding-left: 2px;">
+                                                <span style="font-family: TAHOMA;font-weight: bold;color : RED">Veuillez choisir l&rsquo;&eacute;nergie de votre v&eacute;hicule</span>
                                             </div>
                                         </td>
                                     </tr>
@@ -251,16 +327,26 @@
                                                 <tr>
                                                     <td>
                                                         <div>
-                                                            <input type="text" id="moiscir" name="moisded" size="20"/>
+                                                            <input type="text" id="moiscir" name="moiscir" size="20"/>
                                                         </div>
                                                     </td>
                                                     <td>
                                                         <div>
-                                                            <input type="text" id="anneecir" name="anneeded" size="20"/>
+                                                            <input type="text" id="anneecir" name="anneecir" size="20"/>
                                                         </div>
                                                     </td>
                                                 </tr>
                                             </table>
+                                        </td>
+                                    </tr>
+                                    <tr id="anneecirError" style="display: none;">
+                                        <td></td>
+                                        <td align="left" width="200"></td>
+                                        <td width="5"></td>
+                                        <td align="left">
+                                            <div style="border-width: 1px;  border-style: dotted; border-color: red; padding-top: 2px;padding-bottom: 2px;padding-right: 2px;padding-left: 2px;">
+                                                <span style="font-family: TAHOMA;font-weight: bold;color : RED">Veuillez mentionner l&rsquo;ann&eacute;e de mise en circulation de votre v&eacute;hicule</span>
+                                            </div>
                                         </td>
                                     </tr>
                                     <tr>
@@ -281,11 +367,21 @@
                                     </tr>
                                     <tr>
                                         <td><img src="/car/web/images/fleche3.png"/></td>
-                                        <td><span style="font-family: TAHOMA;font-weight: normal;color: #C61B00;">Bo&icirc;te de vitesse</span></td>
+                                        <td><span style="font-family: TAHOMA;font-weight: normal;color: #C61B00;">Bo&icirc;te de vitesse</span><img src="/car/web/images/asterisk.png"/></td>
                                         <td width="5"></td>
                                         <td>
                                             <div>
                                                 <input type="text" id="idboite" name="idboite" size="20"/>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr id="boiteError" style="display: none;">
+                                        <td></td>
+                                        <td align="left" width="200"></td>
+                                        <td width="5"></td>
+                                        <td align="left">
+                                            <div style="border-width: 1px;  border-style: dotted; border-color: red; padding-top: 2px;padding-bottom: 2px;padding-right: 2px;padding-left: 2px;">
+                                                <span style="font-family: TAHOMA;font-weight: bold;color : RED">Veuillez choisir la bo&icirc;te &agrave; vitesse de votre v&eacute;hicule</span>
                                             </div>
                                         </td>
                                     </tr>
@@ -302,6 +398,16 @@
                                             </div>
                                         </td>
                                     </tr>
+                                    <tr id="pfError" style="display: none;">
+                                        <td></td>
+                                        <td align="left" width="200"></td>
+                                        <td width="5"></td>
+                                        <td align="left">
+                                            <div style="border-width: 1px;  border-style: dotted; border-color: red; padding-top: 2px;padding-bottom: 2px;padding-right: 2px;padding-left: 2px;">
+                                                <span style="font-family: TAHOMA;font-weight: bold;color : RED">Veuillez sp&eacute;cifier la puissance fiscale de votre v&eacute;hicule</span>
+                                            </div>
+                                        </td>
+                                    </tr>
                                     <tr>
                                         <td colspan="4" style="height: 10px;background-image: url(/car/web/images/pixeldot.png)">&nbsp;</td>
                                     </tr>
@@ -312,6 +418,16 @@
                                         <td>
                                             <div>
                                                 <input type="text" id="cylindres" name="cylindres" size="20"/> CC
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr id="cylError" style="display: none;">
+                                        <td></td>
+                                        <td align="left" width="200"></td>
+                                        <td width="5"></td>
+                                        <td align="left">
+                                            <div style="border-width: 1px;  border-style: dotted; border-color: red; padding-top: 2px;padding-bottom: 2px;padding-right: 2px;padding-left: 2px;">
+                                                <span style="font-family: TAHOMA;font-weight: bold;color : RED">Veuillez sp&eacute;cifier le nombre de cylindre de votre v&eacute;hicule</span>
                                             </div>
                                         </td>
                                     </tr>
@@ -328,6 +444,16 @@
                                             </div>
                                         </td>
                                     </tr>
+                                    <tr id="nbporteError" style="display: none;">
+                                        <td></td>
+                                        <td align="left" width="200"></td>
+                                        <td width="5"></td>
+                                        <td align="left">
+                                            <div style="border-width: 1px;  border-style: dotted; border-color: red; padding-top: 2px;padding-bottom: 2px;padding-right: 2px;padding-left: 2px;">
+                                                <span style="font-family: TAHOMA;font-weight: bold;color : RED">Veuillez sp&eacute;cifier le nombre de portes de votre v&eacute;hicule</span>
+                                            </div>
+                                        </td>
+                                    </tr>
                                     <tr>
                                         <td colspan="4" style="height: 10px;background-image: url(/car/web/images/pixeldot.png)">&nbsp;</td>
                                     </tr>
@@ -341,13 +467,23 @@
                                             </div>
                                         </td>
                                     </tr>
+                                    <tr id="couleurError" style="display: none;">
+                                        <td></td>
+                                        <td align="left" width="200"></td>
+                                        <td width="5"></td>
+                                        <td align="left">
+                                            <div style="border-width: 1px;  border-style: dotted; border-color: red; padding-top: 2px;padding-bottom: 2px;padding-right: 2px;padding-left: 2px;">
+                                                <span style="font-family: TAHOMA;font-weight: bold;color : RED">Veuillez choisir la couleur de votre v&eacute;hicule</span>
+                                            </div>
+                                        </td>
+                                    </tr>
                                     <tr>
                                         <td colspan="4" style="height: 10px;background-image: url(/car/web/images/pixeldot.png)">&nbsp;</td>
                                     </tr>
                                     <tr>
                                         <td><img src="/car/web/images/fleche3.png"/></td>
                                         <td colspan="3" valign="middle" class="soria">
-                                            <span style="font-family: TAHOMA;font-weight: normal;color: #C61B00;">Ma voiture a &eacute;t&eacute; import&eacute;e de l'ext&eacute;rieur :</span>
+                                            <span style="font-family: TAHOMA;font-weight: normal;color: #C61B00;">Ma voiture a &eacute;t&eacute; import&eacute;e de l'&eacute;tranger :</span>
                                             <span>Oui</span>
                                             <input dojoType="dijit.form.RadioButton" type="radio" name="car_auto[etranger]" id="etrO" value="1" onChange="commun.showDedPanel();">
                                             <span>Non</span>
@@ -360,13 +496,23 @@
                                     </tr>
                                     <tr id="blockDed" style="display: none;">
                                         <td><img src="/car/web/images/fleche3.png"/></td>
-                                        <td colspan="3" valign="middle" class="soria">
-                                            <span style="font-family: TAHOMA;font-weight: normal;color: #C61B00;">Ma voiture a &eacute;t&eacute; d&eacute;douan&eacute;e :&nbsp;&nbsp;&nbsp;</span>
+                                        <td colspan="3" valign="middle" class="soria"  style="padding-bottom: 3px;">
+                                            <span style="font-family: TAHOMA;font-weight: normal;color: #C61B00;">Ma voiture a &eacute;t&eacute; d&eacute;douan&eacute;e<img src="/car/web/images/asterisk.png" style="display: inline"/> :&nbsp;&nbsp;&nbsp;</span>
                                             <span>Oui</span>
                                             <input dojoType="dijit.form.RadioButton" type="radio" name="car_auto[dedouane]" id="dedO" value="1" onClick="dojo.byId('dedouaneId').value=1">
                                             <span>Non</span>
                                             <input dojoType="dijit.form.RadioButton" type="radio" name="car_auto[dedouane]" id="dedN" value="0" onClick="dojo.byId('dedouaneId').value=0">
-                                            <input type="hidden" id="dedouaneId" value="0" />
+                                            <input type="hidden" id="dedouaneId" value="" />
+                                        </td>
+                                    </tr>
+                                    <tr id="dedError" style="display: none;">
+                                        <td></td>
+                                        <td align="left" width="200"></td>
+                                        <td width="5"></td>
+                                        <td align="left">
+                                            <div style="border-width: 1px;  border-style: dotted; border-color: red; padding-top: 2px;padding-bottom: 2px;padding-right: 2px;padding-left: 2px;">
+                                                <span style="font-family: TAHOMA;font-weight: bold;color : RED">Veuillez sp&eacute;cifier si votre v&eacute;hicule a &eacute;t&eacute; d&eacute;douan&eacute;</span>
+                                            </div>
                                         </td>
                                     </tr>
                                     <tr id="lineAnneeDed" style="display: none;">
@@ -374,7 +520,7 @@
                                     </tr>
                                     <tr id="blockAnneeDed" style="display: none;">
                                         <td><img src="/car/web/images/fleche3.png"/></td>
-                                        <td><span style="font-family: TAHOMA;font-weight: normal;color: #C61B00;">Ann&eacute;e de d&eacute;douanement</span></td>
+                                        <td valign="middle" style="padding-bottom: 3px;"><span style="font-family: TAHOMA;font-weight: normal;color: #C61B00;">Ann&eacute;e de d&eacute;douanement</span><img src="/car/web/images/asterisk.png"/></td>
                                         <td width="5"></td>
                                         <td>
                                             <table>
@@ -391,6 +537,16 @@
                                                     </td>
                                                 </tr>
                                             </table>
+                                        </td>
+                                    </tr>
+                                    <tr id="anneededError" style="display: none;">
+                                        <td></td>
+                                        <td align="left" width="200"></td>
+                                        <td width="5"></td>
+                                        <td align="left">
+                                            <div style="border-width: 1px;  border-style: dotted; border-color: red; padding-top: 2px;padding-bottom: 2px;padding-right: 2px;padding-left: 2px;">
+                                                <span style="font-family: TAHOMA;font-weight: bold;color : RED">Veuillez sp&eacute;cifier l'ann&eacute;e de d&eacute;douannement de votre v&eacute;hicule</span>
+                                            </div>
                                         </td>
                                     </tr>
                                     <tr>
@@ -467,6 +623,17 @@
                                     </tr>
                                     <tr>
                                         <td><img src="/car/web/images/fleche3.png"/></td>
+                                        <td colspan="3" valign="middle" class="soria">
+                                            <span style="font-family: TAHOMA;font-weight: normal;color: #C61B00;">Votre annonce est-elle urgente ?</span>&nbsp;&nbsp;&nbsp;
+                                            <span>Oui</span>
+                                            <input dojoType="dijit.form.CheckBox" type="radio" name="car_auto[urgent]" id="urgentId" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4" style="height: 10px;background-image: url(/car/web/images/pixeldot.png)">&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td><img src="/car/web/images/fleche3.png"/></td>
                                         <td><span style="font-family: TAHOMA;font-weight: normal;color: #C61B00;font-weight: bold;">Prix de vente</span></td>
                                         <td width="5"></td>
                                         <td>
@@ -513,6 +680,8 @@
                                         <td><div id="carAnnuler1" onclick="javascript:commun.annulerAnnonce()"><label class="buttonLabel">Annuler</label></div></td>
                                         <td></td>
                                         <td><div id="carSuivant1" onclick="javascript:commun.showAccBlock()"><label class="buttonLabel">Suivant &raquo;</label></div></td>
+                                        <td></td>
+                                        <td id="buttonInfoTerminer" style="display: none;"><div id="carTerminer" onclick="javascript:commun.sendForm('annonceAuto')"><label class="buttonLabel">Terminer</label></div></td>
                                     </tr>
                                 </table>
                                 <br/><br/>
@@ -600,7 +769,7 @@
                                             <td></td>
                                             <td><div id="carSuivant2" onclick="javascript:commun.showPhotosBlock()"><label class="buttonLabel">Suivant &raquo;</label></div></td>
                                             <td></td>
-                                            <td><div id="carTerminer" onclick="javascript:commun.showServicesBlock()"><label class="buttonLabel">Terminer</label></div></td>
+                                            <td><div id="carTerminer" onclick="javascript:commun.sendForm('annonceAuto')"><label class="buttonLabel">Terminer</label></div></td>
                                         </tr>
                                     </table>
                                     <br/><br/>
@@ -698,7 +867,7 @@
                                                 <td></td>
                                                 <td><div id="carValider" onclick="javascript:commun.showServicesBlock()"><label class="buttonLabel">Suivant &raquo;</label></div></td>
                                                 <td></td>
-                                                <td><div id="carTerminer" onclick="javascript:commun.showServicesBlock()"><label class="buttonLabel">Terminer</label></div></td>
+                                                <td><div id="carTerminer" onclick="javascript:commun.sendForm('annonceAuto')"><label class="buttonLabel">Terminer</label></div></td>
                                             </tr>
                                     </table>
                                 </div>
