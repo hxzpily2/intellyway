@@ -24,7 +24,7 @@ if(count($files)>0){
         <li>
             <a class="fancyauto" href="/car/web/uploads/annonces/<?php echo basename($files[$i]) ?>"><img src="/car/web/uploads/annonces/<?php echo basename($files[$i]) ?>" alt="description" /><img src="/car/web/uploads/annonces/<?php echo basename($files[$i]) ?>" alt="description" class="preview" /></a>
             <br/>
-            <a href="javascript:commun.delPhotosAnnonce()" style="cursor: pointer;color:#C61B00" >Supprimer</a>
+            <a href="javascript:commun.delPhotosAnnonce('<?php echo basename($files[$i]); ?>')" style="cursor: pointer;color:#C61B00" >Supprimer</a>
         </li>
         <?php
         }
