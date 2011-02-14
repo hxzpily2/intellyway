@@ -1,4 +1,4 @@
-
+var marqueTooltip;
 dojo.provide("car.integration.Commun");
 
 
@@ -265,30 +265,26 @@ dojo.declare("car.integration.Commun",[],{
 
     showAccBlock : function () {
         dojo.style(dojo.byId("blockAcc"), 'display', '');
-        dojo.style(dojo.byId("blockInfo"), 'display', 'none');
-        dojo.style(dojo.byId("buttonsBlockInfo"), 'display', 'none');
+        dojo.style(dojo.byId("blockInfo"), 'display', 'none');        
         var $target = $('#autoDiv');
         $(document).stop().scrollTo( $target , 800 );
     },    
     showPhotosBlock : function () {
         dojo.style(dojo.byId("blockPhotos"), 'display', '');
-        dojo.style(dojo.byId("blockAcc"), 'display', 'none');
-        dojo.style(dojo.byId("buttonsBlockAcc"), 'display', 'none');
+        dojo.style(dojo.byId("blockAcc"), 'display', 'none');        
         var $target = $('#autoDiv');
         $(document).stop().scrollTo( $target , 800 );
     },
     hideAccBlock : function () {
         dojo.style(dojo.byId("blockAcc"), 'display', 'none');
-        dojo.style(dojo.byId("blockInfo"), 'display', '');
-        dojo.style(dojo.byId("buttonsBlockInfo"), 'display', '');
+        dojo.style(dojo.byId("blockInfo"), 'display', '');        
         var $target = $('#autoDiv');
         $(document).stop().scrollTo( $target , 800 );
 
     },
     hidePhotosBlock : function () {
         dojo.style(dojo.byId("blockPhotos"), 'display', 'none');
-        dojo.style(dojo.byId("blockAcc"), 'display', '');
-        dojo.style(dojo.byId("buttonsBlockAcc"), 'display', '');
+        dojo.style(dojo.byId("blockAcc"), 'display', '');        
         var $target = $('#autoDiv');
         $(document).stop().scrollTo( $target , 800 );
     },
@@ -326,15 +322,13 @@ dojo.declare("car.integration.Commun",[],{
     showServicesBlock : function () {
         dojo.style(dojo.byId("blockServices"), 'display', '');
         dojo.style(dojo.byId("blockPhotos"), 'display', 'none');
-        dojo.style(dojo.byId("buttonsBlockPhotos"), 'display', 'none');
         var $target = $('#autoDiv');
         $(document).stop().scrollTo( $target , 800 );
     },
 
     hideServicesBlock : function () {
         dojo.style(dojo.byId("blockPhotos"), 'display', '');
-        dojo.style(dojo.byId("blockServices"), 'display', 'none');
-        dojo.style(dojo.byId("buttonsBlockPhotos"), 'display', '');        
+        dojo.style(dojo.byId("blockServices"), 'display', 'none');        
         var $target = $('#autoDiv');
         $(document).stop().scrollTo( $target , 800 );
     },
@@ -368,49 +362,185 @@ dojo.declare("car.integration.Commun",[],{
         });
     },
 
-    sendForm:function(idForm){           
-            dojo.xhrPost({
-              form: dojo.byId(idForm),              
-              content: {
-                  'idetat':dojo.byId("car_auto[idetat]").value,
-                  'idtype':dojo.byId("car_auto[idtype]").value,
-                  'idmoteur':dojo.byId("car_auto[idmoteur]").value,
-                  'idboite':dojo.byId("car_auto[idboite]").value,
-                  'kilometrage':Ext.getCmp('kilometragetxt').getValue(),
-                  'anneeded':dojo.byId("car_auto[anneeded]").value,
-                  'moisded':dojo.byId("car_auto[moisded]").value,
-                  'anneecir':dojo.byId("car_auto[anneecir]").value,
-                  'moiscir':dojo.byId("car_auto[moiscir]").value,
-                  'prixstart':Ext.getCmp('prixstarttxt').getValue(),
-                  'anneegarantie':Ext.getCmp('anneegarantiespin').getValue(),
-                  'idmodele':dojo.byId("car_auto[idmodele]").value,
-                  'idmarque':dojo.byId("car_auto[idmarque]").value,
-                  'cylindres':Ext.getCmp('cylindrestxt').getValue(),
-                  'pfiscale':dojo.byId("car_auto[pfiscale]").value,
-                  'nbportes':dojo.byId("car_auto[nbportes]").value,
-                  'idcouleur':dojo.byId("car_auto[idcouleur]").value,
-                  
-                  'idcarosserie':dojo.byId("carosserieId").value,
-                  'etranger':dojo.byId("etrangerId").value,
-                  'dedouane':dojo.byId("dedouaneId").value,
-                  'garantie':dojo.byId("garantieId").value,
-                  'reprise':dojo.byId("repriseId").value,
-                  'hand':dojo.byId("handId").value,
-                  'garaged':dojo.byId("garagedId").value,
+    sendForm:function(idForm){                              
 
-                  'nbacc':dojo.byId('nbacc').value,
-                  'acc[]' : dojo.query('input[name^="acc_"]:checked').attr('value')
-              },
-              handleAs: "text",
-              load: function(data) {
-                  //dojo.byId("response").innerHTML = "Form posted.";
-              },
-              error: function(error) {
-                  //We'll 404 in the demo, but that's okay.  We don't have a 'postIt' service on the
-                  //docs server.
-                  //dojo.byId("response").innerHTML = "Form posted.";
-              }
-            });
+            dojo.style(dojo.byId('marqueError'), 'opacity', .0);
+            dojo.style(dojo.byId('marqueError'), 'display', 'none');
+            dojo.style(dojo.byId('modeleError'), 'opacity', .0);
+            dojo.style(dojo.byId('modeleError'), 'display', 'none');
+            dojo.style(dojo.byId('typeError'), 'opacity', .0);
+            dojo.style(dojo.byId('typeError'), 'display', 'none');
+            dojo.style(dojo.byId('etatError'), 'opacity', .0);
+            dojo.style(dojo.byId('etatError'), 'display', 'none');
+            dojo.style(dojo.byId('carosserieError'), 'opacity', .0);
+            dojo.style(dojo.byId('carosserieError'), 'display', 'none');
+            dojo.style(dojo.byId('moteurError'), 'opacity', .0);
+            dojo.style(dojo.byId('moteurError'), 'display', 'none');
+            dojo.style(dojo.byId('anneecirError'), 'opacity', .0);
+            dojo.style(dojo.byId('anneecirError'), 'display', 'none');
+            dojo.style(dojo.byId('boiteError'), 'opacity', .0);
+            dojo.style(dojo.byId('boiteError'), 'display', 'none');
+            dojo.style(dojo.byId('pfError'), 'opacity', .0);
+            dojo.style(dojo.byId('pfError'), 'display', 'none');
+            dojo.style(dojo.byId('cylError'), 'opacity', .0);
+            dojo.style(dojo.byId('cylError'), 'display', 'none');
+            dojo.style(dojo.byId('nbporteError'), 'opacity', .0);
+            dojo.style(dojo.byId('nbporteError'), 'display', 'none');
+            dojo.style(dojo.byId('couleurError'), 'opacity', .0);
+            dojo.style(dojo.byId('couleurError'), 'display', 'none');
+            dojo.style(dojo.byId('anneededError'), 'opacity', .0);
+            dojo.style(dojo.byId('anneededError'), 'display', 'none');
+            dojo.style(dojo.byId('dedError'), 'opacity', .0);
+            dojo.style(dojo.byId('dedError'), 'display', 'none');
+
+            dojo.style(dojo.byId("blockServices"), 'display', 'none');
+            dojo.style(dojo.byId("blockPhotos"), 'display', 'none');
+            dojo.style(dojo.byId("blockAcc"), 'display', 'none');
+            dojo.style(dojo.byId("blockInfo"), 'display', '');
+            var $target = $('#blockInfo');
+            $(document).stop().scrollTo( $target , 200 );
+
+            var test = false;
+
+            var marque = Ext.getCmp('marqueId').getValue();
+            var modele = Ext.getCmp('modeleId').getValue();
+            var type = Ext.getCmp('typeId').getValue();
+            var etat = Ext.getCmp('etatId').getValue();
+            var carrosserie = dojo.byId('carosserieId').value;
+            var moteur = Ext.getCmp('moteurId').getValue();
+            var anneecir = Ext.getCmp('anneecirId').getValue();
+            var boite = Ext.getCmp('boiteId').getValue();
+            var pf = Ext.getCmp('pfiscaleId').getValue();
+            var cylindres = Ext.getCmp('cylindrestxt').getValue();
+            var nbportes = Ext.getCmp('nbportesId').getValue();
+            var couleur = Ext.getCmp('couleurId').getValue();
+            var anneeded = Ext.getCmp('anneededId').getValue();
+            var ded = dojo.byId('dedouaneId').value;
+            var etranger = dojo.byId('etrangerId').value;
+            var urgent = dojo.byId('urgentId').checked?1:0;
+            if(marque==""){
+                this.runEffect("marqueError");
+                test = true;
+            }
+
+            if(modele==""){
+                this.runEffect("modeleError");
+                test = true;
+            }
+
+            if(type==""){
+                this.runEffect("typeError");
+                test = true;
+            }
+
+            if(etat==""){
+                this.runEffect("etatError");
+                test = true;
+            }
+
+            if(carrosserie==""){
+                this.runEffect("carosserieError");
+                test = true;
+            }
+
+            if(moteur==""){
+                this.runEffect("moteurError");
+                test = true;
+            }
+
+            if(anneecir==""){
+                this.runEffect("anneecirError");
+                test = true;
+            }
+
+            if(boite==""){
+                this.runEffect("boiteError");
+                test = true;
+            }
+
+            if(pf==""){
+                this.runEffect("pfError");
+                test = true;
+            }
+
+            if(cylindres==""){
+                this.runEffect("cylError");
+                test = true;
+            }
+
+
+            if(nbportes==""){
+                this.runEffect("nbporteError");
+                test = true;
+            }
+
+            if(couleur==""){
+                this.runEffect("couleurError");
+                test = true;
+            }
+            
+            if(etranger=="1"){                
+                if(anneeded==""){
+                    this.runEffect("anneededError");
+                    test = true;
+                }
+                if(ded==""){
+                    this.runEffect("dedError");
+                    test = true;
+                }
+            }
+            
+            if(test){
+                dojo.style(dojo.byId("buttonInfoTerminer"), 'display', '');
+            }else{
+                this.showLoaderJ();
+                dojo.xhrPost({
+                  form: dojo.byId(idForm),
+                  content: {
+                      'idetat':etat,
+                      'idtype':type,
+                      'idmoteur':moteur,
+                      'idboite':boite,
+                      'kilometrage':Ext.getCmp('kilometragetxt').getValue(),
+                      'anneeded':anneeded,
+                      'moisded':Ext.getCmp('moisdedId').getValue(),
+                      'anneecir':anneecir,
+                      'moiscir':Ext.getCmp('moiscirId').getValue(),
+                      'prixstart':Ext.getCmp('prixstarttxt').getValue(),
+                      'anneegarantie':Ext.getCmp('anneegarantiespin').getValue(),
+                      'idmodele':modele,
+                      'idmarque':marque,
+                      'cylindres':cylindres,
+                      'pfiscale':pf,
+                      'nbportes':nbportes,
+                      'idcouleur':couleur,
+
+                      'idcarosserie':carrosserie,
+                      'etranger':etranger,
+                      'dedouane':dojo.byId("dedouaneId").value,
+                      'garantie':dojo.byId("garantieId").value,
+                      'reprise':dojo.byId("repriseId").value,
+                      'hand':dojo.byId("handId").value,
+                      'garaged':dojo.byId("garagedId").value,
+                      'urgent':  urgent,
+                      'nbacc':dojo.byId('nbacc').value,
+                      'acc[]' : dojo.query('input[name^="acc_"]:checked').attr('value')
+                  },
+                  handleAs: "text",
+                  load: function(data) {
+                      dojo.byId("autoForm").innerHTML = data;
+                      $.nyroModalRemove();
+                      var $target = $('#autoDiv');
+                      $(document).stop().scrollTo( $target , 200 );
+                  },
+                  error: function(error) {
+                      //We'll 404 in the demo, but that's okay.  We don't have a 'postIt' service on the
+                      //docs server.
+                      //dojo.byId("response").innerHTML = "Form posted.";
+                  }
+                });
+            }
+            
     },
 
     showDedPanel:function(){
@@ -479,10 +609,11 @@ dojo.declare("car.integration.Commun",[],{
         });
     },
 
-    delPhotosAnnonce:function(){
+    delPhotosAnnonce:function(image){
         dojo.xhrPost ({
-            url: "/car/web/auto.php/commun/slideshow",
+            url: "/car/web/auto.php/commun/deluploadannonce",
             handleAs: "text",
+            content: {'image':image},
             preventCache:true,
                 load: dojo.hitch(this,function (response) {
                     dojo.byId("slideshow").innerHTML = response;
@@ -493,6 +624,14 @@ dojo.declare("car.integration.Commun",[],{
                 console.error('Error: chargement services', data);
             }
         });
+    },
+
+    showLoaderJ:function(){        
+
+        $.fn.nyroModalManual({
+				bgColor: '#FFFFFF',
+				content: dojo.byId("loader").innerHTML
+			});
     }
 
 });
