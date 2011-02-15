@@ -393,6 +393,12 @@ dojo.declare("car.integration.Commun",[],{
             dojo.style(dojo.byId('dedError'), 'opacity', .0);
             dojo.style(dojo.byId('dedError'), 'display', 'none');
 
+            dojo.style(dojo.byId('villeError'), 'opacity', .0);
+            dojo.style(dojo.byId('villeError'), 'display', 'none');
+
+            dojo.style(dojo.byId('globalError'), 'opacity', .0);
+            dojo.style(dojo.byId('globalError'), 'display', 'none');
+            
             dojo.style(dojo.byId("blockServices"), 'display', 'none');
             dojo.style(dojo.byId("blockPhotos"), 'display', 'none');
             dojo.style(dojo.byId("blockAcc"), 'display', 'none');
@@ -418,6 +424,7 @@ dojo.declare("car.integration.Commun",[],{
             var ded = dojo.byId('dedouaneId').value;
             var etranger = dojo.byId('etrangerId').value;
             var urgent = dojo.byId('urgentId').checked?1:0;
+            var ville = Ext.getCmp('villeId').getValue();
             if(marque==""){
                 this.runEffect("marqueError");
                 test = true;
@@ -478,6 +485,11 @@ dojo.declare("car.integration.Commun",[],{
                 this.runEffect("couleurError");
                 test = true;
             }
+
+            if(ville==""){
+                this.runEffect("villeError");
+                test = true;
+            }
             
             if(etranger=="1"){                
                 if(anneeded==""){
@@ -492,7 +504,9 @@ dojo.declare("car.integration.Commun",[],{
             
             if(test){
                 dojo.style(dojo.byId("buttonInfoTerminer"), 'display', '');
-            }else{
+                dojo.style(dojo.byId('globalError'), 'display', '');
+                this.runEffect("globalError");
+            }/*else{*/
                 this.showLoaderJ();
                 dojo.xhrPost({
                   form: dojo.byId(idForm),
@@ -523,6 +537,7 @@ dojo.declare("car.integration.Commun",[],{
                       'hand':dojo.byId("handId").value,
                       'garaged':dojo.byId("garagedId").value,
                       'urgent':  urgent,
+                      'ville':  ville,
                       'nbacc':dojo.byId('nbacc').value,
                       'acc[]' : dojo.query('input[name^="acc_"]:checked').attr('value')
                   },
@@ -539,7 +554,7 @@ dojo.declare("car.integration.Commun",[],{
                       //dojo.byId("response").innerHTML = "Form posted.";
                   }
                 });
-            }
+            //}
             
     },
 
