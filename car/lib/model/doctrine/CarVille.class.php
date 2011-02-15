@@ -15,4 +15,10 @@ class CarVille extends BaseCarVille
 	public function __toString(){
 		return $this->getTitle();
 	}
+
+        public static function getVillesByPays($pays){
+            $q = Doctrine_Query::create ()->from ( 'CarVille c' )->where("c.idpays = $pays");
+            return $q->execute ();
+            
+        }
 }
