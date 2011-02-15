@@ -393,5 +393,29 @@ Ext.onReady(function(){
         width:200,
         applyTo: 'idcouleur'
     });
+
+    var dsVilles = new Ext.data.JsonStore({
+            autoLoad: true,
+            url: '/car/web/auto.php/json/villejson?active=true&pays='+dojo.byId('paysID').value,
+            root: 'villes',
+            fields:['id', 'name']
+    });
+
+    var comboVilles = new Ext.form.ComboBox({
+        store: dsVilles,
+        displayField: "name",
+        valueField: "id",
+        id:"villeId",
+        hiddenName: 'car_auto[idville]',
+        hiddenId: 'car_auto[idville]',
+        typeAhead: true,
+        mode: 'local',
+        forceSelection: true,
+        triggerAction: 'all',
+        emptyText:'Selectionner une marque...',
+        selectOnFocus:true,
+        width:200,
+        applyTo: 'idville'
+    });
     
 });
