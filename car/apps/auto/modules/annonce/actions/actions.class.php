@@ -129,13 +129,35 @@ class annonceActions extends sfActions
     $annonce->setUrgent($request->getParameter("urgent"));
     $annonce->setIdville($request->getParameter("ville"));
     
+    $conn = Doctrine_Manager::connection();
+    $conn->beginTransaction();
+    $annonce->save();
     $accs = $request->getParameter("acc");
     for($i=0;$i<(int)count($accs);$i++){
-        echo $accs[$i]."<br/>";
+        $acc = new CarAccessoires();
+        $acc->setIdacc($accs[$i]);
+        $acc->setIdauto($annonce->getIdauto());
+        $acc->setActive(1);
+        $acc->save();        
     }
+
+    $prefix = $this->getUser ()->getAttribute ( Constantes::SESSION_PREFIX_ANNONCE );    
+    $uploadDir = sfConfig::get("sf_upload_dir");
+    $annonces_uploads = $uploadDir.'/annonces/';
+    $finder = sfFinder::type('file');
+    $finder = $finder->name($prefix.'*');
+    $files = $finder->in($annonces_uploads);
     
-    //$annonce->save();
-    
+    for($i=0;$i<count($files);$i++){
+        $image = new CarImage();
+        $image->setImage(basename($files[$i]));
+        $image->save();
+        $annonce_image = new CarImages();
+        $annonce_image->setIdauto($annonce->getIdauto());
+        $annonce_image->setIdimage($image->getIdimage());
+        $annonce_image->save();
+    }
+    $conn->commit();
     $this->setTemplate('annonce');
   }
 
