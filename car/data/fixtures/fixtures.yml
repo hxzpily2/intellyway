@@ -29,6 +29,12 @@ CarPays:
      code:     FR
      bigcode:    FRA
      active:    1
+
+CarVille:
+   rabat:
+     title: Rabat
+     CarPays: maroc
+     active:    1
           
 
 CarType:
