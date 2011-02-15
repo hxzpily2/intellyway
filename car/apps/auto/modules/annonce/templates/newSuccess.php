@@ -93,17 +93,20 @@
                     dojo.style(dojo.byId('couleurError'), 'opacity', .0);
                     dojo.style(dojo.byId('anneededError'), 'opacity', .0);
                     dojo.style(dojo.byId('dedError'), 'opacity', .0);
+                    dojo.style(dojo.byId('globalError'), 'opacity', .0);
+                    dojo.style(dojo.byId('villeError'), 'opacity', .0);
 
 
           });
 </script>
+<input type="hidden" id="paysID" value="<?php echo $pays->getIdpays(); ?>"/>
 <table width="100%">
     <tr>
         <td width="630" valign="top">
                     <div id="autoDiv">
-                        <img src="/car/web/images/banner.png" />
-                        <br/><br/>
                         <div id="autoForm">
+                        <img src="/car/web/images/banner.png" />
+                        <br/><br/>                        
                         <span style="font-family: TAHOMA;font-weight: bold;">Voici quelques conseils pour rendre votre annonce de plus en plus attirante vis &aacute; vis des futurs acheteurs :</span>
                         <br/><br/>
                         <table>
@@ -149,6 +152,18 @@
                             <img id="imageMarque" style="padding-left: 10px;height: 75px;width: 75px;" src="/car/web/images/noimage.png"/>
                             <br/><br/>
                                 <table width="100%">
+                                    <tr id="globalError" style="display :none;">
+                                        <td colspan="4">
+                                            <div style="border-width: 1px;  border-style: dotted; border-color: red; padding-top: 2px;padding-bottom: 2px;padding-right: 2px;padding-left: 2px;">
+                                                <span style="font-family: TAHOMA;font-weight: bold;color : RED">Vous n'avez pas compl&egrave;ter la saisie de votre annonce, Merci de v&eacute;rifier les informations ci-dessous</span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4">
+                                            &nbsp;
+                                        </td>
+                                    </tr>
                                     <tr>
                                         <td><img src="/car/web/images/fleche3.png"/></td>
                                         <td align="left" width="200"><span style="font-family: TAHOMA;font-weight: normal;color: #C61B00;">Marque</span><img src="/car/web/images/asterisk.png"/></td>
@@ -190,6 +205,29 @@
                                         <td align="left">
                                             <div style="border-width: 1px;  border-style: dotted; border-color: red; padding-top: 2px;padding-bottom: 2px;padding-right: 2px;padding-left: 2px;">
                                                 <span style="font-family: TAHOMA;font-weight: bold;color : RED">Veuillez choisir le mod&egrave;le de votre v&eacute;hicule</span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4" style="height: 10px;background-image: url(/car/web/images/pixeldot.png)">&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td><img src="/car/web/images/fleche3.png"/></td>
+                                        <td align="left"><span style="font-family: TAHOMA;font-weight: normal;color: #C61B00;">Ville</span><img src="/car/web/images/asterisk.png"/></td>
+                                        <td width="5"></td>
+                                        <td align="left">                                            
+                                            <div>
+                                                <input type="text" id="idville" name="idville" size="20"/>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr id="villeError" style="display: none;">
+                                        <td></td>
+                                        <td align="left" width="200"></td>
+                                        <td width="5"></td>
+                                        <td align="left">
+                                            <div style="border-width: 1px;  border-style: dotted; border-color: red; padding-top: 2px;padding-bottom: 2px;padding-right: 2px;padding-left: 2px;">
+                                                <span style="font-family: TAHOMA;font-weight: bold;color : RED">Veuillez mentionner la ville ou on peut croiser votre v&eacute;hicule</span>
                                             </div>
                                         </td>
                                     </tr>
