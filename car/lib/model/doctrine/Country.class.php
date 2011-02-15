@@ -26,6 +26,12 @@ class Country extends BaseCountry
 		
 		$ip2country = Doctrine_Query::create ()->from ( 'Ip2country c' )->where ( "c.ip_from <= " . Country::inet_aton($ip) )->andWhere("c.ip_to >= " . Country::inet_aton($ip))->execute ();
 
+                if(count($ip2country)>0){
+                    return $ip2country[0];
+                }else{
+                    return CarPays::getDefaultPays(Constantes::DEFAULT_PAYS);
+                }
+
 		/*if(!$ip2country){
 			return false;
 		}else{
