@@ -15,6 +15,14 @@ class annonceActions extends sfActions
 {
   public function preExecute()
   {
+    /***
+     * ADDED BY ZER TO SET COUNTRY FROM ADDR IP
+     */    
+    $this->pays = Country::getCoutryByIp();
+    $this->getUser()->setAttribute(Constantes::SESSION_PAYS_ID, $this->pays);
+    /***
+     * END SET COUNTRY
+     */
     $this->configuration = new annonceGeneratorConfiguration();
 
     if (!$this->getUser()->hasCredential($this->configuration->getCredentials($this->getActionName())))
@@ -92,8 +100,34 @@ class annonceActions extends sfActions
     //$this->processForm($request, $this->form);
 
     $annonce = new CarAuto();
+
     $annonce->setActive(1);
-    
+    $annonce->setIdetat($request->getParameter("idetat"));
+    $annonce->setIdtype($request->getParameter("idtype"));
+    $annonce->setIdmoteur($request->getParameter("idmoteur"));
+    $annonce->setIdboite($request->getParameter("idboite"));
+    $annonce->setKilometrage($request->getParameter("kilometrage"));
+    $annonce->setAnneeded($request->getParameter("anneeded"));
+    $annonce->setMoisded($request->getParameter("moisded"));
+    $annonce->setAnneecir($request->getParameter("anneecir"));
+    $annonce->setMoiscir($request->getParameter("moiscir"));
+    $annonce->setPrixstart($request->getParameter("prixstart"));
+    $annonce->setAnneegarantie($request->getParameter("anneegarantie"));
+    $annonce->setIdmodele($request->getParameter("idmodele"));
+    $annonce->setIdmarque($request->getParameter("idmarque"));
+    $annonce->setCylindres($request->getParameter("cylindres"));
+    $annonce->setPfiscale($request->getParameter("pfiscale"));
+    $annonce->setNbportes($request->getParameter("nbportes"));
+    $annonce->setIdcouleur($request->getParameter("idcouleur"));
+    $annonce->setIdcarosserie($request->getParameter("idcarosserie"));
+    $annonce->setEtranger($request->getParameter("etranger"));
+    $annonce->setDedouane($request->getParameter("dedouane"));
+    $annonce->setGarantie($request->getParameter("garantie"));
+    $annonce->setReprise($request->getParameter("reprise"));
+    $annonce->setHand($request->getParameter("hand"));
+    $annonce->setGaraged($request->getParameter("garaged"));
+    $annonce->setUrgent($request->getParameter("urgent"));
+    $annonce->setIdville($request->getParameter("ville"));
     
     $accs = $request->getParameter("acc");
     for($i=0;$i<(int)count($accs);$i++){
