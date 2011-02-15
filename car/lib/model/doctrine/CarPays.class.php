@@ -15,4 +15,13 @@ class CarPays extends BaseCarPays
 	public function __toString(){
 		return $this->getTitle();
 	}
+
+        public static function getDefaultPays($code){
+            $q = Doctrine_Query::create ()->from ( 'CarPays c' )->where("c.code = '$code'");
+            $array = $q->execute ();
+            if(count($array)>0)
+                return $array[0];
+            else
+                return NULL;
+        }
 }
