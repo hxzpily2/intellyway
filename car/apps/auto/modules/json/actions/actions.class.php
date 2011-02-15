@@ -219,4 +219,25 @@ class jsonActions extends sfActions
 
     return sfView::NONE;
   }
+
+  public function executeVillejson(sfWebRequest $request)
+  {
+
+    $data = CarVille::getVillesByPays($request->getParameter("pays"));
+
+    $i=0;
+    $output = "";
+    foreach ($data as $marque){
+        $output .= "{'id':'".$marque->getIdville()."','name':'".$marque->getTitle()."'}";
+        $i++;
+        if($i!=count($data))
+            $output .= ",";
+    }
+
+    $this->getResponse()->setHttpHeader('Content-type', 'application/json');
+
+    $this->getResponse()->setContent("{'villes':[".$output."]}");
+
+    return sfView::NONE;
+  }
 }
