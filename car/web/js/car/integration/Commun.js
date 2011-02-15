@@ -506,7 +506,7 @@ dojo.declare("car.integration.Commun",[],{
                 dojo.style(dojo.byId("buttonInfoTerminer"), 'display', '');
                 dojo.style(dojo.byId('globalError'), 'display', '');
                 this.runEffect("globalError");
-            }/*else{*/
+            }else{
                 this.showLoaderJ();
                 dojo.xhrPost({
                   form: dojo.byId(idForm),
@@ -554,7 +554,7 @@ dojo.declare("car.integration.Commun",[],{
                       //dojo.byId("response").innerHTML = "Form posted.";
                   }
                 });
-            //}
+            }
             
     },
 
