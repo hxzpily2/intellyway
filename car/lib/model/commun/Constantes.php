@@ -11,6 +11,9 @@ class Constantes
 
         const SESSION_ANNONCES = "SESSION_ANNONCES";
         const SESSION_PREFIX_ANNONCE = "SESSION_PREFIX_ANNONCE";
+
+        const SESSION_PAYS_ID = "SESSION_PAYS_ID";
+        const DEFAULT_PAYS = "MA";
 }
 
 ?>
