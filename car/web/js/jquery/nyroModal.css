@@ -22,7 +22,7 @@ div#nyroModalWrapper {
 }
 a#closeBut {
 	position: absolute;
-	display: block;
+	display: none;
 	top: -13px;
 	right: -13px;
 	width: 12px;
