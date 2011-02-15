@@ -20,4 +20,13 @@ class CarEtat extends BaseCarEtat
             $q = Doctrine_Query::create ()->from ( 'CarEtat c' )->where("c.active = 1");
             return $q->execute ();
         }
+
+        public static function getEtatById($id){
+            $q = Doctrine_Query::create ()->from ( 'CarEtat c' )->where("c.idetat = $id");
+            $array = $q->execute ();
+            if(count($array)>0)
+                return $array[0];
+            else
+                return NULL;
+        }
 }
