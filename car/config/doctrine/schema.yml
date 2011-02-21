@@ -889,7 +889,7 @@ CarAuto:
       unsigned: false
       primary: false
       autoincrement: false
-    idpays:
+    iduser:
       type: integer(10)
       fixed: false
       unsigned: false
@@ -1196,10 +1196,6 @@ CarAuto:
       local: idville
       foreign: idville
       type: one 
-    CarPays:
-      local: idpays
-      foreign: idpays
-      type: one                 
 CarAccessoires:
   actAs: [Timestampable]
   connection: doctrine
