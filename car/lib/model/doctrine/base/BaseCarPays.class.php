@@ -14,7 +14,6 @@ Doctrine_Manager::getInstance()->bindComponent('CarPays', 'doctrine');
  * @property string $bigcode
  * @property integer $active
  * @property Doctrine_Collection $CarVille
- * @property Doctrine_Collection $CarAuto
  * 
  * @method integer             getIdpays()   Returns the current record's "idpays" value
  * @method string              getTitle()    Returns the current record's "title" value
@@ -23,7 +22,6 @@ Doctrine_Manager::getInstance()->bindComponent('CarPays', 'doctrine');
  * @method string              getBigcode()  Returns the current record's "bigcode" value
  * @method integer             getActive()   Returns the current record's "active" value
  * @method Doctrine_Collection getCarVille() Returns the current record's "CarVille" collection
- * @method Doctrine_Collection getCarAuto()  Returns the current record's "CarAuto" collection
  * @method CarPays             setIdpays()   Sets the current record's "idpays" value
  * @method CarPays             setTitle()    Sets the current record's "title" value
  * @method CarPays             setDevise()   Sets the current record's "devise" value
@@ -31,7 +29,6 @@ Doctrine_Manager::getInstance()->bindComponent('CarPays', 'doctrine');
  * @method CarPays             setBigcode()  Sets the current record's "bigcode" value
  * @method CarPays             setActive()   Sets the current record's "active" value
  * @method CarPays             setCarVille() Sets the current record's "CarVille" collection
- * @method CarPays             setCarAuto()  Sets the current record's "CarAuto" collection
  * 
  * @package    car
  * @subpackage model
@@ -102,10 +99,6 @@ abstract class BaseCarPays extends sfDoctrineRecord
     {
         parent::setUp();
         $this->hasMany('CarVille', array(
-             'local' => 'idpays',
-             'foreign' => 'idpays'));
-
-        $this->hasMany('CarAuto', array(
              'local' => 'idpays',
              'foreign' => 'idpays'));
 
