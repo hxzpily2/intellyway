@@ -9,7 +9,7 @@ Doctrine_Manager::getInstance()->bindComponent('CarAuto', 'doctrine');
  * 
  * @property integer $idauto
  * @property integer $idville
- * @property integer $idpays
+ * @property integer $iduser
  * @property integer $idmarque
  * @property integer $idmodele
  * @property integer $idmoteur
@@ -61,7 +61,6 @@ Doctrine_Manager::getInstance()->bindComponent('CarAuto', 'doctrine');
  * @property Doctrine_Collection $CarCarosserie
  * @property Doctrine_Collection $CarBoite
  * @property CarVille $CarVille
- * @property CarPays $CarPays
  * @property Doctrine_Collection $CarAccessoires
  * @property Doctrine_Collection $CarImages
  * @property Doctrine_Collection $CarEncher
@@ -74,7 +73,7 @@ Doctrine_Manager::getInstance()->bindComponent('CarAuto', 'doctrine');
  * 
  * @method integer             getIdauto()                Returns the current record's "idauto" value
  * @method integer             getIdville()               Returns the current record's "idville" value
- * @method integer             getIdpays()                Returns the current record's "idpays" value
+ * @method integer             getIduser()                Returns the current record's "iduser" value
  * @method integer             getIdmarque()              Returns the current record's "idmarque" value
  * @method integer             getIdmodele()              Returns the current record's "idmodele" value
  * @method integer             getIdmoteur()              Returns the current record's "idmoteur" value
@@ -126,7 +125,6 @@ Doctrine_Manager::getInstance()->bindComponent('CarAuto', 'doctrine');
  * @method Doctrine_Collection getCarCarosserie()         Returns the current record's "CarCarosserie" collection
  * @method Doctrine_Collection getCarBoite()              Returns the current record's "CarBoite" collection
  * @method CarVille            getCarVille()              Returns the current record's "CarVille" value
- * @method CarPays             getCarPays()               Returns the current record's "CarPays" value
  * @method Doctrine_Collection getCarAccessoires()        Returns the current record's "CarAccessoires" collection
  * @method Doctrine_Collection getCarImages()             Returns the current record's "CarImages" collection
  * @method Doctrine_Collection getCarEncher()             Returns the current record's "CarEncher" collection
@@ -138,7 +136,7 @@ Doctrine_Manager::getInstance()->bindComponent('CarAuto', 'doctrine');
  * @method Doctrine_Collection getCarEvaluation()         Returns the current record's "CarEvaluation" collection
  * @method CarAuto             setIdauto()                Sets the current record's "idauto" value
  * @method CarAuto             setIdville()               Sets the current record's "idville" value
- * @method CarAuto             setIdpays()                Sets the current record's "idpays" value
+ * @method CarAuto             setIduser()                Sets the current record's "iduser" value
  * @method CarAuto             setIdmarque()              Sets the current record's "idmarque" value
  * @method CarAuto             setIdmodele()              Sets the current record's "idmodele" value
  * @method CarAuto             setIdmoteur()              Sets the current record's "idmoteur" value
@@ -190,7 +188,6 @@ Doctrine_Manager::getInstance()->bindComponent('CarAuto', 'doctrine');
  * @method CarAuto             setCarCarosserie()         Sets the current record's "CarCarosserie" collection
  * @method CarAuto             setCarBoite()              Sets the current record's "CarBoite" collection
  * @method CarAuto             setCarVille()              Sets the current record's "CarVille" value
- * @method CarAuto             setCarPays()               Sets the current record's "CarPays" value
  * @method CarAuto             setCarAccessoires()        Sets the current record's "CarAccessoires" collection
  * @method CarAuto             setCarImages()             Sets the current record's "CarImages" collection
  * @method CarAuto             setCarEncher()             Sets the current record's "CarEncher" collection
@@ -227,7 +224,7 @@ abstract class BaseCarAuto extends sfDoctrineRecord
              'autoincrement' => false,
              'length' => '10',
              ));
-        $this->hasColumn('idpays', 'integer', 10, array(
+        $this->hasColumn('iduser', 'integer', 10, array(
              'type' => 'integer',
              'fixed' => 0,
              'unsigned' => false,
@@ -623,10 +620,6 @@ abstract class BaseCarAuto extends sfDoctrineRecord
         $this->hasOne('CarVille', array(
              'local' => 'idville',
              'foreign' => 'idville'));
-
-        $this->hasOne('CarPays', array(
-             'local' => 'idpays',
-             'foreign' => 'idpays'));
 
         $this->hasMany('CarAccessoires', array(
              'local' => 'idauto',
