@@ -128,7 +128,7 @@ class annonceActions extends sfActions
     $annonce->setGaraged($request->getParameter("garaged"));
     $annonce->setUrgent($request->getParameter("urgent"));
     $annonce->setIdville($request->getParameter("ville"));
-    
+    $annonce->setIduser($this->getUser ()->getAttribute('user_id','','sfGuardSecurityUser'));
     $conn = Doctrine_Manager::connection();
     $conn->beginTransaction();
     $annonce->save();
