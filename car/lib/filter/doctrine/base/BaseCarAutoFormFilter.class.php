@@ -14,7 +14,7 @@ abstract class BaseCarAutoFormFilter extends BaseFormFilterDoctrine
   {
     $this->setWidgets(array(
       'idville'        => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('CarVille'), 'add_empty' => true)),
-      'idpays'         => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('CarPays'), 'add_empty' => true)),
+      'iduser'         => new sfWidgetFormFilterInput(),
       'idmarque'       => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('CarMarque'), 'add_empty' => true)),
       'idmodele'       => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('CarModele'), 'add_empty' => true)),
       'idmoteur'       => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('CarMoteur'), 'add_empty' => true)),
@@ -63,7 +63,7 @@ abstract class BaseCarAutoFormFilter extends BaseFormFilterDoctrine
 
     $this->setValidators(array(
       'idville'        => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('CarVille'), 'column' => 'idville')),
-      'idpays'         => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('CarPays'), 'column' => 'idpays')),
+      'iduser'         => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'idmarque'       => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('CarMarque'), 'column' => 'idmarque')),
       'idmodele'       => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('CarModele'), 'column' => 'idmodele')),
       'idmoteur'       => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('CarMoteur'), 'column' => 'idmoteur')),
@@ -129,7 +129,7 @@ abstract class BaseCarAutoFormFilter extends BaseFormFilterDoctrine
     return array(
       'idauto'         => 'Number',
       'idville'        => 'ForeignKey',
-      'idpays'         => 'ForeignKey',
+      'iduser'         => 'Number',
       'idmarque'       => 'ForeignKey',
       'idmodele'       => 'ForeignKey',
       'idmoteur'       => 'ForeignKey',
