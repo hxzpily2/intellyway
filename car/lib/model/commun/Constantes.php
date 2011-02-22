@@ -14,6 +14,11 @@ class Constantes
 
         const SESSION_PAYS_ID = "SESSION_PAYS_ID";
         const DEFAULT_PAYS = "MA";
+
+        const LASTMODULENAME = "LASTMODULENAME";
+        const LASTACTIONNAME = "LASTACTIONNAME";
+
+        const SESSION_USER_CONNECTED = "SESSION_USER_CONNECTED";
 }
 
 ?>
