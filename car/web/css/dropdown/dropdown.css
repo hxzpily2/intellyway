@@ -44,24 +44,25 @@ ul#topnav a.store {
 ul#topnav li .sub {
 	position: absolute;	
 	top: 10px; left: 0;	
-	padding: 20px 20px 20px;
+	padding-right: 5px;
+        padding-bottom: 5px;
 	float: left;
 	z-index : 999;	
 	display: none;	
-	background: #c51b00 url(../../images/sub_bg.png) repeat-x top;
+	background: #c51b00 url(../../images/sub_bg.png) repeat-x top;        
 }
 ul#topnav li .row {clear: both; float: left; width: 100%; margin-bottom: 10px;}
 ul#topnav li .sub ul{		
-	
+	width: 100px;
 	list-style: none;
-	margin: 0; padding: 0;
-	width: 150px;
+	margin: 0; padding: 0;	
 	float: left;
 	
 }
 ul#topnav .sub ul li {
 	width: 100%;
 	color: #fff;
+        text-align: left;
 }
 ul#topnav .sub ul li h2 {
 	padding: 0;  margin: 0;
@@ -75,7 +76,7 @@ ul#topnav .sub ul li h2 a {
 ul#topnav .sub ul li a {
 	float: none; 
 	text-indent: 0; /*--Reset text indent--*/
-	height: auto;
+	height: 15px;
 	/*background: url(../../images/sub_arrow.png) no-repeat 0px 12px;*/	
 	display: block;
 	text-decoration: none;
