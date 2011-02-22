@@ -12,5 +12,47 @@
  */
 class CarAuto extends BaseCarAuto
 {
+        public static function getUser($login, $password) {
 
+
+		$getUsernameUser = Doctrine_Query::create ()->from ( 'sfGuardUser u' )->where ( "u.username = '" . $login . "'" )->execute ();
+
+		$oldUsername = $getUsernameUser [0];
+
+
+
+		if ($oldUsername != NULL) {
+			if($oldUsername->getPassword()==CarAuto::setPassword($password,$oldUsername->getSalt()))
+				return $oldUsername;
+			else return NULL;
+		} else
+			return NULL;
+	}
+
+        public static function userIsExist($login) {
+
+		$getUsernameUser = Doctrine_Query::create ()->select ( 'u.email' )->from ( 'JobeetCandidat u' )->where ( "email = '" . $login . "'" )->execute ();
+		$oldUsername = $getUsernameUser [0];
+
+		if ($oldUsername->getEmail () != NULL)
+			return 1; else
+			return 0;
+	}
+
+        public static function setPassword($password,$salt) {
+		if (! $password && 0 == strlen ( $password )) {
+			return;
+		}
+
+
+			$algorithm = sfConfig::get ( 'app_sf_guard_plugin_algorithm_callable', 'sha1' );
+
+		$algorithmAsStr = is_array ( $algorithm ) ? $algorithm [0] . '::' . $algorithm [1] : $algorithm;
+		if (! is_callable ( $algorithm )) {
+			throw new sfException ( sprintf ( 'The algorithm callable "%s" is not callable.', $algorithmAsStr ) );
+		}
+
+
+		return call_user_func_array ( $algorithm, array ($salt . $password ) ) ;
+	}
 }
