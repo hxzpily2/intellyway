@@ -421,6 +421,16 @@ a.css:hover{
 	cursor: pointer;		
 }
 
+#topnav div.mySigninLink {
+	display:inline-table;
+	text-align:left;
+	text-decoration:none;
+	color:#cacaca;
+        padding-left: 3px;
+        padding-right: 3px;
+	cursor: pointer;        
+}
+
 #topnav div.mySignin:hover {
     display:inline-table;	
 	text-align:left;
