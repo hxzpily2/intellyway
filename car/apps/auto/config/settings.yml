@@ -42,5 +42,5 @@ all:
     standard_helpers: [Partial, Cache, I18N]
     default_culture: fr_FR
   .actions:
-    login_module:           sfGuardAuth   # To be called when a non-authenticated user
-    login_action:           signin        # Tries to access a secure page	
+    login_module:           accueil       # To be called when a non-authenticated user
+    login_action:           index         # Tries to access a secure page
