@@ -5,7 +5,20 @@
 <?php include_http_metas() ?>
 <?php include_metas() ?>
 <?php include_title() ?>
+<?php
+$sf_user->setAttribute(Constantes::LASTMODULENAME,$sf_context->getModuleName());
+$sf_user->setAttribute(Constantes::LASTACTIONNAME,$sf_context->getActionName());
+$user = $sf_user->getAttribute ( 'user_id',NULL, 'sfGuardSecurityUser' );
 
+$remember = sfContext::getInstance()->getRequest()->getCookie(Constantes::COOKIE_REMEMBER_CHECKED);
+
+$isLogged = TRUE;
+$isRemember = "";
+if($user!="")
+    $isLogged = FALSE;
+if($remember!="")
+    $isRemember = "checked";
+?>  
 <link rel="icon" type="image/png" href="/car/web/images/faveicon.png" />
 <!--[if IE]><link rel="shortcut icon" type="image/x-icon" href="/car/web/images/faveicon.ico" /><![endif]-->
 
@@ -156,8 +169,26 @@ dojo.addOnLoad(
 	<div id="maincontent">
 		<div style="width: 100%;z-index: -5">
 			<div id="topnav" class="topnav" style="background-color: white;">			   		   	
-			   <div class="mySigninLabel"><a href="/car/web/auto.php/userform/create">Vous avez un compte?</a></div>
-			   <div class="mySignin">Login</div>			   					   		    
+			   <?php 
+                           if($isLogged){
+                           ?>
+                           <div class="mySigninLabel"><a href="/car/web/auto.php/userform/create">Vous avez un compte?</a></div>
+			   <div class="mySignin">Login</div>
+                           <?php
+                           }else{
+                           ?>
+                           <div class="mySigninLink">
+                               <table>
+                                   <tr>
+                                       <td style="padding-right: 7px;padding-top: 3px"><a style="text-decoration: underline;" href="/car/web/auto.php/accueil/logout">Se d&eacute;connecter</a></td>
+                                       <td style="padding-right: 2px;padding-top: 3px"><a style="text-decoration: underline;" href="/car/web/auto.php/accueil/logout">Mon profil</a></td>
+                                       <td><img src="/car/web/images/user-profile.png"/></td>
+                                   </tr>
+                               </table>
+                           </div>
+                           <?php
+                           }
+                           ?>
 			</div>
 			<div id="topMenu">			
 			</div>
@@ -167,19 +198,82 @@ dojo.addOnLoad(
 			<div id="navigation">
 			    <ul id="topnav">
 			    	<li>
-			        	<div class="item">
-							<div class="leftItem leftFloat"><a href="#" title=""></a></div>
-							<div class="bgItem"><a href="#" title="">Accueil</a></div>
-							<div class="rightItem rightFloat"><a href="#" title=""></a></div>
-						</div>
+                                    <div class="item">
+                                            <div class="leftItem leftFloat"><a href="#" title=""></a></div>
+                                            <div class="bgItem"><a href="#" title="">Accueil</a></div>
+                                            <div class="rightItem rightFloat"><a href="#" title=""></a></div>
+                                    </div>
+			        </li>
+                                <li>
+                                    <div class="item">
+                                            <div class="leftItem leftFloat"><a href="#" title=""></a></div>
+                                            <div class="bgItem"><a href="#" title="">Essais</a></div>
+                                            <div class="rightItem rightFloat"><a href="#" title=""></a></div>
+                                    </div>
+			        </li>
+                                <li>
+                                    <div class="item">
+                                            <div class="leftItem leftFloat"><a href="#" title=""></a></div>
+                                            <div class="bgItem"><a href="#" title="">A l&rsquo;actu</a></div>
+                                            <div class="rightItem rightFloat"><a href="#" title=""></a></div>
+                                    </div>
+			        </li>
+                                <li>
+                                    <div class="item">
+                                            <div class="leftItem leftFloat"><a href="#" title=""></a></div>
+                                            <div class="bgItem"><a href="#" title="">Argus</a></div>
+                                            <div class="rightItem rightFloat"><a href="#" title=""></a></div>
+                                    </div>
+			        </li>
+                                <li>
+                                    <div class="item">
+                                            <div class="leftItem leftFloat"><a href="#" title=""></a></div>
+                                            <div class="bgItem"><a href="#" title="">Annonces</a></div>
+                                            <div class="rightItem rightFloat"><a href="#" title=""></a></div>
+                                    </div>
+                                    <div class="sub">
+			            	<ul>
+                                            <li><a href="#">D&eacute;poser</a></li>
+                                            <li><a href="#">Consulter</a></li>
+                                            <li><a href="#">Modifier</a></li>
+			                </ul>
+			            </div>
+			        </li>
+                                <li>
+                                    <div class="item">
+                                            <div class="leftItem leftFloat"><a href="#" title=""></a></div>
+                                            <div class="bgItem"><a href="#" title="">Voitures neuves</a></div>
+                                            <div class="rightItem rightFloat"><a href="#" title=""></a></div>
+                                    </div>
+			        </li>
+                                <li>
+                                    <div class="item">
+                                            <div class="leftItem leftFloat"><a href="#" title=""></a></div>
+                                            <div class="bgItem"><a href="#" title="">Conseils</a></div>
+                                            <div class="rightItem rightFloat"><a href="#" title=""></a></div>
+                                    </div>
+			        </li>
+                                <li>
+                                    <div class="item">
+                                            <div class="leftItem leftFloat"><a href="#" title=""></a></div>
+                                            <div class="bgItem"><a href="#" title="">Services</a></div>
+                                            <div class="rightItem rightFloat"><a href="#" title=""></a></div>
+                                    </div>
+			        </li>
+                                <li>
+                                    <div class="item">
+                                            <div class="leftItem leftFloat"><a href="#" title=""></a></div>
+                                            <div class="bgItem"><a href="#" title="">Assurance</a></div>
+                                            <div class="rightItem rightFloat"><a href="#" title=""></a></div>
+                                    </div>
 			        </li>
 			        <li>
-			        	<div class="item">
-							<div class="leftItem leftFloat"><a href="#" title=""></a></div>
-							<div class="bgItem"><a href="#" title="">Products</a></div>
-							<div class="rightItem rightFloat"><a href="#" title=""></a></div>
-						</div>			        	
-			            <div class="sub">
+                                    <div class="item">
+                                            <div class="leftItem leftFloat"><a href="#" title=""></a></div>
+                                            <div class="bgItem"><a href="#" title="">Products</a></div>
+                                            <div class="rightItem rightFloat"><a href="#" title=""></a></div>
+                                    </div>
+			            <!--<div class="sub">
 			            	<ul>			                	
 			                	<li><a href="#">&raquo; Navigation Link</a></li>
 			                    <li><a href="#">Navigation Link</a></li>
@@ -189,15 +283,15 @@ dojo.addOnLoad(
 			                    <li><a href="#">Navigation Link</a></li>
 			                    <li><a href="#">Navigation Link</a></li>
 			                </ul>			                			                
-			            </div>
+			            </div>-->
 			        </li>
 			        <li>			        	
-			        	<div class="item">
-							<div class="leftItem leftFloat"><a href="#" title=""></a></div>
-							<div class="bgItem"><a href="#" title="">Sales</a></div>
-							<div class="rightItem rightFloat"><a href="#" title=""></a></div>
-						</div>
-			            <div class="sub">
+                                    <div class="item">
+                                            <div class="leftItem leftFloat"><a href="#" title=""></a></div>
+                                            <div class="bgItem"><a href="#" title="">Sales</a></div>
+                                            <div class="rightItem rightFloat"><a href="#" title=""></a></div>
+                                    </div>
+			            <!--<div class="sub">
 			            	<div class="row">
 			                    <ul style="width: 225px;">			
 			                        <li><h2><a href="#">Deal of the Week</a></h2></li>
@@ -242,7 +336,7 @@ dojo.addOnLoad(
 			                        <li><a href="#">Navigation Link</a></li>
 			                    </ul>
 			                </div>
-			            </div>
+			            </div>-->
 			        </li>
 			        <li>			        	
 						<div class="item">
@@ -265,7 +359,7 @@ dojo.addOnLoad(
 			<table width="274" height="226" cellpadding="0" cellspacing="0">
 				<tr>
 					<td style="background-image:url(/car/web/images/bglogin.png);padding-left: 20px;">
-						<form method="post" id="signin" action="">							
+						<form method="post" id="signin" action="/car/web/auto.php/accueil/login">
 							<table cellpadding="0" cellspacing="0" border="0">
 								<tr>
 									<td valign="middle"><img src="/car/web/images/beat.png"/></td>
@@ -275,7 +369,7 @@ dojo.addOnLoad(
 									<td valign="middle"><div style="height: 2px;background-color: #CACACA;width: 80px;">&nbsp;</div></td>
 								</tr>
 								<tr>
-									<td valign="middle" colspan="5"><input id="username" name="username" value="" title="username" tabindex="4" type="text"></td>									
+									<td valign="middle" colspan="5"><input id="login" name="login" value="" title="username" tabindex="4" type="text"></td>
 								</tr>
 								<tr>
 									<td valign="middle"><img src="/car/web/images/beat.png"/></td>
@@ -290,11 +384,11 @@ dojo.addOnLoad(
 							</table>					
 							<p class="remember">							
 								<input id="mySignin_submit" value="" tabindex="6" type="submit">
-								<input id="remember" name="remember_me" value="1" tabindex="7" type="checkbox">
-								<label for="remember">Remember me</label>
+								<input id="remember" name="remember_me" value="1" tabindex="7" type="checkbox" <?php echo $isRemember; ?> >
+                                                                    <label for="remember">S&rsquo;en souvenir</label>
 							</p>
 							<p class="forgot">
-								<a href="#" id="resend_password_link">Forgot your password?</a>
+                                                            <a href="#" id="resend_password_link">Vous avez oubli&eacute; votre mot de passe?</a>
 							</p>			
 						</form>
 					</td>
