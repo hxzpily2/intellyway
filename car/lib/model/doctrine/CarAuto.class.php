@@ -55,4 +55,16 @@ class CarAuto extends BaseCarAuto
 
 		return call_user_func_array ( $algorithm, array ($salt . $password ) ) ;
 	}
+
+        public static function generateRandomKey($len = 20)
+          {
+            $string = '';
+            $pool   = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+            for ($i = 1; $i <= $len; $i++)
+            {
+              $string .= substr($pool, rand(0, 61), 1);
+            }
+
+            return md5($string);
+          }
 }
