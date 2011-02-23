@@ -1,3 +1,6 @@
+html,body,p,div,img,h1,h2,h3,h4,li,ul,ol,dl,dd,dt,form,table,td,tr{ margin:0px; padding:0px; border:0px; border-collapse:separate; border-spacing:0px; } input,select{ margin:0; padding:0; }
+p.inline {margin: 0;}
+
 html {
     background: url(../images/287.jpg) no-repeat center center fixed;
     -webkit-background-size: cover;
@@ -689,7 +692,9 @@ ul#menu li a.current{
 	padding: 0;
 	margin: 0;
 	border: 0;
-	overflow:auto;	
+	overflow:auto;
+        margin:0px; padding:0px; border:0px; border-collapse:separate; border-spacing:0px;
+        line-height: 0px;
 }
 
 .leftItem{	
@@ -697,19 +702,26 @@ ul#menu li a.current{
 	height: 35px;	
 	width: 7px;
 	display: inline-table;
+        margin:0px; padding:0px; border:0px; border-collapse:separate; border-spacing:0px;                
+        margin-right:-4px;
 }
 
 .rightItem{	
 	background: url("../images/nav_item_right.png") no-repeat;
 	height: 35px;	
 	width: 7px;	
-	display: inline-table;	
+	display: inline-table;
+        margin:0px; padding:0px; border:0px; border-collapse:separate; border-spacing:0px;                
+        margin-right:-4px;
 }
 
 .bgItem{
 	background: url("../images/nav_item_bg.png") repeat-x;
 	height: 35px;
-	display: inline-table;	
+	display: inline-table;
+        margin:0px; padding:0px; border:0px; border-collapse:separate; border-spacing:0px;
+        line-height: 0px;        
+        margin-right:-4px;
 }
 
 .curLeftItem{	
@@ -717,19 +729,22 @@ ul#menu li a.current{
 	height: 35px;	
 	width: 7px;
 	display: inline-table;
+        margin-right:-4px;
 }
 
 .curRightItem{	
 	background: url("../images/nav_cur_item_right.png") no-repeat;
 	height: 35px;	
 	width: 7px;	
-	display: inline-table;	
+	display: inline-table;
+        margin-right:-4px;
 }
 
 .curBgItem{
 	background: url("../images/nav_cur_item_bg.png") repeat-x;
 	height: 35px;
-	display: inline-table;	
+	display: inline-table;
+        margin-right:-4px;
 } 
 
 /*********************************/
