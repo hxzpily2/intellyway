@@ -166,20 +166,34 @@ dojo.addOnLoad(
 	
 	
 	<!-- CONTENT -->
-	<div id="maincontent">
-		<div style="width: 100%;z-index: -5">
-			<div id="topnav" class="topnav" style="background-color: white;">			   		   	
-			   <?php 
+	<div id="maincontent">            
+		<div style="width: 100%;z-index: -5">                        
+			<div id="topnav" class="topnav" style="background-color: white;">   <?php 
                            if($isLogged){
                            ?>
-                           <div class="mySigninLabel"><a href="/car/web/auto.php/userform/create">Vous avez un compte?</a></div>
-			   <div class="mySignin">Login</div>
+                           <div class="mySigninLabel">                               
+                               <table style="display: inline">
+                                   <tr>
+                                       <td><img src="/car/web/images/icontexto-inside-facebook.png"/></td>
+                                       <td width="10"></td>
+                                       <td><img src="/car/web/images/icontexto-inside-twitter.png"/></td>
+                                       <td width="100"></td>
+                                       <td><a href="/car/web/auto.php/userform/create">Vous avez un compte?</a></td>
+                                       <td width="10"></td>
+                                       <td><div class="mySignin">Login</div></td>
+                                   </tr>
+                               </table>
+                           </div>			   
                            <?php
                            }else{
                            ?>
                            <div class="mySigninLink">
                                <table>
                                    <tr>
+                                       <td><img src="/car/web/images/icontexto-inside-facebook.png"/></td>
+                                       <td width="10"></td>
+                                       <td><img src="/car/web/images/icontexto-inside-twitter.png"/></td>
+                                       <td width="100"></td>
                                        <td style="padding-right: 7px;padding-top: 3px"><a style="text-decoration: underline;" href="/car/web/auto.php/accueil/logout">Se d&eacute;connecter</a></td>
                                        <td style="padding-right: 2px;padding-top: 3px"><a style="text-decoration: underline;" href="/car/web/auto.php/accueil/logout">Mon profil</a></td>
                                        <td><img src="/car/web/images/user-profile.png"/></td>
@@ -199,37 +213,37 @@ dojo.addOnLoad(
 			    <ul id="topnav">
 			    	<li>
                                     <div class="item">
-                                            <div class="leftItem leftFloat"><a href="#" title=""></a></div>
+                                            <div class="leftItem"><a href="#" title=""></a></div>
                                             <div class="bgItem"><a href="#" title="">Accueil</a></div>
-                                            <div class="rightItem rightFloat"><a href="#" title=""></a></div>
+                                            <div class="rightItem"><a href="#" title=""></a></div>
                                     </div>
 			        </li>
                                 <li>
                                     <div class="item">
-                                            <div class="leftItem leftFloat"><a href="#" title=""></a></div>
+                                        <div class="leftItem"><a href="#" title=""></a></div>
                                             <div class="bgItem"><a href="#" title="">Essais</a></div>
-                                            <div class="rightItem rightFloat"><a href="#" title=""></a></div>
+                                            <div class="rightItem"><a href="#" title=""></a></div>
                                     </div>
 			        </li>
                                 <li>
                                     <div class="item">
-                                            <div class="leftItem leftFloat"><a href="#" title=""></a></div>
+                                            <div class="leftItem"><a href="#" title=""></a></div>
                                             <div class="bgItem"><a href="#" title="">A l&rsquo;actu</a></div>
-                                            <div class="rightItem rightFloat"><a href="#" title=""></a></div>
+                                            <div class="rightItem"><a href="#" title=""></a></div>
                                     </div>
 			        </li>
                                 <li>
                                     <div class="item">
-                                            <div class="leftItem leftFloat"><a href="#" title=""></a></div>
+                                            <div class="leftItem"><a href="#" title=""></a></div>
                                             <div class="bgItem"><a href="#" title="">Argus</a></div>
-                                            <div class="rightItem rightFloat"><a href="#" title=""></a></div>
+                                            <div class="rightItem"><a href="#" title=""></a></div>
                                     </div>
 			        </li>
                                 <li>
                                     <div class="item">
-                                            <div class="leftItem leftFloat"><a href="#" title=""></a></div>
+                                            <div class="leftItem"><a href="#" title=""></a></div>
                                             <div class="bgItem"><a href="#" title="">Annonces</a></div>
-                                            <div class="rightItem rightFloat"><a href="#" title=""></a></div>
+                                            <div class="rightItem"><a href="#" title=""></a></div>
                                     </div>
                                     <div class="sub">
 			            	<ul>
@@ -241,37 +255,37 @@ dojo.addOnLoad(
 			        </li>
                                 <li>
                                     <div class="item">
-                                            <div class="leftItem leftFloat"><a href="#" title=""></a></div>
+                                            <div class="leftItem"><a href="#" title=""></a></div>
                                             <div class="bgItem"><a href="#" title="">Voitures neuves</a></div>
-                                            <div class="rightItem rightFloat"><a href="#" title=""></a></div>
+                                            <div class="rightItem"><a href="#" title=""></a></div>
                                     </div>
 			        </li>
                                 <li>
                                     <div class="item">
-                                            <div class="leftItem leftFloat"><a href="#" title=""></a></div>
+                                            <div class="leftItem"><a href="#" title=""></a></div>
                                             <div class="bgItem"><a href="#" title="">Conseils</a></div>
-                                            <div class="rightItem rightFloat"><a href="#" title=""></a></div>
+                                            <div class="rightItem"><a href="#" title=""></a></div>
                                     </div>
 			        </li>
                                 <li>
                                     <div class="item">
-                                            <div class="leftItem leftFloat"><a href="#" title=""></a></div>
+                                            <div class="leftItem"><a href="#" title=""></a></div>
                                             <div class="bgItem"><a href="#" title="">Services</a></div>
-                                            <div class="rightItem rightFloat"><a href="#" title=""></a></div>
+                                            <div class="rightItem"><a href="#" title=""></a></div>
                                     </div>
 			        </li>
                                 <li>
                                     <div class="item">
-                                            <div class="leftItem leftFloat"><a href="#" title=""></a></div>
+                                            <div class="leftItem"><a href="#" title=""></a></div>
                                             <div class="bgItem"><a href="#" title="">Assurance</a></div>
-                                            <div class="rightItem rightFloat"><a href="#" title=""></a></div>
+                                            <div class="rightItem"><a href="#" title=""></a></div>
                                     </div>
 			        </li>
 			        <li>
                                     <div class="item">
-                                            <div class="leftItem leftFloat"><a href="#" title=""></a></div>
+                                            <div class="leftItem"><a href="#" title=""></a></div>
                                             <div class="bgItem"><a href="#" title="">Products</a></div>
-                                            <div class="rightItem rightFloat"><a href="#" title=""></a></div>
+                                            <div class="rightItem"><a href="#" title=""></a></div>
                                     </div>
 			            <!--<div class="sub">
 			            	<ul>			                	
@@ -287,9 +301,9 @@ dojo.addOnLoad(
 			        </li>
 			        <li>			        	
                                     <div class="item">
-                                            <div class="leftItem leftFloat"><a href="#" title=""></a></div>
+                                            <div class="leftItem"><a href="#" title=""></a></div>
                                             <div class="bgItem"><a href="#" title="">Sales</a></div>
-                                            <div class="rightItem rightFloat"><a href="#" title=""></a></div>
+                                            <div class="rightItem"><a href="#" title=""></a></div>
                                     </div>
 			            <!--<div class="sub">
 			            	<div class="row">
@@ -340,16 +354,16 @@ dojo.addOnLoad(
 			        </li>
 			        <li>			        	
 						<div class="item">
-							<div class="curLeftItem leftFloat"><a href="#" title=""></a></div>
+							<div class="curLeftItem"><a href="#" title=""></a></div>
 							<div class="curBgItem"><a class="currentItem" href="#" title="">Community</a></div>
-							<div class="curRightItem rightFloat"><a href="#" title=""></a></div>
+							<div class="curRightItem"><a href="#" title=""></a></div>
 						</div>
 			        </li>
 			        <li>			        	
 			        	<div class="item">
-							<div class="leftItem leftFloat"><a href="#" title=""></a></div>
+							<div class="leftItem"><a href="#" title=""></a></div>
 							<div class="bgItem"><a href="#" title="">Store Locator</a></div>
-							<div class="rightItem rightFloat"><a href="#" title=""></a></div>
+							<div class="rightItem"><a href="#" title=""></a></div>
 						</div>
 			        </li>
 			    </ul>
