@@ -193,10 +193,13 @@ dojo.addOnLoad(
                                        <td><img src="/car/web/images/icontexto-inside-facebook.png"/></td>
                                        <td width="10"></td>
                                        <td><img src="/car/web/images/icontexto-inside-twitter.png"/></td>
-                                       <td width="100"></td>
-                                       <td style="padding-right: 7px;padding-top: 3px"><a style="text-decoration: underline;" href="/car/web/auto.php/accueil/logout">Se d&eacute;connecter</a></td>
-                                       <td style="padding-right: 2px;padding-top: 3px"><a style="text-decoration: underline;" href="/car/web/auto.php/accueil/logout">Mon profil</a></td>
+                                       <td width="100"></td>                                       
+                                       <td style="padding-right: 7px;padding-top: 3px"><a style="text-decoration: underline;" href="/car/web/auto.php/accueil/logout">Mes demandes d&rsquo;&eacute;valuation <b>(3)</b></a></td>
+                                       <td style="padding-right: 7px;padding-top: 3px"><a style="text-decoration: underline;" href="/car/web/auto.php/accueil/logout">Mes annonces <b>(5)</b></a></td>
+                                       <td style="padding-right: 2px;padding-top: 3px"><a style="text-decoration: underline;" href="/car/web/auto.php/accueil/logout">Mon profil</a></td>                                       
                                        <td><img src="/car/web/images/user-profile.png"/></td>
+                                       <td style="padding-left: 7px;padding-right: 2px;padding-top: 3px"><a style="text-decoration: underline;" href="/car/web/auto.php/accueil/logout">Se d&eacute;connecter</a></td>
+                                       <td style="padding-top: 4px;"><img src="/car/web/images/xfce-system-exit.png"/></td>
                                    </tr>
                                </table>
                            </div>
