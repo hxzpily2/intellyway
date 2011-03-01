@@ -162,6 +162,7 @@ ul#topnav li ul.subnav {
 	border: 1px solid #111;
         background: #c51b00 url(../../images/sub_bg.png) repeat-x top;
         padding-bottom: 10px;
+        padding-left: 5px;
 }
 ul#topnav li ul.subnav li{
 	margin: 0; padding: 0;
