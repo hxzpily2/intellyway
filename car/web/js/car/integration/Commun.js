@@ -257,6 +257,23 @@ dojo.declare("car.integration.Commun",[],{
     	
     },
 
+    rollEffect : function (node) {        
+        var fadeOut = dojo.fadeOut({
+            node: dojo.byId(node),
+            duration: 1000,
+            onEnd: function(){
+              dojo.style(dojo.byId(node), 'display', 'none');
+            }
+        });
+        var fadeIn = dojo.fadeIn({
+            node: dojo.byId(node),
+            duration: 800
+        });
+        var currentAnimation;
+        currentAnimation = dojo.fx.chain([fadeOut]);
+        currentAnimation.play();
+    },
+
     callback : function() {
         setTimeout(function() {
             $( "#effect:visible" ).removeAttr( "style" ).fadeOut();
@@ -647,6 +664,32 @@ dojo.declare("car.integration.Commun",[],{
 				bgColor: '#FFFFFF',
 				content: dojo.byId("loader").innerHTML
 			});
+    },
+
+    rollOverMenu:function(evt){        
+        dojo.query("ul.subnav", evt.target.parentNode).forEach(function(node, index, arr){              
+              dojo.style(node, 'opacity', .0);              
+              commun.runEffect(node);
+              dojo.style(node, 'display', 'block');
+        });
+        dojo.query("ul.subnav", evt.target.parentNode).removeClass("open");
+        dojo.query("ul.subnav", evt.target.parentNode).removeClass("collapse");
+        dojo.query("ul.subnav", evt.target.parentNode).addClass("open");
+    },
+
+    rollOutMenu:function(evt){        
+        dojo.query("ul.subnav.open").forEach(function(node, index, arr){              
+              var coords = dojo.coords(node);              
+              if(!(evt.pageX>=coords.x && evt.pageX<=(coords.x+coords.w))){
+                commun.rollEffect(node);
+                dojo.query("ul.subnav.open").addClass("collapse");
+                dojo.query("ul.subnav.open").removeClass("open");
+              }
+        });        
+    },
+
+    rollOutSub:function(evt){
+        commun.rollEffect(evt.target);
     }
 
 });
