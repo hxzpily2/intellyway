@@ -19,6 +19,10 @@ if($user!="")
 if($remember!="")
     $isRemember = "checked";
 ?>  
+<!--[if lte IE 6]>
+<script type="text/javascript" src="/car/web/js/supersleight/supersleight-min.js"></script>
+<![endif]-->
+
 <link rel="icon" type="image/png" href="/car/web/images/faveicon.png" />
 <!--[if IE]><link rel="shortcut icon" type="image/x-icon" href="/car/web/images/faveicon.ico" /><![endif]-->
 
@@ -26,23 +30,21 @@ if($remember!="")
 <link rel="stylesheet" type="text/css" href="/car/web/js/ext/resources/css/xtheme-gray.css" />
 
 <!-- GC -->
-    <!-- LIBS -->
-    <script type="text/javascript" src="/car/web/js/ext/adapter/ext/ext-base.js"></script>
-    <!-- ENDLIBS -->
+<!-- LIBS -->
+<script type="text/javascript" src="/car/web/js/ext/adapter/ext/ext-base.js"></script>
+<!-- ENDLIBS -->
 
 <script type="text/javascript" src="/car/web/js/ext/ext-all.js"></script>
 
-
-
 <link href="/car/web/css/dropdown/dropdown.css" media="all" rel="stylesheet" type="text/css" />
-<link href="/car/web/css/dropdown/themes/default/default.ultimate.css" media="all" rel="stylesheet" type="text/css" />
+<!--[if (gte IE 5)&(lte IE 7)]>
+<link href="/car/web/css/dropdown/dropdownie.css" media="all" rel="stylesheet" type="text/css" />
+<![endif]-->
 
-
-<link href="/car/web/css/dropdown.css" media="screen, projection" rel="stylesheet" type="text/css">
-<link href="/car/web/css/front.css" media="screen, projection" rel="stylesheet" type="text/css">
+<link href="/car/web/css/front.css" media="screen, projection" rel="stylesheet" type="text/css"/>
+<link href="/car/web/css/slide.css" media="screen, projection" rel="stylesheet" type="text/css"/>
 <!--[if IE]><link href="/car/web/css/frontie.css" media="screen, projection" rel="stylesheet" type="text/css"><![endif]-->
 <script src="/car/web/js/jquery/jquery.min.js" type="text/javascript"></script>
-<script type="text/javascript" src="/car/web/js/jquery/jquery.corner.js"></script>
 
 <script type="text/javascript" src="/car/web/js/jquery/jquery.nyroModal-1.5.5.pack.js"></script>
 <link href='/car/web/js/jquery/nyroModal.css' type="text/css" rel="stylesheet" />
@@ -54,13 +56,6 @@ if($remember!="")
 <!-- FIN RATING -->
 
 
-<script type="text/javascript" src="/car/web/js/jquery/jquery.hoverIntent.minified.js"></script>
-
-
-
-
-<script type="text/javascript" src="/car/web/js/car/menu.js"></script>
-<script type="text/javascript" src="/car/web/js/car/shadedborder.js"></script>
 <!-- DOJO -->
 <style type='text/css'>
 @import '/car/web/js/dojo/dijit/themes/soria/soria.css';
@@ -75,15 +70,6 @@ html,body {
 }
 
 </style>
-<!--[if lt IE 7]><style>
-/* style for IE 6 + IE5.5 + IE5.0 */ 
-.gainlayout { height: 0; }
-</style><![endif]-->
-
-<!--[if IE 7]><style>
-.gainlayout { zoom: 1;}
-/* or whatever we might need tomorrow */ 
-</style><![endif]-->
 
 <script type='text/javascript'	src='/car/web/js/dojo/dojo/dojo.js'	djConfig='parseOnLoad: true'></script>
 
@@ -113,6 +99,9 @@ dojo.addOnLoad(
 		  dojo.style(dojo.byId('background'), 'opacity', 1.0);
 		  dojo.style(dojo.byId('background'), 'zIndex', 999);
 	  });*/
+        /*supersleight.init();*/
+
+        
   }
 );
 	
@@ -124,34 +113,115 @@ dojo.addOnLoad(
 </head>
 <body>
 <!-- <img src="/car/web/images/bg/red-christmas-lights.jpg" alt="" id="background" />  -->
+<?php
+if($isLogged){
+?>
+<div id="toppanel">
+	<div id="panel">
+		<div class="content clearfix">
+			<div class="left">
+				<h1>Welcome to Web-Kreation</h1>
+				<h2>Sliding login panel Demo with jQuery</h2>
+				<p class="grey">You can put anything you want in this sliding panel: videos, audio, images, forms... The only limit is your imagination!</p>
+
+				<h2>Download</h2>
+				<p class="grey">To download this script go back to <a href="http://web-kreation.com/index.php/tutorials/nice-clean-sliding-login-panel-built-with-jquery" title="Download">article &raquo;</a></p>
+			</div>
+			<div class="left">
+				<form method="post" id="signin" action="/car/web/auto.php/accueil/login">
+					<h1 class="padlock">Member Login</h1>
+					<label class="grey" for="login">Username:</label>
+
+					<input class="field" type="text" name="login" id="login" value="" size="23" />
+					<label class="grey" for="password">Password:</label>
+					<input class="field" type="password" name="password" id="password" size="23" />
+	            	<label><input name="remember_me" id="remember" type="checkbox" checked="checked" value="forever" /> &nbsp;Remember me</label>
+        			<div class="clear"></div>
+					<input type="submit" name="submit" value="Login" class="bt_login" />
+					<a class="lost-pwd" href="#">Lost your password?</a>
+
+				</form>
+			</div>
+			<div class="left right">
+				<form action="#" method="post">
+					<h1>Not a member yet? Sign Up!</h1>
+					<label class="grey" for="signup">Username:</label>
+					<input class="field" type="text" name="signup" id="signup" value="" size="23" />
+					<label class="grey" for="email">Email:</label>
+
+					<input class="field" type="text" name="email" id="email" size="23" />
+					<label>A password will be e-mailed to you.</label>
+					<input type="submit" name="submit" value="Register" class="bt_register" />
+				</form>
+			</div>
+		</div>
+	</div> <!-- /login -->
+
+    <!-- The tab on top -->
+	<div class="tab">
+
+		<ul class="login">
+	    	<li class="left">&nbsp;</li>
+	        <li>
+                    Bienvenue!
+                </li>
+			<li class="sep">|</li>
+			<li id="toggle">
+                            <a id="open" class="open" href="#">Log In | S&rsquo;enregistrer</a>
+				<a id="close" style="display: none;" class="close" href="#">Close Panel</a>
+			</li>
+
+	    	<li class="right">&nbsp;</li>
+		</ul>
+	</div>
+
+</div>
+<?php
+}
+?>
 <div>  
 	
 	
 	
 	<script type="text/javascript">
-	        $(document).ready(function() {
+	        $(document).ready(function() {                    
+
+                    dojo.query( '.bgItem' ).connect( 'mouseover', commun.rollOverMenu);
+
+                    dojo.query( document ).connect( 'onmousemove', commun.rollOutMenu);                   
+
 	
 	            $(".mySignin").click(function() {
 	                $("fieldset#mySignin_menu").toggle();
 					$(".mySignin").toggleClass("hover");
 	            });
 				
-				$("fieldset#mySignin_menu").mouseup(function() {
-					return false;
-				});
-				$(".mySignin").mouseover(function(e) {						
-						$(".mySignin").toggleClass("hover");											
-				});	
-				$(document).mouseup(function(e) {
-					$("fieldset#mySignin_menu").hide();
-				});		
-				/*(function($) {
-				  $("#background").fullBg();
-				})(jQuery);*/
-				
+                    $("fieldset#mySignin_menu").mouseup(function() {
+                            return false;
+                    });
+                    $(".mySignin").mouseover(function(e) {
+                                    $(".mySignin").toggleClass("hover");
+                    });
+                    $(document).mouseup(function(e) {
+                            $("fieldset#mySignin_menu").hide();
+                    });
 
-				$(".sub").corner();		     
-										
+
+                    // Expand Panel
+                $("#open").click(function(){
+                        $("div#panel").slideDown("slow");
+                });
+
+                // Collapse Panel
+                $("#close").click(function(){
+                        $("div#panel").slideUp("slow");
+                });
+
+                // Switch buttons from "Log In | Register" to "Close Panel" on click
+                $("#toggle a").click(function () {
+                        $("#toggle a").toggle();
+                });
+                    
 				
 	        });
 	  </script>
@@ -168,24 +238,9 @@ dojo.addOnLoad(
 	<!-- CONTENT -->
 	<div id="maincontent">            
 		<div style="width: 100%;z-index: -5">                        
-			<div id="topnav" class="topnav" style="background-color: white;">   <?php 
-                           if($isLogged){
-                           ?>
-                           <div class="mySigninLabel">                               
-                               <table style="display: inline">
-                                   <tr>
-                                       <td><img src="/car/web/images/icontexto-inside-facebook.png"/></td>
-                                       <td width="10"></td>
-                                       <td><img src="/car/web/images/icontexto-inside-twitter.png"/></td>
-                                       <td width="100"></td>
-                                       <td><a href="/car/web/auto.php/userform/create">Vous avez un compte?</a></td>
-                                       <td width="10"></td>
-                                       <td><div class="mySignin">Login</div></td>
-                                   </tr>
-                               </table>
-                           </div>			   
+			<div id="topnav" class="topnav" style="background-color: white;">                              			   
                            <?php
-                           }else{
+                           if(!$isLogged){
                            ?>
                            <div class="mySigninLink">
                                <table>
@@ -214,163 +269,78 @@ dojo.addOnLoad(
 			</div>			
 			<div id="navigation">
 			    <ul id="topnav">
-			    	<li>
-                                    <div class="item">
-                                            <div class="leftItem"><a href="#" title=""></a></div>
-                                            <div class="bgItem"><a href="#" title="">Accueil</a></div>
-                                            <div class="rightItem"><a href="#" title=""></a></div>
-                                    </div>
+			    	<li>                                   
+                                    <span class="leftItem" href="#" title="">&nbsp;</span>
+                                    <a class="bgItem" href="#" title="">Accueil</a>
+                                    <span class="rightItem" href="#" title="">&nbsp;</span>                                    
 			        </li>
                                 <li>
-                                    <div class="item">
-                                        <div class="leftItem"><a href="#" title=""></a></div>
-                                            <div class="bgItem"><a href="#" title="">Essais</a></div>
-                                            <div class="rightItem"><a href="#" title=""></a></div>
-                                    </div>
+                                    <span class="leftItem" href="#" title="">&nbsp;</span>
+                                    <a class="bgItem" href="#" title="">Essais</a>
+                                    <span class="rightItem" href="#" title="">&nbsp;</span>                                    
 			        </li>
                                 <li>
-                                    <div class="item">
-                                            <div class="leftItem"><a href="#" title=""></a></div>
-                                            <div class="bgItem"><a href="#" title="">A l&rsquo;actu</a></div>
-                                            <div class="rightItem"><a href="#" title=""></a></div>
-                                    </div>
+                                    <span class="leftItem" href="#" title="">&nbsp;</span>
+                                    <a class="bgItem" href="#" title="">A l&rsquo;actu</a>
+                                    <span class="rightItem" href="#" title="">&nbsp;</span>
 			        </li>
                                 <li>
-                                    <div class="item">
-                                            <div class="leftItem"><a href="#" title=""></a></div>
-                                            <div class="bgItem"><a href="#" title="">Argus</a></div>
-                                            <div class="rightItem"><a href="#" title=""></a></div>
-                                    </div>
+                                    <span class="leftItem" href="#" title="">&nbsp;</span>
+                                    <a class="bgItem" href="#" title="">Argus</a>
+                                    <span class="rightItem" href="#" title="">&nbsp;</span>
 			        </li>
                                 <li>
-                                    <div class="item">
-                                            <div class="leftItem"><a href="#" title=""></a></div>
-                                            <div class="bgItem"><a href="#" title="">Annonces</a></div>
-                                            <div class="rightItem"><a href="#" title=""></a></div>
-                                    </div>
-                                    <div class="sub">
-			            	<ul>
-                                            <li><a href="#">D&eacute;poser</a></li>
-                                            <li><a href="#">Consulter</a></li>
-                                            <li><a href="#">Modifier</a></li>
-			                </ul>
-			            </div>
+                                    <span class="leftItem" href="#" title="">&nbsp;</span>
+                                    <a class="bgItem" href="#" title="">Annonces</a>
+                                    <span class="rightItem" href="#" title="">&nbsp;</span>
+                                    <ul class="subnav">
+                                        <li><a href="#">D&eacute;poser</a></li>
+                                        <li><a href="#">Consulter</a></li>
+                                        <li><a href="#">Modifier</a></li>
+                                    </ul>
 			        </li>
                                 <li>
-                                    <div class="item">
-                                            <div class="leftItem"><a href="#" title=""></a></div>
-                                            <div class="bgItem"><a href="#" title="">Voitures neuves</a></div>
-                                            <div class="rightItem"><a href="#" title=""></a></div>
-                                    </div>
+                                    <span class="leftItem" href="#" title="">&nbsp;</span>
+                                    <a class="bgItem" href="#" title="">Voitures neuves</a>
+                                    <span class="rightItem" href="#" title="">&nbsp;</span>
 			        </li>
                                 <li>
-                                    <div class="item">
-                                            <div class="leftItem"><a href="#" title=""></a></div>
-                                            <div class="bgItem"><a href="#" title="">Conseils</a></div>
-                                            <div class="rightItem"><a href="#" title=""></a></div>
-                                    </div>
+                                    <span class="leftItem" href="#" title="">&nbsp;</span>
+                                    <a class="bgItem" href="#" title="">Conseils</a>
+                                    <span class="rightItem" href="#" title="">&nbsp;</span>
 			        </li>
                                 <li>
-                                    <div class="item">
-                                            <div class="leftItem"><a href="#" title=""></a></div>
-                                            <div class="bgItem"><a href="#" title="">Services</a></div>
-                                            <div class="rightItem"><a href="#" title=""></a></div>
-                                    </div>
+                                    <span class="leftItem" href="#" title="">&nbsp;</span>
+                                    <a class="bgItem" href="#" title="">Services</a>
+                                    <span class="rightItem" href="#" title="">&nbsp;</span>
 			        </li>
                                 <li>
-                                    <div class="item">
-                                            <div class="leftItem"><a href="#" title=""></a></div>
-                                            <div class="bgItem"><a href="#" title="">Assurance</a></div>
-                                            <div class="rightItem"><a href="#" title=""></a></div>
-                                    </div>
+                                    <span class="leftItem" href="#" title="">&nbsp;</span>
+                                    <a class="bgItem" href="#" title="">Assurance</a>
+                                    <span class="rightItem" href="#" title="">&nbsp;</span>
 			        </li>
 			        <li>
-                                    <div class="item">
-                                            <div class="leftItem"><a href="#" title=""></a></div>
-                                            <div class="bgItem"><a href="#" title="">Products</a></div>
-                                            <div class="rightItem"><a href="#" title=""></a></div>
-                                    </div>
-			            <!--<div class="sub">
-			            	<ul>			                	
-			                	<li><a href="#">&raquo; Navigation Link</a></li>
-			                    <li><a href="#">Navigation Link</a></li>
-			                    <li><a href="#">Navigation Link</a></li>
-			                    <li><a href="#">Navigation Link</a></li>
-			                    <li><a href="#">Navigation Link</a></li>			
-			                    <li><a href="#">Navigation Link</a></li>
-			                    <li><a href="#">Navigation Link</a></li>
-			                </ul>			                			                
-			            </div>-->
+                                    <span class="leftItem" href="#" title="">&nbsp;</span>
+                                    <a class="bgItem" href="#" title="">Products</a>
+                                    <span class="rightItem" href="#" title="">&nbsp;</span>    
 			        </li>
-			        <li>			        	
-                                    <div class="item">
-                                            <div class="leftItem"><a href="#" title=""></a></div>
-                                            <div class="bgItem"><a href="#" title="">Sales</a></div>
-                                            <div class="rightItem"><a href="#" title=""></a></div>
-                                    </div>
-			            <!--<div class="sub">
-			            	<div class="row">
-			                    <ul style="width: 225px;">			
-			                        <li><h2><a href="#">Deal of the Week</a></h2></li>
-			                        <li><a href="#">Navigation Link - 2 Column</a></li>
-			                        <li><a href="#">Navigation Link - 2 Column</a></li>
-			                        <li><a href="#">Navigation Link - 2 Column</a></li>
-			                        <li><a href="#">Navigation Link - 2 Column</a></li>
-			                    </ul>
-			
-			                    <ul style="width: 225px;">
-			                        <li><h2><a href="#">Clearance Items</a></h2></li>
-			                        <li><a href="#">Navigation Link - 2 Column</a></li>
-			                        <li><a href="#">Navigation Link - 2 Column</a></li>
-			                        <li><a href="#">Navigation Link - 2 Column</a></li>
-			                        <li><a href="#">Navigation Link - 2 Column</a></li>
-			
-			                    </ul>
-			                </div>
-			                <div class="row">
-			                    <ul>
-			                        <li><h2><a href="#">Deal of the Week</a></h2></li>
-			                        <li><a href="#">Navigation Link</a></li>
-			                        <li><a href="#">Navigation Link</a></li>
-			
-			                        <li><a href="#">Navigation Link</a></li>
-			                        <li><a href="#">Navigation Link</a></li>
-			                    </ul>
-			                    <ul>
-			                        <li><h2><a href="#">Clearance Items</a></h2></li>
-			                        <li><a href="#">Navigation Link</a></li>
-			                        <li><a href="#">Navigation Link</a></li>
-			
-			                        <li><a href="#">Navigation Link</a></li>
-			                        <li><a href="#">Navigation Link</a></li>
-			                    </ul>
-			                    <ul>
-			                        <li><h2><a href="#">Open Box Items</a></h2></li>
-			                        <li><a href="#">Navigation Link</a></li>
-			                        <li><a href="#">Navigation Link</a></li>
-			
-			                        <li><a href="#">Navigation Link</a></li>
-			                        <li><a href="#">Navigation Link</a></li>
-			                    </ul>
-			                </div>
-			            </div>-->
+			        <li>
+                                    <span class="leftItem" href="#" title="">&nbsp;</span>
+                                    <a class="bgItem" href="#" title="">Sales</a>
+                                    <span class="rightItem" href="#" title="">&nbsp;</span>    			            
 			        </li>
-			        <li>			        	
-						<div class="item">
-							<div class="curLeftItem"><a href="#" title=""></a></div>
-							<div class="curBgItem"><a class="currentItem" href="#" title="">Community</a></div>
-							<div class="curRightItem"><a href="#" title=""></a></div>
-						</div>
+			        <li>
+                                    <span class="curLeftItem" href="#" title="">&nbsp;</span>
+                                    <a class="curBgItem" href="#" title="">Community</a>
+                                    <span class="curRightItem" href="#" title="">&nbsp;</span>
 			        </li>
-			        <li>			        	
-			        	<div class="item">
-							<div class="leftItem"><a href="#" title=""></a></div>
-							<div class="bgItem"><a href="#" title="">Store Locator</a></div>
-							<div class="rightItem"><a href="#" title=""></a></div>
-						</div>
+			        <li>
+                                    <span class="leftItem" href="#" title="">&nbsp;</span>
+                                    <a class="bgItem" href="#" title="">Store Locator</a>
+                                    <span class="rightItem" href="#" title="">&nbsp;</span>
 			        </li>
 			    </ul>
-			</div>			
+			</div>                        
 		</div>
 		<fieldset id="mySignin_menu">					
 			<table width="274" height="226" cellpadding="0" cellspacing="0">
@@ -386,7 +356,7 @@ dojo.addOnLoad(
 									<td valign="middle"><div style="height: 2px;background-color: #CACACA;width: 80px;">&nbsp;</div></td>
 								</tr>
 								<tr>
-									<td valign="middle" colspan="5"><input id="login" name="login" value="" title="username" tabindex="4" type="text"></td>
+									<td valign="middle" colspan="5"><input id="login" name="login" value="" title="username" tabindex="4" type="text"/></td>
 								</tr>
 								<tr>
 									<td valign="middle"><img src="/car/web/images/beat.png"/></td>
@@ -396,12 +366,12 @@ dojo.addOnLoad(
 									<td valign="middle"><div style="height: 2px;background-color: #CACACA;width: 80px;">&nbsp;</div></td>
 								</tr>
 								<tr>
-									<td valign="middle" colspan="5"><input id="password" name="password" value="" title="password" tabindex="5" type="password"></td>									
+									<td valign="middle" colspan="5"><input id="password" name="password" value="" title="password" tabindex="5" type="password"/></td>
 								</tr>
 							</table>					
 							<p class="remember">							
-								<input id="mySignin_submit" value="" tabindex="6" type="submit">
-								<input id="remember" name="remember_me" value="1" tabindex="7" type="checkbox" <?php echo $isRemember; ?> >
+								<input id="mySignin_submit" value="" tabindex="6" type="submit"/>
+								<input id="remember" name="remember_me" value="1" tabindex="7" type="checkbox" <?php echo $isRemember; ?> />
                                                                     <label for="remember">S&rsquo;en souvenir</label>
 							</p>
 							<p class="forgot">
