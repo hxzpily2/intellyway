@@ -10,77 +10,170 @@ ul#topnav li {
 	position: relative;
 }
 ul#topnav li a {
-	float: left;	
-	height: 35px;	
+	/*float: left;*/	
 	color: #FFF; 
 	text-shadow: black 0.1em 0.1em 0.2em;
 	text-decoration: none;
-	font-weight : bold;	
-	line-height: 200%;	
-}
-ul#topnav li:hover a, ul#topnav li a:hover { background-position: left bottom; }
-ul#topnav a.home {
-	background: url(nav_home.png) no-repeat;
-	width: 78px; 
-}
-ul#topnav a.products {
-	background: url(nav_products.png) no-repeat;
-	width: 117px; 
-}
-ul#topnav a.sale {
-	background: url(nav_sale.png) no-repeat;
-	width: 124px; 
-}
-ul#topnav a.community {
-	background: url(nav_community.png) no-repeat;
-	width: 124px; 
-}
-ul#topnav a.store {
-	background: url(nav_store.png) no-repeat;
-	width: 141px; 
+	font-weight : bold;        
 }
 
-
-ul#topnav li .sub {
-	position: absolute;	
-	top: 10px; left: 0;	
-	padding-right: 5px;
-        padding-bottom: 5px;
-	float: left;
-	z-index : 999;	
-	display: none;	
-	background: #c51b00 url(../../images/sub_bg.png) repeat-x top;        
-}
-ul#topnav li .row {clear: both; float: left; width: 100%; margin-bottom: 10px;}
-ul#topnav li .sub ul{		
-	width: 100px;
-	list-style: none;
-	margin: 0; padding: 0;	
-	float: left;
-	
-}
-ul#topnav .sub ul li {
-	width: 100%;
-	color: #fff;
-        text-align: left;
-}
-ul#topnav .sub ul li h2 {
-	padding: 0;  margin: 0;
-	font-size: 1.3em;
-	font-weight: normal;
-}
-ul#topnav .sub ul li h2 a {	
-	
-	color: #e8e000;
-}
-ul#topnav .sub ul li a {
-	float: none; 
-	text-indent: 0; /*--Reset text indent--*/
-	height: 15px;
-	/*background: url(../../images/sub_arrow.png) no-repeat 0px 12px;*/	
-	display: block;
+ul#topnav li a {
+	/*float: left;*/
+	height: 35px;
+	color: #FFF;
+	text-shadow: black 0.1em 0.1em 0.2em;
 	text-decoration: none;
-	color: #fff;
-	padding: 4px 5px 7px 15px;	
+	font-weight : bold;
+	line-height: 200%;
+        padding-bottom: 20px;
 }
-ul#topnav .sub ul li a:hover {color: #ddd; background-position: 5px 12px ;}
+
+ul#topnav li ul li a {
+	/*float: left;*/
+	height: 10px;
+	color: #FFF;
+	text-shadow: black 0.1em 0.1em 0.2em;
+	text-decoration: none;
+	font-weight : bold;
+        text-align: left;        
+        padding-bottom: 8px;
+}
+
+/*******************************/
+#navigation {
+	background: url("../../images/nav_bottom.png") repeat-x;
+	height: 43px;
+	width: 100%;
+	float:left;
+    line-height:normal;
+    text-align: center;
+	margin: 0;
+	padding: 0;
+
+}
+#navigation ul, #navigation ul li {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+#navigation ul {
+	text-align: center;
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+}
+#navigation ul li {
+	display: inline;
+}
+
+#navigation ul li a {	
+	/*color: #FFF;
+	text-shadow: black 0.1em 0.1em 0.2em;
+	text-decoration: none;
+	font-weight : bold;	
+	padding: 5px 0px 0;
+        padding-bottom: 15px;*/
+}
+#navigation ul li span {
+	/*padding: 0px -10px 5px 5px;*/
+	/*margin: 0px 0 4px 4px;*/
+}
+#navigation ul li a:hover span {
+	text-decoration: underline;
+	background-position: 100% -75px;
+}
+#navigation ul li a:hover {
+	background-position: 0 -75px;
+}
+#navigation ul li a.currentItem {
+	color: #000;
+	text-shadow: none;
+}
+#navigation #current a span {
+	background-position: 100% -150px;
+}
+
+#navigation ul li span.item{
+	display: inline-table;
+	padding: 0;
+	margin: 0;
+	border: 0;
+	overflow:auto;
+        margin:0px; padding:0px; border:0px; border-collapse:separate; border-spacing:0px;
+        line-height: 0px;
+}
+
+#navigation ul li span.leftItem{
+	background: url(/car/web/images/nav_item_left.png) no-repeat;
+        padding-bottom: 13px;
+        padding-top: 5px;
+        margin-right: -4px;
+        padding-right: 2px;
+        
+}
+
+#navigation ul li span.rightItem{
+	background: url(/car/web/images/nav_item_right.png) no-repeat;
+        padding-bottom: 13px;
+        padding-top: 5px;
+        margin-left: -4px;
+        padding-right: 2px;
+}
+
+#navigation ul li a.bgItem{
+	background: url(/car/web/images/nav_item_bg.png) repeat-x;
+        padding-top: 5px;
+}
+
+#navigation ul li span.curLeftItem{
+        background: url(/car/web/images/nav_cur_item_left.png) no-repeat;
+        padding-bottom: 13px;
+        padding-top: 5px;
+        margin-right: -4px;
+        padding-right: 2px;
+}
+
+#navigation ul li span.curRightItem{
+        background: url(/car/web/images/nav_cur_item_right.png) no-repeat;
+        padding-bottom: 13px;
+        padding-top: 5px;
+        margin-left: -4px;
+        padding-right: 2px;
+}
+
+#navigation ul li a.curBgItem{
+        background: url(/car/web/images/nav_cur_item_bg.png) repeat-x;
+        padding-top: 5px;
+
+}
+
+
+
+/*********************************/
+
+
+ul#topnav li ul.subnav {
+	list-style: none;
+	position: absolute; /*--Important - Keeps subnav from affecting main navigation flow--*/
+	left: 1px; top: 35px;	
+	display: none;
+	float: left;
+	width: 170px;
+	border: 1px solid #111;
+        background: #c51b00 url(../../images/sub_bg.png) repeat-x top;
+        padding-bottom: 10px;
+}
+ul#topnav li ul.subnav li{
+	margin: 0; padding: 0;
+	border-top: 1px solid #252525; /*--Create bevel effect--*/
+	border-bottom: 1px solid #444; /*--Create bevel effect--*/	
+	width: 170px;
+}
+html ul#topnav li ul.subnav li a {
+	float: left;
+	width: 170px;
+	padding-left: 0px;
+}
+html ul#topnav li ul.subnav li a:hover { /*--Hover effect for subnav links--*/
+	
+}
