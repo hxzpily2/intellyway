@@ -22,10 +22,22 @@ class taggableCompleteActions extends sfActions
    * information discovery in some cases
    *
    */
-  public function executeComplete()
+  public function executeComplete(sfWebRequest $request)
   {
     $this->setLayout(false);
-    $current = $this->getRequestParameter('current');
+    $current = '';
+    if ($request->hasParameter('q'))
+    {
+    	$current = $request->getParameter('q');
+    }
+    elseif ($request->hasParameter('term'))
+    {
+      $current = $request->getParameter('term');
+    }
+    else
+    {
+    	$current = $request->getParameter('current');
+    }
     $tags = array();
     $tagsInfo = array();
     $tagsAll = array();
@@ -82,6 +94,15 @@ class taggableCompleteActions extends sfActions
       $all .= $tagInfo['right'];
       $n++;
     }
+    
+    if ($this->hasRequestParameter('q'))
+    {
+    	$this->setTemplate('jQueryAutocompleteOld');
+    }
+    elseif ($this->hasRequestParameter('term'))
+    {
+    	$this->setTemplate('jQueryAutocomplete');
+    }
   }
 
 	public function executeAddTag(sfWebRequest $request)
@@ -91,7 +112,7 @@ class taggableCompleteActions extends sfActions
 		
 		$this->forward404unless($object_id && $object_class);
 		
-		$object = Doctrine::getTable($object_class)->findOneBy('id', $object_id);
+		$object = Doctrine_Core::getTable($object_class)->findOneBy('id', $object_id);
 		
 		$tags = $request->getParameter('tags');
 		
@@ -116,7 +137,7 @@ class taggableCompleteActions extends sfActions
 		
 		$this->forward404unless($object_id && $object_class);
 		
-		$object = Doctrine::getTable($object_class)->findOneBy('id', $object_id);
+		$object = Doctrine_Core::getTable($object_class)->findOneBy('id', $object_id);
 		
 		$tags = $request->getParameter('tags');
 		

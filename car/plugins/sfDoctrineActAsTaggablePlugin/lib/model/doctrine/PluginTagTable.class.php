@@ -5,6 +5,35 @@
 class PluginTagTable extends Doctrine_Table
 {
     /**
+    * Retrieves a tag by his name. If it does not exist, creates it (but does not
+    * save it)
+    *
+    * @param      String      $tagname
+    * @return     Tag
+    */
+    public function findOrCreateByTagname($tagname)
+    {
+        // retrieve or create the tag
+        $tag = Doctrine_Core::getTable('Tag')->findOneByName($tagname);
+
+        if (!$tag)
+        {
+            $tag = new Tag();
+            $tag->name = $tagname;
+
+            $triple = TaggableToolkit::extractTriple($tagname);
+            list($tagname, $triple_namespace, $triple_key, $triple_value) = $triple;
+
+            $tag->triple_namespace = $triple_namespace;
+            $tag->triple_key = $triple_key;
+            $tag->triple_value = $triple_value;
+            $tag->is_triple = !is_null($triple_namespace);
+        }
+
+        return $tag;
+    }
+
+    /**
     * Returns all tags, eventually with a limit option.
     * The first optionnal parameter permits to add some restrictions on the
     * objects the selected tags are related to.
@@ -21,48 +50,48 @@ class PluginTagTable extends Doctrine_Table
         {
             $q = Doctrine_Query::create();
         }
-        
+
         if (!$q->getDqlPart('select'))
         {
           $q->select('t.name');
         }
+
         if (!$q->getDqlPart('from'))
         {
           $q->from('Tag t INDEXBY t.name');
-			  }	
+			  }
 
         if (isset($options['limit']))
         {
             $q->limit($options['limit']);
         }
-        
+
         if (isset($options['like']))
         {
             $q->addWhere('t.name like ?', $options['like']);
         }
-        
+
         if (isset($options['triple']))
         {
             $q->addWhere('t.is_triple = ?', $options['triple']);
         }
-        
+
         if (isset($options['namespace']))
         {
             $q->addWhere('t.triple_namespace = ?', $options['namespace']);
         }
-        
+
         if (isset($options['key']))
         {
             $q->addWhere('t.triple_key = ?', $options['key']);
         }
-        
+
         if (isset($options['value']))
         {
             $q->addWhere('t.triple_value = ?', $options['value']);
         }
-        
-//        return array_keys($q->orderBy('t.name')->execute(array(), Doctrine::HYDRATE_ARRAY));
-        return array_keys($q->execute(array(), Doctrine::HYDRATE_ARRAY));
+
+        return array_keys($q->execute(array(), Doctrine_Core::HYDRATE_ARRAY));
     }
 
     /**
@@ -82,13 +111,13 @@ class PluginTagTable extends Doctrine_Table
         {
             $q = Doctrine_Query::create();
         }
-        
+
         $q->select('tg.tag_id, t.name, COUNT(tg.id) AS t_count');
-        
+
         //allows to pass more complex queries with a lot of joins
         if (!$q->getDqlPart('from'))
         {
-          $q->from('Tagging tg, tg.Tag t');    
+          $q->from('Tagging tg, tg.Tag t');
         }
 
         if (isset($options['limit']))
@@ -125,20 +154,20 @@ class PluginTagTable extends Doctrine_Table
         {
             $q->addWhere('t.triple_value = ?', $options['value']);
         }
-        
+
         if (isset($options['min_tags_count']))
         {
             $q->having('t_count >= ?', $options['min_tags_count']);
         }
-        
+
         $q->groupBy('tg.tag_id') // , t.name ?
           ->orderBy('t_count DESC, t.name ASC')
         ;
-        
-        $rs = $q->execute(array(), Doctrine::HYDRATE_ARRAY);
-        
+
+        $rs = $q->execute(array(), Doctrine_Core::HYDRATE_ARRAY);
+
         $tags = array();
-        
+
         foreach($rs as $tag)
         {
             $name = $tag['Tag']['name'];
@@ -174,20 +203,20 @@ class PluginTagTable extends Doctrine_Table
                 $tags = array($tags);
             }
         }
-        
+
         $q = Doctrine_Query::create()
                            ->select('tg.taggable_model, tg.taggable_id')
                            ->from('Tagging tg, Tag t')
                            ->where('t.name in ?', $tags)
                            ->having('count(t.id) > ?', count($tags))
                            ->groupBy('tg.taggable_id')
-                           ->execute(array(), Doctrine::FETCH_ARRAY);
-                           
+                           ->execute(array(), Doctrine_Core::FETCH_ARRAY);
+
         foreach($q as $cc)
         {
             $models[] = $cc[1];
         }
-        
+
         return $models;
     }
 
@@ -195,24 +224,24 @@ class PluginTagTable extends Doctrine_Table
     * Returns the most popular tags with their associated weight. See
     * TaggableToolkit::normalize for more details.
     *
-    * The first optionnal parameter permits to add some restrictions on the
+    * The first optional parameter permits to add some restrictions on the
     * objects the selected tags are related to.
-    * The second optionnal parameter permits to restrict the tag selection with
+    * The second optional parameter permits to restrict the tag selection with
     * different criterias
     *
-    * @param      Criteria    $c
-    * @param      array       $options
+    * @param      Doctrine_Query  $q
+    * @param      array           $options
     * @return     array
     */
-    public static function getPopulars($q = null, $options = array())
+    public static function getPopulars($q = null, $options = array(), $normalized = true, $limit = null)
     {
         if ($q == null)
         {
-            $q = Doctrine_Query::create()->limit(sfConfig::get('app_sfDoctrineActAsTaggablePlugin_limit', 100));
+            $q = Doctrine_Query::create()->limit((($limit != null) ? $limit : sfConfig::get('app_sfDoctrineActAsTaggablePlugin_limit', 100)));
         }
-        
+
         $all_tags = self::getAllTagNameWithCount($q, $options);
-        return TaggableToolkit::normalize($all_tags);
+        return ($normalized)? TaggableToolkit::normalize($all_tags) : $all_tags ;
     }
 
     /**
@@ -234,41 +263,41 @@ class PluginTagTable extends Doctrine_Table
     public static function getRelatedTags($tags = array(), $options = array())
     {
         $tags = TaggableToolkit::explodeTagString($tags);
-        
+
         if (is_string($tags))
         {
             $tags = array($tags);
         }
-        
+
         $tagging_options = $options;
-        
+
         if (isset($tagging_options['limit']))
         {
           unset($tagging_options['limit']);
         }
-        
+
         $taggings = self::getTaggings($tags, $tagging_options);
         $result = array();
-        
+
         foreach ($taggings as $key => $tagging)
         {
             $tags_rs = Doctrine_Query::create()
-                                     ->select('t.name')
+                                     ->select('t.name, tg.taggable_id')
                                      ->from('Tag t, t.Tagging tg')
                                      ->where('tg.taggable_model = ?', $key)
                                      ->andWhereNotIn('t.name', $tags)
                                      ->andWhereIn('tg.taggable_id', $tagging)
-                                     ->execute(array(), Doctrine::HYDRATE_ARRAY);
-            
+                                     ->execute(array(), Doctrine_Core::HYDRATE_SCALAR);
+
             foreach ($tags_rs as $tag)
             {
-                $tag_name = $tag['name'];
-                
+                $tag_name = $tag['t_name'];
+
                 if (!isset($result[$tag_name]))
                 {
                     $result[$tag_name] = 0;
                 }
-                
+
                 $result[$tag_name]++;
             }
         }
@@ -280,7 +309,6 @@ class PluginTagTable extends Doctrine_Table
         }
 
         ksort($result);
-        
         return TaggableToolkit::normalize($result);
     }
 
@@ -302,14 +330,14 @@ class PluginTagTable extends Doctrine_Table
         foreach ($taggings as $key => $tagging)
         {
             $q = Doctrine_Query::create()->from($key . ' t');
-            
+
             if(isset($options['leftJoin']))
             {
                 $q->leftJoin($options['leftJoin']);
             }
-            
-            $hydration = isset($options['hydrate']) ?  $options['hydrate'] : Doctrine::HYDRATE_RECORD;
-            
+
+            $hydration = isset($options['hydrate']) ?  $options['hydrate'] : Doctrine_Core::HYDRATE_RECORD;
+
             $objects = $q->whereIn('t.id', $tagging)->execute(array(), $hydration);
 
             foreach ($objects as $object)
@@ -340,25 +368,25 @@ class PluginTagTable extends Doctrine_Table
     public static function getObjectTaggedWithQuery($model, $tags = array(), Doctrine_Query $q = null, $options = array())
     {
         $tags = TaggableToolkit::explodeTagString($tags);
-    
+
         if (is_string($tags))
         {
             $tags = array($tags);
         }
-        
+
         if (!class_exists($model) || !PluginTagTable::isDoctrineModelClass($model))
         {
-            throw new DoctrineException(sprintf('The class "%s" does not exist, or it is not a model class.', $model));
+            throw new sfDoctrineException(sprintf('The class "%s" does not exist, or it is not a model class.', $model));
         }
-        
+
         if (!$q instanceof Doctrine_Query)
         {
             $q = Doctrine_Query::create()->from($model);
         }
-        
+
         $taggings = self::getTaggings($tags, array_merge(array('model' => $model), $options));
         $tagging = isset($taggings[$model]) ? $taggings[$model] : array();
-        
+
         if (empty($tagging))
         {
           $q->where('false');
@@ -367,7 +395,7 @@ class PluginTagTable extends Doctrine_Table
         {
           $q->whereIn($model . '.id', $tagging);
         }
-        
+
         return $q;
     }
 
@@ -378,7 +406,7 @@ class PluginTagTable extends Doctrine_Table
     {
         return true;
     }
-    
+
     /**
     * Returns the taggings associated to one tag or a set of tags.
     *
@@ -397,11 +425,11 @@ class PluginTagTable extends Doctrine_Table
         {
             $tags = array($tags);
         }
-        
+
         $q = Doctrine_Query::create()
                            ->select('DISTINCT t.id')
                            ->from('Tag t INDEXBY t.id');
-        
+
         if(count($tags) > 0)
         {
             $q->whereIn('t.name', $tags);
@@ -431,9 +459,15 @@ class PluginTagTable extends Doctrine_Table
         {
             $options['nb_common_tags'] = count($tags);
         }
-        
-        $tag_ids = $q->execute(array(), Doctrine::HYDRATE_ARRAY);
-        
+
+        $tag_ids = $q->execute(array(), Doctrine_Core::HYDRATE_ARRAY);
+
+        if (0 == count($tag_ids))
+        {
+            // if not tag has been found, then there will be no tagging
+            return array();
+        }
+
         $q = Doctrine_Query::create()
                            ->select('tg.taggable_id')
                            ->from('Tagging tg')
@@ -446,10 +480,10 @@ class PluginTagTable extends Doctrine_Table
         {
             if (!class_exists($options['model'])) // TODO: add a test to that's a doctrine model...
             {
-                throw new DoctrineException(sprintf('The class "%s" does not exist, or it is not a model class.',
+                throw new sfDoctrineException(sprintf('The class "%s" does not exist, or it is not a model class.',
                                       $options['model']));
             }
-            
+
             $q->addWhere('tg.taggable_model = ?', $options['model']);
         }
         else
@@ -457,7 +491,7 @@ class PluginTagTable extends Doctrine_Table
             $q->addSelect('tg.taggable_model')->addGroupBy('tg.taggable_model');
         }
 
-        $results = $q->execute(array(), Doctrine::HYDRATE_ARRAY);
+        $results = $q->execute(array(), Doctrine_Core::HYDRATE_ARRAY);
 
         $taggings = array();
 
@@ -471,7 +505,7 @@ class PluginTagTable extends Doctrine_Table
             {
                 $model = $rs['taggable_model'];
             }
-            
+
             if (!isset($taggings[$model]))
             {
                 $taggings[$model] = array();
@@ -479,52 +513,63 @@ class PluginTagTable extends Doctrine_Table
 
             $taggings[$model][] = $rs['taggable_id'];
         }
-        
+
         return $taggings;
     }
 
     /**
-    * Retrieves a tag by his name. If it does not exist, creates it (but does not
-    * save it)
-    *
-    * @param      String      $tagname
-    * @return     Tag
-    */
-    public static function findOrCreateByTagname($tagname)
-    {
-        // retrieve or create the tag
-        $tag = Doctrine::getTable('Tag')->findOneByName($tagname);
-
-        if (!$tag)
-        {
-            $tag = new Tag();
-            $tag->name = $tagname;
-            
-            $triple = TaggableToolkit::extractTriple($tagname);
-            list($tagname, $triple_namespace, $triple_key, $triple_value) = $triple;
-
-            $tag->triple_namespace = $triple_namespace;
-            $tag->triple_key = $triple_key;
-            $tag->triple_value = $triple_value;
-            $tag->is_triple = !is_null($triple_namespace);
-        }
-        
-        return $tag;
-    }
-    
-    /**
      * Remove Tags without associations in Tagging table
-     * 
+     *
      * @return array
      */
-    public static function purgeOrphans() {
-      $q = Doctrine::getTable('Tag')->createQuery('t INDEXBY t.id')
-        ->select('t.id')
-        ->addWhere('NOT EXISTS (SELECT tg.id FROM Tagging tg WHERE tg.tag_id = t.id)');
-        
-      $orphans = $q->execute();
-      $orphan_data = $orphans->toArray(false);
-      $orphans->delete();
-      return $orphan_data;
+    public static function purgeOrphans()
+    {
+        $q = Doctrine_Core::getTable('Tag')->createQuery('t INDEXBY t.id')
+            ->select('t.id')
+            ->addWhere('NOT EXISTS (SELECT tg.id FROM Tagging tg WHERE tg.tag_id = t.id)');
+
+        $orphans = $q->execute();
+        $orphan_data = $orphans->toArray(false);
+        $orphans->delete();
+        return $orphan_data;
+    }
+
+    /**
+     * Retrieves tags with the number of taggings for a given set of models, can be accessed using ->$model
+     *
+     * @param Array $models
+     * @param Doctrine_Query $q
+     * @return Doctrine_Query
+     */
+    public function queryTagsWithCountsByModel($models, $q = null)
+    {
+      $q->leftJoin('r.Tagging tg')->addSelect('r.*');
+      foreach($models as $model)
+      {
+        $q->addSelect("SUM(IF(tg.taggable_model = '$model' , 1, 0)) AS ".$model."Count");
+      }
+      $q->groupBy('r.id');
+      
+      return $q;
+    }
+
+    /**
+     *
+     * @param $old_id id of tag to be merged
+     * @param $new_id id of tag to be merged in to
+     */
+    public function mergeTags($old_id, $new_id)
+    {
+      Doctrine_Query::create()
+        ->select('old.*')
+        ->from("tagging old, tagging new")
+        ->where("old.tag_id = ? AND new.tag_id = ? AND old.taggable_id = new.taggable_id AND old.taggable_model = new.taggable_model", array($old_id, $new_id))
+        ->execute()->delete();
+
+      Doctrine_Core::getTable('Tagging')->createQuery()
+        ->update()
+        ->set('tag_id', $new_id)
+        ->where('tag_id = ?', $old_id)
+        ->execute();
     }
 }
