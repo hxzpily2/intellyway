@@ -39,6 +39,17 @@ ul#topnav li ul li a {
         padding-bottom: 8px;
 }
 
+ul#topnav li ul li a:hover {
+	/*float: left;*/
+	height: 10px;
+	color: #FFF;
+	text-shadow: black 0.1em 0.1em 0.2em;
+	text-decoration: underline;
+	font-weight : bold;
+        text-align: left;
+        padding-bottom: 8px;
+}
+
 /*******************************/
 #navigation {
 	background: url("../../images/nav_bottom.png") repeat-x;
