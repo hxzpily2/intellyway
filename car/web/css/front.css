@@ -264,7 +264,7 @@ border:0;
 }
 
 #main {
-  width: 1024px;
+  width: 1150px;
   border: 0;
   margin-left: auto;
   margin-right: auto;    
@@ -1157,4 +1157,82 @@ table#price-chart .ligne3-col1{
 	color: #FFFFFF;
 	text-align: center;
 	padding-top: 12px;
+}
+
+table#searchPan .left{
+    background: url('../images/search_panL.jpg') no-repeat;
+}
+
+table#searchPan .right{
+    background: url('../images/search_panR.jpg') no-repeat;
+}
+
+table#searchPan .middle{
+    background: url('../images/search_panM.jpg') repeat-x;
+}
+
+div#selection{
+    background-image:url(../images/selectionBG.jpg);
+    background-position:top left;
+    background-repeat: no-repeat;
+    min-height: 177px;
+    padding-right: 30px;
+}
+
+span.libelleAnnonce{
+    color: #C61B00;
+    font-family: TAHOMA;
+    font-weight: bold;
+    font-size: 11pt;
+    padding-left: 10px;    
+}
+
+img.homeAnnonce{
+    padding:2px;
+    border:1px solid #bfbfbf;
+    background-color:#ffffff;
+}
+
+td.paddingTop{
+    padding-top: 5px;
+    padding-left: 10px;
+}
+
+span.titleItem{
+    color : #7e7e7e;
+    font-family: tahoma;
+    font-size: 9pt;
+}
+
+span.valueItem{
+    color : #7e7e7e;
+    font-family: tahoma;
+    font-size: 9pt;
+    font-weight: bold;
+}
+
+span.prixItem{
+    color : #474747;
+    font-family: tahoma;
+    font-size: 9pt;
+    font-weight: bold;
+}
+
+div#limH{
+     background: url('../images/dotH.jpg') repeat-x;
+     width: 150px;
+}
+
+div#affaire{
+    background-image:url(../images/affaireBG.jpg);
+    background-position:top left;
+    background-repeat: no-repeat;        
+    width : 308px;
+    height: 350px;
+}
+
+span.commentAnnonce{
+    color : #7e7e7e;
+    font-family: tahoma;
+    font-size: 9pt;
 }
