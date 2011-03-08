@@ -19,6 +19,7 @@ class ProjectConfiguration extends sfProjectConfiguration
     $this->enablePlugins('sfSyncContentPlugin');
     $this->enablePlugins('apostrophePlugin');
     $this->enablePlugins('apostropheBlogPlugin');
+    $this->enablePlugins('sfTaskExtraPlugin');
 
     set_include_path(sfConfig::get('sf_lib_dir') .'/vendor' . PATH_SEPARATOR . get_include_path());
 
