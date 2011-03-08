@@ -22,6 +22,7 @@ abstract class BasesfGuardGroupForm extends BaseFormDoctrine
       'updated_at'       => new sfWidgetFormDateTime(),
       'users_list'       => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'sfGuardUser')),
       'permissions_list' => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'sfGuardPermission')),
+      'categories_list'  => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'aCategory')),
     ));
 
     $this->setValidators(array(
@@ -32,6 +33,7 @@ abstract class BasesfGuardGroupForm extends BaseFormDoctrine
       'updated_at'       => new sfValidatorDateTime(),
       'users_list'       => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'sfGuardUser', 'required' => false)),
       'permissions_list' => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'sfGuardPermission', 'required' => false)),
+      'categories_list'  => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'aCategory', 'required' => false)),
     ));
 
     $this->validatorSchema->setPostValidator(
@@ -58,25 +60,31 @@ abstract class BasesfGuardGroupForm extends BaseFormDoctrine
 
     if (isset($this->widgetSchema['users_list']))
     {
-      $this->setDefault('users_list', $this->object->users->getPrimaryKeys());
+      $this->setDefault('users_list', $this->object->Users->getPrimaryKeys());
     }
 
     if (isset($this->widgetSchema['permissions_list']))
     {
-      $this->setDefault('permissions_list', $this->object->permissions->getPrimaryKeys());
+      $this->setDefault('permissions_list', $this->object->Permissions->getPrimaryKeys());
+    }
+
+    if (isset($this->widgetSchema['categories_list']))
+    {
+      $this->setDefault('categories_list', $this->object->Categories->getPrimaryKeys());
     }
 
   }
 
   protected function doSave($con = null)
   {
-    $this->saveusersList($con);
-    $this->savepermissionsList($con);
+    $this->saveUsersList($con);
+    $this->savePermissionsList($con);
+    $this->saveCategoriesList($con);
 
     parent::doSave($con);
   }
 
-  public function saveusersList($con = null)
+  public function saveUsersList($con = null)
   {
     if (!$this->isValid())
     {
@@ -94,7 +102,7 @@ abstract class BasesfGuardGroupForm extends BaseFormDoctrine
       $con = $this->getConnection();
     }
 
-    $existing = $this->object->users->getPrimaryKeys();
+    $existing = $this->object->Users->getPrimaryKeys();
     $values = $this->getValue('users_list');
     if (!is_array($values))
     {
@@ -104,17 +112,17 @@ abstract class BasesfGuardGroupForm extends BaseFormDoctrine
     $unlink = array_diff($existing, $values);
     if (count($unlink))
     {
-      $this->object->unlink('users', array_values($unlink));
+      $this->object->unlink('Users', array_values($unlink));
     }
 
     $link = array_diff($values, $existing);
     if (count($link))
     {
-      $this->object->link('users', array_values($link));
+      $this->object->link('Users', array_values($link));
     }
   }
 
-  public function savepermissionsList($con = null)
+  public function savePermissionsList($con = null)
   {
     if (!$this->isValid())
     {
@@ -132,7 +140,7 @@ abstract class BasesfGuardGroupForm extends BaseFormDoctrine
       $con = $this->getConnection();
     }
 
-    $existing = $this->object->permissions->getPrimaryKeys();
+    $existing = $this->object->Permissions->getPrimaryKeys();
     $values = $this->getValue('permissions_list');
     if (!is_array($values))
     {
@@ -142,13 +150,51 @@ abstract class BasesfGuardGroupForm extends BaseFormDoctrine
     $unlink = array_diff($existing, $values);
     if (count($unlink))
     {
-      $this->object->unlink('permissions', array_values($unlink));
+      $this->object->unlink('Permissions', array_values($unlink));
     }
 
     $link = array_diff($values, $existing);
     if (count($link))
     {
-      $this->object->link('permissions', array_values($link));
+      $this->object->link('Permissions', array_values($link));
+    }
+  }
+
+  public function saveCategoriesList($con = null)
+  {
+    if (!$this->isValid())
+    {
+      throw $this->getErrorSchema();
+    }
+
+    if (!isset($this->widgetSchema['categories_list']))
+    {
+      // somebody has unset this widget
+      return;
+    }
+
+    if (null === $con)
+    {
+      $con = $this->getConnection();
+    }
+
+    $existing = $this->object->Categories->getPrimaryKeys();
+    $values = $this->getValue('categories_list');
+    if (!is_array($values))
+    {
+      $values = array();
+    }
+
+    $unlink = array_diff($existing, $values);
+    if (count($unlink))
+    {
+      $this->object->unlink('Categories', array_values($unlink));
+    }
+
+    $link = array_diff($values, $existing);
+    if (count($link))
+    {
+      $this->object->link('Categories', array_values($link));
     }
   }
 
