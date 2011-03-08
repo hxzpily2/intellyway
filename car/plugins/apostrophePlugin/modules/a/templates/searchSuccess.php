@@ -5,10 +5,9 @@
   $results = isset($results) ? $sf_data->getRaw('results') : null;
 ?>
 <?php use_helper('a') ?>
-<?php slot('body_class') ?>a-search-results<?php end_slot() ?>
+<?php slot('body_class') ?>a-search-success<?php end_slot() ?>
 
-
-<div class="a-search-results-container">
+<?php include_partial('a/searchBefore', array('q' => $sf_request->getParameter('q', ESC_RAW))) ?>
 
 	<h2><?php echo __('Search: "%phrase%"', array('%phrase%' =>  htmlspecialchars($sf_request->getParameter('q', ESC_RAW))), 'apostrophe') ?></h2>
 	
@@ -43,4 +42,4 @@
 	  <?php include_partial('aPager/pager', array('pager' => $pager, 'pagerUrl' => $pagerUrl)) ?>
 	</div>
 
-</div>
+<?php include_partial('a/searchAfter', array('q' => $sf_request->getParameter('q', ESC_RAW))) ?>
