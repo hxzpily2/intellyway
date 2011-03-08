@@ -12,9 +12,12 @@ default:
     #language:     en
     #robots:       index, follow
 
-  stylesheets:    [main.css]
+  stylesheets:
+    - main.css: { position: last }
 
-  javascripts:    []
+  javascripts:
+    - /apostropheBlogPlugin/js/aBlog.js           # Required for blog plugin
+    - site.js: { position: last }
 
   has_layout:     true
   layout:         layout

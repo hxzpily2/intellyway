@@ -24,10 +24,12 @@ test:
 
 all:
   .settings:
+    i18n: on
     # Form security secret (CSRF protection)
     csrf_secret:            3646f312ec3ae741cedc599ca933e8ba22a02ad5
-    enabled_modules: [default, sfGuardAuth, sfGuardGroup, sfGuardUser, sfGuardPermission]
-    
+    enabled_modules: [default, sfGuardAuth, sfGuardGroup, sfGuardUser, sfGuardPermission, a, aSync , aNavigation , aMedia , aMediaBackend , aRichTextSlot , aTextSlot , aRawHTMLSlot , aSlideshowSlot , aSmartSlideshowSlot , aVideoSlot , aImageSlot , aButtonSlot , aPDFSlot , aFileSlot , aFeedSlot , aAudioSlot , sfGuardForgotPassword , aUserAdmin , aGroupAdmin , aPermissionAdmin , taggableComplete , aNavigation , default , aBlog , aBlogAdmin , aBlogSingleSlot , aBlogSlot , aEvent , aEventAdmin , aEventCategoryAdmin , aEventSingleSlot , aEventSlot , aAdmin , aCategoryAdmin , aTagAdmin]
+    rich_text_fck_js_dir: apostrophePlugin/js/fckeditor
+
 
     # Output escaping settings
     escaping_strategy:      true

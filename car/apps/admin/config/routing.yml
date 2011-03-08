@@ -201,8 +201,9 @@ car_marque:
 
 # default rules
 homepage:
-  url:   /
-  param: { module: default, action: index }
+  url:  /
+  param: { module: a, action: show, slug: / }
+
 
 # generic rules
 # please, remove them by adding more specific rules
@@ -211,4 +212,10 @@ default_index:
   param: { action: index }
 
 default:
-  url:   /:module/:action/*
+  url:   /admin/:module/:action/*
+
+
+a_page:
+  url:   /:slug
+  param: { module: a, action: show }
+  requirements: { slug: .* }
