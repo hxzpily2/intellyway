@@ -23,3 +23,9 @@ default_index:
 
 default:
   url:   /:module/:action/*
+
+
+a_page:
+  url:   /:slug
+  param: { module: a, action: show }
+  requirements: { slug: .* }

@@ -28,7 +28,7 @@ all:
   .settings:
     # Form security secret (CSRF protection)
     csrf_secret:            6df7bf678dce2e260eb150780d29e8f4aa2244d7
-    enabled_modules: [default, sfGuardAuth, sfGuardGroup, sfGuardUser, sfGuardPermission]
+    enabled_modules: [default, sfGuardAuth, sfGuardGroup, sfGuardUser, sfGuardPermission, a, aSync, aNavigation, aMedia, aMediaBackend, aRichTextSlot, aTextSlot,aRawHTMLSlot, aSlideshowSlot, aVideoSlot, aImageSlot, aButtonSlot, aPDFSlot, aFeedSlot, sfGuardAuth, aUserAdmin, aGroupAdmin, aPermissionAdmin, sfGuardPermission, taggableComplete, aNavigation, default, aAdmin, aTagAdmin, aCategoryAdmin]
     
 
     # Output escaping settings
