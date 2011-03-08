@@ -102,6 +102,7 @@
 <input type="hidden" id="paysID" value="<?php echo $pays->getIdpays(); ?>"/>
 <table width="100%">
     <tr>
+        <td width="176">&nbsp;</td>
         <td width="630" valign="top">
                     <div id="autoDiv">
                         <div id="autoForm">
