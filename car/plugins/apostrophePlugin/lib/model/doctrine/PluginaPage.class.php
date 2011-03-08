@@ -168,7 +168,11 @@ abstract class PluginaPage extends BaseaPage
         foreach ($areaVersion->AreaVersionSlots as $areaVersionSlot)
         {
           $slot = $areaVersionSlot->Slot;
-          $this->slotCache[$this->culture][$area->name][$areaVersionSlot->permid] = $slot;
+          // Tolerate missing slots, can't crash just because the db surprises you
+          if ($slot)
+          {
+            $this->slotCache[$this->culture][$area->name][$areaVersionSlot->permid] = $slot;
+          }
           // foreach ($slot->MediaItems as $mediaItem)
           // {
           //   echo($mediaItem->id . ',');
@@ -1609,7 +1613,7 @@ abstract class PluginaPage extends BaseaPage
       }
     }
   }  
-
+  
   // We may need this before we're done
   // protected function str_replace($old, $new, $content)
   // {

@@ -1,5 +1,6 @@
 function aConstructor()
 {
+	var debug = false;
   this.onSubmitHandlers = new Object();
 
   this.registerOnSubmit = function (slotId, callback)
@@ -60,10 +61,21 @@ function aConstructor()
 	// Utility: console.log wrapper prevents JS errors if we leave an apostrophe.log call hanging out in our code someplace
 	this.log = function(output)
 	{
-		if (window.console && console.log) {
+		if (window.console && console.log && debug === true) {
 			console.log(output);
 		};
 	}
+	
+	// apostrophe.debug() -- displays any debug messages stored in the debugBuffer and empties the buffer
+	this.setDebug = function(flag)
+	{
+		debug = flag;
+	};
+
+	this.getDebug = function()
+	{
+		return debug;
+	};
 
 	// Often JS code relating to an object needs to be able to find the
 	// database id of that object as a property of some enclosing
@@ -1533,8 +1545,8 @@ function aConstructor()
 
 		if (options['new'])
 		{
-			var slugField = form.find('[name=settings[slug]]');
-			var titleField = form.find('[name=settings[realtitle]]');
+			var slugField = form.find('[name="settings[slug]"]');
+			var titleField = form.find('[name="settings[realtitle]"]');
 			var timeout = null;
 
 			function changed()
@@ -1567,7 +1579,7 @@ function aConstructor()
 			});
 		}
 
-		var joinedtemplate = form.find('[name=settings[joinedtemplate]]');
+		var joinedtemplate = form.find('[name="settings[joinedtemplate]"]');
 		joinedtemplate.change(function() {
 			updateEngineAndTemplate();
 		});
