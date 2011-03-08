@@ -49,13 +49,6 @@ if($remember!="")
 <script type="text/javascript" src="/car/web/js/jquery/jquery.nyroModal-1.5.5.pack.js"></script>
 <link href='/car/web/js/jquery/nyroModal.css' type="text/css" rel="stylesheet" />
 
-<!-- RATING --> 
-<script src='/car/web/js/jquery/jquery.MetaData.js'	type="text/javascript" language="javascript"></script>
-<script	src='/car/web/js/jquery/jquery.rating.js' type="text/javascript" language="javascript"></script>
-<link href='/car/web/css/jquery.rating.css' type="text/css" rel="stylesheet" />
-<!-- FIN RATING -->
-
-
 <!-- DOJO -->
 <style type='text/css'>
 @import '/car/web/js/dojo/dijit/themes/soria/soria.css';
