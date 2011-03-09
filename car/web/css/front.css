@@ -1175,8 +1175,8 @@ div#selection{
     background-image:url(../images/selectionBG.jpg);
     background-position:top left;
     background-repeat: no-repeat;
-    min-height: 177px;
-    padding-right: 30px;
+    min-height: 177px;    
+    width: 286px;    
 }
 
 span.libelleAnnonce{
@@ -1226,9 +1226,12 @@ div#limH{
 div#affaire{
     background-image:url(../images/affaireBG.jpg);
     background-position:top left;
-    background-repeat: no-repeat;        
+    background-repeat: no-repeat;
+    position: absolute;
+    top: -4px;
+    left: 518px;
     width : 308px;
-    height: 350px;
+    height: 262px;
 }
 
 span.commentAnnonce{
@@ -1236,3 +1239,169 @@ span.commentAnnonce{
     font-family: tahoma;
     font-size: 9pt;
 }
+
+#divSearchPan{
+    position: absolute;
+    top: 0px;
+    left: 10px;
+    width: 500px;
+    height: 260px;
+}
+
+#searchButton{
+    position: absolute;
+    top: 150px;
+    left: 240px;
+    width: 63px;
+    height: 63px;
+}
+
+
+/* tabber */
+#tabber {
+	background:#FEFEFE url(../images/bg-box.png) repeat-x;
+	height:auto;
+	display:block;
+        position: absolute;
+        top : 270px;
+        left : 522px;
+        width: 300px;
+        border:1px solid #dfdfdf;
+}
+#tabber .inside {
+	padding:0px 15px 0px 15px;
+}
+#tabber ul.tabs {
+	height:53px;
+	background:url(../images/bg-widget-title.png) repeat-x center top;
+	padding:0px 5px;
+}
+#tabber ul.tabs li {
+	background:none;
+	float:left;
+	display:inline;
+	font-size:11px;
+	color:#fff;
+	margin:0px 1px 0px 0px;
+	padding:0px 0px 0px 5px;
+	cursor:pointer;
+	border-bottom:none;
+}
+#tabber ul.tabs li a.selected, #tabber ul.tabs li a:hover {
+	color:#369;
+	text-decoration:none;
+	background:url(../images/bg-tabs-selected.png) no-repeat center 41px;
+	border-bottom:none;
+}
+#tabber ul.tabs li a {
+	color:#444;
+	line-height:42px;
+	display:block;
+	float:left;
+	padding:0px 7px 10px;
+	text-transform:uppercase;
+}
+#tabber #tag-cloud, #tabber .inside li {
+	padding:10px 0px;
+}
+#tabber .inside li {
+	background:none;
+	border-bottom:1px solid #ededed;
+}
+#tabber .inside li a {
+	color:#333;
+	line-height:19px;
+}
+#tabber .inside a:hover {
+	color:#369;
+}
+#tabber .inside li div.info {
+	display:table;
+	top:0px !important;
+	margin:0px !important;
+	padding:0px !important;
+}
+#tabber .inside li span.meta {
+	display:block;
+	font:italic 11px/20px Georgia, Times New Roman;
+	color:#999;
+}
+#tabber .inside li span.meta a {
+	color:#999;
+}
+#tabber .inside li span.meta a:hover {
+	color:#369;
+	text-decoration:none;
+	border-bottom:1px dotted #369;
+}
+#tabber .inside li img.avatar, #tabber .inside li img.thumb {
+	border:1px solid #f0f0f0;
+	padding:2px;
+	background:#fff;
+	float:left;
+	margin:0px 8px 0px 0px;
+}
+
+/* widgets */
+.widget {
+	background:#fff;
+	width:308px;
+	margin:0px 0px 15px 0px;
+	border:1px solid #dfdfdf;
+}
+.widget h3 {
+	background:url(../images/bg-widget-title.png) repeat-x;
+	height:43px;
+	padding:0px 15px;
+	font-size:15px;
+	font-weight:bold;
+	color:#444;
+	line-height:42px;
+	letter-spacing:-1px;
+}
+.widget p {
+	padding-bottom:5px;
+}
+.widget ul {
+	clear:both;
+	margin:0px;
+}
+.widget ul li {
+	background:url(../images/icon-arrow.png) no-repeat 0px 10px;
+	padding:8px 0px 8px 19px;
+	border-bottom:1px solid #ededed;
+}
+.widget ul li a {
+	padding:0px;
+	text-decoration:none;
+	color:#333;
+}
+.widget ul li a:hover {
+	color:#369;
+	text-decoration:underline;
+}
+.widget ul ul {
+	margin:0px;
+	padding:0px;
+	border-top:none;
+}
+.widget ul ul li {
+	border:none;
+}
+.widgetbox {
+	background:url(../images/bg-box.png) repeat-x;
+	padding: 10px 15px 15px 15px;
+}
+.textwidget {
+	padding-top:5px;
+}
+/*** fin widget ***/
+
+#neuf{
+    width: 200px;
+    height: 170px;
+    position: absolute;
+    top : 265px;
+    left : 17px;
+}
+
