@@ -303,13 +303,17 @@ Ext.onReady(function(){
         //reload region store and enable region
         var dsModeleNew = new Ext.data.JsonStore({
             autoLoad: true,
+            listeners: {
+		'load': function(){
+                    commun.hideLoader("loaderModele","divModele");
+                }
+            },
             url: '/car/web/auto.php/json/modelejson?id='+comboMarque.getValue(),
             root: 'modeles',
             fields:['id', 'name']
         });
         comboModele.bindStore(dsModeleNew);
-        comboModele.setDisabled(false);
-        commun.hideLoader("loaderModele","divModele");
+        comboModele.setDisabled(false);        
     });
 
     var combo = new Ext.form.NumberField({
