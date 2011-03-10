@@ -168,20 +168,23 @@
                                 <table cellpadding="0" cellspacing="0" border="0" width="100%">
                                     <tr>
                                         <td></td><td></td><td></td>
-                                    </tr>
+                                    </tr>                                    
                                     <tr>
-                                        <td colspan="3" valign="top" align="left" style="padding-top: 10px;padding-left: 10px;">
+                                        <td width="150" valign="top" align="left" style="padding-top: 20px;padding-left: 10px;">
                                             <div>
                                                 <input type="text" id="idmarque" name="idmarque" size="20"/>
                                             </div>
+                                        </td>                                        
+                                        <td colspan="2" style="padding-top: 20px;padding-left: 5px;" align="left" valign="middle">
+                                            <div id="divModele">
+                                                <input type="text" id="idmodele" name="idmodele" size="20" />
+                                            </div>
+                                            <img src="/car/web/images/tranparentLoader.gif" id="loaderModele" style="display: none;"/>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td colspan="3" valign="top" align="left" style="padding-top: 10px;padding-left: 10px;">
-                                            <img src="/car/web/images/tranparentLoader.gif" id="loaderModele" style="display: none;"/>
-                                            <div id="divModele">
-                                                <input type="text" id="idmodele" name="idmodele" size="20" />
-                                            </div>
+                                            
                                         </td>
                                     </tr>
                                 </table>
