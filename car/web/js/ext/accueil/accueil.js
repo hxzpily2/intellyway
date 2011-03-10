@@ -26,9 +26,9 @@ Ext.onReady(function(){
         mode: 'local',
         forceSelection: true,
         triggerAction: 'all',
-        emptyText:'Selectionner un modèle...',
+        emptyText:'modèle...',
         selectOnFocus:true,
-        width:200,
+        width:135,
         applyTo: 'idmodele'
     });
 
@@ -50,9 +50,9 @@ Ext.onReady(function(){
         mode: 'local',
         forceSelection: true,
         triggerAction: 'all',
-        emptyText:'Selectionner une marque...',
+        emptyText:'marque...',
         selectOnFocus:true,
-        width:200,
+        width:150,
         applyTo: 'idmarque'
     });
 
