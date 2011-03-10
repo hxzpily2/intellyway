@@ -1,9 +1,17 @@
+<script type="text/javascript" src="/car/web/js/rating/jquery-ui.custom.min.js"></script>
 <!-- RATING -->
-<script src='/car/web/js/jquery/jquery.MetaData.js'	type="text/javascript" language="javascript"></script>
-<script	src='/car/web/js/jquery/jquery.rating.js' type="text/javascript" language="javascript"></script>
-<link href='/car/web/css/jquery.rating.css' type="text/css" rel="stylesheet" />
+<script src='/car/web/js/rating/jquery.ui.stars.js'	type="text/javascript" language="javascript"></script>
+<link href='/car/web/js/rating/jquery.ui.stars.css' type="text/css" rel="stylesheet" />
 <!-- FIN RATING -->
-
+<script language="javascript">
+    dojo.addOnLoad(
+	  function(){                 
+                 $(".Clear").stars({
+                    oneVoteOnly: true,
+                    split: 2
+                 });                 
+          });
+</script>
 <br/>
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
     <tr>
@@ -36,18 +44,18 @@
                     <tr><td colspan="5">&nbsp;</td></tr>
                     <tr>
                         <td colspan="5">
-                        <div class="Clear">
-                            <input class="star {split:2}" type="radio" name="annonce1" value="0.5"/>
-                            <input class="star {split:2}" type="radio" name="annonce1" value="1.0"/>
-                            <input class="star {split:2}" type="radio" name="annonce1" value="1.5"/>
-                            <input class="star {split:2}" type="radio" name="annonce1" value="2.0"/>
-                            <input class="star {split:2}" type="radio" name="annonce1" value="2.5"/>
-                            <input class="star {split:2}" type="radio" name="annonce1" value="3.0"/>
-                            <input class="star {split:2}" type="radio" name="annonce1" value="3.5" checked="checked"/>
-                            <input class="star {split:2}" type="radio" name="annonce1" value="4.0"/>
-                            <input class="star {split:2}" type="radio" name="annonce1" value="4.5"/>
-                            <input class="star {split:2}" type="radio" name="annonce1" value="5.0"/>
-                        </div>
+                            <div class="Clear">
+                                    <input class="star {split:2}" type="radio" name="annonce1" value="0.5"/>
+                                    <input class="star {split:2}" type="radio" name="annonce1" value="1.0"/>
+                                    <input class="star {split:2}" type="radio" name="annonce1" value="1.5"/>
+                                    <input class="star {split:2}" type="radio" name="annonce1" value="2.0"/>
+                                    <input class="star {split:2}" type="radio" name="annonce1" value="2.5"/>
+                                    <input class="star {split:2}" type="radio" name="annonce1" value="3.0"/>
+                                    <input class="star {split:2}" type="radio" name="annonce1" value="3.5" checked="checked"/>
+                                    <input class="star {split:2}" type="radio" name="annonce1" value="4.0"/>
+                                    <input class="star {split:2}" type="radio" name="annonce1" value="4.5"/>
+                                    <input class="star {split:2}" type="radio" name="annonce1" value="5.0"/>
+                            </div>
                         </td>
                     </tr>
                     <tr><td colspan="5">&nbsp;</td></tr>
