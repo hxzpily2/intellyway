@@ -1,3 +1,4 @@
+<script type="text/javascript" src="/car/web/js/ext/accueil/accueil.js"></script>
 <script type="text/javascript" src="/car/web/js/rating/jquery-ui.custom.min.js"></script>
 <!-- RATING -->
 <script src='/car/web/js/rating/jquery.ui.stars.js'	type="text/javascript" language="javascript"></script>
@@ -163,7 +164,27 @@
                     <table id="searchPan" width="500" height="260" border="0" cellpadding="0" cellspacing="0">
                         <tr>
                             <td class="left" width="15">&nbsp;</td>
-                            <td class="middle" width="309">
+                            <td class="middle" width="309" valign="top">
+                                <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                                    <tr>
+                                        <td></td><td></td><td></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3" valign="top" align="left" style="padding-top: 10px;padding-left: 10px;">
+                                            <div>
+                                                <input type="text" id="idmarque" name="idmarque" size="20"/>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3" valign="top" align="left" style="padding-top: 10px;padding-left: 10px;">
+                                            <img src="/car/web/images/tranparentLoader.gif" id="loaderModele" style="display: none;"/>
+                                            <div id="divModele">
+                                                <input type="text" id="idmodele" name="idmodele" size="20" />
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
                                 <div id="searchButton"><img style="cursor: pointer" src="/car/web/images/click.png"/></div>
                             </td>
                             <td class="middle" width="1" valign="middle" align="center"><img src="/car/web/images/searchLim.jpg" /></td>
@@ -184,7 +205,7 @@
                     <span class="commentAnnonce" style="padding-left: 91px;">C&rsquo;est la votre...</span>
                 </div>
                 <div id="neuf">
-                    <img style="cursor: pointer;" src="/car/web/images/cote_auto.jpg"/>
+                    <img style="cursor: pointer;" src="/car/web/images/cote_auto.jpg"/>                    
                     <br style="line-height: 10px;"/>
                     <img style="cursor: pointer;" src="/car/web/images/neuf.jpg"/>
                 </div>
