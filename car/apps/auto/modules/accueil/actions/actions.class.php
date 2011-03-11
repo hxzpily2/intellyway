@@ -17,7 +17,14 @@ class accueilActions extends sfActions
         */
         public function executeIndex(sfWebRequest $request)
         {
-
+            /***
+             * ADDED BY ZER TO SET COUNTRY FROM ADDR IP
+             */
+            $this->pays = Country::getCoutryByIp();
+            $this->getUser()->setAttribute(Constantes::SESSION_PAYS_ID, $this->pays);
+            /***
+             * END SET COUNTRY
+             */
         }
 
         public function executeLogin(sfWebRequest $request) {
