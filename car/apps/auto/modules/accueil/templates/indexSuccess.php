@@ -1,3 +1,7 @@
+<link rel="stylesheet" type="text/css" href="/car/web/js/ext/spiner/Spinner.css" />
+<script type="text/javascript" src="/car/web/js/ext/spiner/Spinner.js"></script>
+<script type="text/javascript" src="/car/web/js/ext/spiner/SpinnerField.js"></script>
+
 <script type="text/javascript" src="/car/web/js/ext/accueil/accueil.js"></script>
 <script type="text/javascript" src="/car/web/js/rating/jquery-ui.custom.min.js"></script>
 <!-- RATING -->
@@ -5,6 +9,7 @@
 <link href='/car/web/js/rating/jquery.ui.stars.css' type="text/css" rel="stylesheet" />
 <!-- FIN RATING -->
 <script language="javascript">
+    dojo.require("dijit.form.CheckBox");
     dojo.addOnLoad(
 	  function(){                 
                  $(".Clear").stars({
@@ -14,6 +19,7 @@
           });
 </script>
 <br/>
+<input type="hidden" id="paysID" value="<?php echo $pays->getIdpays(); ?>"/>
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
     <tr>
         <td width="250" valign="top" style="padding-top: 4px;">
@@ -179,9 +185,93 @@
                                             <div id="divModele">
                                                 <input type="text" id="idmodele" name="idmodele" size="20" />
                                             </div>
-                                            <img src="/car/web/images/tranparentLoader.gif" id="loaderModele" style="display: none;"/>
+                                            
+                                            <div style="padding-left: 5px;">
+                                                <img src="/car/web/images/tranparentLoader.gif" id="loaderModele" style="display: none;"/>
+                                            </div>
                                         </td>
                                     </tr>
+                                    <tr>
+                                        <td width="150" valign="top" align="left" style="padding-top: 10px;padding-left: 10px;">
+                                            <div>
+                                                <input type="text" id="idmoteur" name="idmoteur" size="20"/>
+                                            </div>
+                                        </td>
+                                        <td colspan="2" style="padding-top: 10px;padding-left: 5px;" align="left" valign="middle">
+                                            <div>
+                                                <input type="text" id="idville" name="idville" size="20"/>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr id="advancedOptions">
+                                        <td colspan="3" width="150" valign="top" align="left" style="padding-top: 5px;padding-left: 10px;">
+                                            <table>
+                                                <tr>
+                                                    <td valign="middle" align="left"><img src="/car/web/images/toggle_plus.gif"/></td>
+                                                    <td style="padding-left: 5px;cursor: pointer;"><span onclick="javascript:commun.runWipeEffect()" style="font-size: 10pt;font-family: tahoma;text-decoration: underline">Recherch avanc&eacute;e</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3" valign="top" align="left" style="padding-top: 10px;padding-left: 10px;">
+                                            <div >
+                                                <table>
+                                                    <tr>
+                                                        <td>
+                                                            <div>
+                                                                <input id="prixmin" name="prixmin" type="text" size="20"/>
+                                                            </div>
+                                                        </td>
+                                                        <td style="padding-left: 5px;">
+                                                            <div>
+                                                                <input id="kmmin" name="kmmin" type="text" size="20"/>
+                                                            </div>
+                                                        </td>
+                                                        <td style="padding-left: 5px;">
+                                                            <div>
+                                                                <input id="annemin" name="annemin" type="text" size="20"/>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="padding-top: 5px;">
+                                                            <div>
+                                                                <input id="prixmax" name="prixmax" type="text" size="20"/>
+                                                            </div>
+                                                        </td>
+                                                        <td style="padding-left: 5px;padding-top: 5px;">
+                                                            <div>
+                                                                <input id="kmmax" name="kmmax" type="text" size="20" />
+                                                            </div>
+                                                        </td>
+                                                        <td style="padding-left: 5px;padding-top: 5px;">
+                                                            <div>
+                                                                <input id="annemax" name="annemax" type="text" size="20"/>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="3" style="padding-top: 5px;">
+                                                            <div>
+                                                                <input type="text" id="idetat" name="idetat" size="20"/>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr id="normalSearch" style="display: none;">
+                                                        <td colspan="3" style="padding-top: 5px;">
+                                                            <table>
+                                                                <tr>
+                                                                    <td valign="middle" align="left"><img src="/car/web/images/toggle_minus.gif"/></td>
+                                                                    <td style="padding-left: 5px;cursor: pointer;"><span onclick="javascript:commun.rollWipeEffect()" style="font-size: 10pt;font-family: tahoma;text-decoration: underline">Recherche normal</span></td>
+                                                                </tr>
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </td>
+                                    </tr>                                    
                                     <tr>
                                         <td colspan="3" valign="top" align="left" style="padding-top: 10px;padding-left: 10px;">
                                             
@@ -189,6 +279,19 @@
                                     </tr>
                                 </table>
                                 <div id="searchButton"><img style="cursor: pointer" src="/car/web/images/click.png"/></div>
+                                <div id="onlyUrgente" class="soria">
+                                    <table>
+                                       <tr>
+                                           <td>
+                                               <input dojoType="dijit.form.CheckBox" type="radio" name="car_auto[urgent]" id="urgentId" />
+                                               <span style="margin-top: 5px;font-size: 8pt;font-family: tahoma;text-decoration: underline">Annonces urgentes uniquement</span>
+                                           </td>                                           
+                                           <td style="padding-left: 5px;padding-top: 3px;">
+                                                <img src="/car/web/images/urgent.png"/>
+                                           </td>
+                                       </tr>
+                                   </table>
+                                </div>
                             </td>
                             <td class="middle" width="1" valign="middle" align="center"><img src="/car/web/images/searchLim.jpg" /></td>
                             <td class="middle" width="160" align="center" valign="top">
@@ -197,7 +300,7 @@
                                 </div>
                             </td>
                             <td class="right" width="15">&nbsp;</td>
-                        </tr>
+                        </tr>                        
                         <tr height="24">
                             <td colspan="4" valign="middle" align="center"><img src="/car/web/images/searchLimH.jpg"/></td>
                         </tr>
