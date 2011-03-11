@@ -54,6 +54,10 @@ CarType:
      title: COLL
      description: Voiture de collection
      active:    1
+   tunin:
+     title: Voiture de tuning
+     description: Voiture améliorée
+     active:    1   
      
 
 CarEtat:
@@ -61,14 +65,14 @@ CarEtat:
      title: Neuve
      description: Voiture neuve
      active:    1
+   trebonetat:
+     title: Très bon état
+     description: Très bon état
+     active:    1
    bonetat:
      title: Bon état
      description: Bon état
-     active:    1
-   tunin:
-     title: Voiture de tuning
-     description: Voiture améliorée
-     active:    1      
+     active:    1   
    arep:
      title: A réparer
      description: Voiture à réparer
