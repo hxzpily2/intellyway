@@ -1405,3 +1405,12 @@ span.commentAnnonce{
     left : 17px;
 }
 
+
+#onlyUrgente{
+    position: absolute;
+    top: 215px;
+    left: 20px;
+    width: 200px;
+    height: 63px;
+}
+
