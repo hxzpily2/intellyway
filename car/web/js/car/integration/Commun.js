@@ -690,6 +690,48 @@ dojo.declare("car.integration.Commun",[],{
 
     rollOutSub:function(evt){
         commun.rollEffect(evt.target);
+    },
+
+    runWipeEffect : function () {        
+        /*var wipeOut = dojo.fx.wipeOut({node: node,duration: 500});
+        var wipeIn = dojo.fx.wipeIn({node: node,duration: 500});
+        var makeWider = dojo.animateProperty({node: node,duration: 500,properties: {height: {end: 450}}});
+
+
+        var currentAnimation;
+        currentAnimation = dojo.fx.chain([wipeIn]);
+        currentAnimation.play();*/
+        Ext.getCmp('etatId').show();
+        Ext.getCmp('kmmin').show();
+        Ext.getCmp('kmmax').show();
+        Ext.getCmp('prixmin').show();
+        Ext.getCmp('prixmax').show();
+        Ext.getCmp('annemin').show();
+        Ext.getCmp('annemax').show();
+
+        dojo.style(dojo.byId("advancedOptions"), 'display', 'none');
+        dojo.style(dojo.byId("normalSearch"), 'display', '');
+    },
+
+    rollWipeEffect : function () {
+        /*var wipeOut = dojo.fx.wipeOut({node: node,duration: 500});
+        var wipeIn = dojo.fx.wipeIn({node: node,duration: 500});
+        var makeWider = dojo.animateProperty({node: node,duration: 500,properties: {height: {end: 450}}});
+
+
+        var currentAnimation;
+        currentAnimation = dojo.fx.chain([wipeIn]);
+        currentAnimation.play();*/
+        Ext.getCmp('etatId').hide();
+        Ext.getCmp('kmmin').hide();
+        Ext.getCmp('kmmax').hide();
+        Ext.getCmp('prixmin').hide();
+        Ext.getCmp('prixmax').hide();
+        Ext.getCmp('annemin').hide();
+        Ext.getCmp('annemax').hide();
+
+        dojo.style(dojo.byId("advancedOptions"), 'display', '');
+        dojo.style(dojo.byId("normalSearch"), 'display', 'none');
     }
 
 });
