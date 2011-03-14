@@ -32,7 +32,7 @@
                     </tr>
                     <tr>
                         <td></td>
-                        <td class="paddingTop" width="70" valign="top"><img class="homeAnnonce" width="70" height="70" src="/car/web/uploads/annonces/0503976711.jpg"/></td>
+                        <td class="paddingTop" width="70" valign="top"><img class="homeAnnonce" width="80" height="70" src="/car/web/uploads/annonces/0503976711.jpg"/></td>
                         <td class="paddingTop" valign="top" align="left">
                             <span class="titleItem">Moteur : </span><span class="valueItem">DIESEL</span><br/>
                             <span class="titleItem">Ann&eacute;e : </span><span class="valueItem">2008</span><br/>
@@ -73,7 +73,7 @@
                     </tr>
                     <tr>
                         <td></td>
-                        <td class="paddingTop" width="70" valign="top"><img class="homeAnnonce" width="70" height="70" src="/car/web/uploads/annonces/0503976711.jpg"/></td>
+                        <td class="paddingTop" width="70" valign="top"><img class="homeAnnonce" width="80" height="70" src="/car/web/uploads/annonces/0503976711.jpg"/></td>
                         <td class="paddingTop" valign="top" align="left">
                             <span class="titleItem">Moteur : </span><span class="valueItem">DIESEL</span><br/>
                             <span class="titleItem">Ann&eacute;e : </span><span class="valueItem">2008</span><br/>
@@ -114,7 +114,7 @@
                     </tr>
                     <tr>
                         <td></td>
-                        <td class="paddingTop" width="70" valign="top"><img class="homeAnnonce" width="70" height="70" src="/car/web/uploads/annonces/0503976711.jpg"/></td>
+                        <td class="paddingTop" width="70" valign="top"><img class="homeAnnonce" width="80" height="70" src="/car/web/uploads/annonces/0503976711.jpg"/></td>
                         <td class="paddingTop" valign="top" align="left">
                             <span class="titleItem">Moteur : </span><span class="valueItem">DIESEL</span><br/>
                             <span class="titleItem">Ann&eacute;e : </span><span class="valueItem">2008</span><br/>
@@ -208,11 +208,11 @@
                                             <table>
                                                 <tr>
                                                     <td valign="middle" align="left"><img src="/car/web/images/toggle_plus.gif"/></td>
-                                                    <td style="padding-left: 5px;cursor: pointer;"><span onclick="javascript:commun.runWipeEffect()" style="font-size: 10pt;font-family: tahoma;text-decoration: underline">Recherch avanc&eacute;e</span></td>
+                                                    <td style="padding-left: 5px;cursor: pointer;"><span onclick="javascript:commun.runWipeEffect()" style="font-size: 10pt;font-family: tahoma;text-decoration: underline">Recherche avanc&eacute;e</span></td>
                                                 </tr>
                                             </table>
                                         </td>
-                                    </tr>
+                                    </tr>                                    
                                     <tr>
                                         <td colspan="3" valign="top" align="left" style="padding-top: 10px;padding-left: 10px;">
                                             <div >
@@ -257,21 +257,21 @@
                                                                 <input type="text" id="idetat" name="idetat" size="20"/>
                                                             </div>
                                                         </td>
-                                                    </tr>
-                                                    <tr id="normalSearch" style="display: none;">
-                                                        <td colspan="3" style="padding-top: 5px;">
-                                                            <table>
-                                                                <tr>
-                                                                    <td valign="middle" align="left"><img src="/car/web/images/toggle_minus.gif"/></td>
-                                                                    <td style="padding-left: 5px;cursor: pointer;"><span onclick="javascript:commun.rollWipeEffect()" style="font-size: 10pt;font-family: tahoma;text-decoration: underline">Recherche normal</span></td>
-                                                                </tr>
-                                                            </table>
-                                                        </td>
-                                                    </tr>
+                                                    </tr>                                                    
                                                 </table>
                                             </div>
                                         </td>
-                                    </tr>                                    
+                                    </tr>
+                                    <tr id="normalSearch" style="display: none;">
+                                        <td colspan="3" style="padding-top: 5px;padding-left: 10px;">
+                                            <table>
+                                                <tr>
+                                                    <td valign="middle" align="left"><img src="/car/web/images/toggle_minus.gif"/></td>
+                                                    <td style="padding-left: 5px;cursor: pointer;"><span onclick="javascript:commun.rollWipeEffect()" style="font-size: 10pt;font-family: tahoma;text-decoration: underline">Recherche normal</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
                                     <tr>
                                         <td colspan="3" valign="top" align="left" style="padding-top: 10px;padding-left: 10px;">
                                             
