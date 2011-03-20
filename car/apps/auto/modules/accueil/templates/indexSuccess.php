@@ -11,12 +11,12 @@
 <script language="javascript">
     dojo.require("dijit.form.CheckBox");
     dojo.addOnLoad(
-	  function(){                 
-                 $(".Clear").stars({
-                    oneVoteOnly: true,
-                    split: 2
-                 });                 
-          });
+    function(){
+        $(".Clear").stars({
+            oneVoteOnly: true,
+            split: 2
+        });
+    });
 </script>
 <br/>
 <input type="hidden" id="paysID" value="<?php echo $pays->getIdpays(); ?>"/>
@@ -28,7 +28,7 @@
                 <table width="100%">
                     <tr>
                         <td width="19" valign="middle" style="padding-top: 2px;"><img src="/car/web/images/fleche_red.png"/></td>
-                        <td valign="middle" colspan="3"><span class="libelleAnnonce">Seat Altea 2008</span></td>                        
+                        <td valign="middle" colspan="3"><span class="libelleAnnonce">Seat Altea 2008</span></td>
                     </tr>
                     <tr>
                         <td></td>
@@ -36,12 +36,12 @@
                         <td class="paddingTop" valign="top" align="left">
                             <span class="titleItem">Moteur : </span><span class="valueItem">DIESEL</span><br/>
                             <span class="titleItem">Ann&eacute;e : </span><span class="valueItem">2008</span><br/>
-                            <span class="titleItem">Magnifique monospace seat toledo tdi 140 équipée du pack sport seat  comprenant le becquet...</span>                            
+                            <span class="titleItem">Magnifique monospace seat toledo tdi 140 équipée du pack sport seat  comprenant le becquet...</span>
                         </td>
                         <td></td>
                     </tr>
                     <tr><td colspan="5">&nbsp;</td></tr>
-                    <tr>                        
+                    <tr>
                         <td colspan="2"><span class="titleItem">Prix : </span><span class="prixItem">150 000 DH</span><br/></td>
                         <td valign="middle" align="right" style="padding-right: 10px;">
                             <img src="/car/web/images/readMore_red.jpg"/>
@@ -52,21 +52,21 @@
                     <tr>
                         <td colspan="5">
                             <div class="Clear">
-                                    <input class="star {split:2}" type="radio" name="annonce1" value="0.5"/>
-                                    <input class="star {split:2}" type="radio" name="annonce1" value="1.0"/>
-                                    <input class="star {split:2}" type="radio" name="annonce1" value="1.5"/>
-                                    <input class="star {split:2}" type="radio" name="annonce1" value="2.0"/>
-                                    <input class="star {split:2}" type="radio" name="annonce1" value="2.5"/>
-                                    <input class="star {split:2}" type="radio" name="annonce1" value="3.0"/>
-                                    <input class="star {split:2}" type="radio" name="annonce1" value="3.5" checked="checked"/>
-                                    <input class="star {split:2}" type="radio" name="annonce1" value="4.0"/>
-                                    <input class="star {split:2}" type="radio" name="annonce1" value="4.5"/>
-                                    <input class="star {split:2}" type="radio" name="annonce1" value="5.0"/>
+                                <input class="star {split:2}" type="radio" name="annonce1" value="0.5"/>
+                                <input class="star {split:2}" type="radio" name="annonce1" value="1.0"/>
+                                <input class="star {split:2}" type="radio" name="annonce1" value="1.5"/>
+                                <input class="star {split:2}" type="radio" name="annonce1" value="2.0"/>
+                                <input class="star {split:2}" type="radio" name="annonce1" value="2.5"/>
+                                <input class="star {split:2}" type="radio" name="annonce1" value="3.0"/>
+                                <input class="star {split:2}" type="radio" name="annonce1" value="3.5" checked="checked"/>
+                                <input class="star {split:2}" type="radio" name="annonce1" value="4.0"/>
+                                <input class="star {split:2}" type="radio" name="annonce1" value="4.5"/>
+                                <input class="star {split:2}" type="radio" name="annonce1" value="5.0"/>
                             </div>
                         </td>
                     </tr>
                     <tr><td colspan="5">&nbsp;</td></tr>
-                    <tr><td colspan="5"><center><div id="limH">&nbsp;</div></center></td></tr>                    
+                    <tr><td colspan="5"><center><div id="limH">&nbsp;</div></center></td></tr>
                     <tr>
                         <td width="19" valign="middle" style="padding-top: 2px;"><img src="/car/web/images/fleche_red.png"/></td>
                         <td valign="middle" colspan="3"><span class="libelleAnnonce">Seat Altea 2008</span></td>
@@ -174,18 +174,18 @@
                                 <table cellpadding="0" cellspacing="0" border="0" width="100%">
                                     <tr>
                                         <td></td><td></td><td></td>
-                                    </tr>                                    
+                                    </tr>
                                     <tr>
                                         <td width="150" valign="top" align="left" style="padding-top: 20px;padding-left: 10px;">
                                             <div>
                                                 <input type="text" id="idmarque" name="idmarque" size="20"/>
                                             </div>
-                                        </td>                                        
+                                        </td>
                                         <td colspan="2" style="padding-top: 20px;padding-left: 5px;" align="left" valign="middle">
                                             <div id="divModele">
                                                 <input type="text" id="idmodele" name="idmodele" size="20" />
                                             </div>
-                                            
+
                                             <div style="padding-left: 5px;">
                                                 <img src="/car/web/images/tranparentLoader.gif" id="loaderModele" style="display: none;"/>
                                             </div>
@@ -208,11 +208,11 @@
                                             <table>
                                                 <tr>
                                                     <td valign="middle" align="left"><img src="/car/web/images/toggle_plus.gif"/></td>
-                                                    <td style="padding-left: 5px;cursor: pointer;"><span onclick="javascript:commun.runWipeEffect()" style="font-size: 10pt;font-family: tahoma;text-decoration: underline">Recherche avanc&eacute;e</span></td>
+                                                    <td style="padding-left: 5px;cursor: pointer;"><span onclick="javascript:commun.runWipeEffect()" style="font-size: 10pt;font-family: tahoma;text-decoration: underline">Recherch avanc&eacute;e</span></td>
                                                 </tr>
                                             </table>
                                         </td>
-                                    </tr>                                    
+                                    </tr>
                                     <tr>
                                         <td colspan="3" valign="top" align="left" style="padding-top: 10px;padding-left: 10px;">
                                             <div >
@@ -257,40 +257,40 @@
                                                                 <input type="text" id="idetat" name="idetat" size="20"/>
                                                             </div>
                                                         </td>
-                                                    </tr>                                                    
+                                                    </tr>
+                                                    <tr id="normalSearch" style="display: none;">
+                                                        <td colspan="3" style="padding-top: 5px;">
+                                                            <table>
+                                                                <tr>
+                                                                    <td valign="middle" align="left"><img src="/car/web/images/toggle_minus.gif"/></td>
+                                                                    <td style="padding-left: 5px;cursor: pointer;"><span onclick="javascript:commun.rollWipeEffect()" style="font-size: 10pt;font-family: tahoma;text-decoration: underline">Recherche normal</span></td>
+                                                                </tr>
+                                                            </table>
+                                                        </td>
+                                                    </tr>
                                                 </table>
                                             </div>
                                         </td>
                                     </tr>
-                                    <tr id="normalSearch" style="display: none;">
-                                        <td colspan="3" style="padding-top: 5px;padding-left: 10px;">
-                                            <table>
-                                                <tr>
-                                                    <td valign="middle" align="left"><img src="/car/web/images/toggle_minus.gif"/></td>
-                                                    <td style="padding-left: 5px;cursor: pointer;"><span onclick="javascript:commun.rollWipeEffect()" style="font-size: 10pt;font-family: tahoma;text-decoration: underline">Recherche normal</span></td>
-                                                </tr>
-                                            </table>
-                                        </td>
-                                    </tr>
                                     <tr>
                                         <td colspan="3" valign="top" align="left" style="padding-top: 10px;padding-left: 10px;">
-                                            
+
                                         </td>
                                     </tr>
                                 </table>
                                 <div id="searchButton"><img style="cursor: pointer" src="/car/web/images/click.png"/></div>
                                 <div id="onlyUrgente" class="soria">
                                     <table>
-                                       <tr>
-                                           <td>
-                                               <input dojoType="dijit.form.CheckBox" type="radio" name="car_auto[urgent]" id="urgentId" />
-                                               <span style="margin-top: 5px;font-size: 8pt;font-family: tahoma;text-decoration: underline">Annonces urgentes uniquement</span>
-                                           </td>                                           
-                                           <td style="padding-left: 5px;padding-top: 3px;">
+                                        <tr>
+                                            <td>
+                                                <input dojoType="dijit.form.CheckBox" type="radio" name="car_auto[urgent]" id="urgentId" />
+                                                <span style="margin-top: 5px;font-size: 8pt;font-family: tahoma;text-decoration: underline">Annonces urgentes uniquement</span>
+                                            </td>
+                                            <td style="padding-left: 5px;padding-top: 3px;">
                                                 <img src="/car/web/images/urgent.png"/>
-                                           </td>
-                                       </tr>
-                                   </table>
+                                            </td>
+                                        </tr>
+                                    </table>
                                 </div>
                             </td>
                             <td class="middle" width="1" valign="middle" align="center"><img src="/car/web/images/searchLim.jpg" /></td>
@@ -300,7 +300,7 @@
                                 </div>
                             </td>
                             <td class="right" width="15">&nbsp;</td>
-                        </tr>                        
+                        </tr>
                         <tr height="24">
                             <td colspan="4" valign="middle" align="center"><img src="/car/web/images/searchLimH.jpg"/></td>
                         </tr>
@@ -311,10 +311,45 @@
                     <span class="commentAnnonce" style="padding-left: 91px;">C&rsquo;est la votre...</span>
                 </div>
                 <div id="neuf">
-                    <img style="cursor: pointer;" src="/car/web/images/cote_auto.jpg"/>                    
+                    <img style="cursor: pointer;" src="/car/web/images/cote_auto.jpg"/>
                     <br style="line-height: 10px;"/>
                     <img style="cursor: pointer;" src="/car/web/images/neuf.jpg"/>
                 </div>
+
+                <div class="ja-mass ja-mass-top clearfix" style="">
+
+                    <div class="ja-rs3-top"><div class="ja-rs3-tl">&nbsp;</div><div class="ja-rs3-tr">&nbsp;</div></div>
+
+                    <div class="ja-rs3-mid"><div class="ja-rs3-ml"><div class="ja-rs3-mr">
+                                <div class="ja-moduletable moduletable title-brown  clearfix" id="Mod57">
+                                    <h3><span><strong class="first-word"><strong>Test </strong></strong>Highlights</span></h3>
+                                    <div class="ja-box-ct clearfix">
+
+
+                                        <div id="ja-contentslider-57"  class="ja-contentslider clearfix" >
+
+                                            <div class="ja-contentslide-buttonwrap">
+                                                <div class="ja-contentslider-left"><img class="ja-contentslide-left-img" src="/car/web/images/re-left.gif" alt="left direction" title="left direction" /></div>
+
+                                                <div class="ja-contentslider-right"><img class="ja-contentslide-right-img" src="/car/web/images/re-right.gif" alt="right direction" title="right direction" /></div>
+                                            </div>
+
+                                            <div class="ja-contentslider-center-wrap clearfix">
+                                                <div class="ja-contentslider-center">
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div></div></div>
+
+                    <div class="ja-rs3-bot"><div class="ja-rs3-bl">&nbsp;</div><div class="ja-rs3-br">&nbsp;</div></div>
+                </div>
+
                 <div id="widget">
                     <div id="tabber">
 
@@ -631,6 +666,6 @@
                     </div>
                 </div>
             </div>
-        </td>        
+        </td>
     </tr>
 </table>
