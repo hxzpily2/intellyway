@@ -40,7 +40,7 @@ if($remember!="")
 <!--[if (gte IE 5)&(lte IE 7)]>
 <link href="/car/web/css/dropdown/dropdownie.css" media="all" rel="stylesheet" type="text/css" />
 <![endif]-->
-
+<link href="/car/web/css/template.css" media="screen, projection" rel="stylesheet" type="text/css"/>
 <link href="/car/web/css/front.css" media="screen, projection" rel="stylesheet" type="text/css"/>
 <link href="/car/web/css/slide.css" media="screen, projection" rel="stylesheet" type="text/css"/>
 <!--[if IE]><link href="/car/web/css/frontie.css" media="screen, projection" rel="stylesheet" type="text/css"><![endif]-->
