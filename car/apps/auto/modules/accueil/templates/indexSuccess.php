@@ -315,14 +315,14 @@
                     <br style="line-height: 10px;"/>
                     <img style="cursor: pointer;" src="/car/web/images/neuf.jpg"/>
                 </div>
-
+                <div id="sepV">&nbsp;</div>
                 <div class="ja-mass ja-mass-top clearfix" style="">
 
                     <div class="ja-rs3-top"><div class="ja-rs3-tl">&nbsp;</div><div class="ja-rs3-tr">&nbsp;</div></div>
 
                     <div class="ja-rs3-mid"><div class="ja-rs3-ml"><div class="ja-rs3-mr">
                                 <div class="ja-moduletable moduletable title-brown  clearfix" id="Mod57">
-                                    <h3><span><strong class="first-word"><strong>Test </strong></strong>Highlights</span></h3>
+                                    <h3><span><strong class="active">Test</strong>&nbsp;<strong>Test</strong>&nbsp;Highlights</span></h3>
                                     <div class="ja-box-ct clearfix">
 
 
