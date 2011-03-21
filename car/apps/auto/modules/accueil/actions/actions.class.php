@@ -19,8 +19,9 @@ class accueilActions extends sfActions
         {
             /***
              * ADDED BY ZER TO SET COUNTRY FROM ADDR IP
-             */
-            $this->pays = Country::getCoutryByIp();
+             */            
+            $this->pays = Country::getCoutryByIpGeoLoca();            
+            //$this->pays = Country::getCoutryByIp();
             $this->getUser()->setAttribute(Constantes::SESSION_PAYS_ID, $this->pays);
             /***
              * END SET COUNTRY
