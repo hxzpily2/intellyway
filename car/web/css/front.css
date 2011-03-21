@@ -1288,7 +1288,7 @@ span.commentAnnonce{
 	border-bottom:none;
 }
 #tabber ul.tabs li a.selected, #tabber ul.tabs li a:hover {
-	color:#369;
+	color:#aa2121;
 	text-decoration:none;
 	background:url(../images/bg-tabs-selected.png) no-repeat center 41px;
 	border-bottom:none;
@@ -1413,4 +1413,15 @@ span.commentAnnonce{
     width: 200px;
     height: 63px;
 }
+
+#sepV{
+    background:url(../images/dotV.jpg) repeat-y;
+    position: absolute;
+    top: 320px;
+    left: 255px;
+    width: 1px;
+    height: 80px;
+}
+
+
 
