@@ -1961,3 +1961,20 @@ div.ja-slidereadmore { margin: 10px 0 0; }
 }
 
 div.content_element {position:absolute;left:-999em;}
+
+#Mod57 h3 span strong{
+    border:1px solid #ddd;
+    font-weight:bold;
+    background:url(../images/fbsprite.gif) 0 0 repeat-x;
+    color:#000;
+    text-decoration:none;
+    padding:5px 10px;
+    cursor: pointer;
+}
+
+#Mod57 h3 span strong.active{
+    border-color:#aa2121;
+    background-position:0 -48px;
+    color:#fff;
+    cursor: default;
+}
