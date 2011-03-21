@@ -45,6 +45,7 @@ if($remember!="")
 <link href="/car/web/css/slide.css" media="screen, projection" rel="stylesheet" type="text/css"/>
 <!--[if IE]><link href="/car/web/css/frontie.css" media="screen, projection" rel="stylesheet" type="text/css"><![endif]-->
 <script src="/car/web/js/jquery/jquery.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="/car/web/js/jquery/effects.js"></script>
 
 <script type="text/javascript" src="/car/web/js/jquery/jquery.nyroModal-1.5.5.pack.js"></script>
 <link href='/car/web/js/jquery/nyroModal.css' type="text/css" rel="stylesheet" />
@@ -106,6 +107,9 @@ dojo.addOnLoad(
 </head>
 <body>
 <!-- <img src="/car/web/images/bg/red-christmas-lights.jpg" alt="" id="background" />  -->
+<div id="supersize">
+   <img src="/car/web/images/287.jpg" />
+</div>
 <?php
 if($isLogged){
 ?>
