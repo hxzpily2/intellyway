@@ -50,4 +50,38 @@ class Country extends BaseCountry
 		//return 2130706433;
 		return $ip[0]*pow(256,3)+$ip[1]*pow(256,2)+$ip[2]*pow(256,1)+$ip[3];
 	}
+
+        public static function getCoutryByIpGeoLoca(){
+            //$ipAddr =$_SERVER['REMOTE_ADDR'];
+            $ipAddr ='196.12.241.98';
+            //function to find country and city name from IP address
+
+            //verify the IP address for the
+            ip2long($ipAddr)== -1 || ip2long($ipAddr) === false ? trigger_error("Invalid IP", E_USER_ERROR) : "";
+            // This notice MUST stay intact for legal use
+            $ipDetail=array(); //initialize a blank array
+            //get the XML result from hostip.info
+            $xml = file_get_contents("http://api.hostip.info/?ip=".$ipAddr);
+            //get the city name inside the node <gml:name> and </gml:name>
+            preg_match("@<Hostip>(\s)*<gml:name>(.*?)</gml:name>@si",$xml,$match);
+            //assing the city name to the array
+            $ipDetail['city']=$match[2];
+            //get the country name inside the node <countryName> and </countryName>
+            preg_match("@<countryName>(.*?)</countryName>@si",$xml,$matches);
+            //assign the country name to the $ipDetail array
+            $ipDetail['country']=$matches[1];
+            //get the country name inside the node <countryName> and </countryName>
+            preg_match("@<countryAbbrev>(.*?)</countryAbbrev>@si",$xml,$cc_match);
+            $ipDetail['country_code']=$cc_match[1]; //assing the country code to array
+            //return the array containing city, country and country code
+            
+            $ip2country = Doctrine_Query::create ()->from ( 'CarPays c' )->where ("c.code = '".$ipDetail['country_code']."'")->execute ();
+
+            if(count($ip2country)>0){
+                return $ip2country[0];
+            }else{
+                return CarPays::getDefaultPays(Constantes::DEFAULT_PAYS);
+            }
+
+        }
 }
