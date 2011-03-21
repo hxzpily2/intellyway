@@ -4,6 +4,7 @@
 
 <script type="text/javascript" src="/car/web/js/ext/accueil/accueil.js"></script>
 <script type="text/javascript" src="/car/web/js/rating/jquery-ui.custom.min.js"></script>
+
 <!-- RATING -->
 <script src='/car/web/js/rating/jquery.ui.stars.js'	type="text/javascript" language="javascript"></script>
 <link href='/car/web/js/rating/jquery.ui.stars.css' type="text/css" rel="stylesheet" />
@@ -15,8 +16,10 @@
         $(".Clear").stars({
             oneVoteOnly: true,
             split: 2
-        });
+        });        
+
     });
+
 </script>
 <br/>
 <input type="hidden" id="paysID" value="<?php echo $pays->getIdpays(); ?>"/>
