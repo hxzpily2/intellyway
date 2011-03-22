@@ -1882,6 +1882,24 @@ div.ja-innerdiv img {
 	margin: 0;
 	padding: 0;
 	float: left;
+        /****added by zer***/
+        width: 240px;
+        max-height: 185px;
+        /*background: url(../images/bgItemList.png) no-repeat top right;*/
+        border-top:solid 1px #e9e9e9;        
+        /**** fin zer***/
+}
+
+.ja-contentslider-center.impair{
+        background:url(../images/dotV.jpg) repeat-y right;
+}
+
+.ja-contentslider-center.end{
+        border-bottom: solid 1px #e9e9e9;
+}
+
+.ja-contentslider-center.noborder{
+        border : none;
 }
 
 div.ja_slidetitle { font-size: 110%; padding: 5px 0; line-height: normal; }
@@ -1909,9 +1927,10 @@ div.ja-slidereadmore { margin: 10px 0 0; }
 }
 
 .ja-contentslider-center img {
-	border: 1px solid #ddd;
+	/*border: 1px solid #ddd;
 	margin: 0;
-	padding: 4px;
+	padding: 4px;*/
+        padding-top: 8px;
 	overflow: hidden;
 }
 
