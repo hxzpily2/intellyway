@@ -166,6 +166,9 @@
                     </tr>
                 </table>
             </div>
+            <!-- temp -->
+            <br style="line-height: 750px;"/>
+            <!-- en temp -->
         </td>
         <td valign="top" align="left" style="padding-top: 4px;" width="900">
             <div style="position: relative;">
@@ -338,8 +341,438 @@
                                             </div>
 
                                             <div class="ja-contentslider-center-wrap clearfix">
-                                                <div class="ja-contentslider-center">
-
+                                                <div id="selectionLoading">
+                                                    <div class="ja-contentslider-center impair">
+                                                        <table>
+                                                            <tr><td colspan="4"><br style="line-height: 8px;"/></td></tr>
+                                                            <tr>
+                                                                <td width="5">&nbsp;</td>
+                                                                <td valign="top">
+                                                                    <img class="homeAnnonce" width="80" height="70" src="/car/web/uploads/annonces/0503976711.jpg"/>
+                                                                    <div class="Clear">
+                                                                        <input class="star {split:2}" type="radio" name="item1" value="0.5"/>
+                                                                        <input class="star {split:2}" type="radio" name="item1" value="1.0"/>
+                                                                        <input class="star {split:2}" type="radio" name="item1" value="1.5"/>
+                                                                        <input class="star {split:2}" type="radio" name="item1" value="2.0"/>
+                                                                        <input class="star {split:2}" type="radio" name="item1" value="2.5"/>
+                                                                        <input class="star {split:2}" type="radio" name="item1" value="3.0"/>
+                                                                        <input class="star {split:2}" type="radio" name="item1" value="3.5" checked="checked"/>
+                                                                        <input class="star {split:2}" type="radio" name="item1" value="4.0"/>
+                                                                        <input class="star {split:2}" type="radio" name="item1" value="4.5"/>
+                                                                        <input class="star {split:2}" type="radio" name="item1" value="5.0"/>
+                                                                    </div>
+                                                                </td>
+                                                                <td width="10">&nbsp;</td>
+                                                                <td valign="top">
+                                                                    <span class="libelleAnnonce" style="font-size: 10pt;padding-left: 0px;">Seat Altea 2008</span><br/>
+                                                                    <span class="titleItem">Moteur : </span><span class="valueItem">DIESEL</span><br/>
+                                                                    <span class="titleItem">Ann&eacute;e : </span><span class="valueItem">2008</span><br/>
+                                                                    <span class="titleItem">Magnifique monospace seat toledo tdi 140 équipée du pack sport seat  comprenant le becquet...</span><br/>
+                                                                    <span class="titleItem">Prix : </span><span class="prixItem">150 000 DH</span>
+                                                                </td>
+                                                                <td width="5">&nbsp;</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td width="5">&nbsp;</td>
+                                                                <td valign="top"></td>
+                                                                <td width="10">&nbsp;</td>
+                                                                <td valign="top">
+                                                                    <img src="/car/web/images/readMore_red.jpg"/>
+                                                                </td>
+                                                                <td width="5">&nbsp;</td>
+                                                            </tr>
+                                                            <tr><td colspan="4"><br style="line-height: 8px;"/></td></tr>
+                                                        </table>
+                                                    </div>                                                    
+                                                    <div class="ja-contentslider-center">
+                                                        <table>
+                                                            <tr><td colspan="4"><br style="line-height: 8px;"/></td></tr>
+                                                            <tr>
+                                                                <td width="5">&nbsp;</td>
+                                                                <td valign="top">
+                                                                    <img class="homeAnnonce" width="80" height="70" src="/car/web/uploads/annonces/0503976711.jpg"/>
+                                                                    <div class="Clear">
+                                                                        <input class="star {split:2}" type="radio" name="item1" value="0.5"/>
+                                                                        <input class="star {split:2}" type="radio" name="item1" value="1.0"/>
+                                                                        <input class="star {split:2}" type="radio" name="item1" value="1.5"/>
+                                                                        <input class="star {split:2}" type="radio" name="item1" value="2.0"/>
+                                                                        <input class="star {split:2}" type="radio" name="item1" value="2.5"/>
+                                                                        <input class="star {split:2}" type="radio" name="item1" value="3.0"/>
+                                                                        <input class="star {split:2}" type="radio" name="item1" value="3.5" checked="checked"/>
+                                                                        <input class="star {split:2}" type="radio" name="item1" value="4.0"/>
+                                                                        <input class="star {split:2}" type="radio" name="item1" value="4.5"/>
+                                                                        <input class="star {split:2}" type="radio" name="item1" value="5.0"/>
+                                                                    </div>
+                                                                </td>
+                                                                <td width="10">&nbsp;</td>
+                                                                <td valign="top">
+                                                                    <span class="libelleAnnonce" style="font-size: 10pt;padding-left: 0px;">Seat Altea 2008</span><br/>
+                                                                    <span class="titleItem">Moteur : </span><span class="valueItem">DIESEL</span><br/>
+                                                                    <span class="titleItem">Ann&eacute;e : </span><span class="valueItem">2008</span><br/>
+                                                                    <span class="titleItem">Magnifique monospace seat toledo tdi 140 équipée du pack sport seat  comprenant le becquet...</span><br/>
+                                                                    <span class="titleItem">Prix : </span><span class="prixItem">150 000 DH</span>
+                                                                </td>
+                                                                <td width="5">&nbsp;</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td width="5">&nbsp;</td>
+                                                                <td valign="top"></td>
+                                                                <td width="10">&nbsp;</td>
+                                                                <td valign="top">
+                                                                    <img src="/car/web/images/readMore_red.jpg"/>
+                                                                </td>
+                                                                <td width="5">&nbsp;</td>
+                                                            </tr>
+                                                            <tr><td colspan="4"><br style="line-height: 8px;"/></td></tr>
+                                                        </table>
+                                                    </div>
+                                                    <div class="ja-contentslider-center impair">
+                                                        <table>
+                                                            <tr><td colspan="4"><br style="line-height: 8px;"/></td></tr>
+                                                            <tr>
+                                                                <td width="5">&nbsp;</td>
+                                                                <td valign="top">
+                                                                    <img class="homeAnnonce" width="80" height="70" src="/car/web/uploads/annonces/0503976711.jpg"/>
+                                                                    <div class="Clear">
+                                                                        <input class="star {split:2}" type="radio" name="item1" value="0.5"/>
+                                                                        <input class="star {split:2}" type="radio" name="item1" value="1.0"/>
+                                                                        <input class="star {split:2}" type="radio" name="item1" value="1.5"/>
+                                                                        <input class="star {split:2}" type="radio" name="item1" value="2.0"/>
+                                                                        <input class="star {split:2}" type="radio" name="item1" value="2.5"/>
+                                                                        <input class="star {split:2}" type="radio" name="item1" value="3.0"/>
+                                                                        <input class="star {split:2}" type="radio" name="item1" value="3.5" checked="checked"/>
+                                                                        <input class="star {split:2}" type="radio" name="item1" value="4.0"/>
+                                                                        <input class="star {split:2}" type="radio" name="item1" value="4.5"/>
+                                                                        <input class="star {split:2}" type="radio" name="item1" value="5.0"/>
+                                                                    </div>
+                                                                </td>
+                                                                <td width="10">&nbsp;</td>
+                                                                <td valign="top">
+                                                                    <span class="libelleAnnonce" style="font-size: 10pt;padding-left: 0px;">Seat Altea 2008</span><br/>
+                                                                    <span class="titleItem">Moteur : </span><span class="valueItem">DIESEL</span><br/>
+                                                                    <span class="titleItem">Ann&eacute;e : </span><span class="valueItem">2008</span><br/>
+                                                                    <span class="titleItem">Magnifique monospace seat toledo tdi 140 équipée du pack sport seat  comprenant le becquet...</span><br/>
+                                                                    <span class="titleItem">Prix : </span><span class="prixItem">150 000 DH</span>
+                                                                </td>
+                                                                <td width="5">&nbsp;</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td width="5">&nbsp;</td>
+                                                                <td valign="top"></td>
+                                                                <td width="10">&nbsp;</td>
+                                                                <td valign="top">
+                                                                    <img src="/car/web/images/readMore_red.jpg"/>
+                                                                </td>
+                                                                <td width="5">&nbsp;</td>
+                                                            </tr>
+                                                            <tr><td colspan="4"><br style="line-height: 8px;"/></td></tr>
+                                                        </table>
+                                                    </div>
+                                                    <div class="ja-contentslider-center">
+                                                        <table>
+                                                            <tr><td colspan="4"><br style="line-height: 8px;"/></td></tr>
+                                                            <tr>
+                                                                <td width="5">&nbsp;</td>
+                                                                <td valign="top">
+                                                                    <img class="homeAnnonce" width="80" height="70" src="/car/web/uploads/annonces/0503976711.jpg"/>
+                                                                    <div class="Clear">
+                                                                        <input class="star {split:2}" type="radio" name="item1" value="0.5"/>
+                                                                        <input class="star {split:2}" type="radio" name="item1" value="1.0"/>
+                                                                        <input class="star {split:2}" type="radio" name="item1" value="1.5"/>
+                                                                        <input class="star {split:2}" type="radio" name="item1" value="2.0"/>
+                                                                        <input class="star {split:2}" type="radio" name="item1" value="2.5"/>
+                                                                        <input class="star {split:2}" type="radio" name="item1" value="3.0"/>
+                                                                        <input class="star {split:2}" type="radio" name="item1" value="3.5" checked="checked"/>
+                                                                        <input class="star {split:2}" type="radio" name="item1" value="4.0"/>
+                                                                        <input class="star {split:2}" type="radio" name="item1" value="4.5"/>
+                                                                        <input class="star {split:2}" type="radio" name="item1" value="5.0"/>
+                                                                    </div>
+                                                                </td>
+                                                                <td width="10">&nbsp;</td>
+                                                                <td valign="top">
+                                                                    <span class="libelleAnnonce" style="font-size: 10pt;padding-left: 0px;">Seat Altea 2008</span><br/>
+                                                                    <span class="titleItem">Moteur : </span><span class="valueItem">DIESEL</span><br/>
+                                                                    <span class="titleItem">Ann&eacute;e : </span><span class="valueItem">2008</span><br/>
+                                                                    <span class="titleItem">Magnifique monospace seat toledo tdi 140 équipée du pack sport seat  comprenant le becquet...</span><br/>
+                                                                    <span class="titleItem">Prix : </span><span class="prixItem">150 000 DH</span>
+                                                                </td>
+                                                                <td width="5">&nbsp;</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td width="5">&nbsp;</td>
+                                                                <td valign="top"></td>
+                                                                <td width="10">&nbsp;</td>
+                                                                <td valign="top">
+                                                                    <img src="/car/web/images/readMore_red.jpg"/>
+                                                                </td>
+                                                                <td width="5">&nbsp;</td>
+                                                            </tr>
+                                                            <tr><td colspan="4"><br style="line-height: 8px;"/></td></tr>
+                                                        </table>
+                                                    </div>
+                                                    <div class="ja-contentslider-center impair">
+                                                        <table>
+                                                            <tr><td colspan="4"><br style="line-height: 8px;"/></td></tr>
+                                                            <tr>
+                                                                <td width="5">&nbsp;</td>
+                                                                <td valign="top">
+                                                                    <img class="homeAnnonce" width="80" height="70" src="/car/web/uploads/annonces/0503976711.jpg"/>
+                                                                    <div class="Clear">
+                                                                        <input class="star {split:2}" type="radio" name="item1" value="0.5"/>
+                                                                        <input class="star {split:2}" type="radio" name="item1" value="1.0"/>
+                                                                        <input class="star {split:2}" type="radio" name="item1" value="1.5"/>
+                                                                        <input class="star {split:2}" type="radio" name="item1" value="2.0"/>
+                                                                        <input class="star {split:2}" type="radio" name="item1" value="2.5"/>
+                                                                        <input class="star {split:2}" type="radio" name="item1" value="3.0"/>
+                                                                        <input class="star {split:2}" type="radio" name="item1" value="3.5" checked="checked"/>
+                                                                        <input class="star {split:2}" type="radio" name="item1" value="4.0"/>
+                                                                        <input class="star {split:2}" type="radio" name="item1" value="4.5"/>
+                                                                        <input class="star {split:2}" type="radio" name="item1" value="5.0"/>
+                                                                    </div>
+                                                                </td>
+                                                                <td width="10">&nbsp;</td>
+                                                                <td valign="top">
+                                                                    <span class="libelleAnnonce" style="font-size: 10pt;padding-left: 0px;">Seat Altea 2008</span><br/>
+                                                                    <span class="titleItem">Moteur : </span><span class="valueItem">DIESEL</span><br/>
+                                                                    <span class="titleItem">Ann&eacute;e : </span><span class="valueItem">2008</span><br/>
+                                                                    <span class="titleItem">Magnifique monospace seat toledo tdi 140 équipée du pack sport seat  comprenant le becquet...</span><br/>
+                                                                    <span class="titleItem">Prix : </span><span class="prixItem">150 000 DH</span>
+                                                                </td>
+                                                                <td width="5">&nbsp;</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td width="5">&nbsp;</td>
+                                                                <td valign="top"></td>
+                                                                <td width="10">&nbsp;</td>
+                                                                <td valign="top">
+                                                                    <img src="/car/web/images/readMore_red.jpg"/>
+                                                                </td>
+                                                                <td width="5">&nbsp;</td>
+                                                            </tr>
+                                                            <tr><td colspan="4"><br style="line-height: 8px;"/></td></tr>
+                                                        </table>
+                                                    </div>
+                                                    <div class="ja-contentslider-center">
+                                                        <table>
+                                                            <tr><td colspan="4"><br style="line-height: 8px;"/></td></tr>
+                                                            <tr>
+                                                                <td width="5">&nbsp;</td>
+                                                                <td valign="top">
+                                                                    <img class="homeAnnonce" width="80" height="70" src="/car/web/uploads/annonces/0503976711.jpg"/>
+                                                                    <div class="Clear">
+                                                                        <input class="star {split:2}" type="radio" name="item1" value="0.5"/>
+                                                                        <input class="star {split:2}" type="radio" name="item1" value="1.0"/>
+                                                                        <input class="star {split:2}" type="radio" name="item1" value="1.5"/>
+                                                                        <input class="star {split:2}" type="radio" name="item1" value="2.0"/>
+                                                                        <input class="star {split:2}" type="radio" name="item1" value="2.5"/>
+                                                                        <input class="star {split:2}" type="radio" name="item1" value="3.0"/>
+                                                                        <input class="star {split:2}" type="radio" name="item1" value="3.5" checked="checked"/>
+                                                                        <input class="star {split:2}" type="radio" name="item1" value="4.0"/>
+                                                                        <input class="star {split:2}" type="radio" name="item1" value="4.5"/>
+                                                                        <input class="star {split:2}" type="radio" name="item1" value="5.0"/>
+                                                                    </div>
+                                                                </td>
+                                                                <td width="10">&nbsp;</td>
+                                                                <td valign="top">
+                                                                    <span class="libelleAnnonce" style="font-size: 10pt;padding-left: 0px;">Seat Altea 2008</span><br/>
+                                                                    <span class="titleItem">Moteur : </span><span class="valueItem">DIESEL</span><br/>
+                                                                    <span class="titleItem">Ann&eacute;e : </span><span class="valueItem">2008</span><br/>
+                                                                    <span class="titleItem">Magnifique monospace seat toledo tdi 140 équipée du pack sport seat  comprenant le becquet...</span><br/>
+                                                                    <span class="titleItem">Prix : </span><span class="prixItem">150 000 DH</span>
+                                                                </td>
+                                                                <td width="5">&nbsp;</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td width="5">&nbsp;</td>
+                                                                <td valign="top"></td>
+                                                                <td width="10">&nbsp;</td>
+                                                                <td valign="top">
+                                                                    <img src="/car/web/images/readMore_red.jpg"/>
+                                                                </td>
+                                                                <td width="5">&nbsp;</td>
+                                                            </tr>
+                                                            <tr><td colspan="4"><br style="line-height: 8px;"/></td></tr>
+                                                        </table>
+                                                    </div>
+                                                    <div class="ja-contentslider-center impair">
+                                                        <table>
+                                                            <tr><td colspan="4"><br style="line-height: 8px;"/></td></tr>
+                                                            <tr>
+                                                                <td width="5">&nbsp;</td>
+                                                                <td valign="top">
+                                                                    <img class="homeAnnonce" width="80" height="70" src="/car/web/uploads/annonces/0503976711.jpg"/>
+                                                                    <div class="Clear">
+                                                                        <input class="star {split:2}" type="radio" name="item1" value="0.5"/>
+                                                                        <input class="star {split:2}" type="radio" name="item1" value="1.0"/>
+                                                                        <input class="star {split:2}" type="radio" name="item1" value="1.5"/>
+                                                                        <input class="star {split:2}" type="radio" name="item1" value="2.0"/>
+                                                                        <input class="star {split:2}" type="radio" name="item1" value="2.5"/>
+                                                                        <input class="star {split:2}" type="radio" name="item1" value="3.0"/>
+                                                                        <input class="star {split:2}" type="radio" name="item1" value="3.5" checked="checked"/>
+                                                                        <input class="star {split:2}" type="radio" name="item1" value="4.0"/>
+                                                                        <input class="star {split:2}" type="radio" name="item1" value="4.5"/>
+                                                                        <input class="star {split:2}" type="radio" name="item1" value="5.0"/>
+                                                                    </div>
+                                                                </td>
+                                                                <td width="10">&nbsp;</td>
+                                                                <td valign="top">
+                                                                    <span class="libelleAnnonce" style="font-size: 10pt;padding-left: 0px;">Seat Altea 2008</span><br/>
+                                                                    <span class="titleItem">Moteur : </span><span class="valueItem">DIESEL</span><br/>
+                                                                    <span class="titleItem">Ann&eacute;e : </span><span class="valueItem">2008</span><br/>
+                                                                    <span class="titleItem">Magnifique monospace seat toledo tdi 140 équipée du pack sport seat  comprenant le becquet...</span><br/>
+                                                                    <span class="titleItem">Prix : </span><span class="prixItem">150 000 DH</span>
+                                                                </td>
+                                                                <td width="5">&nbsp;</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td width="5">&nbsp;</td>
+                                                                <td valign="top"></td>
+                                                                <td width="10">&nbsp;</td>
+                                                                <td valign="top">
+                                                                    <img src="/car/web/images/readMore_red.jpg"/>
+                                                                </td>
+                                                                <td width="5">&nbsp;</td>
+                                                            </tr>
+                                                            <tr><td colspan="4"><br style="line-height: 8px;"/></td></tr>
+                                                        </table>
+                                                    </div>
+                                                    <div class="ja-contentslider-center">
+                                                        <table>
+                                                            <tr><td colspan="4"><br style="line-height: 8px;"/></td></tr>
+                                                            <tr>
+                                                                <td width="5">&nbsp;</td>
+                                                                <td valign="top">
+                                                                    <img class="homeAnnonce" width="80" height="70" src="/car/web/uploads/annonces/0503976711.jpg"/>
+                                                                    <div class="Clear">
+                                                                        <input class="star {split:2}" type="radio" name="item1" value="0.5"/>
+                                                                        <input class="star {split:2}" type="radio" name="item1" value="1.0"/>
+                                                                        <input class="star {split:2}" type="radio" name="item1" value="1.5"/>
+                                                                        <input class="star {split:2}" type="radio" name="item1" value="2.0"/>
+                                                                        <input class="star {split:2}" type="radio" name="item1" value="2.5"/>
+                                                                        <input class="star {split:2}" type="radio" name="item1" value="3.0"/>
+                                                                        <input class="star {split:2}" type="radio" name="item1" value="3.5" checked="checked"/>
+                                                                        <input class="star {split:2}" type="radio" name="item1" value="4.0"/>
+                                                                        <input class="star {split:2}" type="radio" name="item1" value="4.5"/>
+                                                                        <input class="star {split:2}" type="radio" name="item1" value="5.0"/>
+                                                                    </div>
+                                                                </td>
+                                                                <td width="10">&nbsp;</td>
+                                                                <td valign="top">
+                                                                    <span class="libelleAnnonce" style="font-size: 10pt;padding-left: 0px;">Seat Altea 2008</span><br/>
+                                                                    <span class="titleItem">Moteur : </span><span class="valueItem">DIESEL</span><br/>
+                                                                    <span class="titleItem">Ann&eacute;e : </span><span class="valueItem">2008</span><br/>
+                                                                    <span class="titleItem">Magnifique monospace seat toledo tdi 140 équipée du pack sport seat  comprenant le becquet...</span><br/>
+                                                                    <span class="titleItem">Prix : </span><span class="prixItem">150 000 DH</span>
+                                                                </td>
+                                                                <td width="5">&nbsp;</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td width="5">&nbsp;</td>
+                                                                <td valign="top"></td>
+                                                                <td width="10">&nbsp;</td>
+                                                                <td valign="top">
+                                                                    <img src="/car/web/images/readMore_red.jpg"/>
+                                                                </td>
+                                                                <td width="5">&nbsp;</td>
+                                                            </tr>
+                                                            <tr><td colspan="4"><br style="line-height: 8px;"/></td></tr>
+                                                        </table>
+                                                    </div>
+                                                    <div class="ja-contentslider-center impair end">
+                                                        <table>
+                                                            <tr><td colspan="4"><br style="line-height: 8px;"/></td></tr>
+                                                            <tr>
+                                                                <td width="5">&nbsp;</td>
+                                                                <td valign="top">
+                                                                    <img class="homeAnnonce" width="80" height="70" src="/car/web/uploads/annonces/0503976711.jpg"/>
+                                                                    <div class="Clear">
+                                                                        <input class="star {split:2}" type="radio" name="item1" value="0.5"/>
+                                                                        <input class="star {split:2}" type="radio" name="item1" value="1.0"/>
+                                                                        <input class="star {split:2}" type="radio" name="item1" value="1.5"/>
+                                                                        <input class="star {split:2}" type="radio" name="item1" value="2.0"/>
+                                                                        <input class="star {split:2}" type="radio" name="item1" value="2.5"/>
+                                                                        <input class="star {split:2}" type="radio" name="item1" value="3.0"/>
+                                                                        <input class="star {split:2}" type="radio" name="item1" value="3.5" checked="checked"/>
+                                                                        <input class="star {split:2}" type="radio" name="item1" value="4.0"/>
+                                                                        <input class="star {split:2}" type="radio" name="item1" value="4.5"/>
+                                                                        <input class="star {split:2}" type="radio" name="item1" value="5.0"/>
+                                                                    </div>
+                                                                </td>
+                                                                <td width="10">&nbsp;</td>
+                                                                <td valign="top">
+                                                                    <span class="libelleAnnonce" style="font-size: 10pt;padding-left: 0px;">Seat Altea 2008</span><br/>
+                                                                    <span class="titleItem">Moteur : </span><span class="valueItem">DIESEL</span><br/>
+                                                                    <span class="titleItem">Ann&eacute;e : </span><span class="valueItem">2008</span><br/>
+                                                                    <span class="titleItem">Magnifique monospace seat toledo tdi 140 équipée du pack sport seat  comprenant le becquet...</span><br/>
+                                                                    <span class="titleItem">Prix : </span><span class="prixItem">150 000 DH</span>
+                                                                </td>
+                                                                <td width="5">&nbsp;</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td width="5">&nbsp;</td>
+                                                                <td valign="top"></td>
+                                                                <td width="10">&nbsp;</td>
+                                                                <td valign="top">
+                                                                    <img src="/car/web/images/readMore_red.jpg"/>
+                                                                </td>
+                                                                <td width="5">&nbsp;</td>
+                                                            </tr>
+                                                            <tr><td colspan="4"><br style="line-height: 8px;"/></td></tr>
+                                                        </table>
+                                                    </div>
+                                                    <div class="ja-contentslider-center end">
+                                                        <table>
+                                                            <tr><td colspan="4"><br style="line-height: 8px;"/></td></tr>
+                                                            <tr>
+                                                                <td width="5">&nbsp;</td>
+                                                                <td valign="top">
+                                                                    <img class="homeAnnonce" width="80" height="70" src="/car/web/uploads/annonces/0503976711.jpg"/>
+                                                                    <div class="Clear">
+                                                                        <input class="star {split:2}" type="radio" name="item1" value="0.5"/>
+                                                                        <input class="star {split:2}" type="radio" name="item1" value="1.0"/>
+                                                                        <input class="star {split:2}" type="radio" name="item1" value="1.5"/>
+                                                                        <input class="star {split:2}" type="radio" name="item1" value="2.0"/>
+                                                                        <input class="star {split:2}" type="radio" name="item1" value="2.5"/>
+                                                                        <input class="star {split:2}" type="radio" name="item1" value="3.0"/>
+                                                                        <input class="star {split:2}" type="radio" name="item1" value="3.5" checked="checked"/>
+                                                                        <input class="star {split:2}" type="radio" name="item1" value="4.0"/>
+                                                                        <input class="star {split:2}" type="radio" name="item1" value="4.5"/>
+                                                                        <input class="star {split:2}" type="radio" name="item1" value="5.0"/>
+                                                                    </div>
+                                                                </td>
+                                                                <td width="10">&nbsp;</td>
+                                                                <td valign="top">
+                                                                    <span class="libelleAnnonce" style="font-size: 10pt;padding-left: 0px;">Seat Altea 2008</span><br/>
+                                                                    <span class="titleItem">Moteur : </span><span class="valueItem">DIESEL</span><br/>
+                                                                    <span class="titleItem">Ann&eacute;e : </span><span class="valueItem">2008</span><br/>
+                                                                    <span class="titleItem">Magnifique monospace seat toledo tdi 140 équipée du pack sport seat  comprenant le becquet...</span><br/>
+                                                                    <span class="titleItem">Prix : </span><span class="prixItem">150 000 DH</span>
+                                                                </td>
+                                                                <td width="5">&nbsp;</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td width="5">&nbsp;</td>
+                                                                <td valign="top"></td>
+                                                                <td width="10">&nbsp;</td>
+                                                                <td valign="top">
+                                                                    <img src="/car/web/images/readMore_red.jpg"/>
+                                                                </td>
+                                                                <td width="5">&nbsp;</td>
+                                                            </tr>
+                                                            <tr><td colspan="4"><br style="line-height: 8px;"/></td></tr>
+                                                        </table>
+                                                    </div>
+                                                    <div class="ja-contentslider-center noborder" style="width: 490px;">
+                                                        <center>
+                                                            <table>                                                                
+                                                                <tr>
+                                                                    <td width="19"><img src="/car/web/images/navL.jpg"/></td>
+                                                                    <td style="padding-left: 3px;padding-right: 3px;">1/4</td>
+                                                                    <td width="19"><img src="/car/web/images/navR.jpg"/></td>
+                                                                </tr>
+                                                            </table>
+                                                        </center>
+                                                    </div>
                                                 </div>
                                             </div>
 
