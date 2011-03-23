@@ -170,8 +170,9 @@
             <br style="line-height: 750px;"/>
             <!-- en temp -->
         </td>
-        <td valign="top" align="left" style="padding-top: 4px;" width="900">
-            <div style="position: relative;">
+        <td valign="top" align="left" style="padding-top: 4px;" width="900">            
+            <div style="position: relative;padding-left: 10px;">
+                <br style="line-height: 500px;"/>
                 <div id="divSearchPan">
                     <table id="searchPan" width="500" height="260" border="0" cellpadding="0" cellspacing="0">
                         <tr>
