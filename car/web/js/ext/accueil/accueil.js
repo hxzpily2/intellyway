@@ -150,99 +150,135 @@ Ext.onReady(function(){
         applyTo: 'idville'
     });
 
-    
-    var spinnkmmin = new Ext.ux.form.SpinnerField({
-        store: dsMoteur,
+    var storeKM = new Ext.data.ArrayStore({
+        fields: ['id', 'name'],
+        data : Ext.exampledata.km // from dataset.js
+    });
+
+    var spinnkmmin = new Ext.form.ComboBox({
+        store: storeKM,
         displayField: "name",
         valueField: "id",
-        id:"kmmin",
-        hiddenName: 'kmmin',
-        hiddenId: 'kmmin',
+        id:"kmminID",
+        hiddenName: 'car_auto[kmmin]',
+        hiddenId: 'car_auto[kmmin]',
         typeAhead: true,
-        selectOnFocus:true,        
-        minValue: 0,
-        emptyText:'Km min',
+        mode: 'local',
+        forceSelection: true,
+        triggerAction: 'all',
+        emptyText:'Km Min',
+        selectOnFocus:true,
         width:70,
         applyTo: 'kmmin'
     });
     spinnkmmin.hide();
-    
-    var spinnkmmax = new Ext.ux.form.SpinnerField({
-        store: dsMoteur,
+
+    var spinnkmmax = new Ext.form.ComboBox({
+        store: storeKM,
         displayField: "name",
         valueField: "id",
-        id:"kmmax",
-        hiddenName: 'kmmax',
-        hiddenId: 'kmmin',
+        id:"kmmaxID",
+        hiddenName: 'car_auto[kmmax]',
+        hiddenId: 'car_auto[kmmax]',
         typeAhead: true,
-        selectOnFocus:true,        
-        minValue: 0,
-        emptyText:'Km max',
+        mode: 'local',
+        forceSelection: true,
+        triggerAction: 'all',
+        emptyText:'Km Max',
+        selectOnFocus:true,
         width:70,
         applyTo: 'kmmax'
     });
     spinnkmmax.hide();
 
-    var spinnprixmin = new Ext.ux.form.SpinnerField({
-        store: dsMoteur,
+    var storePriceMin = new Ext.data.ArrayStore({
+        fields: ['id', 'name'],
+        data : Ext.exampledata.pricemin // from dataset.js
+    });
+
+    var spinnprixmin = new Ext.form.ComboBox({
+        store: storePriceMin,
         displayField: "name",
         valueField: "id",
-        id:"prixmin",
-        hiddenName: 'prixmin',
-        hiddenId: 'prixmin',
+        id:"prixminID",
+        hiddenName: 'car_auto[prixmin]',
+        hiddenId: 'car_auto[prixmin]',
         typeAhead: true,
-        selectOnFocus:true,
-        minValue: 0,
+        mode: 'local',
+        forceSelection: true,
+        triggerAction: 'all',
         emptyText:'Prix min',
-        width:70,
+        selectOnFocus:true,
+        width:120,
         applyTo: 'prixmin'
     });
     spinnprixmin.hide();
 
-    var spinnprixmax = new Ext.ux.form.SpinnerField({
-        store: dsMoteur,
+    var storePriceMax = new Ext.data.ArrayStore({
+        fields: ['id', 'name'],
+        data : Ext.exampledata.pricemax // from dataset.js
+    });
+    
+    var spinnprixmax = new Ext.form.ComboBox({
+        store: storePriceMax,
         displayField: "name",
         valueField: "id",
-        id:"prixmax",
-        hiddenName: 'prixmax',
-        hiddenId: 'prixmax',
+        id:"prixmaxID",
+        hiddenName: 'car_auto[prixmax]',
+        hiddenId: 'car_auto[prixmax]',
         typeAhead: true,
-        selectOnFocus:true,
-        minValue: 0,
+        mode: 'local',
+        forceSelection: true,
+        triggerAction: 'all',
         emptyText:'Prix max',
-        width:70,
+        selectOnFocus:true,
+        width:120,
         applyTo: 'prixmax'
     });
     spinnprixmax.hide();
 
-    var anneemin = new Ext.ux.form.SpinnerField({
-        store: dsMoteur,
+
+    var dsAnneeDed = new Ext.data.JsonStore({
+            autoLoad: true,
+            url: '/car/web/auto.php/json/anneejson?active=true',
+            root: 'annees',
+            fields:['id', 'name']
+    });
+
+
+    var anneemin = new Ext.form.ComboBox({
+        store: dsAnneeDed,
         displayField: "name",
         valueField: "id",
-        id:"annemin",
-        hiddenName: 'annemin',
-        hiddenId: 'annemin',
+        id:"anneminID",
+        hiddenName: 'car_auto[annemin]',
+        hiddenId: 'car_auto[annemin]',
         typeAhead: true,
+        mode: 'local',
+        forceSelection: true,
+        triggerAction: 'all',
+        emptyText:'Année Max',
         selectOnFocus:true,
-        minValue: 0,
-        emptyText:'Annee modele min',
-        width:140,
+        width:90,
         applyTo: 'annemin'
     });
     anneemin.hide();
-    
-    var anneemax = new Ext.ux.form.SpinnerField({
-        store: dsMoteur,
+
+
+    var anneemax = new Ext.form.ComboBox({
+        store: dsAnneeDed,
         displayField: "name",
         valueField: "id",
-        id:"annemax",
-        hiddenName: 'annemax',
-        hiddenId: 'annemax',
+        id:"annemaxID",
+        hiddenName: 'car_auto[annemax]',
+        hiddenId: 'car_auto[annemax]',
         typeAhead: true,
+        mode: 'local',
+        forceSelection: true,
+        triggerAction: 'all',
+        emptyText:'Année Max',
         selectOnFocus:true,
-        minValue: 0,
-        emptyText:'Annee modele max',
-        width:140,
+        width:90,
         applyTo: 'annemax'
     });
     anneemax.hide();
