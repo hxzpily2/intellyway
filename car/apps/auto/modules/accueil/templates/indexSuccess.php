@@ -2,7 +2,10 @@
 <script type="text/javascript" src="/car/web/js/ext/spiner/Spinner.js"></script>
 <script type="text/javascript" src="/car/web/js/ext/spiner/SpinnerField.js"></script>
 
+<script type="text/javascript" src="/car/web/js/ext/accueil/dataset.js"></script>
 <script type="text/javascript" src="/car/web/js/ext/accueil/accueil.js"></script>
+
+
 <script type="text/javascript" src="/car/web/js/rating/jquery-ui.custom.min.js"></script>
 
 <!-- RATING -->
@@ -227,34 +230,34 @@
                                                     <tr>
                                                         <td>
                                                             <div>
-                                                                <input id="prixmin" name="prixmin" type="text" size="20"/>
+                                                                <input id="prixmin" name="prixmin" type="text" size="9"/>
                                                             </div>
                                                         </td>
                                                         <td style="padding-left: 5px;">
                                                             <div>
-                                                                <input id="kmmin" name="kmmin" type="text" size="20"/>
+                                                                <input id="kmmin" name="kmmin" type="text" size="9"/>
                                                             </div>
                                                         </td>
                                                         <td style="padding-left: 5px;">
                                                             <div>
-                                                                <input id="annemin" name="annemin" type="text" size="20"/>
+                                                                <input id="annemin" name="annemin" type="text" size="4"/>
                                                             </div>
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td style="padding-top: 5px;">
                                                             <div>
-                                                                <input id="prixmax" name="prixmax" type="text" size="20"/>
+                                                                <input id="prixmax" name="prixmax" type="text" size="4"/>
                                                             </div>
                                                         </td>
                                                         <td style="padding-left: 5px;padding-top: 5px;">
                                                             <div>
-                                                                <input id="kmmax" name="kmmax" type="text" size="20" />
+                                                                <input id="kmmax" name="kmmax" type="text" size="6" />
                                                             </div>
                                                         </td>
                                                         <td style="padding-left: 5px;padding-top: 5px;">
                                                             <div>
-                                                                <input id="annemax" name="annemax" type="text" size="20"/>
+                                                                <input id="annemax" name="annemax" type="text" size="6"/>
                                                             </div>
                                                         </td>
                                                     </tr>
