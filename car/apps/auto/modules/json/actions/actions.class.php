@@ -240,4 +240,27 @@ class jsonActions extends sfActions
 
     return sfView::NONE;
   }
+
+  public function executeAnneejson(sfWebRequest $request)
+  {
+    $i=0;
+    $output = "";
+    for($j=date("Y")-50;$j <= date("Y");$j++){
+           $output .= "{'id':'".$j."','name':'".$j."'}";
+           if($j!=date("Y"))
+               $output .= ",";
+    }
+    /*foreach ($data as $marque){
+        $output .= "{'id':'".$marque->getIdboite()."','name':'".$marque->getTitle()."'}";
+        $i++;
+        if($i!=count($data))
+            $output .= ",";
+    }*/
+
+    $this->getResponse()->setHttpHeader('Content-type', 'application/json');
+
+    $this->getResponse()->setContent("{'annees':[".$output."]}");
+
+    return sfView::NONE;
+  }
 }
