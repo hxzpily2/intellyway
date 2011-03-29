@@ -702,12 +702,12 @@ dojo.declare("car.integration.Commun",[],{
         currentAnimation = dojo.fx.chain([wipeIn]);
         currentAnimation.play();*/
         Ext.getCmp('etatId').show();
-        Ext.getCmp('kmmin').show();
-        Ext.getCmp('kmmax').show();
-        Ext.getCmp('prixmin').show();
-        Ext.getCmp('prixmax').show();
-        Ext.getCmp('annemin').show();
-        Ext.getCmp('annemax').show();
+        Ext.getCmp('kmminID').show();
+        Ext.getCmp('kmmaxID').show();
+        Ext.getCmp('prixminID').show();
+        Ext.getCmp('prixmaxID').show();
+        Ext.getCmp('anneminID').show();
+        Ext.getCmp('annemaxID').show();
 
         dojo.style(dojo.byId("advancedOptions"), 'display', 'none');
         dojo.style(dojo.byId("normalSearch"), 'display', '');
@@ -723,12 +723,12 @@ dojo.declare("car.integration.Commun",[],{
         currentAnimation = dojo.fx.chain([wipeIn]);
         currentAnimation.play();*/
         Ext.getCmp('etatId').hide();
-        Ext.getCmp('kmmin').hide();
-        Ext.getCmp('kmmax').hide();
-        Ext.getCmp('prixmin').hide();
-        Ext.getCmp('prixmax').hide();
-        Ext.getCmp('annemin').hide();
-        Ext.getCmp('annemax').hide();
+        Ext.getCmp('kmminID').hide();
+        Ext.getCmp('kmmaxID').hide();
+        Ext.getCmp('prixminID').hide();
+        Ext.getCmp('prixmaxID').hide();
+        Ext.getCmp('anneminID').hide();
+        Ext.getCmp('annemaxID').hide();
 
         dojo.style(dojo.byId("advancedOptions"), 'display', '');
         dojo.style(dojo.byId("normalSearch"), 'display', 'none');
