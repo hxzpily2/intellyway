@@ -319,6 +319,7 @@
                 <div id="affaire">
                     <br style="line-height: 46px;"/>
                     <span class="commentAnnonce" style="padding-left: 91px;">C&rsquo;est la votre...</span>
+                    <div id="priceAffaire"><table cellpadding="0" cellspacing="0" border="0" height="45"><tr><td class="left" width="16">&nbsp;</td><td class="middle"><span style="color: #FFFFFF;font-weight: bold;font-family : TAHOMA;font-size : 10pt;">test</span></td><td class="right" width="9">&nbsp;</td></tr></table></div>
                 </div>
                 <div id="neuf">
                     <img style="cursor: pointer;" src="/car/web/images/cote_auto.jpg"/>
