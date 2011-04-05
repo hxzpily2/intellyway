@@ -37,26 +37,28 @@
                         <td valign="middle" colspan="3"><span class="libelleAnnonce">Seat Altea 2008</span></td>
                     </tr>
                     <tr>
-                        <td></td>
-                        <td class="paddingTop" width="70" valign="top"><img class="homeAnnonce" width="80" height="70" src="/car/web/uploads/annonces/0503976711.jpg"/></td>
-                        <td class="paddingTop" valign="top" align="left">
+                        <td colspan="4" style="padding-top: 5px;">
+                            <div class="thumbnail-div2"> <a href="http://www.elegantthemes.com/preview/StudioBlue/2008/08/30/maecenas-scelerisque-fermentum-metus/"><img class="homeAnnonce" width="80" height="70" alt="Maecenas scelerisque fermentum metus" src="/car/web/uploads/annonces/0503976711.jpg"></a> </div>
                             <span class="titleItem">Moteur : </span><span class="valueItem">DIESEL</span><br/>
                             <span class="titleItem">Ann&eacute;e : </span><span class="valueItem">2008</span><br/>
-                            <span class="titleItem">Magnifique monospace seat toledo tdi 140 équipée du pack sport seat  comprenant le becquet...</span>
-                        </td>
-                        <td></td>
+                            <span class="titleItem">Pellentesque tincidunt, diam eget accumsan posuere, est sapien rhoncus nunc, feugiat fermentum urna arcu ut est. Sed bibendum dolor eu orci. Sed sollicitudin, enim ut malesuada condimentum, mauris nisl ullamcorper ante, vitae ullamcorper metus nulla vitae est. Fusce luctus feugiat tortor. Mauris ut magna. Mauris ut nibh ornare arcu consectetuer condimentum. Quisque cursus. Vivamus at justo ut eros...</span>
+                            <div style="clear: both;"></div>
+                        </td>                        
                     </tr>
-                    <tr><td colspan="5">&nbsp;</td></tr>
+                    <tr><td colspan="4">&nbsp;</td></tr>
                     <tr>
-                        <td colspan="2"><span class="titleItem">Prix : </span><span class="prixItem">150 000 DH</span><br/></td>
-                        <td valign="middle" align="right" style="padding-right: 10px;">
-                            <img src="/car/web/images/readMore_red.jpg"/>
+                        <td colspan="4">
+                            <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                                <tr>
+                                    <td><span class="titleItem">Prix : </span><span class="prixItem">150 000 DH</span></td>
+                                    <td align="right" style="padding-right: 5px;"><img src="/car/web/images/readMore_red.jpg"/></td>
+                                </tr>
+                            </table>
                         </td>
-                        <td></td>
                     </tr>
-                    <tr><td colspan="5">&nbsp;</td></tr>
+                    <tr><td colspan="4">&nbsp;</td></tr>
                     <tr>
-                        <td colspan="5">
+                        <td colspan="4">
                             <div class="Clear">
                                 <input class="star {split:2}" type="radio" name="annonce1" value="0.5"/>
                                 <input class="star {split:2}" type="radio" name="annonce1" value="1.0"/>
@@ -71,33 +73,35 @@
                             </div>
                         </td>
                     </tr>
-                    <tr><td colspan="5">&nbsp;</td></tr>
-                    <tr><td colspan="5"><center><div id="limH">&nbsp;</div></center></td></tr>
+                    <tr><td colspan="4">&nbsp;</td></tr>
+                    <tr><td colspan="4"><center><div id="limH">&nbsp;</div></center></td></tr>
                     <tr>
                         <td width="19" valign="middle" style="padding-top: 2px;"><img src="/car/web/images/fleche_red.png"/></td>
                         <td valign="middle" colspan="3"><span class="libelleAnnonce">Seat Altea 2008</span></td>
                     </tr>
                     <tr>
-                        <td></td>
-                        <td class="paddingTop" width="70" valign="top"><img class="homeAnnonce" width="80" height="70" src="/car/web/uploads/annonces/0503976711.jpg"/></td>
-                        <td class="paddingTop" valign="top" align="left">
+                        <td colspan="4" style="padding-top: 5px;">
+                            <div class="thumbnail-div2"> <a href="http://www.elegantthemes.com/preview/StudioBlue/2008/08/30/maecenas-scelerisque-fermentum-metus/"><img class="homeAnnonce" width="80" height="70" alt="Maecenas scelerisque fermentum metus" src="/car/web/uploads/annonces/0503976711.jpg"></a> </div>
                             <span class="titleItem">Moteur : </span><span class="valueItem">DIESEL</span><br/>
                             <span class="titleItem">Ann&eacute;e : </span><span class="valueItem">2008</span><br/>
-                            <span class="titleItem">Magnifique monospace seat toledo tdi 140 équipée du pack sport seat  comprenant le becquet...</span>
+                            <span class="titleItem">Pellentesque tincidunt, diam eget accumsan posuere, est sapien rhoncus nunc, feugiat fermentum urna arcu ut est. Sed bibendum dolor eu orci. Sed sollicitudin, enim ut malesuada condimentum, mauris nisl ullamcorper ante, vitae ullamcorper metus nulla vitae est. Fusce luctus feugiat tortor. Mauris ut magna. Mauris ut nibh ornare arcu consectetuer condimentum. Quisque cursus. Vivamus at justo ut eros...</span>
+                            <div style="clear: both;"></div>
                         </td>
-                        <td></td>
                     </tr>
-                    <tr><td colspan="5">&nbsp;</td></tr>
+                    <tr><td colspan="4">&nbsp;</td></tr>
                     <tr>
-                        <td colspan="2"><span class="titleItem">Prix : </span><span class="prixItem">150 000 DH</span><br/></td>
-                        <td valign="middle" align="right" style="padding-right: 10px;">
-                            <img src="/car/web/images/readMore_red.jpg"/>
+                        <td colspan="4">
+                            <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                                <tr>
+                                    <td><span class="titleItem">Prix : </span><span class="prixItem">150 000 DH</span></td>
+                                    <td align="right" style="padding-right: 5px;"><img src="/car/web/images/readMore_red.jpg"/></td>
+                                </tr>
+                            </table>
                         </td>
-                        <td></td>
                     </tr>
-                    <tr><td colspan="5">&nbsp;</td></tr>
+                    <tr><td colspan="4">&nbsp;</td></tr>
                     <tr>
-                        <td colspan="5">
+                        <td colspan="4">
                             <div class="Clear">
                                 <input class="star {split:2}" type="radio" name="annonce2" value="0.5"/>
                                 <input class="star {split:2}" type="radio" name="annonce2" value="1.0"/>
@@ -112,33 +116,35 @@
                             </div>
                         </td>
                     </tr>
-                    <tr><td colspan="5">&nbsp;</td></tr>
-                    <tr><td colspan="5"><center><div id="limH">&nbsp;</div></center></td></tr>
+                    <tr><td colspan="4">&nbsp;</td></tr>
+                    <tr><td colspan="4"><center><div id="limH">&nbsp;</div></center></td></tr>
                     <tr>
                         <td width="19" valign="middle" style="padding-top: 2px;"><img src="/car/web/images/fleche_red.png"/></td>
                         <td valign="middle" colspan="3"><span class="libelleAnnonce">Seat Altea 2008</span></td>
                     </tr>
                     <tr>
-                        <td></td>
-                        <td class="paddingTop" width="70" valign="top"><img class="homeAnnonce" width="80" height="70" src="/car/web/uploads/annonces/0503976711.jpg"/></td>
-                        <td class="paddingTop" valign="top" align="left">
+                        <td colspan="4" style="padding-top: 5px;">
+                            <div class="thumbnail-div2"> <a href="http://www.elegantthemes.com/preview/StudioBlue/2008/08/30/maecenas-scelerisque-fermentum-metus/"><img class="homeAnnonce" width="80" height="70" alt="Maecenas scelerisque fermentum metus" src="/car/web/uploads/annonces/0503976711.jpg"></a> </div>
                             <span class="titleItem">Moteur : </span><span class="valueItem">DIESEL</span><br/>
                             <span class="titleItem">Ann&eacute;e : </span><span class="valueItem">2008</span><br/>
-                            <span class="titleItem">Magnifique monospace seat toledo tdi 140 équipée du pack sport seat  comprenant le becquet...</span>
+                            <span class="titleItem">Pellentesque tincidunt, diam eget accumsan posuere, est sapien rhoncus nunc, feugiat fermentum urna arcu ut est. Sed bibendum dolor eu orci. Sed sollicitudin, enim ut malesuada condimentum, mauris nisl ullamcorper ante, vitae ullamcorper metus nulla vitae est. Fusce luctus feugiat tortor. Mauris ut magna. Mauris ut nibh ornare arcu consectetuer condimentum. Quisque cursus. Vivamus at justo ut eros...</span>
+                            <div style="clear: both;"></div>
                         </td>
-                        <td></td>
                     </tr>
-                    <tr><td colspan="5">&nbsp;</td></tr>
+                    <tr><td colspan="4">&nbsp;</td></tr>
                     <tr>
-                        <td colspan="2"><span class="titleItem">Prix : </span><span class="prixItem">150 000 DH</span><br/></td>
-                        <td valign="middle" align="right" style="padding-right: 10px;">
-                            <img src="/car/web/images/readMore_red.jpg"/>
+                        <td colspan="4">
+                            <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                                <tr>
+                                    <td><span class="titleItem">Prix : </span><span class="prixItem">150 000 DH</span></td>
+                                    <td align="right" style="padding-right: 5px;"><img src="/car/web/images/readMore_red.jpg"/></td>
+                                </tr>
+                            </table>
                         </td>
-                        <td></td>
                     </tr>
-                    <tr><td colspan="5">&nbsp;</td></tr>
+                    <tr><td colspan="4">&nbsp;</td></tr>
                     <tr>
-                        <td colspan="5">
+                        <td colspan="4">
                             <div class="Clear">
                                 <input class="star {split:2}" type="radio" name="annonce3" value="0.5"/>
                                 <input class="star {split:2}" type="radio" name="annonce3" value="1.0"/>
@@ -154,7 +160,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="5">
+                        <td colspan="4">
                             <center>
                                 <table>
                                     <tr><td colspan="3"><br style="line-height: 20px;"/></td></tr>
@@ -175,7 +181,7 @@
         </td>
         <td valign="top" align="left" style="padding-top: 4px;" width="900">            
             <div style="position: relative;padding-left: 10px;">
-                <br style="line-height: 500px;"/>
+                <br style="line-height: 610px;"/>
                 <div id="divSearchPan">
                     <table id="searchPan" width="500" height="260" border="0" cellpadding="0" cellspacing="0">
                         <tr>
@@ -316,17 +322,27 @@
                         </tr>
                     </table>
                 </div>
+                <div id="divAideAuChoix" class="home-post-wrap"> <span class="post-info">Posted by
+                    admin    on
+                    Aug 30th, 2008    </span>
+                    <h2 class="titles"><a title="Permanent Link to Maecenas scelerisque fermentum metus" href="http://www.elegantthemes.com/preview/StudioBlue/2008/08/30/maecenas-scelerisque-fermentum-metus/">
+                        Maecenas scelerisque ferme...        </a></h2>
+                    <div style="clear: both;"></div>
+                        <!--<div class="thumbnail-div"> <a title="Permanent Link to Maecenas scelerisque fermentum metus" href="http://www.elegantthemes.com/preview/StudioBlue/2008/08/30/maecenas-scelerisque-fermentum-metus/"><img style="border: none;" alt="Maecenas scelerisque fermentum metus" src="http://www.elegantthemes.com/preview/StudioBlue/wp-content/themes/StudioBlue/timthumb.php?src=http://www.elegantthemes.com/images/StudioBlue/thumbnail-4.jpg&amp;h=90&amp;w=90&amp;zc=1"></a> </div>
+                        Pellentesque tincidunt, diam eget accumsan posuere, est sapien rhoncus nunc, feugiat fermentum urna arcu ut est. Sed bibendum dolor eu orci. Sed sollicitudin, enim ut malesuada condimentum, mauris nisl ullamcorper ante, vitae ullamcorper metus nulla vitae est. Fusce luctus feugiat tortor. Mauris ut magna. Mauris ut nibh ornare arcu consectetuer condimentum. Quisque cursus. Vivamus at justo ut eros...    <div style="clear: both;"></div>
+                    <div class="readmore"><a title="Permanent Link to Maecenas scelerisque fermentum metus" rel="bookmark" href="http://www.elegantthemes.com/preview/StudioBlue/2008/08/30/maecenas-scelerisque-fermentum-metus/">Read More</a></div>-->
+                </div>
                 <div id="affaire">
                     <br style="line-height: 46px;"/>
                     <span class="commentAnnonce" style="padding-left: 91px;">C&rsquo;est la votre...</span>
-                    <div id="priceAffaire"><table cellpadding="0" cellspacing="0" border="0" height="45"><tr><td class="left" width="16">&nbsp;</td><td class="middle"><span style="color: #FFFFFF;font-weight: bold;font-family : TAHOMA;font-size : 10pt;">test</span></td><td class="right" width="9">&nbsp;</td></tr></table></div>
+                    <div id="priceAffaire"><table cellpadding="0" cellspacing="0" border="0" height="45"><tr><td class="left" width="16">&nbsp;</td><td class="middle"><span style="color: #FFFFFF;font-weight: bold;font-family : TAHOMA;font-size : 10pt;">150 000 DH</span></td><td class="right" width="9">&nbsp;</td></tr></table></div>
                 </div>
                 <div id="neuf">
                     <img style="cursor: pointer;" src="/car/web/images/cote_auto.jpg"/>
                     <br style="line-height: 10px;"/>
                     <img style="cursor: pointer;" src="/car/web/images/neuf.jpg"/>
-                </div>
-                <div id="sepV">&nbsp;</div>
+                </div>                
+                <div id="sepV">&nbsp;</div>                
                 <div class="ja-mass ja-mass-top clearfix" style="">
 
                     <div class="ja-rs3-top"><div class="ja-rs3-tl">&nbsp;</div><div class="ja-rs3-tr">&nbsp;</div></div>
@@ -789,8 +805,7 @@
                             </div></div></div>
 
                     <div class="ja-rs3-bot"><div class="ja-rs3-bl">&nbsp;</div><div class="ja-rs3-br">&nbsp;</div></div>
-                </div>
-
+                </div>                
                 <div id="widget">
                     <div id="tabber">
 
