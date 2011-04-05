@@ -263,6 +263,14 @@ if($isLogged){
 			</div>
 			<div id="topMenuBg">
 				<div id="logo"></div>
+                                <div id="contactUS">
+                                    <table cellpadding="0" cellspacing="0" border="0">
+                                        <tr>
+                                            <td></td>
+                                            <td><img width="40" src="/car/web/images/contact.png"/></td>
+                                        </tr>
+                                    </table>
+                                </div>
 			</div>			
 			<div id="navigation">
 			    <ul id="topnav">
