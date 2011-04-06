@@ -7,6 +7,8 @@
 
 
 <script type="text/javascript" src="/car/web/js/rating/jquery-ui.custom.min.js"></script>
+<script type="text/javascript" src="/car/web/js/jquery/s3Slider.js"></script>
+<link rel="stylesheet" type="text/css" href="/car/web/css/s3Slider.css" />
 
 <!-- RATING -->
 <script src='/car/web/js/rating/jquery.ui.stars.js'	type="text/javascript" language="javascript"></script>
@@ -19,7 +21,11 @@
         $(".Clear").stars({
             oneVoteOnly: true,
             split: 2
-        });        
+        });
+
+        $('#slider').s3Slider({
+            timeOut: 3000
+        });
 
     });
 
@@ -175,6 +181,23 @@
                     </tr>
                 </table>
             </div>
+
+            
+            <!-- GOOGLE ADSENSE -->
+            <script type="text/javascript"><!--
+            google_ad_client = "ca-pub-1407220970260676";
+            /* PauseAutoText */
+            google_ad_slot = "1083937715";
+            google_ad_width = 286;
+            google_ad_height = 250;
+            //-->
+            </script>
+            <script type="text/javascript"
+            src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+            </script>
+            <!-- END GOOGLE ADSENSE -->
+
+            
             <!-- temp -->
             <br style="line-height: 750px;"/>
             <!-- en temp -->
@@ -322,27 +345,70 @@
                         </tr>
                     </table>
                 </div>
-                <div id="divAideAuChoix" class="home-post-wrap"> <span class="post-info">Posted by
+                <!--<div id="divAideAuChoix" class="home-post-wrap"> <span class="post-info">Posted by
                     admin    on
                     Aug 30th, 2008    </span>
                     <h2 class="titles"><a title="Permanent Link to Maecenas scelerisque fermentum metus" href="http://www.elegantthemes.com/preview/StudioBlue/2008/08/30/maecenas-scelerisque-fermentum-metus/">
                         Maecenas scelerisque ferme...        </a></h2>
                     <div style="clear: both;"></div>
-                        <!--<div class="thumbnail-div"> <a title="Permanent Link to Maecenas scelerisque fermentum metus" href="http://www.elegantthemes.com/preview/StudioBlue/2008/08/30/maecenas-scelerisque-fermentum-metus/"><img style="border: none;" alt="Maecenas scelerisque fermentum metus" src="http://www.elegantthemes.com/preview/StudioBlue/wp-content/themes/StudioBlue/timthumb.php?src=http://www.elegantthemes.com/images/StudioBlue/thumbnail-4.jpg&amp;h=90&amp;w=90&amp;zc=1"></a> </div>
+                        <div class="thumbnail-div"> <a title="Permanent Link to Maecenas scelerisque fermentum metus" href="http://www.elegantthemes.com/preview/StudioBlue/2008/08/30/maecenas-scelerisque-fermentum-metus/"><img style="border: none;" alt="Maecenas scelerisque fermentum metus" src="http://www.elegantthemes.com/preview/StudioBlue/wp-content/themes/StudioBlue/timthumb.php?src=http://www.elegantthemes.com/images/StudioBlue/thumbnail-4.jpg&amp;h=90&amp;w=90&amp;zc=1"></a> </div>
                         Pellentesque tincidunt, diam eget accumsan posuere, est sapien rhoncus nunc, feugiat fermentum urna arcu ut est. Sed bibendum dolor eu orci. Sed sollicitudin, enim ut malesuada condimentum, mauris nisl ullamcorper ante, vitae ullamcorper metus nulla vitae est. Fusce luctus feugiat tortor. Mauris ut magna. Mauris ut nibh ornare arcu consectetuer condimentum. Quisque cursus. Vivamus at justo ut eros...    <div style="clear: both;"></div>
-                    <div class="readmore"><a title="Permanent Link to Maecenas scelerisque fermentum metus" rel="bookmark" href="http://www.elegantthemes.com/preview/StudioBlue/2008/08/30/maecenas-scelerisque-fermentum-metus/">Read More</a></div>-->
+                    <div class="readmore"><a title="Permanent Link to Maecenas scelerisque fermentum metus" rel="bookmark" href="http://www.elegantthemes.com/preview/StudioBlue/2008/08/30/maecenas-scelerisque-fermentum-metus/">Read More</a></div>
+                </div>-->
+                <div id="slider">
+                    <ul id="sliderContent">
+                        <li class="sliderImage">
+                            <img src="/car/web/uploads/slider/1.jpg" />
+                            <span class="topSlider"><strong>Lorem ipsum dolor</strong><br />Consectetuer adipiscing elit. Donec eu massa vitae arcu laoreet aliquet.</span>
+
+                        </li>
+                        <li class="sliderImage">
+                            <img src="/car/web/uploads/slider/2.jpg" />
+                            <span class="topSlider"><strong>Praesent</strong><br />Maecenas est erat, aliquam a, ornare eu, pretium nec, pede.</span>
+                        </li>
+                        <li class="sliderImage">
+                            <img src="/car/web/uploads/slider/3.jpg" />
+                            <span class="bottomSlider"><strong>In hac habitasse</strong><br />Quisque ipsum est, fermentum quis, sodales nec, consectetuer sed, quam. Nulla feugiat lacinia odio.</span>
+
+                        </li>
+                        <li class="sliderImage">
+                            <img src="/car/web/uploads/slider/4.jpg" />
+                            <span class="bottomSlider"><strong>Fusce rhoncus</strong><br />Praesent pellentesque nibh sed nibh. Sed ac libero. Etiam quis libero.</span>
+                        </li>
+                        <li class="sliderImage">
+                            <img src="/car/web/uploads/slider/5.jpg" />
+                            <span class="topSlider"><strong>Morbi malesuada</strong><br />Vivamus molestie leo sed justo. In rhoncus, enim non imperdiet feugiat, felis elit ultricies tortor.</span>
+
+                        </li>
+                        <div class="clear sliderImage"></div>
+                    </ul>
+                </div>
+                <div id="titlesSlider">
+                    <table width="100%" height="115" cellpadding="0" cellspacing="0" border="0">
+                        <tr>
+                            <td width="5" class="titleBarL">&nbsp;</td>
+                            <td class="titleBarM">&nbsp;</td>
+                            <td class="titleBarR" width="5"></td>
+                        </tr>
+                    </table>
+                    <div id="contentTitles"><img src="/car/web/images/currentTitle.png"/></div>
+                </div>
+                <div id="afterSlider">
+                    <center>
+                        <img src="/car/web/images/searchLimH.jpg"/>
+                    </center>
                 </div>
                 <div id="affaire">
                     <br style="line-height: 46px;"/>
                     <span class="commentAnnonce" style="padding-left: 91px;">C&rsquo;est la votre...</span>
                     <div id="priceAffaire"><table cellpadding="0" cellspacing="0" border="0" height="45"><tr><td class="left" width="16">&nbsp;</td><td class="middle"><span style="color: #FFFFFF;font-weight: bold;font-family : TAHOMA;font-size : 10pt;">150 000 DH</span></td><td class="right" width="9">&nbsp;</td></tr></table></div>
                 </div>
-                <div id="neuf">
+                <!--<div id="neuf">
                     <img style="cursor: pointer;" src="/car/web/images/cote_auto.jpg"/>
                     <br style="line-height: 10px;"/>
                     <img style="cursor: pointer;" src="/car/web/images/neuf.jpg"/>
                 </div>                
-                <div id="sepV">&nbsp;</div>                
+                <div id="sepV">&nbsp;</div>                -->
                 <div class="ja-mass ja-mass-top clearfix" style="">
 
                     <div class="ja-rs3-top"><div class="ja-rs3-tl">&nbsp;</div><div class="ja-rs3-tr">&nbsp;</div></div>
