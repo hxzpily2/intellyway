@@ -1404,7 +1404,7 @@ span.commentAnnonce{
     width: 200px;
     height: 170px;
     position: absolute;
-    top : 265px;
+    top : 503px;
     left : 17px;
 }
 
@@ -1531,6 +1531,50 @@ a {
     right: 3px;
 }
 
+#slider{
+    position: absolute;
+    top: 265px;
+    left: 20px;
+}
 
+#titlesSlider{
+    position: absolute;
+    top: 449px;
+    left: 20px;
+    height: 115px;
+    width:485px;
+}
 
+.titleBarL{
+    background-image: url(/car/web/images/sliderBarL.jpg);
+    background-position: bottom;
+    background-repeat: no-repeat;
+}
+
+.titleBarR{
+    background-image: url(/car/web/images/sliderBarR.jpg);
+    background-position: bottom;
+    background-repeat: no-repeat;
+}
+
+.titleBarM{
+    background-image: url(/car/web/images/sliderBarM.jpg);
+    background-position: bottom;
+    background-repeat: repeat-x;
+}
+
+#afterSlider{
+   position: absolute;
+   top: 570px;
+   left: 20px;   
+   width:485px;
+}
+
+#contentTitles{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 115px;
+    width:485px;
+}
 
