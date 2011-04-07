@@ -184,17 +184,19 @@
 
             
             <!-- GOOGLE ADSENSE -->
-            <script type="text/javascript"><!--
-            google_ad_client = "ca-pub-1407220970260676";
-            /* PauseAutoText */
-            google_ad_slot = "1083937715";
-            google_ad_width = 286;
-            google_ad_height = 250;
-            //-->
-            </script>
-            <script type="text/javascript"
-            src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-            </script>
+            <div style="margin-left: -10px;">
+                <script type="text/javascript"><!--
+                google_ad_client = "ca-pub-1407220970260676";
+                /* PauseAutoText */
+                google_ad_slot = "1083937715";
+                google_ad_width = 286;
+                google_ad_height = 250;
+                //-->
+                </script>
+                <script type="text/javascript"
+                src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+                </script>
+            </div>
             <!-- END GOOGLE ADSENSE -->
 
             
