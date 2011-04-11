@@ -17,7 +17,7 @@ class CarMarque extends BaseCarMarque
 	}
 
         public static function getAllMarques(){
-            $q = Doctrine_Query::create ()->from ( 'CarMarque c' )->where("c.active = 1");
+            $q = Doctrine_Query::create ()->from ( 'CarMarque c' )->where("c.active = 1")->orderBy("c.title asc");
             return $q->execute ();
         }
 
