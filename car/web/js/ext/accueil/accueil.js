@@ -32,8 +32,14 @@ Ext.onReady(function(){
         applyTo: 'idmodele'
     });
 
+    dojo.byId('loader').style.display = "";
     var ds = new Ext.data.JsonStore({
             autoLoad: true,
+            listeners: {
+		'load': function(){
+                    dojo.byId('loader').style.display = "none";
+                }
+            },
             url: '/car/web/auto.php/json/marquesjson?active=true',
             root: 'marques',
             fields:['id', 'name']
