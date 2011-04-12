@@ -27,7 +27,7 @@
 	            <body>          	                 			            	
 					<loop item="annonceItem" index="k">                	
 						<list>
-							<xpath expression="//div[@id='ContainerMain']">
+							<xpath expression="//html">
 						        <html-to-xml>
 				                    <http url="${annonceUrl}"/>
 				                </html-to-xml>
@@ -43,24 +43,28 @@
 								<xq-expression><![CDATA[
 			                        declare variable $doc as node() external;
 			                        
-			                        let $title := data($doc//div[@class='lbcAdContainer']/span[@class='ad_links']/h1)
+			                        let $title := data($doc//div[@id='ContainerMain']/div[@class='lbcAdContainer']/span[@class='ad_links']/h1)
 			                        let $phone := data($doc//div[@class='lbcAdContainer']/div[@class='lbcAdOptions']/div[@class='lbcAd_option_box']/div/div[@style='max-height:50px;']/div[@style='float:left;width:24px']/img/@src)
 			                        let $details := data($doc//div[@class='lbcAdParams']/span[@class='ad_details']/strong)			                        
 			                        let $details := data($doc//div[@class='lbcAdParams']/span[@class='ad_details']/strong)			                        			                        
 			                        let $ville := data($doc//div[@class='lbcAdParams']/span[@class='ad_details_400']/strong)			                        			                        			                        
 			                        let $vitesse := data($doc//div[@class='lbcAdParams']/span[@class='ad_details_200']/strong)			                        			                        			                        			                        
+			                        let $annonce := data($doc//head/meta[@name='description']/@content)			                        			                        			                        			                        			                        
+			                        let $url := data($doc//head/link[@rel='canonical']/@href)			                        			                        			                        			                        			                       
 			                        return
-			                           		<annonce>
-				                                <title>{data($title)}</title>
-				                                <phone>{data($phone)}</phone>				                                
-				                                <price>{data($details[1])}</price>				                                
-				                                <annee>{data($details[2])}</annee>				                                				                                				                                
-				                                <km>{data($details[3])}</km>				                                				                                
-				                                <energie>{data($details[4])}</energie>				                                				                                				                                
-				                                <ville>{data($ville)}</ville>				                                				                                				                                				                                
-				                                <vitesse>{data($vitesse)}</vitesse>				                                				                                				                                				                                				                                
-				                                <source>BC</source>
-			                                </annonce>
+				                           		<annonce>
+					                                <title>{data($title)}</title>
+					                                <phone>{data($phone)}</phone>				                                
+					                                <price>{data($details[1])}</price>				                                
+					                                <annee>{data($details[2])}</annee>				                                				                                				                                
+					                                <km>{data($details[3])}</km>				                                				                                
+					                                <energie>{data($details[4])}</energie>				                                				                                				                                
+					                                <ville>{data($ville)}</ville>				                                				                                				                                				                                
+					                                <vitesse>{data($vitesse)}</vitesse>				                                				                                				                                				                                				                                
+					                                <message>{data($annonce)}</message>				                                
+					                                <source>www.leboncoin.fr</source>
+					                                <url>{data($url)}?ca=12_s</url>
+				                                </annonce>
 			                           
 			                    ]]></xq-expression>
 			                </xquery>							
