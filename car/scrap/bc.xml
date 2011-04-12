@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<config charset="ISO-8859-1">
+ 
+    <var-def name="firstPage">1</var-def>
+    <var-def name="maxLoop">10</var-def>
+    <var-def name="startUrl">http://www.leboncoin.fr/voitures/offres/ile_de_france/occasions</var-def>
+    
+    
+   
+
+        <template>
+            <![CDATA[ <newyourk_times date="${sys.datetime("dd.MM.yyyy.H")}"> ]]>
+        </template>        
+		
+		
+		<while  condition="true"
+				index="i" 
+       	        maxloops="${maxLoop}"
+		        empty="empty">			
+				
+				
+				<var-def name="doc">
+                    <html-to-xml>
+                        <http url="${startUrl}?o=${i}"/>
+                    </html-to-xml>
+                </var-def>
+                                
+				<loop item="annonceUrl" index="j">
+					<list>		                
+					    <xpath expression="//td[@style='white-space: nowrap;']/a/@href">
+					        <var name="doc"/>
+					    </xpath>						
+		            </list>		            
+		            <body>
+		            	<html-to-xml>
+	                        <http url="${annonceUrl}"/>
+	                    </html-to-xml>
+	                    	            	            	                 			            	
+	                    	
+                    	
+		            	<!--<xquery>		                    
+		            		<xq-param name="doc">
+		                       <html-to-xml>
+			                        <http url="${startUrl}?o=${i}"/>
+			                    </html-to-xml> 
+		                    </xq-param>
+
+							<xq-expression><![CDATA[
+		                        declare variable $doc as node() external;
+		                        
+		                        let $link := data($doc//td[@style='white-space: nowrap;']/a/@href)
+		                        return
+		                           
+		                                <link>{data($link)}</link>
+		                           
+		                    ]]></xq-expression>
+		                </xquery>-->
+		            </body>
+				</loop>				
+		</while>
+
+	
+	
+
+    
+</config>
+
