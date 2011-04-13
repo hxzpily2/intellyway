@@ -4,9 +4,9 @@
  
     <var-def name="repOut">C:/scraping/files/</var-def>
     <var-def name="maxLoop">10</var-def>
-    <var-def name="startUrl">http://www.leboncoin.fr/voitures/offres/ile_de_france/occasions</var-def>
+    <var-def name="startUrl">http://www.autoscout24.fr/ListGN.aspx</var-def>
     
-     <file action="write" path="${repOut}bc_${sys.date()}${sys.time()}.pa" charset="UTF-8">                        
+     <file action="write" path="${repOut}as24_${sys.date()}${sys.time()}.pa" charset="UTF-8">                        
 		<template>
 	        <![CDATA[ <annonces date="${sys.datetime("dd.MM.yyyy")}"> ]]>
 	    </template>
@@ -17,28 +17,42 @@
 	        empty="empty">						
 			
 			<loop item="annonceUrl" index="j">
-				<list>		                
-				    <xpath expression="//td[@style='white-space: nowrap;']/a/@href">
-				        <html-to-xml>
-			                <http url="${startUrl}?o=${i}"/>
-			            </html-to-xml>
-				    </xpath>						
+				<list>
+					  <xpath expression="(//links/link/@href)">
+							<jsas24-to-xml>						
+							    <xpath expression="(//body/form[@name='aspnetForm']/script[@type='text/javascript'])[2]">
+							        <html-to-xml>
+						                <http url="${startUrl}" method="get">
+						                	<http-param name="vis">1</http-param>
+									        <http-param name="state">A</http-param>
+									        <http-param name="pricefrom">1000</http-param>
+									        <http-param name="cy">F</http-param>
+									        <http-param name="maxresults">500</http-param>
+									        <http-param name="results">20</http-param>
+									        <http-param name="ustate">N,U</http-param>
+									        <http-param name="sort">price</http-param>
+									        <http-param name="pool">1</http-param>
+									        <http-param name="zipc">F</http-param>
+									        <http-param name="page">${i}</http-param>
+						                </http>	
+						            </html-to-xml>
+							    </xpath>
+							</jsas24-to-xml>    
+					 </xpath>					 
 	            </list>		            
-	            <body>          	                 			            	
+	            <body>
 					<loop item="annonceItem" index="k">                	
 						<list>
-							<xpath expression="//html">
+							<xpath expression="//div[@class='content-area']">
 						        <html-to-xml>
 				                    <http url="${annonceUrl}"/>
 				                </html-to-xml>
 						    </xpath>						
 						</list>
-						<body>							
+						<body>
 							<xquery>
 								<xq-param name="doc">
-			                       <html-to-xml>
-				                        <http url="${annonceUrl}"/>
-				                    </html-to-xml> 
+			                       <var name="${annonceItem}"/>				                   
 			                    </xq-param>		                    			            					
 								<xq-expression><![CDATA[
 			                        declare variable $doc as node() external;
@@ -69,9 +83,9 @@
 				                                </annonce>
 			                           
 			                    ]]></xq-expression>
-			                </xquery>							
+			                </xquery>
 						</body>
-					</loop>	      		            	
+					</loop>
 	            </body>
 			</loop>				
 		</while>		
