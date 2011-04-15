@@ -64,8 +64,7 @@
 		                                <owner>{data($owner)}</owner>
 		                                <pays>FR</pays>
 		                                <pf>NONE</pf>
-	                                </infos>
-		                            <accessoires></accessoires>    
+	                                </infos>                           
 	                           
 	                    ]]></xq-expression>
 	                </xquery>
@@ -94,6 +93,7 @@
 	                	</body>
                 	</loop>				
                 	<![CDATA[ </images> ]]>
+                	<![CDATA[ <accessoires></accessoires> ]]>
                 	<![CDATA[ </annonce> ]]>  						      		            	
 	            </body>
 			</loop>				
