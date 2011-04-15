@@ -3,6 +3,7 @@
 <config charset="ISO-8859-1">
  
     <var-def name="repOut">C:/scraping/files/</var-def>
+	<var-def name="repImage">as24pic/</var-def>
     <var-def name="maxLoop">10</var-def>
     <var-def name="startUrl">http://www.autoscout24.fr/ListGN.aspx</var-def>
     
@@ -41,51 +42,103 @@
 					 </xpath>					 
 	            </list>		            
 	            <body>
-					<loop item="annonceItem" index="k">                	
-						<list>
-							<xpath expression="//div[@class='content-area']">
-						        <html-to-xml>
-				                    <http url="${annonceUrl}"/>
-				                </html-to-xml>
-						    </xpath>						
-						</list>
-						<body>
-							<xquery>
-								<xq-param name="doc">
-			                       <var name="${annonceItem}"/>				                   
-			                    </xq-param>		                    			            					
-								<xq-expression><![CDATA[
-			                        declare variable $doc as node() external;
-			                        
-			                        let $title := data($doc//div[@id='ContainerMain']/div[@class='lbcAdContainer']/span[@class='ad_links']/h1)
-			                        let $phone := data($doc//div[@class='lbcAdContainer']/div[@class='lbcAdOptions']/div[@class='lbcAd_option_box']/div/div[@style='max-height:50px;']/div[@style='float:left;width:24px']/img/@src)
-			                        let $details := data($doc//div[@class='lbcAdParams']/span[@class='ad_details']/strong)			                        
-			                        let $details := data($doc//div[@class='lbcAdParams']/span[@class='ad_details']/strong)			                        			                        
-			                        let $ville := data($doc//div[@class='lbcAdParams']/span[@class='ad_details_400']/strong)			                        			                        			                        
-			                        let $vitesse := data($doc//div[@class='lbcAdParams']/span[@class='ad_details_200']/strong)			                        			                        			                        			                        
-			                        let $annonce := data($doc//head/meta[@name='description']/@content)			                        			                        			                        			                        			                        
-			                        let $url := data($doc//head/link[@rel='canonical']/@href)	
-			                        let $owner := data($doc//div[@class='lbcAdContainer']/a[@rel='nofollow'])		                        			                        			                        			                        			                       
-			                        return
-				                           		<annonce>
-					                                <title>{data($title)}</title>
-					                                <phone>{data($phone)}</phone>				                                
-					                                <price>{data($details[1])}</price>				                                
-					                                <annee>{data($details[2])}</annee>				                                				                                				                                
-					                                <km>{data($details[3])}</km>				                                				                                
-					                                <energie>{data($details[4])}</energie>				                                				                                				                                
-					                                <ville>{data($ville)}</ville>				                                				                                				                                				                                
-					                                <vitesse>{data($vitesse)}</vitesse>				                                				                                				                                				                                				                                
-					                                <message>{data($annonce)}</message>				                                
-					                                <source>www.leboncoin.fr</source>
-					                                <url>{data($url)}?ca=12_s</url>
-					                                <owner>{data($owner)}</owner>
-				                                </annonce>
-			                           
-			                    ]]></xq-expression>
-			                </xquery>
-						</body>
-					</loop>
+						<![CDATA[ <annonce> ]]>   
+						<xquery>							
+							<xq-param name="doc">
+		                       <xpath expression="//form[@name='aspnetForm']">
+							        <html-to-xml>
+					                    <http url="${annonceUrl}"/>
+					                </html-to-xml>
+							    </xpath> 
+		                    </xq-param>		                    			            					
+							<xq-expression><![CDATA[
+		                        declare variable $doc as node() external;
+	                        
+		                        let $title := data($doc//div[@class='container']/div[@class='content-area']/div[@id='dialog-imagesslideshow']/div[@class='dialog-wrap']/div[@class='dialog-body imagesslideshow-body']/div[@id='dialog-content']/div[@id='imagesslideshow-subtitle']/div[@class='slideshow_makemodel'])
+								let $prix := data($doc//div[@class='container']/div[@class='content-area']/div[@id='dialog-imagesslideshow']/div[@class='dialog-wrap']/div[@class='dialog-body imagesslideshow-body']/div[@id='dialog-content']/div[@id='imagesslideshow-subtitle']/div[@class='slideshow_price'])
+								let $url := data($doc//@action)
+								let $adresse := data($doc//div[@class='container']/div[@class='content-area']/div[@class='detail-content']/div[@class='box-container']/div[@class='wrap']/div[@class='main']/div[@id='detailLeft']/div[@class='contact-container']/div[@class='maps-location']/table/tbody/tr/td[@class='maps-data']/div)
+								let $annee := data($doc//div[@class='container']/div[@class='content-area']/div[@class='detail-content']/div[@class='box-container']/div[@class='wrap']/div[@class='main']/div[@id='detailRight']/div[@class='articleGeneralDataContainer']/table/tbody/tr[@id='ctl00_ctl00_decoratedArea_contentArea_articleGeneralData_firstRegRow']/td[@class='c2'])
+								let $km := data($doc//div[@class='container']/div[@class='content-area']/div[@class='detail-content']/div[@class='box-container']/div[@class='wrap']/div[@class='main']/div[@id='detailRight']/div[@class='articleGeneralDataContainer']/table/tbody/tr[@id='ctl00_ctl00_ctl00_ctl00_decoratedArea_contentArea_articleGeneralData_mileageRow']/td[@class='c2'])
+								let $energie := data($doc//div[@class='container']/div[@class='content-area']/div[@class='detail-content']/div[@class='box-container']/div[@class='wrap']/div[@class='main']/div[@id='detailRight']/div[@class='articleGeneralDataContainer']/table/tbody/tr[@id='ctl00_ctl00_ctl00_ctl00_ctl00_ctl00_decoratedArea_contentArea_articleGeneralData_fuelRow']/td[@class='c2'])
+								
+								
+								let $owner := data($doc//div[@class='container']/div[@class='content-area']/div[@class='detail-content']/div[@class='box-container']/div[@class='wrap']/div[@class='main']/div[@id='detailLeft']/div[@class='contact-container']/div[@class='contact-data-separator contact-data']/p[2])
+								let $message := data($doc//div[@class='container']/div[@class='content-area']/div[@class='detail-content']/div[@class='box-container']/div[@class='wrap']/div[@class='main']/div[@id='detailRight']/div[@class='description-text'])
+								let $phone1 := data($doc//div[@class='container']/div[@class='content-area']/div[@class='detail-content']/div[@class='box-container']/div[@class='wrap']/div[@class='main']/div[@id='detailLeft']/div[@class='contact-container']/div[@class='contact-data-separator1']/div/p[1])
+								let $phone2 := data($doc//div[@class='container']/div[@class='content-area']/div[@class='detail-content']/div[@class='box-container']/div[@class='wrap']/div[@class='main']/div[@id='detailLeft']/div[@class='contact-container']/div[@class='contact-data-separator1']/div/p[2])
+		                        return
+		                           		<infos>
+			                                <title>{data($title)}</title>			                                
+			                                <price>{data($prix)}</price>	
+			                                <annee>{data($annee)}</annee>
+			                                <km>{data($km)}</km>
+			                                <energie>{data($energie)}</energie>
+			                                <url>http://www.autoscout24.fr/{data($url)}</url>		                                
+			                                <source>www.autoscout24.fr</source>
+			                                <adresse>{data($adresse)}</adresse>
+			                                <pays>FR</pays>
+			                                <pf>NONE</pf>
+			                                <vitesse>NONE</vitesse>		
+			                                <owner>{data($owner)}</owner>
+			                                <message>{data($message)}</message>
+			                                <phones>
+			                                	<phone>{data($phone1)}</phone>
+			                                	<phone>{data($phone2)}</phone>			                                	
+			                                </phones>
+		                                </infos>		                           
+		                    ]]></xq-expression>
+	                	</xquery>
+	                	<![CDATA[ <images> ]]>
+	                	<loop item="imageURL" index="k">
+		                	<list>
+		                			<xpath expression="(//images/image/@href)">
+											<asimage-to-xml>						
+											    <xpath expression="(//form[@name='aspnetForm']/div[@class='container']/div[@class='content-area']/script[@language='javascript'])[1]">
+											        <html-to-xml>
+									                    <http url="${annonceUrl}"/>
+									                </html-to-xml>
+											    </xpath>
+											</asimage-to-xml>    
+									 </xpath>	
+		                	</list>
+		                	<body>
+			                		<template><![CDATA[ <image href="${imageURL}"> ]]></template>
+			                		<empty>
+						                <file action="write" path="${repOut}${repImage}${imageURL.toString().substring(imageURL.toString().lastIndexOf('/')+1, imageURL.toString().lastIndexOf('.'))}.jpg" type="binary">
+						                    <http url='${imageURL}'/>
+						                </file>
+						            </empty>
+		                	</body>
+	                	</loop>				
+	                	<![CDATA[ </images> ]]>
+	                	<![CDATA[ <accessoires> ]]>
+	                	<loop item="acc" index="k">
+		                	<list>										
+							    <xpath expression="(//form[@name='aspnetForm']/div[@class='container']/div[@class='content-area']/div[@class='detail-content']/div[@class='box-container']/div[@class='wrap']/div[@class='main']/div[@id='detailRight']/div[@class='equipments']/div[@class='equipment-list']/div[@class='equipment-left']/ul/li)">
+							        <html-to-xml>
+					                    <http url="${annonceUrl}"/>
+					                </html-to-xml>
+							    </xpath>
+		                	</list>
+		                	<body>	                		
+			                		<template><![CDATA[ <accessoire>${acc.toString().replaceAll("<li>","").replaceAll("</li>","")}</accessoire ]]></template>
+		                	</body>
+	                	</loop>		
+	                	<loop item="acc" index="k">
+		                	<list>										
+							    <xpath expression="(//form[@name='aspnetForm']/div[@class='container']/div[@class='content-area']/div[@class='detail-content']/div[@class='box-container']/div[@class='wrap']/div[@class='main']/div[@id='detailRight']/div[@class='equipments']/div[@class='equipment-list']/div[@class='equipment-right']/ul/li)">
+							        <html-to-xml>
+					                    <http url="${annonceUrl}"/>
+					                </html-to-xml>
+							    </xpath>
+		                	</list>
+		                	<body>	                		
+			                		<template><![CDATA[ <accessoire>${acc.toString().replaceAll("<li>","").replaceAll("</li>","")}</accessoire ]]></template>
+		                	</body>
+	                	</loop>			
+	                	<![CDATA[ </accessoires> ]]>
+	                	<![CDATA[ </annonce> ]]>   	                		                   
 	            </body>
 			</loop>				
 		</while>		
