@@ -5,6 +5,6 @@ all:
   doctrine:
     class: sfDoctrineDatabase
     param:
-      dsn:      mysql:host=localhost;dbname=car
-      username: root
-      password: 
+      dsn:      mysql:host=localhost;dbname=merocksc_car
+      username: merocksc_car
+      password: PauseAuto2011
