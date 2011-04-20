@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <buildpath>
-	<buildpathentry kind="src" path="config"/>
-	<buildpathentry kind="src" path="lib/form"/>
-	<buildpathentry kind="src" path="test/bootstrap"/>
 	<buildpathentry kind="con" path="org.eclipse.php.core.LANGUAGE"/>
+	<buildpathentry kind="src" path="lib/form"/>
+	<buildpathentry kind="src" path="lib/vendor"/>
+	<buildpathentry kind="src" path="lib/model"/>
+	<buildpathentry kind="src" path="test/bootstrap"/>
+	<buildpathentry kind="src" path="config"/>
 </buildpath>
