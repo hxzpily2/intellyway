@@ -1533,7 +1533,7 @@ a {
 
 #slider{
     position: absolute;
-    top: 265px;
+    top: 270px;
     left: 20px;
 }
 
@@ -1565,7 +1565,7 @@ a {
 
 #afterSlider{
    position: absolute;
-   top: 570px;
+   top: 575px;
    left: 20px;   
    width:490px;
 }
