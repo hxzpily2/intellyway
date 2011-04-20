@@ -343,7 +343,10 @@
                             <td class="right" width="15">&nbsp;</td>
                         </tr>
                         <tr height="24">
-                            <td colspan="4" valign="middle" align="center"><img src="/car/web/images/searchLimH.jpg"/></td>
+                            <td colspan="4" valign="middle" align="center">
+                            	<br style="line-height: 35px;"/>
+                            	<img src="/car/web/images/searchLimH.jpg"/>
+                            </td>
                         </tr>
                     </table>
                 </div>
