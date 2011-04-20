@@ -208,8 +208,8 @@
             <div style="position: relative;padding-left: 10px;">
                 <br style="line-height: 610px;"/>
                 <div id="divSearchPan">
-                    <table id="searchPan" width="500" height="260" border="0" cellpadding="0" cellspacing="0">
-                        <tr>
+                    <table id="searchPan" width="500" height="294" border="0" cellpadding="0" cellspacing="0">
+                        <tr height="260">
                             <td class="left" width="15">&nbsp;</td>
                             <td class="middle" width="309" valign="top">
                                 <table cellpadding="0" cellspacing="0" border="0" width="100%">
@@ -342,9 +342,11 @@
                             </td>
                             <td class="right" width="15">&nbsp;</td>
                         </tr>
+                        <tr>
+                        	<td colspan="4"><br style="line-height: 10px;"/></td>
+                        </tr>
                         <tr height="24">
-                            <td colspan="4" valign="middle" align="center">
-                            	<br style="line-height: 35px;"/>
+                            <td colspan="4" valign="middle" align="center">                            	
                             	<img src="/car/web/images/searchLimH.jpg"/>
                             </td>
                         </tr>
