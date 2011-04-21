@@ -50,18 +50,20 @@ a img {
 }
 
 #topMenu {	
-	
+	width : 100%;
 	height : 14px;
 	background-image:url("../images/nav_top.jpg");
+	background-position: bottom;
 }
 
 #topMenuBg {	
-	
+	width : 100%;
 	height : 145px;
 	background-image:url("../images/nav_bg.jpg");
 }
 
-#topMenuBottom {		
+#topMenuBottom {
+	width : 100%;		
 	height : 35px;
 	background-image:url("../images/nav_bottom.png");
 }
