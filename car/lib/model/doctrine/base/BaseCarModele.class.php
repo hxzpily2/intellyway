@@ -15,6 +15,7 @@ Doctrine_Manager::getInstance()->bindComponent('CarModele', 'doctrine');
  * @property integer $nbnotevisiteur
  * @property integer $noteadmin
  * @property integer $nbnoteadmin
+ * @property integer $sanspermis
  * @property integer $active
  * @property CarMarque $CarMarque
  * @property Doctrine_Collection $CarAuto
@@ -27,6 +28,7 @@ Doctrine_Manager::getInstance()->bindComponent('CarModele', 'doctrine');
  * @method integer             getNbnotevisiteur() Returns the current record's "nbnotevisiteur" value
  * @method integer             getNoteadmin()      Returns the current record's "noteadmin" value
  * @method integer             getNbnoteadmin()    Returns the current record's "nbnoteadmin" value
+ * @method integer             getSanspermis()     Returns the current record's "sanspermis" value
  * @method integer             getActive()         Returns the current record's "active" value
  * @method CarMarque           getCarMarque()      Returns the current record's "CarMarque" value
  * @method Doctrine_Collection getCarAuto()        Returns the current record's "CarAuto" collection
@@ -38,6 +40,7 @@ Doctrine_Manager::getInstance()->bindComponent('CarModele', 'doctrine');
  * @method CarModele           setNbnotevisiteur() Sets the current record's "nbnotevisiteur" value
  * @method CarModele           setNoteadmin()      Sets the current record's "noteadmin" value
  * @method CarModele           setNbnoteadmin()    Sets the current record's "nbnoteadmin" value
+ * @method CarModele           setSanspermis()     Sets the current record's "sanspermis" value
  * @method CarModele           setActive()         Sets the current record's "active" value
  * @method CarModele           setCarMarque()      Sets the current record's "CarMarque" value
  * @method CarModele           setCarAuto()        Sets the current record's "CarAuto" collection
@@ -117,6 +120,14 @@ abstract class BaseCarModele extends sfDoctrineRecord
              'primary' => false,
              'autoincrement' => false,
              'length' => '2',
+             ));
+        $this->hasColumn('sanspermis', 'integer', 1, array(
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'autoincrement' => false,
+             'length' => '1',
              ));
         $this->hasColumn('active', 'integer', 1, array(
              'type' => 'integer',

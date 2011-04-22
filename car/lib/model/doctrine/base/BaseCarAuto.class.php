@@ -51,6 +51,10 @@ Doctrine_Manager::getInstance()->bindComponent('CarAuto', 'doctrine');
  * @property integer $garaged
  * @property integer $hand
  * @property integer $anneegarantie
+ * @property string $title
+ * @property string $source
+ * @property string $telsource1
+ * @property string $telsource2
  * @property integer $active
  * @property CarMarque $CarMarque
  * @property CarModele $CarModele
@@ -115,6 +119,10 @@ Doctrine_Manager::getInstance()->bindComponent('CarAuto', 'doctrine');
  * @method integer             getGaraged()               Returns the current record's "garaged" value
  * @method integer             getHand()                  Returns the current record's "hand" value
  * @method integer             getAnneegarantie()         Returns the current record's "anneegarantie" value
+ * @method string              getTitle()                 Returns the current record's "title" value
+ * @method string              getSource()                Returns the current record's "source" value
+ * @method string              getTelsource1()            Returns the current record's "telsource1" value
+ * @method string              getTelsource2()            Returns the current record's "telsource2" value
  * @method integer             getActive()                Returns the current record's "active" value
  * @method CarMarque           getCarMarque()             Returns the current record's "CarMarque" value
  * @method CarModele           getCarModele()             Returns the current record's "CarModele" value
@@ -178,6 +186,10 @@ Doctrine_Manager::getInstance()->bindComponent('CarAuto', 'doctrine');
  * @method CarAuto             setGaraged()               Sets the current record's "garaged" value
  * @method CarAuto             setHand()                  Sets the current record's "hand" value
  * @method CarAuto             setAnneegarantie()         Sets the current record's "anneegarantie" value
+ * @method CarAuto             setTitle()                 Sets the current record's "title" value
+ * @method CarAuto             setSource()                Sets the current record's "source" value
+ * @method CarAuto             setTelsource1()            Sets the current record's "telsource1" value
+ * @method CarAuto             setTelsource2()            Sets the current record's "telsource2" value
  * @method CarAuto             setActive()                Sets the current record's "active" value
  * @method CarAuto             setCarMarque()             Sets the current record's "CarMarque" value
  * @method CarAuto             setCarModele()             Sets the current record's "CarModele" value
@@ -333,7 +345,6 @@ abstract class BaseCarAuto extends sfDoctrineRecord
              'fixed' => 0,
              'unsigned' => false,
              'primary' => false,
-             'notnull' => true,
              'autoincrement' => false,
              'length' => '',
              ));
@@ -342,7 +353,6 @@ abstract class BaseCarAuto extends sfDoctrineRecord
              'fixed' => 0,
              'unsigned' => false,
              'primary' => false,
-             'notnull' => true,
              'autoincrement' => false,
              'length' => '',
              ));
@@ -495,7 +505,6 @@ abstract class BaseCarAuto extends sfDoctrineRecord
              'fixed' => 0,
              'unsigned' => false,
              'primary' => false,
-             'notnull' => true,
              'autoincrement' => false,
              'length' => '1',
              ));
@@ -504,7 +513,6 @@ abstract class BaseCarAuto extends sfDoctrineRecord
              'fixed' => 0,
              'unsigned' => false,
              'primary' => false,
-             'notnull' => true,
              'autoincrement' => false,
              'length' => '1',
              ));
@@ -513,7 +521,6 @@ abstract class BaseCarAuto extends sfDoctrineRecord
              'fixed' => 0,
              'unsigned' => false,
              'primary' => false,
-             'notnull' => true,
              'autoincrement' => false,
              'length' => '1',
              ));
@@ -522,7 +529,6 @@ abstract class BaseCarAuto extends sfDoctrineRecord
              'fixed' => 0,
              'unsigned' => false,
              'primary' => false,
-             'notnull' => true,
              'autoincrement' => false,
              'length' => '1',
              ));
@@ -531,7 +537,6 @@ abstract class BaseCarAuto extends sfDoctrineRecord
              'fixed' => 0,
              'unsigned' => false,
              'primary' => false,
-             'notnull' => true,
              'autoincrement' => false,
              'length' => '1',
              ));
@@ -540,7 +545,6 @@ abstract class BaseCarAuto extends sfDoctrineRecord
              'fixed' => 0,
              'unsigned' => false,
              'primary' => false,
-             'notnull' => true,
              'autoincrement' => false,
              'length' => '1',
              ));
@@ -549,7 +553,6 @@ abstract class BaseCarAuto extends sfDoctrineRecord
              'fixed' => 0,
              'unsigned' => false,
              'primary' => false,
-             'notnull' => true,
              'autoincrement' => false,
              'length' => '1',
              ));
@@ -558,7 +561,6 @@ abstract class BaseCarAuto extends sfDoctrineRecord
              'fixed' => 0,
              'unsigned' => false,
              'primary' => false,
-             'notnull' => true,
              'autoincrement' => false,
              'length' => '1',
              ));
@@ -567,16 +569,46 @@ abstract class BaseCarAuto extends sfDoctrineRecord
              'fixed' => 0,
              'unsigned' => false,
              'primary' => false,
-             'notnull' => true,
              'autoincrement' => false,
              'length' => '2',
+             ));
+        $this->hasColumn('title', 'string', null, array(
+             'type' => 'string',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'autoincrement' => false,
+             'length' => '',
+             ));
+        $this->hasColumn('source', 'string', null, array(
+             'type' => 'string',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'autoincrement' => false,
+             'length' => '',
+             ));
+        $this->hasColumn('telsource1', 'string', null, array(
+             'type' => 'string',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'autoincrement' => false,
+             'length' => '',
+             ));
+        $this->hasColumn('telsource2', 'string', null, array(
+             'type' => 'string',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'autoincrement' => false,
+             'length' => '',
              ));
         $this->hasColumn('active', 'integer', 1, array(
              'type' => 'integer',
              'fixed' => 0,
              'unsigned' => false,
              'primary' => false,
-             'notnull' => true,
              'autoincrement' => false,
              'length' => '1',
              ));
