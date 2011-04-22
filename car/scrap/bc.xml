@@ -40,7 +40,6 @@
 	                        let $title := data($doc//div[@id='ContainerMain']/div[@class='lbcAdContainer']/span[@class='ad_links']/h1)
 	                        let $phone := data($doc//div[@class='lbcAdContainer']/div[@class='lbcAdOptions']/div[@class='lbcAd_option_box']/div[2]/div[@class='ad_links']/div[2]/div/span[@class='lbcAdPhone']/img/@src)
 	                        let $details := data($doc//div[@class='lbcAdParams']/span[@class='ad_details']/strong)			                        
-	                        let $details := data($doc//div[@class='lbcAdParams']/span[@class='ad_details']/strong)			                        			                        
 	                        let $adresse := data($doc//div[@class='lbcAdParams']/span[@class='ad_details_400']/strong)			                        			                        			                        
 	                        let $vitesse := data($doc//div[@class='lbcAdParams']/span[@class='ad_details_200']/strong)			                        			                        			                        			                        
 	                        let $annonce := data($doc//head/meta[@name='description']/@content)			                        			                        			                        			                        			                        
