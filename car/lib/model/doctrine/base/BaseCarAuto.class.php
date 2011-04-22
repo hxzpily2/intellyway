@@ -55,6 +55,9 @@ Doctrine_Manager::getInstance()->bindComponent('CarAuto', 'doctrine');
  * @property string $source
  * @property string $telsource1
  * @property string $telsource2
+ * @property string $adresse
+ * @property string $url
+ * @property string $extowner
  * @property integer $active
  * @property CarMarque $CarMarque
  * @property CarModele $CarModele
@@ -123,6 +126,9 @@ Doctrine_Manager::getInstance()->bindComponent('CarAuto', 'doctrine');
  * @method string              getSource()                Returns the current record's "source" value
  * @method string              getTelsource1()            Returns the current record's "telsource1" value
  * @method string              getTelsource2()            Returns the current record's "telsource2" value
+ * @method string              getAdresse()               Returns the current record's "adresse" value
+ * @method string              getUrl()                   Returns the current record's "url" value
+ * @method string              getExtowner()              Returns the current record's "extowner" value
  * @method integer             getActive()                Returns the current record's "active" value
  * @method CarMarque           getCarMarque()             Returns the current record's "CarMarque" value
  * @method CarModele           getCarModele()             Returns the current record's "CarModele" value
@@ -190,6 +196,9 @@ Doctrine_Manager::getInstance()->bindComponent('CarAuto', 'doctrine');
  * @method CarAuto             setSource()                Sets the current record's "source" value
  * @method CarAuto             setTelsource1()            Sets the current record's "telsource1" value
  * @method CarAuto             setTelsource2()            Sets the current record's "telsource2" value
+ * @method CarAuto             setAdresse()               Sets the current record's "adresse" value
+ * @method CarAuto             setUrl()                   Sets the current record's "url" value
+ * @method CarAuto             setExtowner()              Sets the current record's "extowner" value
  * @method CarAuto             setActive()                Sets the current record's "active" value
  * @method CarAuto             setCarMarque()             Sets the current record's "CarMarque" value
  * @method CarAuto             setCarModele()             Sets the current record's "CarModele" value
@@ -412,13 +421,13 @@ abstract class BaseCarAuto extends sfDoctrineRecord
              'autoincrement' => false,
              'length' => '2',
              ));
-        $this->hasColumn('kilometrage', 'integer', 2, array(
+        $this->hasColumn('kilometrage', 'integer', 7, array(
              'type' => 'integer',
              'fixed' => 0,
              'unsigned' => false,
              'primary' => false,
              'autoincrement' => false,
-             'length' => '2',
+             'length' => '7',
              ));
         $this->hasColumn('cylindres', 'integer', 2, array(
              'type' => 'integer',
@@ -597,6 +606,30 @@ abstract class BaseCarAuto extends sfDoctrineRecord
              'length' => '',
              ));
         $this->hasColumn('telsource2', 'string', null, array(
+             'type' => 'string',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'autoincrement' => false,
+             'length' => '',
+             ));
+        $this->hasColumn('adresse', 'string', null, array(
+             'type' => 'string',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'autoincrement' => false,
+             'length' => '',
+             ));
+        $this->hasColumn('url', 'string', null, array(
+             'type' => 'string',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'autoincrement' => false,
+             'length' => '',
+             ));
+        $this->hasColumn('extowner', 'string', null, array(
              'type' => 'string',
              'fixed' => 0,
              'unsigned' => false,
