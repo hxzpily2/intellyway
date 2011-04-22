@@ -35,6 +35,10 @@ CarVille:
      title: Rabat
      CarPays: maroc
      active:    1
+   paris:
+     title: Paris
+     CarPays: france
+     active:    1     
           
 
 CarType:
