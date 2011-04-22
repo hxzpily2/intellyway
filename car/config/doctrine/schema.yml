@@ -224,14 +224,20 @@ CarModele:
       fixed: false
       unsigned: false
       primary: false
-      autoincrement: false        
+      autoincrement: false
+    sanspermis:
+      type: integer(1)
+      fixed: false
+      unsigned: false
+      primary: false
+      autoincrement: false              
     active:
       type: integer(1)
       fixed: false
       unsigned: false
       primary: false
       notnull: true
-      autoincrement: false
+      autoincrement: false      
   relations:
     CarMarque:
       local: idmarque
@@ -972,14 +978,12 @@ CarAuto:
       fixed: false
       unsigned: false
       primary: false
-      notnull: true
       autoincrement: false
     adresse_ip:
       type: string()
       fixed: false
       unsigned: false
       primary: false
-      notnull: true
       autoincrement: false 
     visitors:
       type: integer(10)
@@ -1094,70 +1098,84 @@ CarAuto:
       fixed: false
       unsigned: false
       primary: false
-      notnull: true
       autoincrement: false                               
     etranger:
       type: integer(1)
       fixed: false
       unsigned: false
       primary: false
-      notnull: true
       autoincrement: false      
     dedouane:
       type: integer(1)
       fixed: false
       unsigned: false
       primary: false
-      notnull: true
       autoincrement: false      
     garantie:
       type: integer(1)
       fixed: false
       unsigned: false
       primary: false
-      notnull: true
       autoincrement: false
     urgent:
       type: integer(1)
       fixed: false
       unsigned: false
       primary: false
-      notnull: true
       autoincrement: false
     nonfumeur:
       type: integer(1)
       fixed: false
       unsigned: false
       primary: false
-      notnull: true
       autoincrement: false
     garaged:
       type: integer(1)
       fixed: false
       unsigned: false
       primary: false
-      notnull: true
       autoincrement: false                              
     hand:
       type: integer(1)
       fixed: false
       unsigned: false
       primary: false
-      notnull: true
       autoincrement: false
     anneegarantie:
       type: integer(2)
       fixed: false
       unsigned: false
       primary: false
-      notnull: true
+      autoincrement: false 
+    title:
+      type: string()
+      fixed: false
+      unsigned: false
+      primary: false
+      autoincrement: false 
+    source:
+      type: string()
+      fixed: false
+      unsigned: false
+      primary: false
+      autoincrement: false
+    telsource1:
+      type: string()
+      fixed: false
+      unsigned: false
+      primary: false
+      autoincrement: false                      
+    telsource2:
+      type: string()
+      fixed: false
+      unsigned: false
+      primary: false
       autoincrement: false      
     active:
       type: integer(1)
       fixed: false
       unsigned: false
       primary: false
-      notnull: true
       autoincrement: false
   relations:
     CarMarque:
