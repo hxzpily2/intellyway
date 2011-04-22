@@ -1170,7 +1170,13 @@ CarAuto:
       fixed: false
       unsigned: false
       primary: false
-      autoincrement: false      
+      autoincrement: false
+    adresse:
+      type: string()
+      fixed: false
+      unsigned: false
+      primary: false
+      autoincrement: false            
     active:
       type: integer(1)
       fixed: false
