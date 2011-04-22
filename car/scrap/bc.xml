@@ -4,7 +4,8 @@
  
     <var-def name="repOut">C:/scraping/files/</var-def>
     <var-def name="repImage">bcpic/</var-def>
-    <var-def name="maxLoop">10</var-def>
+    <var-def name="repPhone">phone/</var-def>
+    <var-def name="maxLoop">1</var-def>
     <var-def name="startUrl">http://www.leboncoin.fr/voitures/offres/ile_de_france/occasions</var-def>
     
      <file action="write" path="${repOut}bc_${sys.date()}${sys.time()}.pa" charset="UTF-8">                        
@@ -37,7 +38,7 @@
 	                        declare variable $doc as node() external;
 	                        
 	                        let $title := data($doc//div[@id='ContainerMain']/div[@class='lbcAdContainer']/span[@class='ad_links']/h1)
-	                        let $phone := data($doc//div[@class='lbcAdContainer']/div[@class='lbcAdOptions']/div[@class='lbcAd_option_box']/div/div[@style='max-height:50px;']/div[@style='float:left;width:24px']/img/@src)
+	                        let $phone := data($doc//div[@class='lbcAdContainer']/div[@class='lbcAdOptions']/div[@class='lbcAd_option_box']/div[2]/div[@class='ad_links']/div[2]/div/span[@class='lbcAdPhone']/img/@src)
 	                        let $details := data($doc//div[@class='lbcAdParams']/span[@class='ad_details']/strong)			                        
 	                        let $details := data($doc//div[@class='lbcAdParams']/span[@class='ad_details']/strong)			                        			                        
 	                        let $adresse := data($doc//div[@class='lbcAdParams']/span[@class='ad_details_400']/strong)			                        			                        			                        
@@ -84,12 +85,28 @@
 								</xpath>
 	                	</list>
 	                	<body>
-		                		<template><![CDATA[ <image href="${imageURL}"> ]]></template>
+		                		<template><![CDATA[ <image href="${imageURL}"/> ]]></template>
 		                		<empty>
 					                <file action="write" path="${repOut}${repImage}${imageURL.toString().substring(imageURL.toString().lastIndexOf('/')+1, imageURL.toString().lastIndexOf('.'))}.jpg" type="binary">
 					                    <http url='${imageURL}'/>
 					                </file>
 					            </empty>
+	                	</body>
+                	</loop>
+                	<loop item="phone" index="k">
+	                	<list>										
+						    <xpath expression="(//div[@class='lbcAdContainer']/div[@class='lbcAdOptions']/div[@class='lbcAd_option_box']/div[2]/div[@class='ad_links']/div[2]/div/span[@class='lbcAdPhone']/img/@src)">
+						        <html-to-xml>
+				                    <http url="${annonceUrl}"/>
+				                </html-to-xml>
+						    </xpath>
+	                	</list>
+	                	<body>	                		
+	                		<empty>
+				                <file action="write" path="${repOut}${repImage}${repPhone}${phone.toString().substring(phone.toString().lastIndexOf('/')+1, phone.toString().lastIndexOf('.'))}.jpg" type="binary">
+				                    <http url='${phone}'/>
+				                </file>
+				            </empty>
 	                	</body>
                 	</loop>				
                 	<![CDATA[ </images> ]]>

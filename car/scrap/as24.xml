@@ -103,7 +103,7 @@
 									 </xpath>	
 		                	</list>
 		                	<body>
-			                		<template><![CDATA[ <image href="${imageURL}"> ]]></template>
+			                		<template><![CDATA[ <image href="${imageURL}"/> ]]></template>
 			                		<empty>
 						                <file action="write" path="${repOut}${repImage}${imageURL.toString().substring(imageURL.toString().lastIndexOf('/')+1, imageURL.toString().lastIndexOf('.'))}.jpg" type="binary">
 						                    <http url='${imageURL}'/>
