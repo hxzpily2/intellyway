@@ -4,7 +4,7 @@
  
     <var-def name="repOut">C:/scraping/files/</var-def>
 	<var-def name="repImage">as24pic/</var-def>
-    <var-def name="maxLoop">10</var-def>
+    <var-def name="maxLoop">1</var-def>
     <var-def name="startUrl">http://www.autoscout24.fr/ListGN.aspx</var-def>
     
      <file action="write" path="${repOut}as24_${sys.date()}${sys.time()}.pa" charset="UTF-8">                        
@@ -89,6 +89,32 @@
 		                                </infos>		                           
 		                    ]]></xq-expression>
 	                	</xquery>
+	                	<xquery>							
+							<xq-param name="doc">
+		                       <xpath expression="//form[@name='aspnetForm']">
+							        <html-to-xml>
+					                    <http url="${annonceUrl}"/>
+					                </html-to-xml>
+							    </xpath> 
+		                    </xq-param>		                    			            					
+							<xq-expression><![CDATA[
+		                        declare variable $doc as node() external;
+	                        
+
+								let $prix := data($doc//div[@class='container']/div[@class='content-area']/div[@id='dialog-imagesslideshow']/div[@class='dialog-wrap']/div[@class='dialog-body imagesslideshow-body']/div[@id='dialog-content']/div[@id='imagesslideshow-subtitle']/div[@class='slideshow_price'])
+								let $annee := data($doc//div[@class='container']/div[@class='content-area']/div[@class='detail-content']/div[@class='box-container']/div[@class='wrap']/div[@class='main']/div[@id='detailRight']/div[@class='articleGeneralDataContainer']/table/tbody/tr[@id='ctl00_ctl00_decoratedArea_contentArea_articleGeneralData_firstRegRow']/td[@class='c2'])
+								let $km := data($doc//div[@class='container']/div[@class='content-area']/div[@class='detail-content']/div[@class='box-container']/div[@class='wrap']/div[@class='main']/div[@id='detailRight']/div[@class='articleGeneralDataContainer']/table/tbody/tr[@id='ctl00_ctl00_ctl00_ctl00_decoratedArea_contentArea_articleGeneralData_mileageRow']/td[@class='c2'])
+								let $energie := data($doc//div[@class='container']/div[@class='content-area']/div[@class='detail-content']/div[@class='box-container']/div[@class='wrap']/div[@class='main']/div[@id='detailRight']/div[@class='articleGeneralDataContainer']/table/tbody/tr[@id='ctl00_ctl00_ctl00_ctl00_ctl00_ctl00_decoratedArea_contentArea_articleGeneralData_fuelRow']/td[@class='c2'])
+
+		                        return
+		                           		<details>			                                
+			                                <detail type="Prix :">{data($prix)}</detail>	
+			                                <detail type="Année-modèle :">{data($annee)}</detail>
+			                                <detail type="Kilométrage :">{data($km)}</detail>
+			                                <detail type="Carburant :">{data($energie)}</detail>			                                
+		                                </details>		                           
+		                    ]]></xq-expression>
+	                	</xquery>
 	                	<![CDATA[ <images> ]]>
 	                	<loop item="imageURL" index="k">
 		                	<list>
@@ -104,11 +130,11 @@
 		                	</list>
 		                	<body>
 			                		<template><![CDATA[ <image href="${imageURL}"/> ]]></template>
-			                		<empty>
+			                		<!--<empty>
 						                <file action="write" path="${repOut}${repImage}${imageURL.toString().substring(imageURL.toString().lastIndexOf('/')+1, imageURL.toString().lastIndexOf('.'))}.jpg" type="binary">
 						                    <http url='${imageURL}'/>
 						                </file>
-						            </empty>
+						            </empty>-->
 		                	</body>
 	                	</loop>				
 	                	<![CDATA[ </images> ]]>
@@ -122,7 +148,7 @@
 							    </xpath>
 		                	</list>
 		                	<body>	                		
-			                		<template><![CDATA[ <accessoire>${acc.toString().replaceAll("<li>","").replaceAll("</li>","")}</accessoire ]]></template>
+			                		<template><![CDATA[ <accessoire>${acc.toString().replaceAll("<li>","").replaceAll("</li>","")}</accessoire> ]]></template>
 		                	</body>
 	                	</loop>		
 	                	<loop item="acc" index="k">
@@ -134,7 +160,7 @@
 							    </xpath>
 		                	</list>
 		                	<body>	                		
-			                		<template><![CDATA[ <accessoire>${acc.toString().replaceAll("<li>","").replaceAll("</li>","")}</accessoire ]]></template>
+			                		<template><![CDATA[ <accessoire>${acc.toString().replaceAll("<li>","").replaceAll("</li>","")}</accessoire> ]]></template>
 		                	</body>
 	                	</loop>			
 	                	<![CDATA[ </accessoires> ]]>

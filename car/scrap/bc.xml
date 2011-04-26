@@ -26,7 +26,7 @@
 			            </html-to-xml>
 				    </xpath>						
 	            </list>		            
-	            <body>
+	            <body>	            		            	
 	            	<![CDATA[ <annonce> ]]>  											
 					<xquery>
 						<xq-param name="doc">
@@ -40,56 +40,85 @@
 	                        let $title := data($doc//div[@id='ContainerMain']/div[@class='lbcAdContainer']/span[@class='ad_links']/h1)
 	                        let $phone := data($doc//div[@class='lbcAdContainer']/div[@class='lbcAdOptions']/div[@class='lbcAd_option_box']/div[2]/div[@class='ad_links']/div[2]/div/span[@class='lbcAdPhone']/img/@src)
 	                        let $details := data($doc//div[@class='lbcAdParams']/span[@class='ad_details']/strong)			                        
+	                        let $labels := data($doc//div[@class='lbcAdParams']/span[@class='ad_details'])			                        	                        
 	                        let $adresse := data($doc//div[@class='lbcAdParams']/span[@class='ad_details_400']/strong)			                        			                        			                        
 	                        let $vitesse := data($doc//div[@class='lbcAdParams']/span[@class='ad_details_200']/strong)			                        			                        			                        			                        
 	                        let $annonce := data($doc//head/meta[@name='description']/@content)			                        			                        			                        			                        			                        
 	                        let $url := data($doc//head/link[@rel='canonical']/@href)	
-	                        let $owner := data($doc//div[@class='lbcAdContainer']/a[@rel='nofollow'])		                        			                        			                        			                        			                       
-	                        return
-		                           		
+	                        let $owner := data($doc//div[@class='lbcAdContainer']/a[@rel='nofollow'])		
+	                         
+	                                          			                        			                        			                        			                       
+	                        return		                           		
                            			<infos>
                            				<phones>
 		                                	<phone>{data($phone)}</phone>				                                
 		                                </phones>
-		                                <title>{data($title)}</title>				                                				                                
-		                                <price>{data($details[1])}</price>				                                
-		                                <annee>{data($details[2])}</annee>				                                				                                				                                
-		                                <km>{data($details[3])}</km>				                                				                                
-		                                <energie>{data($details[4])}</energie>				                                				                                				                                
+		                                <title>{data($title)}</title>				                                				                                		                       			                                				                                				                                
 		                                <adresse>{data($adresse)}</adresse>				                                				                                				                                				                                
 		                                <vitesse>{data($vitesse)}</vitesse>				                                				                                				                                				                                				                                
 		                                <message>{data($annonce)}</message>				                                
 		                                <source>www.leboncoin.fr</source>
 		                                <url>{data($url)}?ca=12_s</url>
 		                                <owner>{data($owner)}</owner>
-		                                <pays>FR</pays>
+		                                <pays>FR</pays>			                                                               
 		                                <pf>NONE</pf>
 	                                </infos>                           
 	                           
 	                    ]]></xq-expression>
-	                </xquery>
+	                </xquery>	            
+   	            	<![CDATA[ <details> ]]>    
+	                <loop item="detail" index="d">
+	            		<list>
+	            			<xpath expression="//div[@class='lbcAdParams']/span[@class='ad_details']">
+	            				<html-to-xml>
+				                    <http url="${annonceUrl}"/>
+				                </html-to-xml>			                    
+	            			</xpath>		
+	            		</list>
+	            		<body>	
+	            			<xquery>
+								<xq-param name="doc2">
+			                       <html-to-xml>
+				                        <var name="detail"/>
+				                    </html-to-xml> 
+			                    </xq-param>		                    			            					
+								<xq-expression><![CDATA[
+			                        declare variable $doc2 as node() external;
+			                        
+			                        let $type := data($doc2//label)
+			                        let $detail := data($doc2//strong)
+			                                          			                        			                        			                        			                       
+			                        return		                           		
+		                           			<detail type="{data($type)}">{data($detail)}</detail>				                                				                                			                                
+			                           
+			                    ]]></xq-expression>
+			                </xquery>
+			                
+	            		</body>	
+	            	</loop>
+	            	<![CDATA[ </details> ]]>
 	                <![CDATA[ <images> ]]>
                 	<loop item="imageURL" index="k">
 	                	<list>
-	                			<xpath expression="(//images/image/@href)">	                				
-										<bcimage-to-xml>						
-											<var-def name="temp">
-											    <xpath expression="(//body/div[@id='ContainerMain']/div[@class='lbcAdContainer']/div[2]/div/script[1])">
-											        <html-to-xml>
-									                    <http url="${annonceUrl}"/>
-									                </html-to-xml>
-											    </xpath>
-										    </var-def>		
-										</bcimage-to-xml>    
-								</xpath>
+                			<xpath expression="(//images/image/@href)">	                				
+									<bcimage-to-xml>						
+										<var-def name="temp">
+										    <xpath expression="(//body/div[@id='ContainerMain']/div[@class='lbcAdContainer']/div[2]/div/script[1])">
+										        <html-to-xml>
+								                    <http url="${annonceUrl}"/>
+								                </html-to-xml>
+										    </xpath>
+									    </var-def>		
+									</bcimage-to-xml>    
+							</xpath>
 	                	</list>
 	                	<body>
 		                		<template><![CDATA[ <image href="${imageURL}"/> ]]></template>
-		                		<empty>
+		                		<!--<empty>
 					                <file action="write" path="${repOut}${repImage}${imageURL.toString().substring(imageURL.toString().lastIndexOf('/')+1, imageURL.toString().lastIndexOf('.'))}.jpg" type="binary">
 					                    <http url='${imageURL}'/>
 					                </file>
-					            </empty>
+					            </empty>-->
 	                	</body>
                 	</loop>
                 	<loop item="phone" index="k">
