@@ -219,7 +219,7 @@
                                         <td></td><td></td><td></td>
                                     </tr>
                                     <tr>
-                                        <td style="padding-top: 20px;padding-left: 10px;" align="left" valign="middle" colspan="3"><input type="text" id="idkey" name="idkey"/></td>
+                                        <td style="padding-top: 25px;padding-left: 10px;" align="left" valign="middle" colspan="3"><input type="text" id="idkey" name="idkey"/></td>
                                     </tr>
                                     <tr>
                                         <td width="150" valign="top" align="left" style="padding-top: 10px;padding-left: 10px;">
