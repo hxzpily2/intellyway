@@ -412,7 +412,45 @@
                 </div>
                 <div id="affaire">
                     <br style="line-height: 46px;"/>
-                    <span class="commentAnnonce" style="padding-left: 91px;">C&rsquo;est la votre...</span>
+                    <span class="commentAnnonce" style="padding-left: 91px;">C&rsquo;est la votre...</span>                    
+                    <div id="detailsAffaire" style="padding-left: 20px;padding-top: 23px;">
+                    	<div style="padding-left: 5px;padding-bottom: 3px;"><span class="libelleAnnonce">Ford Mustang 2002</span></div>                    	
+                    	<table cellpadding="0" cellspacing="0" border="0">                    		
+                    		<tr>
+                    			<td valign="middle" style="padding-top: 2px;"><img src="/car/web/images/fleche3.png"/></td><td valign="middle"><span class="titleItem" style="padding-left: 10px;">Moteur :</span>&nbsp;<span class="valueItem">DIESEL</span></td>
+                    		</tr>
+                    		<tr>
+                    			<td valign="middle" style="padding-top: 2px;"><img src="/car/web/images/fleche3.png"/></td><td valign="middle"><span class="titleItem" style="padding-left: 10px;">Annee :</span>&nbsp;<span class="valueItem">2002</span></td>
+                    		</tr>
+                    		<tr>
+                    			<td valign="top" style="padding-top: 6px;"><img src="/car/web/images/fleche3.png"/></td><td valign="top" ><span class="titleItem" style="padding-left: 10px;">Pellentesque tincidunt, diam eget accumsan posuere, est sapien rhoncus nunc,</span></td>
+                    		</tr>
+                    		<tr>
+                    			<td colspan="2" style="padding-top: 5px;">
+                    				<div class="Clear">
+                                          <input class="star {split:2}" type="radio" name="itemA" value="0.5"/>
+                                          <input class="star {split:2}" type="radio" name="itemA" value="1.0"/>
+                                          <input class="star {split:2}" type="radio" name="itemA" value="1.5"/>
+                                          <input class="star {split:2}" type="radio" name="itemA" value="2.0"/>
+                                          <input class="star {split:2}" type="radio" name="itemA" value="2.5"/>
+                                          <input class="star {split:2}" type="radio" name="itemA" value="3.0"/>
+                                          <input class="star {split:2}" type="radio" name="itemA" value="3.5" checked="checked"/>
+                                          <input class="star {split:2}" type="radio" name="itemA" value="4.0"/>
+                                          <input class="star {split:2}" type="radio" name="itemA" value="4.5"/>
+                                          <input class="star {split:2}" type="radio" name="itemA" value="5.0"/>
+                                     </div>
+                    			</td>
+                    		</tr>
+                    	</table>                    	
+                    </div>
+                    <div id="imagesAffaire">
+                    	<img class="homeAnnonce" width="80" height="70" alt="Maecenas scelerisque fermentum metus" src="/car/web/uploads/annonces/0503976711.jpg">                    	
+                    </div>
+                    <div id="littleImagesAffaire">
+                    	<img class="homeAnnonce" width="35" height="25" alt="Maecenas scelerisque fermentum metus" src="/car/web/uploads/annonces/0503976711.jpg">
+                    	<br/>
+                    	<img class="homeAnnonce" width="35" height="25" alt="Maecenas scelerisque fermentum metus" src="/car/web/uploads/annonces/0503976711.jpg">
+                    </div>
                     <div id="priceAffaire"><table cellpadding="0" cellspacing="0" border="0" height="45"><tr><td class="left" width="16">&nbsp;</td><td class="middle"><span style="color: #FFFFFF;font-weight: bold;font-family : TAHOMA;font-size : 10pt;">150 000 DH</span></td><td class="right" width="9">&nbsp;</td></tr></table></div>
                 </div>
                 <!--<div id="neuf">
