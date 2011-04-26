@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<config charset="ISO-8859-1">
+ 
+    <var-def name="repOut">C:/scraping/files/</var-def>
+    <var-def name="repImage">vampic/</var-def>
+    <var-def name="repPhone">phone/</var-def>
+    <var-def name="maxLoop">1</var-def>
+    <var-def name="startUrl">http://www.voitureaumaroc.com/auto/recents.asp</var-def>
+    
+     <file action="write" path="${repOut}vam_${sys.date()}${sys.time()}.pa" charset="UTF-8">                        
+		<template>
+	        <![CDATA[ <annonces date="${sys.datetime("dd.MM.yyyy")}"> ]]>
+	    </template>
+    
+		<while  condition="true"
+			index="i" 
+	        maxloops="${maxLoop}"
+	        empty="empty">						
+			<loop item="annonceUrl" index="j">
+				<list>
+				    <xpath expression="(//body/form[@class='compare']/table[@class='maintable']/tbody/tr[1]/td[3]/table/tbody/tr[1]/td[1]/table[@class='srlcomplinesbot']/tbody/tr[1]/td[3]/strong/a/@href)">
+				        <html-to-xml>
+			                <http url="${startUrl}" method="get">						                	
+						        <http-param name="page">${i}</http-param>
+			                </http>	
+			            </html-to-xml>
+				    </xpath>							
+	            </list>		            
+	            <body>
+	                <![CDATA[ <annonce> ]]>   
+						<xquery>							
+							<xq-param name="doc">
+		                       <xpath expression="//body/div[@id='wrap']/div[@id='contentwide']/table/tbody">
+							        <html-to-xml>
+					                    <http url="http://www.voitureaumaroc.com/${annonceUrl}"/>
+					                </html-to-xml>
+							    </xpath> 
+		                    </xq-param>		                    			            					
+							<xq-expression><![CDATA[
+		                        declare variable $doc as node() external;
+	                        
+		                        let $title := data($doc//div[@class='container']/div[@class='content-area']/div[@id='dialog-imagesslideshow']/div[@class='dialog-wrap']/div[@class='dialog-body imagesslideshow-body']/div[@id='dialog-content']/div[@id='imagesslideshow-subtitle']/div[@class='slideshow_makemodel'])
+								let $prix := data($doc//div[@class='container']/div[@class='content-area']/div[@id='dialog-imagesslideshow']/div[@class='dialog-wrap']/div[@class='dialog-body imagesslideshow-body']/div[@id='dialog-content']/div[@id='imagesslideshow-subtitle']/div[@class='slideshow_price'])
+								let $url := data($doc//@action)
+								let $adresse := data($doc//div[@class='container']/div[@class='content-area']/div[@class='detail-content']/div[@class='box-container']/div[@class='wrap']/div[@class='main']/div[@id='detailLeft']/div[@class='contact-container']/div[@class='maps-location']/table/tbody/tr/td[@class='maps-data']/div)
+								let $annee := data($doc//div[@class='container']/div[@class='content-area']/div[@class='detail-content']/div[@class='box-container']/div[@class='wrap']/div[@class='main']/div[@id='detailRight']/div[@class='articleGeneralDataContainer']/table/tbody/tr[@id='ctl00_ctl00_decoratedArea_contentArea_articleGeneralData_firstRegRow']/td[@class='c2'])
+								let $km := data($doc//div[@class='container']/div[@class='content-area']/div[@class='detail-content']/div[@class='box-container']/div[@class='wrap']/div[@class='main']/div[@id='detailRight']/div[@class='articleGeneralDataContainer']/table/tbody/tr[@id='ctl00_ctl00_ctl00_ctl00_decoratedArea_contentArea_articleGeneralData_mileageRow']/td[@class='c2'])
+								let $energie := data($doc//div[@class='container']/div[@class='content-area']/div[@class='detail-content']/div[@class='box-container']/div[@class='wrap']/div[@class='main']/div[@id='detailRight']/div[@class='articleGeneralDataContainer']/table/tbody/tr[@id='ctl00_ctl00_ctl00_ctl00_ctl00_ctl00_decoratedArea_contentArea_articleGeneralData_fuelRow']/td[@class='c2'])
+								
+								
+								let $owner := data($doc//div[@class='container']/div[@class='content-area']/div[@class='detail-content']/div[@class='box-container']/div[@class='wrap']/div[@class='main']/div[@id='detailLeft']/div[@class='contact-container']/div[@class='contact-data-separator contact-data']/p[2])
+								let $message := data($doc//div[@class='container']/div[@class='content-area']/div[@class='detail-content']/div[@class='box-container']/div[@class='wrap']/div[@class='main']/div[@id='detailRight']/div[@class='description-text'])
+								let $phone1 := data($doc//div[@class='container']/div[@class='content-area']/div[@class='detail-content']/div[@class='box-container']/div[@class='wrap']/div[@class='main']/div[@id='detailLeft']/div[@class='contact-container']/div[@class='contact-data-separator1']/div/p[1])
+								let $phone2 := data($doc//div[@class='container']/div[@class='content-area']/div[@class='detail-content']/div[@class='box-container']/div[@class='wrap']/div[@class='main']/div[@id='detailLeft']/div[@class='contact-container']/div[@class='contact-data-separator1']/div/p[2])
+		                        return
+		                           		<infos>
+			                                <title>{data($title)}</title>			                                
+			                                <price>{data($prix)}</price>	
+			                                <annee>{data($annee)}</annee>
+			                                <km>{data($km)}</km>
+			                                <energie>{data($energie)}</energie>
+			                                <url>http://www.autoscout24.fr/{data($url)}</url>		                                
+			                                <source>www.voitureaumaroc.com</source>
+			                                <adresse>{data($adresse)}</adresse>
+			                                <pays>MA</pays>
+			                                <pf>NONE</pf>
+			                                <vitesse>NONE</vitesse>		
+			                                <owner>{data($owner)}</owner>
+			                                <message>{data($message)}</message>
+			                                <phones>
+			                                	<phone>{data($phone1)}</phone>
+			                                	<phone>{data($phone2)}</phone>			                                	
+			                                </phones>
+		                                </infos>		                           
+		                    ]]></xq-expression>
+	                	</xquery>
+	                	<![CDATA[ </annonce> ]]>   	                		                   
+	            </body>
+	        </loop>					
+		</while>		
+		<![CDATA[ </annonces> ]]>    
+	</file>			
+</config>
