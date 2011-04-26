@@ -2,6 +2,8 @@
 <script type="text/javascript" src="/car/web/js/ext/spiner/Spinner.js"></script>
 <script type="text/javascript" src="/car/web/js/ext/spiner/SpinnerField.js"></script>
 
+<script type="text/javascript" src="/car/web/js/ext/twintrigger/SearchField.js"></script>
+
 <script type="text/javascript" src="/car/web/js/ext/accueil/dataset.js"></script>
 <script type="text/javascript" src="/car/web/js/ext/accueil/accueil.js"></script>
 
@@ -217,12 +219,15 @@
                                         <td></td><td></td><td></td>
                                     </tr>
                                     <tr>
-                                        <td width="150" valign="top" align="left" style="padding-top: 20px;padding-left: 10px;">
+                                        <td style="padding-top: 20px;padding-left: 10px;" align="left" valign="middle" colspan="3"><input type="text" id="idkey" name="idkey"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td width="150" valign="top" align="left" style="padding-top: 10px;padding-left: 10px;">
                                             <div>
                                                 <input type="text" id="idmarque" name="idmarque" size="20"/>
                                             </div>
                                         </td>
-                                        <td colspan="2" style="padding-top: 20px;padding-left: 5px;" align="left" valign="middle">
+                                        <td colspan="2" style="padding-top: 10px;padding-left: 5px;" align="left" valign="middle">
                                             <div id="divModele">
                                                 <input type="text" id="idmodele" name="idmodele" size="20" />
                                             </div>
