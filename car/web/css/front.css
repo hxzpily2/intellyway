@@ -1437,6 +1437,19 @@ span.commentAnnonce{
     left: -13px;
 }
 
+#imagesAffaire{
+    position: absolute;
+    top: 175px;
+    left: 210px;
+}
+
+#littleImagesAffaire{
+    position: absolute;
+    top: 180px;
+    left: 180px;
+    z-index: 1000;
+}
+
 #priceAffaire table tr td.left{
     background:url(../images/rubbon_priceL.png) no-repeat;
 }
