@@ -7,7 +7,64 @@
 Ext.onReady(function(){
     Ext.QuickTips.init();
 
+    var triggerField = new Ext.form.TriggerField({
+    	'fieldLabel': 'Search',
+    	'triggerClass': 'x-form-search-trigger',
+    	 applyTo: 'idkey',
+    	 enableKeyEvents :true,
+    	'onTriggerClick': function() {
+    		if(isEmpty == false){
+    			this.setValue('');
+    			triggerField.trigger.removeClass('x-form-clear-trigger');
+        		triggerField.trigger.addClass('x-form-search-trigger');
+    		}
+    		
+    	},
+    	width:290,
+    	emptyText:'Rechercher...'
+    });
+    var isEmpty = true;
+    triggerField.on('keyup', function(){
+    	if(triggerField.getValue()!=""){
+    		triggerField.trigger.removeClass('x-form-search-trigger');
+    		triggerField.trigger.addClass('x-form-clear-trigger');
+    		isEmpty = false;
+    	}else{
+    		triggerField.trigger.removeClass('x-form-clear-trigger');
+    		triggerField.trigger.addClass('x-form-search-trigger');
+    		isEmpty = true;
+    	}
+    });
+    
+    /*var ds = new Ext.data.Store({
+        proxy: new Ext.data.ScriptTagProxy({
+            url: 'http://extjs.com/forum/topics-remote.php'
+        }),
+        reader: new Ext.data.JsonReader({
+            root: 'topics',
+            totalProperty: 'totalCount',
+            id: 'post_id'
+        }, [
+            {name: 'postId', mapping: 'post_id'},
+            {name: 'title', mapping: 'topic_title'},
+            {name: 'topicId', mapping: 'topic_id'},
+            {name: 'author', mapping: 'author'},
+            {name: 'lastPost', mapping: 'post_time', type: 'date', dateFormat: 'timestamp'},
+            {name: 'excerpt', mapping: 'post_text'}
+        ]),
 
+        baseParams: {limit:20, forumId: 4}
+    });
+    
+    var triggerField = new Ext.ux.form.SearchField({
+    	'fieldLabel': 'Search',
+    	'triggerClass': 'x-form-search-trigger',
+    	applyTo: 'idkey',    	
+    	width:290,
+    	emptyText:'Rechercher...',
+    	store: ds
+    });*/
+    
     var dsModele = new Ext.data.JsonStore({
             autoLoad: true,
             url: '/car/web/auto.php/json/modelejson?active=true',
