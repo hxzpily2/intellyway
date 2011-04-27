@@ -28,7 +28,7 @@
 				    </xpath>							
 	            </list>		            
 	            <body>
-	            	<template><![CDATA[ <url>http://www.voitureaumaroc.com${org.apache.commons.httpclient.util.URIUtil.encodeQuery(annonceUrl.toString())}</url> ]]></template>
+	            	<![CDATA[ <annonce> ]]>  
 	            	<xquery>							
 							<xq-param name="doc">
 		                       <xpath expression="//body">
@@ -40,11 +40,19 @@
 							<xq-expression><![CDATA[
 		                        declare variable $doc as node() external;
 	                        
-		                        let $title := data($doc//table[2]/tbody/tr[1]/td[2]/table[1]/tbody/tr[1]/td[2])
+		                        let $title := data($doc//table[2]/tbody/tr[1]/td[2]/table[1]/tbody/tr[1]/td[2]/table[1]/tbody/tr[1]/td[1]/table[2]/tbody/tr[1]/td[1]/h3)
+								let $message := data($doc//table[2]/tbody/tr[1]/td[2]/table[1]/tbody/tr[1]/td[2]/table[1]/tbody/tr[1]/td[1]/table[2]/tbody/tr[16]/td[1])
 								
-								return <infos>{data($title)}</infos>		                           
+								return 
+									<infos>
+										<title>{data($title)}</title>
+										<message>{data($message)}</message>
+										<pays>MA</pays>			                                                               
+		                                <pf>NONE</pf>
+									</infos>		                           
 		                    ]]></xq-expression>
-                	</xquery>               		                                   		                   
+                	</xquery>
+                	<![CDATA[ </annonce> ]]>               		                                   		                   
 	            </body>
 	        </loop>					
 		</while>		
