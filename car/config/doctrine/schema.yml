@@ -2076,4 +2076,41 @@ CarAdresseLoc:
       local: idloc
       foreign: idloc
       type: one
+      onDelete: CASCADE   
+CarAccessoireExt:
+  actAs: [Timestampable]
+  connection: doctrine
+  tableName: car_accessoire_ext
+  columns:
+    idacc:
+      type: integer(10)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: true
+    idauto:
+      type: integer(10)
+      fixed: false
+      unsigned: false
+      primary: false
+      autoincrement: false
+    title:
+      type: string()
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false      
+    active:
+      type: integer(1)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+  relations:
+    CarAuto:
+      local: idauto
+      foreign: idauto
+      type: one
       onDelete: CASCADE            
