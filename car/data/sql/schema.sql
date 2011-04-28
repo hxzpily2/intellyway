@@ -1,4 +1,5 @@
 CREATE TABLE car_accessoire (idacc BIGINT AUTO_INCREMENT, idtypeacc BIGINT, title TEXT NOT NULL, description TEXT NOT NULL, active TINYINT NOT NULL, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, INDEX idtypeacc_idx (idtypeacc), PRIMARY KEY(idacc)) ENGINE = INNODB;
+CREATE TABLE car_accessoire_ext (idacc BIGINT AUTO_INCREMENT, idauto BIGINT, title TEXT NOT NULL, active TINYINT NOT NULL, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, INDEX idauto_idx (idauto), PRIMARY KEY(idacc)) ENGINE = INNODB;
 CREATE TABLE car_accessoires (id BIGINT AUTO_INCREMENT, idacc BIGINT, idauto BIGINT, active TINYINT NOT NULL, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, INDEX idauto_idx (idauto), INDEX idacc_idx (idacc), PRIMARY KEY(id)) ENGINE = INNODB;
 CREATE TABLE car_adress_gar (idadressegar BIGINT AUTO_INCREMENT, idgar BIGINT, idville BIGINT, adresse TEXT NOT NULL, tel1 TEXT NOT NULL, tel2 TEXT NOT NULL, fax TEXT NOT NULL, active TINYINT NOT NULL, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, INDEX idville_idx (idville), INDEX idgar_idx (idgar), PRIMARY KEY(idadressegar)) ENGINE = INNODB;
 CREATE TABLE car_adress_loc (idadresseloc BIGINT AUTO_INCREMENT, idloc BIGINT, idville BIGINT, adresse TEXT NOT NULL, tel1 TEXT NOT NULL, tel2 TEXT NOT NULL, fax TEXT NOT NULL, active TINYINT NOT NULL, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, INDEX idville_idx (idville), INDEX idloc_idx (idloc), PRIMARY KEY(idadresseloc)) ENGINE = INNODB;
@@ -67,6 +68,7 @@ CREATE TABLE sf_guard_user (id BIGINT AUTO_INCREMENT, first_name VARCHAR(255), l
 CREATE TABLE sf_guard_user_group (user_id BIGINT, group_id BIGINT, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, PRIMARY KEY(user_id, group_id)) ENGINE = INNODB;
 CREATE TABLE sf_guard_user_permission (user_id BIGINT, permission_id BIGINT, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, PRIMARY KEY(user_id, permission_id)) ENGINE = INNODB;
 ALTER TABLE car_accessoire ADD CONSTRAINT car_accessoire_idtypeacc_car_type_accessoire_idtypeacc FOREIGN KEY (idtypeacc) REFERENCES car_type_accessoire(idtypeacc);
+ALTER TABLE car_accessoire_ext ADD CONSTRAINT car_accessoire_ext_idauto_car_auto_idauto FOREIGN KEY (idauto) REFERENCES car_auto(idauto) ON DELETE CASCADE;
 ALTER TABLE car_accessoires ADD CONSTRAINT car_accessoires_idauto_car_auto_idauto FOREIGN KEY (idauto) REFERENCES car_auto(idauto) ON DELETE CASCADE;
 ALTER TABLE car_accessoires ADD CONSTRAINT car_accessoires_idacc_car_accessoire_idacc FOREIGN KEY (idacc) REFERENCES car_accessoire(idacc) ON DELETE CASCADE;
 ALTER TABLE car_adress_gar ADD CONSTRAINT car_adress_gar_idville_car_ville_idville FOREIGN KEY (idville) REFERENCES car_ville(idville);
