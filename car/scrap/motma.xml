@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<config charset="ISO-8859-1">
+ 
+    <var-def name="repOut">C:/scraping/files/</var-def>
+    <var-def name="repImage">motmapic/</var-def>
+    <var-def name="repPhone">phone/</var-def>
+    <var-def name="maxLoop">1</var-def>
+    <var-def name="startUrl">http://www.moteur.ma/?moteur=achat-voiture-occasion</var-def>
+    
+     <file action="write" path="${repOut}motma_${sys.date()}${sys.time()}.pa" charset="UTF-8">                        
+		<template>
+	        <![CDATA[ <annonces date="${sys.datetime("dd.MM.yyyy")}"> ]]>
+	    </template>
+    
+		<while  condition="true"
+			index="i" 
+	        maxloops="${maxLoop}"
+	        empty="empty">						
+			<loop item="annonceUrl" index="j">
+				<list>
+				    <xpath expression="(//table[@id='bloc_occasion']/tbody/tr[1]/td[2]/a/@href)">
+				        <html-to-xml>
+			                <http url="${startUrl}" method="get">						                	
+						        <http-param name="page">${i}</http-param>						        
+			                </http>	
+			            </html-to-xml>
+				    </xpath>							
+	            </list>		            
+	            <body>
+	            	<![CDATA[ <annonce> ]]>  	            		
+	            	<xquery>							
+							<xq-param name="doc">
+		                       <xpath expression="//body">
+		                       		<var-def name="htmlContentAnnonce">
+								        <html-to-xml>
+						                    <http url="http://www.moteur.ma${org.apache.commons.httpclient.util.URIUtil.encodeQuery(annonceUrl.toString())}"/>
+						                </html-to-xml>
+					                </var-def>
+							    </xpath> 
+		                    </xq-param>	
+		                    <xq-param name="url" type="string"><template>http://www.moteur.ma${org.apache.commons.httpclient.util.URIUtil.encodeQuery(annonceUrl.toString())}</template></xq-param>	                    			            					
+							<xq-expression><![CDATA[
+		                        declare variable $doc as node() external;
+	                        	declare variable $url as xs:string external;
+	                        	
+		                        let $title := data($doc//table[2]/tbody/tr[1]/td[2]/table[1]/tbody/tr[1]/td[2]/table[1]/tbody/tr[1]/td[1]/table[2]/tbody/tr[1]/td[1]/h3)
+								let $message := data($doc//table[2]/tbody/tr[1]/td[2]/table[1]/tbody/tr[1]/td[2]/table[1]/tbody/tr[1]/td[1]/table[2]/tbody/tr[16]/td[1])
+								let $phone := data($doc//table[2]/tbody/tr[1]/td[2]/table[1]/tbody/tr[1]/td[2]/table[1]/tbody/tr[1]/td[1]/table[2]/tbody/tr[14]/td[1]/strong)
+								let $vitesse := data($doc//table[2]/tbody/tr[1]/td[2]/table[1]/tbody/tr[1]/td[2]/table[1]/tbody/tr[1]/td[1]/table[2]/tbody/tr[3]/td[2])
+								
+								
+								return 
+									<infos>
+										<phones>
+		                                	<phone>{data($phone)}</phone>				                                
+		                                </phones>
+										<title>{data($title)}</title>
+										<adresse></adresse>				                                				                                				                                				                                
+		                                <vitesse>{data($vitesse)}</vitesse>	
+										<message>{data($message)}</message>
+										<source>www.voitureaumaroc.com</source>
+		                                <url>{data($url)}</url>
+		                                <owner></owner>
+										<pays>MA</pays>			                                                               
+		                                <pf>NONE</pf>
+									</infos>		                           
+		                    ]]></xq-expression>
+                	</xquery>
+	            	<![CDATA[ <annonce> ]]>  	            		                	
+	            </body>
+	        </loop>					
+		</while>		
+		<![CDATA[ </annonces> ]]>    
+	</file>			
+</config>
