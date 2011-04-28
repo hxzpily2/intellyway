@@ -77,6 +77,7 @@ Doctrine_Manager::getInstance()->bindComponent('CarAuto', 'doctrine');
  * @property Doctrine_Collection $CarAutoPrestations
  * @property Doctrine_Collection $CarPromotion
  * @property Doctrine_Collection $CarEvaluation
+ * @property Doctrine_Collection $CarAccessoireExt
  * 
  * @method integer             getIdauto()                Returns the current record's "idauto" value
  * @method integer             getIdville()               Returns the current record's "idville" value
@@ -148,6 +149,7 @@ Doctrine_Manager::getInstance()->bindComponent('CarAuto', 'doctrine');
  * @method Doctrine_Collection getCarAutoPrestations()    Returns the current record's "CarAutoPrestations" collection
  * @method Doctrine_Collection getCarPromotion()          Returns the current record's "CarPromotion" collection
  * @method Doctrine_Collection getCarEvaluation()         Returns the current record's "CarEvaluation" collection
+ * @method Doctrine_Collection getCarAccessoireExt()      Returns the current record's "CarAccessoireExt" collection
  * @method CarAuto             setIdauto()                Sets the current record's "idauto" value
  * @method CarAuto             setIdville()               Sets the current record's "idville" value
  * @method CarAuto             setIduser()                Sets the current record's "iduser" value
@@ -218,6 +220,7 @@ Doctrine_Manager::getInstance()->bindComponent('CarAuto', 'doctrine');
  * @method CarAuto             setCarAutoPrestations()    Sets the current record's "CarAutoPrestations" collection
  * @method CarAuto             setCarPromotion()          Sets the current record's "CarPromotion" collection
  * @method CarAuto             setCarEvaluation()         Sets the current record's "CarEvaluation" collection
+ * @method CarAuto             setCarAccessoireExt()      Sets the current record's "CarAccessoireExt" collection
  * 
  * @package    car
  * @subpackage model
@@ -719,6 +722,10 @@ abstract class BaseCarAuto extends sfDoctrineRecord
              'foreign' => 'idauto'));
 
         $this->hasMany('CarEvaluation', array(
+             'local' => 'idauto',
+             'foreign' => 'idauto'));
+
+        $this->hasMany('CarAccessoireExt', array(
              'local' => 'idauto',
              'foreign' => 'idauto'));
 
