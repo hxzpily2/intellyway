@@ -46,9 +46,11 @@
 						<xquery>							
 							<xq-param name="doc">
 		                       <xpath expression="//form[@name='aspnetForm']">
-							        <html-to-xml>
-					                    <http url="${annonceUrl}"/>
-					                </html-to-xml>
+		                       		<var-def name="htmlContentAnnonce">
+								        <html-to-xml>
+					                        <http url="${annonceUrl}"/>
+					                    </html-to-xml>
+					                </var-def>
 							    </xpath> 
 		                    </xq-param>		                    			            					
 							<xq-expression><![CDATA[
@@ -92,9 +94,7 @@
 	                	<xquery>							
 							<xq-param name="doc">
 		                       <xpath expression="//form[@name='aspnetForm']">
-							        <html-to-xml>
-					                    <http url="${annonceUrl}"/>
-					                </html-to-xml>
+							        <var name="htmlContentAnnonce"/>
 							    </xpath> 
 		                    </xq-param>		                    			            					
 							<xq-expression><![CDATA[
@@ -121,9 +121,7 @@
 		                			<xpath expression="(//images/image/@href)">
 											<asimage-to-xml>						
 											    <xpath expression="(//form[@name='aspnetForm']/div[@class='container']/div[@class='content-area']/script[@language='javascript'])[1]">
-											        <html-to-xml>
-									                    <http url="${annonceUrl}"/>
-									                </html-to-xml>
+											        <var name="htmlContentAnnonce"/>
 											    </xpath>
 											</asimage-to-xml>    
 									 </xpath>	
@@ -142,9 +140,7 @@
 	                	<loop item="acc" index="k">
 		                	<list>										
 							    <xpath expression="(//form[@name='aspnetForm']/div[@class='container']/div[@class='content-area']/div[@class='detail-content']/div[@class='box-container']/div[@class='wrap']/div[@class='main']/div[@id='detailRight']/div[@class='equipments']/div[@class='equipment-list']/div[@class='equipment-left']/ul/li)">
-							        <html-to-xml>
-					                    <http url="${annonceUrl}"/>
-					                </html-to-xml>
+							        <var name="htmlContentAnnonce"/>
 							    </xpath>
 		                	</list>
 		                	<body>	                		
@@ -154,9 +150,7 @@
 	                	<loop item="acc" index="k">
 		                	<list>										
 							    <xpath expression="(//form[@name='aspnetForm']/div[@class='container']/div[@class='content-area']/div[@class='detail-content']/div[@class='box-container']/div[@class='wrap']/div[@class='main']/div[@id='detailRight']/div[@class='equipments']/div[@class='equipment-list']/div[@class='equipment-right']/ul/li)">
-							        <html-to-xml>
-					                    <http url="${annonceUrl}"/>
-					                </html-to-xml>
+							        <var name="htmlContentAnnonce"/>
 							    </xpath>
 		                	</list>
 		                	<body>	                		
