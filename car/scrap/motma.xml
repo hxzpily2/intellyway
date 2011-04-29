@@ -17,7 +17,7 @@
 			index="i" 
 	        maxloops="${maxLoop}"
 	        empty="empty">						
-			<loop item="annonceUrl" index="j">
+			<loop item="annonceUrl" index="j">			
 				<list>
 				    <xpath expression="(//table[@id='bloc_occasion']/tbody/tr[1]/td[2]/a/@href)">
 				        <html-to-xml>
@@ -25,29 +25,74 @@
 						        <http-param name="page">${i}</http-param>						        
 			                </http>	
 			            </html-to-xml>
-				    </xpath>							
-	            </list>		            
+				    </xpath>
+	            </list>		            	            
 	            <body>
-	            	<![CDATA[ <annonce> ]]>  	            		
-	            	<xquery>							
-							<xq-param name="doc">
-		                       <xpath expression="//body">
-		                       		<var-def name="htmlContentAnnonce">
+	            	<![CDATA[ <annonce> ]]>	            	
+		            <empty>
+	            		<loop item="messageContent" index="mmC">
+							<list>
+				            	<xpath expression="//font[@color='#333333'][@size='2']">
+			                   		<var-def name="htmlContentAnnonce">
 								        <html-to-xml>
 						                    <http url="http://www.moteur.ma${org.apache.commons.httpclient.util.URIUtil.encodeQuery(annonceUrl.toString())}"/>
 						                </html-to-xml>
 					                </var-def>
+							    </xpath>
+							</list>
+						    <body>
+						    	<empty>
+	                				<var-def name="condEqual">
+	                					<template><![CDATA[ ${mmC.toString().equals("2")} ]]></template>
+	                				</var-def>
+	                			</empty>
+						    	<case>						    		
+						    		<if condition="${condEqual}">
+						    			<var-def name="message"><template>${messageContent}</template></var-def>
+						    		</if>
+						    	</case>
+						    </body>								
+						</loop>
+	           		</empty>	
+	           		<empty>
+	            		<loop item="vitesseContent" index="vitesseC">
+							<list>
+				            	<xpath expression="//font[@color='#333333'][@size='2']">
+			                   		<var name="htmlContentAnnonce"/>
+							    </xpath>
+							</list>
+						    <body>
+						    	<empty>
+	                				<var-def name="condEqual">
+	                					<template><![CDATA[ ${vitesseC.toString().equals("2")} ]]></template>
+	                				</var-def>
+	                			</empty>
+						    	<case>						    		
+						    		<if condition="${condEqual}">
+						    			<var-def name="vitesse"><template>${vitesseContent}</template></var-def>
+						    		</if>
+						    	</case>
+						    </body>								
+						</loop>
+	           		</empty>			    
+	            	<xquery>							
+							<xq-param name="doc">								
+		                       <xpath expression="//body">
+		                       		<var name="htmlContentAnnonce"/>		
 							    </xpath> 
 		                    </xq-param>	
 		                    <xq-param name="url" type="string"><template>http://www.moteur.ma${org.apache.commons.httpclient.util.URIUtil.encodeQuery(annonceUrl.toString())}</template></xq-param>	                    			            					
+		                    <xq-param name="message" type="string"><template>${message}</template></xq-param>	                    			            					
+		                    <xq-param name="vitesse" type="string"><template>${vitesse}</template></xq-param>	                    			            					
 							<xq-expression><![CDATA[
 		                        declare variable $doc as node() external;
 	                        	declare variable $url as xs:string external;
+	                        	declare variable $message as xs:string external;
+	                        	declare variable $vitesse as xs:string external;
 	                        	
-		                        let $title := data($doc//table[2]/tbody/tr[1]/td[2]/table[1]/tbody/tr[1]/td[2]/table[1]/tbody/tr[1]/td[1]/table[2]/tbody/tr[1]/td[1]/h3)
-								let $message := data($doc//table[2]/tbody/tr[1]/td[2]/table[1]/tbody/tr[1]/td[2]/table[1]/tbody/tr[1]/td[1]/table[2]/tbody/tr[16]/td[1])
-								let $phone := data($doc//table[2]/tbody/tr[1]/td[2]/table[1]/tbody/tr[1]/td[2]/table[1]/tbody/tr[1]/td[1]/table[2]/tbody/tr[14]/td[1]/strong)
-								let $vitesse := data($doc//table[2]/tbody/tr[1]/td[2]/table[1]/tbody/tr[1]/td[2]/table[1]/tbody/tr[1]/td[1]/table[2]/tbody/tr[3]/td[2])
+		                        let $title := data($doc//table[@id='tableau_bloc_bleu']/tbody/tr[1]/td[3]/div/strong/font)								
+								let $phone := data($doc//font[@color='#FF6600'][@size='4'])
+								
 								
 								
 								return 
@@ -59,7 +104,7 @@
 										<adresse></adresse>				                                				                                				                                				                                
 		                                <vitesse>{data($vitesse)}</vitesse>	
 										<message>{data($message)}</message>
-										<source>www.voitureaumaroc.com</source>
+										<source>www.moteur.ma</source>
 		                                <url>{data($url)}</url>
 		                                <owner></owner>
 										<pays>MA</pays>			                                                               
