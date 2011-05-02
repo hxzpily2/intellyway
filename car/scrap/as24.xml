@@ -103,8 +103,8 @@
 
 								let $prix := data($doc//div[@class='container']/div[@class='content-area']/div[@id='dialog-imagesslideshow']/div[@class='dialog-wrap']/div[@class='dialog-body imagesslideshow-body']/div[@id='dialog-content']/div[@id='imagesslideshow-subtitle']/div[@class='slideshow_price'])
 								let $annee := data($doc//div[@class='container']/div[@class='content-area']/div[@class='detail-content']/div[@class='box-container']/div[@class='wrap']/div[@class='main']/div[@id='detailRight']/div[@class='articleGeneralDataContainer']/table/tbody/tr[@id='ctl00_ctl00_decoratedArea_contentArea_articleGeneralData_firstRegRow']/td[@class='c2'])
-								let $km := data($doc//div[@class='container']/div[@class='content-area']/div[@class='detail-content']/div[@class='box-container']/div[@class='wrap']/div[@class='main']/div[@id='detailRight']/div[@class='articleGeneralDataContainer']/table/tbody/tr[@id='ctl00_ctl00_ctl00_ctl00_decoratedArea_contentArea_articleGeneralData_mileageRow']/td[@class='c2'])
-								let $energie := data($doc//div[@class='container']/div[@class='content-area']/div[@class='detail-content']/div[@class='box-container']/div[@class='wrap']/div[@class='main']/div[@id='detailRight']/div[@class='articleGeneralDataContainer']/table/tbody/tr[@id='ctl00_ctl00_ctl00_ctl00_ctl00_ctl00_decoratedArea_contentArea_articleGeneralData_fuelRow']/td[@class='c2'])
+								let $km := data($doc//div[@class='container']/div[@class='content-area']/div[@class='detail-content']/div[@class='box-container']/div[@class='wrap']/div[@class='main']/div[@id='detailRight']/div[@class='articleGeneralDataContainer']/table/tbody/tr[@id='ctl00_ctl00_decoratedArea_contentArea_articleGeneralData_mileageRow']/td[@class='c2'])
+								let $energie := data($doc//tr[@id='ctl00_ctl00_decoratedArea_contentArea_articleGeneralData_fuelRow']/td[@class='c2']/div[@class='c2-sub'])
 
 		                        return
 		                           		<details>			                                
