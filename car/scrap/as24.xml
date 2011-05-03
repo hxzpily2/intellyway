@@ -69,6 +69,7 @@
 								let $message := data($doc//div[@class='container']/div[@class='content-area']/div[@class='detail-content']/div[@class='box-container']/div[@class='wrap']/div[@class='main']/div[@id='detailRight']/div[@class='description-text'])
 								let $phone1 := data($doc//div[@class='container']/div[@class='content-area']/div[@class='detail-content']/div[@class='box-container']/div[@class='wrap']/div[@class='main']/div[@id='detailLeft']/div[@class='contact-container']/div[@class='contact-data-separator1']/div/p[1])
 								let $phone2 := data($doc//div[@class='container']/div[@class='content-area']/div[@class='detail-content']/div[@class='box-container']/div[@class='wrap']/div[@class='main']/div[@id='detailLeft']/div[@class='contact-container']/div[@class='contact-data-separator1']/div/p[2])
+								let $vitesse := data($doc//tr[@id='ctl00_ctl00_decoratedArea_contentArea_articleMoreDetailsData_gearingTypeRow']/td[@class='c2']/span)
 		                        return
 		                           		<infos>
 			                                <title>{data($title)}</title>			                                
@@ -81,7 +82,7 @@
 			                                <adresse>{data($adresse)}</adresse>
 			                                <pays>FR</pays>
 			                                <pf>NONE</pf>
-			                                <vitesse>NONE</vitesse>		
+			                                <vitesse>{data($vitesse)}</vitesse>		
 			                                <owner>{data($owner)}</owner>
 			                                <message>{data($message)}</message>
 			                                <phones>
