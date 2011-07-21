@@ -6,6 +6,7 @@
 	$html->css('ui.timepickr', null, null, false);
 	$html->css('colorbox', null, null, false);
 	$html->css('style', null, null, false);
+	$html->css('menu', null, null, false);
 	if (isset($javascript)):
 		$javascript->codeBlock('var cfg = ' . $javascript->object($js_vars_for_layout) , array('inline' => false));
 		$javascript->link('libs/jquery', false);
