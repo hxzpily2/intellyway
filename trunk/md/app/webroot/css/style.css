@@ -121,12 +121,12 @@ ul.global-links-r li {
 	padding:3px 10px 0px 5px;
 }
 ul.global-links-r li a {
-	color:#2E547C;
+	color:#e96494;
 	font-size:11px;
 	font-weight:bold;
 }
 ul.global-links li a:hover,ul.global-links-r li a:hover {
-	color:#4798dc;
+	color:#b45490;
 }
 ul.global-links-r li.down-arrow a {
 	background:url("../img/top-arrow.png") no-repeat scroll right 6px transparent;
