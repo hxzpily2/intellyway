@@ -277,7 +277,7 @@ ul.menu-link li.active a,ul.menu-link li:hover a {
 	overflow:auto;
 }
 div.top-slider1 {
-	background:#00B5C8;
+	background:#56a7b2;
 	border-bottom:4px solid #A0CA4E;
 	font-family:arial;
 	font-size:13px;
@@ -339,7 +339,7 @@ ol.cities-list li span.callout {
 	background:transparent url(../img/icon-call-out.png) no-repeat scroll left top;
 }
 ol.cities-list li.active,ol.cities-list li:hover {
-	background:#A4C85F;
+	background:#e96494;
 }
 ol.cities-list li.active a,ol.cities-list li:hover a {
 	color:#fff;
