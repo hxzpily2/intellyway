@@ -1,0 +1,45 @@
+div.menu-top-bg {
+	line-height:12px;
+	margin:0 auto;
+	width:920px;		
+	background:url(../img/menu_top_bg.jpg) no-repeat left top;
+}
+
+div.menu-content-bg {
+	line-height:122px;
+	margin:0 auto;
+	width:920px;	
+	background:url(../img/menu_content_bg.jpg);
+	background-repeat: repeat-x;
+}
+
+div.menu-right-bg {
+	line-height:122px;
+	width:123px;	
+	background:url(../img/menu_right_bg.jpg) no-repeat left top;	
+}
+
+div.menu-left-bg {
+	line-height:122px;
+	margin:0 auto;
+	width:123px;	
+	background:url(../img/menu_left_bg.jpg) no-repeat right top;		
+}
+
+div.menu-content {
+	line-height:auto;
+	margin:0 auto;
+	width:1166px;		
+	padding:0px;
+	text-align:center;
+}
+
+div.menu-bottom-bg {
+	line-height:43px;
+	margin:0 auto;
+	width:920px;	
+	background:url(../img/menu_bottom_bg.jpg);
+	background-repeat: repeat-x;	
+}
+
+
