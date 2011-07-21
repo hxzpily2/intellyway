@@ -88,7 +88,38 @@
 		endif;
 	?>
 	</div>
-
+	<!-- MENU -->
+	<div class="menu-content">
+		<div class="global-block">
+          <ul class="global-links-r">
+               <li class="down-arrow"><?php echo $html->link(__l('Visit More Cities'), '#', array('title' => __l('Visit More Cities'), 'class' => "js-toggle-show {'container':'js-morecities1'}")); ?></li>
+				<?php if($html->isAllowed($auth->user('user_type_id')) && $this->params['controller'] != 'subscriptions'): ?>
+                    <li class="down-arrow"><?php echo $html->link(sprintf(__l('Get Daily').' %s'.' '.__l('Alerts'), Configure::read('site.name')), '#', array('title' => sprintf(__l('get daily').' %s'.__l('Alerts'), Configure::read('site.name')), 'class' => "js-toggle-show {'container':'js-show-subscription'}")); ?></li>
+                <?php endif; ?>
+          	  <?php //if($html->isAllowed($auth->user('user_type_id')) && Configure::read('user.is_referral_system_enabled')): ?>
+                      <li><?php echo $html->link(__l('Refer Friends, Get').' '.$html->siteCurrencyFormat($html->cCurrency(Configure::read('user.referral_amount'), false)), array('controller' => 'pages', 'action' => 'refer_a_friend'), array('title' => __l('Refer Friends and Get').' '. $html->siteCurrencyFormat($html->cCurrency(Configure::read('user.referral_amount')))));?></li>
+              <?php //endif; ?>
+                <li><?php echo $html->link(__l('Contact Us'), array('controller' => 'contacts', 'action' => 'add', 'admin' => false), array('title' => __l('Contact us')));?></li>
+          </ul>
+        </div>
+		<table width="1166" height="100%" cellpadding="0" cellspacing="0" border="0">
+			<tr style="line-height:12px;">
+				<td width="123">&nbsp;</td>
+				<td width="920"><div class="menu-top-bg">&nbsp;</div></td>
+				<td width="123">&nbsp;</td>
+			</tr>
+			<tr>
+				<td width="123" align="right"><div class="menu-left-bg">&nbsp;</div></td>
+				<td width="920"><div class="menu-content-bg">&nbsp;</div></td>
+				<td width="123"><div class="menu-right-bg">&nbsp;</div></td>
+			</tr>
+			<tr>
+				<td width="123"></td>
+				<td width="920"><div class="menu-bottom-bg">&nbsp;</div></td>
+				<td width="123"></td>
+			</tr>
+		</table>
+	</div>
 	<div id="<?php echo $html->getUniquePageId();?>" class="content">
    <div id="header">
     <div id="header-content">
@@ -109,18 +140,7 @@
      <?php endif; ?>
         <div class="header-r">
           <div class="clearfix">
-            <div class="global-block">
-              <ul class="global-links-r">
-                   <li class="down-arrow"><?php echo $html->link(__l('Visit More Cities'), '#', array('title' => __l('Visit More Cities'), 'class' => "js-toggle-show {'container':'js-morecities1'}")); ?></li>
-					<?php if($html->isAllowed($auth->user('user_type_id')) && $this->params['controller'] != 'subscriptions'): ?>
-                        <li class="down-arrow"><?php echo $html->link(sprintf(__l('Get Daily').' %s'.' '.__l('Alerts'), Configure::read('site.name')), '#', array('title' => sprintf(__l('get daily').' %s'.__l('Alerts'), Configure::read('site.name')), 'class' => "js-toggle-show {'container':'js-show-subscription'}")); ?></li>
-                    <?php endif; ?>
-              	  <?php //if($html->isAllowed($auth->user('user_type_id')) && Configure::read('user.is_referral_system_enabled')): ?>
-                          <li><?php echo $html->link(__l('Refer Friends, Get').' '.$html->siteCurrencyFormat($html->cCurrency(Configure::read('user.referral_amount'), false)), array('controller' => 'pages', 'action' => 'refer_a_friend'), array('title' => __l('Refer Friends and Get').' '. $html->siteCurrencyFormat($html->cCurrency(Configure::read('user.referral_amount')))));?></li>
-                  <?php //endif; ?>
-                    <li><?php echo $html->link(__l('Contact Us'), array('controller' => 'contacts', 'action' => 'add', 'admin' => false), array('title' => __l('Contact us')));?></li>
-              </ul>
-            </div>
+            
           </div>
           <div class="city-block clearfix">
            	<?php if($html->isAllowed($auth->user('user_type_id')) && $this->params['controller'] != 'subscriptions'): ?>
