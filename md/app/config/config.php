@@ -16,7 +16,7 @@ $config['site']['_hashSecuredActions'] = array(
     'my_account',
     'view_gift_card'
 );
-$config['site']['domain'] = 'grouponpro';
+$config['site']['domain'] = 'MissDeal';
 $config['photo']['file'] = array(
     'allowedMime' => array(
         'image/jpeg',

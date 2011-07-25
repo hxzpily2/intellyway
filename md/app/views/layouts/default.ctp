@@ -108,20 +108,209 @@
 				<td width="920"><div class="menu-top-bg">&nbsp;</div></td>
 				<td width="123">&nbsp;</td>
 			</tr>
-			<tr>
+			<tr style="line-height:122px;">
 				<td width="123" align="right"><div class="menu-left-bg">&nbsp;</div></td>
-				<td width="920"><div class="menu-content-bg">&nbsp;</div></td>
+				<td width="920">
+					<div class="menu-content-bg">						
+						<div class="menu-content-logo">
+							<div id="logo"></div>
+						</div>
+						<div class="menu-content-ul">
+							<ul id="navlist">
+										<li>&nbsp;</li>
+								<?php if($html->isAllowed($auth->user('user_type_id'))): ?>
+										<?php
+											if($this->params['controller'] == 'deals' && $this->params['action'] == 'index' && !isset($this->params['named']['type']) && !isset($this->params['named']['company'])) {
+										?>
+										<li><?php echo $html->image('deal_du_jour_actif_'.Configure::read('lang_code').'.png',array('title' => __l('Today\'s Deals')));?></li>						                
+						                <?php
+						                }else{
+						                ?>
+						                <li><?php echo $html->link($html->image('deal_du_jour_'.Configure::read('lang_code').'.png',array('title' => __l('Today\'s Deals'))), array('controller' => 'deals', 'action' => 'index', 'admin' => false), array('escape' => false,'class'=>''));?></li>
+						                <?php
+						                }
+						                ?>
+						                <li><?php echo $html->image('menu_sep.png'); ?></li>
+						                <?php
+						                if($this->params['controller'] == 'deals' && (isset($this->params['named']['type']) && $this->params['named']['type'] == 'recent')) {
+						                ?>
+						                <li><?php echo $html->image('deals_recent_actif_'.Configure::read('lang_code').'.png',array('title' => __l('Recent Deals')));?></li>
+						                <?php
+						                }else{
+						                ?>
+						                <li><?php echo $html->link($html->image('deals_recent_'.Configure::read('lang_code').'.png',array('title' => __l('Recent Deals'))), array('controller' => 'deals', 'action' => 'index', 'admin' => false, 'type' => 'recent'), array('escape' => false,'class'=>''));?></li>
+						                <?php
+						                }
+						                ?>
+						                <li><?php echo $html->image('menu_sep.png'); ?></li>						                
+						               <?php endif; ?>
+										<!--<li <?php if($this->params['controller'] == 'topics' or $this->params['controller'] == 'topic_discussions' ) { echo 'class="active"'; } else { echo 'class=""';}?>><?php echo $html->link(__l('Discussion'), array('controller' => 'topics', 'action' => 'index', 'admin' => false), array('title' => __l('Discussion')));?></li>-->
+										<?php
+										if($this->params['controller'] == 'pages' && $this->params['action'] == 'view'  && $this->params['pass'][0] == 'learn') {
+										?>
+										<li><?php echo $html->image('comment_ca_marche_actif_'.Configure::read('lang_code').'.png',array('title' => __l('How')." ".'%s'." ".__l(' Works')));?></li>
+										<?php
+										}else{
+										?>
+										<li><?php echo $html->link($html->image('comment_ca_marche_'.Configure::read('lang_code').'.png',array('title' => __l('How')." ".'%s'." " .__l('Works'))), array('controller' => 'pages', 'action' => 'view', 'learn', 'admin' => false), array('escape' => false,'class'=>''));?></li>
+										<?php
+										}
+										?>
+										<li><?php echo $html->image('menu_sep.png'); ?></li>
+						
+										<?php if(!$auth->sessionValid()):
+										$url = strstr($this->params['url']['url'],"/company/user/register");?>
+											<?php
+											if((!empty($url)) || ($this->params['controller'] == 'pages' && $this->params['action'] == 'view' &&  $this->params['pass'][0] == 'company')) {
+											?>
+											<li><?php echo $html->image('affaires_actif_'.Configure::read('lang_code').'.png',array('title' => __l('Business')));?></li>
+											<?php
+											}else{
+											?>
+											<li><?php echo $html->link($html->image('affaires_'.Configure::read('lang_code').'.png',array('title' => __l('Business'))), array('controller' => 'pages', 'action' => 'view', 'company', 'admin' => false), array('escape' => false,'class'=>''));?></li>
+											<?php
+											}
+											?>
+													<?php endif; ?>
+													    <?php if($auth->sessionValid()): ?>
+									          			<?php if($auth->sessionValid()):?>
+														<?php if($auth->user('user_type_id') != ConstUserTypes::Company):?>
+															<li <?php if($this->params['controller'] == 'users' && $this->params['action'] == 'my_stuff') { echo 'class="active"'; } ?>>
+																<?php  echo $html->link(__l('My Stuff'), array('controller' => 'users', 'action' => 'my_stuff'), array('title' => __l('My Stuff')));?>
+															</li>
+														<?php elseif($auth->user('user_type_id') == ConstUserTypes::Company): ?>
+														<?php if($html->isAllowed($auth->user('user_type_id'))): ?>
+															<li <?php if($this->params['controller'] == 'users' && $this->params['action'] == 'my_stuff') { echo 'class="active"'; } ?>>
+																<?php  echo $html->link(__l('My Stuff'), array('controller' => 'users', 'action' => 'my_stuff'), array('title' => __l('My Stuff')));?>
+															</li>
+														<?php else: ?>
+															<li <?php if($this->params['controller'] == 'transactions' && $this->params['action'] == 'index') { echo 'class="active"'; } ?>>
+																<?php  echo $html->link(__l('My Transactions'), array('controller' => 'transactions', 'action' => 'index'), array('title' => __l('My Transactions')));?>
+															</li>
+															 <li <?php if($this->params['controller'] == 'companies' && $this->params['action'] == 'edit') { echo 'class="active"'; } ?>>
+																 <?php echo $html->link(__l('My Company'), array('controller' => 'companies', 'action' => 'edit',$company['Company']['id']), array('title' => __l('My Company'))); ?>
+															 </li>
+														<?php endif; ?>
+															<?php if($auth->user('user_type_id') == ConstUserTypes::Company && !empty($company['Company'])):?>
+																<li <?php if($this->params['controller'] == 'deals' && $this->params['action'] == 'index' && !empty($this->params['named']['company'])) { echo 'class="active"'; } else { echo 'class=""';}?>><?php echo $html->link(__l('My Deals'), array('controller' => 'deals', 'action' => 'index', 'company' => $company['Company']['slug'] ), array('title' => __l('My Deals')));?></li>
+															<?php endif; ?>
+									
+															<li <?php if($this->params['controller'] == 'deals' && $this->params['action'] == 'add') { echo 'class="active"'; } ?>>
+									                        <?php echo $html->link(__l('Add Deal'), array('controller' => 'deals', 'action' => 'add'), array('class'=>'add-deal', 'title' => __l('Add Deal')));?></li>
+														<?php endif; ?>
+													<?php endif; ?>
+													<?php $url = Router::url(array('controller' => 'users', 'action' => 'my_stuff', 'admin' => false),true); ?>			
+									            <?php endif; ?>
+									            <!--<li><?php echo $html->image('menu_space.png'); ?></li>-->
+									            <li>&nbsp;</li>
+									            <li>&nbsp;</li>
+									            <li><a href="<?php echo !empty($tmpURL['City']['facebook_url']) ? $tmpURL['City']['facebook_url'] : Configure::read('facebook.site_facebook_url'); ?>" title="<?php echo __l('See Our Profile in Facebook'); ?>" target="_blank"><?php echo $html->image('md_facebook_icon.png'); ?></a></li>
+							</ul>																			
+						</div>																	
+					</div>
+				</td>
 				<td width="123"><div class="menu-right-bg">&nbsp;</div></td>
 			</tr>
 			<tr>
 				<td width="123"></td>
-				<td width="920"><div class="menu-bottom-bg">&nbsp;</div></td>
+				<td width="920">
+					<div class="menu-bottom-bg">
+						<div class="menu-city-desc-block">
+							<?php if(!empty($city_name)): ?>
+			                        <span class="menu-city-desc-block-label"><?php echo __l('Daily Deals on the Best in'); ?></span>
+			                     
+			                        	<?php
+											if (Cache::read('site.city_url', 'long') == 'prefix') {
+												echo $html->link($html->cText($city_name), array('controller' => 'deals', 'action' => 'index', 'city' => $city_slug), array('title' => $html->cText($city_name, false),'class'=>'city-name' ,'escape' => false));
+											} elseif (Cache::read('site.city_url', 'long') == 'subdomain') {
+												$subdomain = substr(env('HTTP_HOST'), 0, strpos(env('HTTP_HOST'), '.'));
+												$sitedomain = substr(env('HTTP_HOST'), strpos(env('HTTP_HOST'), '.'));
+												if (strlen($subdomain) > 0) {
+										?>
+													<a href="http://<?php echo $city_slug . $sitedomain; ?>" title="<?php echo $html->cText($city_name, false); ?>"><?php echo $html->cText($city_name); ?></a>
+										<?php
+												} else {
+													echo $html->link($html->cText($city_name), array('controller' => 'deals', 'action' => 'index', 'city' => $city_slug), array('title' => $html->cText($city_name, false), 'escape' => false));
+												}
+											}
+										?>
+			
+			                      
+			      	
+										<div class="js-morecities top-slider  hide"> <?php echo $this->element('cities-index', array('cache' => array('time' => Configure::read('site.element_cache'))));?></div>
+									
+			
+			                <?php endif;?>
+						</div>
+						<div class="menu-connect-block clearfix">
+								
+						        	<?php
+										$reg_type_class='normal';
+									
+						          if (!$auth->sessionValid()): ?>
+						              <ul class="menu-link clearfix">
+						               <li <?php if($this->params['controller'] == 'users' && $this->params['action'] == 'register') { echo 'class="active"'; } ?> ><?php echo $html->link(__l('Join us'), array('controller' => 'users', 'action' => 'register', 'admin' => false), array('title' => __l('Join us'),'class'=>'login-link'));?></li>
+						                <li <?php if($this->params['controller'] == 'users' && $this->params['action'] == 'login') { echo 'class="active"'; } ?>><?php echo $html->link(__l('Signin'), array('controller' => 'users', 'action' => 'login'), array('title' => __l('Signin'),'class'=>'login-link'));?></li>
+						                 <li class="fconnect">
+						              	 <?php if(Configure::read('facebook.is_enabled_facebook_connect') && !empty($fb_login_url)):  ?>
+											<?php  if (env('HTTPS')) { $fb_prefix_url = 'https://www.facebook.com/images/fbconnect/login-buttons/connect_dark_medium_short.gif';}else{ $fb_prefix_url = 'http://static.ak.fbcdn.net/images/fbconnect/login-buttons/connect_light_medium_short.gif';}?>
+											<?php echo $html->link($html->image($fb_prefix_url, array('alt' => __l('[Image: Facebook Connect]'), 'title' => __l('Facebook connect'))), $fb_login_url, array('escape' => false,'class'=>'facebook-link')); ?>
+						            		 <?php endif; ?>
+						                </li>
+						              </ul>
+						               <?php endif; ?>
+						            <?php if ($auth->sessionValid()): ?>
+						              <p class="user-login-info">
+						                    <?php
+						            			if($auth->user('is_openid_register')):
+						        							$reg_type_class='open-id';
+						        						endif;
+						        						if($auth->user('fb_user_id')):
+						        							$reg_type_class='facebook';
+						        						endif;
+						        						?>
+						        					<?php
+													$current_user_details = array(
+														'username' => $auth->user('username'),
+														'user_type_id' =>  $auth->user('user_type_id'),
+														'id' =>  $auth->user('id'),
+														'fb_user_id' =>  $auth->user('fb_user_id')
+													);
+						                         
+						                            echo __l('Hi, '); ?>
+						    							<span class="<?php echo $reg_type_class; ?>">
+						    								<?php echo $html->getUserLink($current_user_details);?>
+						    							</span>
+						    						<?php
+						    						$current_user_details['UserAvatar'] = $html->getUserAvatar($auth->user('id'));
+						    						echo $html->getUserAvatarLink($current_user_details, 'small_thumb'); ?>
+						
+						                            <?php
+												
+						                        endif;
+						                    ?>
+						
+										<?php if($auth->sessionValid()): ?>
+											<?php if($auth->user('fb_user_id') > 0 && !$session->read('is_normal_login')): ?>
+						                        <?php echo $html->link(__l('Logout'), $fb_logout_url, array('escape' => false,'class' => 'logout-link')); ?>
+						                    <?php else: ?>
+						                        <?php echo $html->link(__l('Logout'), array('controller' => 'users', 'action' => 'logout'), array('class' => 'logout-link', 'title' => __l('Logout'))); ?>
+						                    <?php endif; ?>
+									   <?php endif; ?>
+									</p>
+						        
+						</div>
+					</div>
+				</td>
 				<td width="123"></td>
 			</tr>
 		</table>
 	</div>
+	<!-- END MENU -->
+	<br/><br/>
+	<?php echo $this->element('lanaguge-change-block', array('cache' => array('time' => Configure::read('site.element_cache'))));?>
 	<div id="<?php echo $html->getUniquePageId();?>" class="content">
-   <div id="header">
+   <!--<div id="header">
     <div id="header-content">
    
      <div class="side1-cl">
@@ -131,7 +320,7 @@
         <h1>
                 <?php echo $html->link(Configure::read('site.name'), array('controller' => 'deals', 'action' => 'index', 'admin' => false), array('title' => Configure::read('site.name'))); ?>
 			</h1>
-            <p class="hidden-info"><?php echo __l('Collective Buying Power');?></p>
+            
          <?php if($auth->sessionValid() && $auth->user('user_type_id') == ConstUserTypes::Admin): ?>
             <div class="admin-bar">
                 <h3><?php echo __l('You are logged in as '); ?><?php echo $html->link(__l('Admin'), array('controller' => 'users' , 'action' => 'stats' , 'admin' => true), array('title' => __l('Admin'))); ?></h3>
@@ -143,6 +332,7 @@
             
           </div>
           <div class="city-block clearfix">
+           	
            	<?php if($html->isAllowed($auth->user('user_type_id')) && $this->params['controller'] != 'subscriptions'): ?>
           <?php echo $this->element('../subscriptions/add', array('cache' => array('time' => Configure::read('site.element_cache'))));?>
         <?php endif; ?>
@@ -253,62 +443,7 @@
 
             <?php endif; ?>
         </ul>
-        <div class="menu-right">
-        	<?php
-				$reg_type_class='normal';
-			
-          if (!$auth->sessionValid()): ?>
-              <ul class="menu-link clearfix">
-               <li <?php if($this->params['controller'] == 'users' && $this->params['action'] == 'register') { echo 'class="active"'; } ?> ><?php echo $html->link(__l('Join us'), array('controller' => 'users', 'action' => 'register', 'admin' => false), array('title' => __l('Join us'),'class'=>'login-link'));?></li>
-                <li <?php if($this->params['controller'] == 'users' && $this->params['action'] == 'login') { echo 'class="active"'; } ?>><?php echo $html->link(__l('Signin'), array('controller' => 'users', 'action' => 'login'), array('title' => __l('Signin'),'class'=>'login-link'));?></li>
-                 <li class="fconnect">
-              	 <?php if(Configure::read('facebook.is_enabled_facebook_connect') && !empty($fb_login_url)):  ?>
-					<?php  if (env('HTTPS')) { $fb_prefix_url = 'https://www.facebook.com/images/fbconnect/login-buttons/connect_dark_medium_short.gif';}else{ $fb_prefix_url = 'http://static.ak.fbcdn.net/images/fbconnect/login-buttons/connect_light_medium_short.gif';}?>
-					<?php echo $html->link($html->image($fb_prefix_url, array('alt' => __l('[Image: Facebook Connect]'), 'title' => __l('Facebook connect'))), $fb_login_url, array('escape' => false,'class'=>'facebook-link')); ?>
-            		 <?php endif; ?>
-                </li>
-              </ul>
-               <?php endif; ?>
-            <?php if ($auth->sessionValid()): ?>
-              <p class="user-login-info">
-                    <?php
-            			if($auth->user('is_openid_register')):
-        							$reg_type_class='open-id';
-        						endif;
-        						if($auth->user('fb_user_id')):
-        							$reg_type_class='facebook';
-        						endif;
-        						?>
-        					<?php
-							$current_user_details = array(
-								'username' => $auth->user('username'),
-								'user_type_id' =>  $auth->user('user_type_id'),
-								'id' =>  $auth->user('id'),
-								'fb_user_id' =>  $auth->user('fb_user_id')
-							);
-                         
-                            echo __l('Hi, '); ?>
-    							<span class="<?php echo $reg_type_class; ?>">
-    								<?php echo $html->getUserLink($current_user_details);?>
-    							</span>
-    						<?php
-    						$current_user_details['UserAvatar'] = $html->getUserAvatar($auth->user('id'));
-    						echo $html->getUserAvatarLink($current_user_details, 'small_thumb'); ?>
-
-                            <?php
-						
-                        endif;
-                    ?>
-
-				<?php if($auth->sessionValid()): ?>
-					<?php if($auth->user('fb_user_id') > 0 && !$session->read('is_normal_login')): ?>
-                        <?php echo $html->link(__l('Logout'), $fb_logout_url, array('escape' => false,'class' => 'logout-link')); ?>
-                    <?php else: ?>
-                        <?php echo $html->link(__l('Logout'), array('controller' => 'users', 'action' => 'logout'), array('class' => 'logout-link', 'title' => __l('Logout'))); ?>
-                    <?php endif; ?>
-			   <?php endif; ?>
-			</p>
-        </div>
+        
       </div>
       	</div>
 		</div>
@@ -319,7 +454,7 @@
             </div>
       </div>
     </div>
-  </div>
+  </div>-->
 
     
         <div id="main" class="clearfix">

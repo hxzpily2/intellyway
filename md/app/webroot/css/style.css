@@ -1,7 +1,16 @@
 /* SVN:$Id:blue-theme.css 16996 2010-08-02 11:32:49Z josephine_065at09 $ */
 /* common style is begin */
+/*#wrapper {
+    -moz-box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #FFFFFF;
+    margin: 0 auto;
+    width: 998px;
+}*/
 body {
-	background:#fff;
+    /*background-color: #EDF3F5;*/
+	background-color: #EDF3F5;
+    background-image: url("../img/texture_3.png");
 }
 div.content {
 	color:#4c4c4c;
@@ -235,7 +244,7 @@ ul.menu li.active a,ul.menu li:hover a {
 }
 ul.menu-link {
 	float:right;
-	margin:10px 0 0;
+	margin:10px 0 0;	
 }
 ul.menu-link li {
 	background:url(../img/login-bg-left.png) no-repeat left top;
@@ -245,11 +254,11 @@ ul.menu-link li {
 }
 ul.menu-link li a {
 	background:url("../img/login-bg-right.png") no-repeat scroll right top transparent;
-	color:#333333;
+	color:#FFFFFF;
 	display:block;
 	font-size:11px;
 	font-weight:bold;
-	padding:2px 9px 1px 7px;
+	padding:0px 9px 1px 7px;
 }
 ul.menu-link li.fconnect,ul.menu-link li.fconnect a,ul.menu-link li.fconnect:hover,ul.menu-link li.fconnect:hover a {
 	background:none;
