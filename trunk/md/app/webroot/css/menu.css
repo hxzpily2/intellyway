@@ -2,28 +2,29 @@ div.menu-top-bg {
 	line-height:12px;
 	margin:0 auto;
 	width:920px;		
-	background:url(../img/menu_top_bg.jpg) no-repeat left top;
+	background:url(../img/menu_top_bg.png) no-repeat left top;
 }
 
 div.menu-content-bg {
-	line-height:122px;
+	height:122px;
 	margin:0 auto;
 	width:920px;	
 	background:url(../img/menu_content_bg.jpg);
 	background-repeat: repeat-x;
+		
 }
 
 div.menu-right-bg {
 	line-height:122px;
 	width:123px;	
-	background:url(../img/menu_right_bg.jpg) no-repeat left top;	
+	background:url(../img/menu_right_bg.png) no-repeat left top;	
 }
 
 div.menu-left-bg {
 	line-height:122px;
 	margin:0 auto;
 	width:123px;	
-	background:url(../img/menu_left_bg.jpg) no-repeat right top;		
+	background:url(../img/menu_left_bg.png) no-repeat right top;		
 }
 
 div.menu-content {
@@ -35,11 +36,98 @@ div.menu-content {
 }
 
 div.menu-bottom-bg {
-	line-height:43px;
+	height:43px;
 	margin:0 auto;
 	width:920px;	
-	background:url(../img/menu_bottom_bg.jpg);
-	background-repeat: repeat-x;	
+	background:url(../img/menu_bottom_bg.png);
+	background-repeat: repeat-x;
+	display: inline-table;	
 }
 
+div.menu-city-desc-block{
+	line-height:43px;
+	text-align: left;
+	margin-top: -12px;
+	margin-left:10px;
+	display: inline-table;
+	float: left;
+}
 
+span.menu-city-desc-block-label{	
+	color: #525252;
+	font-size:15px; 
+}
+
+div.menu-city-desc-block a {
+	color:#992344;
+	font-size:23px;    
+}
+
+div.menu-city-desc-block a:hover {
+	color:#e03464;
+	font-size:23px;    
+}
+
+div.menu-connect-block{
+	line-height:20px;
+	text-align: left;
+	margin-top: -12px;	
+	float: right;
+	margin-left:5px;
+	margin-right: 10px;
+}
+
+div.menu-content-logo{
+	line-height:122px;	
+	float: left;
+	padding-top: 13px;	
+}
+
+#logo{
+	background-image: url(../img/menu_logo.png);
+	background-repeat: no-repeat;
+	width: 202px;
+	height: 83px;
+}
+
+div.menu-content-ul{
+	line-height:122px;
+	height:122px;
+	text-align: left;				
+}
+
+div.menu-content-social{
+	position: absolute;
+	top: 0px;
+	right: 10px;
+}
+
+#navlist{
+	margin: 0;
+	overflow:hidden;
+}
+
+#navlist li{
+	display: inline;
+	list-style-type: none;
+	padding-right: 20px;
+	
+	            
+}
+
+#navlist li.first{
+	display: inline;
+	list-style-type: none;
+	padding-right: 20px;
+	
+	            
+}
+
+.clear { clear: both;}
+
+#social_div{
+	width: 32px;
+	height: 32px;
+	background-image: url(../img/md_facebook_icon.png);
+	background-repeat: no-repeat;
+}
