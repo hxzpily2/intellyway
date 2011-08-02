@@ -4940,3 +4940,14 @@ a.js-add-new-card {
 *+html .clearfix {
 	display: inline-block;
 }
+
+#md_deal_global_infos{
+	padding-left: 35px;	
+}
+
+#md_deal_infos{
+	-moz-box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #FFFFFF;    
+    width: 724x;
+}

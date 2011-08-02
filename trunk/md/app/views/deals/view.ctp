@@ -20,6 +20,9 @@
 <?php endif; ?>
     <div class="deal-view-inner-block clearfix">
       <div class="main-shad">&nbsp;</div>
+      <div id="md_deal_global_infos">
+      	<div id="md_deal_infos">test</div>
+      </div>
       <div class="side1">
         <div class="block1 clearfix">
           <div class="side1-tl">
