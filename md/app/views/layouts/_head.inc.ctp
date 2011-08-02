@@ -7,6 +7,12 @@
 	$html->css('colorbox', null, null, false);
 	$html->css('style', null, null, false);
 	$html->css('menu', null, null, false);
+?>
+	<!--[if IE 6]>
+	<?php echo $html->css('ie6', null, null, false); ?>
+	<![endif]-->
+<?php
+	$html->css('footer_md', null, null, false);
 	if (isset($javascript)):
 		$javascript->codeBlock('var cfg = ' . $javascript->object($js_vars_for_layout) , array('inline' => false));
 		$javascript->link('libs/jquery', false);
