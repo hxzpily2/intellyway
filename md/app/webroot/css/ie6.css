@@ -6,3 +6,115 @@ body {
 	position: absolute;
     top: expression( ignore = - this.offsetHeight + document.documentElement.clientHeight + document.documentElement.scrollTop + "px" );
 }
+
+
+#countbox{
+	padding-top: 20px;
+	color: #fff;
+	font-family: Myriad Pro,Helvetica,sans-serif;
+	font-size: 70px;
+	width: 200px;
+	height: 200px;
+	margin-left:auto;
+	margin-right: auto;
+}
+
+#days{
+	float: left;
+	text-align: center;	
+	background-image:url('../img/IE_6/flip.jpg');
+	background-repeat:no-repeat;
+	margin: 0 7px 0 7px;
+	height: 47px;
+	width: 50px;
+	z-index:1;
+}
+
+		#days_text{
+			background-image:url('../img/days_text.jpg');
+			background-position: center;
+			background-repeat:no-repeat;
+			position: absolute;
+			padding-top: 80px;
+			margin-left: -74px;
+			height: 26px;
+			width: 50px;
+		}
+	
+#hours{	
+	float: left;
+	text-align: center;
+	background-image:url('../img/IE_6/flip.jpg');
+	background-repeat:no-repeat;
+	margin: 0 7px 0 7px;
+	height: 47px;
+	width: 50px;
+	z-index:1;
+}
+
+		#hours_text{
+			background-image:url('../img/hours_text.jpg');
+			background-position: center;
+			background-repeat:no-repeat;
+			position: absolute;
+			padding-top: 80px;
+			margin-left: -74px;
+			margin-top: 30px;
+			height: 26px;
+			width: 50px;
+		}
+
+#mins{
+	float: left;
+	text-align: center;
+	background-image:url('../img/IE_6/flip.jpg');
+	background-repeat:no-repeat;
+	margin: 0 7px 0 7px;
+	height: 47px;
+	width: 50px;
+    z-index:1;
+}
+
+		#mins_text{
+			background-image:url('../img/mins_text.jpg');
+			background-position: center;
+			background-repeat:no-repeat;
+			position: absolute;
+			padding-top: 80px;
+			margin-left: -74px;
+			margin-top: 30px;
+			height: 26px;
+			width: 50px;
+		}
+
+#secs{
+	float: left;
+	text-align: center;
+	background-image:url('../img/IE_6/flip.jpg');
+	background-repeat:no-repeat;
+	margin: 0 7px 0 7px;
+	height: 47px;
+	width: 50px;
+    z-index:1;
+}
+
+		#secs_text{
+			background-image:url('../img/secs_text.jpg');
+			background-position: center;
+			background-repeat:no-repeat;
+			position: absolute;
+			padding-top: 80px;
+			margin-left: -74px;
+			margin-top: 30px;
+			height: 26px;
+			width: 50px;
+		}
+		
+#days span, #hours span, #mins span , #secs span {
+	background: url(../img/IE_6/fixed.jpg);
+	background-repeat:no-repeat;
+	position: absolute;
+	display: block;
+	height: 47px;
+	width: 50px;
+}
