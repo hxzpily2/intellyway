@@ -1,3 +1,7 @@
+<?php
+$javascript->link('libs/divs', false);
+?>
+
 <?php /* SVN: $Id: view.ctp 44785 2011-02-19 10:54:51Z aravindan_111act10 $ */ ?>
 <?php if($this->params['action'] !='index'):
 	if($html->isAllowed($auth->user('user_type_id')) and   $deal['Deal']['deal_status_id'] != ConstDealStatus::Open && $deal['Deal']['deal_status_id'] != ConstDealStatus::Tipped && $deal['Deal']['deal_status_id'] != ConstDealStatus::Draft && $deal['Deal']['deal_status_id'] != ConstDealStatus::PendingApproval  && $deal['Deal']['deal_status_id'] != ConstDealStatus::Upcoming ):?>
@@ -21,7 +25,59 @@
     <div class="deal-view-inner-block clearfix">
       <div class="main-shad">&nbsp;</div>
       <div id="md_deal_global_infos">
-      	<div id="md_deal_infos">test</div>
+      	<div id="md_deal_infos">
+      		<table cellpadding="0" cellspacing="0" border="0" width="100%">
+				<tr height="20">
+					<td width="27" id="md_deal_infos_top_left">&nbsp;</td>
+			   	    <td id="md_deal_infos_top">&nbsp;</td>
+					<td id="md_deal_infos_top_right" width="21">&nbsp;</td>
+				</tr>
+				<tr height="300">
+					<td id="md_deal_infos_left" width="27">&nbsp;</td>
+					<td id="md_deal_infos_texture">
+						<!-- BEGIN CONTENT -->
+						<h2 class="title">
+		        			<span class ="today-deal">
+		        				<?php if($this->params['action'] =='index'):?>
+		        					<?php	echo __l("Today's Deal").': ';?>
+		        				<?php endif; ?>
+		        			</span>
+		            		<?php
+		            			echo $html->link($deal['Deal']['name'], array('controller' => 'deals', 'action' => 'view', $deal['Deal']['slug']),array('title' =>sprintf(__l('%s'),$deal['Deal']['name'])));
+		            		?>
+			           	</h2>
+			           	<!-- END CONTENT -->
+					</td>
+					<td id="md_deal_infos_right" width="21">&nbsp;</td>
+				</tr>
+				<tr height="20">
+					<td width="27" id="md_deal_infos_bottom_left">&nbsp;</td>
+					<td id="md_deal_infos_bottom">&nbsp;</td>
+					<td width="21" id="md_deal_infos_bottom_right">&nbsp;</td>
+				</tr>
+			</table>
+      	</div>
+      	<div id="md_right_block">
+      		<table cellpadding="0" cellspacing="0" border="0" width="100%">
+				<tr height="20">
+					<td id="md_deal_price_top_left" width="17">&nbsp;</td>
+			   	    <td id="md_deal_price_top" >&nbsp;</td>
+					<td id="md_deal_price_top_right" width="18">&nbsp;</td>
+				</tr>
+				<tr height="300">
+					<td id="md_deal_price_left" width="17">&nbsp;</td>
+					<td id="md_deal_price_texture" >
+						<?php echo $this->element("counter",array("ID"=>$deal['Deal']['id']));?>						
+					</td>
+					<td id="md_deal_price_right" width="18">&nbsp;</td>
+				</tr>
+				<tr height="20">
+					<td id="md_deal_price_bottom_left" width="17">&nbsp;</td>
+					<td id="md_deal_price_bottom">&nbsp;</td>
+					<td id="md_deal_price_bottom_right" width="18">&nbsp;</td>
+				</tr>
+			</table>
+      	</div>
       </div>
       <div class="side1">
         <div class="block1 clearfix">

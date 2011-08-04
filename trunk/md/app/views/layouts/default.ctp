@@ -308,7 +308,7 @@
 	</div>
 	<!-- END MENU -->
 	<br/><br/>
-	<?php echo $this->element('lanaguge-change-block', array('cache' => array('time' => Configure::read('site.element_cache'))));?>
+	<!--<?php echo $this->element('lanaguge-change-block', array('cache' => array('time' => Configure::read('site.element_cache'))));?>-->
 	<div id="<?php echo $html->getUniquePageId();?>" class="content">
    <!--<div id="header">
     <div id="header-content">
@@ -652,9 +652,9 @@
 	<div id="footer_md_social_fb">
 		<table cellpadding="0" cellspacing="0" border="0">
 			<tr>
-				<td><img src="img/footer_md_abstract.png"/></td>
+				<td id="footer_md_abstract"><?php echo $html->image('footer_md_abstract.png'); ?></td>
 				<td>
-					<a href="<?php echo !empty($tmpURL['City']['facebook_url']) ? $tmpURL['City']['facebook_url'] : Configure::read('facebook.site_facebook_url'); ?>" title="<?php echo __l('See Our Profile in Facebook'); ?>" target="_blank"><img src="img/footer_md_social.png"/></a>					
+					<a href="<?php echo !empty($tmpURL['City']['facebook_url']) ? $tmpURL['City']['facebook_url'] : Configure::read('facebook.site_facebook_url'); ?>" title="<?php echo __l('See Our Profile in Facebook'); ?>" target="_blank"><?php echo $html->image('footer_md_social.png');  ?></a>					
 				</td>
 			</tr>
 		</table>
