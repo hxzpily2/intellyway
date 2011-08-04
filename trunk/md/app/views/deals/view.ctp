@@ -38,9 +38,11 @@ $javascript->link('libs/divs', false);
 						<!-- BEGIN CONTENT -->
 						<h2 class="title">
 		        			<span class ="today-deal">
+		        				<!--
 		        				<?php if($this->params['action'] =='index'):?>
 		        					<?php	echo __l("Today's Deal").': ';?>
 		        				<?php endif; ?>
+		        				-->
 		        			</span>
 		            		<?php
 		            			echo $html->link($deal['Deal']['name'], array('controller' => 'deals', 'action' => 'view', $deal['Deal']['slug']),array('title' =>sprintf(__l('%s'),$deal['Deal']['name'])));
