@@ -60,7 +60,38 @@ $javascript->link('libs/divs', false);
 			</table>
       	</div>
       	<div id="md_right_block">
-      		<table cellpadding="0" cellspacing="0" border="0" width="100%">
+      		<div id="md_price_economie_block">
+      			
+      		</div>      		
+      		<div id="md_price_block">
+      			<div id="md_price_value">
+      				<p class="price"><?php echo $html->siteCurrencyFormat($html->cCurrency($deal['Deal']['discounted_price']));?></p>
+      				<p class="oldprice">
+      					<?php echo $html->siteCurrencyFormat($html->cCurrency($deal['Deal']['discounted_price']));?>
+      					<span id="price_barre">&nbsp;</span>
+      				</p>
+      			</div>
+      			<br/>     			
+      			<div id="md_price_buy_button">
+      				<?php //$deal['Deal']['deal_status_id'] != ConstDealStatus::Upcoming
+						if($html->isAllowed($auth->user('user_type_id')) && $deal['Deal']['deal_status_id'] != ConstDealStatus::Draft && $deal['Deal']['deal_status_id'] != ConstDealStatus::PendingApproval):
+							if($deal['Deal']['deal_status_id'] == ConstDealStatus::Open || $deal['Deal']['deal_status_id'] == ConstDealStatus::Tipped):
+								 echo $html->link($html->image('button_buy_'.Configure::read('lang_code').'.png',array('title' => __l('Buy Now'))), array('controller'=>'deals','action'=>'buy',$deal['Deal']['id']), array('escape' => false,'class'=>''));								 
+							elseif($html->isAllowed($auth->user('user_type_id')) && $deal['Deal']['deal_status_id'] == ConstDealStatus::Upcoming):
+							?>
+								<span class="no-available" title="<?php echo __l('Upcoming');?>"><?php echo __l('Upcoming');?></span>
+							<?php
+								else:
+							?>
+								<span class="no-available" title="<?php echo __l('No Longer Available');?>"><?php echo __l('No Longer Available');?></span>
+							<?php
+							endif;
+						endif;
+	                ?>
+      			</div>
+      		</div>
+      		<?php echo $this->element("counter",array("ID"=>$deal['Deal']['id']));?>
+      		<table id="md_counter_block" cellpadding="0" cellspacing="0" border="0" width="100%">
 				<tr height="20">
 					<td id="md_deal_price_top_left" width="17">&nbsp;</td>
 			   	    <td id="md_deal_price_top" >&nbsp;</td>
@@ -68,8 +99,8 @@ $javascript->link('libs/divs', false);
 				</tr>
 				<tr height="300">
 					<td id="md_deal_price_left" width="17">&nbsp;</td>
-					<td id="md_deal_price_texture" >
-						<?php echo $this->element("counter",array("ID"=>$deal['Deal']['id']));?>						
+					<td id="md_deal_price_texture" >						
+						&nbsp;						
 					</td>
 					<td id="md_deal_price_right" width="18">&nbsp;</td>
 				</tr>

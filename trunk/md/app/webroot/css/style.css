@@ -1211,11 +1211,12 @@ p.title-info {
 	padding:0 120px 10px 8px;
 }
 h2.title a {
-	color:#1fa6c8;
-	font-style:italic;
+	/*color:#1fa6c8;
+	font-style:italic;*/
+	color:#fff;	
 }
 h2.title a:hover {
-	color:#000;
+	color:#ea6c9c;
 }
 .section1 {
 	float:left;
@@ -1719,13 +1720,22 @@ a.buy:hover {
 	width:327px;
 }
 p.price {
-	color:#E46A1A;
-	float:left;
+	color: #FFF;
+	text-shadow: black 0.1em 0.1em 0.2em;
+	text-decoration: none;
+	font-weight : bold;
+	font-size:20px;
+	width:auto;
+	font-weight:700;
+	margin-left: auto;
+    margin-right: auto;
+	padding-left: 20px;
+	/*float:left;
 	font-size:40px;
 	font-weight:700;
 	line-height:45px;
 	padding:10px 4px 0 0;
-	width:auto;
+	width:auto;*/
 }
 p.price span.dollar {
 	font-size:40px;
@@ -4955,6 +4965,7 @@ a.js-add-new-card {
 #md_right_block{    
     float:right;
 	width:270px;
+	position: relative;
 }
 
 #md_deal_infos_top_left
@@ -5208,9 +5219,71 @@ div.countbox{
 	font-family: Myriad Pro,Helvetica,sans-serif;
 	font-size: 40px;
 	width: 230px;
-	height: 200px;
+	height: 115px;
 	margin-left:auto;
 	margin-right: auto;
 }
 
+div.countdown{
+	position: absolute;
+	top: 190px;
+	left:19px;
+}
+
 /* -------------- END COUNTER ---------------------*/
+
+/*********************** PRICE ******************/
+#md_price_block{
+	width:275px;
+	height:157px;
+	background: url(../img/final_ribbon_price_pink.png);
+	background-repeat:no-repeat;
+	position: absolute;
+	top: 35px;
+	left: -1px;
+	padding-top: 19px;
+}
+
+#md_price_economie_block{
+	position: absolute;
+}
+
+#md_price_buy_button{
+	text-align: center;
+	padding-left: 0px;
+}
+
+
+p.oldprice {
+	color: #FFF;
+	text-shadow: black 0.1em 0.1em 0.2em;
+	text-decoration: none;
+	font-weight : bold;
+	font-size:15px;
+	width:auto;
+	font-weight:700;	
+	float: right;
+	padding-right: 10px;
+	position: relative;
+	/*float:left;
+	font-size:40px;
+	font-weight:700;
+	line-height:45px;
+	padding:10px 4px 0 0;
+	width:auto;*/
+}
+p.oldprice span.dollar {
+	font-size:15px;
+	margin:-9px 0 0;
+	position:absolute;
+}
+p.oldprice span {
+	font-size:15px;
+	line-height:30px;
+	margin:0;
+	vertical-align:text-top;
+}
+
+p.oldprice span.cr{	
+	text-decoration: line-through;
+}
