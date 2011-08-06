@@ -66,5 +66,5 @@ $(document).ready(function() {
 
 </script>
 
-<div id="countdown<?php echo $ID; ?>"></div>
+<div id="countdown<?php echo $ID; ?>" class="countdown"></div>
 
