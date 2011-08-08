@@ -94,9 +94,16 @@ $javascript->link('libs/divs', false);
       		<div id="md_time_left_to_buy">
       			<?php echo __l('Time left to buy');?> :
       		</div>
-      		<?php echo $this->element("counter",array("ID"=>$deal['Deal']['id']));?>
+      		<?php if($deal['Deal']['deal_status_id'] != ConstDealStatus::Open && $deal['Deal']['deal_status_id'] == ConstDealStatus::Tipped || $deal['Deal']['deal_status_id'] != ConstDealStatus::Closed): ?>
+      			<?php echo $this->element("counter",array("ID"=>$deal['Deal']['id']));?>
+      		<?php endif; ?>
+      		<?php if($deal['Deal']['deal_status_id'] != ConstDealStatus::Upcoming && $deal['Deal']['deal_status_id'] != ConstDealStatus::Draft): ?>
+      			<?php echo $this->element("counter",array("ID"=>$deal['Deal']['id']));?>
+      		<?php endif; ?>
       		<div id="md_price_sep_counter" class="md_price_sep">&nbsp;</div>
-      		<div id="md_nb_vendu"><?php echo $html->image('md_vendu_45.png'); ?></div>
+      		<div id="md_nb_vendu">      			                 
+      			<?php echo $html->image('md_vendu_45.png'); ?>
+      		</div>
       		<table id="md_counter_block" cellpadding="0" cellspacing="0" border="0" width="100%">
 				<tr height="20">
 					<td id="md_deal_price_top_left" width="17">&nbsp;</td>
