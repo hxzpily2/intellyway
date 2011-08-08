@@ -90,14 +90,20 @@ $javascript->link('libs/divs', false);
 	                ?>
       			</div>
       		</div>
+      		<div id="md_price_sep_time_to_left" class="md_price_sep">&nbsp;</div>
+      		<div id="md_time_left_to_buy">
+      			<?php echo __l('Time left to buy');?> :
+      		</div>
       		<?php echo $this->element("counter",array("ID"=>$deal['Deal']['id']));?>
+      		<div id="md_price_sep_counter" class="md_price_sep">&nbsp;</div>
+      		<div id="md_nb_vendu"><?php echo $html->image('md_vendu_45.png'); ?></div>
       		<table id="md_counter_block" cellpadding="0" cellspacing="0" border="0" width="100%">
 				<tr height="20">
 					<td id="md_deal_price_top_left" width="17">&nbsp;</td>
 			   	    <td id="md_deal_price_top" >&nbsp;</td>
 					<td id="md_deal_price_top_right" width="18">&nbsp;</td>
 				</tr>
-				<tr height="300">
+				<tr height="400">
 					<td id="md_deal_price_left" width="17">&nbsp;</td>
 					<td id="md_deal_price_texture" >						
 						&nbsp;						
