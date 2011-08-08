@@ -22,10 +22,11 @@ $javascript->link('libs/divs', false);
 	 </div>
 	<?php endif; ?>
 <?php endif; ?>
-    <div class="deal-view-inner-block clearfix">
+    <div class="deal-view-inner-block clearfix">      	
       <div class="main-shad">&nbsp;</div>
       <div id="md_deal_global_infos">
       	<div id="md_deal_infos">
+      		<div class="tag_pourcent"><div class="pourcent_tag"><center><span>&#45; <?php echo round($deal['Deal']['discount_percentage']) . "&#37;"; ?></span></center></div></div>
       		<table cellpadding="0" cellspacing="0" border="0" width="100%">
 				<tr height="20">
 					<td width="27" id="md_deal_infos_top_left">&nbsp;</td>
@@ -107,21 +108,23 @@ $javascript->link('libs/divs', false);
       		<div id="md_price_sep_counter" class="md_price_sep">&nbsp;</div>
       		<div id="md_nb_vendu"> 
       			<?php if($deal['Deal']['deal_status_id'] == ConstDealStatus::Open) : ?> 
-      				<center><h3 class="bought"><?php echo $html->cInt($deal['Deal']['deal_user_count']);?> <?php echo __l('Bought');?></h3></center>
+      				<div class="price_block"><center><h3 class="bought"><?php echo $html->cInt($deal['Deal']['deal_user_count']);?> <?php echo __l('Bought');?></h3></center></div>
       				<?php $pixels = round(($deal['Deal']['deal_user_count']/$deal['Deal']['min_limit']) * 100); ?>    			                 
       				<?php echo $html->image('md_vendu_'.$pixels.'.png'); ?>      				
-      				<center><span class="progress-needed"><?php echo sprintf(__l('<b>%s</b> more needed to get the deal'),($deal['Deal']['min_limit'] - $deal['Deal']['deal_user_count'])) ?></span></center>
+      				<div class="price_block"><center><span class="progress-needed"><?php echo sprintf(__l('<b>%s</b> more needed to get the deal'),($deal['Deal']['min_limit'] - $deal['Deal']['deal_user_count'])) ?></span></center></div>
       			<?php endif; ?>
-      			<?php if($deal['Deal']['deal_status_id'] == ConstDealStatus::Tipped || $deal['Deal']['deal_status_id'] == ConstDealStatus::Closed): ?>
-                    <p><?php echo $html->cInt($deal['Deal']['deal_user_count']);?> <?php echo __l('offers sold so far');?></p>
-                    <div>
+      			<?php if($deal['Deal']['deal_status_id'] == ConstDealStatus::Tipped || $deal['Deal']['deal_status_id'] == ConstDealStatus::Closed): ?>                    
                     	<?php if($deal['Deal']['deal_status_id'] == ConstDealStatus::Tipped): ?>
-                        <p><?php echo __l('The deal is on!');?></p>
-                      	 <p> <?php echo __l('Get in quick or miss out!');?> </p>
+                        <div class="price_block"><center><h3 class="bought2"><span><?php echo $html->image('deal_on.png'); ?></span>&nbsp;<?php echo __l('The deal is on!'); ?></h3></center></div>
+                        <!--<p> <?php echo __l('Get in quick or miss out!');?> </p>-->
                         <?php endif; ?>
-                       <p><?php echo sprintf(__l('Tipped at %s with %s bought'),$html->cDateTime($deal['Deal']['deal_tipped_time']),$html->cInt($deal['Deal']['min_limit']));?></p>
-                     </div>
+                        <div class="price_block"><center><span class="progress-needed"><?php echo sprintf(__l('Tipped at %s with <b>%s</b> bought'),$html->cDateTime($deal['Deal']['deal_tipped_time']),$html->cInt($deal['Deal']['min_limit']));?></span></center></div>                       
+                        <div class="price_block"><center><span class="progress-needed2"><?php echo $html->cInt($deal['Deal']['deal_user_count']);?> <?php echo __l('offers sold so far');?></span></center></div>
 				<?php endif; ?>                             
+      		</div>
+      		<div id="md_offer">
+      			<center><span><?php echo $html->image('present.png'); ?></span>&nbsp;&nbsp;&nbsp;      			
+      			<?php echo $html->link(__l('Buy it for a friend!'), array('controller'=>'deals','action'=>'buy',$deal['Deal']['id'],'type' => 'gift'), array('title' => __l('Buy it for a friend')));?></center>      			
       		</div>
       		<table id="md_counter_block" cellpadding="0" cellspacing="0" border="0" width="100%">
 				<tr height="20">

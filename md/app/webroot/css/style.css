@@ -4966,6 +4966,7 @@ a.js-add-new-card {
 #md_deal_infos{	    
     float:left;
 	width:700px;
+	position: relative;
 }
 
 #md_right_block{    
@@ -5345,4 +5346,71 @@ h3.bought{
 	text-decoration: none;
 	padding-right: 13px;
 	font-size: 20px;
+}
+
+div.tag_pourcent{
+	position: absolute;
+	width: 83px;
+	height: 58px;
+	background-image: url(../img/pourcent_tag.png);
+	background-repeat:no-repeat;
+	top : 30px;
+	left: -60px;
+	padding-left: 18px;
+	padding-top: 27px;
+}
+
+div.pourcent_tag{
+	color: #FFF;
+	text-shadow: black 0.1em 0.1em 0.2em;
+	text-decoration: none;
+	width: 61px;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+div.md_deal_on{
+	position: absolute;
+	width: 49px;
+	height: 67px;
+	background-image: url(../img/md_deal_on.png);
+	background-repeat:no-repeat;
+	right: -40px;	
+}
+
+div.price_block{
+	width:215px;
+}
+
+h3.bought2{
+	color: #ffe7eb;
+	text-shadow: black 0.1em 0.1em 0.2em;
+	text-decoration: none;
+	padding-right: 13px;
+	font-size: 22px;
+}
+
+span.progress-needed2{
+	text-align: center;
+	color: #ffb46a;
+	text-shadow: black 0.1em 0.1em 0.2em;
+	text-decoration: none;
+	font-size: 18px;		
+}
+
+#md_offer{
+	position: absolute;
+	top : 480px;
+	background-image: url(../img/md_offer.png);
+	background-repeat:no-repeat;
+	width: 271px;
+	height: 35px;
+	padding-top: 3px;
+	
+}
+
+#md_offer a{
+	color: #5d0a3c;
+	font-size: 15px;
+	font-weight: bold;
 }
