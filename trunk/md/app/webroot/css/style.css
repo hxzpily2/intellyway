@@ -7,10 +7,16 @@
     margin: 0 auto;
     width: 998px;
 }*/
-body {
-    /*background-color: #EDF3F5;*/
+
+/*body {	
+    color:#878787;
+	background-repeat: no-repeat;
+	background: #FFFFFF url(../img/texture_08.png) center center fixed;    
+}*/
+
+body {    
 	background-color: #EDF3F5;
-    background-image: url("../img/texture_3.png");
+    background-image: url("../img/texture_08.jpg");
 }
 div.content {
 	color:#4c4c4c;
@@ -5226,7 +5232,7 @@ div.countbox{
 
 div.countdown{
 	position: absolute;
-	top: 190px;
+	top: 220px;
 	left:19px;
 }
 
@@ -5235,13 +5241,13 @@ div.countdown{
 /*********************** PRICE ******************/
 #md_price_block{
 	width:275px;
-	height:157px;
+	height:152px;
 	background: url(../img/final_ribbon_price_pink.png);
 	background-repeat:no-repeat;
 	position: absolute;
 	top: 35px;
 	left: -1px;
-	padding-top: 19px;
+	padding-top: 14px;
 }
 
 #md_price_economie_block{
@@ -5276,6 +5282,7 @@ p.oldprice span.dollar {
 	font-size:15px;
 	margin:-9px 0 0;
 	position:absolute;
+	text-decoration: line-through;
 }
 p.oldprice span {
 	font-size:15px;
@@ -5286,4 +5293,40 @@ p.oldprice span {
 
 p.oldprice span.cr{	
 	text-decoration: line-through;
+}
+
+#md_time_left_to_buy{
+	position: absolute;
+	top:211px;
+	color: #fff;
+	padding-left: 23px;
+}
+
+#md_price_value{
+	padding-top: 5px;
+}
+
+div.md_price_sep{
+	width: 275px;
+	height: 7px;	
+}
+
+#md_price_sep_time_to_left{
+	position: absolute;
+	top: 199px;
+	background: url(../img/md_price_sep.png) 65px;
+	background-repeat:no-repeat;
+}
+
+#md_price_sep_counter{
+	position: absolute;
+	top: 363px;
+	background: url(../img/md_price_sep.png) 65px;
+	background-repeat:no-repeat;
+}
+
+#md_nb_vendu{
+	position: absolute;
+	top: 400px;
+	padding-left: 28px;
 }

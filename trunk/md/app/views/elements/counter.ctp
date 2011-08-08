@@ -56,12 +56,13 @@ function GetCount<?php echo $ID; ?>(){
 }
 
 $(window).load(function() {
-      GetCount<?php echo $ID; ?>();
+      
 });
 
 
-$(document).ready(function() {
+$(window).load(function() {
     $('#countdown<?php echo $ID; ?>').counter(<?php echo $ID; ?>);
+    GetCount<?php echo $ID; ?>();
 });
 
 </script>
