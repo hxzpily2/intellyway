@@ -67,7 +67,8 @@ $javascript->link('libs/divs', false);
       			<div id="md_price_value">
       				<p class="price"><?php echo $html->siteCurrencyFormat($html->cCurrency($deal['Deal']['discounted_price']));?></p>
       				<p class="oldprice">
-      					<?php echo $html->siteCurrencyFormat($html->cCurrency($deal['Deal']['discounted_price']));?>
+      				<?php $old_price = $deal['Deal']['discounted_price'] - $deal['Deal']['savings']; ?>
+      					<?php echo $html->siteCurrencyFormat($html->cCurrency($old_price));?>
       					<span id="price_barre">&nbsp;</span>
       				</p>
       			</div>
@@ -94,15 +95,33 @@ $javascript->link('libs/divs', false);
       		<div id="md_time_left_to_buy">
       			<?php echo __l('Time left to buy');?> :
       		</div>
-      		<?php if($deal['Deal']['deal_status_id'] != ConstDealStatus::Open && $deal['Deal']['deal_status_id'] == ConstDealStatus::Tipped || $deal['Deal']['deal_status_id'] != ConstDealStatus::Closed): ?>
+      		<?php if($deal['Deal']['deal_status_id'] == ConstDealStatus::Open) : ?>
       			<?php echo $this->element("counter",array("ID"=>$deal['Deal']['id']));?>
       		<?php endif; ?>
-      		<?php if($deal['Deal']['deal_status_id'] != ConstDealStatus::Upcoming && $deal['Deal']['deal_status_id'] != ConstDealStatus::Draft): ?>
-      			<?php echo $this->element("counter",array("ID"=>$deal['Deal']['id']));?>
+      		<?php if(($deal['Deal']['deal_status_id'] == ConstDealStatus::Open || $deal['Deal']['deal_status_id'] == ConstDealStatus::Tipped)): 
+					if(empty($deal['Deal']['is_anytime_deal'])){
+			?>
+  			<?php echo $this->element("counter",array("ID"=>$deal['Deal']['id']));?>
+  			<?php } ?>
       		<?php endif; ?>
       		<div id="md_price_sep_counter" class="md_price_sep">&nbsp;</div>
-      		<div id="md_nb_vendu">      			                 
-      			<?php echo $html->image('md_vendu_45.png'); ?>
+      		<div id="md_nb_vendu"> 
+      			<?php if($deal['Deal']['deal_status_id'] == ConstDealStatus::Open) : ?> 
+      				<center><h3 class="bought"><?php echo $html->cInt($deal['Deal']['deal_user_count']);?> <?php echo __l('Bought');?></h3></center>
+      				<?php $pixels = round(($deal['Deal']['deal_user_count']/$deal['Deal']['min_limit']) * 100); ?>    			                 
+      				<?php echo $html->image('md_vendu_'.$pixels.'.png'); ?>      				
+      				<center><span class="progress-needed"><?php echo sprintf(__l('<b>%s</b> more needed to get the deal'),($deal['Deal']['min_limit'] - $deal['Deal']['deal_user_count'])) ?></span></center>
+      			<?php endif; ?>
+      			<?php if($deal['Deal']['deal_status_id'] == ConstDealStatus::Tipped || $deal['Deal']['deal_status_id'] == ConstDealStatus::Closed): ?>
+                    <p><?php echo $html->cInt($deal['Deal']['deal_user_count']);?> <?php echo __l('offers sold so far');?></p>
+                    <div>
+                    	<?php if($deal['Deal']['deal_status_id'] == ConstDealStatus::Tipped): ?>
+                        <p><?php echo __l('The deal is on!');?></p>
+                      	 <p> <?php echo __l('Get in quick or miss out!');?> </p>
+                        <?php endif; ?>
+                       <p><?php echo sprintf(__l('Tipped at %s with %s bought'),$html->cDateTime($deal['Deal']['deal_tipped_time']),$html->cInt($deal['Deal']['min_limit']));?></p>
+                     </div>
+				<?php endif; ?>                             
       		</div>
       		<table id="md_counter_block" cellpadding="0" cellspacing="0" border="0" width="100%">
 				<tr height="20">
@@ -110,7 +129,7 @@ $javascript->link('libs/divs', false);
 			   	    <td id="md_deal_price_top" >&nbsp;</td>
 					<td id="md_deal_price_top_right" width="18">&nbsp;</td>
 				</tr>
-				<tr height="400">
+				<tr height="500">
 					<td id="md_deal_price_left" width="17">&nbsp;</td>
 					<td id="md_deal_price_texture" >						
 						&nbsp;						
