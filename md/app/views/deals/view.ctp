@@ -49,6 +49,11 @@ $javascript->link('libs/divs', false);
 		            			echo $html->link($deal['Deal']['name'], array('controller' => 'deals', 'action' => 'view', $deal['Deal']['slug']),array('title' =>sprintf(__l('%s'),$deal['Deal']['name'])));
 		            		?>
 			           	</h2>
+			           	<?php			           	
+            				$company = $deal['Company'];
+            				$zoom = Configure::read('GoogleMap.static_map_zoom_level');
+			           	?>
+			           	<!-- <?php echo $this->element("gmap",array("ID"=>$deal['Deal']['id'],"COMPANY"=>$company,"ZOOM"=>$zoom));?> -->
 			           	<!-- END CONTENT -->
 					</td>
 					<td id="md_deal_infos_right" width="21">&nbsp;</td>

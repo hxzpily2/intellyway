@@ -55,10 +55,6 @@ function GetCount<?php echo $ID; ?>(){
         }
 }
 
-$(window).load(function() {
-      
-});
-
 
 $(window).load(function() {
     $('#countdown<?php echo $ID; ?>').counter(<?php echo $ID; ?>);
