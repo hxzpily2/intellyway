@@ -8,6 +8,7 @@
 	$html->css('style', null, null, false);
 	$html->css('menu', null, null, false);
 	$html->css('footer_md', null, null, false);
+	$html->css('jquery.slider', null, null, false);
 	if (isset($javascript)):
 		$javascript->codeBlock('var cfg = ' . $javascript->object($js_vars_for_layout) , array('inline' => false));
 		$javascript->link('libs/jquery', false);
@@ -28,7 +29,8 @@
 		$javascript->link('libs/jquery.truncate-2.3', false);
 		$javascript->link('libs/jquery.address-1.2.1', false);
 		$javascript->link('libs/jquery.flash', false);
-		$javascript->link('libs/jquery.showcase', false);		
+		$javascript->link('libs/jquery.showcase', false);
+		$javascript->link('libs/jquery.slider.min', false);		
 		
 		if (env('HTTPS')) {
 			$javascript->link('https://platform.twitter.com/widgets.js', false);

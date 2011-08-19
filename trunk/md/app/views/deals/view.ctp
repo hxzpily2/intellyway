@@ -48,6 +48,12 @@ $javascript->link('libs/divs', false);
 		            		<?php
 		            			echo $html->link($deal['Deal']['name'], array('controller' => 'deals', 'action' => 'view', $deal['Deal']['slug']),array('title' =>sprintf(__l('%s'),$deal['Deal']['name'])));
 		            		?>
+		            		<!-- SLIDESHOW -->
+		            		<?php
+		            			$images = $deal['Attachment'];
+		            			$name = $deal['Deal']['name'];
+		            			echo $this->element("slideshow",array("IMAGES"=>$images,"ID"=>$deal['Deal']['id'],"NAME"=>$name));
+		            		?>
 			           	</h2>
 			           	<?php			           	
             				$company = $deal['Company'];
