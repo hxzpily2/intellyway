@@ -425,12 +425,12 @@ p.user-login-info a {
 	position:relative;
 }
 .main-shad {
-	background:url(../img/main-shadow.png) no-repeat scroll left 57px;
+	background:url(../img/slideshow_bg.png) no-repeat scroll left 20px;
 	position:absolute;
-	left:-21px;
-	width:22px;
-	height:424px;
-	display:none;
+	top : -5px;
+	left:-9px;
+	width:12px;
+	height:149px;	
 }
 .side2 {
 	float:right;
@@ -1222,7 +1222,8 @@ h2.title a {
 	color:#fff;	
 }
 h2.title a:hover {
-	color:#ea6c9c;
+	color:#fff;
+	text-decoration: underline;
 }
 .section1 {
 	float:left;
@@ -5433,4 +5434,18 @@ span.progress-needed2{
 	height: 130px;
 	background-image: url(../img/unlimited_fr.png);
 	background-repeat:no-repeat;
+}
+
+#rubbon_gb{
+	width: 100%;
+	height: 47px;
+	position: absolute;
+	top :450px;
+	background-image: url(../img/rubbon_bg.png);
+	background-repeat: repeat-x;
+}
+
+#ribbon_container{
+	height: 1px;
+	position: relative;
 }

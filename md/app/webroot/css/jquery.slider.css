@@ -195,3 +195,16 @@
   left:0;
   background:url(../img/jquery-slider-rotator-right.png) no-repeat 0 0;
 }
+
+.slider-deal-example
+  {
+    width:648px;
+    height:60px;
+    background:#000000;
+    background:rgba(0,0,0,0.5);
+    color:#FFFFFF;
+    padding:10px;
+    position:absolute;
+    top:260;
+    left:0px;
+  }

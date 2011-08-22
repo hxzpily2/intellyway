@@ -60,7 +60,7 @@
 		$_SESSION['city_attachment'] =  $html->url($html->getImageUrl('City', $city_attachment, array('dimension' => 'original')));
 	endif; 		
 ?>
-<body style="<?php echo !empty($_SESSION['city_attachment']) ? 'background:url('.$_SESSION['city_attachment'].') repeat fixed left top':''; ?>">
+<body style="<?php echo !empty($_SESSION['city_attachment']) ? 'background:url('.$_SESSION['city_attachment'].') repeat fixed left top':''; ?>">	  
 	<div class="js-morecities1 top-slider1  hide">
 	<div class="cities-index-block">
     <?php echo $this->element('cities-index', array('cache' => array('time' => Configure::read('site.element_cache'))));?>
@@ -88,7 +88,14 @@
 		endif;
 	?>
 	</div>
-	<!-- MENU -->
+	<div id="header-content">
+		<!-- RIBBON -->
+		<!--<div id="ribbon_container">		
+		  <?php if($this->params['controller'] == 'deals' && $this->params['action'] == 'index' && !isset($this->params['named']['type']) && !isset($this->params['named']['company'])) { ?>
+		  	<div id="rubbon_gb">&nbsp;</div>
+		  <?php } ?>	   
+		</div>-->	
+		<!-- END RIBBON -->
 	<div class="menu-content">
 		<div class="global-block">
           <ul class="global-links-r">
@@ -102,6 +109,8 @@
                 <li><?php echo $html->link(__l('Contact Us'), array('controller' => 'contacts', 'action' => 'add', 'admin' => false), array('title' => __l('Contact us')));?></li>
           </ul>
         </div>
+        	 
+	<!-- MENU -->
 		<table width="1166" height="100%" cellpadding="0" cellspacing="0" border="0">
 			<tr style="line-height:12px;">
 				<td width="123">&nbsp;</td>
@@ -310,9 +319,7 @@
 	<br/><br/>
 	<!--<?php echo $this->element('lanaguge-change-block', array('cache' => array('time' => Configure::read('site.element_cache'))));?>-->
 	<div id="<?php echo $html->getUniquePageId();?>" class="content">
-   <!--<div id="header">
-    <div id="header-content">
-   
+   <!--<div id="header">    
      <div class="side1-cl">
         <div class="side1-cr">
             <div class="block1-inner">
@@ -397,6 +404,7 @@
 	
         
       </div>
+      
       <div class="menu-block clearfix">
         <ul class="menu clearfix">
         	<?php if($html->isAllowed($auth->user('user_type_id'))): ?>
@@ -647,8 +655,8 @@
     </div>
   </div>
 </div>
-<div id="footer_md"><!-- BEGIN footer_md CONTAINER -->
-
+<br style="line-height: 100px;"/>
+<div id="footer_md"><!-- BEGIN footer_md CONTAINER -->	
 	<div id="footer_md_social_fb">
 		<table cellpadding="0" cellspacing="0" border="0">
 			<tr>
