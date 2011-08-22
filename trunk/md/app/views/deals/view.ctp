@@ -21,9 +21,9 @@ $javascript->link('libs/divs', false);
 			  </div>
 	 </div>
 	<?php endif; ?>
-<?php endif; ?>
-    <div class="deal-view-inner-block clearfix">      	
-      <div class="main-shad">&nbsp;</div>
+<?php endif; ?>	
+    <div class="deal-view-inner-block clearfix">
+    <div class="main-shad">&nbsp;</div>
       <div id="md_deal_global_infos">
       	<div id="md_deal_infos">
       		<div class="tag_pourcent"><div class="pourcent_tag"><center><span>&#45; <?php echo round($deal['Deal']['discount_percentage']) . "&#37;"; ?></span></center></div></div>
@@ -45,14 +45,14 @@ $javascript->link('libs/divs', false);
 		        				<?php endif; ?>
 		        				-->
 		        			</span>
-		            		<?php
+		            		<!--<?php
 		            			echo $html->link($deal['Deal']['name'], array('controller' => 'deals', 'action' => 'view', $deal['Deal']['slug']),array('title' =>sprintf(__l('%s'),$deal['Deal']['name'])));
-		            		?>
+		            		?>-->
 		            		<!-- SLIDESHOW -->
 		            		<?php
 		            			$images = $deal['Attachment'];
 		            			$name = $deal['Deal']['name'];
-		            			echo $this->element("slideshow",array("IMAGES"=>$images,"ID"=>$deal['Deal']['id'],"NAME"=>$name));
+		            			echo $this->element("slideshow",array("IMAGES"=>$images,"ID"=>$deal['Deal']['id'],"DEAL"=>$deal['Deal']));
 		            		?>
 			           	</h2>
 			           	<?php			           	
