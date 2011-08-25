@@ -1,7 +1,7 @@
 <script type="text/javascript">
     jQuery(document).ready(function($) {
       $(".slider<?php echo $ID; ?>").slideshow({
-        width      : 648,
+        width      : 608,
         height     : 320,
         transition : 'squareRandom'
       });

@@ -5440,7 +5440,7 @@ span.progress-needed2{
 	width: 100%;
 	height: 47px;
 	position: absolute;
-	top :450px;
+	top :350px;
 	background-image: url(../img/rubbon_bg.png);
 	background-repeat: repeat-x;
 }
@@ -5448,4 +5448,99 @@ span.progress-needed2{
 #ribbon_container{
 	height: 1px;
 	position: relative;
+}
+
+/*************************************************************************************/
+#desc_top_left
+{
+	background-image: url('../img/desc_top_left.png');
+	background-repeat: no-repeat;
+}
+
+#desc_top
+{
+	background-image: url('../img/desc_top.png');
+	background-repeat: repeat-x;
+}
+
+#desc_top_right
+{
+	background-image: url('../img/desc_top_right.png');
+	background-repeat: no-repeat;
+}
+
+
+#desc_left
+{
+	background-image: url('../img/desc_left.png');
+	background-repeat:repeat-y;
+}
+
+#desc_texture
+{
+	background-color: #FFF;
+}
+
+#desc_right
+{
+	background-image: url('../img/desc_right.png');
+	background-repeat:repeat-y;
+}
+
+#desc_bottom_left
+{
+	background-image: url('../img/desc_bottom_left.png');
+	background-repeat: no-repeat;
+}
+
+#desc_bottom
+{
+	background-image: url('../img/desc_bottom.png');
+	background-repeat: repeat-x;
+}
+
+#desc_bottom_right
+{
+	background-image: url('../img/desc_bottom_right.png');
+	background-repeat: no-repeat;
+}
+
+#desc_div_left{
+	width: 450px;
+	float: left;
+}
+
+#desc_div_right{
+	width: 187px;
+	float: right;
+	padding-right: 3px;
+}
+
+#fine-print-block{
+	float: left;
+	width: 47%;
+}
+
+#highlight-block{
+	float: right;
+	width: 47%;
+}
+
+#highlights_div{
+	float: left;
+	width: 100%;
+}
+
+#descr_sep{
+	float: left;
+	width: 100%;
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+/**************************************************************/
+#icon_gmap{
+	width: 18px;
+	height: 31px;
+	float: left;
+	margin-top: -3px;
 }

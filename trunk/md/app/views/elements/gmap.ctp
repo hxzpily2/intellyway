@@ -1,11 +1,15 @@
 <style type="text/css">
 #map_canvas<?php echo $ID; ?>{
-	width: 192px; height: 190px;
+	width: 146px; height: 170px;
+	border-style:solid;
+	border-width:1px;
+	color:#3399CC;
 }
 
 #map_canvas<?php echo $ID; ?> span{
 	display:none;
 }
+
 </style>
 
 

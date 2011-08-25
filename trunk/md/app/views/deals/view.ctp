@@ -47,19 +47,161 @@ $javascript->link('libs/divs', false);
 		        			</span>
 		            		<!--<?php
 		            			echo $html->link($deal['Deal']['name'], array('controller' => 'deals', 'action' => 'view', $deal['Deal']['slug']),array('title' =>sprintf(__l('%s'),$deal['Deal']['name'])));
-		            		?>-->
-		            		<!-- SLIDESHOW -->
-		            		<?php
-		            			$images = $deal['Attachment'];
-		            			$name = $deal['Deal']['name'];
-		            			echo $this->element("slideshow",array("IMAGES"=>$images,"ID"=>$deal['Deal']['id'],"DEAL"=>$deal['Deal']));
-		            		?>
+		            		?>-->		            		
+		            		<table width="648" height="320">
+								<tr height="18">
+									<td width="20" id="desc_top_left">&nbsp;</td>
+									<td id="desc_top">&nbsp;</td>
+									<td width="20" id="desc_top_right">&nbsp;</td>
+								</tr>
+								<tr>
+									<td width="20" id="desc_left">&nbsp;</td>
+									<td id="desc_texture">
+										<!-- SLIDESHOW -->
+					            		<?php
+					            			$images = $deal['Attachment'];
+					            			$name = $deal['Deal']['name'];
+					            			echo $this->element("slideshow",array("IMAGES"=>$images,"ID"=>$deal['Deal']['id'],"DEAL"=>$deal['Deal']));
+					            		?>					            		
+									</td>
+									<td width="20" id="desc_right">&nbsp;</td>
+								</tr>
+								<tr height="21">
+									<td width="20" id="desc_bottom_left">&nbsp;</td>
+									<td id="desc_bottom">&nbsp;</td>
+									<td width="20" id="desc_bottom_right">&nbsp;</td>
+								</tr>
+							</table>														
 			           	</h2>
-			           	<?php			           	
-            				$company = $deal['Company'];
-            				$zoom = Configure::read('GoogleMap.static_map_zoom_level');
-			           	?>
-			           	<!-- <?php echo $this->element("gmap",array("ID"=>$deal['Deal']['id'],"COMPANY"=>$company,"ZOOM"=>$zoom));?> -->
+			           				           	
+			           	<div id="desc_div_left">
+			           		<table width="100%" height="320">
+								<tr height="18">
+									<td width="20" id="desc_top_left">&nbsp;</td>
+									<td id="desc_top">&nbsp;</td>
+									<td width="20" id="desc_top_right">&nbsp;</td>
+								</tr>
+								<tr>
+									<td width="20" id="desc_left">&nbsp;</td>
+									<td id="desc_texture">
+										<div id="highlights_div">
+											<div id="fine-print-block">
+						                        <h3><?php echo __l('The Fine Print');?></h3>
+						                        <?php if(!empty($deal['Deal']['coupon_expiry_date'])){
+								                 		 echo __l('Expires '); 
+								                         echo  $html->cDateTime($deal['Deal']['coupon_expiry_date']);
+													  }	  
+													  echo ' '.$html->cHtml($deal['Deal']['coupon_condition']);
+												?>
+						                        <?php echo $html->link(__l('Read the Deal FAQ'), array('controller' => 'pages', 'action' => 'view','faq', 'admin' => false), array('target'=>'_blank', 'title' => __l('Read the deal FAQ')));?> <?php echo __l(' for the basics.'); ?>
+						                    </div>
+						                    <div id="highlight-block">
+						                      <h3><?php echo __l('Highlights');?></h3>
+						                      <?php echo $html->cHtml($deal['Deal']['coupon_highlights']);?>
+						                    </div>
+										</div>	
+										<div id="descr_sep"><center><?php echo $html->image('md_price_sep.png'); ?></center></div>									
+										<!-- DESCRIPTION -->
+										
+					            		<h3><?php echo __l('Description');?></h3>
+                    					<?php echo $html->cHtml($deal['Deal']['description']);?>
+                    					
+                    					<!-- REVIEWS -->
+                    					
+                    					<?php if(!empty($deal['Deal']['review'])){?>
+                    						<div id="descr_sep"><center><?php echo $html->image('md_price_sep.png'); ?></center></div>	
+					        				<h3><?php echo __l('Reviews');?></h3>
+					        				<div class="big-text"><?php echo $html->cHtml($deal['Deal']['review']);?></div>
+									    <?php }?>
+									    
+									    <!-- COMMENT -->
+									    <?php if(!empty($deal['Deal']['comment'])) {?>
+									    	<div id="descr_sep"><center><?php echo $html->image('md_price_sep.png'); ?></center></div>
+											<h3><?php echo Configure::read('site.name').' '.__l('says');?></h3>
+					                       	<?php echo $html->cHtml($deal['Deal']['comment']);?>
+					                    <?php } ?>
+									</td>
+									<td width="20" id="desc_right">&nbsp;</td>
+								</tr>
+								<tr height="21">
+									<td width="20" id="desc_bottom_left">&nbsp;</td>
+									<td id="desc_bottom">&nbsp;</td>
+									<td width="20" id="desc_bottom_right">&nbsp;</td>
+								</tr>
+							</table>
+			           	</div>
+			           	<div id="desc_div_right">
+			           		<table width="100%" height="320">
+								<tr height="18">
+									<td width="20" id="desc_top_left">&nbsp;</td>
+									<td id="desc_top">&nbsp;</td>
+									<td width="20" id="desc_top_right">&nbsp;</td>
+								</tr>
+								<tr>
+									<td width="20" id="desc_left">&nbsp;</td>
+									<td id="desc_texture">
+										<h3><div id="icon_gmap"><?php echo $html->image('my_custom_icon.png',array('width'=>'15')); ?></div><?php echo __l('Company Info:');?></h3>
+					                    <h5 class="big"><?php
+					        					if($deal['Company']['is_company_profile_enabled'] && $deal['Company']['is_online_account']):
+					        						echo $html->link($html->cText($deal['Company']['name']), array('controller' => 'companies', 'action' => 'view',   $deal['Company']['slug']),array('title' =>$html->cText($deal['Company']['name'],false)), null, false);
+					        					else:
+					        						echo $html->cText($deal['Company']['name']);
+					        					endif;
+					
+					        			?></h5>
+					                    <?php if(!empty($deal['Company']['url'])): ?>
+					                        <a href="<?php echo $deal['Company']['url'];?>" title="<?php echo $html->cText($deal['Company']['url'],false);?>" target="_blank"><?php echo $html->cText($deal['Company']['url'],false);?></a>
+					                    <?php endif; ?>
+					                    <address>
+					                    <?php echo $html->cText($deal['Company']['address1']);?>
+					                    <?php echo !empty($deal['Company']['City']['name']) ? $html->cText($deal['Company']['City']['name']) : '';?><?php echo !empty($deal['Company']['State']['name']) ? $html->cText($deal['Company']['State']['name']) : '';?> <?php echo $html->cText($deal['Company']['zip']);?>
+					                    </address>
+					        			<?php if(!empty($deal['Company']['CompanyAddress'])):?>
+					        			<div class="map-info-r">
+					        				<p class="big">
+					        					<span>
+					        						<?php echo __l('Branch Addresses');?>
+					        					</span>
+					        				</p>
+					    				<ol class="address-list clearfix">
+					    					<?php foreach($deal['Company']['CompanyAddress'] as $address): ?>
+					    						<li>
+					    							<address class="address<?php echo $count;?>">
+					    								<?php if (!empty($address['address1']) || !empty($address['address2'])): ?>
+					    									<span class="street-name"><?php echo ((!empty($address['address1'])) ? $address['address1'] : '') . ' ' . ((!empty($address['address2'])) ? $address['address2'] : ''); ?></span>
+					    								<?php endif; ?>
+					    								<?php if (!empty($address['City']['name']) || !empty($address['State']['name'])): ?>
+					    									<span><?php echo (!empty($address['City']['name'])) ? $address['City']['name'] . ', ' : ''; ?> <?php echo (!empty($address['State']['name'])) ? $address['State']['name'] : ''; ?></span>
+															<span><?php echo (!empty($address['Country']['name'])) ? $address['Country']['name'] : ''; ?></span>
+					    								<?php endif; ?>
+					    								<?php if (!empty($address['zip'])): ?>
+					    									<span><?php echo $address['zip']; ?></span>
+					    								<?php endif; ?>
+					    							</address>
+					    						</li>
+					    					<?php endforeach; ?>
+					    				</ol>
+								</div>
+					     		 <?php endif; ?>
+										<?php if($deal['Company']['is_company_profile_enabled'] == 1):?>
+					                    <?php			           	
+			            				$company = $deal['Company'];
+			            				$zoom = Configure::read('GoogleMap.static_map_zoom_level');
+						           	?>
+						           	<?php echo $this->element("gmap",array("ID"=>$deal['Deal']['id'],"COMPANY"=>$company,"ZOOM"=>$zoom));?>
+										<?php endif; ?>
+					                    
+									</td>
+									<td width="20" id="desc_right">&nbsp;</td>
+								</tr>
+								<tr height="21">
+									<td width="20" id="desc_bottom_left">&nbsp;</td>
+									<td id="desc_bottom">&nbsp;</td>
+									<td width="20" id="desc_bottom_right">&nbsp;</td>
+								</tr>
+							</table>
+			           	</div>
+			           	
 			           	<!-- END CONTENT -->
 					</td>
 					<td id="md_deal_infos_right" width="21">&nbsp;</td>
