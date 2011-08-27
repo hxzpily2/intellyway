@@ -425,7 +425,7 @@ p.user-login-info a {
 	position:relative;
 }
 .main-shad {
-	background:url(../img/slideshow_bg.png) no-repeat scroll left 20px;
+	background:url(../img/slideshow_bg.png) no-repeat scroll left 52px;
 	position:absolute;
 	top : -5px;
 	left:-9px;
@@ -5440,7 +5440,7 @@ span.progress-needed2{
 	width: 100%;
 	height: 47px;
 	position: absolute;
-	top :350px;
+	top :382px;
 	background-image: url(../img/rubbon_bg.png);
 	background-repeat: repeat-x;
 }
@@ -5543,4 +5543,11 @@ span.progress-needed2{
 	height: 31px;
 	float: left;
 	margin-top: -3px;
+}
+
+#deal_friends{
+	height: 32px;
+	width : 700px;
+	text-align: right;
+	
 }
