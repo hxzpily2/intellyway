@@ -91,7 +91,7 @@
 	<div id="header-content">
 		<!-- RIBBON -->
 		<div id="ribbon_container">		
-		  <?php if($this->params['controller'] == 'deals' && $this->params['action'] == 'index' && !isset($this->params['named']['type']) && !isset($this->params['named']['company'])) { ?>
+		  <?php if(isset($deal)){ ?>
 		  	<div id="rubbon_gb">&nbsp;</div>
 		  <?php } ?>	   
 		</div>	
