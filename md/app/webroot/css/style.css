@@ -16,7 +16,7 @@
 
 body {    
 	background-color: #EDF3F5;
-    background-image: url("../img/texture_08.jpg");
+    background-image: url("../img/texture_09.jpg");
 }
 div.content {
 	color:#4c4c4c;
@@ -5551,3 +5551,335 @@ span.progress-needed2{
 	text-align: right;
 	
 }
+
+/*************************** BUTTON COLORED **********************************/
+a.blue_button {
+    /* Sliding right image */
+    background: transparent url('../img/blue_button_right.png') no-repeat scroll top right; 
+	display: block;
+	float: left;
+	height: 32px; /* CHANGE THIS VALUE ACCORDING TO IMAGE HEIGHT */
+	margin-right: 6px;
+	padding-right: 17px; /* CHENGE THIS VALUE ACCORDING TO RIGHT IMAGE WIDTH */
+	/* FONT PROPERTIES */
+	text-decoration: none;
+	color: #000000;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:12px;
+	font-weight:bold;
+}
+a.blue_button span {
+	/* Background left image */ 
+	background: transparent url('../img/blue_button_left.png') no-repeat; 
+	display: block;
+	line-height: 32px; /* CHANGE THIS VALUE ACCORDING TO BUTTONG HEIGHT */
+	padding: 0px 0 5px 17px;
+} 
+
+a.blue_button:hover{
+    /* Sliding right image */
+    background: transparent url('../img/blue_button_hover_right.png') no-repeat scroll top right; 
+	display: block;
+	float: left;
+	height: 32px; /* CHANGE THIS VALUE ACCORDING TO IMAGE HEIGHT */
+	margin-right: 6px;
+	padding-right: 17px; /* CHENGE THIS VALUE ACCORDING TO RIGHT IMAGE WIDTH */
+	/* FONT PROPERTIES */
+	text-decoration: none;
+	color: #000000;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:12px;
+	font-weight:bold;
+}
+
+a.blue_button:hover span{
+	text-decoration:underline;	
+	background: transparent url('../img/blue_button_hover_left.png') no-repeat; 
+	display: block;
+	line-height: 32px; /* CHANGE THIS VALUE ACCORDING TO BUTTONG HEIGHT */
+	padding: 0px 0 5px 17px;
+}
+
+
+a.black_button {
+    /* Sliding right image */
+    background: transparent url('../img/black_button_right.png') no-repeat scroll top right; 
+	display: block;
+	float: left;
+	height: 32px; /* CHANGE THIS VALUE ACCORDING TO IMAGE HEIGHT */
+	margin-right: 6px;
+	padding-right: 17px; /* CHENGE THIS VALUE ACCORDING TO RIGHT IMAGE WIDTH */
+	/* FONT PROPERTIES */
+	text-decoration: none;
+	color: #FFFFFF;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:12px;
+	font-weight:bold;
+}
+a.black_button span {
+	/* Background left image */ 
+	background: transparent url('../img/black_button_left.png') no-repeat; 
+	display: block;
+	line-height: 32px; /* CHANGE THIS VALUE ACCORDING TO BUTTONG HEIGHT */
+	padding: 0px 0 5px 17px;
+} 
+
+a.black_button:hover{
+    /* Sliding right image */
+    background: transparent url('../img/black_button_hover_right.png') no-repeat scroll top right; 
+	display: block;
+	float: left;
+	height: 32px; /* CHANGE THIS VALUE ACCORDING TO IMAGE HEIGHT */
+	margin-right: 6px;
+	padding-right: 17px; /* CHENGE THIS VALUE ACCORDING TO RIGHT IMAGE WIDTH */
+	/* FONT PROPERTIES */
+	text-decoration: none;
+	color: #FFFFFF;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:12px;
+	font-weight:bold;
+}
+
+a.black_button:hover span{
+	text-decoration:underline;	
+	background: transparent url('../img/black_button_hover_left.png') no-repeat; 
+	display: block;
+	line-height: 32px; /* CHANGE THIS VALUE ACCORDING TO BUTTONG HEIGHT */
+	padding: 0px 0 5px 17px;
+}
+
+a.grey_button {
+    /* Sliding right image */
+    background: transparent url('../img/grey_button_right.png') no-repeat scroll top right; 
+	display: block;
+	float: left;
+	height: 32px; /* CHANGE THIS VALUE ACCORDING TO IMAGE HEIGHT */
+	margin-right: 6px;
+	padding-right: 17px; /* CHENGE THIS VALUE ACCORDING TO RIGHT IMAGE WIDTH */
+	/* FONT PROPERTIES */
+	text-decoration: none;
+	color: #6a6a6a;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:12px;
+	font-weight:bold;
+}
+a.grey_button span {
+	/* Background left image */ 
+	background: transparent url('../img/grey_button_left.png') no-repeat; 
+	display: block;
+	line-height: 32px; /* CHANGE THIS VALUE ACCORDING TO BUTTONG HEIGHT */
+	padding: 0px 0 5px 17px;
+} 
+
+a.grey_button:hover{
+    /* Sliding right image */
+    background: transparent url('../img/grey_button_hover_right.png') no-repeat scroll top right; 
+	display: block;
+	float: left;
+	height: 32px; /* CHANGE THIS VALUE ACCORDING TO IMAGE HEIGHT */
+	margin-right: 6px;
+	padding-right: 17px; /* CHENGE THIS VALUE ACCORDING TO RIGHT IMAGE WIDTH */
+	/* FONT PROPERTIES */
+	text-decoration: none;
+	color: #6a6a6a;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:12px;
+	font-weight:bold;
+}
+
+a.grey_button:hover span{
+	text-decoration:underline;	
+	background: transparent url('../img/grey_button_hover_left.png') no-repeat; 
+	display: block;
+	line-height: 32px; /* CHANGE THIS VALUE ACCORDING TO BUTTONG HEIGHT */
+	padding: 0px 0 5px 17px;
+}
+
+a.darkgrey_button {
+    /* Sliding right image */
+    background: transparent url('../img/darkgrey_button_right.png') no-repeat scroll top right; 
+	display: block;
+	float: left;
+	height: 32px; /* CHANGE THIS VALUE ACCORDING TO IMAGE HEIGHT */
+	margin-right: 6px;
+	padding-right: 17px; /* CHENGE THIS VALUE ACCORDING TO RIGHT IMAGE WIDTH */
+	/* FONT PROPERTIES */
+	text-decoration: none;
+	color: #6a6a6a;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:12px;
+	font-weight:bold;
+}
+a.darkgrey_button span {
+	/* Background left image */ 
+	background: transparent url('../img/darkgrey_button_left.png') no-repeat; 
+	display: block;
+	line-height: 32px; /* CHANGE THIS VALUE ACCORDING TO BUTTONG HEIGHT */
+	padding: 0px 0 5px 17px;
+} 
+
+a.darkgrey_button:hover{
+    /* Sliding right image */
+    background: transparent url('../img/darkgrey_button_hover_right.png') no-repeat scroll top right; 
+	display: block;
+	float: left;
+	height: 32px; /* CHANGE THIS VALUE ACCORDING TO IMAGE HEIGHT */
+	margin-right: 6px;
+	padding-right: 17px; /* CHENGE THIS VALUE ACCORDING TO RIGHT IMAGE WIDTH */
+	/* FONT PROPERTIES */
+	text-decoration: none;
+	color: #6a6a6a;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:12px;
+	font-weight:bold;
+}
+
+a.darkgrey_button:hover span{
+	text-decoration:underline;	
+	background: transparent url('../img/darkgrey_button_hover_left.png') no-repeat; 
+	display: block;
+	line-height: 32px; /* CHANGE THIS VALUE ACCORDING TO BUTTONG HEIGHT */
+	padding: 0px 0 5px 17px;
+}
+
+a.yellow_button {
+    /* Sliding right image */
+    background: transparent url('../img/yellow_button_right.png') no-repeat scroll top right; 
+	display: block;
+	float: left;
+	height: 32px; /* CHANGE THIS VALUE ACCORDING TO IMAGE HEIGHT */
+	margin-right: 6px;
+	padding-right: 17px; /* CHENGE THIS VALUE ACCORDING TO RIGHT IMAGE WIDTH */
+	/* FONT PROPERTIES */
+	text-decoration: none;
+	color: #996633;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:12px;
+	font-weight:bold;
+}
+a.yellow_button span {
+	/* Background left image */ 	
+	background: transparent url('../img/yellow_button_left.png') no-repeat; 
+	display: block;
+	line-height: 32px; /* CHANGE THIS VALUE ACCORDING TO BUTTONG HEIGHT */
+	padding: 0px 0 5px 17px;
+} 
+
+a.yellow_button:hover{
+    /* Sliding right image */
+    background: transparent url('../img/yellow_button_hover_right.png') no-repeat scroll top right; 
+	display: block;
+	float: left;
+	height: 32px; /* CHANGE THIS VALUE ACCORDING TO IMAGE HEIGHT */
+	margin-right: 6px;
+	padding-right: 17px; /* CHENGE THIS VALUE ACCORDING TO RIGHT IMAGE WIDTH */
+	/* FONT PROPERTIES */
+	text-decoration: none;
+	color: #996633;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:12px;
+	font-weight:bold;
+}
+
+a.yellow_button:hover span{
+	text-decoration:underline;	
+	background: transparent url('../img/yellow_button_hover_left.png') no-repeat; 
+	display: block;
+	line-height: 32px; /* CHANGE THIS VALUE ACCORDING TO BUTTONG HEIGHT */
+	padding: 0px 0 5px 17px;
+}
+
+a.pink_button {
+    /* Sliding right image */
+    background: transparent url('../img/pink_button_right.png') no-repeat scroll top right; 
+	display: block;
+	float: left;
+	height: 32px; /* CHANGE THIS VALUE ACCORDING TO IMAGE HEIGHT */
+	margin-right: 6px;
+	padding-right: 17px; /* CHENGE THIS VALUE ACCORDING TO RIGHT IMAGE WIDTH */
+	/* FONT PROPERTIES */
+	text-decoration: none;
+	color: #aa4956;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:12px;
+	font-weight:bold;
+}
+a.pink_button span {
+	/* Background left image */ 
+	background: transparent url('../img/pink_button_left.png') no-repeat; 
+	display: block;
+	line-height: 32px; /* CHANGE THIS VALUE ACCORDING TO BUTTONG HEIGHT */
+	padding: 0px 0 5px 17px;
+} 
+
+a.pink_button:hover{
+    /* Sliding right image */
+    background: transparent url('../img/pink_button_hover_right.png') no-repeat scroll top right; 
+	display: block;
+	float: left;
+	height: 32px; /* CHANGE THIS VALUE ACCORDING TO IMAGE HEIGHT */
+	margin-right: 6px;
+	padding-right: 17px; /* CHENGE THIS VALUE ACCORDING TO RIGHT IMAGE WIDTH */
+	/* FONT PROPERTIES */
+	text-decoration: none;
+	color: #aa4956;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:12px;
+	font-weight:bold;
+}
+
+a.pink_button:hover span{
+	text-decoration:underline;	
+	background: transparent url('../img/pink_button_hover_left.png') no-repeat; 
+	display: block;
+	line-height: 32px; /* CHANGE THIS VALUE ACCORDING TO BUTTONG HEIGHT */
+	padding: 0px 0 5px 17px;
+}
+
+a.purple_button {
+    /* Sliding right image */
+    background: transparent url('../img/purple_button_right.png') no-repeat scroll top right; 
+	display: block;
+	float: left;
+	height: 32px; /* CHANGE THIS VALUE ACCORDING TO IMAGE HEIGHT */
+	margin-right: 6px;
+	padding-right: 17px; /* CHENGE THIS VALUE ACCORDING TO RIGHT IMAGE WIDTH */
+	/* FONT PROPERTIES */
+	text-decoration: none;
+	color: #7b5777;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:12px;
+	font-weight:bold;
+}
+a.purple_button span {
+	/* Background left image */ 
+	background: transparent url('../img/purple_button_left.png') no-repeat; 
+	display: block;
+	line-height: 32px; /* CHANGE THIS VALUE ACCORDING TO BUTTONG HEIGHT */
+	padding: 0px 0 5px 17px;
+} 
+
+a.purple_button:hover{
+    /* Sliding right image */
+    background: transparent url('../img/purple_button_hover_right.png') no-repeat scroll top right; 
+	display: block;
+	float: left;
+	height: 32px; /* CHANGE THIS VALUE ACCORDING TO IMAGE HEIGHT */
+	margin-right: 6px;
+	padding-right: 17px; /* CHENGE THIS VALUE ACCORDING TO RIGHT IMAGE WIDTH */
+	/* FONT PROPERTIES */
+	text-decoration: none;
+	color: #7b5777;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:12px;
+	font-weight:bold;
+}
+
+a.purple_button:hover span{
+	text-decoration:underline;	
+	background: transparent url('../img/purple_button_hover_left.png') no-repeat; 
+	display: block;
+	line-height: 32px; /* CHANGE THIS VALUE ACCORDING TO BUTTONG HEIGHT */
+	padding: 0px 0 5px 17px;
+}
+/************************ FIN BUTTONS COLORED ***************************/
