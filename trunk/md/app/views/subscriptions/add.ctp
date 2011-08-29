@@ -104,6 +104,9 @@
 				echo $form->input('city_id',array('type' => 'hidden')); 
 			endif;			
 			?>
-        <?php echo $form->end(__l('Subscribe'));?>
+        <?php /*echo $form->end(__l('Subscribe'));*/ ?>
+        <div style="padding-top:4px;">
+       		<a class="yellow_button" href="#"><span><?php echo __l('Subscribe'); ?></span></a>
+        </div> 
     </div>
 <?php endif; ?>
