@@ -91,7 +91,7 @@
 <?php else: ?>
     <div class="subscriptions form clearfix">
 		<?php echo $form->create('Subscription', array('class' => 'subscription round-10 clearfix'));?>
-        	<?php
+        	<?php 
 				if(!empty($city_id)):
 					$this->data['Subscription']['city_id'] = $city_id;
 				endif;
@@ -104,9 +104,13 @@
 				echo $form->input('city_id',array('type' => 'hidden')); 
 			endif;			
 			?>
+			
+		<div style="padding-top:4px;">
+       		<a class="yellow_button" href="#" onclick="$('form').submit();"><span><?php echo __l('Subscribe'); ?></span></a>
+        </div>	
+		<?php echo $form->end(); ?>	
         <?php /*echo $form->end(__l('Subscribe'));*/ ?>
-        <div style="padding-top:4px;">
-       		<a class="yellow_button" href="#"><span><?php echo __l('Subscribe'); ?></span></a>
-        </div> 
+        
+         
     </div>
 <?php endif; ?>
