@@ -319,152 +319,7 @@
 	<br/><br/>
 	<!--<?php echo $this->element('lanaguge-change-block', array('cache' => array('time' => Configure::read('site.element_cache'))));?>-->
 	<div id="<?php echo $html->getUniquePageId();?>" class="content">
-   <!--<div id="header">    
-     <div class="side1-cl">
-        <div class="side1-cr">
-            <div class="block1-inner">
-      <div class="clearfix">
-        <h1>
-                <?php echo $html->link(Configure::read('site.name'), array('controller' => 'deals', 'action' => 'index', 'admin' => false), array('title' => Configure::read('site.name'))); ?>
-			</h1>
-            
-         <?php if($auth->sessionValid() && $auth->user('user_type_id') == ConstUserTypes::Admin): ?>
-            <div class="admin-bar">
-                <h3><?php echo __l('You are logged in as '); ?><?php echo $html->link(__l('Admin'), array('controller' => 'users' , 'action' => 'stats' , 'admin' => true), array('title' => __l('Admin'))); ?></h3>
-                <div><?php echo $html->link(__l('Logout'), array('controller' => 'users' , 'action' => 'logout', 'admin' => true), array('title' => __l('Logout'))); ?></div>
-            </div>
-     <?php endif; ?>
-        <div class="header-r">
-          <div class="clearfix">
-            
-          </div>
-          <div class="city-block clearfix">
-           	
-           	<?php if($html->isAllowed($auth->user('user_type_id')) && $this->params['controller'] != 'subscriptions'): ?>
-          <?php echo $this->element('../subscriptions/add', array('cache' => array('time' => Configure::read('site.element_cache'))));?>
-        <?php endif; ?>
-            <div class="city-desc-block clearfix">
-              <?php if(!empty($city_name)): ?>
-                        <h2><?php echo __l('Daily Deals on the Best in'); ?>
-                     
-                        	<?php
-								if (Cache::read('site.city_url', 'long') == 'prefix') {
-									echo $html->link($html->cText($city_name), array('controller' => 'deals', 'action' => 'index', 'city' => $city_slug), array('title' => $html->cText($city_name, false),'class'=>'city-name' ,'escape' => false));
-								} elseif (Cache::read('site.city_url', 'long') == 'subdomain') {
-									$subdomain = substr(env('HTTP_HOST'), 0, strpos(env('HTTP_HOST'), '.'));
-									$sitedomain = substr(env('HTTP_HOST'), strpos(env('HTTP_HOST'), '.'));
-									if (strlen($subdomain) > 0) {
-							?>
-										<a href="http://<?php echo $city_slug . $sitedomain; ?>" title="<?php echo $html->cText($city_name, false); ?>"><?php echo $html->cText($city_name); ?></a>
-							<?php
-									} else {
-										echo $html->link($html->cText($city_name), array('controller' => 'deals', 'action' => 'index', 'city' => $city_slug), array('title' => $html->cText($city_name, false), 'escape' => false));
-									}
-								}
-							?>
-
-                      </h2>
-      	
-							<div class="js-morecities top-slider  hide"> <?php echo $this->element('cities-index', array('cache' => array('time' => Configure::read('site.element_cache'))));?></div>
-						
-
-                <?php endif;?>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="clearfix">
-      	<?php echo $this->element('lanaguge-change-block', array('cache' => array('time' => Configure::read('site.element_cache'))));?>
-		<?php $total_array = $html->total_saved(); ?>
-		  <dl class="total-list clearfix">
-			<dt><?php echo __l('Total Saved: '); ?></dt>
-			<dd><span><?php echo $html->siteCurrencyFormat($html->cCurrency($total_array['total_saved'])); ?></span></dd>
-			<dt><?php echo __l('Total Bought: '); ?></dt>
-			<dd><?php echo $html->cInt($total_array['total_bought']); ?></dd>
-			 <?php if($auth->sessionValid() && $html->isWalletEnabled('is_enable_for_add_to_wallet')): ?>
-				<dt><?php echo __l('Balance: '); ?></dt>
-				<?php
-					if (empty($user_available_balance)):
-						$user_available_balance = 0;
-					endif;
-				?>
-				<dd><span><?php echo $html->siteCurrencyFormat($html->cCurrency($user_available_balance)); ?></span></dd>
-            <?php endif; ?>
-          </dl>
-            <?php if($auth->sessionValid() && $html->isWalletEnabled('is_enable_for_add_to_wallet')): ?>
-            <div class="add-amount">
-            	<?php if ((Configure::read('company.is_user_can_withdraw_amount') && $auth->user('user_type_id') == ConstUserTypes::Company) || (Configure::read('user.is_user_can_with_draw_amount') && $auth->user('user_type_id') == ConstUserTypes::User)) { ?>
-                	<?php echo $html->link(__l('Withdraw Fund Request'), array('controller' => 'user_cash_withdrawals', 'action' => 'index'), array('title' => __l('Withdraw Fund Request'),'class'=>'width-draw'));?>
-				<?php } ?>
-				<?php if($html->isAllowed($auth->user('user_type_id'))): ?>
-				<?php echo $html->link(__l('Add amount to wallet'), array('controller' => 'users', 'action' => 'add_to_wallet'), array('class' => 'add add-wallet', 'title' => __l('Add amount to wallet'))); ?>
-                <?php endif; ?>
-            </div>
-             <?php endif; ?>
-	
-        
-      </div>
-      
-      <div class="menu-block clearfix">
-        <ul class="menu clearfix">
-        	<?php if($html->isAllowed($auth->user('user_type_id'))): ?>
-                <li <?php if($this->params['controller'] == 'deals' && $this->params['action'] == 'index' && !isset($this->params['named']['type']) && !isset($this->params['named']['company'])) { echo 'class="active"'; } ?>><?php echo $html->link(__l('Today\'s Deals'), array('controller' => 'deals', 'action' => 'index', 'admin' => false), array('title' => __l('Today\'s Deals')));?></li>
-                <li <?php if($this->params['controller'] == 'deals' && (isset($this->params['named']['type']) && $this->params['named']['type'] == 'recent')) { echo 'class="active"'; } else { echo 'class=""';}?>><?php echo $html->link(__l('Recent Deals'), array('controller' => 'deals', 'action' => 'index', 'admin' => false,'type' => 'recent'), array('title' => __l('Recent Deals')));?></li>
-               <?php endif; ?>
-				<li <?php if($this->params['controller'] == 'topics' or $this->params['controller'] == 'topic_discussions' ) { echo 'class="active"'; } else { echo 'class=""';}?>><?php echo $html->link(__l('Discussion'), array('controller' => 'topics', 'action' => 'index', 'admin' => false), array('title' => __l('Discussion')));?></li>
-
-				<li <?php if($this->params['controller'] == 'pages' && $this->params['action'] == 'view'  && $this->params['pass'][0] == 'learn') { echo 'class="active"'; } ?>><?php echo $html->link(sprintf(__l('How')." ".'%s'." " .__l('Works'), Configure::read('site.name')), array('controller' => 'pages', 'action' => 'view', 'learn', 'admin' => false), array('title' => sprintf(__l('How')." ".'%s'." ".__l(' Works'), Configure::read('site.name'))));?></li>
-
-				<?php if(!$auth->sessionValid()):
-				$url = strstr($this->params['url']['url'],"/company/user/register");?>
-					<li <?php if((!empty($url)) || ($this->params['controller'] == 'pages' && $this->params['action'] == 'view' &&  $this->params['pass'][0] == 'company')) { echo 'class="active"'; } else { echo 'class=""';}?>><?php echo $html->link(__l('Business'), array('controller' => 'pages', 'action' => 'view', 'company', 'admin' => false), array('title' => __l('Business')));?></li>
-				<?php endif; ?>
-				    <?php if($auth->sessionValid()): ?>
-          			<?php if($auth->sessionValid()):?>
-					<?php if($auth->user('user_type_id') != ConstUserTypes::Company):?>
-						<li <?php if($this->params['controller'] == 'users' && $this->params['action'] == 'my_stuff') { echo 'class="active"'; } ?>>
-							<?php  echo $html->link(__l('My Stuff'), array('controller' => 'users', 'action' => 'my_stuff'), array('title' => __l('My Stuff')));?>
-						</li>
-					<?php elseif($auth->user('user_type_id') == ConstUserTypes::Company): ?>
-					<?php if($html->isAllowed($auth->user('user_type_id'))): ?>
-						<li <?php if($this->params['controller'] == 'users' && $this->params['action'] == 'my_stuff') { echo 'class="active"'; } ?>>
-							<?php  echo $html->link(__l('My Stuff'), array('controller' => 'users', 'action' => 'my_stuff'), array('title' => __l('My Stuff')));?>
-						</li>
-					<?php else: ?>
-						<li <?php if($this->params['controller'] == 'transactions' && $this->params['action'] == 'index') { echo 'class="active"'; } ?>>
-							<?php  echo $html->link(__l('My Transactions'), array('controller' => 'transactions', 'action' => 'index'), array('title' => __l('My Transactions')));?>
-						</li>
-						 <li <?php if($this->params['controller'] == 'companies' && $this->params['action'] == 'edit') { echo 'class="active"'; } ?>>
-							 <?php echo $html->link(__l('My Company'), array('controller' => 'companies', 'action' => 'edit',$company['Company']['id']), array('title' => __l('My Company'))); ?>
-						 </li>
-					<?php endif; ?>
-						<?php if($auth->user('user_type_id') == ConstUserTypes::Company && !empty($company['Company'])):?>
-							<li <?php if($this->params['controller'] == 'deals' && $this->params['action'] == 'index' && !empty($this->params['named']['company'])) { echo 'class="active"'; } else { echo 'class=""';}?>><?php echo $html->link(__l('My Deals'), array('controller' => 'deals', 'action' => 'index', 'company' => $company['Company']['slug'] ), array('title' => __l('My Deals')));?></li>
-						<?php endif; ?>
-
-						<li <?php if($this->params['controller'] == 'deals' && $this->params['action'] == 'add') { echo 'class="active"'; } ?>>
-                        <?php echo $html->link(__l('Add Deal'), array('controller' => 'deals', 'action' => 'add'), array('class'=>'add-deal', 'title' => __l('Add Deal')));?></li>
-					<?php endif; ?>
-				<?php endif; ?>
-				<?php $url = Router::url(array('controller' => 'users', 'action' => 'my_stuff', 'admin' => false),true); ?>
-
-
-            <?php endif; ?>
-        </ul>
-        
-      </div>
-      	</div>
-		</div>
-		</div>
-        <div class="side1-bl">
-            <div class="side1-br">
-              <div class="side1-bm"> </div>
-            </div>
-      </div>
-    </div>
-  </div>-->
-
-    
+       
         <div id="main" class="clearfix">
           <?php
 				if ($session->check('Message.error')):
@@ -487,28 +342,14 @@
 			<?php if ($this->params['controller'] == 'topic_discussions' && ($this->params['action'] == 'index')):?>
 				<?php echo $this->element("../deals/view_compact");?>
 			<?php endif;?>
+			<?php if (!($this->params['controller'] == 'deals' && ($this->params['action'] == 'view' || ($this->params['action'] == 'index' && empty($this->params['named']['company']))))): ?>					
+				<div class="md_inner_block">
+					<div class="md_inner_block1">
+			<?php endif; ?>
+				<?php echo $content_for_layout;?>
 			<?php if (!($this->params['controller'] == 'deals' && ($this->params['action'] == 'view' || ($this->params['action'] == 'index' && empty($this->params['named']['company']))))): ?>
-				<div class="side1">
-    			    <div class="side1-tl">
-                        <div class="side1-tr">
-                          <div class="side1-tm"> </div>
-                        </div>
-                     </div>
-                     <div class="side1-cl">
-                        <div class="side1-cr">
-                            <div class="block1-inner">
-                    			<?php endif; ?>
-                    			<?php echo $content_for_layout;?>
-                    				<?php if (!($this->params['controller'] == 'deals' && ($this->params['action'] == 'view' || ($this->params['action'] == 'index' && empty($this->params['named']['company']))))): ?>
-            				</div>
-            				</div>
-        				</div>
-                        <div class="side1-bl">
-                            <div class="side1-br">
-                              <div class="side1-bm"> </div>
-                            </div>
-                      </div>
-				</div>
+					</div>
+            	</div>
 			<?php endif; ?>
 			
 				<?php

@@ -5883,3 +5883,14 @@ a.purple_button:hover span{
 	padding: 0px 0 5px 17px;
 }
 /************************ FIN BUTTONS COLORED ***************************/
+
+div.md_inner_block{
+	padding-left: 33px;	
+}
+
+div.md_inner_block1{
+	border-style: solid;
+	border-color: #000;
+	border-width: 1px;
+	width: 922px;
+}
