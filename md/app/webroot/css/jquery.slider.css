@@ -198,13 +198,14 @@
 
 .slider-deal-example
   {
-    width:648px;
-    height:60px;
+    width:600px;
+    height:80px;
     background:#000000;
     background:rgba(0,0,0,0.5);
     color:#FFFFFF;
     padding:10px;
     position:absolute;
-    top:260;
+  	font-size:15px;
+    top:240;
     left:0px;
   }
