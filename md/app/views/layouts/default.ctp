@@ -90,11 +90,11 @@
 	</div>
 	<div id="header-content">
 		<!-- RIBBON -->
-		<div id="ribbon_container">		
+		<!--<div id="ribbon_container">		
 		  <?php if(isset($deal)){ ?>
 		  	<div id="rubbon_gb">&nbsp;</div>
 		  <?php } ?>	   
-		</div>	
+		</div>-->	
 		<!-- END RIBBON -->
 	<div class="menu-content">
 		<div class="global-block">
