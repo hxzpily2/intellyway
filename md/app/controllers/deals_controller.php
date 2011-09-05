@@ -140,7 +140,7 @@ class DealsController extends AppController
                 ConstDealStatus::Open,
                 ConstDealStatus::Tipped,
             );
-            $this->pageTitle = ucfirst($city['City']['name']) . ' ' . __l('Deals of the Day');
+            $this->pageTitle = ' ' . __l('Deals of the Day'). ' ' . __l('onon') . ' ' . ucfirst($city['City']['name']);
             $order = array(
                 'Deal.end_date' => 'desc'
             );

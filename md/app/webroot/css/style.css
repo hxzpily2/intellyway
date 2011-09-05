@@ -5548,8 +5548,7 @@ span.progress-needed2{
 #deal_friends{
 	height: 32px;
 	width : 700px;
-	text-align: right;
-	
+	text-align: right;	
 }
 
 /*************************** BUTTON COLORED **********************************/
@@ -5893,4 +5892,21 @@ div.md_inner_block1{
 	border-color: #000;
 	border-width: 1px;
 	width: 922px;
+}
+
+div.posts_textarea{	
+	text-align: right;
+	width: 690px;
+}
+
+div.posts_textarea textarea{
+	width: 680px; height: 100px;
+	border-style:solid;
+	border-width:1px;
+	color:#3399CC;
+}
+
+div.posts{	
+	text-align: right;
+	width: 690px;
 }
