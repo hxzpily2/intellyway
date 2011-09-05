@@ -1482,3 +1482,11 @@ function stripHTML(oldString) {
    }
    return newString;
 }
+
+function postComment() { 
+	alert('test');	   
+}
+
+function loadComments() { 
+	alert('test');	   
+}
