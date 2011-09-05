@@ -128,6 +128,8 @@ $javascript->link('libs/divs', false);
 											<h3><?php echo Configure::read('site.name').' '.__l('says');?></h3>
 					                       	<?php echo $html->cHtml($deal['Deal']['comment']);?>
 					                    <?php } ?>
+					                    
+					                    
 									</td>
 									<td width="20" id="desc_right">&nbsp;</td>
 								</tr>
@@ -220,6 +222,17 @@ $javascript->link('libs/divs', false);
 					<td width="21" id="md_deal_infos_bottom_right">&nbsp;</td>
 				</tr>
 			</table>
+			
+			<!-- POSTS -->
+			<div class="posts_textarea">
+        		<textarea id="user_post_ta"></textarea>
+        		<br/>
+        		<br style="line-height: 10px;"/>
+        		<a class="blue_button" style="float:right;margin-right:-2px;" onclick="javascript:postComment();" href="#"><span><?php echo __l('Submit'); ?></span></a>        		
+        	</div>
+        	<div class="posts">
+        		        		
+        	</div>
       	</div>
       	<div id="md_right_block">
       		<div id="md_price_economie_block">
@@ -308,7 +321,7 @@ $javascript->link('libs/divs', false);
 					<td id="md_deal_price_bottom_right" width="18">&nbsp;</td>
 				</tr>
 			</table>
-      	</div>
+      	</div>      	
       </div>
       
       <div class="side2">

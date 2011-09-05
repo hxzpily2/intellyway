@@ -26,7 +26,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" xmlns:og="http://opengraphprotocol.org/schema/" xmlns:fb="http://www.facebook.com/2008/fbml">
 <head>
 	<?php echo $html->charset(), "\n";?>
-	<title><?php echo Configure::read('site.name');?> | <?php echo $html->cText($title_for_layout, false);?></title>
+	<title>:: <?php echo Configure::read('site.name');?> :: <?php echo $html->cText($title_for_layout, false);?></title>
 	<?php
 		echo $html->meta('icon'), "\n";
 		echo $html->meta('keywords', $meta_for_layout['keywords']), "\n";
