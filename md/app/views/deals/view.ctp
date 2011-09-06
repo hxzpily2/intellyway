@@ -195,10 +195,10 @@ $javascript->link('libs/divs', false);
 					     		 <?php endif; ?>
 										<?php if($deal['Company']['is_company_profile_enabled'] == 1):?>
 					                    <?php			           	
-			            				$company = $deal['Company'];
+			            				$company = $deal['Company'];			            				
 			            				$zoom = Configure::read('GoogleMap.static_map_zoom_level');
-						           	?>
-						           	<?php echo $this->element("gmap",array("ID"=>$deal['Deal']['id'],"COMPANY"=>$company,"ZOOM"=>$zoom));?>
+						           		?>
+						           		<?php echo $this->element("gmap",array("ID"=>$deal['Deal']['id'],"COMPANY"=>$company,"ZOOM"=>$zoom));?>
 										<?php endif; ?>
 					                    
 									</td>
@@ -224,7 +224,7 @@ $javascript->link('libs/divs', false);
 			</table>
 			
 			<!-- POSTS -->
-			<div class="posts_textarea">
+			<!--<div class="posts_textarea">
         		<textarea id="user_post_ta"></textarea>
         		<br/>
         		<br style="line-height: 10px;"/>
@@ -232,7 +232,7 @@ $javascript->link('libs/divs', false);
         	</div>
         	<div class="posts">
         		        		
-        	</div>
+        	</div>-->
       	</div>
       	<div id="md_right_block">
       		<div id="md_price_economie_block">
@@ -303,6 +303,26 @@ $javascript->link('libs/divs', false);
       			<?php echo $html->link(__l('Buy it for a friend!'), array('controller'=>'deals','action'=>'buy',$deal['Deal']['id'],'type' => 'gift'), array('title' => __l('Buy it for a friend')));?></center>      			
       		</div>
       		<table id="md_counter_block" cellpadding="0" cellspacing="0" border="0" width="100%">
+				<tr height="20">
+					<td id="md_deal_price_top_left" width="17">&nbsp;</td>
+			   	    <td id="md_deal_price_top" >&nbsp;</td>
+					<td id="md_deal_price_top_right" width="18">&nbsp;</td>
+				</tr>
+				<tr height="530">
+					<td id="md_deal_price_left" width="17">&nbsp;</td>
+					<td id="md_deal_price_texture" >						
+						&nbsp;						
+					</td>
+					<td id="md_deal_price_right" width="18">&nbsp;</td>
+				</tr>
+				<tr height="20">
+					<td id="md_deal_price_bottom_left" width="17">&nbsp;</td>
+					<td id="md_deal_price_bottom">&nbsp;</td>
+					<td id="md_deal_price_bottom_right" width="18">&nbsp;</td>
+				</tr>
+			</table>
+			<!-- BEGIN RIGHT BLOCK -->
+			<table id="md_counter_block" cellpadding="0" cellspacing="0" border="0" width="100%">
 				<tr height="20">
 					<td id="md_deal_price_top_left" width="17">&nbsp;</td>
 			   	    <td id="md_deal_price_top" >&nbsp;</td>
