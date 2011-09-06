@@ -17,8 +17,15 @@
 
 function initialize<?php echo $ID; ?>() {
   if (GBrowserIsCompatible()) { 	
- 
-    var adresse = '30 rue sebou,Adgal Rabat Maroc';
+ 	
+ 	
+	<?php
+	$address=$COMPANY; 
+	$gadresse = $address['address1'].', '.$address['address2'].', '.((!empty($address['City']['name'])) ? $address['City']['name'] . ', ' : '').', '.((!empty($address['State']['name'])) ? $address['State']['name'] . ', ' : '');
+	
+	?>
+		
+    var adresse = '<?php echo $gadresse; ?>';
 	
 	var geocoder = new google.maps.ClientGeocoder();
 	
