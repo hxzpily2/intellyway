@@ -4,8 +4,8 @@
 
 <script type="text/javascript">
 
-year<?php echo $ID; ?> = 2011; month<?php echo $ID; ?> = 8; day<?php echo $ID; ?> = 24;
-hour<?php echo $ID; ?>= 16; min<?php echo $ID; ?>= 0; sec<?php echo $ID; ?>= 0;
+year<?php echo $ID; ?> = <?php echo date('Y',strtotime($END)); ?>; month<?php echo $ID; ?> = <?php echo date('m',strtotime($END)); ?>; day<?php echo $ID; ?> = <?php echo date('d',strtotime($END)); ?>;
+hour<?php echo $ID; ?>= <?php echo date('H',strtotime($END)); ?>; min<?php echo $ID; ?>= <?php echo date('i',strtotime($END)); ?>; sec<?php echo $ID; ?>= <?php echo date('s',strtotime($END)); ?>;
 
 month<?php echo $ID; ?>= --month<?php echo $ID; ?>;
 dateFuture<?php echo $ID; ?> = new Date(year<?php echo $ID; ?>,month<?php echo $ID; ?>,day<?php echo $ID; ?>,hour<?php echo $ID; ?>,min<?php echo $ID; ?>,sec<?php echo $ID; ?>);
