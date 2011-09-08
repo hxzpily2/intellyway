@@ -1,7 +1,6 @@
 <?php
 $javascript->link('libs/divs', false);
 ?>
-
 <?php /* SVN: $Id: view.ctp 44785 2011-02-19 10:54:51Z aravindan_111act10 $ */ ?>
 <?php if($this->params['action'] !='index'):
 	if($html->isAllowed($auth->user('user_type_id')) and   $deal['Deal']['deal_status_id'] != ConstDealStatus::Open && $deal['Deal']['deal_status_id'] != ConstDealStatus::Tipped && $deal['Deal']['deal_status_id'] != ConstDealStatus::Draft && $deal['Deal']['deal_status_id'] != ConstDealStatus::PendingApproval  && $deal['Deal']['deal_status_id'] != ConstDealStatus::Upcoming ):?>
@@ -274,7 +273,7 @@ $javascript->link('libs/divs', false);
   			<?php if(($deal['Deal']['deal_status_id'] == ConstDealStatus::Open || $deal['Deal']['deal_status_id'] == ConstDealStatus::Tipped)): 
 					if(empty($deal['Deal']['is_anytime_deal'])){
 			?>
-			<?php echo $this->element("counter",array("ID"=>$deal['Deal']['id']));?>
+			<?php echo $this->element("counter",array("ID"=>$deal['Deal']['id'],"END"=>$deal['Deal']['end_date']));?>
 			<?php }else{ ?>
 				<div id="md_unlimited_<?php echo Configure::read('lang_code'); ?>">&nbsp;</div>
 			<?php } ?>
