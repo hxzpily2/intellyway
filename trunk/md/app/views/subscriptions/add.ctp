@@ -106,9 +106,11 @@
 			?>
 			
 		<div style="padding-top:4px;">
-       		<a class="yellow_button" href="#" onclick="$('form').submit();"><span><?php echo __l('Subscribe'); ?></span></a>
+       		<a class="pink_button" href="#" onclick="$('form').submit();"><span><?php echo __l('Subscribe'); ?></span></a>
         </div>	
 		<?php echo $form->end(); ?>	
+		
+		
         <?php /*echo $form->end(__l('Subscribe'));*/ ?>
         
          

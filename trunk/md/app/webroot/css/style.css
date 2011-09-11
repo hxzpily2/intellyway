@@ -5910,3 +5910,10 @@ div.posts{
 	text-align: right;
 	width: 690px;
 }
+
+input.emailsubscription{
+	height: 17px;
+	width: 100px;
+	border-style: solid 1px;
+	border-color: #000;
+}
