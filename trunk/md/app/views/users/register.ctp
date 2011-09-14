@@ -1,3 +1,8 @@
+<script type="text/javascript">
+	function submitForm(){		
+		$('form').submit();
+	}
+</script>
 <?php if(!empty($type)){
     $action = "company_register";
   }
@@ -112,8 +117,37 @@
 					echo $form->input('fb_user_id', array('type' => 'hidden', 'value' => $this->data['User']['fb_user_id']));
 				endif;
 			?>
-    		<div class="input captcha-block clearfix js-captcha-container">
-    			<div class="captcha-left">
+    		<div class="input required clearfix">
+    			<label><?php echo __l('Security Code'); ?></label>
+    			<script type="text/javascript">
+ 					var RecaptchaOptions = {
+    					theme : 'white',    					
+    					lang : '<?php echo Configure::read('lang_code'); ?>'
+ 					};
+ 					$(window).load(function() {
+ 						$('label[for*="UserCaptcha"]').css('display','none');
+ 						$('.js-captcha-input').css('display','none');
+ 						$('#recaptcha_response_field').keyup(function() { 							
+  							$('.js-captcha-input').val($('#recaptcha_response_field').val());  
+						});
+					});
+ 				</script> 				
+ 				
+ 				<div style="padding-left:180px;">
+    				<script type="text/javascript" src="http://www.google.com/recaptcha/api/challenge?k=6LesCcgSAAAAAClLi_Z3JEcGgmAPcdL4mrrrg2su">
+    				</script>
+    				<noscript>
+       					<iframe src="http://www.google.com/recaptcha/api/noscript?k=6LesCcgSAAAAAClLi_Z3JEcGgmAPcdL4mrrrg2su"
+           					height="300" width="500" frameborder="0"></iframe><br>
+       						<textarea name="recaptcha_challenge_field" rows="3" cols="40">
+       						</textarea>
+       						<input type="hidden" name="recaptcha_response_field"
+           					value="manual_challenge">
+			    	</noscript>
+    			</div>
+    		
+    		
+    			<!--<div class="captcha-left">
     	           <?php echo $html->image($html->url(array('controller' => 'users', 'action' => 'show_captcha', md5(uniqid(time()))), true), array('alt' => __l('[Image: CAPTCHA image. You will need to recognize the text in it; audible CAPTCHA available too.]'), 'title' => __l('CAPTCHA image'), 'class' => 'captcha-img'));?>
     	        </div>
     	        <div class="captcha-right">
@@ -121,23 +155,22 @@
         			<div>
 		              <?php echo $html->link(__l('Click to play'), Router::url('/', true)."flash/securimage/play.swf?audio=". $html->url(array('controller' => 'users', 'action'=>'captcha_play'), true) ."&amp;bgColor1=#777&amp;bgColor2=#fff&amp;iconColor=#000&amp;roundedCorner=5&amp;height=19&amp;width=19&amp;wmode=transparent", array('class' => 'js-captcha-play')); ?>
 			      </div>
-    	        </div>
+    	        </div>-->
             </div>
         	<?php 
 				echo $form->input('captcha', array('label' => __l('Security Code'), 'class' => 'js-captcha-input'));
-				$terms = $html->link(__l('Terms & Policies'), array('controller' => 'pages', 'action' => 'view', 'term-and-conditions'), array('target' => '_blank'));
+				$terms = $html->link(__l('Terms & Policies'), array('controller' => 'pages', 'action' => 'view', 'term-and-conditions'), array('target' => '_blank','class'=>'mdlink'));
 			?>
     		<?php echo $form->input('is_agree_terms_conditions', array('label' => __l('I have read, understood &amp; agree to the ') .' ' . $terms)); ?>
             <?php
         endif; ?>
-   	<div class="submit-block clearfix">
+   	<div class="registerForogtDiv">
+		<!--<?php echo $form->submit(__l('Submit'));?>-->
+		<a class="pink_button" href="#" onclick="javascript:submitForm()"><span><?php echo __l('Submit'); ?></span></a>							
 		<?php
-		echo $form->submit(__l('Submit'));?>
-		<div class="cancel-block">
-			<?php
-			echo $html->link(__l('Cancel'), array('controller' => 'deals', 'action' => 'index'), array('class' => 'cancel-button'));
-			?>
-		</div>
+		echo $html->link($html->tag('span', __l('Cancel'), array('class' => '')), array('controller' => 'deals', 'action' => 'index'),array('escape'=>false,'class'=>'darkgrey_button'));
+		?>
+		
     </div>
 </fieldset>
  <?php  echo $form->end();?>
@@ -176,3 +209,7 @@
 	</script>
 	<script type="text/javascript" id="__openidselector" src="https://www.idselector.com/widget/button/1"></script>
 <?php endif; ?>
+<div style="height:10px;"></div>
+<!--[if IE]>
+<div style="height : 3px;">&nbsp;</div>
+<![endif]-->

@@ -44,7 +44,7 @@ $javascript->link('libs/divs', false);
 					<td id="md_deal_infos_left" width="27">&nbsp;</td>
 					<td id="md_deal_infos_texture">
 						<!-- BEGIN CONTENT -->
-						<h2 class="title">
+						<div class="title">
 		        			<span class ="today-deal">
 		        				<!--
 		        				<?php if($this->params['action'] =='index'):?>
@@ -79,7 +79,7 @@ $javascript->link('libs/divs', false);
 									<td width="20" id="desc_bottom_right">&nbsp;</td>
 								</tr>
 							</table>														
-			           	</h2>
+			           	</div>
 			           				           	
 			           	<div id="desc_div_left">
 			           		<table width="100%" height="320">
@@ -320,26 +320,62 @@ $javascript->link('libs/divs', false);
 					<td id="md_deal_price_bottom_right" width="18">&nbsp;</td>
 				</tr>
 			</table>
-			<!-- BEGIN RIGHT BLOCK -->
-			<table id="md_counter_block" cellpadding="0" cellspacing="0" border="0" width="100%">
-				<tr height="20">
-					<td id="md_deal_price_top_left" width="17">&nbsp;</td>
-			   	    <td id="md_deal_price_top" >&nbsp;</td>
-					<td id="md_deal_price_top_right" width="18">&nbsp;</td>
-				</tr>
-				<tr height="530">
-					<td id="md_deal_price_left" width="17">&nbsp;</td>
-					<td id="md_deal_price_texture" >						
-						&nbsp;						
-					</td>
-					<td id="md_deal_price_right" width="18">&nbsp;</td>
-				</tr>
-				<tr height="20">
-					<td id="md_deal_price_bottom_left" width="17">&nbsp;</td>
-					<td id="md_deal_price_bottom">&nbsp;</td>
-					<td id="md_deal_price_bottom_right" width="18">&nbsp;</td>
-				</tr>
-			</table>
+			<!-- BEGIN SIDE BLOCK -->
+			<?php if(Configure::read('deal.voyage')=='ON'){ ?>
+			<!-- SPECIAL VOYAGE -->
+			<div style="height:10px;">&nbsp;</div>
+			<div id="travel">
+				<?php echo $html->link($html->image('special_voyage_'.Configure::read('lang_code').'.png',array('title' => __l('Today\'s Deals'))), array('controller' => 'deals', 'action' => 'index', 'admin' => false), array('escape' => false,'class'=>''));?>				
+			</div>
+			<?php } ?>			
+			<!-- BUSINESS -->
+			<div style="height:10px;">&nbsp;</div>
+			<div id="business">
+				<table id="md_counter_block" cellpadding="0" cellspacing="0" border="0" width="100%">
+					<tr height="20">
+						<td id="md_deal_price_top_left" width="17">&nbsp;</td>
+						<td id="md_deal_price_top" >&nbsp;</td>
+						<td id="md_deal_price_top_right" width="18">&nbsp;</td>
+					</tr>
+					<tr height="100">
+						<td id="md_deal_price_left" width="17">&nbsp;</td>
+						<td id="md_deal_price_texture" >
+							<h3><?php echo sprintf(__l('Get Your Business on %s!'), Configure::read('site.name')); ?></h3>						
+							<div class="new-img-competitors"></div>
+			                	<p class="mdnormal" ><?php echo __l('Learn More for the basics.'); ?> <?php echo sprintf(__l('about how %s can help bring tonnes of customers to your door'), Configure::read('site.name'));?></p>
+			               		<?php echo $html->link(__l('Learn More'), array('controller' => 'pages', 'action' => 'view','company', 'admin' => false), array('title' => __l('Learn More'),'class'=>'learn'));?>
+			               	</div>
+			               	<div style="height: 10px;"></div>						
+						</td>
+						<td id="md_deal_price_right" width="18">&nbsp;</td>
+					</tr>
+					<tr height="20">
+						<td id="md_deal_price_bottom_left" width="17">&nbsp;</td>
+						<td id="md_deal_price_bottom">&nbsp;</td>
+						<td id="md_deal_price_bottom_right" width="18">&nbsp;</td>
+					</tr>
+				</table>
+			</div>
+			<!-- FACEBOOK FAN PAGE -->
+			<div style="height:10px;">&nbsp;</div>
+			<?php
+			$facebook_like_box = Configure::read('facebook.like_box');
+			if(!empty($facebook_like_box)):?>
+				<div class="facebook-block clearfix">
+					<?php echo $facebook_like_box;?>
+				</div>
+			<?php
+			endif;
+			?>
+			 <?php
+				$facebook_feeds_code = Configure::read('facebook.feeds_code');
+				if(!empty($facebook_feeds_code)):?>
+					<div class="facebook-block clearfix">
+						<?php echo $facebook_feeds_code;?>
+					</div>
+				<?php
+				endif;
+			 ?>
       	</div>      	
       </div>
       
@@ -430,48 +466,9 @@ $javascript->link('libs/divs', false);
           </div>
                </div>
               <?php endif; ?>
-          <div class="blue-bg clearfix">
-          <div class="business-tl">
-            <div class="business-tr">
-              <div class="business-tm">
-              	<h3><?php echo sprintf(__l('Get Your Business on %s!'), Configure::read('site.name')); ?></h3>
-              </div>
-            </div>
-          </div>
-          <div class="side1-cl">
-            <div class="side1-cr">
-              <div class="block1-inner blue-bg-inner clearfix">
-                <div class="new-img"></div>
-                <p class="normal" ><?php echo __l('Learn More for the basics.'); ?> <?php echo sprintf(__l('about how %s can help bring tonnes of customers to your door'), Configure::read('site.name'));?></p>
-               <?php echo $html->link(__l('Learn More'), array('controller' => 'pages', 'action' => 'view','company', 'admin' => false), array('title' => __l('Learn More'),'class'=>'learn'));?>
-               </div>
-            </div>
-          </div>
-          <div class="side1-bl">
-            <div class="side1-br">
-              <div class="side1-bm"> </div>
-            </div>
-          </div>
-        </div>
-         <?php
-			$facebook_like_box = Configure::read('facebook.like_box');
-			if(!empty($facebook_like_box)):?>
-				<div class="facebook-block clearfix">
-					<?php echo $facebook_like_box;?>
-				</div>
-			<?php
-			endif;
-		 ?>
-		 <?php
-			$facebook_feeds_code = Configure::read('facebook.feeds_code');
-			if(!empty($facebook_feeds_code)):?>
-				<div class="facebook-block clearfix">
-					<?php echo $facebook_feeds_code;?>
-				</div>
-			<?php
-			endif;
-		 ?>
-        <div class="blue-bg1 clearfix">
+          
+         
+        <!-- <div class="blue-bg1 clearfix">
           <div class="tweet-tl">
             <div class="tweet-tr">
               <div class="tweet-tm">
@@ -496,7 +493,7 @@ $javascript->link('libs/divs', false);
               <div class="side1-bm"> </div>
             </div>
           </div>
-        </div>
+        </div> -->
         <?php } ?>
       </div>
       

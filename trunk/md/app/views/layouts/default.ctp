@@ -155,18 +155,21 @@
 						               <?php endif; ?>
 										<!--<li <?php if($this->params['controller'] == 'topics' or $this->params['controller'] == 'topic_discussions' ) { echo 'class="active"'; } else { echo 'class=""';}?>><?php echo $html->link(__l('Discussion'), array('controller' => 'topics', 'action' => 'index', 'admin' => false), array('title' => __l('Discussion')));?></li>-->
 										<?php
-										if($this->params['controller'] == 'pages' && $this->params['action'] == 'view'  && $this->params['pass'][0] == 'learn') {
+										if($auth->user('user_type_id') != ConstUserTypes::Company){
+											if($this->params['controller'] == 'pages' && $this->params['action'] == 'view'  && $this->params['pass'][0] == 'learn') {
+											?>
+											<li><?php echo $html->image('comment_ca_marche_actif_'.Configure::read('lang_code').'.png',array('title' => __l('How')." ".Configure::read('site.name')." ".__l(' Works')));?></li>
+											<?php
+											}else{
+											?>
+											<li><?php echo $html->link($html->image('comment_ca_marche_'.Configure::read('lang_code').'.png',array('title' => __l('How')." ".Configure::read('site.name')." " .__l('Works'))), array('controller' => 'pages', 'action' => 'view', 'learn', 'admin' => false), array('escape' => false,'class'=>''));?></li>
+											<?php
+											}										
 										?>
-										<li><?php echo $html->image('comment_ca_marche_actif_'.Configure::read('lang_code').'.png',array('title' => __l('How')." ".'%s'." ".__l(' Works')));?></li>
-										<?php
-										}else{
-										?>
-										<li><?php echo $html->link($html->image('comment_ca_marche_'.Configure::read('lang_code').'.png',array('title' => __l('How')." ".'%s'." " .__l('Works'))), array('controller' => 'pages', 'action' => 'view', 'learn', 'admin' => false), array('escape' => false,'class'=>''));?></li>
+										<li><?php echo $html->image('menu_sep.png'); ?></li>
 										<?php
 										}
 										?>
-										<li><?php echo $html->image('menu_sep.png'); ?></li>
-						
 										<?php if(!$auth->sessionValid()):
 										$url = strstr($this->params['url']['url'],"/company/user/register");?>
 											<?php
@@ -184,35 +187,27 @@
 													    <?php if($auth->sessionValid()): ?>
 									          			<?php if($auth->sessionValid()):?>
 														<?php if($auth->user('user_type_id') != ConstUserTypes::Company):?>
-															<li <?php if($this->params['controller'] == 'users' && $this->params['action'] == 'my_stuff') { echo 'class="active"'; } ?>>
-																<?php  echo $html->link(__l('My Stuff'), array('controller' => 'users', 'action' => 'my_stuff'), array('title' => __l('My Stuff')));?>
-															</li>
+															<li><?php echo $html->link($html->image('stuff_'.((($this->params['controller'] == 'users' && $this->params['action'] == 'my_stuff'))?'actif_':'').Configure::read('lang_code').'.png',array('title' => __l('My Stuff'))), array('controller' => 'users', 'action' => 'my_stuff'), array('escape' => false,'class'=>''));?></li>															
 														<?php elseif($auth->user('user_type_id') == ConstUserTypes::Company): ?>
 														<?php if($html->isAllowed($auth->user('user_type_id'))): ?>
-															<li <?php if($this->params['controller'] == 'users' && $this->params['action'] == 'my_stuff') { echo 'class="active"'; } ?>>
-																<?php  echo $html->link(__l('My Stuff'), array('controller' => 'users', 'action' => 'my_stuff'), array('title' => __l('My Stuff')));?>
-															</li>
+															<li><?php echo $html->link($html->image('stuff_'.((($this->params['controller'] == 'users' && $this->params['action'] == 'my_stuff'))?'actif_':'').Configure::read('lang_code').'.png',array('title' => __l('My Stuff'))), array('controller' => 'users', 'action' => 'my_stuff'), array('escape' => false,'class'=>''));?></li>															
 														<?php else: ?>
-															<li <?php if($this->params['controller'] == 'transactions' && $this->params['action'] == 'index') { echo 'class="active"'; } ?>>
-																<?php  echo $html->link(__l('My Transactions'), array('controller' => 'transactions', 'action' => 'index'), array('title' => __l('My Transactions')));?>
-															</li>
-															 <li <?php if($this->params['controller'] == 'companies' && $this->params['action'] == 'edit') { echo 'class="active"'; } ?>>
-																 <?php echo $html->link(__l('My Company'), array('controller' => 'companies', 'action' => 'edit',$company['Company']['id']), array('title' => __l('My Company'))); ?>
-															 </li>
+															<li><?php echo $html->link($html->image('transactions_'.((($this->params['controller'] == 'transactions' && $this->params['action'] == 'index'))?'actif_':'').Configure::read('lang_code').'.png',array('title' => __l('My Transactions'))), array('controller' => 'transactions', 'action' => 'index'), array('escape' => false,'class'=>''));?></li>
+															<li><?php echo $html->image('menu_sep.png'); ?></li>
+															<li><?php echo $html->link($html->image('company_'.((($this->params['controller'] == 'companies' && $this->params['action'] == 'edit'))?'actif_':'').Configure::read('lang_code').'.png',array('title' => __l('My Company'))), array('controller' => 'companies', 'action' => 'edit',$company['Company']['id']), array('escape' => false,'class'=>''));?></li>															
 														<?php endif; ?>
 															<?php if($auth->user('user_type_id') == ConstUserTypes::Company && !empty($company['Company'])):?>
-																<li <?php if($this->params['controller'] == 'deals' && $this->params['action'] == 'index' && !empty($this->params['named']['company'])) { echo 'class="active"'; } else { echo 'class=""';}?>><?php echo $html->link(__l('My Deals'), array('controller' => 'deals', 'action' => 'index', 'company' => $company['Company']['slug'] ), array('title' => __l('My Deals')));?></li>
+																<li><?php echo $html->image('menu_sep.png'); ?></li>
+																<li><?php echo $html->link($html->image('deals_'.((($this->params['controller'] == 'deals' && $this->params['action'] == 'index' && !empty($this->params['named']['company'])))?'actif_':'').Configure::read('lang_code').'.png',array('title' => __l('My Deals'))), array('controller' => 'deals', 'action' => 'index', 'company' => $company['Company']['slug'] ), array('escape' => false,'class'=>''));?></li>																
 															<?php endif; ?>
-									
-															<li <?php if($this->params['controller'] == 'deals' && $this->params['action'] == 'add') { echo 'class="active"'; } ?>>
-									                        <?php echo $html->link(__l('Add Deal'), array('controller' => 'deals', 'action' => 'add'), array('class'=>'add-deal', 'title' => __l('Add Deal')));?></li>
+															<li><?php echo $html->image('menu_sep.png'); ?></li>
+															<li><?php echo $html->link($html->image('adddeal_'.((($this->params['controller'] == 'deals' && $this->params['action'] == 'add'))?'actif_':'').Configure::read('lang_code').'.png',array('title' => __l('Add Deal'))), array('controller' => 'deals', 'action' => 'add'), array('escape' => false,'class'=>''));?></li>															
 														<?php endif; ?>
 													<?php endif; ?>
 													<?php $url = Router::url(array('controller' => 'users', 'action' => 'my_stuff', 'admin' => false),true); ?>			
 									            <?php endif; ?>
 									            <!--<li><?php echo $html->image('menu_space.png'); ?></li>-->
-									            <li>&nbsp;</li>
-									            <li>&nbsp;</li>
+									            
 									            <li><a href="<?php echo !empty($tmpURL['City']['facebook_url']) ? $tmpURL['City']['facebook_url'] : Configure::read('facebook.site_facebook_url'); ?>" title="<?php echo __l('See Our Profile in Facebook'); ?>" target="_blank"><?php echo $html->image('md_facebook_icon.png'); ?></a></li>
 							</ul>																			
 						</div>																	
@@ -345,9 +340,16 @@
 			<?php if (!($this->params['controller'] == 'deals' && ($this->params['action'] == 'view' || ($this->params['action'] == 'index' && empty($this->params['named']['company']))))): ?>					
 				<div class="md_inner_block">
 					<div class="md_inner_block1">
+						<div class="layout_top"></div>
+						<div class="layout_middle">
+							<div class="inner_layout_middle">	
 			<?php endif; ?>
 				<?php echo $content_for_layout;?>
 			<?php if (!($this->params['controller'] == 'deals' && ($this->params['action'] == 'view' || ($this->params['action'] == 'index' && empty($this->params['named']['company']))))): ?>
+							</div>
+							<div style="height : 7px;"></div>							
+						</div>
+						<div class="layout_bottom"></div>
 					</div>
             	</div>
 			<?php endif; ?>
