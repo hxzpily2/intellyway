@@ -1,6 +1,6 @@
 <style type="text/css">
 #map_canvas<?php echo $ID; ?>{
-	width: 146px; height: 170px;
+	width: 140px; height: 170px;
 	border-style:solid;
 	border-width:1px;
 	color:#3399CC;

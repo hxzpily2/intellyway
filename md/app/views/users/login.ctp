@@ -1,10 +1,10 @@
-<div class="users form register-block <?php echo !empty($this->data['User']['is_requested']) ? 'js-login-response ajax-login-block' : ''; ?>">
+<div style="position:absolute;" class="users form register-block <?php echo !empty($this->data['User']['is_requested']) ? 'js-login-response ajax-login-block' : ''; ?>">
 	<h2><?php echo __l('Login'); ?></h2>
 	<?php
 		$formClass = !empty($this->data['User']['is_requested']) ? 'js-ajax-login' : '';
-		echo $form->create('User', array('action' => 'login', 'class' => 'normal '.$formClass));
-		echo $form->input(Configure::read('user.using_to_login'));
-		echo $form->input('passwd', array('label' => __l('Password')));
+		echo $form->create('User', array('action' => 'login', 'class' => 'mdlogin '.$formClass));
+		echo $form->input(Configure::read('user.using_to_login'), array('class' => 'login-input-text'));
+		echo $form->input('passwd', array('label' => __l('Password'),'class' => 'login-input-text'));
 		if(!empty($this->data['User']['is_requested'])) {
 			echo $form->input('is_requested', array('type' => 'hidden'));
 		}
@@ -14,7 +14,7 @@
 		<?php echo $form->input('openid', array('id' => 'login_openid_identifier','class' => 'bg-openid-input', 'label' => __l('OpenID'))); ?>
 	<?php endif; ?>
 	<?php echo $form->input('User.is_remember', array('type' => 'checkbox', 'label' => __l('Remember me on this computer.'))); ?>
-	<div class="fromleft">
+	<div class="loginForogtDiv">
 		<?php echo $html->link(__l('Forgot your password?') , array('controller' => 'users', 'action' => 'forgot_password', 'admin' => false),array('title' => __l('Forgot your password?'))); ?>
 		<?php if(!(!empty($this->params['prefix']) && $this->params['prefix'] == 'admin') && empty($this->data['User']['is_requested'])): ?> |
 			<?php  echo $html->link(__l('Signup') , array('controller' => 'users',	'action' => 'register'),array('title' => __l('Signup'))); ?>
@@ -26,8 +26,11 @@
 				echo $form->input('f', array('type' => 'hidden', 'value' => $f));
 			endif;
 	?>
+	<div class="loginForogtDiv">
+		<a class="pink_button" href="#" onclick="javascript:$('#UserLoginForm').submit()"><span><?php echo __l('Login'); ?></span></a>
+	</div> 
 	<div class="submit-block clearfix">
-		<?php echo $form->submit(__l('Login')); ?>
+		<!--<?php echo $form->submit(__l('Login')); ?>-->
 		<?php if(Configure::read('user.is_enable_openid') && (!isset($this->params['requested']))): ?>
 			<script type="text/javascript">
 				window.idselector_input_id = 'login_openid_identifier';
@@ -60,5 +63,10 @@
 				<div class="deal-bot-bg"></div>
 			</div>
 		</div>
-	<?php endif; ?>
+	<?php endif; ?>	
 </div>
+
+<div style="height : 269px;">&nbsp;</div>
+<!--[if IE]>
+<div style="height : 3px;">&nbsp;</div>
+<![endif]-->

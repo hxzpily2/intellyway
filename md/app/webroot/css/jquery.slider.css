@@ -209,3 +209,9 @@
     top:240;
     left:0px;
   }
+  
+  div.slider-deal-example a{
+  	color: #FFFFFF;
+  	font-size: 15px;
+  	font-weight: bold;
+}

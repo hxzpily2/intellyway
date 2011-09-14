@@ -35,9 +35,11 @@
 		if (env('HTTPS')) {
 			$javascript->link('https://platform.twitter.com/widgets.js', false);
 			$javascript->link('https://maps.google.com/maps?file=api&amp;v=2&amp;sensor=true&amp;key=ABQIAAAAsSJZ6ocpX8ewN2-oHW4UNhSHN7qAWu2FCiF5riM5dxUJ7impHxT5obfvMHgOFfLs8TtdSkGUM2MO4w', false);
+			$javascript->link('https://www.google.com/recaptcha/api/js/recaptcha.js', false);
 		} else {
 			$javascript->link('http://platform.twitter.com/widgets.js', false);
 			$javascript->link('http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=true&amp;key=ABQIAAAAsSJZ6ocpX8ewN2-oHW4UNhSHN7qAWu2FCiF5riM5dxUJ7impHxT5obfvMHgOFfLs8TtdSkGUM2MO4w', false);
+			$javascript->link('http://www.google.com/recaptcha/api/js/recaptcha.js', false);
 		}		
 		
     	$javascript->link('common', false);

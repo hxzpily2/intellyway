@@ -86,12 +86,32 @@ class AppModel extends Model
             return $this->getLastInsertId();;
         }
     }
-    function _isValidCaptcha()
+    /*function _isValidCaptcha()
     {
         include_once VENDORS . DS . 'securimage' . DS . 'securimage.php';
         $img = new Securimage();
         return $img->check($this->data[$this->name]['captcha']);
+    }*/
+    
+	function _isValidCaptcha()
+    {
+        
+        include_once VENDORS . DS . 'reCaptcha' . DS . 'recaptchalib.php';
+		
+		
+		$privatekey = "6LesCcgSAAAAALWn1juIwpdizaviWDmMY8cY9Juh";
+		$resp = recaptcha_check_answer ( $privatekey, $_SERVER ["REMOTE_ADDR"], $_POST ["recaptcha_challenge_field"], $this->data[$this->name]['captcha'] );
+		
+		if (! $resp->is_valid) {
+			// What happens when the CAPTCHA was entered incorrectly
+			//die ( "The reCAPTCHA wasn't entered correctly. Go back and try it again." . "(reCAPTCHA said: " . $resp->error . ")" );
+			return false;
+		} else {
+			// Your code here to handle a successful verification
+			return true;
+		}				
     }
+    
     function _checkForPrivacy($type, $user_id, $logged_in_user, $is_boolean = false)
     {
         $is_show = true;

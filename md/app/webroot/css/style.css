@@ -61,10 +61,18 @@ h1 a {
 	background:url(../img/logo.png) no-repeat left top;
 	text-indent:-99999em;
 }
-h2 {
-	font-size:22px;
-	color:#00B5C8;
-	padding:10px 0 10px 0px;
+h2 {	
+	color:#8d123e;
+	padding:10px 0 10px 0px;	
+  	border-bottom-width:1px;
+	font-family : Myriad Pro;  
+  	font-size:2.7em;
+  	font-weight:normal;
+  	padding-bottom:5px;
+  	padding-left:0;
+  	padding-right:0;
+	padding-top:5px;
+  	text-shadow:#FFFFFF 0 1px 1px;
 }
 h3 {
 	color:#4B7799;
@@ -264,7 +272,7 @@ ul.menu-link li a {
 	display:block;
 	font-size:11px;
 	font-weight:bold;
-	padding:0px 9px 1px 7px;
+	padding:0px 15px 1px 9px;
 }
 ul.menu-link li.fconnect,ul.menu-link li.fconnect a,ul.menu-link li.fconnect:hover,ul.menu-link li.fconnect:hover a {
 	background:none;
@@ -412,10 +420,13 @@ p.user-login-info span.user span.facebook a,p.user-login-info span.user span.twi
 }
 p.user-login-info {
 	float:right;
+	padding-top: 5px;
+	color: #525252;
 }
 p.user-login-info a {
 	font-weight: bold;
 	font-size:15px;
+	color : #8d123e;
 }
 /* header style ends */
 /* main style is begin */
@@ -829,7 +840,14 @@ form.normal div.required label {
 form.normal div.select div.checkbox label {
 	background:none;
 }
-form.normal div.select select,form.normal div.text input,form.normal div.textarea textarea,form.normal div.password input {
+form.normal div.text input{
+	width:240px;
+	font-size:12px;
+	padding:5px 2px;
+	margin:0px 5px 0px 180px;
+	border:1px solid #ddd;
+}
+form.normal div.select select,form.normal div.textarea textarea,form.normal div.password input {
 	width:240px;
 	font-size:12px;
 	padding:5px 2px;
@@ -1689,8 +1707,9 @@ h3.deal-header {
 }
 a.learn {
 	font-size:11px;
-	color:#00b5c8;
-	background:url(../img/learn-arrow.png) no-repeat right 6px;
+	font-weight : bold;
+	color:#ffdde3;
+	background:url(../img/learn-arrow-md.png) no-repeat right 6px;
 	padding:0 7px 0 0;
 }
 a.learn:hover {
@@ -5888,9 +5907,9 @@ div.md_inner_block{
 }
 
 div.md_inner_block1{
-	border-style: solid;
+	/*border-style: solid;
 	border-color: #000;
-	border-width: 1px;
+	border-width: 1px;*/
 	width: 922px;
 }
 
@@ -5916,4 +5935,165 @@ input.emailsubscription{
 	width: 100px;
 	border-style: solid 1px;
 	border-color: #000;
+}
+
+/******* layout *************/
+div.layout_top{
+	background-image: url("../img/layout_top.png");
+	background-repeat:no-repeat;
+	width:922px;
+	height:16px;
+}
+div.layout_middle{
+	background-image: url("../img/layout_middle.png");
+	line-height:12px;
+	width:922px;	
+	min-height : 12px;
+}
+
+div.inner_layout_middle{
+	padding: 20px;
+}
+
+div.layout_bottom{
+	background-image: url("../img/layout_bottom.png");
+	background-repeat:no-repeat;
+	width:922px;
+	height:16px;
+}
+
+form.mdlogin{
+ padding: 30px;	
+}
+
+form.mdlogin div.text input.login-input-text{
+	height: 17px;
+    margin: 0 5px 0 120px;
+    width: 232px;
+}
+
+form.mdlogin div.password input.login-input-text{
+	height: 17px;
+    margin: 0 5px 0 120px;
+    width: 232px;
+}
+
+form.mdlogin div.input label,span.label-content {
+	padding:12px 10px 0pt 0pt;
+	width:80px;
+	position:absolute;
+	color:#666;
+	text-align:left;
+	font-size:13px;	
+}
+
+form.mdlogin div.text,form.mdlogin div.password{
+	padding: 5px;
+}
+
+form.mdlogin div.required label {
+	background:transparent url(../img/required-red.png) no-repeat scroll right 5px;
+}
+
+form.mdlogin div.checkbox{
+	padding-left: 10px;
+	padding-top: 10px;
+}
+
+form.mdlogin div.checkbox label,form.mdlogin div.radio label {
+	display:inline;
+	margin:0px 0px 0px 5px;
+	
+	padding-right:10px;
+	position:static;
+	text-align:left;
+}
+form.mdlogin div.checkbox label {
+	width:210px;
+}
+
+form.mdlogin div.checkbox input,form.mdlogin div.radio input {
+	width:16px;
+	margin:0px;
+}
+form.mdlogin div.checkbox input,form.mdlogin div.date label+select,form.mdlogin div.time label+select,form.mdlogin div.datetime label+select {
+	margin:0px 0px 0px 120px;
+}
+
+.loginForogtDiv {
+	margin-left:130px;
+	padding:5px 0;
+	padding-top: 10px;
+}
+
+.loginForogtDiv a{
+	color: #8d123e;
+}
+
+input.login-input-text{
+	background-image: url("../img/input_text_bg.png");
+	width : 259px;
+	height : 36px;
+	border-style:none;
+	padding-left : 14px;
+	padding-right : 14px;
+	padding-top : 10px;
+	padding-bottom : 10px;
+	background-color:transparent;
+}
+
+.registerForogtDiv {
+	margin-left:190px;
+	padding:5px 0;
+	padding-top: 10px;
+}
+
+a.mdlink{
+	color:#8d123e;
+}
+
+input.md-js-captcha-input{
+	display: none;
+}
+
+.forgot-info-md {
+	background:#f9f9f9 url(../img/icon-info-details.png) no-repeat 10px center;
+	border:1px dashed #8d123e;
+	
+	padding:15px 15px 15px 50px;
+}
+
+div.title {	
+	padding:5px 0 10px 0px;
+	color: #FFFFFF;	
+}
+
+#family{
+	position: relative;
+}
+
+#special_family{
+	position: absolute;
+	width: 116px;
+	height: 119px;
+	background: url(../img/special_family.png) no-repeat;
+	top:-41px;
+	left:180px;
+}
+
+.new-img-competitors {
+	background:url("../img/competitors.png") no-repeat scroll left top transparent;
+	float:left;
+	height:72px;
+	padding:0 10px 23px 0;
+	margin:10px 0 0;
+	width:72px;
+}
+
+p.mdnormal{
+	color : #ffffff;
+}
+
+#md_deal_price_texture h3{
+	color: #ffdde3;
 }
