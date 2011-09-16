@@ -25,9 +25,9 @@ class EmailTemplatesController extends AppController
         if (!empty($this->data)) {
             if (Configure::read('site.is_admin_settings_enabled')) {
                 if ($this->EmailTemplate->save($this->data)) {
-                    $this->Session->setFlash(__l('Email Template has been updated') , 'default', null, 'success');
+                    $this->Session->setFlash(__l('Email Template has been updated') , 'default', array('lib' => __l('Success')), 'success');
                 } else {
-                    $this->Session->setFlash(__l('Email Template could not be updated. Please, try again.') , 'default', null, 'error');
+                    $this->Session->setFlash(__l('Email Template could not be updated. Please, try again.') , 'default', array('lib' => __l('Error')), 'error');
                 }
                 $emailTemplate = $this->EmailTemplate->find('first', array(
                     'conditions' => array(
@@ -46,7 +46,7 @@ class EmailTemplatesController extends AppController
                 $this->data['EmailTemplate']['description'] = $emailTemplate['EmailTemplate']['description'];
                 $this->set('emailTemplate', $emailTemplate);
             } else {
-                $this->Session->setFlash(__l('Sorry. You Cannot Update the Settings in Demo Mode') , 'default', null, 'error');
+                $this->Session->setFlash(__l('Sorry. You Cannot Update the Settings in Demo Mode') , 'default', array('lib' => __l('Error')), 'error');
             }
         } else {
             $this->data = $this->EmailTemplate->read(null, $id);

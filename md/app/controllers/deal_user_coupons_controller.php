@@ -95,15 +95,15 @@ class DealUserCouponsController extends AppController
             'recursive' => 3
         ));
         if (empty($dealUserCoupon)) {
-            $this->Session->setFlash(__l('Invalid coupon code') , 'default', null, 'error');
+            $this->Session->setFlash(__l('Invalid coupon code') , 'default', array('lib' => __l('Error')), 'error');
             $this->redirect(Router::url('/', true));
         }
         if (($this->Auth->user('user_type_id') == ConstUserTypes::User) || ($this->Auth->user('user_type_id') != ConstUserTypes::Admin) && ($this->Auth->user('id') != $dealUserCoupon['DealUser']['Deal']['Company']['user_id'])) {
-            $this->Session->setFlash(__l('You have no authorized to view this page') , 'default', null, 'error');
+            $this->Session->setFlash(__l('You have no authorized to view this page') , 'default', array('lib' => __l('Error')), 'error');
             $this->redirect(Router::url('/', true));
         }
         if ($dealUserCoupon['DealUserCoupon']['is_used'] == 1) {
-            $this->Session->setFlash(__l('This coupon used already') , 'default', null, 'error');
+            $this->Session->setFlash(__l('This coupon used already') , 'default', array('lib' => __l('Error')), 'error');
         }
         if (!empty($this->data)) {
             $deal_user_coupon_id = $dealUserCoupon['DealUserCoupon']['id'];
@@ -112,7 +112,7 @@ class DealUserCouponsController extends AppController
             $deal_update_data['DealUserCoupon']['id'] = $deal_user_coupon_id;
             if ($this->DealUserCoupon->save($deal_update_data)) {
                 $dealUserCoupon['DealUserCoupon']['is_used'] = 1;
-                $this->Session->setFlash(__l('Coupon used successfully') , 'default', null, 'success');
+                $this->Session->setFlash(__l('Coupon used successfully') , 'default', array('lib' => __l('Success')), 'success');
             }
         }
         $this->data['DealUserCoupon']['id'] = $coupon_code;

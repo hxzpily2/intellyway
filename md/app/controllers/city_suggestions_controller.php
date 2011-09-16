@@ -11,10 +11,10 @@ class CitySuggestionsController extends AppController
             }
             $this->CitySuggestion->create();
             if ($this->CitySuggestion->save($this->data)) {
-                $this->Session->setFlash(__l('City Suggestion has been sent') , 'default', null, 'success');
+                $this->Session->setFlash(__l('City Suggestion has been sent') , 'default', array('lib' => __l('Success')), 'success');
                 $this->redirect(Router::url('/', true));
             } else {
-                $this->Session->setFlash(__l('City Suggestion could not be sent. Please, try again.') , 'default', null, 'error');
+                $this->Session->setFlash(__l('City Suggestion could not be sent. Please, try again.') , 'default', array('lib' => __l('Error')), 'error');
             }
         }
         if ($this->Auth->user('id')) {

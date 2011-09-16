@@ -30,7 +30,7 @@ class TranslationsController extends AppController
                 'recursive' => -1
             ));
             Cache::delete($lang_code['Language']['iso2'] . '_translations');
-            $this->Session->setFlash(__l('Translation deleted successfully') , 'default', null, 'success');
+            $this->Session->setFlash(__l('Translation deleted successfully') , 'default', array('lib' => __l('Success')), 'success');
             $this->redirect(array(
                 'action' => 'index'
             ));
@@ -133,12 +133,12 @@ class TranslationsController extends AppController
                     $this->Translation->set($data);
                     $this->Translation->save($data);
                 }
-                $this->Session->setFlash(__l('Language variables has been added') , 'default', null, 'success');
+                $this->Session->setFlash(__l('Language variables has been added') , 'default', array('lib' => __l('Success')), 'success');
                 $this->redirect(array(
                     'action' => 'index'
                 ));
             } else {
-                $this->Session->setFlash(__l('Language variables could not be added') , 'default', null, 'error');
+                $this->Session->setFlash(__l('Language variables could not be added') , 'default', array('lib' => __l('Error')), 'error');
             }
         }
         $translations = $this->Translation->find('all', array(
@@ -169,7 +169,7 @@ class TranslationsController extends AppController
             'recursive' => 0
         ));
         if (empty($translations)) {
-            $this->Session->setFlash(__l('Default English variable is missing') , 'default', null, 'error');
+            $this->Session->setFlash(__l('Default English variable is missing') , 'default', array('lib' => __l('Error')), 'error');
             $this->redirect(array(
                 'action' => 'index'
             ));
@@ -200,7 +200,7 @@ class TranslationsController extends AppController
                         $var = json_decode($out);
                         curl_close($ch);
                     } else {
-                        $this->Session->setFlash(__l('Translation could not be updated. Please, try again.') , 'default', null, 'error');
+                        $this->Session->setFlash(__l('Translation could not be updated. Please, try again.') , 'default', array('lib' => __l('Error')), 'error');
                         $this->redirect(array(
                             'action' => 'add',
                         ));
@@ -231,7 +231,7 @@ class TranslationsController extends AppController
                     $this->Translation->save($translation['Translation'], false);
                 }
             }
-            $this->Session->setFlash(__l('Translation has been added') , 'default', null, 'success');
+            $this->Session->setFlash(__l('Translation has been added') , 'default', array('lib' => __l('Success')), 'success');
             $this->redirect(array(
                 'action' => 'manage',
                 'language_id' => $this->data['Translation']['language_id']
@@ -268,9 +268,9 @@ class TranslationsController extends AppController
         }
         if (!empty($this->data)) {
             if ($this->Translation->save($this->data)) {
-                $this->Session->setFlash(sprintf(__l('"%s" Translation has been updated') , $this->data['Translation']['id']) , 'default', null, 'success');
+                $this->Session->setFlash(sprintf(__l('"%s" Translation has been updated') , $this->data['Translation']['id']) , 'default', array('lib' => __l('Success')), 'success');
             } else {
-                $this->Session->setFlash(sprintf(__l('"%s" Translation could not be updated. Please, try again.') , $this->data['Translation']['id']) , 'default', null, 'error');
+                $this->Session->setFlash(sprintf(__l('"%s" Translation could not be updated. Please, try again.') , $this->data['Translation']['id']) , 'default', array('lib' => __l('Error')), 'error');
             }
         } else {
             $this->data = $this->Translation->read(null, $id);
@@ -293,7 +293,7 @@ class TranslationsController extends AppController
             $this->cakeError('error404');
         }
         if ($this->Translation->delete($id)) {
-            $this->Session->setFlash(__l('Translation deleted') , 'default', null, 'success');
+            $this->Session->setFlash(__l('Translation deleted') , 'default', array('lib' => __l('Success')), 'success');
             $this->redirect(array(
                 'action' => 'index'
             ));
@@ -335,7 +335,7 @@ class TranslationsController extends AppController
                     $data['Translation']['is_verified'] = $value['is_verified'];
                     $this->Translation->save($data);
                 }
-                $this->Session->setFlash(__l('Translation updated successfully') , 'default', null, 'success');
+                $this->Session->setFlash(__l('Translation updated successfully') , 'default', array('lib' => __l('Success')), 'success');
             }
             if (!empty($this->params['named']['language_id'])) {
                 $conditions['Translation.language_id'] = $this->params['named']['language_id'];

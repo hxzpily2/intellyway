@@ -102,7 +102,7 @@ class BlockedUsersController extends AppController
             $this->data['BlockedUser']['blocked_user_id'] = $user['User']['id'];
             $this->BlockedUser->create();
             if ($this->BlockedUser->save($this->data)) {
-                $this->Session->setFlash(__l('User blocked successfully.') , 'default', null, 'success');
+                $this->Session->setFlash(__l('User blocked successfully.') , 'default', array('lib' => __l('Success')), 'success');
                 $this->redirect(array(
                     'controller' => 'users',
                     'action' => 'view',
@@ -111,7 +111,7 @@ class BlockedUsersController extends AppController
             } else {
             }
         } else {
-            $this->Session->setFlash(__l('Already added') , 'default', null, 'error');
+            $this->Session->setFlash(__l('Already added') , 'default', array('lib' => __l('Error')), 'error');
         }
     }
     function edit($id = null)
@@ -122,9 +122,9 @@ class BlockedUsersController extends AppController
         }
         if (!empty($this->data)) {
             if ($this->BlockedUser->save($this->data)) {
-                $this->Session->setFlash(sprintf(__l('"%s" Blocked User has been updated') , $this->data['BlockedUser']['id']) , 'default', null, 'success');
+                $this->Session->setFlash(sprintf(__l('"%s" Blocked User has been updated') , $this->data['BlockedUser']['id']) , 'default', array('lib' => __l('Success')), 'success');
             } else {
-                $this->Session->setFlash(sprintf(__l('"%s" Blocked User could not be updated. Please, try again.') , $this->data['BlockedUser']['id']) , 'default', null, 'error');
+                $this->Session->setFlash(sprintf(__l('"%s" Blocked User could not be updated. Please, try again.') , $this->data['BlockedUser']['id']) , 'default', array('lib' => __l('Error')), 'error');
             }
         } else {
             $this->data = $this->BlockedUser->read(null, $id);
@@ -161,7 +161,7 @@ class BlockedUsersController extends AppController
             $this->cakeError('error404');
         }
         if ($this->BlockedUser->del($id)) {
-            $this->Session->setFlash(__l('Blocked User deleted') , 'default', null, 'success');
+            $this->Session->setFlash(__l('Blocked User deleted') , 'default', array('lib' => __l('Success')), 'success');
             $this->redirect(array(
                 'controller' => 'users',
                 'action' => 'view',
@@ -267,12 +267,12 @@ class BlockedUsersController extends AppController
         if (!empty($this->data)) {
             $this->BlockedUser->create();
             if ($this->BlockedUser->save($this->data)) {
-                $this->Session->setFlash(sprintf(__l('"%s" Blocked User has been added') , $this->data['BlockedUser']['id']) , 'default', null, 'success');
+                $this->Session->setFlash(sprintf(__l('"%s" Blocked User has been added') , $this->data['BlockedUser']['id']) , 'default', array('lib' => __l('Success')), 'success');
                 $this->redirect(array(
                     'action' => 'index'
                 ));
             } else {
-                $this->Session->setFlash(sprintf(__l('"%s" Blocked User could not be added. Please, try again.') , $this->data['BlockedUser']['id']) , 'default', null, 'error');
+                $this->Session->setFlash(sprintf(__l('"%s" Blocked User could not be added. Please, try again.') , $this->data['BlockedUser']['id']) , 'default', array('lib' => __l('Error')), 'error');
             }
         }
         $users = $this->BlockedUser->User->find('list');
@@ -286,9 +286,9 @@ class BlockedUsersController extends AppController
         }
         if (!empty($this->data)) {
             if ($this->BlockedUser->save($this->data)) {
-                $this->Session->setFlash(sprintf(__l('"%s" Blocked User has been updated') , $this->data['BlockedUser']['id']) , 'default', null, 'success');
+                $this->Session->setFlash(sprintf(__l('"%s" Blocked User has been updated') , $this->data['BlockedUser']['id']) , 'default', array('lib' => __l('Success')), 'success');
             } else {
-                $this->Session->setFlash(sprintf(__l('"%s" Blocked User could not be updated. Please, try again.') , $this->data['BlockedUser']['id']) , 'default', null, 'error');
+                $this->Session->setFlash(sprintf(__l('"%s" Blocked User could not be updated. Please, try again.') , $this->data['BlockedUser']['id']) , 'default', array('lib' => __l('Error')), 'error');
             }
         } else {
             $this->data = $this->BlockedUser->read(null, $id);
@@ -306,7 +306,7 @@ class BlockedUsersController extends AppController
             $this->cakeError('error404');
         }
         if ($this->BlockedUser->del($id)) {
-            $this->Session->setFlash(__l('Blocked User deleted') , 'default', null, 'success');
+            $this->Session->setFlash(__l('Blocked User deleted') , 'default', array('lib' => __l('Success')), 'success');
             $this->redirect(array(
                 'action' => 'index'
             ));
@@ -331,7 +331,7 @@ class BlockedUsersController extends AppController
                 $this->BlockedUser->deleteAll(array(
                     'BlockedUser.id' => $blockedUserIds
                 ));
-                $this->Session->setFlash(__l('Checked blocked users has been deleted') , 'default', null, 'success');
+                $this->Session->setFlash(__l('Checked blocked users has been deleted') , 'default', array('lib' => __l('Success')), 'success');
             }
         }
         $this->redirect(Router::url('/', true) . $r);

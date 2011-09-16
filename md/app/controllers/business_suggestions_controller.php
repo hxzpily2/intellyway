@@ -11,13 +11,13 @@ class BusinessSuggestionsController extends AppController
             }
             $this->BusinessSuggestion->create();
             if ($this->BusinessSuggestion->save($this->data)) {
-                $this->Session->setFlash(__l('Suggestion has been sent') , 'default', null, 'success');
+                $this->Session->setFlash(__l('Suggestion has been sent') , 'default', array('lib' => __l('Success')), 'success');
                 $this->redirect(array(
                     'controller' => 'deals',
                     'action' => 'index'
                 ));
             } else {
-                $this->Session->setFlash(__l('Suggestion could not be sent. Please, try again.') , 'default', null, 'error');
+                $this->Session->setFlash(__l('Suggestion could not be sent. Please, try again.') , 'default', array('lib' => __l('Error')), 'error');
             }
         }
         if ($this->Auth->user('id')) {
@@ -56,7 +56,7 @@ class BusinessSuggestionsController extends AppController
             'recursive' => -1
         ));
         if (!empty($businessSuggestion['BusinessSuggestion']['id']) && $this->BusinessSuggestion->del($businessSuggestion['BusinessSuggestion']['id'])) {
-            $this->Session->setFlash(__l('Business suggestion deleted') , 'default', null, 'success');
+            $this->Session->setFlash(__l('Business suggestion deleted') , 'default', array('lib' => __l('Success')), 'success');
             $this->redirect(array(
                 'action' => 'index'
             ));

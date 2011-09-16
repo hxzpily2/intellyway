@@ -136,7 +136,7 @@ class UserCommentsController extends AppController
                 if (Configure::read('user.is_send_email_on_profile_comments') && $this->UserComment->_checkForPrivacy('Profile-is_receive_email_for_new_comment', $user['User']['id'], $this->Auth->user('id'))) {
 					$this->_sendAlertOnCommentPost($user, $this->data['UserComment']['comment'], $user['User']['username'], $user['User']['id']);
                 }
-                $this->Session->setFlash(__l('User Comment has been added') , 'default', null, 'success');
+                $this->Session->setFlash(__l('User Comment has been added') , 'default', array('lib' => __l('Success')), 'success');
                 if (!$this->RequestHandler->isAjax()) {
                     if ($user['User']['user_type_id'] == ConstUserTypes::Company) {
                         $this->redirect(array(
@@ -156,7 +156,7 @@ class UserCommentsController extends AppController
                     $this->setAction('view', $this->UserComment->getLastInsertId() , 'view_ajax');
                 }
             } else {
-                $this->Session->setFlash(__l('User Comment could not be added. Please, try again.') , 'default', null, 'error');
+                $this->Session->setFlash(__l('User Comment could not be added. Please, try again.') , 'default', array('lib' => __l('Error')), 'error');
             }
             $this->set('user', $user);
         }
@@ -209,9 +209,9 @@ class UserCommentsController extends AppController
         }
         if (!empty($this->data)) {
             if ($this->UserComment->save($this->data)) {
-                $this->Session->setFlash(__l('User Comment has been updated') , 'default', null, 'success');
+                $this->Session->setFlash(__l('User Comment has been updated') , 'default', array('lib' => __l('Success')), 'success');
             } else {
-                $this->Session->setFlash(__l('User Comment could not be updated. Please, try again.') , 'default', null, 'error');
+                $this->Session->setFlash(__l('User Comment could not be updated. Please, try again.') , 'default', array('lib' => __l('Error')), 'error');
             }
         } else {
             $this->data = $this->UserComment->read(null, $id);
@@ -255,7 +255,7 @@ class UserCommentsController extends AppController
             $this->cakeError('error404');
         }
         if ($this->UserComment->del($id)) {
-            $this->Session->setFlash(__l('User Comment deleted') , 'default', null, 'success');
+            $this->Session->setFlash(__l('User Comment deleted') , 'default', array('lib' => __l('Success')), 'success');
 			if ($userComment['User']['user_type_id'] == ConstUserTypes::Company) {
 				$this->redirect(array(
 					'controller' => 'companies',
@@ -342,12 +342,12 @@ class UserCommentsController extends AppController
         if (!empty($this->data)) {
             $this->UserComment->create();
             if ($this->UserComment->save($this->data)) {
-                $this->Session->setFlash(sprintf(__l('User Comment has been added') , $this->data['UserComment']['id']) , 'default', null, 'success');
+                $this->Session->setFlash(sprintf(__l('User Comment has been added') , $this->data['UserComment']['id']) , 'default', array('lib' => __l('Success')), 'success');
                 $this->redirect(array(
                     'action' => 'index'
                 ));
             } else {
-                $this->Session->setFlash(sprintf(__l('User Comment could not be added. Please, try again.') , $this->data['UserComment']['id']) , 'default', null, 'error');
+                $this->Session->setFlash(sprintf(__l('User Comment could not be added. Please, try again.') , $this->data['UserComment']['id']) , 'default', array('lib' => __l('Error')), 'error');
             }
         }
         $users = $postedUsers = $this->UserComment->User->find('list');
@@ -361,9 +361,9 @@ class UserCommentsController extends AppController
         }
         if (!empty($this->data)) {
             if ($this->UserComment->save($this->data)) {
-                $this->Session->setFlash(sprintf(__l('User Comment has been updated') , $this->data['UserComment']['id']) , 'default', null, 'success');
+                $this->Session->setFlash(sprintf(__l('User Comment has been updated') , $this->data['UserComment']['id']) , 'default', array('lib' => __l('Success')), 'success');
             } else {
-                $this->Session->setFlash(sprintf(__l('User Comment could not be updated. Please, try again.') , $this->data['UserComment']['id']) , 'default', null, 'error');
+                $this->Session->setFlash(sprintf(__l('User Comment could not be updated. Please, try again.') , $this->data['UserComment']['id']) , 'default', array('lib' => __l('Error')), 'error');
             }
         } else {
             $this->data = $this->UserComment->read(null, $id);
@@ -381,7 +381,7 @@ class UserCommentsController extends AppController
             $this->cakeError('error404');
         }
         if ($this->UserComment->del($id)) {
-            $this->Session->setFlash(__l('User Comment deleted') , 'default', null, 'success');
+            $this->Session->setFlash(__l('User Comment deleted') , 'default', array('lib' => __l('Success')), 'success');
             $this->redirect(array(
                 'action' => 'index'
             ));
@@ -408,7 +408,7 @@ class UserCommentsController extends AppController
                     $this->{$this->modelClass}->deleteAll(array(
                         $this->modelClass . '.id' => $selectedIds
                     ));
-                    $this->Session->setFlash(__l('Checked user comments has been deleted') , 'default', null, 'success');
+                    $this->Session->setFlash(__l('Checked user comments has been deleted') , 'default', array('lib' => __l('Success')), 'success');
                 }
             }
         }

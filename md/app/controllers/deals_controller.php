@@ -82,7 +82,7 @@ class DealsController extends AppController
 		$city_conditions = array();
 		// deal add sucess message
 		if (!empty($this->params['named']['type']) && $this->params['named']['type'] == 'success') {
-			$this->Session->setFlash(__l('Deal has been added.') , 'default', null, 'success');
+			$this->Session->setFlash(__l('Deal has been added.') , 'default', array('lib' => __l('Success')), 'success');
 		}
 
         //home page deals
@@ -121,14 +121,22 @@ class DealsController extends AppController
         );
         //recent and company deals list
         if (!empty($this->params['named']['type']) && $this->params['named']['type'] == 'recent') {
+        	if(!empty($this->params['named'][ConstMissdealSpecialType::PARAM])){
+        		$conditions['Deal.private_note like'] = "%".$this->params['named'][ConstMissdealSpecialType::PARAM]."%";
+        	}
             $conditions['Deal.deal_status_id'] = array(
-                ConstDealStatus::Closed,
+            	/** RZER : ADD STATUT OPEN **/
+                ConstDealStatus::Open,
+            	ConstDealStatus::Closed,
                 ConstDealStatus::Expired,
                 ConstDealStatus::Canceled,
                 ConstDealStatus::PaidToCompany
             );
             $conditions['Deal.end_date <'] = _formatDate('Y-m-d H:i:s', date('Y-m-d H:i:s') , true);
             $this->pageTitle = __l('Recent Deals');
+            if(!empty($this->params['named'][ConstMissdealSpecialType::PARAM])){
+            	$this->pageTitle = __l('Voyages');
+            }
             $order = array(
                 'Deal.end_date' => 'DESC'
             );
@@ -426,12 +434,13 @@ class DealsController extends AppController
                     'recursive' => 1,
                     'limit' => 5,
                 ));
-                if (!$deals and $side_deals) {
+               
+                if (!$deals and $side_deals) {                	 
                     $this->paginate['conditions'] = array(
                         $conditions,
                         $not_conditions,
                     );
-                    $side_deals = array();
+                    //$side_deals = array();
                     $deals = $this->paginate();
                     $this->set('deals', $deals);
                 }
@@ -448,7 +457,7 @@ class DealsController extends AppController
                     ) ,
                     'recursive' => -1
                 ));
-                $this->Session->setFlash(__l('No deals available in this city.') , 'default', null, 'error');
+                $this->Session->setFlash(__l('No deals available in this city.') , 'default', array('lib' => __l('Error')), 'error');
                 $this->redirect(array(
                     'controller' => 'deals',
                     'action' => 'index',
@@ -486,10 +495,10 @@ class DealsController extends AppController
         if (Configure::read('site.enable_three_step_subscription') && (empty($deals) || (!$this->Auth->user('user_type_id') && !isset($_COOKIE['CakeCookie']['is_subscribed']))) && empty($this->layoutPath)) {
             if (!empty($_COOKIE['CakeCookie']['is_subscribed']) || $this->Auth->user('id')) { // Already Subscribed
 				if(isset($this->params['named']['type']) && $this->params['named']['type'] == 'recent'){
-					$this->Session->setFlash(__l('Its seems that the current select city does\'t have any recent deals. Please select another city') , 'default', null, 'success');
+					$this->Session->setFlash(__l('Its seems that the current select city does\'t have any recent deals. Please select another city') , 'default', array('lib' => __l('Success')), 'success');
 				}
 				else{
-	                $this->Session->setFlash(__l('Its seems that the current select city does\'t have any open deals. Please select another city') , 'default', null, 'success');
+	                $this->Session->setFlash(__l('Its seems that the current select city does\'t have any open deals. Please select another city') , 'default', array('lib' => __l('Success')), 'success');
 				}	
                 $this->redirect(array(
                     'controller' => 'page',
@@ -988,7 +997,7 @@ class DealsController extends AppController
                                 if (!$this->Deal->validates() |!$this->Deal->Attachment->validates()) {
                                     $attachmentValidationError[$i] = $this->Deal->Attachment->validationErrors;
                                     $is_form_valid = false;
-                                    $this->Session->setFlash(__l('Deal could not be added. Please, try again.') , 'default', null, 'error');
+                                    $this->Session->setFlash(__l('Deal could not be added. Please, try again.') , 'default', array('lib' => __l('Error')), 'error');
                                 }
                             }
                         }
@@ -1006,10 +1015,10 @@ class DealsController extends AppController
                             $this->data['foreign_id'] = $foreign_id;
                             $this->data['Attachment']['description'] = 'Deal';
                             $this->XAjax->normalupload($this->data, false);
-                            $this->Session->setFlash(__l('Deal has been added.') , 'default', null, 'success');
+                            $this->Session->setFlash(__l('Deal has been added.') , 'default', array('lib' => __l('Success')), 'success');
                         }
                     }
-                    $this->Session->setFlash(__l('Deal has been updated') , 'default', null, 'success');
+                    $this->Session->setFlash(__l('Deal has been updated') , 'default', array('lib' => __l('Success')), 'success');
                     $deal = $this->Deal->find('first', array(
                         'conditions' => array(
                             'Deal.id' => $this->data['Deal']['id']
@@ -1029,7 +1038,7 @@ class DealsController extends AppController
                     ));
                     $slug = $deal['Deal']['slug'];
                     $city_name = $deal['City']['name'];
-                    $this->Session->setFlash(__l('Deal has been updated') , 'default', null, 'success');
+                    $this->Session->setFlash(__l('Deal has been updated') , 'default', array('lib' => __l('Success')), 'success');
                     if ($this->Auth->user('user_type_id') == ConstUserTypes::Admin) {
                         $this->redirect(array(
                             'controller' => 'deals',
@@ -1044,7 +1053,7 @@ class DealsController extends AppController
                     }
                 }
             } else {
-                $this->Session->setFlash(__l('Deal could not be updated. Please, try again.') , 'default', null, 'error');
+                $this->Session->setFlash(__l('Deal could not be updated. Please, try again.') , 'default', array('lib' => __l('Error')), 'error');
             }
             $attachment = $this->Attachment->find('first', array(
                 'conditions' => array(
@@ -1225,7 +1234,7 @@ class DealsController extends AppController
 								if (!$this->Deal->validates() |!$this->Deal->Attachment->validates()) {
 									$attachmentValidationError[$i] = $this->Deal->Attachment->validationErrors;
 									$is_form_valid = false;
-									$this->Session->setFlash(__l('Deal could not be added. Please, try again.') , 'default', null, 'error');
+									$this->Session->setFlash(__l('Deal could not be added. Please, try again.') , 'default', array('lib' => __l('Error')), 'error');
 								}
 							}
 						}
@@ -1243,7 +1252,7 @@ class DealsController extends AppController
 							$this->data['foreign_id'] = $this->Deal->getLastInsertId();
 							$this->data['Attachment']['description'] = 'Deal';
 							$this->XAjax->normalupload($this->data, false);
-							$this->Session->setFlash(__l('Deal has been added.') , 'default', null, 'success');
+							$this->Session->setFlash(__l('Deal has been added.') , 'default', array('lib' => __l('Success')), 'success');
 						}
 					}	
                     $deals = $this->Deal->find('first', array(
@@ -1266,7 +1275,7 @@ class DealsController extends AppController
                     $slug = $deals['Deal']['slug'];
                     $city_name = $deals['City']['slug'];
                     $this->Deal->_updateDealBitlyURL($deals['Deal']['slug'], $city_name);
-                    $this->Session->setFlash(__l('Deal has been added') , 'default', null, 'success');
+                    $this->Session->setFlash(__l('Deal has been added') , 'default', array('lib' => __l('Success')), 'success');
                     if ($this->Auth->user('user_type_id') == ConstUserTypes::Admin) {
                         $this->redirect(array(
                             'action' => 'index',
@@ -1279,7 +1288,7 @@ class DealsController extends AppController
                     }
                 }
             } else {
-                $this->Session->setFlash(__l('Deal could not be added. Please, try again.') , 'default', null, 'error');
+                $this->Session->setFlash(__l('Deal could not be added. Please, try again.') , 'default', array('lib' => __l('Error')), 'error');
 				if (!empty($this->data['Deal']['clone_deal_id'])) {
 					$cloneDeal = $this->Deal->find('first', array(
 						'conditions' => array(
@@ -1421,7 +1430,7 @@ class DealsController extends AppController
         }
         if ($this->Deal->del($id)) {
 			$this->Deal->_updateCityDealCount();
-            $this->Session->setFlash(__l('Deal deleted') , 'default', null, 'success');
+            $this->Session->setFlash(__l('Deal deleted') , 'default', array('lib' => __l('Success')), 'success');
             $this->redirect(array(
                 'action' => 'index'
             ));
@@ -1459,7 +1468,7 @@ class DealsController extends AppController
         $slug = $deal['Deal']['slug'];
         $city_name = $deal['City']['name'];
 		$this->Deal->_updateCityDealCount();
-        $this->Session->setFlash(__l('Deal has been updated') , 'default', null, 'success');
+        $this->Session->setFlash(__l('Deal has been updated') , 'default', array('lib' => __l('Success')), 'success');
         $this->redirect(array(
             'controller' => 'deals',
             'action' => 'company',
@@ -1755,7 +1764,7 @@ class DealsController extends AppController
             )
         ));
 		if (!empty($this->params['named']['type']) && $this->params['named']['type'] == 'success') {
-			$this->Session->setFlash(__l('Deal has been added.') , 'default', null, 'success');
+			$this->Session->setFlash(__l('Deal has been added.') , 'default', array('lib' => __l('Success')), 'success');
 		}	
         $this->set('deal_selected_city', $city_filter_id);
         $this->set('cities', $cities);
@@ -1981,7 +1990,7 @@ class DealsController extends AppController
                                 if (!$this->Deal->validates() |!$this->Deal->Attachment->validates()) {
                                     $attachmentValidationError[$i] = $this->Deal->Attachment->validationErrors;
                                     $is_form_valid = false;
-                                    $this->Session->setFlash(__l('Deal could not be added. Please, try again.') , 'default', null, 'error');
+                                    $this->Session->setFlash(__l('Deal could not be added. Please, try again.') , 'default', array('lib' => __l('Error')), 'error');
                                 }
                             }
                         }
@@ -1999,17 +2008,17 @@ class DealsController extends AppController
                             $this->data['foreign_id'] = $foreign_id;
                             $this->data['Attachment']['description'] = 'Deal';
                             $this->XAjax->normalupload($this->data, false);
-                            $this->Session->setFlash(__l('Deal has been added.') , 'default', null, 'success');
+                            $this->Session->setFlash(__l('Deal has been added.') , 'default', array('lib' => __l('Success')), 'success');
                         }
                     }
-                    $this->Session->setFlash(__l('Deal has been updated') , 'default', null, 'success');
+                    $this->Session->setFlash(__l('Deal has been updated') , 'default', array('lib' => __l('Success')), 'success');
                     $this->redirect(array(
                         'controller' => 'deals',
                         'action' => 'index'
                     ));
                 }
             } else {
-                $this->Session->setFlash(__l('Deal could not be updated. Please, try again.') , 'default', null, 'error');
+                $this->Session->setFlash(__l('Deal could not be updated. Please, try again.') , 'default', array('lib' => __l('Error')), 'error');
             }
             $attachment = $this->Attachment->find('first', array(
                 'conditions' => array(
@@ -2077,7 +2086,7 @@ class DealsController extends AppController
         }
         if ($this->Deal->del($id)) {
 			$this->Deal->_updateCityDealCount();
-            $this->Session->setFlash(__l('Deal deleted') , 'default', null, 'success');
+            $this->Session->setFlash(__l('Deal deleted') , 'default', array('lib' => __l('Success')), 'success');
             $this->redirect(array(
                 'action' => 'index'
             ));
@@ -2134,7 +2143,7 @@ class DealsController extends AppController
                     if ($dealsLeft) {
                         $msg.= __l('Some of the deals are not opened due to the end date and coupon expiry date in past.');
                     }
-                    $this->Session->setFlash($msg, 'default', null, 'success');
+                    $this->Session->setFlash($msg, 'default', array('lib' => __l('Success')), 'success');
                 } else if ($actionid == ConstDealStatus::Canceled) {
                     $openDealIds = $this->Deal->find('list', array(
                         'conditions' => array(
@@ -2158,14 +2167,14 @@ class DealsController extends AppController
                         'Deal.total_purchased_amount' => 0,
                         'Deal.total_commission_amount' => 0,
                     ) , $conditions);
-                    $this->Session->setFlash(__l('Checked deals have been canceled') , 'default', null, 'success');
+                    $this->Session->setFlash(__l('Checked deals have been canceled') , 'default', array('lib' => __l('Success')), 'success');
                 } else if ($actionid == ConstDealStatus::Rejected) {
                     $this->Deal->updateAll(array(
                         'Deal.deal_status_id' => ConstDealStatus::Rejected
                     ) , array(
                         'Deal.id' => $dealIds
                     ));
-                    $this->Session->setFlash(__l('Checked deals have been rejected') , 'default', null, 'success');
+                    $this->Session->setFlash(__l('Checked deals have been rejected') , 'default', array('lib' => __l('Success')), 'success');
                 } else if ($actionid == ConstDealStatus::Expired) {
                     //Get the Quantity for selected deals.
                     $quantities = $this->Deal->find('all', array(
@@ -2203,13 +2212,13 @@ class DealsController extends AppController
                     if ($dealsLeft) {
 						$msg.= __l('Some of the deals are not expired becasue "AnyTime" Deal cannot be expired. It can be either cancelled or closed.');
                     }
-                    $this->Session->setFlash($msg, 'default', null, 'success');
+                    $this->Session->setFlash($msg, 'default', array('lib' => __l('Success')), 'success');
                 } else if ($actionid == ConstDealStatus::Refunded) {
                     $this->Deal->_refundDealAmount('admin_update', $dealIds);
-                    $this->Session->setFlash(__l('Expired deals have been refunded') , 'default', null, 'success');
+                    $this->Session->setFlash(__l('Expired deals have been refunded') , 'default', array('lib' => __l('Success')), 'success');
                 } else if ($actionid == ConstDealStatus::Closed) {
                     $this->Deal->_closeDeals($dealIds);
-                    $this->Session->setFlash(__l('Checked deals have been closed') , 'default', null, 'success');
+                    $this->Session->setFlash(__l('Checked deals have been closed') , 'default', array('lib' => __l('Success')), 'success');
                 } else if ($actionid == ConstDealStatus::PaidToCompany) {
                     $this->Deal->updateAll(array(
                         'Deal.total_purchased_amount' => '(Deal.discounted_price * Deal.deal_user_count)',
@@ -2219,7 +2228,7 @@ class DealsController extends AppController
                         'Deal.id' => $dealIds
                     ));
                     $this->Deal->_payToCompany('admin_update', $dealIds);
-                    $this->Session->setFlash(__l('Checked deals amount have been transferred') , 'default', null, 'success');
+                    $this->Session->setFlash(__l('Checked deals amount have been transferred') , 'default', array('lib' => __l('Success')), 'success');
                 } else if ($actionid == ConstDealStatus::Upcoming) {
                     $dealsLeft = false;
                     foreach($this->data['Deal'] as $deal_id => $is_checked) {
@@ -2250,19 +2259,19 @@ class DealsController extends AppController
                     if ($dealsLeft) {
                         $msg.= __l('Some of the deals are not upcoming due to the end date and coupon expiry date in past.');
                     }
-                    $this->Session->setFlash($msg, 'default', null, 'success');
+                    $this->Session->setFlash($msg, 'default', array('lib' => __l('Success')), 'success');
                 } else if ($actionid == ConstDealStatus::Delete) {
                     $this->Deal->deleteAll(array(
                         'Deal.id' => $dealIds
                     ));
-                    $this->Session->setFlash(__l('Checked deals have been deleted') , 'default', null, 'success');
+                    $this->Session->setFlash(__l('Checked deals have been deleted') , 'default', array('lib' => __l('Success')), 'success');
                 } else if ($actionid == ConstDealStatus::PendingApproval) {
                     $this->Deal->updateAll(array(
                         'Deal.deal_status_id' => ConstDealStatus::PendingApproval
                     ) , array(
                         'Deal.id' => $dealIds
                     ));
-                    $this->Session->setFlash(__l('Checked deals have been inactive') , 'default', null, 'success');
+                    $this->Session->setFlash(__l('Checked deals have been inactive') , 'default', array('lib' => __l('Success')), 'success');
                 }
             }
         }
@@ -2342,7 +2351,7 @@ class DealsController extends AppController
             $this->cakeError('error404');
         }
 		if(empty($deal['Deal']['is_anytime_deal']) && $deal['Deal']['end_date'] <= _formatDate('Y-m-d H:i:s', date('Y-m-d H:i:s') , true)){
-			$this->Session->setFlash(__l('You\'re too late, this deal has been expired.') , 'default', null, 'error');
+			$this->Session->setFlash(__l('You\'re too late, this deal has been expired.') , 'default', array('lib' => __l('Error')), 'error');
 			$this->redirect(array(
 				'controller' => 'deals',
 				'action' => 'view',
@@ -2434,7 +2443,7 @@ class DealsController extends AppController
                     unset($this->data['User']['confirm_password']);
                 }
             } else {
-                $this->Session->setFlash(__l('Invalid data entered. Your purchase has been cancelled.') , 'default', null, 'error');
+                $this->Session->setFlash(__l('Invalid data entered. Your purchase has been cancelled.') , 'default', array('lib' => __l('Error')), 'error');
                 $this->redirect(array(
                     'controller' => 'deals',
                     'action' => 'view',
@@ -2451,7 +2460,7 @@ class DealsController extends AppController
             //if user logged in check whether user eligible to buy deal
             if ($this->Auth->user('id')) {
                 if (!$this->Deal->isEligibleForBuy($deal_id, $this->Auth->user('id') , $deal['Deal']['buy_max_quantity_per_user'])) {
-                    $this->Session->setFlash(sprintf(__l('You can\'t buy this deal. Your maximum allowed limit %s is over') , $deal['Deal']['buy_max_quantity_per_user']) , 'default', null, 'error');
+                    $this->Session->setFlash(sprintf(__l('You can\'t buy this deal. Your maximum allowed limit %s is over') , $deal['Deal']['buy_max_quantity_per_user']) , 'default', array('lib' => __l('Error')), 'error');
                     $this->redirect(array(
                         'controller' => 'deals',
                         'action' => 'view',
@@ -2591,7 +2600,7 @@ class DealsController extends AppController
                     $valid_user = false;
                     $is_show_credit_card = 0;
                     $this->set('is_show_credit_card', $is_show_credit_card);
-                    $this->Session->setFlash(__l('Purchase via wallet not possible as the total purchase amount exceeded your wallet balance.') , 'default', null, 'error');
+                    $this->Session->setFlash(__l('Purchase via wallet not possible as the total purchase amount exceeded your wallet balance.') , 'default', array('lib' => __l('Error')), 'error');
                     //$amount_needed = $total_deal_amount-$user_available_balance;
 
                 }
@@ -2780,7 +2789,7 @@ class DealsController extends AppController
                                 $this->Deal->User->UserPaymentProfile->save($payment);
                                 $this->data['Deal']['payment_profile_id'] = $payment_profile_id['payment_profile_id'];
                             } else {
-                                $this->Session->setFlash(sprintf(__l('Gateway error: %s <br>Note: Due to security reasons, error message from gateway may not be verbose. Please double check your card number, security number and address details. Also, check if you have enough balance in your card.') , $payment_profile_id['message']) , 'default', null, 'error');
+                                $this->Session->setFlash(sprintf(__l('Gateway error: %s <br>Note: Due to security reasons, error message from gateway may not be verbose. Please double check your card number, security number and address details. Also, check if you have enough balance in your card.') , $payment_profile_id['message']) , 'default', array('lib' => __l('Error')), 'error');
                                 $this->redirect(array(
                                     'controller' => 'deals',
                                     'action' => 'index'
@@ -2879,21 +2888,21 @@ class DealsController extends AppController
                                     $last_inserted_id = $this->Deal->DealUser->getLastInsertId();
                                     $this->_dealPurchaseViaAuthorizeNet($this->data, $last_inserted_id);
                                 } else {
-                                    $this->Session->setFlash(__l('Payment failed. Please try again.') , 'default', null, 'error');
+                                    $this->Session->setFlash(__l('Payment failed. Please try again.') , 'default', array('lib' => __l('Error')), 'error');
                                     $this->redirect(array(
                                         'controller' => 'deals',
                                         'action' => 'index'
                                     ));
                                 }
                             } else {
-                                $this->Session->setFlash(sprintf(__l('Gateway error: %s <br>Note: Due to security reasons, error message from gateway may not be verbose. Please double check your card number, security number and address details. Also, check if you have enough balance in your card.') , $response['message']) , 'default', null, 'error');
+                                $this->Session->setFlash(sprintf(__l('Gateway error: %s <br>Note: Due to security reasons, error message from gateway may not be verbose. Please double check your card number, security number and address details. Also, check if you have enough balance in your card.') , $response['message']) , 'default', array('lib' => __l('Error')), 'error');
                                 $this->redirect(array(
                                     'controller' => 'deals',
                                     'action' => 'index'
                                 ));
                             }
                         } else {
-                            $this->Session->setFlash(__l('Credit card could not be updated. Please, try again.') , 'default', null, 'error');
+                            $this->Session->setFlash(__l('Credit card could not be updated. Please, try again.') , 'default', array('lib' => __l('Error')), 'error');
                             $this->redirect(array(
                                 'controller' => 'deals',
                                 'action' => 'index'
@@ -3105,7 +3114,7 @@ class DealsController extends AppController
                     ) , true) ,
                 );
                 $this->_sendMail($emailFindReplace, $email_message, $user['User']['email']);
-                $this->Session->setFlash(__l('You have bought a deal sucessfully.') , 'default', null, 'success');
+                $this->Session->setFlash(__l('You have bought a deal sucessfully.') , 'default', array('lib' => __l('Success')), 'success');
                 $get_updated_status = $this->Deal->find('first', array(
                     'conditions' => array(
                         'Deal.id' => $deal_id
@@ -3136,7 +3145,7 @@ class DealsController extends AppController
                 }
             }
         } else {
-            $this->Session->setFlash(__l('Payment failed.Please try again.') , 'default', null, 'error');
+            $this->Session->setFlash(__l('Payment failed.Please try again.') , 'default', array('lib' => __l('Error')), 'error');
             $this->redirect(array(
                 'controller' => 'deals',
                 'action' => 'index'
@@ -3329,7 +3338,7 @@ class DealsController extends AppController
                     ));
                     $transaction_data = $temp_ary['TempPaymentLog'];
                 } else {
-                    $this->Session->setFlash(__l('Error in payment.') , 'default', null, 'error');
+                    $this->Session->setFlash(__l('Error in payment.') , 'default', array('lib' => __l('Error')), 'error');
                     $this->redirect(array(
                         'controller' => 'transactions',
                         'action' => 'index',
@@ -3453,7 +3462,7 @@ class DealsController extends AppController
                         'admin' => false
                     ));
                 } else {
-                    $this->Session->setFlash(__l('Error in payment.') , 'default', null, 'error');
+                    $this->Session->setFlash(__l('Error in payment.') , 'default', array('lib' => __l('Error')), 'error');
                     $this->redirect(array(
                         'controller' => 'transactions',
                         'action' => 'index',
@@ -3606,7 +3615,7 @@ class DealsController extends AppController
                     $payment_response = $this->Paypal->doDirectPayment($data_credit_card, $sender_info);
                     //if not success show error msg as it received from paypal
                     if (!empty($payment_response) && $payment_response['ACK'] != 'Success') {
-                        $this->Session->setFlash(sprintf(__l('%s') , $payment_response['L_LONGMESSAGE0']) , 'default', null, 'error');
+                        $this->Session->setFlash(sprintf(__l('%s') , $payment_response['L_LONGMESSAGE0']) , 'default', array('lib' => __l('Error')), 'error');
                         return;
                     }
                 }
@@ -3756,7 +3765,7 @@ class DealsController extends AppController
 						$email_message = $this->EmailTemplate->selectTemplate('Deal gift mail', $language_code);
                         $this->_sendMail($emailFindReplace, $email_message, $deal_user['DealUser']['gift_email']);
                     }
-                    $this->Session->setFlash(__l('You have bought a deal successfully.') , 'default', null, 'success');
+                    $this->Session->setFlash(__l('You have bought a deal successfully.') , 'default', array('lib' => __l('Success')), 'success');
                     $get_updated_status = $this->Deal->find('first', array(
                         'conditions' => array(
                             'Deal.id' => $deal_id
@@ -3780,7 +3789,7 @@ class DealsController extends AppController
                     }
                 } else {
                     if (empty($data['Deal']['is_process_payment'])) {
-                        $this->Session->setFlash(__l('You can\'t buy this deal.') , 'default', null, 'error');
+                        $this->Session->setFlash(__l('You can\'t buy this deal.') , 'default', array('lib' => __l('Error')), 'error');
                         $this->redirect(array(
                             'controller' => 'deals',
                             'action' => 'index'
@@ -3844,9 +3853,9 @@ class DealsController extends AppController
                     $this->data['Deal']['calculator_total_purchased_amount'] = $this->data['Deal']['calculator_discounted_price']*$this->data['Deal']['calculator_min_limit'];
                     $this->data['Deal']['calculator_total_commission_amount'] = ($this->data['Deal']['calculator_total_purchased_amount']*($this->data['Deal']['calculator_commission_percentage']/100)) +$this->data['Deal']['calculator_bonus_amount'];
                     $this->data['Deal']['net_profit'] = $this->data['Deal']['calculator_total_commission_amount'];
-                    $this->Session->setFlash(__l('Deal commission amount calculated successfully.') , 'default', null, 'success');
+                    $this->Session->setFlash(__l('Deal commission amount calculated successfully.') , 'default', array('lib' => __l('Success')), 'success');
                 } else {
-                    $this->Session->setFlash(__l('Please enter all the values.') , 'default', null, 'error');
+                    $this->Session->setFlash(__l('Please enter all the values.') , 'default', array('lib' => __l('Error')), 'error');
                 }
             } else {
                 $this->data['Deal']['calculator_total_purchased_amount'] = $this->data['Deal']['calculator_total_commission_amount'] = $this->data['Deal']['calculator_net_profit'] = 0;
@@ -3874,7 +3883,7 @@ class DealsController extends AppController
             }
             if (!empty($pay_pal_repsonse['auth_status'])) {
                 $this->Session->write('Message.TransactionSuccessMessage', __l('Your payment has been successfully finished. We will update this transactions after deal has been tipped.'));
-                $this->Session->setFlash(__l('Your payment has been successfully finished. We will update this transactions after deal has been tipped.') , 'default', null, 'success');
+                $this->Session->setFlash(__l('Your payment has been successfully finished. We will update this transactions after deal has been tipped.') , 'default', array('lib' => __l('Success')), 'success');
                 $get_updated_status = $this->Deal->find('first', array(
                     'conditions' => array(
                         'Deal.id' => $deal_id
@@ -3896,7 +3905,7 @@ class DealsController extends AppController
                 }
             }
             $this->Session->write('Message.TransactionSuccessMessage', __l('Your payment has been successfully finished. We will update this transactions page after receiving the confirmation from PayPal'));
-            $this->Session->setFlash(__l('Your payment has been successfully finished. We will update this transactions page after receiving the confirmation from PayPal') , 'default', null, 'success');
+            $this->Session->setFlash(__l('Your payment has been successfully finished. We will update this transactions page after receiving the confirmation from PayPal') , 'default', array('lib' => __l('Success')), 'success');
             if (Configure::read('Deal.invite_after_deal_add') && $get_updated_status['Deal']['deal_status_id'] != ConstDealStatus::Closed) {
                 $this->redirect(array(
                     'controller' => 'user_friends',
@@ -3914,7 +3923,7 @@ class DealsController extends AppController
         function payment_cancel()
         {
             $this->pageTitle = __l('Payment Cancel');
-            $this->Session->setFlash(__l('Transaction failure. Please try once again.') , 'default', null, 'error');
+            $this->Session->setFlash(__l('Transaction failure. Please try once again.') , 'default', array('lib' => __l('Error')), 'error');
             $this->redirect(array(
                 'controller' => 'users',
                 'action' => 'my_stuff',
@@ -3930,7 +3939,7 @@ class DealsController extends AppController
                 'recursive' => 2
             ));
             foreach($deals as $deal) $this->Deal->_updateDealBitlyURL($deal['Deal']['slug'], $deal['City']['slug']);
-            $this->Session->setFlash(__l('Bitly URL has been successfully updated for all the deals in the site') , 'default', null, 'success');
+            $this->Session->setFlash(__l('Bitly URL has been successfully updated for all the deals in the site') , 'default', array('lib' => __l('Success')), 'success');
             $this->redirect(array(
                 'action' => 'index',
             ));

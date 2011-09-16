@@ -60,12 +60,12 @@ class UserOpenidsController extends AppController
         if (!empty($this->data['UserOpenid']['user_id'])) {
             $this->UserOpenid->create();
             if ($this->UserOpenid->save($this->data)) {
-                $this->Session->setFlash(__l('User Openid has been added') , 'default', null, 'success');
+                $this->Session->setFlash(__l('User Openid has been added') , 'default', array('lib' => __l('Success')), 'success');
                 $this->redirect(array(
                     'action' => 'index'
                 ));
             } else {
-                $this->Session->setFlash(__l('User Openid could not be added. Please, try again.') , 'default', null, 'error');
+                $this->Session->setFlash(__l('User Openid could not be added. Please, try again.') , 'default', array('lib' => __l('Error')), 'error');
             }
         }
         if ($this->Auth->user('user_type_id') == ConstUserTypes::Admin) {
@@ -88,7 +88,7 @@ class UserOpenidsController extends AppController
                 $this->Openid->authenticate($this->data['UserOpenid']['openid'], $returnTo, $siteURL, array() , array());
             }
             catch(InvalidArgumentException $e) {
-                $this->Session->setFlash(__l('Invalid OpenID') , 'default', null, 'error');
+                $this->Session->setFlash(__l('Invalid OpenID') , 'default', array('lib' => __l('Error')), 'error');
             }
             catch(Exception $e) {
                 $this->Session->setFlash(__l($e->getMessage()));
@@ -116,7 +116,7 @@ class UserOpenidsController extends AppController
             )
         )) > 1 || $user['User']['is_openid_register'] == 0) {
             if ($this->UserOpenid->del($id)) {
-                $this->Session->setFlash(__l('User Openid deleted') , 'default', null, 'success');
+                $this->Session->setFlash(__l('User Openid deleted') , 'default', array('lib' => __l('Success')), 'success');
                 $this->redirect(array(
                     'action' => 'index'
                 ));
@@ -124,7 +124,7 @@ class UserOpenidsController extends AppController
                 $this->cakeError('error404');
             }
         } else {
-            $this->Session->setFlash(__l('Sorry, you registered through OpenID account. So you should have atleast one OpenID account for login') , 'default', null, 'error');
+            $this->Session->setFlash(__l('Sorry, you registered through OpenID account. So you should have atleast one OpenID account for login') , 'default', array('lib' => __l('Error')), 'error');
             $this->redirect(array(
                 'action' => 'index'
             ));
@@ -196,7 +196,7 @@ class UserOpenidsController extends AppController
             $this->cakeError('error404');
         }
         if ($this->UserOpenid->del($id)) {
-            $this->Session->setFlash(__l('User Openid deleted') , 'default', null, 'success');
+            $this->Session->setFlash(__l('User Openid deleted') , 'default', array('lib' => __l('Success')), 'success');
             $this->redirect(array(
                 'action' => 'index'
             ));
@@ -222,7 +222,7 @@ class UserOpenidsController extends AppController
                     $this->{$this->modelClass}->deleteAll(array(
                         $this->modelClass . '.id' => $selectedIds
                     ));
-                    $this->Session->setFlash(__l('Checked user OpenIDs has been deleted') , 'default', null, 'success');
+                    $this->Session->setFlash(__l('Checked user OpenIDs has been deleted') , 'default', array('lib' => __l('Success')), 'success');
                 }
             }
         }

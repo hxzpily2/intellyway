@@ -48,12 +48,12 @@ class DealCategoriesSubscriptionsController extends AppController
         if (!empty($this->data)) {
             $this->DealCategoriesSubscription->create();
             if ($this->DealCategoriesSubscription->save($this->data)) {
-                $this->Session->setFlash(sprintf(__l('"%s" Deal Categories Subscription has been added') , $this->data['DealCategoriesSubscription']['id']) , 'default', null, 'success');
+                $this->Session->setFlash(sprintf(__l('"%s" Deal Categories Subscription has been added') , $this->data['DealCategoriesSubscription']['id']) , 'default', array('lib' => __l('Success')), 'success');
                 $this->redirect(array(
                     'action' => 'index'
                 ));
             } else {
-                $this->Session->setFlash(sprintf(__l('"%s" Deal Categories Subscription could not be added. Please, try again.') , $this->data['DealCategoriesSubscription']['id']) , 'default', null, 'error');
+                $this->Session->setFlash(sprintf(__l('"%s" Deal Categories Subscription could not be added. Please, try again.') , $this->data['DealCategoriesSubscription']['id']) , 'default', array('lib' => __l('Error')), 'error');
             }
         }
         $dealCategories = $this->DealCategoriesSubscription->DealCategory->find('list');
@@ -68,9 +68,9 @@ class DealCategoriesSubscriptionsController extends AppController
         }
         if (!empty($this->data)) {
             if ($this->DealCategoriesSubscription->save($this->data)) {
-                $this->Session->setFlash(sprintf(__l('"%s" Deal Categories Subscription has been updated') , $this->data['DealCategoriesSubscription']['id']) , 'default', null, 'success');
+                $this->Session->setFlash(sprintf(__l('"%s" Deal Categories Subscription has been updated') , $this->data['DealCategoriesSubscription']['id']) , 'default', array('lib' => __l('Success')), 'success');
             } else {
-                $this->Session->setFlash(sprintf(__l('"%s" Deal Categories Subscription could not be updated. Please, try again.') , $this->data['DealCategoriesSubscription']['id']) , 'default', null, 'error');
+                $this->Session->setFlash(sprintf(__l('"%s" Deal Categories Subscription could not be updated. Please, try again.') , $this->data['DealCategoriesSubscription']['id']) , 'default', array('lib' => __l('Error')), 'error');
             }
         } else {
             $this->data = $this->DealCategoriesSubscription->read(null, $id);
@@ -89,7 +89,7 @@ class DealCategoriesSubscriptionsController extends AppController
             $this->cakeError('error404');
         }
         if ($this->DealCategoriesSubscription->del($id)) {
-            $this->Session->setFlash(__l('Deal Categories Subscription deleted') , 'default', null, 'success');
+            $this->Session->setFlash(__l('Deal Categories Subscription deleted') , 'default', array('lib' => __l('Success')), 'success');
             $this->redirect(array(
                 'action' => 'index'
             ));
@@ -143,12 +143,12 @@ class DealCategoriesSubscriptionsController extends AppController
         if (!empty($this->data)) {
             $this->DealCategoriesSubscription->create();
             if ($this->DealCategoriesSubscription->save($this->data)) {
-                $this->Session->setFlash(sprintf(__l('"%s" Deal Categories Subscription has been added') , $this->data['DealCategoriesSubscription']['id']) , 'default', null, 'success');
+                $this->Session->setFlash(sprintf(__l('"%s" Deal Categories Subscription has been added') , $this->data['DealCategoriesSubscription']['id']) , 'default', array('lib' => __l('Success')), 'success');
                 $this->redirect(array(
                     'action' => 'index'
                 ));
             } else {
-                $this->Session->setFlash(sprintf(__l('"%s" Deal Categories Subscription could not be added. Please, try again.') , $this->data['DealCategoriesSubscription']['id']) , 'default', null, 'error');
+                $this->Session->setFlash(sprintf(__l('"%s" Deal Categories Subscription could not be added. Please, try again.') , $this->data['DealCategoriesSubscription']['id']) , 'default', array('lib' => __l('Error')), 'error');
             }
         }
         $dealCategories = $this->DealCategoriesSubscription->DealCategory->find('list');
@@ -163,9 +163,9 @@ class DealCategoriesSubscriptionsController extends AppController
         }
         if (!empty($this->data)) {
             if ($this->DealCategoriesSubscription->save($this->data)) {
-                $this->Session->setFlash(sprintf(__l('"%s" Deal Categories Subscription has been updated') , $this->data['DealCategoriesSubscription']['id']) , 'default', null, 'success');
+                $this->Session->setFlash(sprintf(__l('"%s" Deal Categories Subscription has been updated') , $this->data['DealCategoriesSubscription']['id']) , 'default', array('lib' => __l('Success')), 'success');
             } else {
-                $this->Session->setFlash(sprintf(__l('"%s" Deal Categories Subscription could not be updated. Please, try again.') , $this->data['DealCategoriesSubscription']['id']) , 'default', null, 'error');
+                $this->Session->setFlash(sprintf(__l('"%s" Deal Categories Subscription could not be updated. Please, try again.') , $this->data['DealCategoriesSubscription']['id']) , 'default', array('lib' => __l('Error')), 'error');
             }
         } else {
             $this->data = $this->DealCategoriesSubscription->read(null, $id);
@@ -184,7 +184,7 @@ class DealCategoriesSubscriptionsController extends AppController
             $this->cakeError('error404');
         }
         if ($this->DealCategoriesSubscription->del($id)) {
-            $this->Session->setFlash(__l('Deal Categories Subscription deleted') , 'default', null, 'success');
+            $this->Session->setFlash(__l('Deal Categories Subscription deleted') , 'default', array('lib' => __l('Success')), 'success');
             $this->redirect(array(
                 'action' => 'index'
             ));

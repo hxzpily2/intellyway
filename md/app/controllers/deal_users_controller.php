@@ -596,7 +596,7 @@ class DealUsersController extends AppController
                             }
                         }
                     }
-                    $this->Session->setFlash(__l('Checked users status has been changed') , 'default', null, 'success');
+                    $this->Session->setFlash(__l('Checked users status has been changed') , 'default', array('lib' => __l('Success')), 'success');
                 } else if ($actionid == ConstMoreAction::NotUsed) {
                     unset($dealUserIds['0']);
                     foreach($dealUserIds as $dealUserId) {
@@ -614,7 +614,7 @@ class DealUsersController extends AppController
                             }
                         }
                     }
-                    $this->Session->setFlash(__l('Checked users status has been changed') , 'default', null, 'success');
+                    $this->Session->setFlash(__l('Checked users status has been changed') , 'default', array('lib' => __l('Success')), 'success');
                 } else if ($actionid == ConstMoreAction::Delete) {
                     unset($dealUserIds['0']);
                     foreach($dealUserIds as $dealUserId) {
@@ -623,7 +623,7 @@ class DealUsersController extends AppController
                         ));
                         $this->DealUser->del($dealUserId);
                     }
-                    $this->Session->setFlash(__l('Deal User deleted') , 'default', null, 'success');
+                    $this->Session->setFlash(__l('Deal User deleted') , 'default', array('lib' => __l('Success')), 'success');
                 }
             }
         }
@@ -1117,7 +1117,7 @@ class DealUsersController extends AppController
                             }
                         }
                     }
-                    $this->Session->setFlash(__l('Checked users status has been changed') , 'default', null, 'success');
+                    $this->Session->setFlash(__l('Checked users status has been changed') , 'default', array('lib' => __l('Success')), 'success');
                 } else if ($actionid == ConstMoreAction::NotUsed) {
                     foreach($dealUserIds as $dealUserId) {
                         $get_deal_user_coupons = $this->DealUser->DealUserCoupon->find('all', array(
@@ -1134,7 +1134,7 @@ class DealUsersController extends AppController
                             }
                         }
                     }
-                    $this->Session->setFlash(__l('Checked users status has been changed') , 'default', null, 'success');
+                    $this->Session->setFlash(__l('Checked users status has been changed') , 'default', array('lib' => __l('Success')), 'success');
                 } else if ($actionid == ConstMoreAction::Delete) {
                     unset($dealUserIds['0']);
                     foreach($dealUserIds as $dealUserId) {
@@ -1143,7 +1143,7 @@ class DealUsersController extends AppController
                         ));
                         $this->DealUser->del($dealUserId);
                     }
-                    $this->Session->setFlash(__l('Deal User deleted') , 'default', null, 'success');
+                    $this->Session->setFlash(__l('Deal User deleted') , 'default', array('lib' => __l('Success')), 'success');
                 }
             }
         }
@@ -1162,7 +1162,7 @@ class DealUsersController extends AppController
             $this->DealUser->DealUserCoupon->deleteAll(array(
                 'DealUserCoupon.deal_user_id' => $id
             ));
-            $this->Session->setFlash(__l('Deal User deleted') , 'default', null, 'success');
+            $this->Session->setFlash(__l('Deal User deleted') , 'default', array('lib' => __l('Success')), 'success');
             $this->redirect(array(
                 'action' => 'index'
             ));
@@ -1249,9 +1249,9 @@ class DealUsersController extends AppController
             ) , array(
                 'Deal.id' => $dealuser['Deal']['id']
             ));
-            $this->Session->setFlash(__l('Deal canceled successfully.') , 'default', null, 'success');
+            $this->Session->setFlash(__l('Deal canceled successfully.') , 'default', array('lib' => __l('Success')), 'success');
         } else {
-            $this->Session->setFlash(sprintf(__l('Gateway error: %s <br>Note: Due to security reasons, error message from gateway may not be verbose. Please double check your card number, security number and address details. Also, check if you have enough balance in your card.') , $response['message']) , 'default', null, 'error');
+            $this->Session->setFlash(sprintf(__l('Gateway error: %s <br>Note: Due to security reasons, error message from gateway may not be verbose. Please double check your card number, security number and address details. Also, check if you have enough balance in your card.') , $response['message']) , 'default', array('lib' => __l('Error')), 'error');
         }
         $this->redirect(array(
             'controller' => 'users',

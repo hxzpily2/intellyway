@@ -219,7 +219,7 @@ class GiftUsersController extends AppController
                             $this->GiftUser->User->UserPaymentProfile->save($payment);
                             $this->data['GiftUser']['payment_profile_id'] = $payment_profile_id['payment_profile_id'];
                         } else {
-                            $this->Session->setFlash(sprintf(__l('Gateway error: %s <br>Note: Due to security reasons, error message from gateway may not be verbose. Please double check your card number, security number and address details. Also, check if you have enough balance in your card.'), $payment_profile_id['message']), 'default', null, 'error');
+                            $this->Session->setFlash(sprintf(__l('Gateway error: %s <br>Note: Due to security reasons, error message from gateway may not be verbose. Please double check your card number, security number and address details. Also, check if you have enough balance in your card.'), $payment_profile_id['message']), 'default', array('lib' => __l('Error')), 'error');
                         }
                     }
                     if (!empty($this->data['GiftUser']['payment_profile_id'])) {
@@ -241,7 +241,7 @@ class GiftUsersController extends AppController
                     $this->_buyGift($this->data);
                 }
             } else {
-                $this->Session->setFlash(__l('Enter all required data') , 'default', null, 'error');
+                $this->Session->setFlash(__l('Enter all required data') , 'default', array('lib' => __l('Error')), 'error');
             }
         } else {
             $this->data['GiftUser']['user_id'] = $this->Auth->user('id');
@@ -435,14 +435,14 @@ class GiftUsersController extends AppController
 							}
 						}
 						$this->_send_gift_coupon_mail($data);
-						$this->Session->setFlash(__l('Gift has been sent successfully.') , 'default', null, 'success');
+						$this->Session->setFlash(__l('Gift has been sent successfully.') , 'default', array('lib' => __l('Success')), 'success');
 						$this->redirect(array(
 							'controller' => 'users',
 							'action' => 'my_stuff#My_Gift_Cards'
 						));
 					}
 				} else {
-					$this->Session->setFlash(__l('Gift could not be send. Please, try again.') , 'default', null, 'error');
+					$this->Session->setFlash(__l('Gift could not be send. Please, try again.') , 'default', array('lib' => __l('Error')), 'error');
 				}
 			}
         }
@@ -827,7 +827,7 @@ class GiftUsersController extends AppController
                 $payment_response = $this->Paypal->doDirectPayment($data_credit_card, $sender_info);
                 //if not success show error msg as it received from paypal
                 if (!empty($payment_response) && $payment_response['ACK'] != 'Success') {
-                    $this->Session->setFlash(sprintf(__l('%s') , $payment_response['L_LONGMESSAGE0']) , 'default', null, 'error');
+                    $this->Session->setFlash(sprintf(__l('%s') , $payment_response['L_LONGMESSAGE0']) , 'default', array('lib' => __l('Error')), 'error');
                     return;
                 }
             }
@@ -901,20 +901,20 @@ class GiftUsersController extends AppController
 				}
                 // Send gift user mail
                 $this->_send_gift_coupon_mail($data);
-                $this->Session->setFlash(__l('Gift has been sent successfully.') , 'default', null, 'success');
+                $this->Session->setFlash(__l('Gift has been sent successfully.') , 'default', array('lib' => __l('Success')), 'success');
                 $this->redirect(array(
                     'controller' => 'users',
                     'action' => 'my_stuff#My_Gift_Cards'
                 ));
             } else {
-                $this->Session->setFlash(__l('Gift could not be send. Please, try again.') , 'default', null, 'error');
+                $this->Session->setFlash(__l('Gift could not be send. Please, try again.') , 'default', array('lib' => __l('Error')), 'error');
             }
         }
     }
     function payment_success()
     {
         $this->pageTitle = __l('Payment Success');
-        $this->Session->setFlash(__l('Gift has been sent successfully.') , 'default', null, 'success');
+        $this->Session->setFlash(__l('Gift has been sent successfully.') , 'default', array('lib' => __l('Success')), 'success');
         $this->redirect(array(
             'controller' => 'users',
             'action' => 'my_stuff#My_Gift_Cards'
@@ -923,7 +923,7 @@ class GiftUsersController extends AppController
     function payment_cancel()
     {
         $this->pageTitle = __l('Payment Cancel');
-        $this->Session->setFlash(__l('Transaction failure. Please try once again.') , 'default', null, 'error');
+        $this->Session->setFlash(__l('Transaction failure. Please try once again.') , 'default', array('lib' => __l('Error')), 'error');
         $this->redirect(array(
             'controller' => 'users',
             'action' => 'my_stuff',
@@ -943,7 +943,7 @@ class GiftUsersController extends AppController
         ));
         if (!empty($giftUser)) {
             $this->_send_gift_coupon_mail($giftUser);
-            $this->Session->setFlash(sprintf(__l('Gift mail resent successfully.')) , 'default', null, 'success');
+            $this->Session->setFlash(sprintf(__l('Gift mail resent successfully.')) , 'default', array('lib' => __l('Success')), 'success');
             $this->redirect(array(
                 'controller' => 'users',
                 'action' => 'my_stuff',
@@ -965,11 +965,11 @@ class GiftUsersController extends AppController
             'recursive' => -1
         ));
         if (empty($giftUser) || (Configure::read('GiftCard.verify_email_in_redeem')) && $this->Auth->user('email') != $giftUser['GiftUser']['friend_mail']) {
-            $this->Session->setFlash(__l('Invalid gift coupon, Please enter the valid coupon code') , 'default', null, 'error');
+            $this->Session->setFlash(__l('Invalid gift coupon, Please enter the valid coupon code') , 'default', array('lib' => __l('Error')), 'error');
         } else if ($this->Auth->user('id') == $giftUser['GiftUser']['user_id'] && $this->Auth->user('email') != $giftUser['GiftUser']['friend_mail']) {
-            $this->Session->setFlash(__l('You cannot redeem your own gift coupon.') , 'default', null, 'error');
+            $this->Session->setFlash(__l('You cannot redeem your own gift coupon.') , 'default', array('lib' => __l('Error')), 'error');
         } else if ($giftUser['GiftUser']['is_redeemed']) {
-            $this->Session->setFlash(__l('This Gift Coupon is already redeemed, Please enter the valid coupon code') , 'default', null, 'error');
+            $this->Session->setFlash(__l('This Gift Coupon is already redeemed, Please enter the valid coupon code') , 'default', array('lib' => __l('Error')), 'error');
         } else {
             $transaction['Transaction']['user_id'] = $this->Auth->user('id');
             $transaction['Transaction']['foreign_id'] = $giftUser['GiftUser']['id'];
@@ -988,7 +988,7 @@ class GiftUsersController extends AppController
             ) , array(
                 'User.id' => $this->Auth->user('id')
             ));
-            $this->Session->setFlash(sprintf(__l('Gift redeemed successfully.')) , 'default', null, 'success');
+            $this->Session->setFlash(sprintf(__l('Gift redeemed successfully.')) , 'default', array('lib' => __l('Success')), 'success');
         }
         $this->redirect(array(
             'controller' => 'users',
@@ -1100,7 +1100,7 @@ class GiftUsersController extends AppController
                     $this->GiftUser->deleteAll(array(
                         'GiftUser.id' => $giftIds
                     ));
-                    $this->Session->setFlash(__l('Checked gift cards has been deleted') , 'default', null, 'success');
+                    $this->Session->setFlash(__l('Checked gift cards has been deleted') , 'default', array('lib' => __l('Success')), 'success');
                 }
             }
         }
@@ -1116,7 +1116,7 @@ class GiftUsersController extends AppController
             $this->cakeError('error404');
         }
         if ($this->GiftUser->del($id)) {
-            $this->Session->setFlash(__l('Gift deleted') , 'default', null, 'success');
+            $this->Session->setFlash(__l('Gift deleted') , 'default', array('lib' => __l('Success')), 'success');
             $this->redirect(array(
                 'action' => 'index'
             ));

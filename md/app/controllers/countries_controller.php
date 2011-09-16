@@ -33,12 +33,12 @@ class CountriesController extends AppController
         if (!empty($this->data)) {
             $this->Country->create();
             if ($this->Country->save($this->data)) {
-                $this->Session->setFlash(__l('Country has been added') , 'default', null, 'success');
+                $this->Session->setFlash(__l('Country has been added') , 'default', array('lib' => __l('Success')), 'success');
                 $this->redirect(array(
                     'action' => 'index'
                 ));
             } else {
-                $this->Session->setFlash(__l('Country could not be updated. Please, try again') , 'default', null, 'error');
+                $this->Session->setFlash(__l('Country could not be updated. Please, try again') , 'default', array('lib' => __l('Error')), 'error');
             }
         }
     }
@@ -50,12 +50,12 @@ class CountriesController extends AppController
         }
         if (!empty($this->data)) {
             if ($this->Country->save($this->data)) {
-                $this->Session->setFlash(__l('Country has been updated') , 'default', null, 'success');
+                $this->Session->setFlash(__l('Country has been updated') , 'default', array('lib' => __l('Success')), 'success');
                 $this->redirect(array(
                     'action' => 'index'
                 ));
             } else {
-                $this->Session->setFlash(__l('Country could not be updated. Please, try again.') , 'default', null, 'error');
+                $this->Session->setFlash(__l('Country could not be updated. Please, try again.') , 'default', array('lib' => __l('Error')), 'error');
             }
         } else {
             $this->data = $this->Country->read(null, $id);
@@ -71,7 +71,7 @@ class CountriesController extends AppController
             $this->cakeError('error404');
         }
         if ($this->Country->del($id)) {
-            $this->Session->setFlash(__l('Country deleted') , 'default', null, 'success');
+            $this->Session->setFlash(__l('Country deleted') , 'default', array('lib' => __l('Success')), 'success');
             $this->redirect(array(
                 'action' => 'index'
             ));
@@ -105,12 +105,12 @@ class CountriesController extends AppController
                         'recursive' => -1,
                     ));
                     if (in_array($city['City']['country_id'], $countryIds)) {
-                        $this->Session->setFlash(__l('Country could not be deleted. Please, check seleted country belongs to default city') , 'default', null, 'error');
+                        $this->Session->setFlash(__l('Country could not be deleted. Please, check seleted country belongs to default city') , 'default', array('lib' => __l('Error')), 'error');
                     } else {
                         $this->Country->deleteAll(array(
                             'Country.id' => $countryIds
                         ));
-                        $this->Session->setFlash(__l('Checked countries has been deleted') , 'default', null, 'success');
+                        $this->Session->setFlash(__l('Checked countries has been deleted') , 'default', array('lib' => __l('Success')), 'success');
                     }
                 }
             }

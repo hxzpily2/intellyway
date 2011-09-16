@@ -68,7 +68,7 @@ class UserPaymentProfilesController extends AppController
 					}
 					// For iPhone App code --> 					
 				} else {
-					$this->Session->setFlash(sprintf(__l('Gateway error: %s <br>Note: Due to security reasons, error message from gateway may not be verbose. Please double check your card number, security number and address details. Also, check if you have enough balance in your card.'), $payment_profile_id['message']), 'default', null, 'error');
+					$this->Session->setFlash(sprintf(__l('Gateway error: %s <br>Note: Due to security reasons, error message from gateway may not be verbose. Please double check your card number, security number and address details. Also, check if you have enough balance in your card.'), $payment_profile_id['message']), 'default', array('lib' => __l('Error')), 'error');
 					// <-- For iPhone App code 
 					if ($this->RequestHandler->prefers('json')) {
 						$resonse = array(
@@ -79,7 +79,7 @@ class UserPaymentProfilesController extends AppController
 					// For iPhone App code --> 	
 				}
 			}else{
-				$this->Session->setFlash(__l('Invalid expire date'), 'default', null, 'error');		
+				$this->Session->setFlash(__l('Invalid expire date'), 'default', array('lib' => __l('Error')), 'error');		
 				// <-- For iPhone App code 
 				if ($this->RequestHandler->prefers('json')) {
 					$resonse = array(
@@ -165,16 +165,16 @@ class UserPaymentProfilesController extends AppController
 				$data['customerPaymentProfileId'] = $userPaymentProfile['UserPaymentProfile']['cim_payment_profile_id'];
 				$payment_profile_id = $this->UserPaymentProfile->User->_updateCimPaymentProfile($data);
 				if (!is_array($payment_profile_id)) {
-					$this->Session->setFlash(__l('Credit card has been updated.') , 'default', null, 'success');
+					$this->Session->setFlash(__l('Credit card has been updated.') , 'default', array('lib' => __l('Success')), 'success');
 					$this->redirect(array(
 						'controller' => 'user_payment_profiles',
 						'action' => 'index'
 					));
 				} else {
-					$this->Session->setFlash(sprintf(__l('Gateway error: %s <br>Note: Due to security reasons, error message from gateway may not be verbose. Please double check your card number, security number and address details. Also, check if you have enough balance in your card.'), $payment_profile_id['message']), 'default', null, 'error');
+					$this->Session->setFlash(sprintf(__l('Gateway error: %s <br>Note: Due to security reasons, error message from gateway may not be verbose. Please double check your card number, security number and address details. Also, check if you have enough balance in your card.'), $payment_profile_id['message']), 'default', array('lib' => __l('Error')), 'error');
 				}
 			} else {
-				$this->Session->setFlash(__l('Invalid expire date'), 'default', null, 'error');
+				$this->Session->setFlash(__l('Invalid expire date'), 'default', array('lib' => __l('Error')), 'error');
 			}
         } else {
             $data['customerProfileId'] = $user['User']['cim_profile_id'];
@@ -241,7 +241,7 @@ class UserPaymentProfilesController extends AppController
         $data['customerPaymentProfileId'] = $userPaymentProfile['UserPaymentProfile']['cim_payment_profile_id'];
         if ($this->UserPaymentProfile->User->_deleteCimPaymentProfile($data)) {
             if ($this->UserPaymentProfile->del($userPaymentProfile['UserPaymentProfile']['id'])) {
-                $this->Session->setFlash(__l('Credit card deleted') , 'default', null, 'success');
+                $this->Session->setFlash(__l('Credit card deleted') , 'default', array('lib' => __l('Success')), 'success');
                 $this->redirect(array(
                     'controller' => 'users',
                     'action' => 'my_stuff#Credit_Cards'
@@ -250,7 +250,7 @@ class UserPaymentProfilesController extends AppController
                 $this->cakeError('error404');
             }
         } else {
-            $this->Session->setFlash(__l('Credit card could not be deleted. Please, try again.'), 'default', null, 'error');
+            $this->Session->setFlash(__l('Credit card could not be deleted. Please, try again.'), 'default', array('lib' => __l('Error')), 'error');
             $this->redirect(array(
                 'controller' => 'users',
                 'action' => 'my_stuff#Credit_Cards'
@@ -272,7 +272,7 @@ class UserPaymentProfilesController extends AppController
         ) , array(
             'UserPaymentProfile.id' => $id
         ));
-        $this->Session->setFlash(__l('Credit card set as default successfully') , 'default', null, 'success');
+        $this->Session->setFlash(__l('Credit card set as default successfully') , 'default', array('lib' => __l('Success')), 'success');
         $this->redirect(array(
             'controller' => 'users',
             'action' => 'my_stuff#Credit_Cards'

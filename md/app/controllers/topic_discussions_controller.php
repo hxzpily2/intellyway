@@ -114,7 +114,7 @@ class TopicDiscussionsController extends AppController
             $this->data['TopicDiscussion']['ip'] = $this->RequestHandler->getClientIP();
             $this->data['TopicDiscussion']['dns'] = gethostbyaddr($this->RequestHandler->getClientIP());
             if ($this->TopicDiscussion->save($this->data)) {
-                $this->Session->setFlash(__l('Topic Discussion has been added') , 'default', null, 'success');
+                $this->Session->setFlash(__l('Topic Discussion has been added') , 'default', array('lib' => __l('Success')), 'success');
                 $this->TopicDiscussion->Topic->updateAll(array(
                     'Topic.last_replied_user_id' => $this->Auth->user('id') ,
                     'Topic.last_replied_time' => '"' . date('Y-m-d H:i:s') . '"',
@@ -211,7 +211,7 @@ class TopicDiscussionsController extends AppController
                     $this->setAction('view', $this->TopicDiscussion->getLastInsertId() , 'view_ajax');
                 }
             } else {
-                $this->Session->setFlash(__l('Topic Discussion could not be added. Please, try again.') , 'default', null, 'error');
+                $this->Session->setFlash(__l('Topic Discussion could not be added. Please, try again.') , 'default', array('lib' => __l('Error')), 'error');
                 $this->redirect(array(
                     'action' => 'index',
                     $this->data['TopicDiscussion']['topic_id']
@@ -360,12 +360,12 @@ class TopicDiscussionsController extends AppController
         if (!empty($this->data)) {
             $this->data['TopicDiscussion']['ip'] = $this->RequestHandler->getClientIP();
             if ($this->TopicDiscussion->save($this->data)) {
-                $this->Session->setFlash(__l('Topic Discussion has been updated') , 'default', null, 'success');
+                $this->Session->setFlash(__l('Topic Discussion has been updated') , 'default', array('lib' => __l('Success')), 'success');
                 $this->redirect(array(
                     'action' => 'index',
                 ));
             } else {
-                $this->Session->setFlash(__l('Topic Discussion could not be updated. Please, try again.') , 'default', null, 'error');
+                $this->Session->setFlash(__l('Topic Discussion could not be updated. Please, try again.') , 'default', array('lib' => __l('Error')), 'error');
             }
         } else {
             $this->data = $this->TopicDiscussion->read(null, $id);
@@ -385,7 +385,7 @@ class TopicDiscussionsController extends AppController
             $this->cakeError('error404');
         }
         if ($this->TopicDiscussion->del($id)) {
-            $this->Session->setFlash(__l('Topic Discussion deleted') , 'default', null, 'success');
+            $this->Session->setFlash(__l('Topic Discussion deleted') , 'default', array('lib' => __l('Success')), 'success');
             $this->redirect(array(
                 'action' => 'index'
             ));
@@ -411,7 +411,7 @@ class TopicDiscussionsController extends AppController
                     $this->TopicDiscussion->deleteAll(array(
                         'TopicDiscussion.id' => $topicDiscussionIds
                     ));
-                    $this->Session->setFlash(__l('Checked topic discussions has been deleted') , 'default', null, 'success');
+                    $this->Session->setFlash(__l('Checked topic discussions has been deleted') , 'default', array('lib' => __l('Success')), 'success');
                 }
             }
         }

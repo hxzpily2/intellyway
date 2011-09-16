@@ -71,7 +71,7 @@ class ContactsController extends AppController
                 $this->Email->send(strtr($email['email_content'], $emailFindReplace));
                 $this->set('success', 1);
             } else {
-                $this->Session->setFlash(__l('Contact could not be added. Please, try again.') , 'default', null, 'error');
+                $this->Session->setFlash(__l('Contact could not be added. Please, try again.') , 'default', array('lib' => __l('Error')), 'error');
             }
             unset($this->data['Contact']['captcha']);
         } else {

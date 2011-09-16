@@ -249,7 +249,7 @@ class UsersController extends AppController
                             'action' => 'my_stuff'
                         ));
                     } else {
-                        $this->Session->setFlash($this->Auth->loginError, 'default', null, 'error');
+                        $this->Session->setFlash($this->Auth->loginError, 'default', array('lib' => __l('Error')), 'error');
                         $this->redirect(array(
                             'controller' => 'users',
                             'action' => 'login'
@@ -284,7 +284,7 @@ class UsersController extends AppController
                 $this->data['User']['redirect_page'] = 'register';
                 $this->_openid();
             } else {
-                $this->Session->setFlash(__l('Your registration process is not completed. Please, try again.') , 'default', null, 'error');
+                $this->Session->setFlash(__l('Your registration process is not completed. Please, try again.') , 'default', array('lib' => __l('Error')), 'error');
             }
         } else {
             if (!empty($this->data)) {
@@ -388,7 +388,7 @@ class UsersController extends AppController
                             $this->Email->sendAs = ($email['is_html']) ? 'html' : 'text';
                             $this->Email->send(strtr($email['email_content'], $emailFindReplace));
                         }
-                        $this->Session->setFlash(__l('You have successfully registered with our site.') , 'default', null, 'success');
+                        $this->Session->setFlash(__l('You have successfully registered with our site.') , 'default', array('lib' => __l('Success')), 'success');
                         if (!empty($this->data['User']['openid_url']) || !empty($this->data['User']['fb_user_id'])) {
                             // send welcome mail to user if is_welcome_mail_after_register is true
                             if (Configure::read('user.is_welcome_mail_after_register')) {
@@ -433,7 +433,7 @@ class UsersController extends AppController
                         } else {
                             //For openid register no need to send the activation mail, so this code placed in the else
                             if (Configure::read('user.is_email_verification_for_register')) {
-                                $this->Session->setFlash(__l('You have successfully registered with our site and your activation mail has been sent to your mail inbox.') , 'default', null, 'success');
+                                $this->Session->setFlash(__l('You have successfully registered with our site and your activation mail has been sent to your mail inbox.') , 'default', array('lib' => __l('Success')), 'success');
                                 $this->_sendActivationMail($this->data['User']['email'], $this->User->id, $this->User->getActivateHash($this->User->id));
                             }
                         }
@@ -442,7 +442,7 @@ class UsersController extends AppController
                             $this->_sendWelcomeMail($this->User->id, $this->data['User']['email'], $this->data['User']['username']);
                         }
                         if (!Configure::read('user.is_email_verification_for_register') and Configure::read('user.is_auto_login_after_register')) {
-                            $this->Session->setFlash(__l('You have successfully registered with our site.') , 'default', null, 'success');
+                            $this->Session->setFlash(__l('You have successfully registered with our site.') , 'default', array('lib' => __l('Success')), 'success');
                             if ($this->Auth->login($this->data)) {
                                 $this->User->UserLogin->insertUserLogin($this->Auth->user('id'));
                                 if ($this->RequestHandler->isAjax()) {
@@ -487,9 +487,9 @@ class UsersController extends AppController
                     }
                 } else {
                     if (empty($this->data['User']['openid_url'])) {
-                        $this->Session->setFlash(__l('Your registration process is not completed. Please, try again.') , 'default', null, 'error');
+                        $this->Session->setFlash(__l('Your registration process is not completed. Please, try again.') , 'default', array('lib' => __l('Error')), 'error');
                     } else {
-                        $this->Session->setFlash(__l('OpenID verification is completed successfully. But you have to fill the following required fields to complete our registration process.') , 'default', null, 'error');
+                        $this->Session->setFlash(__l('OpenID verification is completed successfully. But you have to fill the following required fields to complete our registration process.') , 'default', array('lib' => __l('Error')), 'error');
                     }
                 }
             }
@@ -627,7 +627,7 @@ class UsersController extends AppController
                 'recursive' => -1
             ));
             if (empty($user_refername)) {
-                $this->Session->setFlash(__l('Referrer username does not exist.') , 'default', null, 'error');
+                $this->Session->setFlash(__l('Referrer username does not exist.') , 'default', array('lib' => __l('Error')), 'error');
                 $this->redirect(array(
                     'controller' => 'users',
                     'action' => 'register'
@@ -663,7 +663,7 @@ class UsersController extends AppController
                 ) , array());
             }
             catch(InvalidArgumentException $e) {
-                $this->Session->setFlash(__l('Invalid OpenID') , 'default', null, 'error');
+                $this->Session->setFlash(__l('Invalid OpenID') , 'default', array('lib' => __l('Error')), 'error');
             }
             catch(Exception $e) {
                 $this->Session->setFlash(sprintf(__l('%s') , $e->getMessage()));
@@ -781,7 +781,7 @@ class UsersController extends AppController
             $this->User->save($this->data);
             // active is false means redirect to home page with message
             if (!$this->data['User']['is_active']) {
-                $this->Session->setFlash(__l('You have successfully activated your account. But you can login after admin activate your account.') , 'default', null, 'success');
+                $this->Session->setFlash(__l('You have successfully activated your account. But you can login after admin activate your account.') , 'default', array('lib' => __l('Success')), 'success');
                 $this->redirect(Router::url('/', true));
             }
             // send welcome mail to user if is_welcome_mail_after_register is true
@@ -790,7 +790,7 @@ class UsersController extends AppController
             }
             // after the user activation check script check the auto login value. it is true then automatically logged in
             if (Configure::read('user.is_auto_login_after_register')) {
-                $this->Session->setFlash(__l('You have successfully activated and logged in to your account.') , 'default', null, 'success');
+                $this->Session->setFlash(__l('You have successfully activated and logged in to your account.') , 'default', array('lib' => __l('Success')), 'success');
                 $this->data['User']['email'] = $user['User']['email'];
                 $this->data['User']['username'] = $user['User']['username'];
                 $this->data['User']['password'] = $user['User']['password'];
@@ -827,7 +827,7 @@ class UsersController extends AppController
                 }
             }
             // user is active but auto login is false then the user will redirect to login page with message
-            $this->Session->setFlash(sprintf(__('You have successfully activated your account. Now you can login with your %s.') , Configure::read('user.using_to_login')) , 'default', null, 'success');
+            $this->Session->setFlash(sprintf(__('You have successfully activated your account. Now you can login with your %s.') , Configure::read('user.using_to_login')) , 'default', array('lib' => __l('Success')), 'success');
             $this->redirect(array(
                 'controller' => 'users',
                 'action' => 'login'
@@ -848,12 +848,12 @@ class UsersController extends AppController
         ));
         if ($this->_sendActivationMail($user['User']['email'], $user_id, $hash)) {
             if ($this->Auth->user('user_type_id') == ConstUserTypes::Admin) {
-                $this->Session->setFlash(__l('Activation mail has been resent.') , 'default', null, 'success');
+                $this->Session->setFlash(__l('Activation mail has been resent.') , 'default', array('lib' => __l('Success')), 'success');
             } else {
-                $this->Session->setFlash(__l('A Mail for activating your account has been sent.') , 'default', null, 'success');
+                $this->Session->setFlash(__l('A Mail for activating your account has been sent.') , 'default', array('lib' => __l('Success')), 'success');
             }
         } else {
-            $this->Session->setFlash(__l('Try some time later as mail could not be dispatched due to some error in the server') , 'default', null, 'error');
+            $this->Session->setFlash(__l('Try some time later as mail could not be dispatched due to some error in the server') , 'default', array('lib' => __l('Error')), 'error');
         }
         if ($this->Auth->user('user_type_id') == ConstUserTypes::Admin) {
             $this->redirect(array(
@@ -874,7 +874,7 @@ class UsersController extends AppController
             $me = $this->facebook->api('/me');
         }
         catch(Exception $e) {
-            $this->Session->setFlash(__l('Problem in Facebook connect. Please try again') , 'default', null, 'error');
+            $this->Session->setFlash(__l('Problem in Facebook connect. Please try again') , 'default', array('lib' => __l('Error')), 'error');
             $this->redirect(array(
                 'controller' => 'users',
                 'action' => 'login'
@@ -967,7 +967,7 @@ class UsersController extends AppController
             $this->User->UserProfile->save($this->data);
             if ($this->Auth->login($this->data)) {
 				$this->User->UserLogin->insertUserLogin($this->Auth->user('id'));
-                $this->Session->setFlash(__l('You have successfully registered with our site.') , 'default', null, 'success');
+                $this->Session->setFlash(__l('You have successfully registered with our site.') , 'default', array('lib' => __l('Success')), 'success');
 				 // send to admin mail if is_admin_mail_after_register is true
                         if (Configure::read('user.is_admin_mail_after_register')) {
                             $email = $this->EmailTemplate->selectTemplate('New User Join');
@@ -1011,7 +1011,7 @@ class UsersController extends AppController
             }
         } else {
             if (!$user['User']['is_active']) {
-                $this->Session->setFlash(__l('Sorry, login failed.  Your account has been blocked') , 'default', null, 'error');
+                $this->Session->setFlash(__l('Sorry, login failed.  Your account has been blocked') , 'default', array('lib' => __l('Error')), 'error');
                 $this->redirect(Router::url('/', true));
             }
             $this->data['User']['fb_user_id'] = $me['id'];
@@ -1119,7 +1119,7 @@ class UsersController extends AppController
                             }
                         }
                     } else {
-                        $this->Session->setFlash($this->Auth->loginError, 'default', null, 'error');
+                        $this->Session->setFlash($this->Auth->loginError, 'default', array('lib' => __l('Error')), 'error');
                         $this->redirect(array(
                             'controller' => 'users',
                             'action' => 'login'
@@ -1229,13 +1229,13 @@ class UsersController extends AppController
                         }
                     } else {
                         if (!empty($this->params['prefix']) && $this->params['prefix'] == 'admin') {
-                            $this->Session->setFlash(sprintf(__l('Sorry, login failed.  Your %s or password are incorrect') , Configure::read('user.using_to_login')) , 'default', null, 'error');
+                            $this->Session->setFlash(sprintf(__l('Sorry, login failed.  Your %s or password are incorrect') , Configure::read('user.using_to_login')) , 'default', array('lib' => __l('Error')), 'error');
                         } else {
-                            $this->Session->setFlash($this->Auth->loginError, 'default', null, 'error');
+                            $this->Session->setFlash($this->Auth->loginError, 'default', array('lib' => __l('Error')), 'error');
                         }
                     }
                 } else {
-                    $this->Session->setFlash($this->Auth->loginError, 'default', null, 'error');
+                    $this->Session->setFlash($this->Auth->loginError, 'default', array('lib' => __l('Error')), 'error');
                 }
             } else {
                 if (!empty($this->params['named']['f'])) {
@@ -1271,7 +1271,7 @@ class UsersController extends AppController
                 'City.id' => $twitter_city_id
             ));
             $this->Session->delete('twitter_city_id');
-            $this->Session->setFlash(__l('City Twitter credentials are updated') , 'default', null, 'success');
+            $this->Session->setFlash(__l('City Twitter credentials are updated') , 'default', array('lib' => __l('Success')), 'success');
             $this->redirect(array(
                 'controller' => 'cities',
                 'admin' => true
@@ -1289,7 +1289,7 @@ class UsersController extends AppController
             ) , array(
                 'Setting.name' => 'twitter.site_user_access_key'
             ));
-            $this->Session->setFlash(__l('Your Twitter credentials are updated') , 'default', null, 'success');
+            $this->Session->setFlash(__l('Your Twitter credentials are updated') , 'default', array('lib' => __l('Success')), 'success');
             $this->redirect(array(
                 'controller' => 'settings',
                 'admin' => true
@@ -1363,7 +1363,7 @@ class UsersController extends AppController
         $this->Auth->logout();
         $this->Cookie->del('User');
         $this->Cookie->del('user_language');
-        $this->Session->setFlash(__l('You are now logged out of the site.') , 'default', null, 'success');
+        $this->Session->setFlash(__l('You are now logged out of the site.') , 'default', array('lib' => __l('Success')), 'success');
         $this->Session->del('fbuser_pymnt');
         $redirect_url = array(
             'controller' => 'users',
@@ -1439,16 +1439,16 @@ class UsersController extends AppController
                     $this->Email->subject = strtr($email['subject'], $emailFindReplace);
                     $this->Email->sendAs = ($email['is_html']) ? 'html' : 'text';
                     $this->Email->send(strtr($email['email_content'], $emailFindReplace));
-                    $this->Session->setFlash(__l('An email has been sent with a link where you can change your password') , 'default', null, 'success');
+                    $this->Session->setFlash(__l('An email has been sent with a link where you can change your password') , 'default', array('lib' => __l('Success')), 'success');
                     $this->redirect(array(
                         'controller' => 'users',
                         'action' => 'login'
                     ));
                 } else {
-                    $this->Session->setFlash(sprintf(__l('There is no user registered with the email %s or admin deactivated your account. If you spelled the address incorrectly or entered the wrong address, please try again.') , $this->data['User']['email']) , 'default', null, 'error');
+                    $this->Session->setFlash(sprintf(__l('There is no user registered with the email %s or admin deactivated your account. If you spelled the address incorrectly or entered the wrong address, please try again.') , $this->data['User']['email']) , 'default', array('lib' => __l('Error')), 'error');
                 }
             } else {
-                $this->Session->setFlash(__l('Please Enter valid Email id') , 'default', null, 'error');
+                $this->Session->setFlash(__l('Please Enter valid Email id') , 'default', array('lib' => __l('Error')), 'error');
             }
         }
     }
@@ -1464,13 +1464,13 @@ class UsersController extends AppController
                     ) , array(
                         'User.id' => $this->data['User']['user_id']
                     ));
-                    $this->Session->setFlash(__l('Your password changed successfully, Please login now') , 'default', null, 'success');
+                    $this->Session->setFlash(__l('Your password changed successfully, Please login now') , 'default', array('lib' => __l('Success')), 'success');
                     $this->redirect(array(
                         'controller' => 'users',
                         'action' => 'login'
                     ));
                 }
-                $this->Session->setFlash(__l('Could not update your password, please enter password.') , 'default', null, 'error');
+                $this->Session->setFlash(__l('Could not update your password, please enter password.') , 'default', array('lib' => __l('Error')), 'error');
                 $this->data['User']['passwd'] = '';
                 $this->data['User']['confirm_password'] = '';
             } else {
@@ -1531,7 +1531,7 @@ class UsersController extends AppController
                 ))) {
                     if ($this->Auth->user('user_type_id') != ConstUserTypes::Admin && Configure::read('user.is_logout_after_change_password')) {
                         $this->Auth->logout();
-                        $this->Session->setFlash(__l('Your password changed successfully. Please login now') , 'default', null, 'success');
+                        $this->Session->setFlash(__l('Your password changed successfully. Please login now') , 'default', array('lib' => __l('Success')), 'success');
                         if ($this->RequestHandler->isAjax()) {
                             echo 'redirect*' . Router::url(array(
                                 'controller' => 'users',
@@ -1589,22 +1589,22 @@ class UsersController extends AppController
 						$this->Email->send(strtr($email['email_content'], $emailFindReplace));
                     }
                     if ($this->Auth->user('user_type_id') == ConstUserTypes::Admin && $this->Auth->user('id') != $this->data['User']['user_id']) {
-                        $this->Session->setFlash(sprintf(__l('%s \'s password changed successfully.') , $user['User']['username']) , 'default', null, 'success');
+                        $this->Session->setFlash(sprintf(__l('%s \'s password changed successfully.') , $user['User']['username']) , 'default', array('lib' => __l('Success')), 'success');
                     } else {
-                        $this->Session->setFlash(__l('Your password changed successfully') , 'default', null, 'success');
+                        $this->Session->setFlash(__l('Your password changed successfully') , 'default', array('lib' => __l('Success')), 'success');
                     }
                 } else {
-                    $this->Session->setFlash(__l('Password could not be changed') , 'default', null, 'error');
+                    $this->Session->setFlash(__l('Password could not be changed') , 'default', array('lib' => __l('Error')), 'error');
                 }
             } else {
-                $this->Session->setFlash(__l('Password could not be changed') , 'default', null, 'error');
+                $this->Session->setFlash(__l('Password could not be changed') , 'default', array('lib' => __l('Error')), 'error');
             }
             unset($this->data['User']['old_password']);
             unset($this->data['User']['passwd']);
             unset($this->data['User']['confirm_password']);
 			}
 			else {
-                $this->Session->setFlash(__l('Sorry. You Cannot Update the password in Demo Mode') , 'default', null, 'error');
+                $this->Session->setFlash(__l('Sorry. You Cannot Update the password in Demo Mode') , 'default', array('lib' => __l('Error')), 'error');
             }
         } else {
             if (empty($user_id)) {
@@ -1865,13 +1865,13 @@ class UsersController extends AppController
                 $this->Email->sendAs = ($email['is_html']) ? 'html' : 'text';
                 $this->Email->subject = strtr($email['subject'], $emailFindReplace);
                 $this->Email->send(strtr($email['email_content'], $emailFindReplace));
-                $this->Session->setFlash(__l('User has been added') , 'default', null, 'success');
+                $this->Session->setFlash(__l('User has been added') , 'default', array('lib' => __l('Success')), 'success');
                 $this->redirect(array(
                     'action' => 'index'
                 ));
             } else {
                 unset($this->data['User']['passwd']);
-                $this->Session->setFlash(__l('User could not be added. Please, try again.') , 'default', null, 'error');
+                $this->Session->setFlash(__l('User could not be added. Please, try again.') , 'default', array('lib' => __l('Error')), 'error');
             }
         }
         $userTypes = $this->User->UserType->find('list', array(
@@ -1901,7 +1901,7 @@ class UsersController extends AppController
         }
         $this->_sendAdminActionMail($id, 'Admin User Delete');
         if ($this->User->del($id)) {
-            $this->Session->setFlash(__l('User deleted') , 'default', null, 'success');
+            $this->Session->setFlash(__l('User deleted') , 'default', array('lib' => __l('Success')), 'success');
             $this->redirect(array(
                 'action' => 'index'
             ));
@@ -1933,7 +1933,7 @@ class UsersController extends AppController
                     foreach($userIds as $key => $user_id) {
                         $this->_sendAdminActionMail($user_id, 'Admin User Deactivate');
                     }
-                    $this->Session->setFlash(__l('Checked users has been inactivated') , 'default', null, 'success');
+                    $this->Session->setFlash(__l('Checked users has been inactivated') , 'default', array('lib' => __l('Success')), 'success');
                 } else if ($actionid == ConstMoreAction::Active) {
                     $this->User->updateAll(array(
                         'User.is_active' => 1
@@ -1943,7 +1943,7 @@ class UsersController extends AppController
                     foreach($userIds as $key => $user_id) {
                         $this->_sendAdminActionMail($user_id, 'Admin User Active');
                     }
-                    $this->Session->setFlash(__l('Checked users has been activated') , 'default', null, 'success');
+                    $this->Session->setFlash(__l('Checked users has been activated') , 'default', array('lib' => __l('Success')), 'success');
                 } else if ($actionid == ConstMoreAction::Delete) {
                     foreach($userIds as $key => $user_id) {
                         $this->_sendAdminActionMail($user_id, 'Admin User Delete');
@@ -1951,7 +1951,7 @@ class UsersController extends AppController
                     $this->User->deleteAll(array(
                         'User.id' => $userIds
                     ));
-                    $this->Session->setFlash(__l('Checked users has been deleted') , 'default', null, 'success');
+                    $this->Session->setFlash(__l('Checked users has been deleted') , 'default', array('lib' => __l('Success')), 'success');
                 } else if ($actionid == ConstMoreAction::Export) {
                     $user_ids = implode(',', $userIds);
                     $hash = $this->User->getUserIdHash($user_ids);
@@ -1970,7 +1970,7 @@ class UsersController extends AppController
                     ) , array(
                         'Company.user_id' => $userIds
                     ));
-                    $this->Session->setFlash(__l('Checked companies profile has been enabled') , 'default', null, 'success');
+                    $this->Session->setFlash(__l('Checked companies profile has been enabled') , 'default', array('lib' => __l('Success')), 'success');
                 }
             }
         }
@@ -2521,7 +2521,7 @@ class UsersController extends AppController
                             $this->User->UserPaymentProfile->save($payment);
                             $this->data['User']['payment_profile_id'] = $payment_profile_id['payment_profile_id'];
                         } else {
-                            $this->Session->setFlash(sprintf(__l('Gateway error: %s <br>Note: Due to security reasons, error message from gateway may not be verbose. Please double check your card number, security number and address details. Also, check if you have enough balance in your card.') , $payment_profile_id['message']) , 'default', null, 'error');
+                            $this->Session->setFlash(sprintf(__l('Gateway error: %s <br>Note: Due to security reasons, error message from gateway may not be verbose. Please double check your card number, security number and address details. Also, check if you have enough balance in your card.') , $payment_profile_id['message']) , 'default', array('lib' => __l('Error')), 'error');
                         }
                     }
                     if (!empty($this->data['User']['payment_profile_id'])) {
@@ -2639,7 +2639,7 @@ class UsersController extends AppController
                     $this->render('do_payment');
                 }
             } else {
-                $this->Session->setFlash(__l('Your amount can not be added. Please, try again.') , 'default', null, 'error');
+                $this->Session->setFlash(__l('Your amount can not be added. Please, try again.') , 'default', array('lib' => __l('Error')), 'error');
             }
         } else {
             $this->User->validate = array_merge($this->User->validate, $this->User->validateCreditCard);
@@ -2793,14 +2793,14 @@ class UsersController extends AppController
                     ) , array(
                         'User.id' => $this->Auth->user('id')
                     ));
-                    $this->Session->setFlash(__l('Amount added in wallet successfully.') , 'default', null, 'success');
+                    $this->Session->setFlash(__l('Amount added in wallet successfully.') , 'default', array('lib' => __l('Success')), 'success');
                     $this->redirect(array(
                         'controller' => 'users',
                         'action' => 'my_stuff',
                         '#My_Transactions'
                     ));
                 } else {
-                    $this->Session->setFlash(__l('Transaction failure. Please try once again. ') . $response['L_LONGMESSAGE0'], 'default', null, 'error');
+                    $this->Session->setFlash(__l('Transaction failure. Please try once again. ') . $response['L_LONGMESSAGE0'], 'default', array('lib' => __l('Error')), 'error');
                     $this->redirect(array(
                         'controller' => 'deals',
                         'action' => 'index'
@@ -2895,7 +2895,7 @@ class UsersController extends AppController
                             }
                         } else {
                             $this->pageTitle = __l('Payment Failure');
-                            $this->Session->setFlash(__l('Error in payment') , 'default', null, 'error');
+                            $this->Session->setFlash(__l('Error in payment') , 'default', array('lib' => __l('Error')), 'error');
                             $this->redirect(array(
                                 'controller' => 'transactions',
                                 'action' => 'index',
@@ -2904,7 +2904,7 @@ class UsersController extends AppController
                     } else {
                         //place to handle the failure of process
                         $this->pageTitle = __l('Payment Failure');
-                        $this->Session->setFlash(__l('Error in payment') , 'default', null, 'error');
+                        $this->Session->setFlash(__l('Error in payment') , 'default', array('lib' => __l('Error')), 'error');
                         $this->redirect(array(
                             'controller' => 'transactions',
                             'action' => 'index'
@@ -2954,7 +2954,7 @@ class UsersController extends AppController
 						}else {
 							//place to handle the failure of process
 							$this->pageTitle = __l('Payment Failure');
-							$this->Session->setFlash(__l('Error in payment') , 'default', null, 'error');
+							$this->Session->setFlash(__l('Error in payment') , 'default', array('lib' => __l('Error')), 'error');
 							$this->redirect(array(
 								'controller' => 'transactions',
 								'action' => 'index'
@@ -2970,7 +2970,7 @@ class UsersController extends AppController
     function payment_success()
     {
         $this->pageTitle = __l('Payment Success');
-        $this->Session->setFlash(__l('Your payment has been successfully transferred.') , 'default', null, 'success');
+        $this->Session->setFlash(__l('Your payment has been successfully transferred.') , 'default', array('lib' => __l('Success')), 'success');
         $this->redirect(array(
             'controller' => 'users',
             'action' => 'my_stuff',
@@ -2980,7 +2980,7 @@ class UsersController extends AppController
     function payment_cancel()
     {
         $this->pageTitle = __l('Payment Cancel');
-        $this->Session->setFlash(__l('Transaction failure. Please try once again.') , 'default', null, 'error');
+        $this->Session->setFlash(__l('Transaction failure. Please try once again.') , 'default', array('lib' => __l('Error')), 'error');
         $this->redirect(array(
             'controller' => 'users',
             'action' => 'my_stuff',
@@ -3036,7 +3036,7 @@ class UsersController extends AppController
         $payment_response = $this->Paypal->doDirectPayment($data_credit_card, $sender_info);
         //if not success show error msg as it received from paypal
         if (!empty($payment_response) && $payment_response['ACK'] != 'Success') {
-            $this->Session->setFlash(sprintf(__l('%s') , $payment_response['L_LONGMESSAGE0']) , 'default', null, 'error');
+            $this->Session->setFlash(sprintf(__l('%s') , $payment_response['L_LONGMESSAGE0']) , 'default', array('lib' => __l('Error')), 'error');
             return;
         }
         $data['Transaction']['user_id'] = $this->Auth->user('id');
@@ -3067,7 +3067,7 @@ class UsersController extends AppController
         $data_paypal_docapture_log['PaypalDocaptureLog']['currencycode'] = $payment_response['CURRENCYCODE'];
         //save do capture log records
         $this->User->DealUser->PaypalDocaptureLog->save($data_paypal_docapture_log);
-        $this->Session->setFlash(__l('Your payment has been successfully transferred.') , 'default', null, 'success');
+        $this->Session->setFlash(__l('Your payment has been successfully transferred.') , 'default', array('lib' => __l('Success')), 'success');
         $this->redirect(array(
             'controller' => 'users',
             'action' => 'my_stuff',
@@ -3157,10 +3157,10 @@ class UsersController extends AppController
         if (!empty($this->params['named']['type'])) {
             if ($this->params['named']['type'] == 'error_log') {
                 unlink(APP . '/tmp/logs/error.log');
-                $this->Session->setFlash(__l('Error log has been cleared') , 'default', null, 'success');
+                $this->Session->setFlash(__l('Error log has been cleared') , 'default', array('lib' => __l('Success')), 'success');
             } elseif ($this->params['named']['type'] == 'debug_log') {
                 unlink(APP . '/tmp/logs/debug.log');
-                $this->Session->setFlash(__l('Debug log has been cleared') , 'default', null, 'success');
+                $this->Session->setFlash(__l('Debug log has been cleared') , 'default', array('lib' => __l('Success')), 'success');
             }
         }
         $this->redirect(array(
@@ -3175,7 +3175,7 @@ class UsersController extends AppController
         $folder->delete(CACHE . DS . 'models');
         $folder->delete(CACHE . DS . 'persistent');
         $folder->delete(CACHE . DS . 'views');
-        $this->Session->setFlash(__l('Cache Files has been cleared') , 'default', null, 'success');
+        $this->Session->setFlash(__l('Cache Files has been cleared') , 'default', array('lib' => __l('Success')), 'success');
         $this->redirect(array(
             'controller' => 'users',
             'action' => 'admin_stats'
@@ -3210,13 +3210,13 @@ class UsersController extends AppController
                 ) , array(
                     'User.id' => $this->data['Transaction']['user_id']
                 ));
-                $this->Session->setFlash(__l('Fund has been added successfully') , 'default', null, 'success');
+                $this->Session->setFlash(__l('Fund has been added successfully') , 'default', array('lib' => __l('Success')), 'success');
                 $this->redirect(array(
                     'controller' => 'users',
                     'action' => 'index'
                 ));
             } else {
-                $this->Session->setFlash(__l('Fund could not be added. Please, try again.') , 'default', null, 'error');
+                $this->Session->setFlash(__l('Fund could not be added. Please, try again.') , 'default', array('lib' => __l('Error')), 'error');
             }
         } else {
             $this->data['Transaction']['user_id'] = $id;
@@ -3249,7 +3249,7 @@ class UsersController extends AppController
                 )
             ));
             if ($user['User']['available_balance_amount'] < $this->data['Transaction']['amount']) {
-                $this->Session->setFlash(__l('Deduct amount should be less than the available balance amount') , 'default', null, 'error');
+                $this->Session->setFlash(__l('Deduct amount should be less than the available balance amount') , 'default', array('lib' => __l('Error')), 'error');
             } else {
                 $this->data['Transaction']['foreign_id'] = ConstUserIds::Admin;
                 $this->data['Transaction']['class'] = 'SecondUser';
@@ -3260,13 +3260,13 @@ class UsersController extends AppController
                     ) , array(
                         'User.id' => $this->data['Transaction']['user_id']
                     ));
-                    $this->Session->setFlash(__l('Fund has been deducted successfully') , 'default', null, 'success');
+                    $this->Session->setFlash(__l('Fund has been deducted successfully') , 'default', array('lib' => __l('Success')), 'success');
                     $this->redirect(array(
                         'controller' => 'users',
                         'action' => 'index'
                     ));
                 } else {
-                    $this->Session->setFlash(__l('Fund could not be deducted. Please, try again.') , 'default', null, 'error');
+                    $this->Session->setFlash(__l('Fund could not be deducted. Please, try again.') , 'default', array('lib' => __l('Error')), 'error');
                 }
             }
         } else {

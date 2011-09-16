@@ -135,9 +135,21 @@ class SessionHelper extends CakeSession {
 					if (!empty($flash['params']['class'])) {
 						$class = $flash['params']['class'];
 					} else {
-						$class = 'message';
+						$class = 'messagemd';
 					}
-					$out = '<div id="' . $key . 'Message" class="' . $class . '">' . $flash['message'] . '</div>';
+					$out = '<div id="' . $key . 'Message" class="' . $class . '"><center>';
+					if($key=='success')
+						$out.= '<div class="notification successnt" style="background: #dff3a8;background: -moz-linear-gradient(top,#dff3a8,#c4fb92);background: -webkit-gradient(linear, left top, left bottom, from(#dff3a8), to(#c4fb92));">';
+					else if($key=='error')	
+						$out.= '<div class="notification error" style="background: #f3c7c7;background: -moz-linear-gradient(top,#f3c7c7,#eea2a2);background: -webkit-gradient(linear, left top, left bottom, from(#f3c7c7), to(#eea2a2));">';
+					else if($key=='info')	
+						$out.= '<div class="notification infont" style="background: #e0f4ff;background: -moz-linear-gradient(top,#e0f4ff,#d4e6f0);background: -webkit-gradient(linear, left top, left bottom, from(#e0f4ff), to(#d4e6f0));">';						
+					$out.= '<span></span>';
+					$out.= '<div class="text">';
+					$out.= '<p><strong>'.$flash['params']['lib'].'!</strong>' . $flash['message'] . '</p>';
+					$out.= '</div>';
+					$out.= '</div>';
+					$out.= '</center></div>';
 				} elseif ($flash['layout'] == '' || $flash['layout'] == null) {
 					$out = $flash['message'];
 				} else {

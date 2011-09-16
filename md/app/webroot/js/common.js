@@ -15,7 +15,7 @@ function __cfg(c) {
     $.fn.flashMsg = function() {
         $(this).livequery(function() {
             $this = $(this);
-            $this.fadeOut(12000, function() {
+            $this.fadeOut(5000, function() {
                 $this.remove();
             });
         });
@@ -569,7 +569,7 @@ jQuery(document).ready(function($) {
     $('form div.js-datetime').fdatepicker();
     //for js overlable
     $('form .js-overlabel label').foverlabel();
-    $('#errorMessage,#authMessage,#successMessage,#flashMessage').flashMsg();
+    $('#errorMessage,#authMessage,#successMessage,#flashMessage,#infoMessage').flashMsg();
     // admin side select all active, inactive, pending and none
     $('a.js-admin-select-all').livequery('click', function() {
         $('.js-checkbox-list').attr('checked', 'checked');

@@ -325,9 +325,77 @@ $javascript->link('libs/divs', false);
 			<!-- SPECIAL VOYAGE -->
 			<div style="height:10px;">&nbsp;</div>
 			<div id="travel">
-				<?php echo $html->link($html->image('special_voyage_'.Configure::read('lang_code').'.png',array('title' => __l('Today\'s Deals'))), array('controller' => 'deals', 'action' => 'index', 'admin' => false), array('escape' => false,'class'=>''));?>				
+				<?php echo $html->link($html->image('special_voyage_'.Configure::read('lang_code').'.png',array('title' => __l('Special Trips'))), array('controller' => 'deals', 'action' => 'index', 'admin' => false, 'type' => 'recent',ConstMissdealSpecialType::PARAM=>ConstMissdealSpecialType::TRAVEL), array('escape' => false,'class'=>''));?>				
 			</div>
-			<?php } ?>			
+			<?php } ?>	
+			
+			<?php if(Configure::read('deal.is_side_deal_enabled') && !empty($side_deals)): ?>
+			<!-- DEAL SIDE BAR -->
+			<div style="height:10px;">&nbsp;</div>
+			<div id="dealside">
+				<table cellpadding="0" cellspacing="0" border="0" width="100%">
+					<tr height="20">
+						<td id="md_deal_price_top_left" width="17">&nbsp;</td>
+						<td id="md_deal_price_top" >&nbsp;</td>
+						<td id="md_deal_price_top_right" width="18">&nbsp;</td>
+					</tr>
+					<tr>
+						<td id="md_deal_price_left" width="17">&nbsp;</td>
+						<td id="md_deal_price_texture" >
+							<div style="height: 3px;">&nbsp;</div>
+							<?php
+							$i=0;
+		                	foreach($side_deals as $side_deal):
+								?>
+								<span class="aulieu">
+									<?php echo $html->siteCurrencyFormat($html->cCurrency($side_deal['Deal']['discounted_price']));?>
+									<?php echo __l("for"); ?>
+									<?php echo $html->siteCurrencyFormat($html->cCurrency($side_deal['Deal']['original_price']));?>
+								</span><br/>
+								<span class="sidebar_h4"><?php echo $html->link($side_deal['Deal']['name'], array('controller' => 'deals', 'action' => 'view', $side_deal['Deal']['slug']),array('title' =>sprintf(__l('%s'),$side_deal['Deal']['name'])));?></span>
+								<div style="height: 5px;">&nbsp;</div>
+								<div style="position: relative;">
+									<div class="deal1-value-<?php echo (($i%2==0)?"pair":"impair"); ?>">
+										<div>											
+											<span><?php echo $html->image('deal_on.png',array('style'=>'width:13px;')); ?></span>																					
+											<span style="color: #ffe7eb;text-shadow: black 0.1em 0.1em 0.2em;text-decoration: none;">
+												<?php echo $html->cInt($deal['Deal']['deal_user_count']);?>
+												<?php echo __l('Bought');?>
+											</span>																					
+										</div>
+										<div style="height: 3px;">&nbsp;</div>					                    
+					                    <div>							
+											<?php echo $html->link($html->tag('span', __l('View it'), array('class' => '')), array('controller' => 'deals', 'action' => 'view', $side_deal['Deal']['slug']),array('escape'=>false,'class'=>'pink_button')); ?>
+										</div>
+									</div>
+									
+									<div class="deal1-img-<?php echo (($i%2==0)?"pair":"impair"); ?>">
+										<?php echo $html->link($html->showImage('Deal', $side_deal['Attachment'][0], array('dimension' => 'small_big_thumb', 'alt' => sprintf(__l('[Image: %s]'), $html->cText($side_deal['Deal']['name'], false)), 'title' => $html->cText($side_deal['Deal']['name'], false))), array('controller' => 'deals', 'action' => 'view', $side_deal['Deal']['slug']),array('title' =>sprintf(__l('%s'),$side_deal['Deal']['name'])), null, false);?>
+									</div>											
+								</div>
+								<br style="line-height: 70px;"/>
+								<?php 
+								if($i!=(count($side_deals)-1)):
+								?>
+								<div class="sidesep">&nbsp;</div>
+								<?php 
+								endif;
+								?>								
+		                  <?php
+		                  	$i++;
+							endforeach;
+		                 ?>					
+						</td>
+						<td id="md_deal_price_right" width="18">&nbsp;</td>
+					</tr>
+					<tr height="20">
+						<td id="md_deal_price_bottom_left" width="17">&nbsp;</td>
+						<td id="md_deal_price_bottom">&nbsp;</td>
+						<td id="md_deal_price_bottom_right" width="18">&nbsp;</td>
+					</tr>
+				</table>
+			</div>	
+			<?php  endif;	?>	
 			<!-- BUSINESS -->
 			<div style="height:10px;">&nbsp;</div>
 			<div id="business">
@@ -356,118 +424,105 @@ $javascript->link('libs/divs', false);
 					</tr>
 				</table>
 			</div>
+			<!-- CONTACT US -->
+			<div style="height:10px;">&nbsp;</div>
+			<div id="contactus">
+				<table id="md_counter_block" cellpadding="0" cellspacing="0" border="0" width="100%">
+					<tr height="20">
+						<td id="md_deal_price_top_left" width="17">&nbsp;</td>
+						<td id="md_deal_price_top" >&nbsp;</td>
+						<td id="md_deal_price_top_right" width="18">&nbsp;</td>
+					</tr>
+					<tr height="100">
+						<td id="md_deal_price_left" width="17">&nbsp;</td>
+						<td id="md_deal_price_texture" >
+							<h3><?php echo sprintf(__l('%s - Boite aux questions!'), Configure::read('site.name')); ?></h3>						
+							<div class="new-img-contactus"></div>
+			                	<p class="mdnormal" ><?php echo __l('Learn More for the basics.'); ?> <?php echo sprintf(__l('about how %s can help bring tonnes of customers to your door'), Configure::read('site.name'));?></p>			               		
+			               		<?php echo $html->link(__l('Contact Us'), array('controller' => 'contacts', 'action' => 'add', 'admin' => false), array('title' => __l('Contact us'),'class'=>'learn'));?>
+			               	</div>
+			               	<div style="height: 10px;"></div>						
+						</td>
+						<td id="md_deal_price_right" width="18">&nbsp;</td>
+					</tr>
+					<tr height="20">
+						<td id="md_deal_price_bottom_left" width="17">&nbsp;</td>
+						<td id="md_deal_price_bottom">&nbsp;</td>
+						<td id="md_deal_price_bottom_right" width="18">&nbsp;</td>
+					</tr>
+				</table>
+			</div>
+			<!-- CONTACT US -->
+			<div style="height:10px;">&nbsp;</div>
+			<div id="contactus">
+				<table id="md_counter_block" cellpadding="0" cellspacing="0" border="0" width="100%">
+					<tr height="20">
+						<td id="md_deal_price_top_left" width="17">&nbsp;</td>
+						<td id="md_deal_price_top" >&nbsp;</td>
+						<td id="md_deal_price_top_right" width="18">&nbsp;</td>
+					</tr>
+					<tr>
+						<td id="md_deal_price_left" width="17">&nbsp;</td>
+						<td id="md_deal_price_texture" >
+							<div style="height: 5px;"></div>
+							<?php echo $html->link(__l('Buy a').' '.Configure::read('site.name').' '.__l('Gift Card'), array('controller' => 'gift_users', 'action' => 'add'), array('class' => 'buy', 'title' => __l('Buy a').' '.Configure::read('site.name').' '.__l('Gift Card'))); ?>
+							<div style="height: 5px;"></div>						
+						</td>
+						<td id="md_deal_price_right" width="18">&nbsp;</td>
+					</tr>
+					<tr height="20">
+						<td id="md_deal_price_bottom_left" width="17">&nbsp;</td>
+						<td id="md_deal_price_bottom">&nbsp;</td>
+						<td id="md_deal_price_bottom_right" width="18">&nbsp;</td>
+					</tr>
+				</table>
+			</div>
 			<!-- FACEBOOK FAN PAGE -->
 			<div style="height:10px;">&nbsp;</div>
-			<?php
-			$facebook_like_box = Configure::read('facebook.like_box');
-			if(!empty($facebook_like_box)):?>
-				<div class="facebook-block clearfix">
-					<?php echo $facebook_like_box;?>
-				</div>
-			<?php
-			endif;
-			?>
-			 <?php
-				$facebook_feeds_code = Configure::read('facebook.feeds_code');
-				if(!empty($facebook_feeds_code)):?>
-					<div class="facebook-block clearfix">
-						<?php echo $facebook_feeds_code;?>
-					</div>
-				<?php
-				endif;
-			 ?>
+			<div id="facebook">
+				<table id="md_counter_block" cellpadding="0" cellspacing="0" border="0" width="100%">
+					<tr height="20">
+						<td id="md_deal_price_top_left" width="17">&nbsp;</td>
+						<td id="md_deal_price_top" >&nbsp;</td>
+						<td id="md_deal_price_top_right" width="18">&nbsp;</td>
+					</tr>
+					<tr>
+						<td id="md_deal_price_left" width="17">&nbsp;</td>
+						<td id="md_deal_price_texture" >
+							<?php
+							$facebook_like_box = Configure::read('facebook.like_box');
+							if(!empty($facebook_like_box)):?>
+								<div class="facebook-block clearfix">
+									<?php echo $facebook_like_box;?>
+								</div>
+							<?php
+							endif;
+							?>
+							 <?php
+								$facebook_feeds_code = Configure::read('facebook.feeds_code');
+								if(!empty($facebook_feeds_code)):?>
+									<div class="facebook-block clearfix">
+										<?php echo $facebook_feeds_code;?>
+									</div>
+								<?php
+								endif;
+							 ?>						
+						</td>
+						<td id="md_deal_price_right" width="18">&nbsp;</td>
+					</tr>
+					<tr height="20">
+						<td id="md_deal_price_bottom_left" width="17">&nbsp;</td>
+						<td id="md_deal_price_bottom">&nbsp;</td>
+						<td id="md_deal_price_bottom_right" width="18">&nbsp;</td>
+					</tr>
+				</table>
+			</div>			
+			
       	</div>      	
       </div>
       
       <div class="side2">
-      	<?php if ($count == 1 || !empty($from_page)) { ?>
-        <div class="blue-bg deal-blue-bg clearfix">
-          <div class="deal-tl">
-            <div class="deal-tr">
-              <div class="deal-tm">
-                <h3>
-                 <?php echo __l('Give the Gift of').' '.Configure::read('site.name');?>
-                </h3>
-              </div>
-            </div>
-          </div>
-          <div class="side1-cl">
-            <div class="side1-cr">
-              <div class="block1-inner blue-inner clearfix">
-                <!--<p>
-                    <span>$50</span><?//php echo __l('available information is here');?>
-                </p>-->
-				<?php echo $html->link(__l('Buy a').' '.Configure::read('site.name').' '.__l('Gift Card'), array('controller' => 'gift_users', 'action' => 'add'), array('class' => 'buy', 'title' => __l('Buy a').' '.Configure::read('site.name').' '.__l('Gift Card'))); ?>
-              </div>
-            </div>
-          </div>
-          <div class="side1-bl">
-            <div class="side1-br">
-              <div class="side1-bm"> </div>
-            </div>
-          </div>
-        </div>
-       
-         <?php if(Configure::read('deal.is_side_deal_enabled') && !empty($side_deals)): ?>
-          <div class="blue-bg top clearfix">
-            <div class="deal-tl">
-            <div class="deal-tr">
-              <div class="deal-tm">
-                <h3>
-                 <?php echo __l('Today Side Deals');?>
-                </h3>
-              </div>
-            </div>
-          </div>
-          <div class="side-deal-cl">
-            <div class="side-deal-cr">
-              <div class="block1-inner blue-bg-inner clearfix">
-                <div class="side-deal">
-                <ol class="side-deal-list">
-				<?php
-                	foreach($side_deals as $side_deal):
-						?>
-						<li>
-					<h4><?php echo $html->link($side_deal['Deal']['name'], array('controller' => 'deals', 'action' => 'view', $side_deal['Deal']['slug']),array('title' =>sprintf(__l('%s'),$side_deal['Deal']['name'])));?></h4>
-                    <div class="clearfix">
-                    <div class="deal1-img">
-                     	  <?php echo $html->link($html->showImage('Deal', $side_deal['Attachment'][0], array('dimension' => 'small_big_thumb', 'alt' => sprintf(__l('[Image: %s]'), $html->cText($side_deal['Deal']['name'], false)), 'title' => $html->cText($side_deal['Deal']['name'], false))), array('controller' => 'deals', 'action' => 'view', $side_deal['Deal']['slug']),array('title' =>sprintf(__l('%s'),$side_deal['Deal']['name'])), null, false);?>
-                    </div>
-                    <div class="deal-button">
-                      <div class="deal-price clearfix">
-                        <div class="deal-price-l">
-                          <div class="deal-price-r clearfix">
-                           <div class="deal-currency"><?php echo $html->siteCurrencyFormat($html->cCurrency($side_deal['Deal']['discounted_price']));?></div>
-                            <div class="deal-value-info">
-                         		 <span>
-        					 <?php echo $html->siteCurrencyFormat($html->cCurrency($side_deal['Deal']['original_price']));?>
-                                 <?php echo __l('Value');?>
-                                </span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                         <?php echo $html->link(__l('View it'), array('controller' => 'deals', 'action' => 'view', $side_deal['Deal']['slug']),array('title' =>'View it'), null, false);?>
-                      </div>
-                  </div>
-                  </li>
-                  <?php
-					endforeach;
-                 ?>
-                 </ol>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="side1-bl">
-            <div class="side1-br">
-              <div class="side1-bm"> </div>
-            </div>
-          </div>
-               </div>
-              <?php endif; ?>
-          
-         
+      	<?php if ($count == 1 || !empty($from_page)) { ?>         
         <!-- <div class="blue-bg1 clearfix">
           <div class="tweet-tl">
             <div class="tweet-tr">
@@ -496,7 +551,7 @@ $javascript->link('libs/divs', false);
         </div> -->
         <?php } ?>
       </div>
-      
+            
     </div>
    <div id="fb-root"></div>
 	<script type="text/javascript">

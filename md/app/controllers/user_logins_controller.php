@@ -61,7 +61,7 @@ class UserLoginsController extends AppController
             $this->cakeError('error404');
         }
         if ($this->UserLogin->del($id)) {
-            $this->Session->setFlash(__l('User Login deleted') , 'default', null, 'success');
+            $this->Session->setFlash(__l('User Login deleted') , 'default', array('lib' => __l('Success')), 'success');
             $this->redirect(array(
                 'action' => 'index'
             ));
@@ -88,7 +88,7 @@ class UserLoginsController extends AppController
                     $this->{$this->modelClass}->deleteAll(array(
                         $this->modelClass . '.id' => $selectedIds
                     ));
-                    $this->Session->setFlash(__l('Checked user logins has been deleted') , 'default', null, 'success');
+                    $this->Session->setFlash(__l('Checked user logins has been deleted') , 'default', array('lib' => __l('Success')), 'success');
                 }
             }
         }

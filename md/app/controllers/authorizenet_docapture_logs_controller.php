@@ -50,7 +50,7 @@ class AuthorizenetDocaptureLogsController extends AppController
             $this->cakeError('error404');
         }
         if ($this->AuthorizenetDocaptureLog->del($id)) {
-            $this->Session->setFlash(__l('Authorizenet Docapture Log deleted') , 'default', null, 'success');
+            $this->Session->setFlash(__l('Authorizenet Docapture Log deleted') , 'default', array('lib' => __l('Success')), 'success');
             $this->redirect(array(
                 'action' => 'index'
             ));

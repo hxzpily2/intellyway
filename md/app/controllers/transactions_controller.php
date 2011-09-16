@@ -31,7 +31,7 @@ class TransactionsController extends AppController
                 $blocked_conditions['UserCashWithdrawal.created <='] = $conditions['Transaction.created <='] = _formatDate('Y-m-d H:i:s', $to_date, true);
             } else {
                 $this->Transaction->validationErrors['to_date'] = __l("'To date' should be greater than 'From date'.");
-                $this->Session->setFlash(__l('To date should greater than From date. Please, try again.') , 'default', null, 'error');
+                $this->Session->setFlash(__l('To date should greater than From date. Please, try again.') , 'default', array('lib' => __l('Error')), 'error');
             }
         }
         if (isset($this->params['named']['stat']) && $this->params['named']['stat'] == 'day') {
@@ -340,7 +340,7 @@ class TransactionsController extends AppController
                     $conditions['Transaction.created >='] = _formatDate('Y-m-d H:i:s', $this->params['named']['from_date'], true);
                     $conditions['Transaction.created <='] = _formatDate('Y-m-d H:i:s', $this->params['named']['to_date'], true);
                 } else {
-                    $this->Session->setFlash(__l('From date should greater than To date. Please, try again.') , 'default', null, 'error');
+                    $this->Session->setFlash(__l('From date should greater than To date. Please, try again.') , 'default', array('lib' => __l('Error')), 'error');
                 }
             }
             $payment_options = $this->Transaction->getGatewayTypes('is_enable_for_add_to_wallet');
@@ -495,7 +495,7 @@ class TransactionsController extends AppController
             $this->cakeError('error404');
         }
         if ($this->Transaction->del($id)) {
-            $this->Session->setFlash(__l('Transaction deleted') , 'default', null, 'success');
+            $this->Session->setFlash(__l('Transaction deleted') , 'default', array('lib' => __l('Success')), 'success');
             $this->redirect(array(
                 'action' => 'index'
             ));

@@ -9,7 +9,7 @@ class TopicsUsersController extends AppController
         if (!empty($this->data)) {
             $this->TopicsUser->create();
             if ($this->TopicsUser->save($this->data)) {
-                $this->Session->setFlash(__l('You are now following this topic') , 'default', null, 'success');
+                $this->Session->setFlash(__l('You are now following this topic') , 'default', array('lib' => __l('Success')), 'success');
                 $this->redirect(array(
                     'controller' => 'topic_discussions',
                     'action' => 'index',
@@ -27,7 +27,7 @@ class TopicsUsersController extends AppController
             'TopicsUser.topic_id' => $topic_id,
             'TopicsUser.user_id' => $this->Auth->user('id')
         ))) {
-            $this->Session->setFlash(__l('You are no longer following this topic') , 'default', null, 'success');
+            $this->Session->setFlash(__l('You are no longer following this topic') , 'default', array('lib' => __l('Success')), 'success');
             $this->redirect(array(
                 'controller' => 'topic_discussions',
                 'action' => 'index',

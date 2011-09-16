@@ -31,12 +31,12 @@ class DealCategoriesController extends AppController
         if (!empty($this->data)) {
             $this->DealCategory->create();
             if ($this->DealCategory->save($this->data)) {
-                $this->Session->setFlash(__l('Deal subscription category has been added') , 'default', null, 'success');
+                $this->Session->setFlash(__l('Deal subscription category has been added') , 'default', array('lib' => __l('Success')), 'success');
                 $this->redirect(array(
                     'action' => 'index'
                 ));
             } else {
-                $this->Session->setFlash(__l('Deal subscription category could not be added. Please, try again.') , 'default', null, 'error');
+                $this->Session->setFlash(__l('Deal subscription category could not be added. Please, try again.') , 'default', array('lib' => __l('Error')), 'error');
             }
         }
         $subscriptions = $this->DealCategory->Subscription->find('list');
@@ -50,12 +50,12 @@ class DealCategoriesController extends AppController
         }
         if (!empty($this->data)) {
             if ($this->DealCategory->save($this->data)) {
-                $this->Session->setFlash(__l('Deal subscription category has been updated') , 'default', null, 'success');
+                $this->Session->setFlash(__l('Deal subscription category has been updated') , 'default', array('lib' => __l('Success')), 'success');
                 $this->redirect(array(
                     'action' => 'index'
                 ));
             } else {
-                $this->Session->setFlash(__l('Deal subscription category could not be updated. Please, try again.') , 'default', null, 'error');
+                $this->Session->setFlash(__l('Deal subscription category could not be updated. Please, try again.') , 'default', array('lib' => __l('Error')), 'error');
             }
         } else {
             $this->data = $this->DealCategory->read(null, $id);
@@ -73,7 +73,7 @@ class DealCategoriesController extends AppController
             $this->cakeError('error404');
         }
         if ($this->DealCategory->del($id)) {
-            $this->Session->setFlash(__l('Deal subscription category deleted') , 'default', null, 'success');
+            $this->Session->setFlash(__l('Deal subscription category deleted') , 'default', array('lib' => __l('Success')), 'success');
             $this->redirect(array(
                 'action' => 'index'
             ));
@@ -100,7 +100,7 @@ class DealCategoriesController extends AppController
                     $this->{$this->modelClass}->deleteAll(array(
                         $this->modelClass . '.id' => $selectedIds
                     ));
-                    $this->Session->setFlash(__l('Checked deal subscription categories has been deleted') , 'default', null, 'success');
+                    $this->Session->setFlash(__l('Checked deal subscription categories has been deleted') , 'default', array('lib' => __l('Success')), 'success');
                 }
             }
         }
