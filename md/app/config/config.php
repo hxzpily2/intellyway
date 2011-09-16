@@ -244,6 +244,14 @@ class ConstPaymentGatewayMoreActions
     const MakeLiveMode = 4;
     const Delete = 5;
 }
+
+class ConstMissdealSpecialType
+{
+    const TRAVEL = "SP_TR";
+    const FAMILY = "SP_TM";
+    const PARAM = "sp";
+}
+
 $config['cdn']['images'] = null; // 'http://images.localhost/';
 $config['cdn']['css'] = null; // 'http://static.localhost/';
 /*
