@@ -86,7 +86,7 @@ class UserProfilesController extends AppController
                         $this->UserProfile->User->UserLogin->updateUserLanguage();
                     }
                 }
-                $this->Session->setFlash(__l('User Profile has been updated') , 'default', null, 'success');
+                $this->Session->setFlash(__l('User Profile has been updated') , 'default', array('lib' => __l('Success')), 'success');
                 if ($this->Auth->user('user_type_id') == ConstUserTypes::Admin and $this->Auth->user('id') != $this->data['User']['id'] and Configure::read('user.is_mail_to_user_for_profile_edit')) {
                     // Send mail to user to activate the account and send account details
 					$language_code = $this->UserProfile->getUserLanguageIso($user['User']['id']);
@@ -120,7 +120,7 @@ class UserProfilesController extends AppController
                 if (!empty($this->data['UserAvatar']['filename']) && $this->data['UserAvatar']['filename']['error'] == 1) {
                     $this->UserProfile->User->UserAvatar->validationErrors['filename'] = sprintf(__l('The file uploaded is too big, only files less than %s permitted') , ini_get('upload_max_filesize'));
                 }
-                $this->Session->setFlash(__l('User Profile could not be updated. Please, try again.') , 'default', null, 'error');
+                $this->Session->setFlash(__l('User Profile could not be updated. Please, try again.') , 'default', array('lib' => __l('Error')), 'error');
             }
             $user = $this->UserProfile->User->find('first', array(
                 'conditions' => array(

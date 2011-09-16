@@ -39,12 +39,12 @@ class UserEducationsController extends AppController
         if (!empty($this->data)) {
             $this->UserEducation->create();
             if ($this->UserEducation->save($this->data)) {
-                $this->Session->setFlash(__l('User Education has been added') , 'default', null, 'success');
+                $this->Session->setFlash(__l('User Education has been added') , 'default', array('lib' => __l('Success')), 'success');
                 $this->redirect(array(
                     'action' => 'index'
                 ));
             } else {
-                $this->Session->setFlash(__l('User Education could not be added. Please, try again.'), 'default', null, 'error');
+                $this->Session->setFlash(__l('User Education could not be added. Please, try again.'), 'default', array('lib' => __l('Error')), 'error');
             }
         }
     }
@@ -56,9 +56,9 @@ class UserEducationsController extends AppController
         }
         if (!empty($this->data)) {
             if ($this->UserEducation->save($this->data)) {
-                $this->Session->setFlash(__l('User Education has been updated'), 'default', null, 'success');
+                $this->Session->setFlash(__l('User Education has been updated'), 'default', array('lib' => __l('Success')), 'success');
             } else {
-                $this->Session->setFlash(__l('User Education could not be updated. Please, try again.'), 'default', null, 'error');
+                $this->Session->setFlash(__l('User Education could not be updated. Please, try again.'), 'default', array('lib' => __l('Error')), 'error');
             }
         } else {
             $this->data = $this->UserEducation->read(null, $id);
@@ -74,7 +74,7 @@ class UserEducationsController extends AppController
             $this->cakeError('error404');
         }
         if ($this->UserEducation->del($id)) {
-            $this->Session->setFlash(__l('User Education deleted') , 'default', null, 'success');
+            $this->Session->setFlash(__l('User Education deleted') , 'default', array('lib' => __l('Success')), 'success');
             $this->redirect(array(
                 'action' => 'index'
             ));
@@ -119,12 +119,12 @@ class UserEducationsController extends AppController
         if (!empty($this->data)) {
             $this->UserEducation->create();
             if ($this->UserEducation->save($this->data)) {
-                $this->Session->setFlash(__l('User Education has been added') , 'default', null, 'success');
+                $this->Session->setFlash(__l('User Education has been added') , 'default', array('lib' => __l('Success')), 'success');
                 $this->redirect(array(
                     'action' => 'index'
                 ));
             } else {
-                $this->Session->setFlash(__l('User Education could not be added. Please, try again.') , 'default', null, 'error');
+                $this->Session->setFlash(__l('User Education could not be added. Please, try again.') , 'default', array('lib' => __l('Error')), 'error');
             }
         }
     }
@@ -136,12 +136,12 @@ class UserEducationsController extends AppController
         }
         if (!empty($this->data)) {
             if ($this->UserEducation->save($this->data)) {
-                $this->Session->setFlash(__l('User Education has been updated') , 'default', null, 'success');
+                $this->Session->setFlash(__l('User Education has been updated') , 'default', array('lib' => __l('Success')), 'success');
 				$this->redirect(array(
                     'action' => 'index'
                 ));
             } else {
-                $this->Session->setFlash(__l('User Education could not be updated. Please, try again.') , 'default', null, 'error');
+                $this->Session->setFlash(__l('User Education could not be updated. Please, try again.') , 'default', array('lib' => __l('Error')), 'error');
             }
         } else {
             $this->data = $this->UserEducation->read(null, $id);
@@ -157,7 +157,7 @@ class UserEducationsController extends AppController
             $this->cakeError('error404');
         }
         if ($this->UserEducation->del($id)) {
-            $this->Session->setFlash(__l('User Education deleted') , 'default', null, 'success');
+            $this->Session->setFlash(__l('User Education deleted') , 'default', array('lib' => __l('Success')), 'success');
             $this->redirect(array(
                 'action' => 'index'
             ));

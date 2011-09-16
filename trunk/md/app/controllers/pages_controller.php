@@ -23,7 +23,7 @@ class PagesController extends AppController
             $this->Page->set($this->data);
             if ($this->Page->validates()) {
                 $this->Page->save($this->data);
-                $this->Session->setFlash(__l('Page has been created') , 'default', null, 'success');
+                $this->Session->setFlash(__l('Page has been created') , 'default', array('lib' => __l('Success')), 'success');
                 $page_id = $this->Page->getLastInsertId();
                 if ($this->data['Page']['Preview']) {
                     $page_slug = $this->Page->find('first', array(
@@ -45,7 +45,7 @@ class PagesController extends AppController
                     'action' => 'index'
                 ));
             } else {
-                $this->Session->setFlash(__l('Page could not be added. Please, try again.') , 'default', null, 'error');
+                $this->Session->setFlash(__l('Page could not be added. Please, try again.') , 'default', array('lib' => __l('Error')), 'error');
             }
         }
         $templates = array();
@@ -65,12 +65,12 @@ class PagesController extends AppController
             $this->Page->set($this->data);
             if ($this->Page->validates()) {
                 $this->Page->save($this->data);
-                $this->Session->setFlash(__l('Page has been Updated') , 'default', null, 'success');
+                $this->Session->setFlash(__l('Page has been Updated') , 'default', array('lib' => __l('Success')), 'success');
                 $this->redirect(array(
                     'action' => 'index'
                 ));
             } else {
-                $this->Session->setFlash(__l('Page could not be Updated. Please, try again.') , 'default', null, 'error');
+                $this->Session->setFlash(__l('Page could not be Updated. Please, try again.') , 'default', array('lib' => __l('Error')), 'error');
             }
         } else {
             $this->data = $this->Page->read(null, $id);
@@ -93,7 +93,7 @@ class PagesController extends AppController
             $this->cakeError('error404');
         }
         if ($this->Page->del($id)) {
-            $this->Session->setFlash(__l('Page Deleted Successfully') , 'default', null, 'success');
+            $this->Session->setFlash(__l('Page Deleted Successfully') , 'default', array('lib' => __l('Success')), 'success');
             $this->redirect(array(
                 'action' => 'index',
                 $cancelled

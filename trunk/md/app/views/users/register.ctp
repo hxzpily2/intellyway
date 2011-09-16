@@ -26,8 +26,10 @@
 <?php echo $form->create('User', array('action' => $action, 'class' => 'normal js-company-map js-register-form '.$formClass)); ?>
 	<fieldset>
     	<?php if(!empty($type)): ?>
-    		   <fieldset class="form-block round-5">
-               <legend class="round-5"><?php echo __l('Account'); ?></legend>
+    		   <!--<fieldset class="form-block round-5">-->
+               <!--<legend class="round-5"><?php echo __l('Account'); ?></legend>-->
+               <div style="height:20px;">&nbsp;</div>
+               <h2 class="legend"><?php echo __l('Account'); ?></h2>
         <?php endif; ?>
 	<?php
 		if(!empty($this->data['User']['openid_url'])):
@@ -54,11 +56,12 @@
 		endif;
 		?>
     	<?php if(!empty($type)): ?>
-    		   </fieldset>
+    		   <!--</fieldset>-->
         <?php endif; ?>
     	<?php if(!empty($type)): ?>
-    		   <fieldset class="form-block round-5">
-               <legend class="round-5"><?php echo __l('Address'); ?></legend>
+    		   <!--<fieldset class="form-block round-5">
+               <legend class="round-5"><?php echo __l('Address'); ?></legend>-->
+               <h2 class="legend"><?php echo __l('Address'); ?></h2>
         <?php endif; ?>
         <?php
         if(!empty($type))
@@ -84,12 +87,14 @@
     	}
 		?>
     	<?php if(!empty($type)): ?>
-    		   </fieldset>
+    		   <!--</fieldset>-->
         <?php endif; ?>
 	
 	<?php  	if(!empty($type)):  ?>
-	   <fieldset class="form-block round-5">
-               <legend class="round-5"><?php echo __l('Locate Yourself on Google Maps'); ?></legend>
+	   <!--<fieldset class="form-block round-5">-->
+               <!--<legend class="round-5"><?php echo __l('Locate Yourself on Google Maps'); ?></legend>-->
+               <h2 class="legend"><?php echo __l('Locate Yourself on Google Maps'); ?></h2>
+               <div style="height:10px;">&nbsp;</div>
 		<?php 		
 			echo $form->input('Company.latitude',array('type' => 'hidden', 'id'=>'latitude'));
 			echo $form->input('Company.longitude',array('type' => 'hidden', 'id'=>'longitude'));
@@ -100,9 +105,12 @@
 			?>
 		<div class="show-map" style="">				
 				<div id="js-map-container"></div>
+				<div style="height:10px;">&nbsp;</div>
 				<p><?php echo __l('You can change the google map zooming level here, else default zooming level will be taken.'); ?></p>
 			</div>
-		 </fieldset>
+		 <!--</fieldset>-->
+		 <h2 class="legend">&nbsp;</h2>
+		 <div style="height:10px;">&nbsp;</div>
    <?php endif; ?>
 
 

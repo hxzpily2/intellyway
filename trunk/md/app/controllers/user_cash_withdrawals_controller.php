@@ -96,7 +96,7 @@ class UserCashWithdrawalsController extends AppController
                     ) , array(
                         'User.id' => $this->data['UserCashWithdrawal']['user_id']
                     ));
-                    $this->Session->setFlash('Withdraw fund request has been added', 'default', null, 'success');
+                    $this->Session->setFlash('Withdraw fund request has been added', 'default', array('lib' => __l('Success')), 'success');
                     if ($this->RequestHandler->isAjax()) {
                         $this->autoRender = false;
                     } else {
@@ -105,10 +105,10 @@ class UserCashWithdrawalsController extends AppController
                         ));
                     }
                 } else {
-                    $this->Session->setFlash('Withdraw fund request could not be added. Please, try again.', 'default', null, 'error');
+                    $this->Session->setFlash('Withdraw fund request could not be added. Please, try again.', 'default', array('lib' => __l('Error')), 'error');
                 }
             } else {
-                $this->Session->setFlash('Withdraw fund request could not be added. Please, try again.', 'default', null, 'error');
+                $this->Session->setFlash('Withdraw fund request could not be added. Please, try again.', 'default', array('lib' => __l('Error')), 'error');
             }
         }
         $userProfile = $this->UserCashWithdrawal->User->UserProfile->find('first', array(
@@ -257,7 +257,7 @@ class UserCashWithdrawalsController extends AppController
             $this->cakeError('error404');
         }
         if ($this->UserCashWithdrawal->del($id)) {
-            $this->Session->setFlash(__l('Withdraw fund request deleted') , 'default', null, 'success');
+            $this->Session->setFlash(__l('Withdraw fund request deleted') , 'default', array('lib' => __l('Success')), 'success');
             $this->redirect(array(
                 'action' => 'index'
             ));
@@ -341,7 +341,7 @@ class UserCashWithdrawalsController extends AppController
                     ) , array(
                         'UserCashWithdrawal.id' => $userCashWithdrawalIds
                     ));
-                    $this->Session->setFlash(__l('Checked requests have been moved to pending status') , 'default', null, 'success');
+                    $this->Session->setFlash(__l('Checked requests have been moved to pending status') , 'default', array('lib' => __l('Success')), 'success');
                 } else if ($actionid == ConstWithdrawalStatus::Rejected) {
                     // Need to Refund the Money to User
                     $canceled_withdraw_requests = $this->UserCashWithdrawal->find('all', array(
@@ -392,7 +392,7 @@ class UserCashWithdrawalsController extends AppController
                         ));
                     }
                     //
-                    $this->Session->setFlash(__l('Checked requests have been moved to rejected status, Refunded  Money to Wallet') , 'default', null, 'success');
+                    $this->Session->setFlash(__l('Checked requests have been moved to rejected status, Refunded  Money to Wallet') , 'default', array('lib' => __l('Success')), 'success');
                 }
             }
         }

@@ -36,9 +36,9 @@ class UserPermissionPreferencesController extends AppController
                 $this->data['UserPermissionPreference']['user_id'] = $this->data['User']['id'];
             }
             if ($this->UserPermissionPreference->save($this->data)) {
-                $this->Session->setFlash(__l('Permissions are updated') , 'default', null, 'success');
+                $this->Session->setFlash(__l('Permissions are updated') , 'default', array('lib' => __l('Success')), 'success');
             } else {
-                $this->Session->setFlash(__l('Permissions could not be updated. Please, try again.') , 'default', null, 'error');
+                $this->Session->setFlash(__l('Permissions could not be updated. Please, try again.') , 'default', array('lib' => __l('Error')), 'error');
             }
         } else {
             $this->data = $this->UserPermissionPreference->find('first', array(

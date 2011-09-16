@@ -64,12 +64,12 @@ class StatesController extends AppController
         if (!empty($this->data)) {
             $this->State->create();
             if ($this->State->save($this->data)) {
-                $this->Session->setFlash(__l('State has been added') , 'default', null, 'success');
+                $this->Session->setFlash(__l('State has been added') , 'default', array('lib' => __l('Success')), 'success');
                 $this->redirect(array(
                     'action' => 'index'
                 ));
             } else {
-                $this->Session->setFlash(__l('State could not be added. Please, try again.') , 'default', null, 'error');
+                $this->Session->setFlash(__l('State could not be added. Please, try again.') , 'default', array('lib' => __l('Error')), 'error');
             }
         } else {
             $this->data['State']['is_approved'] = 1;
@@ -89,12 +89,12 @@ class StatesController extends AppController
         }
         if (!empty($this->data)) {
             if ($this->State->save($this->data)) {
-                $this->Session->setFlash(__l('State has been updated') , 'default', null, 'success');
+                $this->Session->setFlash(__l('State has been updated') , 'default', array('lib' => __l('Success')), 'success');
                 $this->redirect(array(
                     'action' => 'index'
                 ));
             } else {
-                $this->Session->setFlash(__l('State could not be updated. Please, try again.') , 'default', null, 'error');
+                $this->Session->setFlash(__l('State could not be updated. Please, try again.') , 'default', array('lib' => __l('Error')), 'error');
             }
         } else {
             $this->data = $this->State->read(null, $id);
@@ -145,14 +145,14 @@ class StatesController extends AppController
                     ) , array(
                         'State.id' => $stateIds
                     ));
-                    $this->Session->setFlash(__l('Checked states has been inactivated') , 'default', null, 'success');
+                    $this->Session->setFlash(__l('Checked states has been inactivated') , 'default', array('lib' => __l('Success')), 'success');
                 } else if ($actionid == ConstMoreAction::Active) {
                     $this->State->updateAll(array(
                         'State.is_approved' => 1
                     ) , array(
                         'State.id' => $stateIds
                     ));
-                    $this->Session->setFlash(__l('Checked states has been activated') , 'default', null, 'success');
+                    $this->Session->setFlash(__l('Checked states has been activated') , 'default', array('lib' => __l('Success')), 'success');
                 } else if ($actionid == ConstMoreAction::Delete) {
                     $city = $this->State->City->find('first', array(
                         'conditions' => array(
@@ -164,12 +164,12 @@ class StatesController extends AppController
                         'recursive' => -1,
                     ));
                     if (in_array($city['City']['state_id'], $stateIds)) {
-                        $this->Session->setFlash(__l('States could not be deleted. Please, check seleted state belongs to default city') , 'default', null, 'error');
+                        $this->Session->setFlash(__l('States could not be deleted. Please, check seleted state belongs to default city') , 'default', array('lib' => __l('Error')), 'error');
                     } else {
                         $this->State->deleteAll(array(
                             'State.id' => $stateIds
                         ));
-                        $this->Session->setFlash(__l('Checked states has been deleted') , 'default', null, 'success');
+                        $this->Session->setFlash(__l('Checked states has been deleted') , 'default', array('lib' => __l('Success')), 'success');
                     }
                 }
             }
@@ -186,7 +186,7 @@ class StatesController extends AppController
             $this->cakeError('error404');
         }
         if ($this->State->del($id)) {
-            $this->Session->setFlash(__l('State deleted') , 'default', null, 'success');
+            $this->Session->setFlash(__l('State deleted') , 'default', array('lib' => __l('Success')), 'success');
             $this->redirect(array(
                 'action' => 'index'
             ));

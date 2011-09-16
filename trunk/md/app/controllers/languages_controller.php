@@ -60,12 +60,12 @@ class LanguagesController extends AppController
         if (!empty($this->data)) {
             $this->Language->create();
             if ($this->Language->save($this->data)) {
-                $this->Session->setFlash(__l('Language has been added') , 'default', null, 'success');
+                $this->Session->setFlash(__l('Language has been added') , 'default', array('lib' => __l('Success')), 'success');
                 $this->redirect(array(
                     'action' => 'index'
                 ));
             } else {
-                $this->Session->setFlash(__l('Language could not be added. Please, try again.') , 'default', null, 'error');
+                $this->Session->setFlash(__l('Language could not be added. Please, try again.') , 'default', array('lib' => __l('Error')), 'error');
             }
         }
     }
@@ -77,12 +77,12 @@ class LanguagesController extends AppController
         }
         if (!empty($this->data)) {
             if ($this->Language->save($this->data)) {
-                $this->Session->setFlash(__l('Language  has been updated') , 'default', null, 'success');
+                $this->Session->setFlash(__l('Language  has been updated') , 'default', array('lib' => __l('Success')), 'success');
                 $this->redirect(array(
                     'action' => 'index'
                 ));
             } else {
-                $this->Session->setFlash(__l('Language  could not be updated. Please, try again.') , 'default', null, 'error');
+                $this->Session->setFlash(__l('Language  could not be updated. Please, try again.') , 'default', array('lib' => __l('Error')), 'error');
             }
         } else {
             $this->data = $this->Language->read(null, $id);
@@ -113,19 +113,19 @@ class LanguagesController extends AppController
                     ) , array(
                         $this->modelClass . '.id' => $selectedIds
                     ));
-                    $this->Session->setFlash(__l('Checked languages has been inactivated') , 'default', null, 'success');
+                    $this->Session->setFlash(__l('Checked languages has been inactivated') , 'default', array('lib' => __l('Success')), 'success');
                 } else if ($actionid == ConstMoreAction::Active) {
                     $this->{$this->modelClass}->updateAll(array(
                         $this->modelClass . '.is_active' => 1
                     ) , array(
                         $this->modelClass . '.id' => $selectedIds
                     ));
-                    $this->Session->setFlash(__l('Checked languages has been activated') , 'default', null, 'success');
+                    $this->Session->setFlash(__l('Checked languages has been activated') , 'default', array('lib' => __l('Success')), 'success');
                 } else if ($actionid == ConstMoreAction::Delete) {
                     $this->{$this->modelClass}->deleteAll(array(
                         $this->modelClass . '.id' => $selectedIds
                     ));
-                    $this->Session->setFlash(__l('Checked languages has been deleted') , 'default', null, 'success');
+                    $this->Session->setFlash(__l('Checked languages has been deleted') , 'default', array('lib' => __l('Success')), 'success');
                 }
             }
         }

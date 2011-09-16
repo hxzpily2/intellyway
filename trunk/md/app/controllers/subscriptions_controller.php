@@ -137,22 +137,22 @@ class SubscriptionsController extends AppController
                     $this->Email->content = strtr($template['email_content'], $emailFindReplace);
                     $this->Email->sendAs = ($template['is_html']) ? 'html' : 'text';
                     $this->Email->send($this->Email->content);
-                    $this->Session->setFlash(__l('You are now subscribed to') . ' ' . Configure::read('site.name') . ' ' . $get_city['City']['name'] . '.', 'default', null, 'success');
+                    $this->Session->setFlash(__l('You are now subscribed to') . ' ' . Configure::read('site.name') . ' ' . $get_city['City']['name'] . '.', 'default', array('lib' => __l('Success')), 'success');
                 } else {
 					$Currentstep = 2;
                     if (empty($this->Subscription->validationErrors)) {
-                        $this->Session->setFlash(__l('You\'ll start receiving your emails soon.') , 'default', null, 'success');
+                        $this->Session->setFlash(__l('You\'ll start receiving your emails soon.') , 'default', array('lib' => __l('Success')), 'success');
                     } else {
-                        $this->Session->setFlash(__l('Could not be subscribed. Please, try again.') , 'default', null, 'error');
+                        $this->Session->setFlash(__l('Could not be subscribed. Please, try again.') , 'default', array('lib' => __l('Error')), 'error');
                     }
                 }
             } elseif (!empty($subscription) && !$subscription['Subscription']['is_subscribed']) {
                 $this->data['Subscription']['is_subscribed'] = 1;
                 $this->data['Subscription']['id'] = $subscription['Subscription']['id'];
                 $this->Subscription->save($this->data);
-                $this->Session->setFlash(__l('You are now subscribed to') . ' ' . Configure::read('site.name') . ' ' . $get_city['City']['name'] . '. ' . __l('Thanks for subscribing again.') , 'default', null, 'success');
+                $this->Session->setFlash(__l('You are now subscribed to') . ' ' . Configure::read('site.name') . ' ' . $get_city['City']['name'] . '. ' . __l('Thanks for subscribing again.') , 'default', array('lib' => __l('Success')), 'success');
             } else {
-                $this->Session->setFlash(__l('You\'ll start receiving your emails soon.') , 'default', null, 'success');
+                $this->Session->setFlash(__l('You\'ll start receiving your emails soon.') , 'default', array('lib' => __l('Success')), 'success');
             }
             if (empty($this->Subscription->validationErrors) && Configure::read('site.enable_three_step_subscription')) {
                 $this->Cookie->write('is_subscribed', 1, false); // For skipping subscriptions
@@ -224,7 +224,7 @@ class SubscriptionsController extends AppController
     }
 	function admin_update_subscribers(){
 		$this->Subscription->_updateSubscribersList();
-		$this->Session->setFlash(__l('Subscribers list has been updated.') , 'default', null, 'success');
+		$this->Session->setFlash(__l('Subscribers list has been updated.') , 'default', array('lib' => __l('Success')), 'success');
 		$this->redirect(array(
 			'action' => 'index'
 		));
@@ -253,7 +253,7 @@ class SubscriptionsController extends AppController
                 'recursive' => -1
             ));
             if (empty($subscription)) {
-                $this->Session->setFlash(__l('Please provide a subscribed email') , 'default', null, 'error');
+                $this->Session->setFlash(__l('Please provide a subscribed email') , 'default', array('lib' => __l('Error')), 'error');
             } else {
                 $this->data['Subscription']['is_subscribed'] = 0;
                 if ($this->Subscription->save($this->data)) {
@@ -272,7 +272,7 @@ class SubscriptionsController extends AppController
 						$api = new MCAPI(Configure::read('mailchimp.api_key'));
 						$retval = $api->listUnsubscribe($city_list_id['MailChimpList']['list_id'],$subscription['Subscription']['email']);
                     }
-                    $this->Session->setFlash(__l('You have unsubscribed from the subscribers list') , 'default', null, 'success');
+                    $this->Session->setFlash(__l('You have unsubscribed from the subscribers list') , 'default', array('lib' => __l('Success')), 'success');
                     $this->redirect(array(
                         'controller' => 'deals',
                         'action' => 'index'
@@ -320,7 +320,7 @@ class SubscriptionsController extends AppController
 					$api = new MCAPI(Configure::read('mailchimp.api_key'));
 					$retval = $api->listUnsubscribe($city_list_id['MailChimpList']['list_id'], $this->params['named']['email']);
 				}
-				$this->Session->setFlash(__l('You have unsubscribed from the subscribers list.') , 'default', null, 'success');
+				$this->Session->setFlash(__l('You have unsubscribed from the subscribers list.') , 'default', array('lib' => __l('Success')), 'success');
 				$this->redirect(array(
 					'controller' => 'deals',
 					'action' => 'index'
@@ -450,14 +450,14 @@ class SubscriptionsController extends AppController
                     $this->Subscription->deleteAll(array(
                         'Subscription.id' => $subscriptionIds
                     ));
-                    $this->Session->setFlash(__l('Checked subscriptions has been deleted') , 'default', null, 'success');
+                    $this->Session->setFlash(__l('Checked subscriptions has been deleted') , 'default', array('lib' => __l('Success')), 'success');
                 } else if ($actionid == ConstMoreAction::UnSubscripe) {
                     $this->Subscription->updateAll(array(
                         'Subscription.is_subscribed' => 0,
                     ) , array(
                         'Subscription.id' => $subscriptionIds
                     ));
-                    $this->Session->setFlash(__l('Checked subscriptions has been un subscribed') , 'default', null, 'success');
+                    $this->Session->setFlash(__l('Checked subscriptions has been un subscribed') , 'default', array('lib' => __l('Success')), 'success');
                 }
             }
         }
@@ -473,7 +473,7 @@ class SubscriptionsController extends AppController
             $this->cakeError('error404');
         }
         if ($this->Subscription->del($id)) {
-            $this->Session->setFlash(__l('Subscription deleted') , 'default', null, 'success');
+            $this->Session->setFlash(__l('Subscription deleted') , 'default', array('lib' => __l('Success')), 'success');
             $this->redirect(array(
                 'action' => 'index'
             ));

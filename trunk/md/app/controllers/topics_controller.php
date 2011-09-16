@@ -133,7 +133,7 @@ class TopicsController extends AppController
             $this->data['Topic']['last_replied_user_id'] = $this->Auth->user('id');
             $this->data['Topic']['last_replied_time'] = date('Y-m-d H:i:s');
             if ($this->Topic->save($this->data)) {
-                $this->Session->setFlash(__l('Topic has been added') , 'default', null, 'success');
+                $this->Session->setFlash(__l('Topic has been added') , 'default', array('lib' => __l('Success')), 'success');
                 $this->data['TopicDiscussion']['user_id'] = $this->Auth->user('id');
                 $this->data['TopicDiscussion']['ip'] = $this->RequestHandler->getClientIP();
                 $this->data['TopicDiscussion']['dns'] = gethostbyaddr($this->RequestHandler->getClientIP());
@@ -152,7 +152,7 @@ class TopicsController extends AppController
                     'action' => 'index'
                 ));
             } else {
-                $this->Session->setFlash(__l('Topic could not be added. Please, try again.') , 'default', null, 'error');
+                $this->Session->setFlash(__l('Topic could not be added. Please, try again.') , 'default', array('lib' => __l('Error')), 'error');
             }
         }
         if (empty($topic_type) || $topic_type == 'all') {
@@ -204,9 +204,9 @@ class TopicsController extends AppController
         }
         if (!empty($this->data)) {
             if ($this->Topic->save($this->data)) {
-                $this->Session->setFlash(sprintf(__l('"%s" Topic has been updated') , $this->data['Topic']['name']) , 'default', null, 'success');
+                $this->Session->setFlash(sprintf(__l('"%s" Topic has been updated') , $this->data['Topic']['name']) , 'default', array('lib' => __l('Success')), 'success');
             } else {
-                $this->Session->setFlash(sprintf(__l('"%s" Topic could not be updated. Please, try again.') , $this->data['Topic']['name']) , 'default', null, 'error');
+                $this->Session->setFlash(sprintf(__l('"%s" Topic could not be updated. Please, try again.') , $this->data['Topic']['name']) , 'default', array('lib' => __l('Error')), 'error');
             }
         } else {
             $this->data = $this->Topic->read(null, $id);
@@ -234,7 +234,7 @@ class TopicsController extends AppController
             $this->cakeError('error404');
         }
         if ($this->Topic->del($id)) {
-            $this->Session->setFlash(__l('Topic deleted') , 'default', null, 'success');
+            $this->Session->setFlash(__l('Topic deleted') , 'default', array('lib' => __l('Success')), 'success');
             $this->redirect(array(
                 'action' => 'index'
             ));
@@ -355,12 +355,12 @@ class TopicsController extends AppController
         $id = (!empty($this->data['Topic']['id'])) ? $this->data['Topic']['id'] : $id;
         if (!empty($this->data)) {
             if ($this->Topic->save($this->data)) {
-                $this->Session->setFlash(__l('Topic has been updated') , 'default', null, 'success');
+                $this->Session->setFlash(__l('Topic has been updated') , 'default', array('lib' => __l('Success')), 'success');
                 $this->redirect(array(
                     'action' => 'index',
                 ));
             } else {
-                $this->Session->setFlash(__l('Topic could not be updated. Please, try again.') , 'default', null, 'error');
+                $this->Session->setFlash(__l('Topic could not be updated. Please, try again.') , 'default', array('lib' => __l('Error')), 'error');
             }
         } else {
             $this->data = $this->Topic->read(null, $id);
@@ -407,7 +407,7 @@ class TopicsController extends AppController
             $this->cakeError('error404');
         }
         if ($this->Topic->del($id)) {
-            $this->Session->setFlash(__l('Topic deleted') , 'default', null, 'success');
+            $this->Session->setFlash(__l('Topic deleted') , 'default', array('lib' => __l('Success')), 'success');
             $this->redirect(array(
                 'action' => 'index'
             ));
@@ -434,7 +434,7 @@ class TopicsController extends AppController
                     $this->Topic->deleteAll(array(
                         'Topic.id' => $topicIds
                     ));
-                    $this->Session->setFlash(__l('Checked topic has been deleted') , 'default', null, 'success');
+                    $this->Session->setFlash(__l('Checked topic has been deleted') , 'default', array('lib' => __l('Success')), 'success');
                 }
             }
         }

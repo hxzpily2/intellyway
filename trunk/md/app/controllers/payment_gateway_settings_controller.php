@@ -8,13 +8,13 @@ class PaymentGatewaySettingsController extends AppController
         if (!empty($this->data)) {
             $this->PaymentGatewaySetting->create();
             if ($this->PaymentGatewaySetting->save($this->data)) {
-                $this->Session->setFlash(__l('Payment Gateway Setting has been added') , 'default', null, 'success');
+                $this->Session->setFlash(__l('Payment Gateway Setting has been added') , 'default', array('lib' => __l('Success')), 'success');
                 $this->redirect(array(
                     'action' => 'edit',
                     $this->data['PaymentGatewaySetting']['payment_gateway_id']
                 ));
             } else {
-                $this->Session->setFlash(__l('Payment Gateway Setting could not be added. Please, try again.') , 'default', null, 'error');
+                $this->Session->setFlash(__l('Payment Gateway Setting could not be added. Please, try again.') , 'default', array('lib' => __l('Error')), 'error');
             }
         } else {
             if (!is_null($payment_gateway_id)) {
@@ -70,7 +70,7 @@ class PaymentGatewaySettingsController extends AppController
                 ));
             }
         }
-        $this->Session->setFlash(__l('Payment gateway settings updated.') , 'default', null, 'success');
+        $this->Session->setFlash(__l('Payment gateway settings updated.') , 'default', array('lib' => __l('Success')), 'success');
         $this->redirect(array(
             'controller' => 'payment_gateway_settings',
             'action' => 'edit',
@@ -83,7 +83,7 @@ class PaymentGatewaySettingsController extends AppController
             $this->cakeError('error404');
         }
         if ($this->PaymentGatewaySetting->del($id)) {
-            $this->Session->setFlash(__l('Payment Gateway Setting deleted') , 'default', null, 'success');
+            $this->Session->setFlash(__l('Payment Gateway Setting deleted') , 'default', array('lib' => __l('Success')), 'success');
             $this->redirect(array(
                 'action' => 'index'
             ));

@@ -187,12 +187,12 @@ class CitiesController extends AppController
                         $this->City->Attachment->save($this->data['Attachment']);
                     }
                 }
-                $this->Session->setFlash(__l('City has been updated') , 'default', null, 'success');
+                $this->Session->setFlash(__l('City has been updated') , 'default', array('lib' => __l('Success')), 'success');
                 $this->redirect(array(
                     'action' => 'index'
                 ));
             } else {
-                $this->Session->setFlash(__l('City could not be updated. Please, try again.') , 'default', null, 'error');
+                $this->Session->setFlash(__l('City could not be updated. Please, try again.') , 'default', array('lib' => __l('Error')), 'error');
             }
         } else {
             $this->data = $this->City->read(null, $id);
@@ -265,13 +265,13 @@ class CitiesController extends AppController
                     if ($this->City->Attachment->validates()) {
                         $this->City->Attachment->save($this->data['Attachment']);
                     }
-                    $this->Session->setFlash(__l(' City has been added') , 'default', null, 'success');
+                    $this->Session->setFlash(__l(' City has been added') , 'default', array('lib' => __l('Success')), 'success');
                     $this->redirect(array(
                         'action' => 'index'
                     ));
                 }
             } else {
-                $this->Session->setFlash(__l(' City could not be added. Please, try again.') , 'default', null, 'error');
+                $this->Session->setFlash(__l(' City could not be added. Please, try again.') , 'default', array('lib' => __l('Error')), 'error');
             }
         } else {
             $this->data['City']['is_approved'] = 1;
@@ -349,20 +349,20 @@ class CitiesController extends AppController
                     $msg = __l('Selected cities has been disapproved');
                     if (!empty($defaultCity) && in_array($defaultCity['City']['id'], $cityIds)) {
                         if (count($cityIds) == 1) {
-                            $this->Session->setFlash(__l('You cannot disapprove the default city. Please update default city from settings and try again.') , 'default', null, 'error');
+                            $this->Session->setFlash(__l('You cannot disapprove the default city. Please update default city from settings and try again.') , 'default', array('lib' => __l('Error')), 'error');
                             $msg = '';
                         } else {
                             $msg.= ' ' . __l('except the default city. Please update default city from settings and try again.');
                         }
                     }
-                    if (!empty($msg)) $this->Session->setFlash($msg, 'default', null, 'success');
+                    if (!empty($msg)) $this->Session->setFlash($msg, 'default', array('lib' => __l('Success')), 'success');
                 } else if ($actionid == ConstMoreAction::Active) {
                     $this->City->updateAll(array(
                         'City.is_approved' => 1
                     ) , array(
                         'City.id' => $cityIds
                     ));
-                    $this->Session->setFlash(__l('Selected cities has been activated') , 'default', null, 'success');
+                    $this->Session->setFlash(__l('Selected cities has been activated') , 'default', array('lib' => __l('Success')), 'success');
                 } else if ($actionid == ConstMoreAction::Delete) {
                     $this->City->deleteAll(array(
                         'City.id' => $cityIds,
@@ -371,13 +371,13 @@ class CitiesController extends AppController
                     $msg = __l('Selected cities has been deleted');
                     if (!empty($defaultCity) && in_array($defaultCity['City']['id'], $cityIds)) {
                         if (count($cityIds) == 1) {
-                            $this->Session->setFlash(__l('You can not delete the default city. Please update default city from settings and try again.') , 'default', null, 'error');
+                            $this->Session->setFlash(__l('You can not delete the default city. Please update default city from settings and try again.') , 'default', array('lib' => __l('Error')), 'error');
                             $msg = '';
                         } else {
                             $msg.= ' ' . __l('except the default city. Please update default city from settings and try again.');
                         }
                     }
-                    if (!empty($msg)) $this->Session->setFlash($msg, 'default', null, 'success');
+                    if (!empty($msg)) $this->Session->setFlash($msg, 'default', array('lib' => __l('Success')), 'success');
                 }
             }
         }
@@ -402,13 +402,13 @@ class CitiesController extends AppController
             'recursive' => -1
         ));
         if (!empty($defaultCity) && $id == $defaultCity['City']['id']) {
-            $this->Session->setFlash(__l('You can not delete the default city. Please update default city from settings and try again.') , 'default', null, 'error');
+            $this->Session->setFlash(__l('You can not delete the default city. Please update default city from settings and try again.') , 'default', array('lib' => __l('Error')), 'error');
             $this->redirect(array(
                 'action' => 'index'
             ));
         }
         if ($this->City->del($id)) {
-            $this->Session->setFlash(__l('City deleted') , 'default', null, 'success');
+            $this->Session->setFlash(__l('City deleted') , 'default', array('lib' => __l('Success')), 'success');
             $this->redirect(array(
                 'action' => 'index'
             ));
@@ -433,9 +433,9 @@ class CitiesController extends AppController
                 $this->data['City']['fb_user_id'] = $fb_session['uid'];
                 $this->data['City']['fb_access_token'] = $fb_session['access_token'];
                 if ($this->City->save($this->data)) {
-                    $this->Session->setFlash(__l('Facebook credentials updated for selected city') , 'default', null, 'success');
+                    $this->Session->setFlash(__l('Facebook credentials updated for selected city') , 'default', array('lib' => __l('Success')), 'success');
                 } else {
-                    $this->Session->setFlash(__l('Facebook credentials could not be updated for selected city. Please, try again.') , 'default', null, 'error');
+                    $this->Session->setFlash(__l('Facebook credentials could not be updated for selected city. Please, try again.') , 'default', array('lib' => __l('Error')), 'error');
                 }
             }
         }

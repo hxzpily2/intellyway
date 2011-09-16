@@ -328,14 +328,14 @@ class ControllerTask extends Shell {
 		$actions .= "\t\t\t\$this->{$currentModelName}->create();\n";
 		$actions .= "\t\t\tif (\$this->{$currentModelName}->save(\$this->data)) {\n";
 		if ($wannaUseSession) {
-			$actions .= "\t\t\t\t\$this->Session->setFlash(sprintf(__l('\"%s\" ".$singularHumanName." has been added'), \$this->data['{$currentModelName}']['{$modelObj->displayField}']), 'default', null, 'success');\n";
+			$actions .= "\t\t\t\t\$this->Session->setFlash(sprintf(__l('\"%s\" ".$singularHumanName." has been added'), \$this->data['{$currentModelName}']['{$modelObj->displayField}']), 'default', array('lib' => __l('Success')), 'success');\n";
 			$actions .= "\t\t\t\t\$this->redirect(array('action' => 'index'));\n";
 		} else {
 			$actions .= "\t\t\t\t\$this->flash(sprintf(__l('\"%s\" {$singularHumanName} saved.'), \$this->data['{$currentModelName}']['{$modelObj->displayField}']), array('action' => 'index'));\n";
 		}
 		$actions .= "\t\t\t} else {\n";
 		if ($wannaUseSession) {
-			$actions .= "\t\t\t\t\$this->Session->setFlash(sprintf(__l('\"%s\" {$singularHumanName} could not be added. Please, try again.'), \$this->data['{$currentModelName}']['{$modelObj->displayField}']), 'default', null, 'error');\n";
+			$actions .= "\t\t\t\t\$this->Session->setFlash(sprintf(__l('\"%s\" {$singularHumanName} could not be added. Please, try again.'), \$this->data['{$currentModelName}']['{$modelObj->displayField}']), 'default', array('lib' => __l('Error')), 'error');\n";
 		}
 		$actions .= "\t\t\t}\n";
 		$actions .= "\t\t}\n";
@@ -372,14 +372,14 @@ class ControllerTask extends Shell {
 		$actions .= "\t\tif (!empty(\$this->data)) {\n";
 		$actions .= "\t\t\tif (\$this->{$currentModelName}->save(\$this->data)) {\n";
 		if ($wannaUseSession) {
-			$actions .= "\t\t\t\t\$this->Session->setFlash(sprintf(__l('\"%s\" ".$singularHumanName." has been updated'), \$this->data['{$currentModelName}']['{$modelObj->displayField}']), 'default', null, 'success');\n";
+			$actions .= "\t\t\t\t\$this->Session->setFlash(sprintf(__l('\"%s\" ".$singularHumanName." has been updated'), \$this->data['{$currentModelName}']['{$modelObj->displayField}']), 'default', array('lib' => __l('Success')), 'success');\n";
 //			$actions .= "\t\t\t\t\$this->redirect(array('action' => 'index'));\n";
 		} else {
 			$actions .= "\t\t\t\t\$this->flash(sprintf(__l('\"%s\" ".$singularHumanName." has been updated.'), \$this->data['{$currentModelName}']['{$modelObj->displayField}']), array('action' => 'index'));\n";
 		}
 		$actions .= "\t\t\t} else {\n";
 		if ($wannaUseSession) {
-			$actions .= "\t\t\t\t\$this->Session->setFlash(sprintf(__l('\"%s\" {$singularHumanName} could not be updated. Please, try again.'), \$this->data['{$currentModelName}']['{$modelObj->displayField}']), 'default', null, 'error');\n";
+			$actions .= "\t\t\t\t\$this->Session->setFlash(sprintf(__l('\"%s\" {$singularHumanName} could not be updated. Please, try again.'), \$this->data['{$currentModelName}']['{$modelObj->displayField}']), 'default', array('lib' => __l('Error')), 'error');\n";
 		}
 		$actions .= "\t\t\t}\n";
 		$actions .= "\t\t} else {\n";
@@ -418,7 +418,7 @@ class ControllerTask extends Shell {
 		$actions .= "\t\t}\n";
 		$actions .= "\t\tif (\$this->{$currentModelName}->del(\$id)) {\n";
 		if ($wannaUseSession) {
-			$actions .= "\t\t\t\$this->Session->setFlash(__l('{$singularHumanName} deleted'), 'default', null, 'success');\n";
+			$actions .= "\t\t\t\$this->Session->setFlash(__l('{$singularHumanName} deleted'), 'default', array('lib' => __l('Success')), 'success');\n";
 			$actions .= "\t\t\t\$this->redirect(array('action' => 'index'));\n";
 		} else {
 			$actions .= "\t\t\t\$this->flash(__l('{$singularHumanName} deleted'), array('action' => 'index'));\n";

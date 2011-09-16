@@ -202,7 +202,7 @@ class UserFriendsController extends AppController
                 )
             ));
             if ($blockedUser) {
-                $this->Session->setFlash(__l(sprintf('%s is blocked you. You can not become friend of %s', $user['User']['username'], $user['User']['username'])) , 'default', null, 'error');
+                $this->Session->setFlash(__l(sprintf('%s is blocked you. You can not become friend of %s', $user['User']['username'], $user['User']['username'])) , 'default', array('lib' => __l('Error')), 'error');
                 $this->redirect(array(
                     'controller' => 'users',
                     'action' => 'view',
@@ -217,7 +217,7 @@ class UserFriendsController extends AppController
                 'recursive' => -1
             ));
             if ($checkCompanyUser['User']['user_type_id'] == ConstUserTypes::Company && !Configure::read('user.is_company_actas_normal_user')) {
-                $this->Session->setFlash(__l('You cannot add this user as a friend') , 'default', null, 'error');
+                $this->Session->setFlash(__l('You cannot add this user as a friend') , 'default', array('lib' => __l('Error')), 'error');
                 $this->redirect(array(
                     'controller' => 'users',
                     'action' => 'view',
@@ -271,7 +271,7 @@ class UserFriendsController extends AppController
                         $this->UserFriend->save($this->data);
                     }
                     if (!$this->RequestHandler->isAjax()) {
-                        $this->Session->setFlash(__l('Friend has been added.') , 'default', null, 'success');
+                        $this->Session->setFlash(__l('Friend has been added.') , 'default', array('lib' => __l('Success')), 'success');
                         $this->redirect(array(
                             'controller' => 'users',
                             'action' => 'my_stuff#My_Friends'
@@ -282,7 +282,7 @@ class UserFriendsController extends AppController
                 }
             } else {
                 if (!$this->RequestHandler->isAjax()) {
-                    $this->Session->setFlash(__l('Already added in your friend\'s list.') , 'default', null, 'success');
+                    $this->Session->setFlash(__l('Already added in your friend\'s list.') , 'default', array('lib' => __l('Success')), 'success');
                     $this->redirect(array(
                         'controller' => 'users',
                         'action' => 'my_stuff#My_Friends'
@@ -292,7 +292,7 @@ class UserFriendsController extends AppController
                 }
             }
         } else {
-            $this->Session->setFlash(__l('You can\'t yourself to friend\'s list.') , 'default', null, 'error');
+            $this->Session->setFlash(__l('You can\'t yourself to friend\'s list.') , 'default', array('lib' => __l('Error')), 'error');
             if (!$this->RequestHandler->isAjax()) {
                 $this->redirect(array(
                     'controller' => 'users',
@@ -350,7 +350,7 @@ class UserFriendsController extends AppController
             $this->cakeError('error404');
         }
         if ($this->UserFriend->del($id)) {
-            $this->Session->setFlash(__l('User Friend deleted') , 'default', null, 'success');
+            $this->Session->setFlash(__l('User Friend deleted') , 'default', array('lib' => __l('Success')), 'success');
             $this->redirect(array(
                 'action' => 'index'
             ));
@@ -454,13 +454,13 @@ class UserFriendsController extends AppController
             }
         }
         if (!$this->RequestHandler->isAjax()) {
-            $this->Session->setFlash('Friend has been rejected.', 'default', null, 'success');
+            $this->Session->setFlash('Friend has been rejected.', 'default', array('lib' => __l('Success')), 'success');
             $this->redirect(array(
                 'controller' => 'users',
                 'action' => 'my_stuff#My_Friends'
             ));
         } else {
-            $this->Session->setFlash('Friend has been rejected.', 'default', null, 'success');
+            $this->Session->setFlash('Friend has been rejected.', 'default', array('lib' => __l('Success')), 'success');
             $this->setAction('index', ConstUserFriendStatus::Rejected, $type);
         }
     }
@@ -511,14 +511,14 @@ class UserFriendsController extends AppController
                 $this->UserFriend->save($this->data);
             }
             if (!$this->RequestHandler->isAjax()) {
-                $this->Session->setFlash('Friend has been accepted.', 'default', null, 'success');
+                $this->Session->setFlash('Friend has been accepted.', 'default', array('lib' => __l('Success')), 'success');
                 $this->redirect(array(
                     'controller' => 'users',
                     'action' => 'my_stuff#My_Friends',
                     'admin' => false
                 ));
             } else {
-                $this->Session->setFlash('Friend has been accepted.', 'default', null, 'success');
+                $this->Session->setFlash('Friend has been accepted.', 'default', array('lib' => __l('Success')), 'success');
                 $this->setAction('index', ConstUserFriendStatus::Approved, 'received');
             }
         }
@@ -583,7 +583,7 @@ class UserFriendsController extends AppController
                     }
                 }
                 if (!$this->RequestHandler->isAjax()) {
-                    $this->Session->setFlash('Friend has been removed.', 'default', null, 'success');
+                    $this->Session->setFlash('Friend has been removed.', 'default', array('lib' => __l('Success')), 'success');
                     $this->redirect(array(
                         'controller' => 'users',
                         'action' => 'my_stuff#My_Friends'
@@ -703,12 +703,12 @@ class UserFriendsController extends AppController
         if (!empty($this->data)) {
             $this->UserFriend->create();
             if ($this->UserFriend->save($this->data)) {
-                $this->Session->setFlash(sprintf(__l('"%s" User Friend has been added') , $this->data['UserFriend']['id']) , 'default', null, 'success');
+                $this->Session->setFlash(sprintf(__l('"%s" User Friend has been added') , $this->data['UserFriend']['id']) , 'default', array('lib' => __l('Success')), 'success');
                 $this->redirect(array(
                     'action' => 'index'
                 ));
             } else {
-                $this->Session->setFlash(sprintf(__l('"%s" User Friend could not be added. Please, try again.') , $this->data['UserFriend']['id']) , 'default', null, 'error');
+                $this->Session->setFlash(sprintf(__l('"%s" User Friend could not be added. Please, try again.') , $this->data['UserFriend']['id']) , 'default', array('lib' => __l('Error')), 'error');
             }
         }
         $users = $this->UserFriend->User->find('list');
@@ -723,9 +723,9 @@ class UserFriendsController extends AppController
         }
         if (!empty($this->data)) {
             if ($this->UserFriend->save($this->data)) {
-                $this->Session->setFlash(sprintf(__l('"%s" User Friend has been updated') , $this->data['UserFriend']['id']) , 'default', null, 'success');
+                $this->Session->setFlash(sprintf(__l('"%s" User Friend has been updated') , $this->data['UserFriend']['id']) , 'default', array('lib' => __l('Success')), 'success');
             } else {
-                $this->Session->setFlash(sprintf(__l('"%s" User Friend could not be updated. Please, try again.') , $this->data['UserFriend']['id']) , 'default', null, 'error');
+                $this->Session->setFlash(sprintf(__l('"%s" User Friend could not be updated. Please, try again.') , $this->data['UserFriend']['id']) , 'default', array('lib' => __l('Error')), 'error');
             }
         } else {
             $this->data = $this->UserFriend->read(null, $id);
@@ -771,7 +771,7 @@ class UserFriendsController extends AppController
                     $this->UserFriend->del($otherfriend['UserFriend']['id']);
                 }
             }
-            $this->Session->setFlash(__l('User Friend deleted') , 'default', null, 'success');
+            $this->Session->setFlash(__l('User Friend deleted') , 'default', array('lib' => __l('Success')), 'success');
             $this->redirect(array(
                 'action' => 'index'
             ));
@@ -822,7 +822,7 @@ class UserFriendsController extends AppController
                 }
                 $this->UserFriend->FriendStatus->id = $actionid;
                 $status = $this->UserFriend->FriendStatus->field('name');
-                $this->Session->setFlash(__l("Checked users has been " . $status) , 'default', null, 'success');
+                $this->Session->setFlash(__l("Checked users has been " . $status) , 'default', array('lib' => __l('Success')), 'success');
             }
         }
         $this->redirect(Router::url('/', true) . $r);
@@ -867,7 +867,7 @@ class UserFriendsController extends AppController
                     }
                     $this->set('contacts_source', 'csv file');
                 } else {
-                    $this->Session->setFlash(__l('Plesae select a valid CSV file') , 'default', null, 'error');
+                    $this->Session->setFlash(__l('Plesae select a valid CSV file') , 'default', array('lib' => __l('Error')), 'error');
                 }
             }
             $this->set('contacts_source', 'csv file');
@@ -949,7 +949,7 @@ class UserFriendsController extends AppController
                     $this->set('invite_friend_arr', $invite_friend_arr);
                 }
             } else {
-                $this->Session->setFlash(__l('Friends Import Failed. Plesase Try Again') , 'default', null, 'error');
+                $this->Session->setFlash(__l('Friends Import Failed. Plesase Try Again') , 'default', array('lib' => __l('Error')), 'error');
                 $this->redirect(array(
                     'controller' => 'users',
                     'action' => 'my_stuff#Import_Friends'
@@ -962,7 +962,7 @@ class UserFriendsController extends AppController
                 $return_url = $this->UserFriend->getLiveUrl();
                 if ($return_url) $this->redirect($return_url);
                 else {
-                    $this->Session->setFlash(__l('MSN Contact Import Not working. Please Contact Admin.') , 'default', null, 'error');
+                    $this->Session->setFlash(__l('MSN Contact Import Not working. Please Contact Admin.') , 'default', array('lib' => __l('Error')), 'error');
                     $this->redirect(array(
                         'controller' => 'user_friends',
                         'action' => 'import'
@@ -1084,7 +1084,7 @@ class UserFriendsController extends AppController
             if (!empty($this->data['UserFriend']['deal_slug']) && !empty($user_invited)) {
                 $this->UserFriend->inviteDealUsers($user_invited, $this->data['UserFriend']['deal_slug']);
             }
-            $this->Session->setFlash(__l('Your friend has been invited.') , 'default', null, 'success');
+            $this->Session->setFlash(__l('Your friend has been invited.') , 'default', array('lib' => __l('Success')), 'success');
             $this->redirect(array(
                 'controller' => 'temp_contacts',
                 'action' => 'index',
@@ -1154,10 +1154,10 @@ class UserFriendsController extends AppController
                 foreach($friend_email as $to_email) {
                     $this->_sendInviteMail($to_email);
                 }
-                $this->Session->setFlash(__l('Your friend has been invited.') , 'default', null, 'success');
+                $this->Session->setFlash(__l('Your friend has been invited.') , 'default', array('lib' => __l('Success')), 'success');
                 $this->data = array();
             } else {
-                $this->Session->setFlash(__l('Problem in inviting.') , 'default', null, 'error');
+                $this->Session->setFlash(__l('Problem in inviting.') , 'default', array('lib' => __l('Error')), 'error');
             }
         }
     }
@@ -1187,14 +1187,14 @@ class UserFriendsController extends AppController
             }
             if (!empty($user_invited)) {
                 $this->UserFriend->inviteDealUsers($user_invited, $this->data['UserFriend']['deal_slug']);
-                $this->Session->setFlash(__l('Your friend has been invited.') , 'default', null, 'success');
+                $this->Session->setFlash(__l('Your friend has been invited.') , 'default', array('lib' => __l('Success')), 'success');
                 $this->redirect(array(
                     'controller' => 'deals',
                     'action' => 'index',
                     'admin' => false
                 ));
             } else {
-                $this->Session->setFlash(__l('Please select atleast one friend before inviting') , 'default', null, 'error');
+                $this->Session->setFlash(__l('Please select atleast one friend before inviting') , 'default', array('lib' => __l('Error')), 'error');
             }
         }
         if (!empty($this->params['named']['deal'])) {

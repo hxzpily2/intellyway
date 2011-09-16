@@ -147,14 +147,14 @@ class CompanyAddressesController extends AppController
                 $this->data['CompanyAddress']['state_id'] = !empty($this->data['State']['id']) ? $this->data['State']['id'] : $this->CompanyAddress->State->findOrSaveAndGetId($this->data['State']['name']);
                 $this->CompanyAddress->create();
                 $this->CompanyAddress->save($this->data);
-                $this->Session->setFlash(__l('Company Address has been added') , 'default', null, 'success');
+                $this->Session->setFlash(__l('Company Address has been added') , 'default', array('lib' => __l('Success')), 'success');
                 $this->redirect(array(
                     'controller' => 'company_addresses',
                     'action' => 'index',
                     $this->data['CompanyAddress']['company_id']
                 ));
             } else {
-                $this->Session->setFlash(__l('Company Address could not be added. Please, try again.') , 'default', null, 'error');
+                $this->Session->setFlash(__l('Company Address could not be added. Please, try again.') , 'default', array('lib' => __l('Error')), 'error');
             }
         }
 		unset($this->CompanyAddress->Company->City->validate['City']);
@@ -178,14 +178,14 @@ class CompanyAddressesController extends AppController
                 $this->data['CompanyAddress']['city_id'] = !empty($this->data['City']['id']) ? $this->data['City']['id'] : $this->CompanyAddress->City->findOrSaveAndGetId($this->data['City']['name']);
                 $this->data['CompanyAddress']['state_id'] = !empty($this->data['State']['id']) ? $this->data['State']['id'] : $this->CompanyAddress->State->findOrSaveAndGetId($this->data['State']['name']);
                 $this->CompanyAddress->save($this->data);
-                $this->Session->setFlash(__l('Company Address has been updated') , 'default', null, 'success');
+                $this->Session->setFlash(__l('Company Address has been updated') , 'default', array('lib' => __l('Success')), 'success');
                 $this->redirect(array(
                     'controller' => 'company_addresses',
                     'action' => 'index',
                     $this->data['CompanyAddress']['company_id']
                 ));
             } else {
-                $this->Session->setFlash(__l('Company Address could not be updated. Please, try again.') , 'default', null, 'error');
+                $this->Session->setFlash(__l('Company Address could not be updated. Please, try again.') , 'default', array('lib' => __l('Error')), 'error');
             }
         } else {
             $this->data = $this->CompanyAddress->read(null, $id);
@@ -208,7 +208,7 @@ class CompanyAddressesController extends AppController
                 echo 'deleted';
                 exit;
             }
-            $this->Session->setFlash(__l('Company Address deleted') , 'default', null, 'success');
+            $this->Session->setFlash(__l('Company Address deleted') , 'default', array('lib' => __l('Success')), 'success');
             $this->redirect(array(
                 'action' => 'index'
             ));
@@ -346,14 +346,14 @@ class CompanyAddressesController extends AppController
                 $this->data['CompanyAddress']['state_id'] = !empty($this->data['State']['id']) ? $this->data['State']['id'] : $this->CompanyAddress->State->findOrSaveAndGetId($this->data['State']['name']);
                 $this->CompanyAddress->create();
                 $this->CompanyAddress->save($this->data);
-                $this->Session->setFlash(__l('Company Address has been added') , 'default', null, 'success');
+                $this->Session->setFlash(__l('Company Address has been added') , 'default', array('lib' => __l('Success')), 'success');
                 $this->redirect(array(
                     'controller' => 'companies',
                     'action' => 'edit',
                     $this->data['CompanyAddress']['company_id']
                 ));
             } else {
-                $this->Session->setFlash(__l('Company Address could not be added. Please, try again.') , 'default', null, 'error');
+                $this->Session->setFlash(__l('Company Address could not be added. Please, try again.') , 'default', array('lib' => __l('Error')), 'error');
             }
         }
         if (!empty($this->params['named']['company'])) {
@@ -376,14 +376,14 @@ class CompanyAddressesController extends AppController
                 $this->data['CompanyAddress']['city_id'] = !empty($this->data['City']['id']) ? $this->data['City']['id'] : $this->CompanyAddress->City->findOrSaveAndGetId($this->data['City']['name']);
                 $this->data['CompanyAddress']['state_id'] = !empty($this->data['State']['id']) ? $this->data['State']['id'] : $this->CompanyAddress->State->findOrSaveAndGetId($this->data['State']['name']);
                 $this->CompanyAddress->save($this->data);
-                $this->Session->setFlash(__l('Company Address has been updated') , 'default', null, 'success');
+                $this->Session->setFlash(__l('Company Address has been updated') , 'default', array('lib' => __l('Success')), 'success');
                 $this->redirect(array(
                     'controller' => 'companies',
                     'action' => 'edit',
                     $this->data['CompanyAddress']['company_id']
                 ));
             } else {
-                $this->Session->setFlash(__l('Company Address could not be updated. Please, try again.') , 'default', null, 'error');
+                $this->Session->setFlash(__l('Company Address could not be updated. Please, try again.') , 'default', array('lib' => __l('Error')), 'error');
             }
         } else {
             $this->data = $this->CompanyAddress->read(null, $id);
@@ -405,7 +405,7 @@ class CompanyAddressesController extends AppController
                 echo 'deleted';
                 exit;
             }
-            $this->Session->setFlash(__l('Company Address deleted') , 'default', null, 'success');
+            $this->Session->setFlash(__l('Company Address deleted') , 'default', array('lib' => __l('Success')), 'success');
             $this->redirect(array(
                 'action' => 'index'
             ));

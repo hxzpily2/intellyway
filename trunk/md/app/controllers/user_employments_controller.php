@@ -39,12 +39,12 @@ class UserEmploymentsController extends AppController
         if (!empty($this->data)) {
             $this->UserEmployment->create();
             if ($this->UserEmployment->save($this->data)) {
-                $this->Session->setFlash(__l('User Employment has been added'), 'default', null, 'success');
+                $this->Session->setFlash(__l('User Employment has been added'), 'default', array('lib' => __l('Success')), 'success');
                 $this->redirect(array(
                     'action' => 'index'
                 ));
             } else {
-                $this->Session->setFlash(__l('User Employment could not be added. Please, try again.'), 'default', null, 'error');
+                $this->Session->setFlash(__l('User Employment could not be added. Please, try again.'), 'default', array('lib' => __l('Error')), 'error');
             }
         }
     }
@@ -56,9 +56,9 @@ class UserEmploymentsController extends AppController
         }
         if (!empty($this->data)) {
             if ($this->UserEmployment->save($this->data)) {
-                $this->Session->setFlash(__l('User Employment has been updated'), 'default', null, 'success');
+                $this->Session->setFlash(__l('User Employment has been updated'), 'default', array('lib' => __l('Success')), 'success');
             } else {
-                $this->Session->setFlash(__l('User Employment could not be updated. Please, try again.'), 'default', null, 'error');
+                $this->Session->setFlash(__l('User Employment could not be updated. Please, try again.'), 'default', array('lib' => __l('Error')), 'error');
             }
         } else {
             $this->data = $this->UserEmployment->read(null, $id);
@@ -74,7 +74,7 @@ class UserEmploymentsController extends AppController
             $this->cakeError('error404');
         }
         if ($this->UserEmployment->del($id)) {
-            $this->Session->setFlash(__l('User Employment deleted') , 'default', null, 'success');
+            $this->Session->setFlash(__l('User Employment deleted') , 'default', array('lib' => __l('Success')), 'success');
             $this->redirect(array(
                 'action' => 'index'
             ));
@@ -119,12 +119,12 @@ class UserEmploymentsController extends AppController
         if (!empty($this->data)) {
             $this->UserEmployment->create();
             if ($this->UserEmployment->save($this->data)) {
-                $this->Session->setFlash(__l('User Employment has been added'), 'default', null, 'success');
+                $this->Session->setFlash(__l('User Employment has been added'), 'default', array('lib' => __l('Success')), 'success');
                 $this->redirect(array(
                     'action' => 'index'
                 ));
             } else {
-                $this->Session->setFlash(__l('User Employment could not be added. Please, try again.'), 'default', null, 'error');
+                $this->Session->setFlash(__l('User Employment could not be added. Please, try again.'), 'default', array('lib' => __l('Error')), 'error');
             }
         }
     }
@@ -136,12 +136,12 @@ class UserEmploymentsController extends AppController
         }
         if (!empty($this->data)) {
             if ($this->UserEmployment->save($this->data)) {
-                $this->Session->setFlash(__l('User Employment has been updated'), 'default', null, 'success');
+                $this->Session->setFlash(__l('User Employment has been updated'), 'default', array('lib' => __l('Success')), 'success');
 				$this->redirect(array(
                     'action' => 'index'
                 ));
             } else {
-                $this->Session->setFlash(__l('User Employment could not be updated. Please, try again.'), 'default', null, 'error');
+                $this->Session->setFlash(__l('User Employment could not be updated. Please, try again.'), 'default', array('lib' => __l('Error')), 'error');
             }
         } else {
             $this->data = $this->UserEmployment->read(null, $id);
@@ -157,7 +157,7 @@ class UserEmploymentsController extends AppController
             $this->cakeError('error404');
         }
         if ($this->UserEmployment->del($id)) {
-            $this->Session->setFlash(__l('User Employment deleted') , 'default', null, 'success');
+            $this->Session->setFlash(__l('User Employment deleted') , 'default', array('lib' => __l('Success')), 'success');
             $this->redirect(array(
                 'action' => 'index'
             ));

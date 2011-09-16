@@ -35,8 +35,8 @@ TABLE OF CONTENTS
 	width: 100%;
 	min-width:980px;
 	height: 20px;
-	background:#161616;
-	border-top: 1px solid #333333;
+	background:transparent;
+	/*border-top: 1px solid #333333;*/
 	padding:0;
 	font-family:Arial, Helvetica, sans-serif;
 	text-shadow: 1px 1px 1px #000;
@@ -386,7 +386,7 @@ a.tooltip:hover span {
 
 #footer_md_social_fb{
 	position : absolute;
-	top : -136px;
+	top : -115px;
 	right:10px;	
 }
 

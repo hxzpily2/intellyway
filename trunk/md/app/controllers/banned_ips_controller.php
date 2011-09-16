@@ -79,25 +79,25 @@ class BannedIpsController extends AppController
                     if ((!in_array(strtolower($data['BannedIp']['address']) , $reserved) and !in_array(strtolower($data['BannedIp']['range']) , $reserved)) and !($data['BannedIp']['address'] <= sprintf('%u', ip2long(gethostbyname($easyban_remote_ip))) and $data['BannedIp']['range'] >= sprintf('%u', ip2long(gethostbyname($easyban_remote_ip)))) and !($data['BannedIp']['range'] <= sprintf('%u', ip2long(gethostbyname($easyban_remote_ip))) and $data['BannedIp']['address'] >= sprintf('%u', ip2long(gethostbyname($easyban_remote_ip))))) {
                         $this->BannedIp->create();
                         if ($this->BannedIp->save($data)) {
-                            $this->Session->setFlash(__l('Banned IP has been added') , 'default', null, 'success');
+                            $this->Session->setFlash(__l('Banned IP has been added') , 'default', array('lib' => __l('Success')), 'success');
                             $this->redirect(array(
                                 'action' => 'index'
                             ));
                         } else {
-                            $this->Session->setFlash(__l('Banned IP could not be added. Please, try again') , 'default', null, 'error');
+                            $this->Session->setFlash(__l('Banned IP could not be added. Please, try again') , 'default', array('lib' => __l('Error')), 'error');
                         }
                     } else {
-                        $this->Session->setFlash(__l('You cannot add your IP address. Please, try again') , 'default', null, 'error');
+                        $this->Session->setFlash(__l('You cannot add your IP address. Please, try again') , 'default', array('lib' => __l('Error')), 'error');
                     }
                 } else {
                     if (empty($is_own_site)) {
-                        $this->Session->setFlash(__l('Banned IP could not be added. Please, try again') , 'default', null, 'error');
+                        $this->Session->setFlash(__l('Banned IP could not be added. Please, try again') , 'default', array('lib' => __l('Error')), 'error');
                     } else {
-                        $this->Session->setFlash(__l('You cannot add your own domain. Please, try again') , 'default', null, 'error');
+                        $this->Session->setFlash(__l('You cannot add your own domain. Please, try again') , 'default', array('lib' => __l('Error')), 'error');
                     }
                 }
             } else {
-                $this->Session->setFlash(__l('Banned IP could not be added. Please, try again') , 'default', null, 'error');
+                $this->Session->setFlash(__l('Banned IP could not be added. Please, try again') , 'default', array('lib' => __l('Error')), 'error');
             }
         }
         if (!is_null($banned_id)) {
@@ -116,7 +116,7 @@ class BannedIpsController extends AppController
             $this->cakeError('error404');
         }
         if ($this->BannedIp->del($id)) {
-            $this->Session->setFlash(__l('Banned IP deleted') , 'default', null, 'success');
+            $this->Session->setFlash(__l('Banned IP deleted') , 'default', array('lib' => __l('Success')), 'success');
             $this->redirect(array(
                 'action' => 'index'
             ));
@@ -142,7 +142,7 @@ class BannedIpsController extends AppController
                     $this->{$this->modelClass}->deleteAll(array(
                         $this->modelClass . '.id' => $selectedIds
                     ));
-                    $this->Session->setFlash(__l('Checked banned IPs has been deleted') , 'default', null, 'success');
+                    $this->Session->setFlash(__l('Checked banned IPs has been deleted') , 'default', array('lib' => __l('Success')), 'success');
                 }
             }
         }

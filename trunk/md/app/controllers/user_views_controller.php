@@ -65,7 +65,7 @@ class UserViewsController extends AppController
             $this->cakeError('error404');
         }
         if ($this->UserView->del($id)) {
-            $this->Session->setFlash(__l('User View deleted') , 'default', null, 'success');
+            $this->Session->setFlash(__l('User View deleted') , 'default', array('lib' => __l('Success')), 'success');
             $this->redirect(array(
                 'action' => 'index'
             ));
@@ -92,7 +92,7 @@ class UserViewsController extends AppController
                     $this->{$this->modelClass}->deleteAll(array(
                         $this->modelClass . '.id' => $selectedIds
                     ));
-                    $this->Session->setFlash(__l('Checked user views has been deleted') , 'default', null, 'success');
+                    $this->Session->setFlash(__l('Checked user views has been deleted') , 'default', array('lib' => __l('Success')), 'success');
                 }
             }
         }

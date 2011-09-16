@@ -31,12 +31,12 @@ class PaymentGatewaysController extends AppController
                         ));
                     }
                 }
-                $this->Session->setFlash(__l('Payment Gateway has been updated') , 'default', null, 'success');
+                $this->Session->setFlash(__l('Payment Gateway has been updated') , 'default', array('lib' => __l('Success')), 'success');
                 $this->redirect(array(
                     'action' => 'index'
                 ));
             } else {
-                $this->Session->setFlash(__l('Payment Gateway could not be updated. Please, try again.') , 'default', null, 'error');
+                $this->Session->setFlash(__l('Payment Gateway could not be updated. Please, try again.') , 'default', array('lib' => __l('Error')), 'error');
             }
         } else {
             $this->data = $this->PaymentGateway->read(null, $id);

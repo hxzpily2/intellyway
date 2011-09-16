@@ -39,12 +39,12 @@ class UserIncomeRangesController extends AppController
         if (!empty($this->data)) {
             $this->UserIncomeRange->create();
             if ($this->UserIncomeRange->save($this->data)) {
-                $this->Session->setFlash(__l('User Income Range has been added'), 'default', null, 'success');
+                $this->Session->setFlash(__l('User Income Range has been added'), 'default', array('lib' => __l('Success')), 'success');
                 $this->redirect(array(
                     'action' => 'index'
                 ));
             } else {
-                $this->Session->setFlash(__l('User Income Range could not be added. Please, try again.'), 'default', null, 'error');
+                $this->Session->setFlash(__l('User Income Range could not be added. Please, try again.'), 'default', array('lib' => __l('Error')), 'error');
             }
         }
     }
@@ -56,9 +56,9 @@ class UserIncomeRangesController extends AppController
         }
         if (!empty($this->data)) {
             if ($this->UserIncomeRange->save($this->data)) {
-                $this->Session->setFlash(__l('User Income Range has been updated'), 'default', null, 'success');
+                $this->Session->setFlash(__l('User Income Range has been updated'), 'default', array('lib' => __l('Success')), 'success');
             } else {
-                $this->Session->setFlash(__l('User Income Range could not be updated. Please, try again.'), 'default', null, 'error');
+                $this->Session->setFlash(__l('User Income Range could not be updated. Please, try again.'), 'default', array('lib' => __l('Error')), 'error');
             }
         } else {
             $this->data = $this->UserIncomeRange->read(null, $id);
@@ -74,7 +74,7 @@ class UserIncomeRangesController extends AppController
             $this->cakeError('error404');
         }
         if ($this->UserIncomeRange->del($id)) {
-            $this->Session->setFlash(__l('User Income Range deleted') , 'default', null, 'success');
+            $this->Session->setFlash(__l('User Income Range deleted') , 'default', array('lib' => __l('Success')), 'success');
             $this->redirect(array(
                 'action' => 'index'
             ));
@@ -119,12 +119,12 @@ class UserIncomeRangesController extends AppController
         if (!empty($this->data)) {
             $this->UserIncomeRange->create();
             if ($this->UserIncomeRange->save($this->data)) {
-                $this->Session->setFlash(__l('User Income Range has been added'), 'default', null, 'success');
+                $this->Session->setFlash(__l('User Income Range has been added'), 'default', array('lib' => __l('Success')), 'success');
                 $this->redirect(array(
                     'action' => 'index'
                 ));
             } else {
-                $this->Session->setFlash(__l('User Income Range could not be added. Please, try again.'), 'default', null, 'error');
+                $this->Session->setFlash(__l('User Income Range could not be added. Please, try again.'), 'default', array('lib' => __l('Error')), 'error');
             }
         }
     }
@@ -136,12 +136,12 @@ class UserIncomeRangesController extends AppController
         }
         if (!empty($this->data)) {
             if ($this->UserIncomeRange->save($this->data)) {
-                $this->Session->setFlash(__l('User Income Range has been updated'), 'default', null, 'success');
+                $this->Session->setFlash(__l('User Income Range has been updated'), 'default', array('lib' => __l('Success')), 'success');
 				$this->redirect(array(
                     'action' => 'index'
                 ));
             } else {
-                $this->Session->setFlash(__l('User Income Range could not be updated. Please, try again.'), 'default', null, 'error');
+                $this->Session->setFlash(__l('User Income Range could not be updated. Please, try again.'), 'default', array('lib' => __l('Error')), 'error');
             }
         } else {
             $this->data = $this->UserIncomeRange->read(null, $id);
@@ -157,7 +157,7 @@ class UserIncomeRangesController extends AppController
             $this->cakeError('error404');
         }
         if ($this->UserIncomeRange->del($id)) {
-            $this->Session->setFlash(__l('User Income Range deleted') , 'default', null, 'success');
+            $this->Session->setFlash(__l('User Income Range deleted') , 'default', array('lib' => __l('Success')), 'success');
             $this->redirect(array(
                 'action' => 'index'
             ));

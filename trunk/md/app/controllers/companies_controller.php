@@ -270,12 +270,12 @@ class CompaniesController extends AppController
                         $this->data['UserAvatar']['foreign_id'] = $this->data['User']['id'];
                         $this->Attachment->save($this->data['UserAvatar']);
                     }
-                    $this->Session->setFlash(__l('Company has been updated') , 'default', null, 'success');
+                    $this->Session->setFlash(__l('Company has been updated') , 'default', array('lib' => __l('Success')), 'success');
                     if (!empty($this->params['form']['is_iframe_submit'])) {
                         $this->layout = 'ajax';
                     }
                 } else {
-                    $this->Session->setFlash(__l('Company could not be updated. Please, try again.') , 'default', null, 'error');
+                    $this->Session->setFlash(__l('Company could not be updated. Please, try again.') , 'default', array('lib' => __l('Error')), 'error');
                 }
                 if ($this->Company->User->isAllowed($this->Auth->user('user_type_id'))) {
                     $ajax_url = Router::url(array(
@@ -287,7 +287,7 @@ class CompaniesController extends AppController
                     exit;
                 }
             } else {
-                $this->Session->setFlash(__l('Company could not be updated. Please, try again.') , 'default', null, 'error');
+                $this->Session->setFlash(__l('Company could not be updated. Please, try again.') , 'default', array('lib' => __l('Error')), 'error');
             }
         } else {
 		unset($this->Company->City->validate['City']);
@@ -382,7 +382,7 @@ class CompaniesController extends AppController
             $this->cakeError('error404');
         }
         if ($this->Company->del($id)) {
-            $this->Session->setFlash(__l('Company deleted') , 'default', null, 'success');
+            $this->Session->setFlash(__l('Company deleted') , 'default', array('lib' => __l('Success')), 'success');
             $this->redirect(array(
                 'action' => 'index'
             ));
@@ -583,15 +583,15 @@ class CompaniesController extends AppController
                         $this->Email->sendAs = ($email['is_html']) ? 'html' : 'text';
                         $this->Email->send(strtr($email['email_content'], $emailFindReplace));
                     }
-                    $this->Session->setFlash(__l('Company has been added') , 'default', null, 'success');
+                    $this->Session->setFlash(__l('Company has been added') , 'default', array('lib' => __l('Success')), 'success');
                     $this->redirect(array(
                         'action' => 'index'
                     ));
                 } else {
-                    $this->Session->setFlash(__l('Company could not be added. Please, try again.') , 'default', null, 'error');
+                    $this->Session->setFlash(__l('Company could not be added. Please, try again.') , 'default', array('lib' => __l('Error')), 'error');
                 }
             } else {
-                $this->Session->setFlash(__l('Company could not be added. Please, try again.') , 'default', null, 'error');
+                $this->Session->setFlash(__l('Company could not be added. Please, try again.') , 'default', array('lib' => __l('Error')), 'error');
             }
         }
 		unset($this->Company->City->validate['City']);	
@@ -659,12 +659,12 @@ class CompaniesController extends AppController
                     ) , array(
                         'UserProfile.user_id' => $company['Company']['user_id']
                     ));
-                    $this->Session->setFlash(__l('Company has been updated') , 'default', null, 'success');
+                    $this->Session->setFlash(__l('Company has been updated') , 'default', array('lib' => __l('Success')), 'success');
                 } else {
-                    $this->Session->setFlash(__l('Company could not be updated. Please, try again.') , 'default', null, 'error');
+                    $this->Session->setFlash(__l('Company could not be updated. Please, try again.') , 'default', array('lib' => __l('Error')), 'error');
                 }
             } else {
-                $this->Session->setFlash(__l('Company could not be updated. Please, try again.') , 'default', null, 'error');
+                $this->Session->setFlash(__l('Company could not be updated. Please, try again.') , 'default', array('lib' => __l('Error')), 'error');
             }
         } else {
             $this->data = $this->Company->find('first', array(
@@ -770,7 +770,7 @@ class CompaniesController extends AppController
             'recursive' => -1
         ));
         if (!empty($company['Company']['user_id']) && $this->Company->User->del($company['Company']['user_id'])) {
-            $this->Session->setFlash(__l('Company deleted') , 'default', null, 'success');
+            $this->Session->setFlash(__l('Company deleted') , 'default', array('lib' => __l('Success')), 'success');
             $this->redirect(array(
                 'action' => 'index'
             ));
@@ -799,14 +799,14 @@ class CompaniesController extends AppController
                     ) , array(
                         'Company.id' => $companyIds
                     ));
-                    $this->Session->setFlash(__l('Checked companies has been enabled') , 'default', null, 'success');
+                    $this->Session->setFlash(__l('Checked companies has been enabled') , 'default', array('lib' => __l('Success')), 'success');
                 } else if ($actionid == ConstMoreAction::DisableCompanyProfile) {
                     $this->Company->updateAll(array(
                         'Company.is_company_profile_enabled' => 0
                     ) , array(
                         'Company.id' => $companyIds
                     ));
-                    $this->Session->setFlash(__l('Checked companies has been disabled') , 'default', null, 'success');
+                    $this->Session->setFlash(__l('Checked companies has been disabled') , 'default', array('lib' => __l('Success')), 'success');
                 } else if ($actionid == ConstMoreAction::Active) {
                     foreach($companyIds as $companyId) {
                         $get_company_user = $this->Company->find('first', array(
@@ -822,7 +822,7 @@ class CompaniesController extends AppController
                         ));
                         $this->_sendAdminActionMail($companyId, 'Admin User Active');
                     }
-                    $this->Session->setFlash(__l('Checked companies user has been activated') , 'default', null, 'success');
+                    $this->Session->setFlash(__l('Checked companies user has been activated') , 'default', array('lib' => __l('Success')), 'success');
                 } else if ($actionid == ConstMoreAction::Inactive) {
                     foreach($companyIds as $companyId) {
                         $get_company_user = $this->Company->find('first', array(
@@ -838,7 +838,7 @@ class CompaniesController extends AppController
                         ));
                         $this->_sendAdminActionMail($companyId, 'Admin User Deactivate');
                     }
-                    $this->Session->setFlash(__l('Checked companies user has been deactivated') , 'default', null, 'success');
+                    $this->Session->setFlash(__l('Checked companies user has been deactivated') , 'default', array('lib' => __l('Success')), 'success');
                 } else if ($actionid == ConstMoreAction::DeductAmountFromWallet) {
                     $this->Session->write('companies_list.data', $companyIds);
                     $this->redirect(array(
@@ -972,7 +972,7 @@ class CompaniesController extends AppController
                     ));
                 }
                 $this->Session->del('companies_list');
-                $this->Session->setFlash(__l('Amount deducted for the selected companies') , 'default', null, 'success');
+                $this->Session->setFlash(__l('Amount deducted for the selected companies') , 'default', array('lib' => __l('Success')), 'success');
                 $r = "san-diego/admin/companies/main_filter_id:10/city:san-diego";
                 if (!$this->RequestHandler->isAjax()) {
                     $this->redirect(Router::url('/', true) . $r);
@@ -980,7 +980,7 @@ class CompaniesController extends AppController
                     $this->redirect($r);
                 }
             } else {
-                $this->Session->setFlash(__l('Amount could not be deducted for the selected companies. Please, try again.') , 'default', null, 'error');
+                $this->Session->setFlash(__l('Amount could not be deducted for the selected companies. Please, try again.') , 'default', array('lib' => __l('Error')), 'error');
             }
         }
     }

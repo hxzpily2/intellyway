@@ -63,12 +63,12 @@ class MailChimpListsController extends AppController
         if (!empty($this->data)) {
             $this->MailChimpList->create();
             if ($this->MailChimpList->save($this->data)) {
-                $this->Session->setFlash(__l('Mail Chimp List has been added'), 'default', null, 'success');
+                $this->Session->setFlash(__l('Mail Chimp List has been added'), 'default', array('lib' => __l('Success')), 'success');
                 $this->redirect(array(
                     'action' => 'index'
                 ));
             } else {
-                $this->Session->setFlash(__l('Mail Chimp List could not be added. Please, try again.'), 'default', null, 'error');
+                $this->Session->setFlash(__l('Mail Chimp List could not be added. Please, try again.'), 'default', array('lib' => __l('Error')), 'error');
             }
         }
         $cities = $this->MailChimpList->City->find('list');
@@ -82,9 +82,9 @@ class MailChimpListsController extends AppController
         }
         if (!empty($this->data)) {
             if ($this->MailChimpList->save($this->data)) {
-                $this->Session->setFlash(__l('Mail Chimp List has been updated'), 'default', null, 'success');
+                $this->Session->setFlash(__l('Mail Chimp List has been updated'), 'default', array('lib' => __l('Success')), 'success');
             } else {
-                $this->Session->setFlash(__l('Mail Chimp List could not be updated. Please, try again.'), 'default', null, 'error');
+                $this->Session->setFlash(__l('Mail Chimp List could not be updated. Please, try again.'), 'default', array('lib' => __l('Error')), 'error');
             }
         } else {
             $this->data = $this->MailChimpList->read(null, $id);
@@ -102,7 +102,7 @@ class MailChimpListsController extends AppController
             $this->cakeError('error404');
         }
         if ($this->MailChimpList->del($id)) {
-            $this->Session->setFlash(__l('Mail Chimp List deleted') , 'default', null, 'success');
+            $this->Session->setFlash(__l('Mail Chimp List deleted') , 'default', array('lib' => __l('Success')), 'success');
             $this->redirect(array(
                 'action' => 'index'
             ));
@@ -171,12 +171,12 @@ class MailChimpListsController extends AppController
         if (!empty($this->data)) {
             $this->MailChimpList->create();
             if ($this->MailChimpList->save($this->data)) {
-                $this->Session->setFlash(__l('Mail Chimp List has been added'), 'default', null, 'success');
+                $this->Session->setFlash(__l('Mail Chimp List has been added'), 'default', array('lib' => __l('Success')), 'success');
                 $this->redirect(array(
                     'action' => 'index'
                 ));
             } else {
-                $this->Session->setFlash(__l('Mail Chimp List could not be added. Please, try again.'), 'default', null, 'error');
+                $this->Session->setFlash(__l('Mail Chimp List could not be added. Please, try again.'), 'default', array('lib' => __l('Error')), 'error');
             }
         }
         $cities = $this->MailChimpList->City->find('list');
@@ -190,12 +190,12 @@ class MailChimpListsController extends AppController
         }
         if (!empty($this->data)) {
             if ($this->MailChimpList->save($this->data)) {
-                $this->Session->setFlash(__l('Mail Chimp List has been updated'), 'default', null, 'success');
+                $this->Session->setFlash(__l('Mail Chimp List has been updated'), 'default', array('lib' => __l('Success')), 'success');
 				$this->redirect(array(
                     'action' => 'index'
                 ));
             } else {
-                $this->Session->setFlash(__l('Mail Chimp List could not be updated. Please, try again.'), 'default', null, 'error');
+                $this->Session->setFlash(__l('Mail Chimp List could not be updated. Please, try again.'), 'default', array('lib' => __l('Error')), 'error');
             }
         } else {
             $this->data = $this->MailChimpList->read(null, $id);
@@ -213,7 +213,7 @@ class MailChimpListsController extends AppController
             $this->cakeError('error404');
         }
         if ($this->MailChimpList->del($id)) {
-            $this->Session->setFlash(__l('Mail Chimp List deleted') , 'default', null, 'success');
+            $this->Session->setFlash(__l('Mail Chimp List deleted') , 'default', array('lib' => __l('Success')), 'success');
             $this->redirect(array(
                 'action' => 'index'
             ));

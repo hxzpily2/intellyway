@@ -159,16 +159,16 @@ class SettingsController extends AppController
                                 if ($value['name']['error'] == 1) {
                                     $this->Setting->validationErrors[$settings['Setting']['id']]['name'] = sprintf(__l('The file uploaded is too big, only files less than %s permitted') , ini_get('upload_max_filesize'));
                                 }
-                                $this->Session->setFlash(__l('Sitelogo Image is not uploaded. Please try again ') , 'default', null, 'error');
+                                $this->Session->setFlash(__l('Sitelogo Image is not uploaded. Please try again ') , 'default', array('lib' => __l('Error')), 'error');
                             }
                         }
                     }
                 }
                 if (!empty($save_check_flag)) {
-                    $this->Session->setFlash(__l('Config settings updated') , 'default', null, 'success');
+                    $this->Session->setFlash(__l('Config settings updated') , 'default', array('lib' => __l('Success')), 'success');
                 }
             } else {
-                $this->Session->setFlash(__l('Sorry. You Cannot Update the Settings in Demo Mode') , 'default', null, 'error');
+                $this->Session->setFlash(__l('Sorry. You Cannot Update the Settings in Demo Mode') , 'default', array('lib' => __l('Error')), 'error');
             }
         }
         $this->data['Setting']['setting_category_id'] = $category_id;
@@ -357,9 +357,9 @@ class SettingsController extends AppController
                     $this->data['Setting']['value'] = $fb_session['access_token'];
                 }
                 if ($this->Setting->save($this->data)) {
-                    $this->Session->setFlash(__l('Facebook credentials updated') , 'default', null, 'success');
+                    $this->Session->setFlash(__l('Facebook credentials updated') , 'default', array('lib' => __l('Success')), 'success');
                 } else {
-                    $this->Session->setFlash(__l('Facebook credentials could not be updated. Please, try again.') , 'default', null, 'error');
+                    $this->Session->setFlash(__l('Facebook credentials could not be updated. Please, try again.') , 'default', array('lib' => __l('Error')), 'error');
                 }
             }
         }
