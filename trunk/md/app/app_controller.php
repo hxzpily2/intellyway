@@ -193,7 +193,7 @@ class AppController extends Controller
 			$cur_page = $this->params['controller'] . '/' . $this->params['action'];
 			$admin_demomode_updation_not_allowed_array = Configure::read('site.admin_demomode_updation_not_allowed_array');
 			if ($this->Auth->user('user_type_id') && $this->Auth->user('user_type_id') == ConstUserTypes::Admin && !Configure::read('site.is_admin_settings_enabled') && (!empty($this->data) || $this->params['action'] == 'admin_delete' || $this->params['action'] == 'admin_update') && in_array($cur_page, $admin_demomode_updation_not_allowed_array)) {
-				$this->Session->setFlash(__l('Sorry. You cannot update or delete in demo mode') , 'default', null, 'error');
+				$this->Session->setFlash(__l('Sorry. You cannot update or delete in demo mode') , 'default', array('lib' => __l('Error')), 'error');
 				$this->redirect(array(
 					'controller' => $this->params['controller'],
 					'action' => 'index',
@@ -270,7 +270,7 @@ class AppController extends Controller
                 'recursive' => 0
             ));
             if (!empty($this->params['named']['city']) and empty($city)) {
-                $this->Session->setFlash(__l('City you have reqested is not available in') . ' ' . Configure::read('site.name') . '. ' . __l('Please select a valid city from Visit More Cities') , 'default', null, 'error');
+                $this->Session->setFlash(__l('City you have reqested is not available in') . ' ' . Configure::read('site.name') . '. ' . __l('Please select a valid city from Visit More Cities') , 'default', array('lib' => __l('Error')), 'error');
                 if (empty($this->params['requested'])) {
                     $this->cakeError('error404');
                 }
