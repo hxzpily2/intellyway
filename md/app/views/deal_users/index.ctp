@@ -3,6 +3,7 @@
 <?php if(!empty($pageTitle)): ?>
         <h2><?php echo $pageTitle;?></h2>
 <?php endif; ?>
+	<div style="height: 10px;">&nbsp;</div>
     <div class="js-tabs">
         <ul class="clearfix">
             <li><?php echo $html->link(sprintf(__l('Available (%s)'),$available),array('controller' => 'deal_users', 'action' => 'index', 'deal_id' => $deal_id, 'type' => 'available'), array('title' => 'Available-'.$deal_id)); ?></li>
@@ -18,6 +19,7 @@
                 <li><?php echo $html->link(sprintf(__l('Received Gift Coupons (%s)'),$recieved_gift), array('controller' => 'deal_users', 'action' => 'index', 'user_id' => $auth->user('id'), 'type' => 'recieved_gift_deals'), array('title' => 'Received Gift Coupons-'.$deal_id)); ?></li>			
 			<?php }?>
             <li><?php echo $html->link(sprintf(__l('All (%s)'),$all_deals),array('controller'=> 'deal_users','deal_id'=>$deal_id, 'action'=>'index','type' => 'all'),array('title' => 'All-'.$deal_id)); ?></li>
+            <li><?php echo $html->image('sousmenu.png',array('style'=>'display:inline;')); ?></li>
         </ul>
     </div>
 <?php else: ?>
@@ -51,47 +53,47 @@
 			<p><?php echo __l('Total Quantity Sold').': '.$html->cInt($deal_user_count);?> </p>
 			<p><?php echo __l('Expires On').': '.$html->cDateTime($dealUser['Deal']['coupon_expiry_date']);?> </p>
 		<?php endif; ?>
-		<table class="list">
+		<table class="list" id="mytable">			
 			<tr>
 				<?php
                 if (!empty($this->params['named']['type']) && $this->params['named']['type'] == 'open' && ($auth->user('user_type_id') == ConstUserTypes::User || ($auth->user('user_type_id') == ConstUserTypes::Company && empty($this->params['named']['deal_id'])))) { ?>
-                    <th rowspan="2"><?php echo __l('Action'); ?></th>
+                    <th scope="col" rowspan="2"><?php echo __l('Action'); ?></th>
                     <?php
                 }
                 if ((!empty($this->params['named']['type']) && $this->params['named']['type'] != 'gifted_deals') && $this->params['named']['type'] == 'available') { ?>
-				  <th rowspan="2" class="actions"><?php echo __l('Select');?></th>
+				  <th scope="col" rowspan="2" class="actions"><?php echo __l('Select');?></th>
 				<?php } ?>
                 <?php if (!empty($this->params['named']['type']) && ($this->params['named']['type'] == 'available' || $this->params['named']['type'] == 'used') || (!empty($show_coupon_code) && $this->params['named']['deal_user_view'] == 'coupon')) { ?>
-					<th rowspan="2" class="actions"><?php echo __l('Action');?></th>
+					<th scope="col" rowspan="2" class="actions"><?php echo __l('Action');?></th>
 				<?php } ?>
-				<th rowspan="2"><div class="js-pagination"><?php echo $paginator->sort(__l('Purchased Date'), 'created');?></div></th>
+				<th scope="col" rowspan="2"><div class="js-pagination"><?php echo $paginator->sort(__l('Purchased Date'), 'created');?></div></th>
 				<?php if (!empty($this->params['named']['type']) && $this->params['named']['type'] == 'canceled') { ?>
-					<th rowspan="2"><div class="js-pagination"><?php echo $paginator->sort(__l('Canceled Date'), 'modified');?></div></th>
+					<th scope="col" rowspan="2"><div class="js-pagination"><?php echo $paginator->sort(__l('Canceled Date'), 'modified');?></div></th>
 				<?php } ?>
 				<?php if(!empty($this->params['named']['type']) && $this->params['named']['type'] == 'recieved_gift_deals'): ?>
-					<th rowspan="2"><div class="js-pagination"><?php echo $paginator->sort(__l('Gift From'),'gift_from');?></div></th>
+					<th scope="col" rowspan="2"><div class="js-pagination"><?php echo $paginator->sort(__l('Gift From'),'gift_from');?></div></th>
 				<?php endif;?>
                 <?php if(!empty($this->params['named']['type']) && $this->params['named']['type'] == 'gifted_deals'): ?>
-					<th rowspan="2"><div class="js-pagination"><?php echo $paginator->sort(__l('Gift To'),'gift_to');?></div></th>
+					<th scope="col" rowspan="2"><div class="js-pagination"><?php echo $paginator->sort(__l('Gift To'),'gift_to');?></div></th>
 				<?php endif;?>
                 <?php if(($auth->user('user_type_id') == ConstUserTypes::Company) && !empty($this->params['named']['deal_id'])): ?>
-					<th rowspan="2" class="dl"><div class="js-pagination"><?php echo $paginator->sort(__l('Username'), 'User.username');?></div></th>
+					<th scope="col" rowspan="2" class="dl"><div class="js-pagination"><?php echo $paginator->sort(__l('Username'), 'User.username');?></div></th>
                 <?php endif; ?>
                 <?php if(!empty($deal_id) || !empty($this->params['named']['deal_id'])): ?>
-					<th rowspan="2" class="dr"><div class="js-pagination"><?php echo $paginator->sort(__l('Amount'), 'discount_amount') . ' ('.Configure::read('site.currency').')';?></div></th>
+					<th scope="col" rowspan="2" class="dr"><div class="js-pagination"><?php echo $paginator->sort(__l('Amount'), 'discount_amount') . ' ('.Configure::read('site.currency').')';?></div></th>
 				<?php else: ?>
-					<th rowspan="2" class="dl"><div class="js-pagination"><?php echo $paginator->sort(__l('Deal'), 'deal_id');?></div></th>
+					<th scope="col" rowspan="2" class="dl"><div class="js-pagination"><?php echo $paginator->sort(__l('Deal'), 'deal_id');?></div></th>
 				<?php endif; ?>
 				<?php if (!empty($this->params['named']['type']) && ($this->params['named']['type'] == 'available' || $this->params['named']['type'] == 'used') ||  (!empty($show_coupon_code) && $this->params['named']['deal_user_view'] == 'coupon')): ?>
 					<?php if(($auth->user('user_type_id') == ConstUserTypes::Company) ||  ($auth->user('user_type_id') == ConstUserTypes::Admin)):?>
-						<th class="dc" colspan='3'><div class="js-pagination"><?php echo __l('Coupon code');?></div></th>
+						<th scope="col" class="dc" colspan='3'><div class="js-pagination"><?php echo __l('Coupon code');?></div></th>
 					<?php elseif(($auth->user('user_type_id') == ConstUserTypes::User)):?>
-						<th class="dc" colspan='3'><div class="js-pagination"><?php echo __l('Coupon code');?></div></th>
+						<th scope="col" class="dc" colspan='3'><div class="js-pagination"><?php echo __l('Coupon code');?></div></th>
 					<?php else:?>
-						<th class="dc" rowspan="2" ><div class="js-pagination"><?php echo __l('Coupon code');?></div></th>
+						<th scope="col" class="dc" rowspan="2" ><div class="js-pagination"><?php echo __l('Coupon code');?></div></th>
 					<?php endif;?>
 				<?php endif;?>
-				<th rowspan="2"><?php echo __l('Quantity');?></th>
+				<th scope="col" rowspan="2"><?php echo __l('Quantity');?></th>
             </tr>
 			<tr>
 			<?php if(($auth->user('user_type_id') == ConstUserTypes::Company) ||  ($auth->user('user_type_id') == ConstUserTypes::Admin) ||  ($auth->user('user_type_id') == ConstUserTypes::User)):?>
@@ -107,8 +109,10 @@
 					$i = 0;
 					foreach ($dealUsers as $dealUser):
 						$class = null;
+						$tdclass = ' class="specalt"';
 						if ($i++ % 2 == 0) {
 							$class = ' class="altrow"';
+							$tdclass = ' class="spec"';
 						}
 						if($dealUser['DealUser']['deal_user_coupon_count'] != 0):
 							$status_class = 'js-checkbox-active';
@@ -116,10 +120,10 @@
 							$status_class = 'js-checkbox-inactive';
 						endif;
 			?>
-			<tr<?php echo $class;?>>
+			<tr<?php echo $tdclass;?>>
                 <?php
                 if (!empty($this->params['named']['type']) && $this->params['named']['type'] == 'open' && ($auth->user('user_type_id') == ConstUserTypes::User || ($auth->user('user_type_id') == ConstUserTypes::Company && empty($this->params['named']['deal_id'])))) { ?>
-                    <td>
+                    <td<?php echo $tdclass;$tdclass='';?>>
                         <?php
 							if (!empty($dealUser['DealUser']['is_gift']) && $dealUser['DealUser']['user_id'] != $auth->user('id')):
 								echo __l('N/A');
@@ -134,27 +138,27 @@
                 }
                 ?>
 				<?php if (!empty($this->params['named']['type']) && $this->params['named']['type'] == 'available') { ?>
-					<td>
+					<td<?php echo $tdclass;$tdclass='';?>>
 						<?php echo $form->input('DealUser.'.$dealUser['DealUser']['id'].'.id', array('type' => 'checkbox', 'id' => "admin_checkbox_".$dealUser['DealUser']['id'], 'label' => false, 'class' => $status_class.' js-checkbox-list')); ?>
 					</td>
 				<?php } ?>
 				<?php if (!empty($this->params['named']['type']) && ($this->params['named']['type'] == 'available' || $this->params['named']['type'] == 'used') || (!empty($show_coupon_code) && $this->params['named']['deal_user_view'] == 'coupon')) { ?>
-					<td>
+					<td<?php echo $tdclass;$tdclass='';?>>
 						<?php
 							echo $html->link(__l('View Coupon'),array('controller' => 'deal_users', 'action' => 'view', 'filter_id' => $this->params['named']['type'], $dealUser['DealUser']['id'],'admin' => false),array('title' => __l('View Coupon'), 'class'=>'js-thickbox','target' => '_blank', 'class'=>'view-icon js-thickbox'));
 							echo $html->link(__l('Print'),array('controller' => 'deal_users', 'action' => 'view', 'filter_id' => $this->params['named']['type'], $dealUser['DealUser']['id'],'type' => 'print'),array('target'=>'_blank', 'title' => __l('Print'), 'class'=>'print-icon'));
 						?>
 					</td>
                 <?php } ?>
-				<td><?php echo $html->cDateTime($dealUser['DealUser']['created']);?></td>
+				<td<?php echo $tdclass;$tdclass='';?>><?php echo $html->cDateTime($dealUser['DealUser']['created']);?></td>
 				<?php if(!empty($this->params['named']['type']) && $this->params['named']['type'] == 'canceled'): ?>
-					<td><?php echo $html->cDateTime($dealUser['DealUser']['modified']);?></td>
+					<td<?php echo $tdclass;$tdclass='';?>><?php echo $html->cDateTime($dealUser['DealUser']['modified']);?></td>
 				<?php endif;?>
 				<?php if(!empty($this->params['named']['type']) && ($this->params['named']['type'] == 'recieved_gift_deals')): ?>
-					<td><?php echo $html->cText($dealUser['DealUser']['gift_from']);?></td>
+					<td<?php echo $tdclass;$tdclass='';?>><?php echo $html->cText($dealUser['DealUser']['gift_from']);?></td>
 				<?php endif;?>
 				 <?php if(!empty($this->params['named']['type']) && ($this->params['named']['type'] == 'gifted_deals')): ?>
-					<td><?php echo $html->cText($dealUser['DealUser']['gift_to']);?></td>
+					<td<?php echo $tdclass;$tdclass='';?>><?php echo $html->cText($dealUser['DealUser']['gift_to']);?></td>
 				<?php endif;?>
                 <?php if(($auth->user('user_type_id') == ConstUserTypes::Company) && !empty($this->params['named']['deal_id'])): ?>
                     <td class="dl"><?php echo $html->cText($dealUser['User']['username']);?></td>
@@ -175,7 +179,7 @@
 					</td>
 				<?php endif; ?>
 				<?php if (!empty($this->params['named']['type']) && ($this->params['named']['type'] == 'available' || $this->params['named']['type'] == 'used') ||  (!empty($show_coupon_code) && $this->params['named']['deal_user_view'] == 'coupon') ):?>
-					<td>
+					<td<?php echo $tdclass;$tdclass='';?>>
 						<?php if (empty($dealUser['DealUser']['is_gift']) || (!empty($dealUser['DealUser']['is_gift']) && $dealUser['DealUser']['gift_email'] == $auth->user('email')) || !empty($this->params['named']['deal_id'])):?>
 							<ul class="coupon-code">
 								<?php foreach ($dealUser['DealUserCoupon'] as $dealUserCoupon) { ?>
@@ -191,7 +195,7 @@
 							<?php endif;?>
 						</td>
 						<?php if(($auth->user('user_type_id') == ConstUserTypes::Company) ||  ($auth->user('user_type_id') == ConstUserTypes::Admin) ||  ($auth->user('user_type_id') == ConstUserTypes::User)):?>
-						<td>
+						<td<?php echo $tdclass;$tdclass='';?>>
 						<?php if (empty($dealUser['DealUser']['is_gift']) || (!empty($dealUser['DealUser']['is_gift']) && $dealUser['DealUser']['gift_email'] == $auth->user('email')) || !empty($this->params['named']['deal_id'])):?>
 							<ul class="coupon-code">
 								<?php foreach ($dealUser['DealUserCoupon'] as $dealUserCoupon) { ?>
@@ -282,7 +286,7 @@
 						</td>
 						<?php endif;?>
 						<?php endif; ?>
-					<td>
+					<td<?php echo $tdclass;$tdclass='';?>>
 						<?php if(!empty($this->params['named']['type']) && $this->params['named']['type']=='available'):?>
 							<?php echo $dealUser['DealUser']['quantity'] - $dealUser['DealUser']['deal_user_coupon_count'];?>
 						<?php elseif(!empty($this->params['named']['type']) && $this->params['named']['type']=='used'):?>

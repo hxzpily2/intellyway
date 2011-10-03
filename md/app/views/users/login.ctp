@@ -67,6 +67,3 @@
 </div>
 
 <div style="height : 269px;">&nbsp;</div>
-<!--[if IE]>
-<div style="height : 3px;">&nbsp;</div>
-<![endif]-->

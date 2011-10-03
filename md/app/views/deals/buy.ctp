@@ -1,8 +1,13 @@
 <?php /* SVN: $Id: buy.ctp 44816 2011-02-19 12:02:30Z aravindan_111act10 $ */ ?>
+	<?php if ($this->params['controller'] == 'deals' && $this->params['action'] == 'buy'):?>		
+			<?php echo $this->element('deal-faq', array('cache' => array('time' => Configure::read('site.element_cache'))));?>		
+	<?php endif;?>
+	<br/><br/>
 	<h2><?php echo __l('Your Purchase'); ?></h2>
+	<br/><br/>	
 	<div class="buying-form">
 	<?php echo $form->create('Deal', array('action' => 'buy', 'class' => 'normal')); ?>
-    	<table class="list">
+    	<table class="list" id="mytable">
         	<tr>
             	<th class="dl"><?php echo __l('Description'); ?></th>
                 <th><?php echo __l('Quantity'); ?></th>
@@ -10,7 +15,7 @@
                 <th class="dr"><?php echo __l('Total'); ?></th>
             </tr>
             <tr>
-            	<td class="dl">
+            	<td class="dl spec">
 					<p class="deal-name"><?php echo $html->link($deal['Deal']['name'], array('controller'=>'deals','action'=>'view',$deal['Deal']['slug']), array('title' => $deal['Deal']['name']));?></p>
 				<p class="gift-link"><?php
 						 echo $html->link(sprintf(__l('Give this %s as a gift'),Configure::read('site.name')), array('controller'=>'deals','action'=>'buy',$deal['Deal']['id'],'type' => 'gift'), array('class' => 'gift', 'title' => sprintf(__l('Give this %s as a gift'),Configure::read('site.name'))));
@@ -53,7 +58,7 @@
 								$max_info = $min_info;
 							}
 						}							
-						echo $form->input('quantity',array('label' => false, 'class' => 'js-quantity', 'after' => '<span class="info">' . sprintf(__l('Minimum Quantity: %s <br /> Maximum Quantity: %s'),$min_info,$max_info). '</span>'));?>
+						echo $form->input('quantity',array('label' => false, 'class' => 'js-quantity', 'after' => '<span class="infomd">' . sprintf(__l('Minimum Quantity: %s <br /> Maximum Quantity: %s'),$min_info,$max_info). '</span>'));?>
                         <?php echo $form->input('user_available_balance',array('type' => 'hidden', 'value' => $user_available_balance));  ?>
                 </td>
 				<td class="dr"><?php echo $html->siteCurrencyFormat($html->cCurrency($this->data['Deal']['deal_amount'])); ?></td>
@@ -188,17 +193,20 @@
                 <div class="submit-block clearfix">
 					<?php if(Configure::read('wallet.is_handle_wallet_as_in_groupon')):?>
 						<?php echo $form->input('is_purchase_via_wallet', array('type' => 'hidden', 'value' => ($this->data['Deal']['total_deal_amount'] <= $user_available_balance) ? 1 : 0));?>
-					<?php endif;?>                    
-                    <?php echo $form->submit(__l('Complete My Order'),array('title' => __l('Complete My Order'), 'class' => ((!empty($user_available_balance) || $user_available_balance != '0.00')  ? 'js-buy-confirm' : '')));?>
-                    <div class="cancel-block">
+					<?php endif;?>
+					<a class="blue_button" href="#" onclick="javascript:$('#DealBuyForm').submit()"><span><?php echo __l('Complete My Order'); ?></span></a>                    
+                    <!--<?php echo $form->submit(__l('Complete My Order'),array('title' => __l('Complete My Order'), 'class' => ((!empty($user_available_balance) || $user_available_balance != '0.00')  ? 'js-buy-confirm' : '')));?>-->
+                    <!-- <div class="cancel-block"> -->
                         <?php
                             if (!empty($this->params['named']['type']) && $this->params['named']['type'] == 'gift'){
-                                 echo $html->link(__l('Cancel'), array('controller' => 'deals', 'action' => 'buy',$deal['Deal']['id'], 'admin' => false), array('class' => 'cancel-button'));
+                            	 echo $html->link($html->tag('span', __l('Cancel'), array('class' => '')), array('controller' => 'deals', 'action' => 'buy',$deal['Deal']['id'], 'admin' => false),array('escape'=>false,'class'=>'pink_button'));
+                                 //echo $html->link(__l('Cancel'), array('controller' => 'deals', 'action' => 'buy',$deal['Deal']['id'], 'admin' => false), array('class' => 'cancel-button'));
                             } else {
-                                echo $html->link(__l('Cancel'), array('controller' => 'deals', 'action' => 'view',$deal['Deal']['slug'], 'admin' => false), array('class' => 'cancel-button'));
+                            	echo $html->link($html->tag('span', __l('Cancel'), array('class' => '')), array('controller' => 'deals', 'action' => 'view',$deal['Deal']['slug'], 'admin' => false),array('escape'=>false,'class'=>'grey_button'));
+                                //echo $html->link(__l('Cancel'), array('controller' => 'deals', 'action' => 'view',$deal['Deal']['slug'], 'admin' => false), array('class' => 'cancel-button'));
                             }
                         ?>
-                    </div>
+                    <!-- </div> -->
                 </div>
 			  </div>
        	<?php else: ?>

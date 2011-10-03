@@ -1,5 +1,6 @@
-<div class="js-tabs">
-	<ul class="clearfix">
+<div style="height: 10px;">&nbsp;</div>
+<div class="js-tabs">	
+	<ul class="clearfix">		
 		<li><?php echo $html->link(__l('My Profile'), array('controller' => 'user_profiles', 'action' => 'edit', $user_id, 'admin' => false), array('title' => 'My Profile', 'rel'=> 
 		'#Request_API_Key')); ?></li>
 		<?php $is_show_credit_cards = $html->isAuthorizeNetEnabled(); ?>
@@ -17,5 +18,6 @@
 			 <?//php echo $html->link(__l('My').' '.Configure::read('site.name').' '.__l(' API'), array('controller' => 'users', 'action' => 'my_api', $auth->user('id'), 'admin' => false), array('title' => 'Request API Key', 'rel'=> '#Request_API_Key'));?>
 			<!--</li>-->
 		 <?php endif; ?>
+		 <li><?php echo $html->image('sousmenu.png',array('style'=>'display:inline;')); ?></li>
 	</ul>
 </div>

@@ -29,20 +29,21 @@
       <?php
         echo $form->input('tab_check', array('type' => 'hidden','value' => 'tab_check')); ?>
        	  <div class="submit-block clearfix">
-            <?php
+       	  	<a class="blue_button" href="#" onclick="javascript:$('form').submit()"><span><?php echo __l('Filter'); ?></span></a>
+            <!--<?php
             	echo $form->submit(__l('Filter'));
-            ?>
+            ?>-->
             </div>
             <?php
             	echo $form->end();
             ?>
     <?php echo $this->element('paging_counter');?>
-    <table class="list">
+    <table class="list" id="mytable">
         <tr>
             <th><div class="js-pagination"><?php echo $paginator->sort(__l('Date'), 'created');?></div></th>
-            <th class="dl"><div class="js-pagination"><?php echo $paginator->sort(__l('Description'),'transaction_type_id');?></div></th>
-            <th class="dr"><div class="js-pagination"><?php echo $paginator->sort(__l('Credit'), 'amount').' ('.Configure::read('site.currency').')';?></div></th>
-            <th class="dr"><div class="js-pagination"><?php echo $paginator->sort(__l('Debit'), 'amount').' ('.Configure::read('site.currency').')';?></div></th>
+            <th><div class="js-pagination"><?php echo $paginator->sort(__l('Description'),'transaction_type_id');?></div></th>
+            <th><div class="js-pagination"><?php echo $paginator->sort(__l('Credit'), 'amount').' ('.Configure::read('site.currency').')';?></div></th>
+            <th><div class="js-pagination"><?php echo $paginator->sort(__l('Debit'), 'amount').' ('.Configure::read('site.currency').')';?></div></th>
         </tr>
     <?php
 		if (!empty($transactions)):
@@ -50,12 +51,14 @@
 			$j = 1;
 			foreach ($transactions as $transaction):
 				$class = null;
+				$tdclass = ' class="specalt"';
 				if ($i++ % 2 == 0) {
 					$class = ' class="altrow"';
+					$tdclass = ' class="spec"';
 				}
 	?>
-        <tr<?php echo $class;?>>
-            <td><?php echo $html->cDateTime($transaction['Transaction']['created']);?></td>
+        <tr<?php echo $tdclass;?>>
+            <td<?php echo $tdclass;$tdclass='';?>><?php echo $html->cDateTime($transaction['Transaction']['created']);?></td>
             <td class="dl">
 				<?php if(!empty($transaction['Transaction']['description'])):?>
 					<?php echo $html->cText($transaction['Transaction']['description']); ?>					

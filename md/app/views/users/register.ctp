@@ -218,6 +218,3 @@
 	<script type="text/javascript" id="__openidselector" src="https://www.idselector.com/widget/button/1"></script>
 <?php endif; ?>
 <div style="height:10px;"></div>
-<!--[if IE]>
-<div style="height : 3px;">&nbsp;</div>
-<![endif]-->

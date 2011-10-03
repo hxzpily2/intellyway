@@ -1,6 +1,7 @@
 <?php /* SVN: $Id: authorize_net.ctp 8007 2010-06-12 12:09:11Z shankari_062at09 $ */ ?>
 <div class="UserPaymentProfile  form clearfix">
-	<h2><?php echo __l('Add New Credit Card'); ?></h2>
+	<h2 class="legend"><?php echo __l('Add New Credit Card'); ?></h2>
+	<br/>
 	<?php echo $form->create('UserPaymentProfile', array('action' => 'add', 'class' => 'normal user-payment-form js-ajax-form')); ?>
 	<div class="clearfix">
 	<div class="billing-left">
@@ -35,7 +36,9 @@
 	</div>
 	</div>
 	<div class="submit-block clearfix">
-		<?php echo $form->submit(__l('Add')); ?>
+		<a class="blue_button" href="#" onclick="javascript:$('#UserPaymentProfileAddForm').submit()"><span><?php echo __l('Add'); ?></span></a>
+		<!--<?php echo $form->submit(__l('Add')); ?>-->
 	</div>
 	<?php echo $form->end();?>
 </div>
+<div style="height : 10px;">&nbsp;</div>

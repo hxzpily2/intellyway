@@ -3,6 +3,7 @@
     <div class="main-content-block js-corner round-5">
 		<h2><?php echo __l('My Friends');?></h2>
         <p class="add-block people-information"><?php echo $html->link(sprintf(__l('Find people you know on %s'), Configure::read('site.name')), array('controller' => 'user_friends', 'action' => 'import'), array('class' => 'add people-find js-people-find', 'title' => sprintf(__l('Find people you know on %s'), Configure::read('site.name'))));?></p>
+        <br/>
      		<div class="js-tabs">
 			<ul class="clearfix">
 				<li class="received"><?php echo $html->link(__l('Received Friends Requests'), '#received-request'); ?></li>
@@ -11,6 +12,7 @@
 			<div id="received-request">
 	            <div class="friend-lst-block">
 					<div class="js-tabs">
+						<br/>
 						<ul class="clearfix">
 							<li class="accepted"><?php echo $html->link(__l('Accepted'), '#received-accepted'); ?></li>
 							<li class="pending"><?php echo $html->link(__l('Pending'), '#received-pending'); ?></li>
@@ -37,6 +39,7 @@
 			<div id="sent-request">
 				<div class="friend-lst-block">
 					<div class="js-tabs">
+						<br/>
 						<ul class="clearfix">
 							<li class="accepted"><?php echo $html->link(__l('Accepted'), '#sent-accepted'); ?></li>
                             <li class="pending"><?php echo $html->link(__l('Pending'), '#sent-pending'); ?></li>

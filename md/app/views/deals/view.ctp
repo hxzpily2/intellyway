@@ -4,29 +4,77 @@ $javascript->link('libs/divs', false);
 <?php /* SVN: $Id: view.ctp 44785 2011-02-19 10:54:51Z aravindan_111act10 $ */ ?>
 <?php if($this->params['action'] !='index'):
 	if($html->isAllowed($auth->user('user_type_id')) and   $deal['Deal']['deal_status_id'] != ConstDealStatus::Open && $deal['Deal']['deal_status_id'] != ConstDealStatus::Tipped && $deal['Deal']['deal_status_id'] != ConstDealStatus::Draft && $deal['Deal']['deal_status_id'] != ConstDealStatus::PendingApproval  && $deal['Deal']['deal_status_id'] != ConstDealStatus::Upcoming ):?>
-		<div id="missed_deal_announcement" class="announcement">
-			  <p id="txt_missed_groupon">
+		<div id="missed_deal_announcement" style="display: none;">
+			  <!-- <p id="txt_missed_groupon">
 				<?php echo __l('Oh no... You\'re too late for this ').' '.Configure::read('site.name').'!';?>
-			  </p>
-			  <div class="announcement_inner clearfix">
-				<div class="left">
-				  <p>
-					<?php echo __l('Sign up for our daily email so you never miss another').' '.Configure::read('site.name').'!';?>
-				  </p>
-				</div>
-				<div class="right">
-				  <?php echo $this->element('../subscriptions/add', array('cache' => array('time' => Configure::read('site.element_cache'))));?>
-				</div>
-			  </div>
+				
+			  </p> -->	
+			  	<div id="md_too_late">&nbsp;</div>				  		  
+			  	<table cellpadding="0" cellspacing="0" border="0" width="100%">
+					<tr height="20">
+						<td id="md_deal_price_top_left" width="17">&nbsp;</td>
+						<td id="md_deal_price_top" >&nbsp;</td>
+						<td id="md_deal_price_top_right" width="18">&nbsp;</td>
+					</tr>
+					<tr height="100">
+						<td id="md_deal_price_left" width="17">&nbsp;</td>
+						<td id="md_deal_price_texture" >
+							<div id="blockui_close" onclick="javascript:$.unblockUI();">&nbsp;</div>
+							<h3 class="bought">
+								<?php echo __l('Oh no... You\'re too late for this ').' '.Configure::read('site.name').'!';?>
+							</h3>							
+							<p class="blocksignup">							
+							<?php echo __l('Sign up for our daily email so you never miss another').' '.Configure::read('site.name').'!';?>
+							</p>
+							<div class="right">
+			 				<?php echo $this->element('../subscriptions/add', array('cache' => array('time' => Configure::read('site.element_cache'))));?>
+			 				</div>												
+						</td>
+						<td id="md_deal_price_right" width="18">&nbsp;</td>
+					</tr>
+					<tr height="20">
+						<td id="md_deal_price_bottom_left" width="17">&nbsp;</td>
+						<td id="md_deal_price_bottom">&nbsp;</td>
+						<td id="md_deal_price_bottom_right" width="18">&nbsp;</td>
+					</tr>
+				</table>			  
 	 </div>
+	 <script type="text/javascript">
+	 	$(window).load(function() {
+		 	$.blockUI({ 
+			 	centerX: false, 
+		 	    centerY: false,
+			 	css: {      
+						margin : 'auto',
+		            	width: '500px',
+			            height: 'auto',
+			            cursor: 'null',
+			            border: 'none',
+			            textalign: 'center',
+			            backgroundColor: 'auto', 
+			    }, 
+		 	    message: $('#missed_deal_announcement')
+		 	 });
+		});
+	 	
+	 </script>
 	<?php endif; ?>
 <?php endif; ?>	
 	<div id="deal_friends">
 		<div style="display:inline;"><?php echo $html->image('deal_friends_'.Configure::read('lang_code').'.png'); ?></div>
 		<div style="display:inline;width:10px;">&nbsp;</div>	
-		<div style="display:inline;"><?php echo $html->image('mail_icon.png'); ?></div>
-		<div style="display:inline;"><?php echo $html->image('facebook_icon.png'); ?></div>
-		<div style="display:inline;"><?php echo $html->image('twitter_icon.png'); ?></div>
+		<div style="display:inline;" id="sharemail">
+			<a target="blank" title="<?php echo __l('Send a mail to friend about this deal'); ?>" href="<?php echo 'mailto:?body='.__l('Check out the great deal on ').Configure::read('site.name').' - '.Router::url('/', true).'deal/'.$deal['Deal']['slug'].'&amp;subject='.__l('I think you should get ').Configure::read('site.name').__l(': ').$deal['Deal']['discount_percentage'].__l('% off at ').$deal['Company']['name']; ?>"><?php echo $html->image('mail_icon.png'); ?></a>			
+		</div>
+		<div style="display:inline;" id="share">			
+			<fb:share-button class="meta">
+				<meta name="title" content="HyperArts"/>			
+				<meta name="description" content="Read the Static FBML Bible and Rejoice!"/>			
+				<link rel="image_src" href="http://www.hyperarts.com/facebook/static-fbml-bible/_img/share-popup_80x80.gif"/>			
+				<link rel="target_url" href="http://www.facebook.com/StaticFBMLBible"/>			
+			</fb:share-button>
+		</div>
+		<!-- <div style="display:inline;"><?php echo $html->image('twitter_icon.png'); ?></div> -->
 		<div style="display:inline;width:10px;">&nbsp;</div>
 	</div>
     <div class="deal-view-inner-block clearfix">
@@ -241,7 +289,7 @@ $javascript->link('libs/divs', false);
       			<div id="md_price_value">
       				<p class="price"><?php echo $html->siteCurrencyFormat($html->cCurrency($deal['Deal']['discounted_price']));?></p>
       				<p class="oldprice">
-      				<?php $old_price = $deal['Deal']['discounted_price'] - $deal['Deal']['savings']; ?>
+      				<?php $old_price = $deal['Deal']['discounted_price'] + $deal['Deal']['savings']; ?>
       					<?php echo $html->siteCurrencyFormat($html->cCurrency($old_price));?>
       					<span id="price_barre">&nbsp;</span>
       				</p>
@@ -254,11 +302,11 @@ $javascript->link('libs/divs', false);
 								 echo $html->link($html->image('button_buy_'.Configure::read('lang_code').'.png',array('title' => __l('Buy Now'))), array('controller'=>'deals','action'=>'buy',$deal['Deal']['id']), array('escape' => false,'class'=>''));								 
 							elseif($html->isAllowed($auth->user('user_type_id')) && $deal['Deal']['deal_status_id'] == ConstDealStatus::Upcoming):
 							?>
-								<span class="no-available" title="<?php echo __l('Upcoming');?>"><?php echo __l('Upcoming');?></span>
+								<?php echo $html->image('button_buy_'.Configure::read('lang_code').'.png'); ?>
 							<?php
 								else:
 							?>
-								<span class="no-available" title="<?php echo __l('No Longer Available');?>"><?php echo __l('No Longer Available');?></span>
+								<?php echo $html->image('button_buy_'.Configure::read('lang_code').'.png'); ?>
 							<?php
 							endif;
 						endif;
@@ -277,6 +325,10 @@ $javascript->link('libs/divs', false);
 			<?php }else{ ?>
 				<div id="md_unlimited_<?php echo Configure::read('lang_code'); ?>">&nbsp;</div>
 			<?php } ?>
+			<?php elseif ($deal['Deal']['deal_status_id'] == ConstDealStatus::Upcoming) :?>
+				<div id="md_bientot_<?php echo Configure::read('lang_code'); ?>">&nbsp;</div>
+			<?php else :?>	
+				<div id="md_indisponible_<?php echo Configure::read('lang_code'); ?>">&nbsp;</div>
   			<?php endif; ?>
       			
       		<div id="md_price_sep_counter" class="md_price_sep">&nbsp;</div>
@@ -355,29 +407,53 @@ $javascript->link('libs/divs', false);
 								<span class="sidebar_h4"><?php echo $html->link($side_deal['Deal']['name'], array('controller' => 'deals', 'action' => 'view', $side_deal['Deal']['slug']),array('title' =>sprintf(__l('%s'),$side_deal['Deal']['name'])));?></span>
 								<div style="height: 5px;">&nbsp;</div>
 								<div style="position: relative;">
-									<div class="deal1-value-<?php echo (($i%2==0)?"pair":"impair"); ?>">
-										<div>											
-											<span><?php echo $html->image('deal_on.png',array('style'=>'width:13px;')); ?></span>																					
+									<!-- <div class="deal1-value-<?php echo (($i%2==0)?"pair":"impair"); ?>">
+										<div>
+											
+											<?php if($side_deal['Deal']['deal_status_id'] == ConstDealStatus::Tipped): ?>											
+											<span><?php echo $html->image('deal_on.png',array('style'=>'width:13px;')); ?></span>
+											<?php endif; ?>																					
+											<?php if($side_deal['Deal']['deal_status_id'] == ConstDealStatus::Open): ?>											
+											<span><?php echo $html->image('deal_open.png',array('style'=>'')); ?></span>
+											<?php endif; ?>
 											<span style="color: #ffe7eb;text-shadow: black 0.1em 0.1em 0.2em;text-decoration: none;">
-												<?php echo $html->cInt($deal['Deal']['deal_user_count']);?>
+												<?php echo $html->cInt($side_deal['Deal']['deal_user_count']);?>
 												<?php echo __l('Bought');?>
 											</span>																					
 										</div>
 										<div style="height: 3px;">&nbsp;</div>					                    
 					                    <div>							
-											<?php echo $html->link($html->tag('span', __l('View it'), array('class' => '')), array('controller' => 'deals', 'action' => 'view', $side_deal['Deal']['slug']),array('escape'=>false,'class'=>'pink_button')); ?>
+											<?php echo $html->link($html->tag('span', __l('View it'), array('class' => '')), array('controller' => 'deals', 'action' => 'view', $side_deal['Deal']['slug']),array('escape'=>false,'class'=>'blue_button')); ?>
 										</div>
-									</div>
+									</div> -->
 									
-									<div class="deal1-img-<?php echo (($i%2==0)?"pair":"impair"); ?>">
-										<?php echo $html->link($html->showImage('Deal', $side_deal['Attachment'][0], array('dimension' => 'small_big_thumb', 'alt' => sprintf(__l('[Image: %s]'), $html->cText($side_deal['Deal']['name'], false)), 'title' => $html->cText($side_deal['Deal']['name'], false))), array('controller' => 'deals', 'action' => 'view', $side_deal['Deal']['slug']),array('title' =>sprintf(__l('%s'),$side_deal['Deal']['name'])), null, false);?>
+									<div class="deal1-img-<?php echo (($i%2==0)?"pair":"impair"); ?>">										
+										<?php echo $html->link($html->showImage('Deal', $side_deal['Attachment'][0], array('dimension' => 'small_big_thumb','class'=>'img1', 'alt' => sprintf(__l('[Image: %s]'), $html->cText($side_deal['Deal']['name'], false)), 'title' => $html->cText($side_deal['Deal']['name'], false))), array('controller' => 'deals', 'action' => 'view', $side_deal['Deal']['slug']),array('title' =>sprintf(__l('%s'),$side_deal['Deal']['name'])), null, false);?>
+										<div class="sidedeal-example">
+											<div class="sidedeal-example1">
+												<?php echo $html->link($html->tag('span', __l('View it'), array('class' => '')), array('controller' => 'deals', 'action' => 'view', $side_deal['Deal']['slug']),array('escape'=>false,'class'=>'pink_button')); ?>
+											</div>	
+											<div class="sidedeal-example2">	
+												<?php if($side_deal['Deal']['deal_status_id'] == ConstDealStatus::Tipped): ?>											
+												<span><?php echo $html->image('deal_on.png',array('style'=>'width:13px;')); ?></span>
+												<?php endif; ?>																					
+												<?php if($side_deal['Deal']['deal_status_id'] == ConstDealStatus::Open): ?>											
+												<span><?php echo $html->image('deal_open.png',array('style'=>'')); ?></span>
+												<?php endif; ?>
+												<span style="color: #ffe7eb;text-shadow: black 0.1em 0.1em 0.2em;text-decoration: none;">
+													<?php echo $html->cInt($side_deal['Deal']['deal_user_count']);?>
+													<?php echo __l('Bought');?>
+												</span>												
+											</div>								
+										</div>
 									</div>											
 								</div>
-								<br style="line-height: 70px;"/>
+								<br style="line-height: 10px;"/>
 								<?php 
 								if($i!=(count($side_deals)-1)):
 								?>
 								<div class="sidesep">&nbsp;</div>
+								<div style="height: 5px;">&nbsp;</div>
 								<?php 
 								endif;
 								?>								

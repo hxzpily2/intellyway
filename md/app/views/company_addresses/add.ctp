@@ -1,8 +1,9 @@
 <?php /* SVN: $Id: add.ctp 4730 2010-05-14 13:50:53Z mohanraj_109at09 $ */ ?>
 <div class="companyAddresses form clearfix">
 <?php echo $form->create('CompanyAddress', array('class' => 'normal js-ajax-form js-branch-address-map'));?>
-	<fieldset class="form-block round-5">
-	   <legend class="round-5"><?php echo __l('Address'); ?></legend>
+	<h2 class="legend"><?php echo __l('Address'); ?></h2>
+	<!-- <fieldset class="form-block round-5">
+	   <legend class="round-5"><?php echo __l('Address'); ?></legend> -->
 		<?php
 			echo $form->input('address1', array('id'=> 'CompanyAddressBranch'));
 			echo $form->input('address2');
@@ -15,13 +16,15 @@
 			echo $form->input('url', array('label' => __l('URL'), 'info' => __l('eg. http://www.example.com')));
 			echo $form->input('company_id', array('type' => 'hidden'));
 		?>
-	</fieldset>
-	<fieldset class="form-block round-5">
+	<!-- </fieldset> -->
+	<h2 class="legend"><?php echo __l('Locate Yourself on Google Maps'); ?></h2>
+	<!-- <fieldset class="form-block round-5"> -->
 		 <?php
 				echo $form->input('latitude',array('type' => 'hidden','id'=>'latitude'));
 				echo $form->input('longitude',array('type' => 'hidden','id'=>'longitude'));
 		?>
-		<legend class="round-5"><?php echo __l('Locate Yourself on Google Maps'); ?></legend>
+		<!-- <legend class="round-5"><?php echo __l('Locate Yourself on Google Maps'); ?></legend> -->
+			<br/>
 			<div class="show-map">
 				<div id="js-map-container-branch"><?php echo __l('Please update address info to generate location Map'); ?></div>
 			</div>
@@ -30,12 +33,14 @@
 			$map_zoom_level = !empty($this->data['Company']['map_zoom_level']) ? $this->data['Company']['map_zoom_level'] : Configure::read('GoogleMap.static_map_zoom_level');
 			echo $form->input('Company.map_zoom_level',array('type' => 'hidden','value' => $map_zoom_level,'id'=>'zoomlevel'));
 		?>
-	</fieldset>
+	<!-- </fieldset> -->
 	<div class="submit-block clearfix">
-    	<?php echo $form->submit(__l('Add'));?>
-  		<div class="cancel-block">
+		<a class="blue_button" href="#" onclick="javascript:$('#CompanyAddressAddForm').submit()"><span><?php echo __l('Add'); ?></span></a>
+    	<!--<?php echo $form->submit(__l('Add'));?>-->
+    	<?php echo $html->link($html->tag('span', __l('Cancel'), array('class' => '')), array('action'=>'index'),array('escape'=>false,'class'=>'grey_button'));?>
+  		<!-- <div class="cancel-block">
     	   <?php echo $html->link(__l('Cancel'), array('action'=>'index'), array('title' => __l('Cancel'),'class' => 'cancel-button js-inline-edit'));?>
-    	</div>
+    	</div> -->
 	 </div>
 	 <?php echo $form->end();?>
 </div>

@@ -49,13 +49,14 @@
 	else {
 ?>
 <div>
-	<div class="page-info">
+	<div class="info-details">
 		<h3><?php echo __l('Your privacy is our top concern');?></h3>
 		<p>
 			<?php echo sprintf(__l('Your contacts are your private information. Only you have access to your contacts, and %s will not send them any email. For more information please see the %'), Configure::read('site.name'), Configure::read('site.name'));?>
 			<span><?php echo $html->link(__l('Privacy Policy'), array('controller' => 'page', 'action' => 'privacy_policy'), array('target' => '_blank', 'class'=>'js-contact-thickbox'));?></span>
 		</p>
 	</div>
+	<div style="height: 10px;">&nbsp;</div>
 	<div class="js-tabs">
     	<ul class="clearfix">
 			<li class="msn"><?php echo $html->link(__l('CSV Import'), '#csv-import'); ?></li>
@@ -74,9 +75,10 @@
 			echo $form->hidden('domain', array('value' => 'yahoo','id'=>'yahoodomain'));
                 ?>
               <div class="submit-block clearfix">
-                    <?php
+              		<a class="blue_button" href="#" onclick="javascript:$('#yahoo-form').submit()"><span><?php echo __l('Update'); ?></span></a>
+                    <!--<?php
                     	echo $form->submit(__l('Go'));
-                    ?>
+                    ?>-->
                     </div>
                 <?php
                 	echo $form->end();
@@ -94,9 +96,10 @@
 				echo $form->hidden('domain', array('value' => 'gmail','id'=>'gmaildomain'));
 			     ?>
               <div class="submit-block clearfix">
-                    <?php
+              		<a class="blue_button" href="#" onclick="javascript:$('#gmail-form').submit()"><span><?php echo __l('Update'); ?></span></a>
+                    <!--<?php
                     	echo $form->submit(__l('Go'));
-                    ?>
+                    ?>-->
                     </div>
                 <?php
                 	echo $form->end();
@@ -114,9 +117,10 @@
 				echo $form->hidden('domain', array('value' => 'msn','id'=>'msndomain'));
 			     ?>
               <div class="submit-block clearfix">
-                    <?php
+              		<a class="blue_button" href="#" onclick="javascript:$('#msn-form').submit()"><span><?php echo __l('Update'); ?></span></a>
+                    <!--<?php
                     	echo $form->submit(__l('Go'));
-                    ?>
+                    ?>-->
                     </div>
                 <?php
                 	echo $form->end();
@@ -134,9 +138,10 @@
 				<?php echo $form->input('Attachment.filename', array('type' => 'file', 'label' =>__l('Upload Friends'),'class' =>'browse-field','accept'=>"text/csv,text/plain")); ?>
 			</div>
              <div class="submit-block clearfix">
-                <?php
+             	<a class="blue_button" href="#" onclick="javascript:$('#csv-form').submit()"><span><?php echo __l('Update'); ?></span></a>
+                <!--<?php
                 	echo $form->submit(__l('Go'));
-                ?>
+                ?>-->
                 </div>
             <?php
             	echo $form->end();

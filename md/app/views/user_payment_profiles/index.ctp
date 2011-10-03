@@ -6,6 +6,7 @@
 	endif;
 ?>
     <h2><?php echo __l('Credit Cards');?></h2>
+    <br/>
 	<div class="clearfix add-block1">
 		<?php echo $html->link(__l('Add'), array('controller' => 'user_payment_profiles', 'action' => 'add'), array('class' => "js-toggle-show add {'container':'js-credit-card-form'}", 'title' => __l('Add'))); ?>
 	</div>
@@ -13,7 +14,7 @@
 		<?php echo $this->element('user_payment_profiles-add', array('cache' => array('time' => Configure::read('site.element_cache')), 'plugin' => 'site_tracker')); ?>
 	</div>
 	<?php echo $this->element('paging_counter');?>
-	<table class="list">
+	<table class="list" id="mytable">
 		<tr>
 			<th class="dl"><?php echo __l('Credit Card');?></th>
 			<th class="dc"><?php echo __l('Default');?></th>
@@ -23,11 +24,13 @@
 			$i = 0;
 			foreach ($userPaymentProfiles as $userPaymentProfile):
 				$class = null;
+				$tdclass = ' class="specalt"';
 				if ($i++ % 2 == 0) {
 					$class = ' class="altrow"';
+					$tdclass = ' class="spec"';
 				}
 	?>
-		<tr<?php echo $class;?>>
+		<tr<?php echo $tdclass;?>>
 			<td class="actions dl">
 				<div class="actions-block">
 					<div class="actions round-5-left">
@@ -61,3 +64,4 @@
 		}
 	?>
 </div>
+<div style="height : 12px;">&nbsp;</div>
