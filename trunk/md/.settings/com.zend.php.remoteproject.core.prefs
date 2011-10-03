@@ -1,7 +1,7 @@
-#Thu Jul 28 13:32:51 WAT 2011
+#Wed Sep 28 09:51:08 WET 2011
 LaunchURL=http\://server/folder
 Save\ Mode=ON_SAVE
-SelectedHostGUID=c32905a6-0217-47e9-b56c-cf6c76a1377e
-UploadFolder=/www/md
+SelectedHostGUID=ee2c24df-ecd5-44ef-8b33-b803a38fe12e
+UploadFolder=/www
 eclipse.preferences.version=1
 isRemoteProjectEnabled=true
