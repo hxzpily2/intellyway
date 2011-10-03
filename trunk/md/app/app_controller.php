@@ -542,7 +542,7 @@ class AppController extends Controller
                         $this->redirect(Router::url('/', true) . $this->params['url']['url']);
                     }
                 }
-                $this->Session->setFlash(__l('Authorization Required'));
+                $this->Session->setFlash(__l('Authorization Required'), 'default', array('lib' => __l('Warning')));
                 $is_admin = false;
                 if (isset($this->params['prefix']) and $this->params['prefix'] == 'admin') {
                     $is_admin = true;
