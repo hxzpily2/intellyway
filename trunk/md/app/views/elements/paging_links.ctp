@@ -16,7 +16,7 @@ echo $paginator->prev('&laquo; ' . __l('Prev') , array(
     'class' => 'prev'
 )), "\n";
 echo $paginator->numbers(array(
-    'modulus' => 2,
+    'modulus' => 1,
     'skip' => '<span class="skip">&hellip;.</span>',
     'separator' => " \n",
     'before' => null,

@@ -10,9 +10,9 @@
 	<?php			
 			foreach($userPreferenceCategories as $userPreferenceCategory):
 	?>
-	<fieldset class="form-block round-5">
-			<legend class="round-5"><?php echo $html->cText($userPreferenceCategory['UserPreferenceCategory']['name']); ?></legend>				
-				<h3><?php echo $html->cText($userPreferenceCategory['UserPreferenceCategory']['description']); ?></h3>
+	<!-- <fieldset class="form-block round-5">
+			<legend class="round-5"><?php echo $html->cText($userPreferenceCategory['UserPreferenceCategory']['name']); ?></legend> -->								
+				<h2 class="legend"><?php echo $html->cText($userPreferenceCategory['UserPreferenceCategory']['description']); ?></h3>
 	<?php
 				
 				foreach ($this->data['UserPermissionPreference'] as $key => $val):
@@ -37,14 +37,15 @@
 					endif;
 				endforeach;
 	?>
-    </fieldset>
+    <!-- </fieldset> -->
     <?php
 			endforeach;
 			?>
 	  <div class="submit-block clearfix">
-                    <?php
+	  		<a class="blue_button" href="#" onclick="javascript:$('#UserPermissionPreferenceEditForm').submit()"><span><?php echo __l('Add'); ?></span></a>		
+                    <!--<?php
                     	echo $form->submit(__l('Update'));
-                    ?>
+                    ?>-->
                     </div>
                 <?php
                 	echo $form->end();
@@ -52,3 +53,4 @@
 	
 	</div>
 </div>
+<div style="height : 4px;">&nbsp;</div>

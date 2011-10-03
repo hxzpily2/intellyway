@@ -31,7 +31,7 @@
 		echo $html->meta('icon'), "\n";
 		echo $html->meta('keywords', $meta_for_layout['keywords']), "\n";
 		echo $html->meta('description', $meta_for_layout['description']), "\n";
-		require_once('_head.inc.ctp');
+		require_once('_head_admin.inc.ctp');
 		echo $asset->scripts_for_layout();
 	?>
 </head>

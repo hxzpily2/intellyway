@@ -37,13 +37,23 @@
 </head>
 <body>
     <div id="<?php echo $html->getUniquePageId();?>" class="content">
-      <div id="header">
+      <div id="bg_menu_mobile">
+        		<table width="100%" height="100%" cellpadding="0" cellspacing="0" border="0">
+        			<tr>
+        				<td width="53" class="td_menu_bg_mobile_left">&nbsp;</td>
+        				<td class="td_menu_bg_mobile_middle">&nbsp;</td>
+        				<td width="53" class="td_menu_bg_mobile_right">&nbsp;</td>
+        			</tr>
+        		</table>
+        	</div>
+      <div id="header">         
          <h1>
-				<?php
-					echo $html->link($html->Image('mobile/logo-blue.png', array('alt' => sprintf(__l('[Image: %s]'), Configure::read('site.name')), 'title' => Configure::read('site.name'), 'type' => 'png')), array('controller' => 'deals', 'action' => 'index', 'admin' => false), array('escape' => false));
-				?>
-			</h1>
-        <div class="clearfix">
+			<?php
+				echo $html->link($html->Image('mobile/logo-blue.png', array('alt' => sprintf(__l('[Image: %s]'), Configure::read('site.name')), 'title' => Configure::read('site.name'), 'type' => 'png')), array('controller' => 'deals', 'action' => 'index', 'admin' => false), array('escape' => false));
+			?>
+		</h1>        
+                  
+        <div class="clearfix" style="height: 110px;position: relative;z-index: 1000;">        	
 		<?php if(!empty($city_name)): ?>
 			<div class="header-bot-l">
 				<h3><?php echo __l('Daily Deals on the Best in'); ?>
@@ -93,7 +103,7 @@
                     <li <?php if($this->params['controller'] == 'deals' && $this->params['action'] == 'index' && !isset($this->params['named']['type']) && !isset($this->params['named']['company'])) { echo 'class="active"'; } ?>><?php echo $html->link(__l('Today\'s Deals'), array('controller' => 'deals', 'action' => 'index', 'admin' => false), array('title' => __l('Today\'s Deals')));?></li>
                     <li <?php if($this->params['controller'] == 'deals' && (isset($this->params['named']['type']) && $this->params['named']['type'] == 'recent')) { echo 'class="active"'; } else { echo 'class=""';}?>><?php echo $html->link(__l('Recent Deals'), array('controller' => 'deals', 'action' => 'index', 'admin' => false,'type' => 'recent'), array('title' => __l('Recent Deals')));?></li>
                <?php endif; ?>
-				<li <?php if($this->params['controller'] == 'topics' && $this->params['action'] == 'index') { echo 'class="active"'; } else { echo 'class=""';}?>><?php echo $html->link(__l('Discussion'), array('controller' => 'topics', 'action' => 'index'), array('title' => __l('Discussion')));?></li>
+				<!-- <li <?php if($this->params['controller'] == 'topics' && $this->params['action'] == 'index') { echo 'class="active"'; } else { echo 'class=""';}?>><?php echo $html->link(__l('Discussion'), array('controller' => 'topics', 'action' => 'index'), array('title' => __l('Discussion')));?></li> -->
 				
 				<li <?php if($this->params['controller'] == 'pages' && $this->params['action'] == 'view'  && $this->params['pass'][0] == 'learn') { echo 'class="active"'; } ?>><?php echo $html->link(sprintf(__l('How')." ".'%s'." " .__l('Works'), Configure::read('site.name')), array('controller' => 'pages', 'action' => 'view', 'learn'), array('title' => sprintf(__l('How')." ".'%s'." ".__l(' Works'), Configure::read('site.name'))));?></li>
 
@@ -214,6 +224,15 @@
 			<?php echo $content_for_layout;?>
 	  </div>
  		<div id="footer">
+ 			<div id="bg_footer_mobile">
+        		<table width="100%" height="100%" cellpadding="0" cellspacing="0" border="0">
+        			<tr>
+        				<td width="53" class="td_footer_bg_mobile_left">&nbsp;</td>
+        				<td class="td_footer_bg_mobile_middle">&nbsp;</td>
+        				<td width="53" class="td_footer_bg_mobile_right">&nbsp;</td>
+        			</tr>
+        		</table>
+        	</div>
 			<div id="agriya" class="clearfix">
 				<p>&copy;<?php echo date('Y');?>
                 <?php echo $html->link(Configure::read('site.name'), Router::url('/', true));?>. <?php echo __l('All rights reserved');?>.
@@ -222,7 +241,7 @@
 			<?php
 			 	$parsed_url = parse_url(Router::url('/', true));
 			 	$mobile_site_url = str_ireplace('m.', '', Router::url('/', true));
-			 	echo $html->link(__l('Regular Version'), $mobile_site_url);
+			 	/*echo $html->link(__l('Regular Version'), $mobile_site_url);*/
 			 ?>
 		</div>
 	</div>

@@ -123,9 +123,9 @@ h1 {
 }
 
 
-/*WARNING BOX*/
+/*warningnt BOX*/
 
-.warning {
+.warningnt {
 	border-top: 1px solid #fefbcd;
 	border-bottom: 1px solid #e6e837;
 	
@@ -135,13 +135,13 @@ h1 {
 	background: -webkit-gradient(linear, left top, left bottom, from(#feffb1), to(#f0f17f));
 }
 
-.warning:before {
+.warningnt:before {
 	content: url(../img/notification/warning.png);
 	float: left;
 	margin: 15px 15px 0px 25px;
 }
 
-.warning strong {
+.warningnt strong {
 	color: #e5ac00;
 	margin-right: 15px;
 }
@@ -173,7 +173,7 @@ h1 {
 
 /*ERROR BOX*/
 
-.error {
+.errornt {
 	border-top: 1px solid #f7d0d0;
 	border-bottom: 1px solid #c87676;
 	
@@ -183,13 +183,13 @@ h1 {
 	background: -webkit-gradient(linear, left top, left bottom, from(#f3c7c7), to(#eea2a2));
 }
 
-.error:before {
+.errornt:before {
 	content: url(../img/notification/error.png);
 	float: left;
 	margin: 20px 15px 0px 15px;
 }
 
-.error strong {
+.errornt strong {
 	color: #b31616;
 	margin-right: 15px;
 }

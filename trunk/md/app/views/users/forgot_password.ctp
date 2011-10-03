@@ -20,6 +20,3 @@
 ?>
 </div>
 <div style="height:4px;"></div>
-<!--[if IE]>
-<div style="height : 3px;">&nbsp;</div>
-<![endif]-->

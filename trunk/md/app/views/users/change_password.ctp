@@ -1,5 +1,5 @@
 <div class="js-password-responses">
-<h2><?php echo __l('Change Password'); ?></h2>
+<h2 class="legend"><?php echo __l('Change Password'); ?></h2>
 <div class="js-response js-responses">
 <?php echo $form->create('User', array('action' => 'change_password' ,'class' => 'normal js-ajax-form {"container" : "js-password-responses"}')); ?>
 <?//php echo $form->input('r', array('type' => 'hidden', 'value' => $this->params['url']['url'])); ?>
@@ -15,12 +15,15 @@
 		echo $form->input('confirm_password', array('type' => 'password', 'label' => __l('Confirm Password')));
     ?>
     <div class="submit-block clearfix">
+    	<a class="blue_button" href="#" onclick="javascript:$('#UserChangePasswordForm').submit()"><span><?php echo __l('Change Password'); ?></span></a>
+    	<!-- 
         <?php
         	echo $form->submit(__l('Change Password'));
-        ?>
+        ?>-->
     </div>
         <?php
         	echo $form->end();
         ?>
     </div>
 </div>
+<div style="height : 7px;">&nbsp;</div>

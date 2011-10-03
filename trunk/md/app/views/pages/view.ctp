@@ -62,6 +62,7 @@ if($this->params['pass'][0]=='home'){ ?>
 <?php } else { ?>
 
 	<h2><?php echo $page['Page']['title']; ?></h2>
+	<br/><br/>
 	<?php if(!empty($this->params['named']['type']) && $this->params['named']['type']): ?>
 	    <span><?php echo $html->link(__l('Continue Editing'), array('action' => 'edit', $page['Page']['id']), array('class' => 'edit js-edit', 'title' => __l('Continue Editing')));?></span>
 		<?php endif; ?>

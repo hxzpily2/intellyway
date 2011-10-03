@@ -1,5 +1,7 @@
 <?php /* SVN: $Id: commission_calculator.ctp 44785 2011-02-19 10:54:51Z aravindan_111act10 $ */ ?>
+<br/>
 <h2><?php echo __l('Commission Calculator'); ?></h2>
+<br/>
 <?php
 	if(empty($this->data['Deal']['user_id'])):
 		//echo $form->create('Deal', array('action'=> 'commission_calculator', 'class' => 'normal'));

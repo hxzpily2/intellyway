@@ -121,6 +121,7 @@ class DealsController extends AppController
         );
         //recent and company deals list
         if (!empty($this->params['named']['type']) && $this->params['named']['type'] == 'recent') {
+        	$this->Session->write('MD.Deal.recent', TRUE);
         	if(!empty($this->params['named'][ConstMissdealSpecialType::PARAM])){
         		$conditions['Deal.private_note like'] = "%".$this->params['named'][ConstMissdealSpecialType::PARAM]."%";
         	}
@@ -132,7 +133,7 @@ class DealsController extends AppController
                 ConstDealStatus::Canceled,
                 ConstDealStatus::PaidToCompany
             );
-            $conditions['Deal.end_date <'] = _formatDate('Y-m-d H:i:s', date('Y-m-d H:i:s') , true);
+            //$conditions['Deal.end_date <'] = _formatDate('Y-m-d H:i:s', date('Y-m-d H:i:s') , true);
             $this->pageTitle = __l('Recent Deals');
             if(!empty($this->params['named'][ConstMissdealSpecialType::PARAM])){
             	$this->pageTitle = __l('Voyages');

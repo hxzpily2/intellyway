@@ -40,6 +40,7 @@ TABLE OF CONTENTS
 	padding:0;
 	font-family:Arial, Helvetica, sans-serif;
 	text-shadow: 1px 1px 1px #000;
+	z-index: 0;
 	
 	/* CSS3 Stylings - Creates the double top border */
 	/*-moz-box-shadow: 0px -1px 0px #161616;

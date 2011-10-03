@@ -62,7 +62,8 @@
 		<?php echo $form->end(); ?>
     </div>
 <?php elseif(preg_match('/subscribe/s',$this->params['url']['url']) ): ?>
-<h2><?php echo $city_name ;?> <?php echo __l('Deal of the Day'); ?></h2>
+<div id="subscriptiontitle"><h2><?php echo $city_name ;?> <?php echo __l('Deal of the Day'); ?></h2></div>
+<br/>
     <div class="form subscriptions-add">
 		<?php echo $form->create('Subscription', array('id' => 'homeSubscriptionFrom', 'class' => 'normal'));?>
         	<h2 class="welcome-head"> <?php echo __l('Welcome to').' ';?><span><?php echo Configure::read('site.name'); ?></span></h2>
@@ -72,18 +73,21 @@
 				
 				<div class="subscriptions-content-form round-10 clearfix">
                 <div class="signup-content"><?php echo __l('Sign up now for free, and prepare to discover') . ' ' . $city_name . ' ' . __l('at 40% to 90% off! '); ?></div>
-                <div class="clearfix">
-					<?php echo $form->input('email',array('id' => 'homeEmail', 'label' => __l('Enter your Email address:'))); ?>
-                    <?php echo $form->input('city_id',array('id' => 'homeCityId', 'label' => __l('Choose your city:'), 'options' => $cities)); ?>
-                        <div class="clearfix">
-                	<?php echo $form->submit(__l('Subscribe'));?>
+                <div id="inputsubscribe" class="clearfix">
+					<?php echo $form->input('email',array('id' => 'homeEmail', 'label' => __l('Enter your Email address:'))); ?>                    
+					<?php echo $form->input('city_id',array('id' => 'homeCityId', 'label' => __l('Choose your city:'), 'options' => $cities)); ?>
+                        <div class="clearfix">                        
+                	<!--<?php echo $form->submit(__l('Subscribe'));?>-->
                     </div>
 				</div>
 				<p class="subcription-info"><?php echo __l('(We\'ll never share your e-mail address) '); ?></p>
+				<div style="padding-top: 20px;">
+                        <a class="yellow_button" href="#" onclick="javascript:$('form').submit()"><span><?php echo __l('Subscribe'); ?></span></a>
+                </div>				
 				</div>
 
 				<?php echo $form->end(); ?>
-					<div class="subscriptions-content subscriptions-offer-info">
+					<div class="subscriptions-content2">
                 <?php echo __l('Our daily offers are for:'); ?>
                 <?php echo __l('Restaurants, Spas, Concerts, Bars, Sporting Events, Classes, Salons,Adventures and so much more... '); ?>
                 </div>

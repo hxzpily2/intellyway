@@ -15,8 +15,9 @@
 			<h2><?php echo sprintf(__l('Edit Profile - %s'), $this->data['User']['username']); ?></h2>
 			<div class="form-blocks  js-corner round-5">
 				<?php echo $form->create('UserProfile', array('action' => 'edit', 'class' => 'normal js-ajax-form', 'enctype' => 'multipart/form-data'));?>
-					<fieldset class="form-block round-5">
-						<legend class="round-5"><?php echo __l('Personal'); ?></legend> 
+					<h2 class="legend"><?php echo __l('Personal'); ?></h2>
+					<!-- <fieldset class="form-block round-5">
+						<legend class="round-5"><?php echo __l('Personal'); ?></legend> --> 
 						<div class="profile-image">
 							<?php 
 								$user_details = array(
@@ -59,21 +60,22 @@
 								endif;	
 							?>		
 						<?php echo $form->input('about_me', array('label' => __l('About Me'))); ?>
-						<?php echo $form->input('user_education_id', array('empty' => 'Please Select','label' => __l('Education'))); ?>
-						<?php echo $form->input('user_employment_id', array('empty' =>'Please Select','label' => __l('Employment Status'))); ?>
-						<?php echo $form->input('user_incomerange_id', array('empty' =>'Please Select','label' => __l('Income range '), $currecncy_place => Configure::read('site.currency'))); ?>
+						<?php echo $form->hidden('user_education_id', array('empty' => 'Please Select','label' => __l('Education'))); ?>
+						<?php echo $form->hidden('user_employment_id', array('empty' =>'Please Select','label' => __l('Employment Status'))); ?>
+						<?php echo $form->hidden('user_incomerange_id', array('empty' =>'Please Select','label' => __l('Income range '), $currecncy_place => Configure::read('site.currency'))); ?>
 						<?php
                          $options = array('1' => 'Yes', '0' => 'No');
-                         echo $form->input('own_home', array('options' => $options, 'type' => 'radio', 'legend' => false, 'before' => '<span class="label-content label-content-radio">Own home?</span>'));
+                         echo $form->hidden('own_home', array('options' => $options, 'type' => 'radio', 'legend' => false, 'before' => '<span class="label-content label-content-radio">Own home?</span>'));
                         ?>
-						<?php echo $form->input('user_relationship_id', array('empty' => 'Please Select','label' => __l('Relationship status'))); ?>
+						<?php echo $form->hidden('user_relationship_id', array('empty' => 'Please Select','label' => __l('Relationship status'))); ?>
 						<?php
                            $options=array('1'=>'Yes','0'=>'No');
-                           echo $form->input('have_children', array('options' => $options, 'type' => 'radio', 'legend' => false, 'before' => '<span class="label-content label-content-radio">Have Children?</span>'));
+                           echo $form->hidden('have_children', array('options' => $options, 'type' => 'radio', 'legend' => false, 'before' => '<span class="label-content label-content-radio">Have Children?</span>'));
                         ?>
-					</fieldset>
-					<fieldset class="form-block round-5">
-						<legend class="round-5"><?php echo __l('Address'); ?></legend> 
+					<!-- </fieldset> -->
+					<h2 class="legend"><?php echo __l('Address'); ?></h2>
+					<!-- <fieldset class="form-block round-5">
+						<legend class="round-5"><?php echo __l('Address'); ?></legend> --> 
 						<?php
 							echo $form->input('address',array('label' => __l('Address')));
 							echo $form->input('country_id', array('empty' => __l('Please Select'),'label' => __l('Country')));
@@ -81,15 +83,17 @@
 							echo $form->autocomplete('City.name', array('label' => __l('City'), 'acFieldKey' => 'City.id', 'acFields' => array('City.name'), 'acSearchFieldNames' => array('City.name'), 'maxlength' => '255'));
                             echo $form->input('zip_code',array('label' => __l('Zip Code')));
 						?>
-					</fieldset>
+					<!-- </fieldset> -->
 					<?php if($auth->user('user_type_id') == ConstUserTypes::Admin || Configure::read('user.is_user_can_with_draw_amount')): ?>
-						<fieldset class="form-block round-5">
-							<legend class="round-5"><?php echo __l('Paypal'); ?></legend>
+						<h2 class="legend"><?php echo __l('Paypal'); ?></h2>
+						<!--  <fieldset class="form-block round-5">
+							<legend class="round-5"><?php echo __l('Paypal'); ?></legend>-->
 							<?php echo $form->input('paypal_account', array('label' => __l('PayPal').' '.__l('Account'))); ?>
-						</fieldset>
+						<!-- </fieldset> -->
 					<?php endif; ?>
-					<fieldset class="form-block round-5">
-						<legend class="round-5"><?php echo __l('Other'); ?></legend>
+					<h2 class="legend"><?php echo __l('Other'); ?></h2>
+					<!-- <fieldset class="form-block round-5">
+						<legend class="round-5"><?php echo __l('Other'); ?></legend>-->
 						<?php
 							if($auth->user('user_type_id') == ConstUserTypes::Admin):
 								if($this->data['User']['id'] != ConstUserIds::Admin):
@@ -100,11 +104,14 @@
 							echo $form->input('UserAvatar.filename', array('type' => 'file','size' => '33', 'label' => __l('Upload Photo'),'class' =>'browse-field'));
 							echo $form->input('language_id', array('empty' => __l('Please Select'),'label' => __l('Profile Language'), 'info'=>__l('This will be the default site languge after logged in')));
 						?>
-					</fieldset>
+					<!-- </fieldset> -->
 				  <div class="submit-block clearfix">
-                    <?php
+				  	<a class="blue_button" href="#" onclick="javascript:$('#UserProfileEditForm').submit()"><span><?php echo __l('Update'); ?></span></a>
+                    <!-- 
+					<?php
                     	echo $form->submit(__l('Update'));
                     ?>
+                     -->
                     </div>
                 <?php
                 	echo $form->end();
@@ -114,3 +121,4 @@
 		</div>
 	</div>
 </div>
+<div style="height : 11px;">&nbsp;</div>

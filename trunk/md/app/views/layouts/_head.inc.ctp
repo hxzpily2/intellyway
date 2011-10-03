@@ -9,7 +9,7 @@
 	$html->css('menu', null, null, false);
 	$html->css('footer_md', null, null, false);
 	$html->css('jquery.slider', null, null, false);
-	$html->css('notification', null, null, false);
+	$html->css('notification', null, null, false);	
 	
 	if (isset($javascript)):
 		$javascript->codeBlock('var cfg = ' . $javascript->object($js_vars_for_layout) , array('inline' => false));

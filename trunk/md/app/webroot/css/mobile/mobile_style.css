@@ -1,11 +1,18 @@
 /*Author:CSSilize http://www.cssilize.com/
 Date:2010-06-09(c)2010 CSSilize. All rights reserved.*/
+body {
+	background-color: #EDF3F5;
+	background-image: url("../img/texture_09.jpg");
+}
+
 .content {
 	font-family:Tahoma,Arial;
 	font-size:12px;
 	line-height:19px;
-	background:#fff;
+	background:transparent;
 	color: #424242;
+	min-width: 700px;
+	height: 100%;
 }
 /** common elements */
 h1 {
@@ -40,7 +47,7 @@ a {
 }
 /* header style is begin */
 div#header {
-	color:#000;
+	color:#000;	
 }
 div.header-bot-l {
 	float:left;
@@ -56,6 +63,7 @@ div.header-bot-r {
 }
 .menu-right {
 	float:right;
+	padding-top: 5px;
 }
 div.menu-right p.user-login-info a.logout-link {
 	font-size:11px;
@@ -81,9 +89,9 @@ a img:hover {
 	filter:alpha(opacity=40);
 }
 .menu-block {
-	border-top:4px solid #A0CA4E;
-	background:#00B5C8;
-	padding:4px 10px;
+	background: url("../img/mobile/menu_li_bg.png") repeat-x;
+	padding:7px 10px;
+	height: 52px;
 }
 ul.menu {
 	float:left;
@@ -107,7 +115,7 @@ ul.user-menu li a {
 	font-weight:bold;
 }
 ul.menu li a:hover,ul.menu li.active a,ul.user-menu li.active a {
-	color:#4f4f4f;
+	color:#c2e9ff;
 }
 p.user-block {
 	float:right;
@@ -122,6 +130,7 @@ p.user-block a:hover {
 }
 #main {
 	padding:20px 20px 50px 25px;
+	height: 100%
 }
 .side1 {
 	width:50%;
@@ -288,10 +297,9 @@ dl.price-list dd {
 	text-indent:4px;
 	width:26px;
 }
-#footer {
-	border-top:4px solid #A0CA4E;
-	background:#00B5C8;
+#footer {	
 	padding:20px 20px 20px 25px;
+	position: relative;
 }
 #footer p,#footer p a {
 	color:#fff;
@@ -300,7 +308,7 @@ dl.price-list dd {
 	margin:0 0 5px 0;
 }
 #agriya p,#agriya p a,#footer a{
-	color:#fff;
+	color:#bda071;
 }
 #agriya p a:hover,#footer a:hover {
 	color:#000;
@@ -865,4 +873,48 @@ top:24px;
 #js-map {
 	height:225px;
 	width:288px;
+}
+
+#bg_menu_mobile{
+	position: absolute;
+	width: 100%;
+	height: 110px;
+	top: 0;
+	left: 0;
+	z-index: -10;
+	min-width: 700px;
+}
+
+#bg_footer_mobile{
+	position: absolute;
+	width: 100%;
+	height: 110px;
+	top: 0;
+	left: 0;
+	z-index: -10;
+	min-width: 700px;
+}
+
+td.td_menu_bg_mobile_left{
+	background: url("../img/mobile/mobile_menu_l.png") no-repeat;
+}
+
+td.td_menu_bg_mobile_right{
+	background: url("../img/mobile/mobile_menu_r.png") no-repeat;
+}
+
+td.td_menu_bg_mobile_middle{
+	background: url("../img/mobile/mobile_menu_m.png") repeat-x;
+}
+
+td.td_footer_bg_mobile_left{
+	background: url("../img/mobile/mobile_footer_l.png") no-repeat;
+}
+
+td.td_footer_bg_mobile_right{
+	background: url("../img/mobile/mobile_footer_r.png") no-repeat;
+}
+
+td.td_footer_bg_mobile_middle{
+	background: url("../img/mobile/mobile_footer_m.png") repeat-x;
 }

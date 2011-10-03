@@ -6,17 +6,20 @@ if(empty($this->data['CloneAttachment'][0]))
 	echo $form->create('Deal', array('action' => 'add', 'class' => 'normal js-upload-form {is_required:"true"}', 'enctype' => 'multipart/form-data'));
 else
 	echo $form->create('Deal', array('action' => 'add', 'class' => 'normal js-upload-form {is_required:"false"}', 'enctype' => 'multipart/form-data'));	
-?>
-
+?>	
 	<div class="js-validation-part">
-    <h2><?php echo __l('Add Deal');?></h2>
+	<h2><?php echo __l('Add Deal');?></h2>
+    <br/><br/>
 	<?php if($auth->user('user_type_id') == ConstUserTypes::Company):?>
 		<div class="adddeal-img-block"><?php echo $html->image('company-deal-flow.jpg', array('alt'=> __l('[Image: Company Deal Flow]'), 'title' => __l('Company Deal Flow'))); ?></div>
 	<?php else: ?>
 		<div class="adddeal-img-block"> <?php echo $html->image('admin-deal-flow.jpg', array('alt'=> __l('[Image: Administrator Deal Flow]'), 'title' => __l('Administrator Deal Flow'))); ?></div>
 	<?php endif; ?>
-	   <fieldset class="form-block round-5">
-		<legend class="round-5"><?php echo __l('General'); ?></legend>
+	   <br/><br/>	
+	   <h2 class="legend"><?php echo __l('General');?></h2>
+	   <br/><br/>
+	   <!-- <fieldset class="form-block round-5">
+		<legend class="round-5"><?php echo __l('General'); ?></legend> -->
 		<?php
 			echo $form->input('user_id', array('type' => 'hidden'));
 			echo $form->input('clone_deal_id', array('type' => 'hidden'));
@@ -82,9 +85,12 @@ else
 			<?php if(Configure::read('deal.is_side_deal_enabled')): ?>
 					<?php echo $form->input('is_side_deal', array('label'=>__l('Side Deal'), 'info'=>__l('Side deals will be displayed in the side bar of the home page.')));?>
 			<?php endif; ?>
-		  </fieldset>
-		<fieldset class="form-block round-5 js-deal-cities">
-			<legend class="round-5"><?php echo __l('Deal Cities'); ?></legend>
+		  <!-- </fieldset> -->
+		<br/><br/>  
+		<h2 class="legend"><?php echo __l('Deal Cities'); ?></h2> 
+		<br/><br/> 
+		<!-- <fieldset class="form-block round-5 js-deal-cities">
+			<legend class="round-5"><?php echo __l('Deal Cities'); ?></legend> -->
 			<div class="input cities-block required">
             <label><?php echo __l('Cities');?></label>
 			</div>
@@ -106,9 +112,12 @@ else
             	endif;
 			?>
 		
-		</fieldset>  
-		   <fieldset class="form-block round-5">
-			<legend class="round-5"><?php echo __l('Price'); ?></legend>
+		<!-- </fieldset> -->  
+		<br/><br/>
+		<h2 class="legend"><?php echo __l('Price'); ?></h2>
+		<br/><br/>
+		   <!-- <fieldset class="form-block round-5">
+			<legend class="round-5"><?php echo __l('Price'); ?></legend>-->
 				<?php
 					if(Configure::read('site.currency_symbol_place') == 'left'):
 						$currecncy_place = 'before';
@@ -131,12 +140,13 @@ else
 					echo __l('When you want to add as a free deal, just give 100% discount for this deal');
 				 ?>
 			     </div>
-			</fieldset>
+			<!--  </fieldset>-->
 
-
-			
-		   <fieldset class="form-block round-5">
-			<legend class="round-5"><?php echo __l('Commission'); ?></legend>
+		   <br/><br/>
+		   <h2 class="legend"><?php echo __l('Commission'); ?></h2>	
+		   <br/><br/>
+		   <!-- <fieldset class="form-block round-5">
+			<legend class="round-5"><?php echo __l('Commission'); ?></legend>-->
 			 <div class="page-info">
 				<?php
 					echo __l('Total Commission Amount = Bonus Amount + ((Discounted Price * Number of Buyers) * Commission Percentage/100))');
@@ -160,8 +170,11 @@ else
 				echo $form->input('description', array('label' => __l('Description'),'type' =>'textarea', 'class' => ''));
 			?>
 		</div>
-	   <fieldset class="form-block round-5">
-			<legend class="round-5"><?php echo __l('Deal Image'); ?></legend>
+	   <br/><br/>	
+	   <h2 class="legend"><?php echo __l('Deal Image');?></h2>
+	   <br/><br/>
+	   <!-- <fieldset class="form-block round-5">
+			<legend class="round-5"><?php echo __l('Deal Image'); ?></legend>-->
 			<div class="required">
 			<div class="input required gig-img-label">
 					<label><?php echo __l('Deal Images');?></label>
@@ -194,36 +207,48 @@ else
 					</div>
                 <?php }	?>
 			</div>
-		</fieldset>
-	   <fieldset class="form-block round-5">
-        <legend class="round-5"><?php echo __l('Review'); ?></legend>
+		<!-- </fieldset> -->
+	   <br/><br/>	
+	   <h2 class="legend"><?php echo __l('Review');?></h2>
+	   <br/><br/>
+	    <!-- <fieldset class="form-block round-5">
+        <legend class="round-5"><?php echo __l('Review'); ?></legend>-->
 		<?php
 			echo $form->input('review', array('label' => __l('Review'),'type' => 'textarea', 'class' => 'js-editor'));
 		?>
-		</fieldset>
-       <fieldset class="form-block round-5">
-        <legend class="round-5"><?php echo __l('Coupon'); ?></legend>
+		<!-- </fieldset>-->
+	   <br/><br/>	
+	   <h2 class="legend"><?php echo __l('Coupon');?></h2>
+	   <br/><br/>
+       <!-- <fieldset class="form-block round-5">
+        <legend class="round-5"><?php echo __l('Coupon'); ?></legend>-->
 		<?php
 			echo $form->input('coupon_condition', array('label' => __l('Coupon Condition'),'type' =>'textarea', 'class' => 'js-editor'));
 			echo $form->input('coupon_highlights', array('label' => __l('Coupon Highlights'),'type' =>'textarea', 'class' => 'js-editor'));
 			echo $form->input('comment', array('label' => __l('Comment'),'type' =>'textarea', 'class' => 'js-editor'));
 		?>
-		</fieldset>
+		<!-- </fieldset> -->
+	   <br/><br/>	
+	   <h2 class="legend"><?php echo __l('SEO');?></h2>
+	   <br/><br/>
+		<!-- 
        <fieldset class="form-block round-5">
-        <legend class="round-5"><?php echo __l('SEO'); ?></legend>
+        <legend class="round-5"><?php echo __l('SEO'); ?></legend>-->
         <?php
 			echo $form->input('meta_keywords',array('label' => __l('Meta Keywords')));
 			echo $form->input('meta_description',array('label' => __l('Meta Description')));
 	?>
-	</fieldset>
+	<!-- </fieldset> -->
 
 	<div class="submit-block clearfix">
 <?php
 	echo $form->input('is_save_draft', array('type' => 'hidden', 'id' => 'js-save-draft'));
-	echo $form->submit(__l('Add'), array('class' => 'js-update-order-field'));
-	echo $form->submit(__l('Save as Draft'), array('name' => 'data[Deal][save_as_draft]', 'class' => 'js-update-order-field')); ?>
-
+	/*echo $form->submit(__l('Add'), array('class' => 'js-update-order-field'));*/
+	/*echo $form->submit(__l('Save as Draft'), array('name' => 'data[Deal][save_as_draft]', 'class' => 'js-update-order-field'));*/ ?>
+	<div class="blue_button"><input type="submit" value="<?php echo __l('Add'); ?>"/></div>
+	<div class="grey_button"><input type="submit" value="<?php echo __l('Save as Draft'); ?>" name="data[Deal][save_as_draft]"/></div>
    </div>
+   <br/><br/>
     <div class="info-details"><?php echo __l('Save this deal as a draft and view the preview of the deal. You can make changes untill you send it to upcoming status. Use the update button in edit page to send it to upcoming status.'); ?></div>
 <?php echo $form->end();
 ?>

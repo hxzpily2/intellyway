@@ -7,9 +7,9 @@ class DATABASE_CONFIG
         'driver' => 'mysql_ex', // for syntax highlighting and logging of sql. See /app/models/datasources/dbo/dbo_mysql_ex.php
         'persistent' => false,
         'host' => 'localhost', // slave host
-        'login' => 'missdeal_agriya',
-        'password' => '060484253Reda',
-        'database' => 'missdeal_agriya',
+        'login' => 'missdeal_md',
+        'password' => 'Missdeal2011$',
+        'database' => 'missdeal_md',
         'encoding' => 'utf8'
     );
     // Master & slave: http://groups.google.com/group/cake-php/msg/fdff3040db8f9cf6
@@ -17,9 +17,9 @@ class DATABASE_CONFIG
         'driver' => 'mysql_ex',
         'persistent' => false,
         'host' => 'localhost', // master host
-        'login' => 'missdeal_agriya',
-        'password' => '060484253Reda',
-        'database' => 'missdeal_agriya',
+        'login' => 'missdeal_md',
+        'password' => 'Missdeal2011$',
+        'database' => 'missdeal_md',
         'encoding' => 'utf8'
     );
     // <-- localhost
@@ -29,18 +29,18 @@ class DATABASE_CONFIG
         'driver' => 'mysql_ex', // for syntax highlighting and logging of sql. See /app/models/datasources/dbo/dbo_mysql_ex.php
         'persistent' => false,
         'host' => 'localhost', // slave host
-        'login' => 'missdeal_agriya',
-        'password' => '060484253Reda',
-        'database' => 'missdeal_agriya',
+        'login' => 'missdeal_md',
+        'password' => 'Missdeal2011$',
+        'database' => 'missdeal_md',
         'encoding' => 'utf8'
     );
     var $server_master = array(
         'driver' => 'mysql_ex',
         'persistent' => false,
         'host' => 'localhost', // master host
-        'login' => 'missdeal_agriya',
-        'password' => '060484253Reda',
-        'database' => 'missdeal_agriya',
+        'login' => 'missdeal_md',
+        'password' => 'Missdeal2011$',
+        'database' => 'missdeal_md',
         'encoding' => 'utf8'
     );
     // <-- server

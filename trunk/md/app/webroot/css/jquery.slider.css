@@ -201,13 +201,13 @@
     width:600px;
     height:80px;
     background:#000000;
-    background:rgba(0,0,0,0.5);
+    background:url(../img/deal_title.png) repeat-x 0 0;
     color:#FFFFFF;
     padding:10px;
     position:absolute;
   	font-size:15px;
     top:240;
-    left:0px;
+    left:0px;  	
   }
   
   div.slider-deal-example a{

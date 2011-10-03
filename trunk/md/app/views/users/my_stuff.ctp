@@ -1,6 +1,8 @@
 <?php if($auth->user('user_type_id') == ConstUserTypes::Company):?>
    <?php echo $this->element('js_tiny_mce_setting', array('cache' => array('time' => Configure::read('site.element_cache'))));?>
 <?php endif; ?>
+<h2 class="login-title"><?php echo __l('My Stuff'); ?></h2>
+<br/><br/>
 <div class="js-mystuff-tabs">
     <ul class="clearfix">
         <?php if($auth->user('user_type_id') == ConstUserTypes::Company):?>    

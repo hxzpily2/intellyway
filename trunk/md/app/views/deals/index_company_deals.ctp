@@ -1,6 +1,7 @@
 <?php /* SVN: $Id: index_company_deals.ctp 40953 2011-01-11 13:57:21Z ramkumar_136act10 $ */?>
 <?php if(empty($this->params['isAjax'])): ?>
 <h2><?php echo $headings; ?> </h2>
+<br/><br/>
 	<div class="js-tabs">
         <ul class="clearfix">
                 <li><?php echo $html->link(sprintf('Open (%s)',$dealStatusesCount[ConstDealStatus::Open]), array('controller' => 'deals', 'action' => 'index', 'filter_id' => ConstDealStatus::Open, 'company' => $company_slug), array('title' => __l('Open')));?></li>
@@ -31,11 +32,13 @@
 	   <?php echo $form->hidden('type', array('value' => (!empty($this->params['named']['type'])) ? $this->params['named']['type'] :'')); ?>
 	   <?php echo $form->hidden('company_slug', array('value' => $company_slug)); ?>
 	   <div class="submit-block clearfix">
-		<?php
-		echo $form->end(__l('Search')); ?>
+	   	<a class="blue_button" href="#" onclick="javascript:$('#DealAddForm').submit()"><span><?php echo __l('Search'); ?></span></a>
+		<?php		
+		echo $form->end();
+		//echo $form->end(__l('Search')); ?>
 		</div>
     <?php echo $this->element('paging_counter'); ?>
-    <table class="list company-list">
+    <table class="list company-list" id="mytable">
         <tr>
 	   <?php if(!empty($this->params['named']['filter_id']) && ( $this->params['named']['filter_id'] == ConstDealStatus::Upcoming || $this->params['named']['filter_id'] == ConstDealStatus::PendingApproval || $this->params['named']['filter_id'] == ConstDealStatus::Rejected || $this->params['named']['filter_id'] == ConstDealStatus::Canceled || $this->params['named']['filter_id'] == ConstDealStatus::Draft)){?>
             <th class="dl deal-name"><div class="js-pagination"><?php echo $paginator->sort(__l('Deal Name'),'Deal.name') ; ?></div></th>
@@ -49,7 +52,8 @@
 			<?php endif;?>
             <th rowspan="2"><div class="js-pagination"><?php echo $paginator->sort(__l('Original Price'),'Deal.original_price').' ('.Configure::read('site.currency').')'; ?></div></th>
             <th rowspan="2"><div class="js-pagination"><?php echo $paginator->sort(__l('Discounted Price'),'Deal.discounted_price').' ('.Configure::read('site.currency').')'; ?></div></th>
-            <th colspan="2"><?php echo __l('Quantity'); ?></th>
+             <!-- colspan="2" -->
+            <th><?php echo __l('Quantity'); ?></th>
             <th colspan="2"><?php echo __l('Amount').' ('.Configure::read('site.currency').')';?></th>
             <?php if((!empty($this->params['named']['filter_id']) && ($this->params['named']['filter_id'] != ConstDealStatus::Expired)) || !empty($this->params['named']['type']) ){?>
                 <th rowspan="2"><div class="js-pagination"><?php echo $paginator->sort(__l('Commission'),'Deal.commission_percentage').' (%)'; ?></div></th>
@@ -62,20 +66,29 @@
         </tr>
         <tr>
             <th><?php echo __l('Target'); ?></th>
-            <th><?php echo __l('Achieved'); ?></th>
+            <!-- <th><?php echo __l('Achieved'); ?></th> -->
             <th><?php echo __l('Target'); ?></th>
             <th><?php echo __l('Achieved'); ?></th>
         </tr>
     <?php } ?>
     <?php if(!empty($deals)): ?>
+     <?php $i = 0; ?>
       <?php foreach($deals as $deal): ?>
+      <?php 
+      	$tdclass = ' class="specalt"';
+      	$tdclasslib = ' specalt';
+		if ($i++ % 2 == 0) {			
+			$tdclass = ' class="spec"';
+			$tdclasslib = ' spec';
+		}
+      ?>
 	   <?php if(!empty($this->params['named']['filter_id']) && ( $this->params['named']['filter_id'] == ConstDealStatus::Upcoming || $this->params['named']['filter_id'] == ConstDealStatus::PendingApproval || $this->params['named']['filter_id'] == ConstDealStatus::Rejected || $this->params['named']['filter_id'] == ConstDealStatus::Canceled || $this->params['named']['filter_id'] == ConstDealStatus::Draft)){?>
-        <tr>
+        <tr <?php echo $tdclass;?>>
 
-            <td class="dl deal-name">
+            <td class="dl deal-name<?php echo $tdclasslib;?>">
                 <?php if(!empty($this->params['named']['filter_id']) && $this->params['named']['filter_id'] == ConstDealStatus::Draft):?>
                     <div class="actions-block">
-                        <div class="actions round-5-left">
+                        <div class="actions<?php echo $tdclasslib;?> round-5-left">
                             <span><?php echo $html->link(__l('Edit'), array('controller' => 'deals', 'action'=>'edit', $deal['Deal']['id']), array('class' => 'edit js-edit', 'title' => __l('Edit')));?></span>
                             <span><?php echo $html->link(__l('Delete'), array('controller' => 'deals', 'action'=>'delete', $deal['Deal']['id']), array('class' => 'delete js-delete', 'title' => __l('Delete')));?></span>
                             <span><?php echo $html->link(__l('Save and send to admin approval'), array('controller' => 'deals', 'action'=>'update_status', $deal['Deal']['id']), array('class' => 'add js-delete', 'title' => __l('Save and send to admin approval')));?></span>
@@ -83,7 +96,7 @@
                     </div>
 				<?php elseif(!empty($this->params['named']['filter_id']) && ( $this->params['named']['filter_id'] == ConstDealStatus::Upcoming || $this->params['named']['filter_id'] == ConstDealStatus::PendingApproval)):?>
                     <div class="actions-block">
-                        <div class="actions round-5-left">
+                        <div class="actions<?php echo $tdclasslib;?> round-5-left">
 							<span><?php echo $html->link(__l('Clone Deal'),array('controller'=>'deals', 'action'=>'add', 'clone_deal_id'=>$deal['Deal']['id']), array('class' => 'add', 'title' => __l('Clone Deal')));?></span>
                         </div>
                     </div>
@@ -101,10 +114,10 @@
             <td class="dr"><?php echo $html->cCurrency($deal['Deal']['discounted_price']); ?></td>
         </tr>
         <?php } else {?>
-        <tr>
-            <td class="dl deal-name">
+        <tr <?php echo $tdclass;?>>
+            <td class="dl deal-name<?php echo $tdclasslib;?>">
                 <div class="actions-block">
-                    <div class="actions round-5-left cities-action-block">
+                    <div class="actions<?php echo $tdclasslib;?> round-5-left cities-action-block">
 					<?php if(in_array($deal['Deal']['deal_status_id'], array(ConstDealStatus::Tipped,ConstDealStatus::Closed,ConstDealStatus::PaidToCompany))):?>
 						    <span><?php echo $html->link(__l('Coupons CSV'), array('controller' => 'deals', 'action' => 'coupons_export', 'deal_id' =>  $deal['Deal']['id'], 'city' => $city_slug, 'filter_id' => $id, 'ext' => 'csv'), array('class' => 'export', 'title' => __l('Coupons CSV')));?></span>
                             <span> <?php echo $html->link(__l('Print of Coupons'),array('controller' => 'deals', 'action' => 'deals_print', 'filter_id' => $this->params['named']['filter_id'],'page_type' => 'print', 'deal_id' => $deal['Deal']['id'], 'company' => $company_slug),array('title' => __l('Print of Coupons'), 'target' => '_blank', 'class'=>'print-icon'));?></span>
@@ -132,7 +145,7 @@
             <td class="dr"><?php echo $html->cCurrency($deal['Deal']['original_price']); ?></td>
             <td class="dr"><?php echo $html->cCurrency($deal['Deal']['discounted_price']); ?></td>
             <td><?php echo $html->cInt($deal['Deal']['min_limit']); ?></td>
-            <td><?php echo $html->cInt($deal['Deal']['deal_user_count']); ?></td>
+            <!-- <td><?php echo $html->cInt($deal['Deal']['deal_user_count']); ?></td> -->
             <td class="dr"><?php echo $html->cCurrency($deal['Deal']['discounted_price'] * $deal['Deal']['min_limit']); ?></td>
             <td class="dr"><?php echo $html->cCurrency($deal['Deal']['discounted_price'] * $deal['Deal']['deal_user_count']); ?></td>
             <?php if((!empty($this->params['named']['filter_id']) && ($this->params['named']['filter_id'] != ConstDealStatus::Expired)) || !empty($this->params['named']['type']) ){?>

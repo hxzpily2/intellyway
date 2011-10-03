@@ -88,7 +88,8 @@
 		endif;
 	?>
 	</div>
-	<div id="header-content">
+	<!-- <div id="header_bg"></div> -->
+	<div id="header-content">	
 		<!-- RIBBON -->
 		<!--<div id="ribbon_container">		
 		  <?php if(isset($deal)){ ?>
@@ -338,34 +339,40 @@
 			        	<p><strong>Success!</strong> This is a success notification. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla varius eros et risus suscipit vehicula.</p>
 			        </div>
 			    </div>
-			</div> -->
+			</div> -->			
 			<?php  if ($session->check('Message.TransactionSuccessMessage')):?>					
         			<div class="transaction-message info-details ">
 						<?php echo $session->read('Message.TransactionSuccessMessage');
 							$session->del('Message.TransactionSuccessMessage');
 						?>
-					</div>
-        	<?php  endif; ?>
+					</div>					
+        	<?php  endif; ?>        	
 			<?php if ($this->params['controller'] == 'topic_discussions' && ($this->params['action'] == 'index')):?>
 				<?php echo $this->element("../deals/view_compact");?>
-			<?php endif;?>
-			<?php if (!($this->params['controller'] == 'deals' && ($this->params['action'] == 'view' || ($this->params['action'] == 'index' && empty($this->params['named']['company']))))): ?>					
-				<div class="md_inner_block">
-					<div class="md_inner_block1">
-						<div class="layout_top"></div>
-						<div class="layout_middle">
-							<div class="inner_layout_middle">	
+			<?php endif;?>	
+			<?php if($this->params['controller'] == 'subscriptions' && $this->params['action'] == 'add'): ?>
+				<?php $subscribe = TRUE; ?>
+			<?php endif;?>	
+			<?php if($subscribe == FALSE):?>	
+				<?php if (!($this->params['controller'] == 'deals' && ($this->params['action'] == 'view' || ($this->params['action'] == 'index' && empty($this->params['named']['company'])))) || $session->check('MD.Deal.recent')): ?>									
+					<div class="md_inner_block">
+						<div class="md_inner_block1">						
+							<div class="layout_top"></div>
+							<div class="layout_middle">
+								<div class="inner_layout_middle">	
+				<?php endif; ?>
 			<?php endif; ?>
-				<?php echo $content_for_layout;?>
-			<?php if (!($this->params['controller'] == 'deals' && ($this->params['action'] == 'view' || ($this->params['action'] == 'index' && empty($this->params['named']['company']))))): ?>
+				<?php echo $content_for_layout;?>	
+			<?php if($subscribe == FALSE):?>					
+				<?php if (!($this->params['controller'] == 'deals' && ($this->params['action'] == 'view' || ($this->params['action'] == 'index' && empty($this->params['named']['company'])))) || $session->check('MD.Deal.recent')): ?>
+								<?php $session->del('MD.Deal.recent'); ?>
+								</div>														
 							</div>
-							<div style="height : 7px;"></div>							
+							<div class="layout_bottom"></div>
 						</div>
-						<div class="layout_bottom"></div>
-					</div>
-            	</div>
+	            	</div>
+				<?php endif; ?>
 			<?php endif; ?>
-			
 				<?php
 					if ($this->params['controller'] == 'topics' || $this->params['controller'] == 'topic_discussions'):
                     ?>
@@ -400,118 +407,97 @@
                     </div>
                 <?php	endif;
 				?>
-				<?php if ($this->params['controller'] == 'deals' && $this->params['action'] == 'buy'):?>
-				<div class="side2">
-					 <div class="side1-tl">
-                        <div class="side1-tr">
-                          <div class="side1-tm"> </div>
-                        </div>
-                     </div>
-                     <div class="side1-cl">
-                      <div class="side1-cr">
-                         <div class="block1-inner">
-							<?php echo $this->element('deal-faq', array('cache' => array('time' => Configure::read('site.element_cache'))));?>
-                         </div>
-                		</div>
-            			</div>
-                        <div class="side1-bl">
-                            <div class="side1-br">
-                              <div class="side1-bm"> </div>
-                            </div>
-                      </div>
-				</div>
-				<?php endif;?>
+				
 			
-				</div>
-
- <div id="footer" style="display : none;">
-    <div class="footer-tl">
-      <div class="footer-tr">
-        <div class="footer-tm"> </div>
-      </div>
-    </div>
-    <div class="footer-cl">
-      <div class="footer-cr">
-        <div class="footer-inner clearfix">
-          <div class="footer-wrapper-inner clearfix">
-            <div class="footer-section1">
-              <div class="footer-left">
-                <div class="footer-right">
-                 <h6><?php echo __l('Company'); ?></h6>
-                </div>
-              </div>
-              <ul class="footer-nav">
-               	<li><?php echo $html->link(__l('About'), array('controller' => 'pages', 'action' => 'view', 'about', 'admin' => false), array('title' => __l('About')));?> </li>
-				<li><?php echo $html->link(__l('Contact Us'), array('controller' => 'contacts', 'action' => 'add', 'admin' => false), array('title' => __l('Contact Us')));?></li>
-				<li><?php echo $html->link(__l('Terms & Conditions'), array('controller' => 'pages', 'action' => 'view', 'term-and-conditions', 'admin' => false), array('title' => __l('Terms & Conditions')));?></li>
-              </ul>
-            </div>
-            <div class="footer-section2">
-              <div class="footer-left">
-                <div class="footer-right">
-                 	<h6><?php echo __l('Learn More'); ?></h6>
-                </div>
-              </div>
-              	<?php $user_type = $auth->user('user_type_id');?>
-    			 <ul class="footer-nav">
-    				<li><?php echo $html->link(__l('FAQ'), array('controller' => 'pages', 'action' => 'view', 'faq', 'admin' => false), array('title' => __l('FAQ')));?></li>
-    				<li><?php echo $html->link(__l('Suggest a business'), array('controller' => 'business_suggestions', 'action' => 'add', 'admin' => false), array('title' => __l('Suggest a business'))); ?></li>
-    				<?php if(!$auth->sessionValid()):
-    					$url = strstr($this->params['url']['url'],"/company/user/register");?>
-    					<li <?php if((!empty($url)) || ($this->params['controller'] == 'pages' && $this->params['action'] == 'view' &&  $this->params['pass'][0] == 'company')) { echo 'class="active"'; } else { echo 'class=""';}?>><?php echo $html->link(Configure::read('site.name').' '.__l('for Your Business'), array('controller' => 'pages', 'action' => 'view', 'company', 'admin' => false), array('title' => Configure::read('site.name').' '.__l('for Your Business')));?></li>
-    				<?php endif; ?>
-    			</ul>
-            </div>
-            <div class="footer-section3">
-              <div class="footer-left">
-                <div class="footer-right">
-                	<h6><?php echo __l('Follow Us'); ?></h6>
-                </div>
-              </div>
-              <ul class="footer-nav">
-                 	<?php
-    					if(!empty($city_slug)):
-    						$tmpURL= $html->getCityTwitterFacebookURL($city_slug);
-    					endif;
-    				?>
-
-    				<li class="face2"><a href="<?php echo !empty($tmpURL['City']['facebook_url']) ? $tmpURL['City']['facebook_url'] : Configure::read('facebook.site_facebook_url'); ?>" title="<?php echo __l('See Our Profile in Facebook'); ?>" target="_blank"><?php echo __l('Facebook'); ?></a></li>
-                    <li class="tweet2"><a href="<?php echo !empty($tmpURL['City']['twitter_url']) ? $tmpURL['City']['twitter_url'] : Configure::read('twitter.site_twitter_url'); ?>" title="<?php echo __l('Follow Us in Twitter'); ?>" target="_blank"><?php echo __l('Twitter'); ?></a></li>
-                	<?php if($html->isAllowed($auth->user('user_type_id'))):?>
-    				<li class="mail2"><?php echo $html->link(__l('Email'), array('controller' => 'subscriptions', 'action' => 'add', 'admin' => false), array('title' => __l('Email'))); ?></li>
-    				<?php endif;?>
-    					<?php
-                    $cityArray = array();
-					if(!empty($city_slug)):
-						$tmpURL= $html->getCityTwitterFacebookURL($city_slug);
-						$cityArray = array('city'=>$city_slug);
-					endif;
-				?>
-    			     <li class="rss2"><?php echo $html->link(__l('RSS'), array_merge(array('controller'=>'deals', 'action'=>'index', 'ext'=>'rss'), $cityArray), array('target' => '_blank','title'=>__l('RSS Feed'))); ?></li>
-               </ul>
-            </div>
-            
-                	<?php
-					if (Configure::read('site.is_mobile_app')): ?>
-                    <div class="mobile-left">
-                     <div class="mobile-right">
-                        <?php $url = 'http://m.' . str_replace('www.', '', env('HTTP_HOST'));
-    					echo $html->link(__l('Mobile/PDA Version'), $url, array('class' => 'mobile')); ?>
-                    </div>
-                  </div>
-				<?php endif; ?>
-            
-          </div>
-          <div id="agriya" class="clearffix">
-          	<p class="copy">&copy;<?php echo date('Y');?> <?php echo $html->link(Configure::read('site.name'), Router::Url('/',true), array('title' => Configure::read('site.name'), 'escape' => false));?>. <?php echo __l('All rights reserved');?>.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+				</div> 
 </div>
-<br style="line-height: 100px;"/>
-<div id="footer_md"><!-- BEGIN footer_md CONTAINER -->	
+</div>
+ <div id="footer" style="position: relative;">
+ 	<div id="footer_bottom">
+	 		<table cellpadding="0" cellspacing="0" border="0" width="100%" height="100%">
+	 		<tr>
+	 			<td class="footer2r">&nbsp;</td>
+	 			<td width="992" class="background_footer">
+	 				<div style="position: absolute;bottom: 5px;"><p class="copy">&copy;<?php echo date('Y');?> <?php echo $html->link(Configure::read('site.name'), Router::Url('/',true), array('title' => Configure::read('site.name'), 'escape' => false));?>. <?php echo __l('All rights reserved');?>.</p></div>
+	 				<div class="footer-inner clearfix">
+			          <div class="footer-wrapper-inner clearfix">
+			            <div class="footer-section1">
+			              <div class="footer-left">
+			                <div class="footer-right">
+			                 <h6><?php echo __l('Company'); ?></h6>
+			                </div>
+			              </div>
+			              <ul class="footer-nav">
+			               	<li><?php echo $html->link(__l('About'), array('controller' => 'pages', 'action' => 'view', 'about', 'admin' => false), array('title' => __l('About')));?> </li>
+							<li><?php echo $html->link(__l('Contact Us'), array('controller' => 'contacts', 'action' => 'add', 'admin' => false), array('title' => __l('Contact Us')));?></li>
+							<li><?php echo $html->link(__l('Terms & Conditions'), array('controller' => 'pages', 'action' => 'view', 'term-and-conditions', 'admin' => false), array('title' => __l('Terms & Conditions')));?></li>
+			              </ul>
+			            </div>
+			            <div class="footer-section2">
+			              <div class="footer-left">
+			                <div class="footer-right">
+			                 	<h6><?php echo __l('Learn More'); ?></h6>
+			                </div>
+			              </div>
+			              	<?php $user_type = $auth->user('user_type_id');?>
+			    			 <ul class="footer-nav">
+			    				<li><?php echo $html->link(__l('FAQ'), array('controller' => 'pages', 'action' => 'view', 'faq', 'admin' => false), array('title' => __l('FAQ')));?></li>
+			    				<li><?php echo $html->link(__l('Suggest a business'), array('controller' => 'business_suggestions', 'action' => 'add', 'admin' => false), array('title' => __l('Suggest a business'))); ?></li>
+			    				<?php if(!$auth->sessionValid()):
+			    					$url = strstr($this->params['url']['url'],"/company/user/register");?>
+			    					<li <?php if((!empty($url)) || ($this->params['controller'] == 'pages' && $this->params['action'] == 'view' &&  $this->params['pass'][0] == 'company')) { echo 'class="active"'; } else { echo 'class=""';}?>><?php echo $html->link(Configure::read('site.name').' '.__l('for Your Business'), array('controller' => 'pages', 'action' => 'view', 'company', 'admin' => false), array('title' => Configure::read('site.name').' '.__l('for Your Business')));?></li>
+			    				<?php endif; ?>
+			    			</ul>
+			            </div>
+			            <div class="footer-section3">
+			              <div class="footer-left">
+			                <div class="footer-right">
+			                	<h6><?php echo __l('Follow Us'); ?></h6>
+			                </div>
+			              </div>
+			              <ul class="footer-nav">
+			                 	<?php
+			    					if(!empty($city_slug)):
+			    						$tmpURL= $html->getCityTwitterFacebookURL($city_slug);
+			    					endif;
+			    				?>
+			
+			    				<li class="face2"><a href="<?php echo !empty($tmpURL['City']['facebook_url']) ? $tmpURL['City']['facebook_url'] : Configure::read('facebook.site_facebook_url'); ?>" title="<?php echo __l('See Our Profile in Facebook'); ?>" target="_blank"><?php echo __l('Facebook'); ?></a></li>
+			                    <!-- <li class="tweet2"><a href="<?php echo !empty($tmpURL['City']['twitter_url']) ? $tmpURL['City']['twitter_url'] : Configure::read('twitter.site_twitter_url'); ?>" title="<?php echo __l('Follow Us in Twitter'); ?>" target="_blank"><?php echo __l('Twitter'); ?></a></li> -->
+			                	<?php if($html->isAllowed($auth->user('user_type_id'))):?>
+			    				<li class="mail2"><?php echo $html->link(__l('Email'), array('controller' => 'subscriptions', 'action' => 'add', 'admin' => false), array('title' => __l('Email'))); ?></li>
+			    				<?php endif;?>
+			    					<?php
+			                    $cityArray = array();
+								if(!empty($city_slug)):
+									$tmpURL= $html->getCityTwitterFacebookURL($city_slug);
+									$cityArray = array('city'=>$city_slug);
+								endif;
+							?>
+			    			     <!-- <li class="rss2"><?php echo $html->link(__l('RSS'), array_merge(array('controller'=>'deals', 'action'=>'index', 'ext'=>'rss'), $cityArray), array('target' => '_blank','title'=>__l('RSS Feed'))); ?></li> -->
+			               </ul>
+			            </div>
+			            
+			                	<?php
+								if (Configure::read('site.is_mobile_app')): ?>
+			                    <!-- <div class="mobile-left">
+			                     <div class="mobile-right">
+			                        <?php $url = 'http://m.' . str_replace('www.', '', env('HTTP_HOST'));
+			    					echo $html->link(__l('Mobile/PDA Version'), $url, array('class' => 'mobile')); ?>
+			                    </div>
+			                  </div> -->
+							<?php endif; ?>
+			            
+			          </div>
+			          
+			        </div>
+	 			</td>
+	 			<td class="footer2r">&nbsp;</td>
+	 		</tr>
+	 	</table> 	
+ 	</div>    
+  </div>
+  <div id="footer_md"><!-- BEGIN footer_md CONTAINER -->	
 	<div id="footer_md_social_fb">
 		<table cellpadding="0" cellspacing="0" border="0">
 			<tr>
@@ -533,7 +519,7 @@
 
 
 
-</div><!-- END footer_md CONTAINER -->
+</div><!-- END footer_md CONTAINER --> 	
 	<?php echo $this->element('site_tracker', array('cache' => array('time' => Configure::read('site.element_cache')), 'plugin' => 'site_tracker')); ?>
 	<?php echo $cakeDebug?>
 </body>

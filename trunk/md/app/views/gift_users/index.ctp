@@ -25,7 +25,7 @@
         <?php endif;?>
     </div>
     <?php echo $this->element('paging_counter');?>
-    <table class="list">
+    <table class="list" id="mytable">
         <tr>
             <th><div class="js-pagination"><?php echo $paginator->sort(__l('Purchased Date'),'created');?></div></th>
             <?php if (!empty($this->params['named']['type']) && $this->params['named']['type'] == 'received'): ?>
@@ -48,12 +48,14 @@
     $i = 0;
     foreach ($giftUsers as $giftUser):
         $class = null;
+        $tdclass = ' class="specalt"';
         if ($i++ % 2 == 0) {
             $class = ' class="altrow"';
+            $tdclass = ' class="spec"';
         }
     ?>
-        <tr<?php echo $class;?>>
-            <td><?php echo $html->cDateTime($giftUser['GiftUser']['created']);?></td>
+        <tr<?php echo $tdclass;?>>
+            <td<?php echo $tdclass;$tdclass='';?>><?php echo $html->cDateTime($giftUser['GiftUser']['created']);?></td>
             <?php if (!empty($this->params['named']['type']) && $this->params['named']['type'] == 'received'): ?>
                 <td class ="dl">
                 <?php 

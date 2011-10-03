@@ -34,10 +34,10 @@
 /* system theme (default) */
 
 span.ui-timepickr span {
-    border-width:2px;
+    border-width:1px;
     border-style:solid;
-    border-color:#4bc1de;
-    color:#4bc1de;
+    border-color:#543d53;
+    color:#543d53;
     background:#f1f9fc;
 	font-weight:bold;
 }
