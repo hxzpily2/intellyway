@@ -271,6 +271,241 @@ $javascript->link('libs/divs', false);
 			</table>
 			
 			<!-- POSTS -->
+			<br/>
+			<h2 style="font-size: 22pt">Commentaires</h2>
+			<br/>
+			<?php 
+			$discuss = $mdtopicdiscussions[$deal['Deal']['id']];
+			//print_r($discuss);
+			$isPair = 0; 
+			foreach ($discuss as $discus): 
+			?>			
+			<table width="100%">
+				<tr height="25">
+					<td width="15" id="cmt_top_left">&nbsp;</td>
+					<td colspan="2" id="cmt_top">&nbsp;</td>
+					<td width="15" id="cmt_top_right">&nbsp;</td>
+				</tr>
+				<tr>
+					<td width="15" id="cmt_middle_left">&nbsp;</td>
+					<td colspan="2" id="cmt_middle"><span class="spncmttxt"><?php echo $discus['TopicDiscussion']['comment']; ?></span></td>
+					<td width="15" id="cmt_middle_right">&nbsp;</td>
+				</tr>
+				<?php if($isPair%2==0): ?>
+				<tr height="25">
+					<td width="15" id="cmt_bottom_left">&nbsp;</td>
+					<td width="17" id="cmt_bulle">&nbsp;</td>
+					<td id="cmt_bottom">&nbsp;</td>
+					<td width="15" id="cmt_bottom_right">&nbsp;</td>
+				</tr>
+				<tr height="40">
+					<td colspan="4" align="left" style="padding-left: 15px;"  valign="middle">
+						<?php
+							$cmt_user_details = array(
+								'username' => $discus['TopicDiscussion']['username'],
+								'user_type_id' =>  $discus['TopicDiscussion']['user_type_id'],
+								'id' =>  $discus['TopicDiscussion']['user_id'],
+								'fb_user_id' =>  $discus['TopicDiscussion']['fb_user_id']
+							);
+														
+    						$current_user_details['UserAvatar'] = $html->getUserAvatar($auth->user('id'));
+    						echo $html->getUserCmtAvatarLink($cmt_user_details, 'small_thumb');
+    					?>
+    					<span class="spncmtuser"><?php echo $discus['TopicDiscussion']['username']; ?></span>
+    					<span class="spndatecmtuser">(<?php echo date("d/m/Y h:i:s",strtotime($discus['TopicDiscussion']['created'])); ?>)</span>
+					</td>
+				</tr>
+				<?php else:?>
+				<tr height="25">
+					<td width="15" id="cmt_bottom_left">&nbsp;</td>					
+					<td id="cmt_bottom">&nbsp;</td>
+					<td width="17" id="cmt_bulle_inv">&nbsp;</td>
+					<td width="15" id="cmt_bottom_right">&nbsp;</td>
+				</tr>
+				<tr height="40">
+					<td colspan="4" align="right" style="padding-right: 15px;"  valign="middle">						    					
+    					<span class="spndatecmtuser">(<?php echo date("d/m/Y h:i:s",strtotime($discus['TopicDiscussion']['created'])); ?>)</span>
+    					<span class="spncmtuser"><?php echo $discus['TopicDiscussion']['username']; ?></span>
+    					<?php
+							$cmt_user_details = array(
+								'username' => $discus['TopicDiscussion']['username'],
+								'user_type_id' =>  $discus['TopicDiscussion']['user_type_id'],
+								'id' =>  $discus['TopicDiscussion']['user_id'],
+								'fb_user_id' =>  $discus['TopicDiscussion']['fb_user_id']
+							);
+														
+    						$current_user_details['UserAvatar'] = $html->getUserAvatar($auth->user('id'));
+    						echo $html->getUserCmtAvatarLink($cmt_user_details, 'small_thumb');
+    					?>
+					</td>
+				</tr>
+				<?php endif;?>
+			</table>
+			<?php 
+				$isPair++;
+			endforeach;
+			?>
+			<table width="100%" height="175">
+				<tr height="25">
+					<td width="15" id="cmt_top_left">&nbsp;</td>
+					<td colspan="2" id="cmt_top">&nbsp;</td>
+					<td width="15" id="cmt_top_right">&nbsp;</td>
+				</tr>
+				<tr>
+					<td width="15" id="cmt_middle_left">&nbsp;</td>
+					<td colspan="2" id="cmt_middle">
+						<div class="posts_textarea">							
+							<?php $mdtopic = $mdtopics[$deal['Deal']['id']]; ?>
+							<?php echo $form->create('Deal', array('action' => 'add_comment', 'enctype' => 'multipart/form-data')); ?> 							
+								<?php echo $form->input('mdtopicid', array('type' => 'hidden','value'=>$mdtopic['Topic']['id']));?>
+								<?php echo $form->textarea('user_post_ta'); ?>				        		
+				        		<br/>
+				        		<br style="line-height: 10px;"/>
+				        		<a class="blue_button" style="float:right;margin-right:-2px;" onclick="$('form').submit()" href="#"><span><?php echo __l('Submit'); ?></span></a>
+			        		<?php echo $form->end(); ?>        		
+			        	</div>
+					</td>
+					<td width="15" id="cmt_middle_right">&nbsp;</td>
+				</tr>
+				<?php if($isPair%2==0): ?>
+				<tr height="25">
+					<td width="15" id="cmt_bottom_left">&nbsp;</td>
+					<td width="17" id="cmt_bulle">&nbsp;</td>
+					<td id="cmt_bottom">&nbsp;</td>
+					<td width="15" id="cmt_bottom_right">&nbsp;</td>
+				</tr>
+				<tr height="40">
+						<td colspan="4" align="left" style="padding-left: 15px;">
+							<?php
+								$current_user_details = array(
+									'username' => $auth->user('username'),
+									'user_type_id' =>  $auth->user('user_type_id'),
+									'id' =>  $auth->user('id'),
+									'fb_user_id' =>  $auth->user('fb_user_id')
+								);															
+	    						$current_user_details['UserAvatar'] = $html->getUserAvatar($auth->user('id'));
+	    						echo $html->getUserCmtAvatarLink($current_user_details, 'small_thumb');
+	    					?>
+	    					<span class="spncmtuser"><?php echo  $auth->user('username'); ?></span>
+						</td>
+					
+						
+				<?php else:?>
+				<tr height="25">
+					<td width="15" id="cmt_bottom_left">&nbsp;</td>					
+					<td id="cmt_bottom">&nbsp;</td>
+					<td width="17" id="cmt_bulle_inv">&nbsp;</td>
+					<td width="15" id="cmt_bottom_right">&nbsp;</td>
+				</tr>
+				<tr height="40">	
+					<td colspan="4" align="right" style="padding-right: 15px;" >
+							<span class="spncmtuser"><?php echo  $auth->user('username'); ?></span>
+							<?php
+								$current_user_details = array(
+									'username' => $auth->user('username'),
+									'user_type_id' =>  $auth->user('user_type_id'),
+									'id' =>  $auth->user('id'),
+									'fb_user_id' =>  $auth->user('fb_user_id')
+								);															
+	    						$current_user_details['UserAvatar'] = $html->getUserAvatar($auth->user('id'));
+	    						echo $html->getUserCmtAvatarLink($current_user_details, 'small_thumb');
+	    					?>
+						</td>
+					
+				</tr>
+				<?php endif;?>
+			</table>
+			<!-- <table width="100%" height="175">
+				<tr height="18">
+					<td width="20" id="desc_top_left">&nbsp;</td>
+					<td id="desc_top">&nbsp;</td>
+					<td width="20" id="desc_top_right">&nbsp;</td>
+				</tr>
+				<tr>
+					<td width="20" id="desc_left">&nbsp;</td>
+					<td id="desc_texture">
+						<div class="posts_textarea">
+			        		<textarea id="user_post_ta"></textarea>
+			        		<br/>
+			        		<br style="line-height: 10px;"/>
+			        		<a class="blue_button" style="float:right;margin-right:-2px;" onclick="javascript:postComment();" href="#"><span><?php echo __l('Submit'); ?></span></a>        		
+			        	</div>
+					</td>
+					<td width="20" id="desc_right">&nbsp;</td>
+				</tr>
+				<tr height="21">
+					<td width="20" id="desc_bottom_left">&nbsp;</td>
+					<td id="desc_bottom">&nbsp;</td>
+					<td width="20" id="desc_bottom_right">&nbsp;</td>
+				</tr>
+			</table> -->		
+			<!--			
+			<div class="posts_textarea">
+        		<textarea id="user_post_ta"></textarea>
+        		<br/>
+        		<br style="line-height: 10px;"/>
+        		<a class="blue_button" style="float:right;margin-right:-2px;" onclick="javascript:postComment();" href="#"><span><?php echo __l('Submit'); ?></span></a>        		
+        	</div>
+        	<div class="posts">
+        		        		
+        	</div>
+        	 -->
+        	<!-- BEGIN DISQUS 
+			<table cellpadding="0" cellspacing="0" border="0" width="100%">
+				<tr height="20">
+					<td width="27" id="md_deal_infos_top_left">&nbsp;</td>
+			   	    <td id="md_deal_infos_top">&nbsp;</td>
+					<td id="md_deal_infos_top_right" width="21">&nbsp;</td>
+				</tr>
+				<tr height="300">
+					<td id="md_deal_infos_left" width="27">&nbsp;</td>
+					<td id="md_deal_infos_texture" style="padding-top: 10px;padding-bottom: 10px;padding-right: 5px;">
+						<table width="100%" height="320">
+								<tr height="18">
+									<td width="20" id="desc_top_left">&nbsp;</td>
+									<td id="desc_top">&nbsp;</td>
+									<td width="20" id="desc_top_right">&nbsp;</td>
+								</tr>
+								<tr>
+									<td width="20" id="desc_left">&nbsp;</td>
+									<td id="desc_texture">										
+										
+										<div id="disqus_thread"></div>
+										<?php
+											echo $html->link($deal['Deal']['name'], array('controller' => 'deals', 'action' => 'view', $deal['Deal']['slug']),array('title' =>sprintf(__l('%s'),$deal['Deal']['name'])));
+										?>
+										<script type="text/javascript">
+										    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+										    var disqus_shortname = 'missdeal'; // required: replace example with your forum shortname
+											var disqus_identifier = 'dd';
+										    /* * * DON'T EDIT BELOW THIS LINE * * */
+										    (function() {
+										        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+										        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+										        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+										    })();
+										</script>
+										<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>									
+										
+									</td>
+									<td width="20" id="desc_right">&nbsp;</td>
+								</tr>
+								<tr height="21">
+									<td width="20" id="desc_bottom_left">&nbsp;</td>
+									<td id="desc_bottom">&nbsp;</td>
+									<td width="20" id="desc_bottom_right">&nbsp;</td>
+								</tr>
+						</table>			
+					</td>
+					<td id="md_deal_infos_right" width="27">&nbsp;</td>
+				</tr>
+				<tr height="20">
+					<td width="27" id="md_deal_infos_bottom_left">&nbsp;</td>
+					<td id="md_deal_infos_bottom">&nbsp;</td>
+					<td width="21" id="md_deal_infos_bottom_right">&nbsp;</td>
+				</tr>	
+			</table>
+			<!-- END DISQUS -->			
 			<!--<div class="posts_textarea">
         		<textarea id="user_post_ta"></textarea>
         		<br/>
